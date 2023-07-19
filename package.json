@@ -1,13 +1,25 @@
 {
   "name": "furigana-plus",
   "displayName": "Furigana plus",
-  "version": "0.0.1",
-  "description": "A basic Plasmo extension.",
-  "author": "aiktb <hey@aiktb.com>",
+  "version": "1.0.0",
+  "private": true,
+  "description": "Add Furigana to Japanese text for any web page.",
+  "license": "MIT",
+  "author": {
+    "name": "aiktb",
+    "email": "hey@aiktb.com",
+    "url": "http://aiktb.com/"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/aiktb/furigana-plus.git"
+  },
   "scripts": {
-    "dev": "plasmo dev",
+    "dev": "plasmo dev --verbose",
     "build": "plasmo build",
-    "test": "plasmo test"
+    "test": "plasmo test",
+    "prepare": "husky install",
+    "format": "prettier --check --write ."
   },
   "dependencies": {
     "plasmo": "0.81.0",
