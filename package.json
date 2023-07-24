@@ -1,38 +1,37 @@
 {
   "name": "furigana-plus",
-  "displayName": "Furigana plus",
+  "displayName": "Furigana Plus",
   "version": "1.0.0",
+  "type": "module",
   "private": true,
-  "description": "Add Furigana to Japanese text for any web page.",
+  "description": "Add Furigana to Japanese text for any web page. Added to tweets by default.",
   "license": "MIT",
-  "author": {
-    "name": "aiktb",
-    "email": "hey@aiktb.com",
-    "url": "http://aiktb.com/"
-  },
+  "author": "aiktb <hey@aiktb.com>",
   "repository": {
     "type": "git",
     "url": "git+https://github.com/aiktb/furigana-plus.git"
   },
   "scripts": {
-    "dev": "plasmo dev --verbose",
+    "dev": "plasmo dev",
     "build": "plasmo build",
     "test": "plasmo test",
     "prepare": "husky install",
     "format": "prettier --check --write ."
   },
   "dependencies": {
+    "@plasmohq/messaging": "^0.5.0",
+    "axios": "^1.4.0",
+    "kurokanji": "^1.2.1",
     "plasmo": "0.81.0",
-    "react": "18.2.0",
-    "react-dom": "18.2.0"
+    "vue": "^3.3.4"
   },
   "devDependencies": {
     "@ianvs/prettier-plugin-sort-imports": "4.1.0",
     "@types/chrome": "0.0.241",
     "@types/node": "20.4.2",
-    "@types/react": "18.2.15",
-    "@types/react-dom": "18.2.7",
+    "husky": "^8.0.3",
     "prettier": "3.0.0",
+    "prettier-quick": "^0.0.5",
     "typescript": "5.1.6"
   },
   "manifest": {
