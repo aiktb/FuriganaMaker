@@ -1,14 +1,14 @@
-import type { KuromojiToken } from "kurokanji"
+import type { KuromojiToken } from "kurokanji";
 
-import type { PlasmoMessaging } from "@plasmohq/messaging"
+import type { PlasmoMessaging } from "@plasmohq/messaging";
 
 export type RequestBody = {
-  text: string
-}
+  text: string;
+};
 
 export type ResponseBody = {
-  message: KuromojiToken[]
-}
+  message: KuromojiToken[];
+};
 
 const handler: PlasmoMessaging.MessageHandler<
   RequestBody,
@@ -17,21 +17,21 @@ const handler: PlasmoMessaging.MessageHandler<
   const requestOptions = {
     method: "POST",
     headers: {
-      "Content-Type": "application/json"
+      "Content-Type": "application/json",
     },
     body: JSON.stringify({
-      text: req.body!.text
-    })
-  }
+      text: req.body!.text,
+    }),
+  };
   const response = await fetch(
     "https://api.aiktb.com/tokenizer",
-    requestOptions
-  )
-  const message: KuromojiToken[] = await response.json()
+    requestOptions,
+  );
+  const message: KuromojiToken[] = await response.json();
 
   res.send({
-    message
-  })
-}
+    message,
+  });
+};
 
-export default handler
+export default handler;
