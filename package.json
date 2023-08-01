@@ -20,24 +20,21 @@
     "format": "prettier --check --write ."
   },
   "dependencies": {
-    "@headlessui/vue": "^1.7.14",
-    "@heroicons/vue": "^2.0.18",
     "@plasmohq/messaging": "^0.5.0",
-    "axios": "^1.4.0",
+    "@plasmohq/storage": "^1.7.2",
     "kurokanji": "^1.2.1",
     "plasmo": "0.82.0",
-    "vue": "^3.3.4"
+    "vue": "^3.3.4",
+    "wanakana": "^5.1.0"
   },
   "devDependencies": {
     "@ianvs/prettier-plugin-sort-imports": "4.1.0",
     "@types/chrome": "0.0.241",
     "@types/node": "20.4.2",
-    "autoprefixer": "^10.4.14",
+    "@types/wanakana": "^4.0.3",
     "husky": "^8.0.3",
-    "postcss": "^8.4.27",
     "prettier": "3.0.0",
-    "prettier-quick": "^0.0.5",
-    "tailwindcss": "^3.3.3",
+    "pretty-quick": "^3.1.3",
     "typescript": "5.1.6"
   },
   "manifest": {
