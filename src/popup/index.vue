@@ -1,55 +1,62 @@
 <script setup lang="ts">
-import { onMounted, ref, type Ref } from 'vue'
+import { onMounted, reactive } from 'vue'
 
 import { Storage } from '@plasmohq/storage'
 
 import { Change } from '~contents/core'
-import type { Furigana, Select } from '~contents/core'
+import type { Color, Display, Engine, Furigana, Select } from '~contents/core'
 
-const furigana: Ref<Furigana> = ref('katakana')
-const furiganaChange = () => {
-  const storage = new Storage()
-  storage.set(Change.Furigana, furigana.value as Furigana)
+type Option = {
+  furigana: Furigana
+  select: Select
+  color: Color
+  display: Display
+  engine: Engine
 }
 
-const select: Ref<Select> = ref('off')
-const selectChange = () => {
+const option: Option = reactive({
+  furigana: 'hiragana',
+  select: 'on',
+  color: 'currentColor',
+  display: 'on',
+  engine: 'network'
+})
+
+const changeEvent = async (type: Change) => {
+  const value = option[type]
   const storage = new Storage()
-  storage.set(Change.Select, select.value as Select)
-  chrome.tabs.query({ url: 'https://twitter.com/*' }).then((tabs) => {
-    tabs.forEach((tab) => {
-      chrome.tabs.sendMessage(tab.id!, {
-        type: Change.Select,
-        value: select.value
-      })
+  storage.set(type, value)
+  const tabs = await chrome.tabs.query({ url: 'https://twitter.com/*' })
+  tabs.forEach((tab) => {
+    chrome.tabs.sendMessage(tab.id!, {
+      type: type,
+      value: value
     })
   })
 }
 
-onMounted(() => {
+onMounted(async () => {
   const storage = new Storage()
-  storage.get(Change.Furigana).then((data) => {
-    furigana.value = data as Furigana
-  })
-  storage.get(Change.Select).then((data) => {
-    select.value = data as Select
-  })
+  let data = await storage.get(Change.Furigana)
+  option.furigana = data as Furigana
+  data = await storage.get(Change.Select)
+  option.select = data as Select
 })
 </script>
 
 <template>
   <div class="container">
     <div class="menu-item">
-      <span>Furigana Type:</span>
-      <select v-model="furigana" @change="furiganaChange">
-        <option value="katakana">Katakana</option>
+      <span>Furigana Type</span>
+      <select v-model="option.furigana" @change="changeEvent(Change.Furigana)">
         <option value="hiragana">Hiragana</option>
+        <option value="katakana">Katakana</option>
         <option value="romaji">Romaji</option>
       </select>
     </div>
     <div class="menu-item">
       <span>Furigana Select</span>
-      <select v-model="select" @change="selectChange">
+      <select v-model="option.select" @change="changeEvent(Change.Select)">
         <option value="on">On</option>
         <option value="off">Off</option>
       </select>
