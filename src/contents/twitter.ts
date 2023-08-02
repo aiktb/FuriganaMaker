@@ -10,6 +10,8 @@ import type {
   ResponseBody
 } from '~background/messages/fetchKuromoji'
 
+import { Change, Class, type Furigana } from './core'
+
 export const config: PlasmoCSConfig = {
   matches: ['https://twitter.com/*'],
   all_frames: true
@@ -77,35 +79,31 @@ const addFurigana = async (nodes: Node[]) => {
   }
 }
 
-async function createRuby(
+const createRuby = async (
   original: string,
   reading: string
-): Promise<HTMLElement> {
+): Promise<HTMLElement> => {
   const rubyNode = document.createElement('ruby')
   const originalTextNode = document.createTextNode(original)
 
   const storage = new Storage()
-  const furiganaType = await storage.get('furiganaType')
-  let readingText: string
+  const furiganaType: Furigana = await storage.get(Change.Furigana)
   switch (furiganaType) {
     case 'hiragana':
-      readingText = toHiragana(reading)
+      reading = toHiragana(reading)
       break
     case 'romaji':
-      readingText = toRomaji(reading)
+      reading = toRomaji(reading)
       break
     case 'katakana':
       // token.reading default is katakana
-      readingText = reading
       break
-    default:
-      throw new Error('Invalid furigana type')
   }
-  const readingTextNode = document.createTextNode(readingText)
+  const readingTextNode = document.createTextNode(reading)
   const rt = document.createElement('rt')
   rt.appendChild(readingTextNode)
   rubyNode.appendChild(originalTextNode)
   rubyNode.appendChild(rt)
-  rubyNode.classList.add('furigana')
+  rubyNode.classList.add(Class.Furigana)
   return rubyNode
 }
