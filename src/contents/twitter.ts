@@ -16,24 +16,15 @@ export const config: PlasmoCSConfig = {
 }
 
 const observer = new MutationObserver((records, _observer) => {
-  for (const record of records) {
-    if (record.type === 'childList' && record.addedNodes.length > 0) {
-      for (const node of record.addedNodes) {
-        if (node.nodeType === Node.ELEMENT_NODE) {
-          const japaneseTweetNodes = (node as Element).querySelectorAll(
-            'div[lang="ja"] span'
-          )
-          if (japaneseTweetNodes.length) {
-            for (const jaNode of japaneseTweetNodes) {
-              for (const node of getAllTextNodes(jaNode)) {
-                addFurigana(node)
-              }
-            }
-          }
-        }
-      }
-    }
-  }
+  const jaNodes = records
+    .flatMap((record) => Array.from(record.addedNodes))
+    .filter((node) => node.nodeType === Node.ELEMENT_NODE)
+    .flatMap((node) =>
+      Array.from((node as Element).querySelectorAll('div[lang="ja"] span'))
+    )
+    .flatMap(getAllTextNodes)
+
+  addFurigana(jaNodes)
 })
 
 observer.observe(document.body, { childList: true, subtree: true })
@@ -48,42 +39,41 @@ async function tokenize(text: string): Promise<KurokanjiToken[]> {
   return toKurokanjiToken(response.message)
 }
 
-function getAllTextNodes(node: Node): Set<Node> {
-  const textNodes: Set<Node> = new Set()
+const getAllTextNodes = (node: Node): Node[] => {
+  const textNodes: Node[] = []
   if (node.nodeType === Node.TEXT_NODE) {
     const textContent = node.textContent?.trim()
     if (textContent && textContent.length) {
-      textNodes.add(node)
+      textNodes.push(node)
     }
   } else {
-    for (const child of node.childNodes) {
-      for (const node of getAllTextNodes(child)) {
-        textNodes.add(node)
-      }
-    }
+    const nodes = Array.from(node.childNodes).flatMap(getAllTextNodes)
+    textNodes.push(...nodes)
   }
   return textNodes
 }
+
 // node must have only one text child node
 // <ruby>${token.original}<rt>${token.reading}</rt></ruby>
-async function addFurigana(node: Node) {
-  const tokens: KurokanjiToken[] = await tokenize(node.textContent!)
-  // reverse() prevents the range from being invalidated
-  for (const token of tokens.reverse()) {
-    const ruby = await createRuby(token.original, token.reading)
-    // This is an asynchronous bug (+ twitter bug), often the same node is executed twice addRubyTagsToNode(),
-    // because tokenize is executed asynchronously, it will cause the two calls to get the same KurokanjiToken[],
-    // but after one of them is completed, the content of node has been changed, and the return value is invalid.
-    if (token.end > node.textContent!.length) {
-      break
+const addFurigana = async (nodes: Node[]) => {
+  for (const node of nodes) {
+    const tokens: KurokanjiToken[] = await tokenize(node.textContent!)
+    // reverse() prevents the range from being invalidated
+    for (const token of tokens.reverse()) {
+      const ruby = await createRuby(token.original, token.reading)
+      // This is an asynchronous bug (+ twitter bug), often the same node is executed twice addRubyTagsToNode(),
+      // because tokenize is executed asynchronously, it will cause the two calls to get the same KurokanjiToken[],
+      // but after one of them is completed, the content of node has been changed, and the return value is invalid.
+      if (token.end > node.textContent!.length) {
+        break
+      }
+      // range is [start, end), very good!
+      const range = document.createRange()
+      range.setStart(node, token.start)
+      range.setEnd(node, token.end)
+      range.deleteContents()
+      range.insertNode(ruby)
     }
-    // range is [start, end), very good!
-    const range = document.createRange()
-    range.setStart(node, token.start)
-    range.setEnd(node, token.end)
-    range.deleteContents()
-
-    range.insertNode(ruby)
   }
 }
 
