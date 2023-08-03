@@ -4,7 +4,14 @@ import { onMounted, reactive } from 'vue'
 import { Storage } from '@plasmohq/storage'
 
 import { Change } from '~contents/core'
-import type { Color, Display, Engine, Furigana, Select } from '~contents/core'
+import type {
+  Color,
+  Display,
+  Engine,
+  Fontsize,
+  Furigana,
+  Select
+} from '~contents/core'
 
 type Option = {
   furigana: Furigana
@@ -12,6 +19,7 @@ type Option = {
   color: Color
   display: Display
   engine: Engine
+  fontsize: Fontsize
 }
 
 const option: Option = reactive({
@@ -19,7 +27,8 @@ const option: Option = reactive({
   select: 'on',
   color: 'currentColor',
   display: 'on',
-  engine: 'network'
+  engine: 'network',
+  fontsize: 50
 })
 
 const changeEvent = async (type: Change) => {
@@ -30,6 +39,11 @@ const changeEvent = async (type: Change) => {
   for (const tab of tabs) {
     chrome.tabs.sendMessage(tab.id!, { type, value })
   }
+}
+
+const resetColor = () => {
+  option.color = 'currentColor'
+  changeEvent(Change.Color)
 }
 
 onMounted(async () => {
@@ -44,7 +58,7 @@ onMounted(async () => {
 <template>
   <div class="container">
     <div class="menu-item">
-      <span>Furigana Type</span>
+      <label>Furigana Type</label>
       <select v-model="option.furigana" @change="changeEvent(Change.Furigana)">
         <option value="hiragana">Hiragana</option>
         <option value="katakana">Katakana</option>
@@ -52,11 +66,30 @@ onMounted(async () => {
       </select>
     </div>
     <div class="menu-item">
-      <span>Furigana Select</span>
+      <label>Furigana Select</label>
       <select v-model="option.select" @change="changeEvent(Change.Select)">
         <option value="on">On</option>
         <option value="off">Off</option>
       </select>
+    </div>
+    <div class="menu-item">
+      <label>Choose a color</label>
+      <button @click="resetColor">default</button>
+      <!-- prettier-ignore -->
+      <input type="color" v-model="option.color" @change="changeEvent(Change.Color)" />
+    </div>
+    <div class="menu-item">
+      <label>Display</label>
+      <select v-model="option.display" @change="changeEvent(Change.Display)">
+        <option value="on">On</option>
+        <option value="off">Off</option>
+      </select>
+    </div>
+    <div class="menu-item">
+      <label>Font size</label>
+      <!-- prettier-ignore -->
+      <input type="range" min="50" max="100" 
+      v-model="option.fontsize" @change="changeEvent(Change.Fontsize)">
     </div>
   </div>
 </template>

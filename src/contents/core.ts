@@ -1,12 +1,14 @@
-import type { KuromojiToken } from 'kurokanji'
 import type { PlasmoCSConfig } from 'plasmo'
+
+import type { KuromojiToken } from '~contents/kanji'
 
 export enum Change {
   Furigana = 'furigana',
   Select = 'select',
   Color = 'color',
   Display = 'display',
-  Engine = 'engine'
+  Engine = 'engine',
+  Fontsize = 'fontsize'
 }
 
 export enum Class {
@@ -14,7 +16,8 @@ export enum Class {
   Select = 'furigana-select',
   Color = 'furigana-color',
   Display = 'furigana-display',
-  Engine = 'furigana-engine'
+  Engine = 'furigana-engine',
+  Fontsize = 'furigana-fontsize'
 }
 
 export type Furigana = 'hiragana' | 'katakana' | 'romaji'
@@ -22,6 +25,7 @@ export type Display = 'on' | 'off'
 export type Select = 'on' | 'off'
 export type Engine = 'local' | 'network'
 export type Color = string
+export type Fontsize = number
 
 export type RequestBody = {
   text: string

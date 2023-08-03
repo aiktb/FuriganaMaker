@@ -11,7 +11,8 @@ export const config: PlasmoCSConfig = {
 }
 
 const storage = new Storage()
-for (const type of [Change.Select, Change.Color, Change.Display]) {
+// prettier-ignore
+for (const type of [Change.Select, Change.Color, Change.Display, Change.Fontsize]) {
   storage.get(type).then((value) => {
     styleHandler(type, value)
   })
@@ -23,7 +24,8 @@ chrome.runtime.onMessage.addListener(
     if (
       type === Change.Select ||
       type === Change.Color ||
-      type === Change.Display
+      type === Change.Display ||
+      type === Change.Fontsize
     ) {
       styleHandler(type, value)
     } else if (type === Change.Furigana) {
@@ -51,6 +53,12 @@ const styleHandler = (type: Change, value: string) => {
       css = `
         .furigana > rt {
           display: ${value === 'off' ? 'none' : 'auto'};
+        }`
+      break
+    case Change.Fontsize:
+      css = `
+        .furigana > rt {
+          font-size: ${value}%;
         }`
       break
     default:
