@@ -3,8 +3,7 @@ import { onMounted, reactive } from 'vue'
 
 import { Storage } from '@plasmohq/storage'
 
-import { defaultValue } from '~background/index'
-import { Change } from '~contents/core'
+import { Change, defaultValue } from '~contents/core'
 
 const option = reactive(defaultValue)
 
