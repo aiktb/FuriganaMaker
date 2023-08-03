@@ -3,33 +3,10 @@ import { onMounted, reactive } from 'vue'
 
 import { Storage } from '@plasmohq/storage'
 
+import { defaultValue } from '~background/index'
 import { Change } from '~contents/core'
-import type {
-  Color,
-  Display,
-  Engine,
-  Fontsize,
-  Furigana,
-  Select
-} from '~contents/core'
 
-type Option = {
-  furigana: Furigana
-  select: Select
-  color: Color
-  display: Display
-  engine: Engine
-  fontsize: Fontsize
-}
-
-const option: Option = reactive({
-  furigana: 'hiragana',
-  select: 'on',
-  color: 'currentColor',
-  display: 'on',
-  engine: 'network',
-  fontsize: 50
-})
+const option = reactive(defaultValue)
 
 const changeEvent = async (type: Change) => {
   const value = option[type]
@@ -48,10 +25,12 @@ const resetColor = () => {
 
 onMounted(async () => {
   const storage = new Storage()
-  let data = await storage.get(Change.Furigana)
-  option.furigana = data as Furigana
-  data = await storage.get(Change.Select)
-  option.select = data as Select
+  option.furigana = await storage.get(Change.Furigana)
+  option.select = await storage.get(Change.Select)
+  option.color = await storage.get(Change.Color)
+  option.display = await storage.get(Change.Display)
+  option.fontsize = await storage.get(Change.Fontsize)
+  option.engine = await storage.get(Change.Engine)
 })
 </script>
 
@@ -68,8 +47,9 @@ onMounted(async () => {
     <div class="menu-item">
       <label>Furigana Select</label>
       <select v-model="option.select" @change="changeEvent(Change.Select)">
-        <option value="on">On</option>
-        <option value="off">Off</option>
+        <option value="original">Original</option>
+        <option value="furigana">Furigana</option>
+        <option value="all">All</option>
       </select>
     </div>
     <div class="menu-item">
@@ -88,7 +68,7 @@ onMounted(async () => {
     <div class="menu-item">
       <label>Font size</label>
       <!-- prettier-ignore -->
-      <input type="range" min="50" max="100" 
+      <input type="range" min="50" max="100"
       v-model="option.fontsize" @change="changeEvent(Change.Fontsize)">
     </div>
   </div>

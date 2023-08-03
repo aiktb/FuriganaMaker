@@ -22,7 +22,7 @@ export enum Class {
 
 export type Furigana = 'hiragana' | 'katakana' | 'romaji'
 export type Display = 'on' | 'off'
-export type Select = 'on' | 'off'
+export type Select = 'original' | 'furigana' | 'all'
 export type Engine = 'local' | 'network'
 export type Color = string
 export type Fontsize = number

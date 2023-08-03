@@ -40,7 +40,11 @@ const styleHandler = (type: Change, value: string) => {
     case Change.Select:
       css = `
         .furigana > rt {
-          user-select: ${value === 'off' ? 'none' : 'auto'};
+          user-select: ${value === 'original' ? 'none' : 'auto'};
+        }
+        
+        .furigana *:not(rt) {
+          user-select: ${value === 'furigana' ? 'none' : 'auto'};
         }`
       break
     case Change.Color:
