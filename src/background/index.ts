@@ -1,6 +1,7 @@
 import { Storage } from '@plasmohq/storage'
 
-import type { Color, Display, Engine, Furigana, Select } from '~contents/core'
+// prettier-ignore
+import type { Color, Display, Engine, Fontsize, Furigana, Select } from '~contents/core';
 
 import { Change } from '../contents/core'
 
@@ -11,4 +12,5 @@ chrome.runtime.onInstalled.addListener(async () => {
   await storage.set(Change.Select, 'off' as Select)
   await storage.set(Change.Display, 'on' as Display)
   await storage.set(Change.Engine, 'local' as Engine)
+  await storage.set(Change.Fontsize, 50 as Fontsize)
 })
