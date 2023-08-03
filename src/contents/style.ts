@@ -3,7 +3,7 @@ import { toHiragana, toKatakana, toRomaji } from 'wanakana'
 
 import { Storage } from '@plasmohq/storage'
 
-import { Change, type Furigana } from '~contents/core'
+import { Event, type Furigana } from '~contents/core'
 
 export const config: PlasmoCSConfig = {
   matches: ['https://twitter.com/*'],
@@ -12,20 +12,18 @@ export const config: PlasmoCSConfig = {
 
 const storage = new Storage()
 // prettier-ignore
-for (const type of [Change.Select, Change.Color, Change.Display, Change.Fontsize]) {
+for (const type of [Event.Select, Event.Color, Event.Display, Event.Fontsize]) {
   storage.get(type).then((value) => {
     styleHandler(type, value)
   })
 }
 
 chrome.runtime.onMessage.addListener(
-  (message: { type: Change; value: string }, _sender, _sendResponse) => {
+  (message: { type: Event; value: string }) => {
     const { type, value } = message
     switch (type) {
-      case Change.Furigana:
+      case Event.Furigana:
         furiganaHandler(value as Furigana)
-        break
-      case Change.Engine:
         break
       default:
         styleHandler(type, value)
@@ -33,11 +31,12 @@ chrome.runtime.onMessage.addListener(
     }
   }
 )
+
 const rtSelector = '.furigana > ruby > rt'
-const styleHandler = (type: Change, value: string) => {
+const styleHandler = (type: Event, value: string) => {
   let css: string
   switch (type) {
-    case Change.Select:
+    case Event.Select:
       css = `
         .furigana {
           user-select: ${value === 'furigana' ? 'none' : 'text'};
@@ -47,19 +46,19 @@ const styleHandler = (type: Change, value: string) => {
           user-select: ${value === 'original' ? 'none' : 'text'};
         }`
       break
-    case Change.Color:
+    case Event.Color:
       css = `
         ${rtSelector} {
           color: ${value};
         }`
       break
-    case Change.Display:
+    case Event.Display:
       css = `
         ${rtSelector} {
           display: ${value === 'off' ? 'none' : 'auto'};
         }`
       break
-    case Change.Fontsize:
+    case Event.Fontsize:
       css = `
         ${rtSelector} {
           font-size: ${value}%;
