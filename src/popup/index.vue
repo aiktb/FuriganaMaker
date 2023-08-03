@@ -27,12 +27,9 @@ const changeEvent = async (type: Change) => {
   const storage = new Storage()
   storage.set(type, value)
   const tabs = await chrome.tabs.query({ url: 'https://twitter.com/*' })
-  tabs.forEach((tab) => {
-    chrome.tabs.sendMessage(tab.id!, {
-      type: type,
-      value: value
-    })
-  })
+  for (const tab of tabs) {
+    chrome.tabs.sendMessage(tab.id!, { type, value })
+  }
 }
 
 onMounted(async () => {

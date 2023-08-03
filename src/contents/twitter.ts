@@ -9,8 +9,7 @@ import type {
   RequestBody,
   ResponseBody
 } from '~background/messages/fetchKuromoji'
-
-import { Change, Class, type Furigana } from './core'
+import { Change, Class, type Furigana } from '~contents/core'
 
 export const config: PlasmoCSConfig = {
   matches: ['https://twitter.com/*'],
@@ -30,16 +29,6 @@ const observer = new MutationObserver((records, _observer) => {
 })
 
 observer.observe(document.body, { childList: true, subtree: true })
-
-async function tokenize(text: string): Promise<KurokanjiToken[]> {
-  const response = await sendToBackground<RequestBody, ResponseBody>({
-    name: 'fetchKuromoji',
-    body: {
-      text: text
-    }
-  })
-  return toKurokanjiToken(response.message)
-}
 
 const getAllTextNodes = (node: Node): Node[] => {
   const textNodes: Node[] = []
@@ -77,6 +66,16 @@ const addFurigana = async (nodes: Node[]) => {
       range.insertNode(ruby)
     }
   }
+}
+
+const tokenize = async (text: string): Promise<KurokanjiToken[]> => {
+  const response = await sendToBackground<RequestBody, ResponseBody>({
+    name: 'fetchKuromoji',
+    body: {
+      text: text
+    }
+  })
+  return toKurokanjiToken(response.message)
 }
 
 const createRuby = async (
