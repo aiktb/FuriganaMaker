@@ -21,47 +21,47 @@ for (const type of [Change.Select, Change.Color, Change.Display, Change.Fontsize
 chrome.runtime.onMessage.addListener(
   (message: { type: Change; value: string }, _sender, _sendResponse) => {
     const { type, value } = message
-    if (
-      type === Change.Select ||
-      type === Change.Color ||
-      type === Change.Display ||
-      type === Change.Fontsize
-    ) {
-      styleHandler(type, value)
-    } else if (type === Change.Furigana) {
-      furiganaHandler(value as Furigana)
+    switch (type) {
+      case Change.Furigana:
+        furiganaHandler(value as Furigana)
+        break
+      case Change.Engine:
+        break
+      default:
+        styleHandler(type, value)
+        break
     }
   }
 )
-
+const rtSelector = '.furigana > ruby > rt'
 const styleHandler = (type: Change, value: string) => {
   let css: string
   switch (type) {
     case Change.Select:
       css = `
-        .furigana > rt {
-          user-select: ${value === 'original' ? 'none' : 'auto'};
+        .furigana {
+          user-select: ${value === 'furigana' ? 'none' : 'text'};
         }
         
-        .furigana *:not(rt) {
-          user-select: ${value === 'furigana' ? 'none' : 'auto'};
+        ${rtSelector} {
+          user-select: ${value === 'original' ? 'none' : 'text'};
         }`
       break
     case Change.Color:
       css = `
-        .furigana > rt {
+        ${rtSelector} {
           color: ${value};
         }`
       break
     case Change.Display:
       css = `
-        .furigana > rt {
+        ${rtSelector} {
           display: ${value === 'off' ? 'none' : 'auto'};
         }`
       break
     case Change.Fontsize:
       css = `
-        .furigana > rt {
+        ${rtSelector} {
           font-size: ${value}%;
         }`
       break
@@ -82,7 +82,7 @@ const styleHandler = (type: Change, value: string) => {
 }
 
 const furiganaHandler = (value: Furigana) => {
-  const nodes = document.querySelectorAll('.furigana > rt')
+  const nodes = document.querySelectorAll(rtSelector)
   switch (value) {
     case 'hiragana':
       nodes.forEach((node) => {

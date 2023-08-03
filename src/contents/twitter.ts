@@ -19,7 +19,10 @@ const observer = new MutationObserver((records, _observer) => {
     .flatMap((record) => Array.from(record.addedNodes))
     .filter((node) => node.nodeType === Node.ELEMENT_NODE)
     .flatMap((node) => Array.from((node as Element).querySelectorAll(jaTweet)))
-    .flatMap(getAllTextNodes)
+    .flatMap((node) => {
+      ;(node as Element).classList.add(Class.Furigana)
+      return getAllTextNodes(node)
+    })
 
   const uniqueJaNodes = [...new Set(jaNodes)]
   addFurigana(uniqueJaNodes)
@@ -64,7 +67,7 @@ const tokenize = async (text: string): Promise<KurokanjiToken[]> => {
     { message: KuromojiToken[] }
   >({
     name: 'fetchKuromoji',
-    body: { text: text }
+    body: { text }
   })
   return toKurokanjiToken(response.message)
 }
@@ -94,6 +97,5 @@ const createRuby = async (
   rt.appendChild(readingTextNode)
   rubyNode.appendChild(originalTextNode)
   rubyNode.appendChild(rt)
-  rubyNode.classList.add(Class.Furigana)
   return rubyNode
 }
