@@ -1,4 +1,3 @@
-import { toKurokanjiToken, type KurokanjiToken } from 'kurokanji'
 import type { PlasmoCSConfig } from 'plasmo'
 import { toHiragana, toRomaji } from 'wanakana'
 
@@ -10,22 +9,23 @@ import type {
   ResponseBody
 } from '~background/messages/fetchKuromoji'
 import { Change, Class, type Furigana } from '~contents/core'
+import { toKurokanjiToken, type KurokanjiToken } from '~contents/kanji'
 
 export const config: PlasmoCSConfig = {
   matches: ['https://twitter.com/*'],
   all_frames: true
 }
 
+const jaTweet = 'div[lang="ja"] span'
 const observer = new MutationObserver((records, _observer) => {
   const jaNodes = records
     .flatMap((record) => Array.from(record.addedNodes))
     .filter((node) => node.nodeType === Node.ELEMENT_NODE)
-    .flatMap((node) =>
-      Array.from((node as Element).querySelectorAll('div[lang="ja"] span'))
-    )
+    .flatMap((node) => Array.from((node as Element).querySelectorAll(jaTweet)))
     .flatMap(getAllTextNodes)
 
-  addFurigana(jaNodes)
+  const uniqueJaNodes = [...new Set(jaNodes)]
+  addFurigana(uniqueJaNodes)
 })
 
 observer.observe(document.body, { childList: true, subtree: true })
@@ -52,13 +52,6 @@ const addFurigana = async (nodes: Node[]) => {
     // reverse() prevents the range from being invalidated
     for (const token of tokens.reverse()) {
       const ruby = await createRuby(token.original, token.reading)
-      // This is an asynchronous bug (+ twitter bug), often the same node is executed twice addRubyTagsToNode(),
-      // because tokenize is executed asynchronously, it will cause the two calls to get the same KurokanjiToken[],
-      // but after one of them is completed, the content of node has been changed, and the return value is invalid.
-      if (token.end > node.textContent!.length) {
-        break
-      }
-      // range is [start, end), very good!
       const range = document.createRange()
       range.setStart(node, token.start)
       range.setEnd(node, token.end)
