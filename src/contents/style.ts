@@ -1,9 +1,9 @@
 import type { PlasmoCSConfig } from 'plasmo'
+import { toHiragana, toKatakana, toRomaji } from 'wanakana'
 
 import { Storage } from '@plasmohq/storage'
 
-import type { Select } from './core'
-import { Change, Class } from './core'
+import { Change, type Furigana } from '~contents/core'
 
 export const config: PlasmoCSConfig = {
   matches: ['https://twitter.com/*'],
@@ -11,31 +11,81 @@ export const config: PlasmoCSConfig = {
 }
 
 const storage = new Storage()
-storage.get(Change.Select).then((select) => {
-  changeSelectMode(select as Select)
-})
+for (const type of [Change.Select, Change.Color, Change.Display]) {
+  storage.get(type).then((value) => {
+    styleHandler(type, value)
+  })
+}
 
 chrome.runtime.onMessage.addListener(
   (message: { type: Change; value: string }, _sender, _sendResponse) => {
-    if (message.type === Change.Select) {
-      changeSelectMode(message.value as Select)
+    const { type, value } = message
+    if (
+      type === Change.Select ||
+      type === Change.Color ||
+      type === Change.Display
+    ) {
+      styleHandler(type, value)
+    } else if (type === Change.Furigana) {
+      furiganaHandler(value as Furigana)
     }
   }
 )
 
-const changeSelectMode = (select: Select) => {
-  const css = `
-  .furigana > rt {
-    user-select: ${select === 'off' ? 'none' : 'auto'};
-  }`
-  const oldStyle = document.getElementById(Class.Select)
+const styleHandler = (type: Change, value: string) => {
+  let css: string
+  switch (type) {
+    case Change.Select:
+      css = `
+        .furigana > rt {
+          user-select: ${value === 'off' ? 'none' : 'auto'};
+        }`
+      break
+    case Change.Color:
+      css = `
+        .furigana > rt {
+          color: ${value};
+        }`
+      break
+    case Change.Display:
+      css = `
+        .furigana > rt {
+          display: ${value === 'off' ? 'none' : 'auto'};
+        }`
+      break
+    default:
+      throw new Error('Invalid Style Event Type')
+  }
+  const id = `furigana-${type}`
+  const oldStyle = document.getElementById(id)
   if (oldStyle) {
     oldStyle.textContent = css
   } else {
     const style = document.createElement('style')
     style.setAttribute('type', 'text/css')
-    style.setAttribute('id', Class.Select)
+    style.setAttribute('id', id)
     style.textContent = css
     document.head.appendChild(style)
+  }
+}
+
+const furiganaHandler = (value: Furigana) => {
+  const nodes = document.querySelectorAll('.furigana > rt')
+  switch (value) {
+    case 'hiragana':
+      nodes.forEach((node) => {
+        node.textContent = toHiragana(node.textContent!)
+      })
+      break
+    case 'katakana':
+      nodes.forEach((node) => {
+        node.textContent = toKatakana(node.textContent!)
+      })
+      break
+    case 'romaji':
+      nodes.forEach((node) => {
+        node.textContent = toRomaji(node.textContent!)
+      })
+      break
   }
 }
