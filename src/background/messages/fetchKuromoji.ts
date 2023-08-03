@@ -1,18 +1,10 @@
-import type { KuromojiToken } from 'kurokanji'
-
 import type { PlasmoMessaging } from '@plasmohq/messaging'
 
-export type RequestBody = {
-  text: string
-}
-
-export type ResponseBody = {
-  message: KuromojiToken[]
-}
+import type { KuromojiToken } from '~contents/kanji'
 
 const handler: PlasmoMessaging.MessageHandler<
-  RequestBody,
-  ResponseBody
+  { text: string },
+  { message: KuromojiToken[] }
 > = async (req, res) => {
   const requestOptions = {
     method: 'POST',
