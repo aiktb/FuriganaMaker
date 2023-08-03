@@ -4,12 +4,9 @@ import { toHiragana, toRomaji } from 'wanakana'
 import { sendToBackground } from '@plasmohq/messaging'
 import { Storage } from '@plasmohq/storage'
 
-import type {
-  RequestBody,
-  ResponseBody
-} from '~background/messages/fetchKuromoji'
 import { Change, Class, type Furigana } from '~contents/core'
-import { toKurokanjiToken, type KurokanjiToken } from '~contents/kanji'
+import type { KurokanjiToken, KuromojiToken } from '~contents/kanji'
+import { toKurokanjiToken } from '~contents/kanji'
 
 export const config: PlasmoCSConfig = {
   matches: ['https://twitter.com/*'],
@@ -62,11 +59,12 @@ const addFurigana = async (nodes: Node[]) => {
 }
 
 const tokenize = async (text: string): Promise<KurokanjiToken[]> => {
-  const response = await sendToBackground<RequestBody, ResponseBody>({
+  const response = await sendToBackground<
+    { text: string },
+    { message: KuromojiToken[] }
+  >({
     name: 'fetchKuromoji',
-    body: {
-      text: text
-    }
+    body: { text: text }
   })
   return toKurokanjiToken(response.message)
 }
