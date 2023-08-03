@@ -6,13 +6,12 @@ import { Storage } from '@plasmohq/storage'
 import type { KurokanjiToken, KuromojiToken } from '~contents/kanji'
 import { toKurokanjiToken } from '~contents/kanji'
 
-export enum Change {
+export enum Event {
   Furigana = 'furigana',
   Select = 'select',
   Color = 'color',
   Display = 'display',
-  Fontsize = 'fontsize',
-  Engine = 'engine'
+  Fontsize = 'fontsize'
 }
 
 export enum Class {
@@ -20,16 +19,15 @@ export enum Class {
   Select = 'furigana-select',
   Color = 'furigana-color',
   Display = 'furigana-display',
-  Fontsize = 'furigana-fontsize',
-  Engine = 'furigana-engine'
+  Fontsize = 'furigana-fontsize'
 }
+
 export type Default = {
   furigana: Furigana
   color: Color
   select: Select
   display: Display
   fontsize: Fontsize
-  engine: Engine
 }
 
 export const defaultValue: Default = {
@@ -37,14 +35,12 @@ export const defaultValue: Default = {
   color: 'currentColor',
   select: 'original',
   display: 'on',
-  fontsize: 75,
-  engine: 'local'
+  fontsize: 75
 }
 
 export type Furigana = 'hiragana' | 'katakana' | 'romaji'
 export type Display = 'on' | 'off'
 export type Select = 'original' | 'furigana' | 'all'
-export type Engine = 'local' | 'network'
 export type Color = string
 export type Fontsize = number
 
@@ -96,7 +92,7 @@ export const createRuby = async (
   const originalTextNode = document.createTextNode(original)
 
   const storage = new Storage()
-  const furiganaType: Furigana = await storage.get(Change.Furigana)
+  const furiganaType: Furigana = await storage.get(Event.Furigana)
   switch (furiganaType) {
     case 'hiragana':
       reading = toHiragana(reading)
