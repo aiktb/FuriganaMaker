@@ -3,14 +3,26 @@ import { Storage } from '@plasmohq/storage'
 // prettier-ignore
 import type { Color, Display, Engine, Fontsize, Furigana, Select } from '~contents/core';
 
-import { Change } from '../contents/core'
+export type Default = {
+  furigana: Furigana
+  color: Color
+  select: Select
+  display: Display
+  fontsize: Fontsize
+  engine: Engine
+}
 
+export const defaultValue: Default = {
+  furigana: 'hiragana',
+  color: 'currentColor',
+  select: 'original',
+  display: 'on',
+  fontsize: 75,
+  engine: 'local'
+}
 const storage = new Storage()
 chrome.runtime.onInstalled.addListener(async () => {
-  await storage.set(Change.Furigana, 'hiragana' as Furigana)
-  await storage.set(Change.Color, 'currentColor' as Color)
-  await storage.set(Change.Select, 'off' as Select)
-  await storage.set(Change.Display, 'on' as Display)
-  await storage.set(Change.Engine, 'local' as Engine)
-  await storage.set(Change.Fontsize, 50 as Fontsize)
+  for (const key in defaultValue) {
+    await storage.set(key, defaultValue[key as keyof Default])
+  }
 })
