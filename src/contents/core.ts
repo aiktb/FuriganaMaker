@@ -6,20 +6,14 @@ import { Storage } from '@plasmohq/storage'
 import type { KurokanjiToken, KuromojiToken } from '~contents/kanji'
 import { toKurokanjiToken } from '~contents/kanji'
 
+export const FURIGANA_CLASS_NAME = '--furigana--'
+
 export enum Event {
   Furigana = 'furigana',
   Select = 'select',
   Color = 'color',
   Display = 'display',
   Fontsize = 'fontsize'
-}
-
-export enum Class {
-  Furigana = 'furigana',
-  Select = 'furigana-select',
-  Color = 'furigana-color',
-  Display = 'furigana-display',
-  Fontsize = 'furigana-fontsize'
 }
 
 export type Default = {
@@ -44,39 +38,44 @@ export type Select = 'original' | 'furigana' | 'all'
 export type Color = string
 export type Fontsize = number
 
-export const getAllTextNodes = (node: Node): Node[] => {
-  const textNodes: Node[] = []
-  if (node.nodeType === Node.TEXT_NODE) {
-    const textContent = node.textContent?.trim()
+const getAllTextNodes = (element: Element): Element[] => {
+  const textNodes: Element[] = []
+  if (element.nodeType === Node.TEXT_NODE) {
+    const textContent = element.textContent?.trim()
     if (textContent && textContent.length) {
-      textNodes.push(node)
+      textNodes.push(element)
     }
   } else {
-    const nodes = Array.from(node.childNodes).flatMap(getAllTextNodes)
-    textNodes.push(...nodes)
+    const elements = Array.from(element.childNodes).flatMap((node) => {
+      return getAllTextNodes(node as Element)
+    })
+    textNodes.push(...elements)
   }
   return textNodes
 }
 
-// node must have only one text child node
 // <ruby>${token.original}<rt>${token.reading}</rt></ruby>
-export const addFurigana = async (nodes: Node[]) => {
-  nodes = [...new Set<Node>(nodes)]
-  for (const node of nodes) {
-    const tokens: KurokanjiToken[] = await tokenize(node.textContent!)
+export const addFurigana = async (elements: Element[]) => {
+  const jaTextElements = [...new Set<Element>(elements)].flatMap((element) => {
+    element.classList.add(FURIGANA_CLASS_NAME)
+    return getAllTextNodes(element)
+  })
+
+  for (const element of jaTextElements) {
+    const tokens: KurokanjiToken[] = await tokenize(element.textContent!)
     // reverse() prevents the range from being invalidated
     for (const token of tokens.reverse()) {
       const ruby = await createRuby(token.original, token.reading)
       const range = document.createRange()
-      range.setStart(node, token.start)
-      range.setEnd(node, token.end)
+      range.setStart(element, token.start)
+      range.setEnd(element, token.end)
       range.deleteContents()
       range.insertNode(ruby)
     }
   }
 }
 
-export const tokenize = async (text: string): Promise<KurokanjiToken[]> => {
+const tokenize = async (text: string): Promise<KurokanjiToken[]> => {
   const response = await sendToBackground<
     { text: string },
     { message: KuromojiToken[] }
@@ -84,7 +83,7 @@ export const tokenize = async (text: string): Promise<KurokanjiToken[]> => {
   return toKurokanjiToken(response.message)
 }
 
-export const createRuby = async (
+const createRuby = async (
   original: string,
   reading: string
 ): Promise<HTMLElement> => {
@@ -115,7 +114,7 @@ export const createRuby = async (
 export const customAddFurigana = async (selector: string) => {
   const nodes = Array.from(document.querySelectorAll(selector)).flatMap(
     (element) => {
-      element.classList.add(Class.Furigana)
+      element.classList.add(FURIGANA_CLASS_NAME)
       return getAllTextNodes(element)
     }
   )

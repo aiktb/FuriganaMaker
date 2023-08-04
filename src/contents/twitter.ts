@@ -1,6 +1,6 @@
 import type { PlasmoCSConfig } from 'plasmo'
 
-import { addFurigana, Class, getAllTextNodes } from '~contents/core'
+import { addFurigana } from '~contents/core'
 
 export const config: PlasmoCSConfig = {
   matches: ['https://twitter.com/*'],
@@ -9,16 +9,12 @@ export const config: PlasmoCSConfig = {
 
 const jaTweet = 'div[lang="ja"] span'
 const observer = new MutationObserver((records, _observer) => {
-  const jaNodes = records
+  const jaElements = records
     .flatMap((record) => Array.from(record.addedNodes))
     .filter((node) => node.nodeType === Node.ELEMENT_NODE)
     .flatMap((node) => Array.from((node as Element).querySelectorAll(jaTweet)))
-    .flatMap((node) => {
-      ;(node as Element).classList.add(Class.Furigana)
-      return getAllTextNodes(node)
-    })
 
-  addFurigana(jaNodes)
+  addFurigana(jaElements)
 })
 
 observer.observe(document.body, { childList: true, subtree: true })
