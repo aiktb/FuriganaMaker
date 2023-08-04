@@ -1,5 +1,6 @@
 import { isKanji, toKatakana } from 'wanakana'
 
+// kuromoji.js
 export type KuromojiToken = {
   // Necessary attributes
   word_position: number // Indexes start from 1
@@ -26,29 +27,38 @@ export type KurokanjiToken = {
   start: number // Indexes start from 0
   end: number
 }
-
-export const toKurokanjiToken = (
-  kuromojiTokens: KuromojiToken[]
-): KurokanjiToken[] => {
-  return kuromojiTokens
-    .filter(isPhonetic)
-    .map(toSimplifiedToken)
-    .flatMap(toRubyText)
+/**
+ * Extract useful kanji phonetic information from KuromojiToken[].
+ * @param tokens - KuromojiToken[] from kuromoji.js.
+ * @example
+ * ```
+ * Input: tokenizer('僕は耳')
+ * Output:
+ * [
+ *  { original: '僕', reading: 'ボク', start: 1, end: 2 },
+ *  { original: '耳', reading: 'ミミ', start: 3, end: 4 }
+ * ]
+ * ```
+ * @example
+ * ```
+ * Input: tokenizer('「我々」と「関ケ原」')
+ * Output:
+ * [
+ *  { original: '我々', reading: 'ワレワレ', start: 1, end: 3 },
+ *  { original: '関ケ原', reading: 'セキガハラ', start: 6, end: 9 }
+ * ]
+ * ```
+ * @see {@link https://www.atilika.org/} for Kuromoji.
+ * @see {@link https://unicode.org/reports/tr18/#property_examples} for regex property.
+ * @see {@link https://docs.oracle.com/cd/E86824_01/html/E54763/perluniprops-1.html} for \p{sc=Han} & \p{sc=Hira} & \p{sc=Kana}
+ */
+export const toKurokanjiToken = (tokens: KuromojiToken[]): KurokanjiToken[] => {
+  return tokens.filter(isPhonetic).map(toSimplifiedToken).flatMap(toRubyText)
 }
 
-// Reference: https://www.atilika.org/
 const isPhonetic = (token: KuromojiToken): boolean => {
-  // Reference1: https://unicode.org/reports/tr18/#property_examples
-  // Reference2: https://docs.oracle.com/cd/E86824_01/html/E54763/perluniprops-1.html
   const hasKanji = token.surface_form.match(/\p{sc=Han}/u)
-
-  if (
-    token.reading &&
-    token.reading !== '*' &&
-    hasKanji &&
-    // Due to kuromoji's flaw, '々' is pronounced '々'
-    token.surface_form !== token.reading
-  ) {
+  if (token.reading && token.reading !== '*' && hasKanji) {
     return true
   }
   return false
