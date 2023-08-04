@@ -86,7 +86,7 @@ const toRubyText = (
 }
 
 interface MarkToken {
-  original: string
+  original: string // Pure katakana.
   start: number
   end: number
 }
@@ -95,73 +95,67 @@ type MarkTokenArray = MarkToken[] & { hybridLength: number }
 
 // Must be a mixture of Kanji and Kana to use this function.
 const smashToken = (token: SimplifiedToken): KurokanjiToken[] => {
+  const { original, reading, start, end } = token
   // Both \p{sc=Hira} and \p{sc=Kana} don’t contain 'ー々', which is bad.
   const kanaRegex = /(\p{sc=Hira}|\p{sc=Kana}|ー)+/gu
-  const kanas: MarkTokenArray = [...token.original.matchAll(kanaRegex)].map(
+  const kanas: MarkTokenArray = [...original.matchAll(kanaRegex)].map(
     (match) => ({
       original: match[0],
       start: match.index!,
       end: match.index! + match[0].length
     })
   ) as MarkTokenArray
-  kanas.hybridLength = token.original.length
+  kanas.hybridLength = original.length
 
   const hybridRegex = buildRegex(kanas)
 
   const kanjisRegex = /\p{sc=Han}+/gu
-  const kanjis: KurokanjiToken[] = [
-    ...token.original.matchAll(kanjisRegex)
-  ].map((match) => ({
-    original: match[0],
-    start: token.start + match.index!,
-    end: token.start + match.index! + match[0].length
-  })) as KurokanjiToken[]
-
-  // There may be multiple matching groups, which are not processed yet. Tips: matchAll()
-  const hybridMatch = token.reading.match(hybridRegex)
-  // If the number of matching groups is not equal to the number of Kanji,
-  // it means that the phonetic notation does not correspond to the text.
-  // hybridMatch[0] is the entire string, no need.
-  // e.g. "関ケ原"(セキガハラ)/"我々"(ワレワレ)
-  if (!hybridMatch || hybridMatch.length - 1 !== kanjis.length) {
-    return [
-      {
-        original: token.original,
-        reading: token.reading,
-        start: token.start,
-        end: token.end
-      }
-    ]
-  }
+  const kanjis: KurokanjiToken[] = [...original.matchAll(kanjisRegex)].map(
+    (match) => ({
+      original: toKatakana(match[0]),
+      start: start + match.index!,
+      end: start + match.index! + match[0].length
+    })
+  ) as KurokanjiToken[]
   // The first matching group is the entire string.
   // All that's needed is the subcapturing group.
-  for (let i = 1; i < hybridMatch.length; i++) {
-    kanjis[i - 1].reading = hybridMatch[i]
+  const hybridMatch = reading.match(hybridRegex)?.slice(1)
+  // If the number of matching groups is not equal to the number of Kanji,
+  // it means that the phonetic notation does not correspond to the text.
+  // e.g. "関ケ原"(セキガハラ)/"我々"(ワレワレ)
+  if (!hybridMatch || hybridMatch.length !== kanjis.length) {
+    return [{ original, reading, start, end }]
+  }
+
+  for (let i = 0; i < hybridMatch.length; i++) {
+    kanjis[i].reading = hybridMatch[i]
   }
   return kanjis
 }
 
 // Cases where phonetic notation does not correspond to text create an invalid regular expression.
 const buildRegex = (kanas: MarkTokenArray): RegExp => {
-  // "作り方"　=>　"^(.+)リ(.+)$"
-  let regexStr = '^'
-  if (kanas.length) {
-    const firstToken = kanas[0]
-    const placeholder = '(.+)'
-    if (firstToken.start !== 0) {
-      regexStr += placeholder
-    }
-    for (const [i, kana] of kanas.entries()) {
-      regexStr += toKatakana(kana.original)
-      if (i < kanas.length - 1) {
-        regexStr += placeholder
-      }
-    }
-    const lastToken = kanas[kanas.length - 1]
-    if (lastToken.end !== kanas.hybridLength) {
-      regexStr += placeholder
+  // Match a empty string, actual sub-capturing group is 0.
+  if (!kanas.length) {
+    return new RegExp('^$', 'u')
+  }
+  // "作り方"　=>　"^(.+)リ(.+)$", "り方"　=>　"^リ(.+)$", "作り"　=>　"^(.+)リ$".
+  const firstKana = kanas[0]
+  const lastKana = kanas[kanas.length - 1]
+  let regex = '^'
+  const placeholder = '(.+)'
+  if (firstKana.start) {
+    regex += placeholder
+  }
+  for (const kana of kanas) {
+    regex += kana.original
+    if (kana !== lastKana) {
+      regex += placeholder
     }
   }
-  regexStr += '$'
-  return new RegExp(regexStr, 'u')
+  if (lastKana.end !== kanas.hybridLength) {
+    regex += placeholder
+  }
+  regex += '$'
+  return new RegExp(regex, 'u')
 }
