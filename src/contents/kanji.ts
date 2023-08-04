@@ -32,7 +32,7 @@ export type KurokanjiToken = {
  * @param tokens - KuromojiToken[] from kuromoji.js.
  * @example
  * ```
- * Input: tokenizer('僕は耳')
+ * Input: tokenize('僕は耳')
  * Output:
  * [
  *  { original: '僕', reading: 'ボク', start: 1, end: 2 },
@@ -41,7 +41,7 @@ export type KurokanjiToken = {
  * ```
  * @example
  * ```
- * Input: tokenizer('「我々」と「関ケ原」')
+ * Input: tokenize('「我々」と「関ケ原」')
  * Output:
  * [
  *  { original: '我々', reading: 'ワレワレ', start: 1, end: 3 },

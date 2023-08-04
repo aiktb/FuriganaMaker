@@ -40,9 +40,7 @@ export type Fontsize = number
 
 /**
  * Append ruby tag to all text nodes of a batch of nodes.
- *
  * @remarks
- *
  * The parent node of the text node will be added with the FURIGANA_CLASS_NAME class.
  * Ruby tag is "\<ruby>original\<rt>reading\</rt>\</ruby>"
  **/
