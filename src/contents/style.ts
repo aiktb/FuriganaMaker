@@ -3,7 +3,7 @@ import { toHiragana, toKatakana, toRomaji } from 'wanakana'
 
 import { Storage } from '@plasmohq/storage'
 
-import { Event, type Furigana } from '~contents/core'
+import { Event, FURIGANA_CLASS_NAME, type Furigana } from '~contents/core'
 
 export const config: PlasmoCSConfig = {
   matches: ['https://twitter.com/*'],
@@ -32,13 +32,13 @@ chrome.runtime.onMessage.addListener(
   }
 )
 
-const rtSelector = '.furigana > ruby > rt'
+const rtSelector = `.${FURIGANA_CLASS_NAME} > ruby > rt`
 const styleHandler = (type: Event, value: string) => {
   let css: string
   switch (type) {
     case Event.Select:
       css = `
-        .furigana {
+        .${FURIGANA_CLASS_NAME} {
           user-select: ${value === 'furigana' ? 'none' : 'text'};
         }
         
@@ -55,7 +55,7 @@ const styleHandler = (type: Event, value: string) => {
     case Event.Display:
       css = `
         ${rtSelector} {
-          display: ${value === 'off' ? 'none' : 'auto'};
+          display: ${value === 'off' ? 'none' : 'flow'};
         }`
       break
     case Event.Fontsize:
@@ -67,7 +67,7 @@ const styleHandler = (type: Event, value: string) => {
     default:
       throw new Error('Invalid Style Event Type')
   }
-  const id = `furigana-${type}`
+  const id = `${FURIGANA_CLASS_NAME}${type}`
   const oldStyle = document.getElementById(id)
   if (oldStyle) {
     oldStyle.textContent = css

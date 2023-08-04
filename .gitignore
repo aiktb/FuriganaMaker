@@ -33,3 +33,5 @@ dist/
 .tsbuildinfo
 .vscode
 .idea
+
+TODO.md
