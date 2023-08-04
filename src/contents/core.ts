@@ -38,29 +38,9 @@ export type Select = 'original' | 'furigana' | 'all'
 export type Color = string
 export type Fontsize = number
 
-const getAllTextNodes = (element: Element): Element[] => {
-  const textNodes: Element[] = []
-  if (element.nodeType === Node.TEXT_NODE) {
-    const textContent = element.textContent?.trim()
-    if (textContent && textContent.length) {
-      textNodes.push(element)
-    }
-  } else {
-    const elements = Array.from(element.childNodes).flatMap((node) => {
-      return getAllTextNodes(node as Element)
-    })
-    textNodes.push(...elements)
-  }
-  return textNodes
-}
-
 // <ruby>${token.original}<rt>${token.reading}</rt></ruby>
 export const addFurigana = async (elements: Element[]) => {
-  const jaTextElements = [...new Set<Element>(elements)].flatMap((element) => {
-    element.classList.add(FURIGANA_CLASS_NAME)
-    return getAllTextNodes(element)
-  })
-
+  const jaTextElements = elements.flatMap(collectTextElementsAndMark)
   for (const element of jaTextElements) {
     const tokens: KurokanjiToken[] = await tokenize(element.textContent!)
     // reverse() prevents the range from being invalidated
@@ -73,6 +53,19 @@ export const addFurigana = async (elements: Element[]) => {
       range.insertNode(ruby)
     }
   }
+}
+const collectTextElementsAndMark = (element: Element): Element[] => {
+  const textElements: Element[] = []
+  if (element.nodeType === Node.TEXT_NODE && element.textContent?.length) {
+    element.parentElement!.classList.add(FURIGANA_CLASS_NAME)
+    textElements.push(element)
+  } else {
+    const elements = Array.from(
+      element.childNodes as NodeListOf<Element>
+    ).flatMap(collectTextElementsAndMark)
+    textElements.push(...elements)
+  }
+  return textElements
 }
 
 const tokenize = async (text: string): Promise<KurokanjiToken[]> => {
@@ -109,14 +102,4 @@ const createRuby = async (
   rubyNode.appendChild(originalTextNode)
   rubyNode.appendChild(rt)
   return rubyNode
-}
-
-export const customAddFurigana = async (selector: string) => {
-  const nodes = Array.from(document.querySelectorAll(selector)).flatMap(
-    (element) => {
-      element.classList.add(FURIGANA_CLASS_NAME)
-      return getAllTextNodes(element)
-    }
-  )
-  addFurigana(nodes)
 }
