@@ -38,7 +38,14 @@ export type Select = 'original' | 'furigana' | 'all'
 export type Color = string
 export type Fontsize = number
 
-// <ruby>${token.original}<rt>${token.reading}</rt></ruby>
+/**
+ * Append ruby tag to all text nodes of a batch of nodes.
+ *
+ * @remarks
+ *
+ * The parent node of the text node will be added with the FURIGANA_CLASS_NAME class.
+ * Ruby tag is "\<ruby>original\<rt>reading\</rt>\</ruby>"
+ **/
 export const addFurigana = async (elements: Element[]) => {
   const jaTextElements = elements.flatMap(collectTextElementsAndMark)
   for (const element of jaTextElements) {

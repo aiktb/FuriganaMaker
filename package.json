@@ -24,11 +24,11 @@
     "@plasmohq/storage": "^1.7.2",
     "plasmo": "^0.82.0",
     "vue": "^3.3.4",
-    "wanakana": "^5.1.0"
+    "wanakana": "^5.1.0",
+    "svgo": "^3.0.2"
   },
   "devDependencies": {
     "@ianvs/prettier-plugin-sort-imports": "^4.1.0",
-    "@microsoft/tsdoc": "^0.14.2",
     "@types/chrome": "^0.0.243",
     "@types/wanakana": "^4.0.3",
     "husky": "^8.0.3",
