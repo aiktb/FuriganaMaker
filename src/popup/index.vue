@@ -4,16 +4,9 @@ import { onMounted, reactive } from 'vue'
 import { Storage } from '@plasmohq/storage'
 
 import { defaultConfig, Event } from '~contents/core'
+import type { ChangeEvent, Config } from '~contents/core'
 
 const option = reactive(defaultConfig)
-
-type ChangeEvent =
-  | Event.OriginalColor
-  | Event.FuriganaColor
-  | Event.Display
-  | Event.Fontsize
-  | Event.FuriganaType
-  | Event.SelectMode
 
 const changeEvent = async (event: ChangeEvent) => {
   const value = option[event]
@@ -39,13 +32,9 @@ const resetColor = (event: Event.FuriganaColor | Event.OriginalColor) => {
 
 onMounted(async () => {
   const storage = new Storage()
-  option.FuriganaType = await storage.get(Event.FuriganaType)
-  option.SelectMode = await storage.get(Event.SelectMode)
-  option.OriginalColor = await storage.get(Event.OriginalColor)
-  option.FuriganaColor = await storage.get(Event.FuriganaColor)
-  option.Display = await storage.get(Event.Display)
-  option.Fontsize = await storage.get(Event.Fontsize)
-  option.Engine = await storage.get(Event.Engine)
+  for (const key in defaultConfig) {
+    option[key as keyof Config] = await storage.get(key)
+  }
 })
 </script>
 
