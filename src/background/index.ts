@@ -1,7 +1,6 @@
 import { Storage } from '@plasmohq/storage'
 
-// prettier-ignore
-import { defaultConfig, type Config } from '~contents/core';
+import { defaultConfig, type Config } from '~contents/core'
 
 const storage = new Storage()
 chrome.runtime.onInstalled.addListener(async () => {

@@ -7,8 +7,13 @@ import { defaultConfig, Event } from '~contents/core'
 
 const option = reactive(defaultConfig)
 
-// prettier-ignore
-type ChangeEvent = Event.Color | Event.Display | Event.Fontsize | Event.Furigana | Event.Select
+type ChangeEvent =
+  | Event.OriginalColor
+  | Event.FuriganaColor
+  | Event.Display
+  | Event.Fontsize
+  | Event.FuriganaType
+  | Event.SelectMode
 
 const changeEvent = async (event: ChangeEvent) => {
   const value = option[event]
@@ -27,19 +32,20 @@ const customEvent = async () => {
   }
 }
 
-const resetColor = () => {
-  option.color = 'currentColor'
-  changeEvent(Event.Color)
+const resetColor = (event: Event.FuriganaColor | Event.OriginalColor) => {
+  option[event] = 'currentColor'
+  changeEvent(event)
 }
 
 onMounted(async () => {
   const storage = new Storage()
-  option.furigana = await storage.get(Event.Furigana)
-  option.select = await storage.get(Event.Select)
-  option.color = await storage.get(Event.Color)
-  option.display = await storage.get(Event.Display)
-  option.fontsize = await storage.get(Event.Fontsize)
-  option.engine = await storage.get(Event.Engine)
+  option.FuriganaType = await storage.get(Event.FuriganaType)
+  option.SelectMode = await storage.get(Event.SelectMode)
+  option.OriginalColor = await storage.get(Event.OriginalColor)
+  option.FuriganaColor = await storage.get(Event.FuriganaColor)
+  option.Display = await storage.get(Event.Display)
+  option.Fontsize = await storage.get(Event.Fontsize)
+  option.Engine = await storage.get(Event.Engine)
 })
 </script>
 
@@ -51,7 +57,9 @@ onMounted(async () => {
     </div>
     <div class="menu-item">
       <label>Furigana Type</label>
-      <select v-model="option.furigana" @change="changeEvent(Event.Furigana)">
+      <select
+        v-model="option.FuriganaType"
+        @change="changeEvent(Event.FuriganaType)">
         <option value="hiragana">Hiragana</option>
         <option value="katakana">Katakana</option>
         <option value="romaji">Romaji</option>
@@ -59,21 +67,29 @@ onMounted(async () => {
     </div>
     <div class="menu-item">
       <label>Furigana Select</label>
-      <select v-model="option.select" @change="changeEvent(Event.Select)">
+      <select
+        v-model="option.SelectMode"
+        @change="changeEvent(Event.SelectMode)">
         <option value="original">Original</option>
         <option value="furigana">Furigana</option>
         <option value="all">All</option>
       </select>
     </div>
     <div class="menu-item">
-      <label>Choose a color</label>
-      <button @click="resetColor">default</button>
+      <label>Choose color for furigana</label>
+      <button @click="resetColor(Event.FuriganaColor)">default</button>
       <!-- prettier-ignore -->
-      <input type="color" v-model="option.color" @change="changeEvent(Event.Color)" />
+      <input type="color" v-model="option.FuriganaColor" @change="changeEvent(Event.FuriganaColor)" />
+    </div>
+    <div class="menu-item">
+      <label>Choose color for original</label>
+      <button @click="resetColor(Event.OriginalColor)">default</button>
+      <!-- prettier-ignore -->
+      <input type="color" v-model="option.OriginalColor" @change="changeEvent(Event.OriginalColor)" />
     </div>
     <div class="menu-item">
       <label>Display</label>
-      <select v-model="option.display" @change="changeEvent(Event.Display)">
+      <select v-model="option.Display" @change="changeEvent(Event.Display)">
         <option value="on">On</option>
         <option value="off">Off</option>
       </select>
@@ -81,7 +97,7 @@ onMounted(async () => {
     <div class="menu-item">
       <label>Font size</label>
       <!-- prettier-ignore -->
-      <input type="range" min="50" max="100" v-model="option.fontsize" @change="changeEvent(Event.Fontsize)" />
+      <input type="range" min="50" max="100" v-model="option.Fontsize" @change="changeEvent(Event.Fontsize)" />
     </div>
   </div>
 </template>
