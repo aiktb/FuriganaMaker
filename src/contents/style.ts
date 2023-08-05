@@ -10,13 +10,15 @@ export const config: PlasmoCSConfig = {
   all_frames: true
 }
 
-Array.from([
+type StyleEvent = Event.Select | Event.Color | Event.Display | Event.Fontsize
+
+const styleEvents: StyleEvent[] = [
   Event.Select,
   Event.Color,
   Event.Display,
-  Event.Fontsize,
-  Event.Engine
-]).forEach(styleHandler)
+  Event.Fontsize
+]
+styleEvents.forEach(styleHandler)
 
 chrome.runtime.onMessage.addListener((event: Event) => {
   switch (event) {
@@ -34,7 +36,7 @@ chrome.runtime.onMessage.addListener((event: Event) => {
 })
 
 const rtSelector = `.${FURIGANA_CLASS_NAME} > ruby > rt`
-async function styleHandler(type: Event) {
+async function styleHandler(type: StyleEvent) {
   const storage = new Storage()
   const value = await storage.get(type)
   let css: string
@@ -67,8 +69,6 @@ async function styleHandler(type: Event) {
           font-size: ${value}%;
         }`
       break
-    default:
-      throw new Error('Invalid Style Event Type')
   }
   const id = `${FURIGANA_CLASS_NAME}${type}`
   const oldStyle = document.getElementById(id)
