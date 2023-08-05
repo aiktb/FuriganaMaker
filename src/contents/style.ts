@@ -3,37 +3,40 @@ import { toHiragana, toKatakana, toRomaji } from 'wanakana'
 
 import { Storage } from '@plasmohq/storage'
 
-import { Event, FURIGANA_CLASS_NAME, type Furigana } from '~contents/core'
+import { Event, FURIGANA_CLASS_NAME } from '~contents/core'
 
 export const config: PlasmoCSConfig = {
   matches: ['https://twitter.com/*'],
   all_frames: true
 }
 
-const storage = new Storage()
-// prettier-ignore
-for (const type of [Event.Select, Event.Color, Event.Display, Event.Fontsize]) {
-  storage.get(type).then((value) => {
-    styleHandler(type, value)
-  })
-}
+Array.from([
+  Event.Select,
+  Event.Color,
+  Event.Display,
+  Event.Fontsize,
+  Event.Engine
+]).forEach(styleHandler)
 
-chrome.runtime.onMessage.addListener(
-  (message: { type: Event; value: string }) => {
-    const { type, value } = message
-    switch (type) {
-      case Event.Furigana:
-        furiganaHandler(value as Furigana)
-        break
-      default:
-        styleHandler(type, value)
-        break
-    }
+chrome.runtime.onMessage.addListener((event: Event) => {
+  switch (event) {
+    case Event.Furigana:
+      furiganaHandler()
+      break
+    case Event.Engine:
+      break
+    case Event.Custom:
+      break
+    default:
+      styleHandler(event)
+      break
   }
-)
+})
 
 const rtSelector = `.${FURIGANA_CLASS_NAME} > ruby > rt`
-const styleHandler = (type: Event, value: string) => {
+async function styleHandler(type: Event) {
+  const storage = new Storage()
+  const value = await storage.get(type)
   let css: string
   switch (type) {
     case Event.Select:
@@ -80,7 +83,9 @@ const styleHandler = (type: Event, value: string) => {
   }
 }
 
-const furiganaHandler = (value: Furigana) => {
+const furiganaHandler = async () => {
+  const storage = new Storage()
+  const value = await storage.get(Event.Furigana)
   const nodes = document.querySelectorAll(rtSelector)
   switch (value) {
     case 'hiragana':
