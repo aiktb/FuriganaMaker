@@ -17,6 +17,13 @@ export enum Event {
   Engine = 'Engine',
   Custom = 'Custom'
 }
+export type ChangeEvent =
+  | Event.OriginalColor
+  | Event.FuriganaColor
+  | Event.Display
+  | Event.Fontsize
+  | Event.FuriganaType
+  | Event.SelectMode
 
 export type Config = {
   FuriganaType: FuriganaType
@@ -47,10 +54,11 @@ export type Fontsize = number
 export type Engine = 'local' | 'remote'
 
 /**
- * Append ruby tag to all text nodes of a batch of nodes.
+ * Append ruby tag to all text nodes of a batch of elements.
  * @remarks
- * The parent node of the text node will be added with the FURIGANA_CLASS_NAME class.
- * Ruby tag is "\<ruby>original\<rt>reading\</rt>\</ruby>"
+ * The parent element of the text node will be added with the FURIGANA_CLASS_NAME class.
+ * Elements that have already been marked will be skipped.
+ * Ruby tag is "\<ruby>original\<rt>reading\</rt>\</ruby>".
  **/
 export const addFurigana = async (elements: Element[]) => {
   const jaTextElements = elements.flatMap(collectTextElementsAndMark)
@@ -67,6 +75,7 @@ export const addFurigana = async (elements: Element[]) => {
     }
   }
 }
+
 const collectTextElementsAndMark = (element: Element): Element[] => {
   if (element.parentElement!.classList.contains(FURIGANA_CLASS_NAME)) {
     return []
