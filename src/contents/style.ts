@@ -10,11 +10,17 @@ export const config: PlasmoCSConfig = {
   all_frames: true
 }
 
-type StyleEvent = Event.Select | Event.Color | Event.Display | Event.Fontsize
+type StyleEvent =
+  | Event.SelectMode
+  | Event.OriginalColor
+  | Event.FuriganaColor
+  | Event.Display
+  | Event.Fontsize
 
 const styleEvents: StyleEvent[] = [
-  Event.Select,
-  Event.Color,
+  Event.SelectMode,
+  Event.OriginalColor,
+  Event.FuriganaColor,
   Event.Display,
   Event.Fontsize
 ]
@@ -22,7 +28,7 @@ styleEvents.forEach(styleHandler)
 
 chrome.runtime.onMessage.addListener((event: Event) => {
   switch (event) {
-    case Event.Furigana:
+    case Event.FuriganaType:
       furiganaHandler()
       break
     case Event.Engine:
@@ -36,12 +42,13 @@ chrome.runtime.onMessage.addListener((event: Event) => {
 })
 
 const rtSelector = `.${FURIGANA_CLASS_NAME} > ruby > rt`
+const rubySelector = `.${FURIGANA_CLASS_NAME} > ruby`
 async function styleHandler(type: StyleEvent) {
   const storage = new Storage()
   const value = await storage.get(type)
   let css: string
   switch (type) {
-    case Event.Select:
+    case Event.SelectMode:
       css = `
         .${FURIGANA_CLASS_NAME} {
           user-select: ${value === 'furigana' ? 'none' : 'text'};
@@ -51,7 +58,13 @@ async function styleHandler(type: StyleEvent) {
           user-select: ${value === 'original' ? 'none' : 'text'};
         }`
       break
-    case Event.Color:
+    case Event.OriginalColor:
+      css = `
+        ${rubySelector} {
+          color: ${value}; 
+        }`
+      break
+    case Event.FuriganaColor:
       css = `
         ${rtSelector} {
           color: ${value};
@@ -85,7 +98,7 @@ async function styleHandler(type: StyleEvent) {
 
 const furiganaHandler = async () => {
   const storage = new Storage()
-  const value = await storage.get(Event.Furigana)
+  const value = await storage.get(Event.FuriganaType)
   const nodes = document.querySelectorAll(rtSelector)
   switch (value) {
     case 'hiragana':

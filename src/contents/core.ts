@@ -8,37 +8,41 @@ import { Storage } from '@plasmohq/storage'
 export const FURIGANA_CLASS_NAME = '--furigana--'
 
 export enum Event {
-  Furigana = 'furigana',
-  Select = 'select',
-  Color = 'color',
-  Display = 'display',
-  Fontsize = 'fontsize',
-  Engine = 'engine',
-  Custom = 'custom'
+  FuriganaType = 'FuriganaType',
+  SelectMode = 'SelectMode',
+  OriginalColor = 'OriginalColor',
+  FuriganaColor = 'FuriganaColor',
+  Display = 'Display',
+  Fontsize = 'Fontsize',
+  Engine = 'Engine',
+  Custom = 'Custom'
 }
 
 export type Config = {
-  furigana: Furigana
-  color: Color
-  select: Select
-  display: Display
-  fontsize: Fontsize
-  engine: Engine
+  FuriganaType: FuriganaType
+  OriginalColor: OriginalColor
+  FuriganaColor: FuriganaColor
+  SelectMode: SelectMode
+  Display: Display
+  Fontsize: Fontsize
+  Engine: Engine
 }
 
 export const defaultConfig: Config = {
-  furigana: 'hiragana',
-  color: 'currentColor',
-  select: 'original',
-  display: 'on',
-  fontsize: 75, // ${fontsize}% relative to the parent font.
-  engine: 'remote'
+  FuriganaType: 'hiragana',
+  OriginalColor: 'currentColor',
+  FuriganaColor: 'currentColor',
+  SelectMode: 'original',
+  Display: 'on',
+  Fontsize: 75, // ${fontsize}% relative to the parent font.
+  Engine: 'remote'
 }
 
-export type Furigana = 'hiragana' | 'katakana' | 'romaji'
+export type FuriganaType = 'hiragana' | 'katakana' | 'romaji'
 export type Display = 'on' | 'off'
-export type Select = 'original' | 'furigana' | 'all'
-export type Color = string
+export type SelectMode = 'original' | 'furigana' | 'all'
+export type FuriganaColor = string
+export type OriginalColor = string
 export type Fontsize = number
 export type Engine = 'local' | 'remote'
 
@@ -96,7 +100,7 @@ const createRuby = async (
   const originalTextNode = document.createTextNode(original)
 
   const storage = new Storage()
-  const furiganaType: Furigana = await storage.get(Event.Furigana)
+  const furiganaType: FuriganaType = await storage.get(Event.FuriganaType)
   switch (furiganaType) {
     case 'hiragana':
       reading = toHiragana(reading)
