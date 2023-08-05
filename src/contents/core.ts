@@ -1,10 +1,9 @@
+import type { KurokanjiToken, KuromojiToken } from 'kurokanji'
+import { toKurokanjiToken } from 'kurokanji'
 import { toHiragana, toRomaji } from 'wanakana'
 
 import { sendToBackground } from '@plasmohq/messaging'
 import { Storage } from '@plasmohq/storage'
-
-import type { KurokanjiToken, KuromojiToken } from '~contents/kanji'
-import { toKurokanjiToken } from '~contents/kanji'
 
 export const FURIGANA_CLASS_NAME = '--furigana--'
 
@@ -13,23 +12,27 @@ export enum Event {
   Select = 'select',
   Color = 'color',
   Display = 'display',
-  Fontsize = 'fontsize'
+  Fontsize = 'fontsize',
+  Engine = 'engine',
+  Custom = 'custom'
 }
 
-export type Default = {
+export type Config = {
   furigana: Furigana
   color: Color
   select: Select
   display: Display
   fontsize: Fontsize
+  engine: Engine
 }
 
-export const defaultValue: Default = {
+export const defaultConfig: Config = {
   furigana: 'hiragana',
   color: 'currentColor',
   select: 'original',
   display: 'on',
-  fontsize: 75
+  fontsize: 75, // ${fontsize}% relative to the parent font.
+  engine: 'remote'
 }
 
 export type Furigana = 'hiragana' | 'katakana' | 'romaji'
@@ -37,6 +40,7 @@ export type Display = 'on' | 'off'
 export type Select = 'original' | 'furigana' | 'all'
 export type Color = string
 export type Fontsize = number
+export type Engine = 'local' | 'remote'
 
 /**
  * Append ruby tag to all text nodes of a batch of nodes.
@@ -60,6 +64,9 @@ export const addFurigana = async (elements: Element[]) => {
   }
 }
 const collectTextElementsAndMark = (element: Element): Element[] => {
+  if (element.parentElement!.classList.contains(FURIGANA_CLASS_NAME)) {
+    return []
+  }
   const textElements: Element[] = []
   if (element.nodeType === Node.TEXT_NODE && element.textContent?.length) {
     element.parentElement!.classList.add(FURIGANA_CLASS_NAME)

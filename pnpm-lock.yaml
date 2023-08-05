@@ -11,6 +11,9 @@ dependencies:
   '@plasmohq/storage':
     specifier: ^1.7.2
     version: 1.7.2
+  kurokanji:
+    specifier: ^1.2.4
+    version: 1.2.4
   plasmo:
     specifier: ^0.82.0
     version: 0.82.0
@@ -3851,6 +3854,12 @@ packages:
     resolution: {integrity: sha512-QCiSav9WaX1PgETJ+SpNnx2PRRapJ/oRSXM4VO5OGYGSjrxbKPVFVhB3l2OCbLCk329N8qyAtsJjSjvVBWzEug==}
     dependencies:
       json-buffer: 3.0.1
+    dev: false
+
+  /kurokanji@1.2.4:
+    resolution: {integrity: sha512-yawm2q2aT3DM2s4CY5eEDzHKyU0lrmLToXSIkHaIvC3qk1H0qXvhcAEU/xKRUVh2RemzzeDYBFIqEY8x9FTdwQ==}
+    dependencies:
+      wanakana: 5.1.0
     dev: false
 
   /less@4.1.3:

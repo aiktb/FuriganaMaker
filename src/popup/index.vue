@@ -3,17 +3,27 @@ import { onMounted, reactive } from 'vue'
 
 import { Storage } from '@plasmohq/storage'
 
-import { defaultValue, Event } from '~contents/core'
+import { defaultConfig, Event } from '~contents/core'
 
-const option = reactive(defaultValue)
+const option = reactive(defaultConfig)
 
-const changeEvent = async (type: Event) => {
-  const value = option[type]
+// prettier-ignore
+type ChangeEvent = Event.Color | Event.Display | Event.Fontsize | Event.Furigana | Event.Select
+
+const changeEvent = async (event: ChangeEvent) => {
+  const value = option[event]
   const storage = new Storage()
-  storage.set(type, value)
-  const tabs = await chrome.tabs.query({ url: 'https://twitter.com/*' })
+  storage.set(event, value)
+  const tabs = await chrome.tabs.query({ active: true, currentWindow: true })
   for (const tab of tabs) {
-    chrome.tabs.sendMessage(tab.id!, { type, value })
+    chrome.tabs.sendMessage(tab.id!, event)
+  }
+}
+
+const customEvent = async () => {
+  const tabs = await chrome.tabs.query({ active: true, currentWindow: true })
+  for (const tab of tabs) {
+    chrome.tabs.sendMessage(tab.id!, Event.Custom)
   }
 }
 
@@ -29,11 +39,16 @@ onMounted(async () => {
   option.color = await storage.get(Event.Color)
   option.display = await storage.get(Event.Display)
   option.fontsize = await storage.get(Event.Fontsize)
+  option.engine = await storage.get(Event.Engine)
 })
 </script>
 
 <template>
   <div class="container">
+    <div class="menu-item">
+      <label>Custom select</label>
+      <button @click="customEvent">select</button>
+    </div>
     <div class="menu-item">
       <label>Furigana Type</label>
       <select v-model="option.furigana" @change="changeEvent(Event.Furigana)">
@@ -66,8 +81,7 @@ onMounted(async () => {
     <div class="menu-item">
       <label>Font size</label>
       <!-- prettier-ignore -->
-      <input type="range" min="50" max="100"
-      v-model="option.fontsize" @change="changeEvent(Event.Fontsize)">
+      <input type="range" min="50" max="100" v-model="option.fontsize" @change="changeEvent(Event.Fontsize)" />
     </div>
   </div>
 </template>
