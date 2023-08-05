@@ -17,7 +17,8 @@
     "debug": "plasmo dev --verbose",
     "test": "plasmo test",
     "prepare": "husky install",
-    "format": "prettier --check --write ."
+    "format": "prettier --check --write .",
+    "lint": "eslint ."
   },
   "dependencies": {
     "@plasmohq/messaging": "^0.5.0",
@@ -32,6 +33,9 @@
     "@ianvs/prettier-plugin-sort-imports": "^4.1.0",
     "@types/chrome": "^0.0.243",
     "@types/wanakana": "^4.0.3",
+    "@typescript-eslint/eslint-plugin": "^6.2.1",
+    "@typescript-eslint/parser": "^6.2.1",
+    "eslint": "^8.46.0",
     "husky": "^8.0.3",
     "prettier": "^3.0.1",
     "pretty-quick": "^3.1.3",

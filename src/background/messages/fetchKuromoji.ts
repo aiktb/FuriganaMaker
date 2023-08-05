@@ -1,6 +1,6 @@
-import type { PlasmoMessaging } from '@plasmohq/messaging'
+import type { KuromojiToken } from 'kurokanji'
 
-import type { KuromojiToken } from '~contents/kanji'
+import type { PlasmoMessaging } from '@plasmohq/messaging'
 
 const handler: PlasmoMessaging.MessageHandler<
   { text: string },

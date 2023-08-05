@@ -8,7 +8,7 @@ export const config: PlasmoCSConfig = {
 }
 
 const jaTweet = 'div[lang="ja"] span'
-const observer = new MutationObserver((records, _observer) => {
+const observer = new MutationObserver((records) => {
   const jaElements = records
     .flatMap((record) => Array.from(record.addedNodes))
     .filter((node) => node.nodeType === Node.ELEMENT_NODE)
