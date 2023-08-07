@@ -9,13 +9,14 @@
     "baseUrl": ".",
     /* Linting */
     "strict": true,
-    "noUnusedLocals": true,
-    "noUnusedParameters": true,
+    "allowUnreachableCode": false,
+    "allowUnusedLabels": false,
+    "exactOptionalPropertyTypes": true,
     "noFallthroughCasesInSwitch": true,
-    "noImplicitAny": true,
+    "noImplicitOverride": true,
     "noImplicitReturns": true,
-    "strictFunctionTypes": true,
-    "strictNullChecks": true,
-    "allowUnreachableCode": false
+    "noUncheckedIndexedAccess": true,
+    "noUnusedLocals": true,
+    "noUnusedParameters": true
   }
 }
