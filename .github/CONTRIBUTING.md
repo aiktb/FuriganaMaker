@@ -35,10 +35,8 @@ $ pnpm install
 
 ### Setup Dev Environment
 
-The easiest way to start testing out FuriganaMaker is to tweak the FuriganaMaker blog. You may run `pnpm run docs` to boot up FuriganaMaker blog site locally, with live reloading of the source code.
-
 ```bash
-$ pnpm docs:dev
+$ pnpm dev
 ```
 
-After executing the above command, visit http://localhost:5173 and try modifying the source code. You'll get live update.
+After executing the above command, visit chrome extensions page, and click `Load unpacked` button, then select the `build/*.dev` folder in the project root directory, and try modifying the source code. You'll get live update.
