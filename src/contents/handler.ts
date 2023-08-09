@@ -5,8 +5,11 @@ import { Storage } from '@plasmohq/storage'
 
 import { Event, FURIGANA_CLASS_NAME } from '~contents/core'
 
+import { addFurigana } from './core'
+import { Selector } from './selector'
+
 export const config: PlasmoCSConfig = {
-  matches: ['https://twitter.com/*'],
+  matches: ['<all_urls>'],
   all_frames: true
 }
 
@@ -34,12 +37,47 @@ chrome.runtime.onMessage.addListener((event: Event) => {
     case Event.Engine:
       break
     case Event.Custom:
+      customHandler()
       break
     default:
       styleHandler(event)
       break
   }
 })
+
+const furiganaHandler = async () => {
+  const storage = new Storage()
+  const value = await storage.get(Event.FuriganaType)
+  const nodes = document.querySelectorAll(rtSelector)
+  switch (value) {
+    case 'hiragana':
+      nodes.forEach((node) => {
+        node.textContent = toHiragana(node.textContent!)
+      })
+      break
+    case 'katakana':
+      nodes.forEach((node) => {
+        node.textContent = toKatakana(node.textContent!)
+      })
+      break
+    case 'romaji':
+      nodes.forEach((node) => {
+        node.textContent = toRomaji(node.textContent!)
+      })
+      break
+  }
+}
+
+const customHandler = () => {
+  const selector = new Selector((element: HTMLElement) => {
+    addFurigana([element])
+  })
+  document.addEventListener('keydown', (event) => {
+    if (event.key === 'Escape') {
+      selector.close()
+    }
+  })
+}
 
 const rtSelector = `.${FURIGANA_CLASS_NAME} > ruby > rt`
 const rubySelector = `.${FURIGANA_CLASS_NAME} > ruby`
@@ -93,28 +131,5 @@ async function styleHandler(type: StyleEvent) {
     style.setAttribute('id', id)
     style.textContent = css
     document.head.appendChild(style)
-  }
-}
-
-const furiganaHandler = async () => {
-  const storage = new Storage()
-  const value = await storage.get(Event.FuriganaType)
-  const nodes = document.querySelectorAll(rtSelector)
-  switch (value) {
-    case 'hiragana':
-      nodes.forEach((node) => {
-        node.textContent = toHiragana(node.textContent!)
-      })
-      break
-    case 'katakana':
-      nodes.forEach((node) => {
-        node.textContent = toKatakana(node.textContent!)
-      })
-      break
-    case 'romaji':
-      nodes.forEach((node) => {
-        node.textContent = toRomaji(node.textContent!)
-      })
-      break
   }
 }
