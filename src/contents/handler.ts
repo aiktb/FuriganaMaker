@@ -69,14 +69,16 @@ const furiganaHandler = async () => {
 }
 
 const customHandler = () => {
-  const selectionRenderer = new Selector((element: HTMLElement) => {
+  const selector = new Selector((element: HTMLElement) => {
     addFurigana([element])
   })
-  if (document.body.classList.contains('furigana-selector')) {
-    document.body.classList.remove('furigana-selector')
-    selectionRenderer.close()
-  }
+  document.addEventListener('keydown', (event) => {
+    if (event.key === 'Escape') {
+      selector.close()
+    }
+  })
 }
+
 const rtSelector = `.${FURIGANA_CLASS_NAME} > ruby > rt`
 const rubySelector = `.${FURIGANA_CLASS_NAME} > ruby`
 async function styleHandler(type: StyleEvent) {
