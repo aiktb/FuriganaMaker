@@ -17,6 +17,7 @@ export enum Event {
   Engine = 'Engine',
   Custom = 'Custom'
 }
+
 export type ChangeEvent =
   | Event.OriginalColor
   | Event.FuriganaColor
@@ -62,6 +63,10 @@ export type Engine = 'local' | 'remote'
  **/
 export const addFurigana = async (elements: Element[]) => {
   const jaTextElements = elements.flatMap(collectTextElementsAndMark)
+  jaTextElements.forEach((element) => {
+    element.parentElement!.classList.add(FURIGANA_CLASS_NAME)
+  })
+  // Refactor Notice: Map<Element, KurokanjiToken[]>
   for (const element of jaTextElements) {
     const tokens: KurokanjiToken[] = await tokenize(element.textContent!)
     // reverse() prevents the range from being invalidated
@@ -81,8 +86,10 @@ const collectTextElementsAndMark = (element: Element): Element[] => {
     return []
   }
   const textElements: Element[] = []
-  if (element.nodeType === Node.TEXT_NODE && element.textContent?.length) {
-    element.parentElement!.classList.add(FURIGANA_CLASS_NAME)
+  if (
+    element.nodeType === Node.TEXT_NODE &&
+    element.textContent?.trim().length
+  ) {
     textElements.push(element)
   } else {
     const elements = Array.from(
