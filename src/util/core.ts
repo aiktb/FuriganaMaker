@@ -38,8 +38,8 @@ export type Config = {
 
 export const defaultConfig: Config = {
   FuriganaType: 'hiragana',
-  OriginalColor: 'currentColor',
-  FuriganaColor: 'currentColor',
+  OriginalColor: '#c3e58a',
+  FuriganaColor: '#c3e58a',
   SelectMode: 'original',
   Display: 'on',
   Fontsize: 75, // ${fontsize}% relative to the parent font.
