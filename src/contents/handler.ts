@@ -3,10 +3,8 @@ import { toHiragana, toKatakana, toRomaji } from 'wanakana'
 
 import { Storage } from '@plasmohq/storage'
 
-import { Event, FURIGANA_CLASS_NAME } from '~contents/core'
-
-import { addFurigana } from './core'
-import { Selector } from './selector'
+import { addFurigana, Event, FURIGANA_CLASS_NAME } from '~util/core'
+import { Selector } from '~util/selector'
 
 export const config: PlasmoCSConfig = {
   matches: ['<all_urls>'],

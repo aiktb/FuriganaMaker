@@ -1,41 +1,41 @@
 <script setup lang="ts">
-  import { onMounted, reactive } from 'vue'
+import { onMounted, reactive } from 'vue'
 
-  import { Storage } from '@plasmohq/storage'
+import { Storage } from '@plasmohq/storage'
 
-  import { defaultConfig, Event } from '~contents/core'
-  import type { ChangeEvent, Config } from '~contents/core'
+import { defaultConfig, Event } from '~util/core'
+import type { ChangeEvent, Config } from '~util/core'
 
-  const option = reactive(defaultConfig)
+const option = reactive(defaultConfig)
 
-  const changeEvent = async (event: ChangeEvent) => {
-    const value = option[event]
-    const storage = new Storage()
-    storage.set(event, value)
-    const tabs = await chrome.tabs.query({ active: true, currentWindow: true })
-    for (const tab of tabs) {
-      chrome.tabs.sendMessage(tab.id!, event)
-    }
+const changeEvent = async (event: ChangeEvent) => {
+  const value = option[event]
+  const storage = new Storage()
+  storage.set(event, value)
+  const tabs = await chrome.tabs.query({ active: true, currentWindow: true })
+  for (const tab of tabs) {
+    chrome.tabs.sendMessage(tab.id!, event)
   }
+}
 
-  const customEvent = async () => {
-    const tabs = await chrome.tabs.query({ active: true, currentWindow: true })
-    for (const tab of tabs) {
-      chrome.tabs.sendMessage(tab.id!, Event.Custom)
-    }
+const customEvent = async () => {
+  const tabs = await chrome.tabs.query({ active: true, currentWindow: true })
+  for (const tab of tabs) {
+    chrome.tabs.sendMessage(tab.id!, Event.Custom)
   }
+}
 
-  const resetColor = (event: Event.FuriganaColor | Event.OriginalColor) => {
-    option[event] = 'currentColor'
-    changeEvent(event)
+const resetColor = (event: Event.FuriganaColor | Event.OriginalColor) => {
+  option[event] = 'currentColor'
+  changeEvent(event)
+}
+
+onMounted(async () => {
+  const storage = new Storage()
+  for (const key in defaultConfig) {
+    option[key as keyof Config] = await storage.get(key)
   }
-
-  onMounted(async () => {
-    const storage = new Storage()
-    for (const key in defaultConfig) {
-      option[key as keyof Config] = await storage.get(key)
-    }
-  })
+})
 </script>
 
 <template>
@@ -92,15 +92,15 @@
 </template>
 
 <style scoped>
-  .container {
-    font-size: small;
-  }
-  .menu-item {
-    display: flex;
-    justify-content: space-between;
-    align-items: center;
-    padding: 0.5rem 1rem;
-    border-bottom: 1px solid #eaeaea;
-    width: 15rem;
-  }
+.container {
+  font-size: small;
+}
+.menu-item {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 0.5rem 1rem;
+  border-bottom: 1px solid #eaeaea;
+  width: 15rem;
+}
 </style>

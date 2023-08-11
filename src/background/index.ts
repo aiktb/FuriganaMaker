@@ -1,6 +1,6 @@
 import { Storage } from '@plasmohq/storage'
 
-import { defaultConfig, type Config } from '~contents/core'
+import { defaultConfig, type Config } from '~util/core'
 
 const storage = new Storage()
 chrome.runtime.onInstalled.addListener(async () => {

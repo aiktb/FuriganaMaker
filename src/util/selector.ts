@@ -1,4 +1,4 @@
-import { FURIGANA_CLASS_NAME } from '~contents/core'
+import { FURIGANA_CLASS_NAME } from '~util/core'
 
 export class Selector {
   private readonly renderer = new Renderer()
