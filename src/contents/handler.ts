@@ -13,14 +13,12 @@ export const config: PlasmoCSConfig = {
 
 type StyleEvent =
   | Event.SelectMode
-  | Event.OriginalColor
   | Event.FuriganaColor
   | Event.Display
   | Event.Fontsize
 
 const styleEvents: StyleEvent[] = [
   Event.SelectMode,
-  Event.OriginalColor,
   Event.FuriganaColor,
   Event.Display,
   Event.Fontsize
@@ -78,7 +76,6 @@ const customHandler = () => {
 }
 
 const rtSelector = `.${FURIGANA_CLASS_NAME} > ruby > rt`
-const rubySelector = `.${FURIGANA_CLASS_NAME} > ruby`
 async function styleHandler(type: StyleEvent) {
   const storage = new Storage()
   const value = await storage.get(type)
@@ -94,12 +91,7 @@ async function styleHandler(type: StyleEvent) {
           user-select: ${value === 'original' ? 'none' : 'text'};
         }`
       break
-    case Event.OriginalColor:
-      css = `
-        ${rubySelector} {
-          color: ${value}; 
-        }`
-      break
+    // <ruby> color will be passed to <rt>, so no control logic for <ruby> color will be added.
     case Event.FuriganaColor:
       css = `
         ${rtSelector} {

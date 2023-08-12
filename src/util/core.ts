@@ -10,7 +10,6 @@ export const FURIGANA_CLASS_NAME = '--furigana--'
 export enum Event {
   FuriganaType = 'FuriganaType',
   SelectMode = 'SelectMode',
-  OriginalColor = 'OriginalColor',
   FuriganaColor = 'FuriganaColor',
   Display = 'Display',
   Fontsize = 'Fontsize',
@@ -19,7 +18,6 @@ export enum Event {
 }
 
 export type ChangeEvent =
-  | Event.OriginalColor
   | Event.FuriganaColor
   | Event.Display
   | Event.Fontsize
@@ -28,31 +26,25 @@ export type ChangeEvent =
 
 export type Config = {
   FuriganaType: FuriganaType
-  OriginalColor: OriginalColor
   FuriganaColor: FuriganaColor
   SelectMode: SelectMode
   Display: Display
   Fontsize: Fontsize
-  Engine: Engine
 }
 
 export const defaultConfig: Config = {
   FuriganaType: 'hiragana',
-  OriginalColor: '#c3e58a',
-  FuriganaColor: '#c3e58a',
+  FuriganaColor: 'currentColor',
   SelectMode: 'original',
   Display: 'on',
-  Fontsize: 75, // ${fontsize}% relative to the parent font.
-  Engine: 'remote'
+  Fontsize: 75 // ${fontsize}% relative to the parent font.
 }
 
 export type FuriganaType = 'hiragana' | 'katakana' | 'romaji'
 export type Display = 'on' | 'off'
 export type SelectMode = 'original' | 'furigana' | 'all'
 export type FuriganaColor = string
-export type OriginalColor = string
 export type Fontsize = number
-export type Engine = 'local' | 'remote'
 
 /**
  * Append ruby tag to all text nodes of a batch of elements.

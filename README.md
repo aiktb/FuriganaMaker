@@ -6,8 +6,6 @@
 
 ## TODO List
 
-- It would be nice to toggle a subset of furigana off, e.g., JLPT N5, Joyo G1, WK level 10. [Reference.](https://github.com/darren-lester/furigana-toggle/issues/1)
 - Log System
 - UI beautification
-- Fix: 'currentColor' isn't 'rgb or hex'
 - Perf: fetch data after merging data
