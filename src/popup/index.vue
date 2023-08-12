@@ -1,5 +1,5 @@
 <script setup lang="ts">
-import { onMounted, reactive } from 'vue'
+import { computed, onMounted, reactive } from 'vue'
 
 import { Storage } from '@plasmohq/storage'
 
@@ -25,11 +25,21 @@ const customEvent = async () => {
   }
 }
 
-const resetColor = (event: Event.FuriganaColor | Event.OriginalColor) => {
-  option[event] = 'currentColor'
-  changeEvent(event)
+const resetColor = () => {
+  option[Event.FuriganaColor] = 'currentColor'
+  changeEvent(Event.FuriganaColor)
 }
 
+const furiganaColor = computed({
+  get() {
+    return option[Event.FuriganaColor] === 'currentColor'
+      ? '#000000'
+      : option[Event.FuriganaColor]
+  },
+  set(newColor: string) {
+    option[Event.FuriganaColor] = newColor
+  }
+})
 onMounted(async () => {
   const storage = new Storage()
   for (const key in defaultConfig) {
@@ -66,15 +76,11 @@ onMounted(async () => {
     </div>
     <div class="menu-item">
       <label>Choose color for furigana</label>
-      <button @click="resetColor(Event.FuriganaColor)">default</button>
-      <!-- prettier-ignore -->
-      <input type="color" v-model="option.FuriganaColor" @change="changeEvent(Event.FuriganaColor)" />
-    </div>
-    <div class="menu-item">
-      <label>Choose color for original</label>
-      <button @click="resetColor(Event.OriginalColor)">default</button>
-      <!-- prettier-ignore -->
-      <input type="color" v-model="option.OriginalColor" @change="changeEvent(Event.OriginalColor)" />
+      <button @click="resetColor">default</button>
+      <input
+        type="color"
+        v-model="furiganaColor"
+        @change="changeEvent(Event.FuriganaColor)" />
     </div>
     <div class="menu-item">
       <label>Display</label>
@@ -85,8 +91,12 @@ onMounted(async () => {
     </div>
     <div class="menu-item">
       <label>Font size</label>
-      <!-- prettier-ignore -->
-      <input type="range" min="50" max="100" v-model="option.Fontsize" @change="changeEvent(Event.Fontsize)" />
+      <input
+        type="range"
+        min="50"
+        max="100"
+        v-model="option.Fontsize"
+        @change="changeEvent(Event.Fontsize)" />
     </div>
   </div>
 </template>
@@ -94,6 +104,8 @@ onMounted(async () => {
 <style scoped>
 .container {
   font-size: small;
+  width: 330px;
+  height: 400px;
 }
 .menu-item {
   display: flex;
