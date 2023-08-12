@@ -1,9 +1,10 @@
-import type { KurokanjiToken, KuromojiToken } from 'kurokanji'
-import { toKurokanjiToken } from 'kurokanji'
 import { toHiragana, toRomaji } from 'wanakana'
 
 import { sendToBackground } from '@plasmohq/messaging'
 import { Storage } from '@plasmohq/storage'
+
+import type { KurokanjiToken, KuromojiToken } from '~util/kurokanji'
+import { toKurokanjiToken } from '~util/kurokanji'
 
 export const FURIGANA_CLASS_NAME = '--furigana--'
 

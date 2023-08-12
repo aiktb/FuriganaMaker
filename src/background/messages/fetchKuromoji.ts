@@ -1,6 +1,6 @@
-import type { KuromojiToken } from 'kurokanji'
-
 import type { PlasmoMessaging } from '@plasmohq/messaging'
+
+import type { KuromojiToken } from '~util/kurokanji'
 
 const handler: PlasmoMessaging.MessageHandler<
   { text: string },
@@ -21,9 +21,7 @@ const handler: PlasmoMessaging.MessageHandler<
   )
   const message: KuromojiToken[] = await response.json()
 
-  res.send({
-    message
-  })
+  res.send({ message })
 }
 
 export default handler

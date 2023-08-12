@@ -40,6 +40,7 @@ const furiganaColor = computed({
     option[Event.FuriganaColor] = newColor
   }
 })
+
 onMounted(async () => {
   const storage = new Storage()
   for (const key in defaultConfig) {
@@ -104,8 +105,6 @@ onMounted(async () => {
 <style scoped>
 .container {
   font-size: small;
-  width: 330px;
-  height: 400px;
 }
 .menu-item {
   display: flex;
