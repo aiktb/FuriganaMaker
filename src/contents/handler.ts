@@ -3,19 +3,18 @@ import { toHiragana, toKatakana, toRomaji } from 'wanakana'
 
 import { Storage } from '@plasmohq/storage'
 
-import { addFurigana, Event, FURIGANA_CLASS_NAME } from '~util/core'
+import {
+  addFurigana,
+  Event,
+  FURIGANA_CLASS_NAME,
+  type StyleEvent
+} from '~util/core'
 import { Selector } from '~util/selector'
 
 export const config: PlasmoCSConfig = {
   matches: ['<all_urls>'],
   all_frames: true
 }
-
-type StyleEvent =
-  | Event.SelectMode
-  | Event.FuriganaColor
-  | Event.Display
-  | Event.Fontsize
 
 const styleEvents: StyleEvent[] = [
   Event.SelectMode,

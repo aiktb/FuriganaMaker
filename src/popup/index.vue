@@ -32,10 +32,12 @@ const resetColor = () => {
   changeEvent(Event.FuriganaColor)
 }
 
+// 'currentColor' does not conform to the color format,
+// which will cause a warning to be thrown, use the following method to bypass.
 const furiganaColor = computed({
   get() {
     return option[Event.FuriganaColor] === 'currentColor'
-      ? '#1070ff'
+      ? '#0075ff'
       : option[Event.FuriganaColor]
   },
   set(newColor: string) {
@@ -291,9 +293,11 @@ input[type='color']::-webkit-color-swatch {
   border: none;
   border-radius: 50%;
 }
-
-#reset-color:hover {
+#reset-color:focus {
   border: none;
+}
+#reset-color:hover {
+  border: none !important;
   background-color: #e1e1e1;
 }
 
@@ -348,8 +352,8 @@ input[type='color']::-webkit-color-swatch {
 ::-webkit-slider-thumb {
   -webkit-appearance: none;
   cursor: pointer;
-  margin-top: -0.4rem;
-  background-color: #1070ff;
+  margin-top: -0.45rem;
+  background-color: #0075ff;
 }
 
 ::-moz-range-thumb {
@@ -371,15 +375,15 @@ input[type='color']::-webkit-color-swatch {
 }
 
 .power-on {
-  color: #1070ff;
+  color: #0075ff;
 }
 
 #feedback:hover {
-  color: #1070ff;
+  color: #0075ff;
 }
 
 #feedback:focus {
-  color: #1070ff;
+  color: #0075ff;
 }
 
 #link-icon {
