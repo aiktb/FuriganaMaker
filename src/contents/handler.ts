@@ -101,7 +101,7 @@ async function styleHandler(type: StyleEvent) {
     case Event.Display:
       css = `
         ${rtSelector} {
-          display: ${value === 'off' ? 'none' : 'flow'};
+          display: ${value ? 'flow' : 'none'};
         }`
       break
     case Event.Fontsize:
