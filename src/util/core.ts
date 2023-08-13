@@ -37,12 +37,12 @@ export const defaultConfig: Config = {
   FuriganaType: 'hiragana',
   FuriganaColor: 'currentColor',
   SelectMode: 'original',
-  Display: 'on',
+  Display: true,
   Fontsize: 75 // ${fontsize}% relative to the parent font.
 }
 
 export type FuriganaType = 'hiragana' | 'katakana' | 'romaji'
-export type Display = 'on' | 'off'
+export type Display = boolean
 export type SelectMode = 'original' | 'furigana' | 'all'
 export type FuriganaColor = string
 export type Fontsize = number
