@@ -75,6 +75,7 @@ const customHandler = () => {
 }
 
 const rtSelector = `.${FURIGANA_CLASS_NAME} > ruby > rt`
+const rpSelector = `.${FURIGANA_CLASS_NAME} > ruby > rp`
 async function styleHandler(type: StyleEvent) {
   const storage = new Storage()
   const value = await storage.get(type)
@@ -88,6 +89,12 @@ async function styleHandler(type: StyleEvent) {
         
         ${rtSelector} {
           user-select: ${value === 'original' ? 'none' : 'text'};
+        }
+        
+        ${rpSelector} {
+          display: ${value === 'all' ? 'block' : 'none'};
+          position: absolute;
+          left: -9999px;
         }`
       break
     // <ruby> color will be passed to <rt>, so no control logic for <ruby> color will be added.
@@ -100,7 +107,7 @@ async function styleHandler(type: StyleEvent) {
     case Event.Display:
       css = `
         ${rtSelector} {
-          display: ${value ? 'flow' : 'none'};
+          display: ${value ? 'block' : 'none'};
         }`
       break
     case Event.Fontsize:
