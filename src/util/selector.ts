@@ -114,13 +114,14 @@ class Renderer {
 
     // Reference: https://smms.app/image/vEHQ3UiTBs6jqV4
     // left&top are relative to the upper left corner of the viewport rather
-    // than the upper left corner of the web page
+    // than the upper left corner of the web page.
     const { left, top, width, height } = element.getBoundingClientRect()
     const outerLeft = left + window.scrollX - BORDER_WIDTH - PADDING_WIDTH
     const outerTop = top + window.scrollY - BORDER_WIDTH - PADDING_WIDTH
     const outerWidth = width + BORDER_WIDTH * 2 + PADDING_WIDTH * 2
     const outerHeight = height + BORDER_WIDTH * 4 + PADDING_WIDTH * 2
 
+    // Just a tooltip cobbled together with absolute positioning, don't read.
     this.left.style.left = px(outerLeft)
     this.left.style.top = px(outerTop)
     this.left.style.width = px(BORDER_WIDTH)
@@ -137,7 +138,7 @@ class Renderer {
     this.top.style.height = px(BORDER_WIDTH)
 
     this.bottom.style.left = px(outerLeft)
-    this.bottom.style.top = px(outerTop + outerHeight - BORDER_WIDTH * 4)
+    this.bottom.style.top = px(outerTop + outerHeight - BORDER_WIDTH * 3)
     this.bottom.style.width = px(outerWidth)
     this.bottom.style.height = px(BORDER_WIDTH * 4)
     this.bottom.textContent = getTagPath(element)

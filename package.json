@@ -29,10 +29,11 @@
   },
   "devDependencies": {
     "@ianvs/prettier-plugin-sort-imports": "^4.1.0",
-    "@iconify/vue": "^4.1.1",
     "@types/chrome": "^0.0.243",
     "@types/jest": "^29.5.3",
     "@types/wanakana": "^4.0.3",
+    "@vueuse/components": "^10.3.0",
+    "@vueuse/core": "^10.3.0",
     "husky": "^8.0.3",
     "kuromojin": "^3.0.0",
     "prettier": "^3.0.1",
@@ -42,8 +43,8 @@
     "typescript": "^5.1.6"
   },
   "manifest": {
-    "host_permissions": [
-      "<all_urls>"
+    "permissions": [
+      "activeTab"
     ]
   }
 }
