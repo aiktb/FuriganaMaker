@@ -2,11 +2,11 @@
 import Button from '@Components/Button.vue'
 import Link from '@Components/Link.vue'
 import MenuItem from '@Components/MenuItem.vue'
-import CursorOutline from 'data-text:@Icons/CursorOutline.svg'
-import CursorText from 'data-text:@Icons/CursorText.svg'
-import Feedback from 'data-text:@Icons/Feedback.svg'
-import Hiragana from 'data-text:@Icons/Hiragana.svg'
-import Power from 'data-text:@Icons/Power.svg'
+import CursorOutlineIcon from 'data-text:@Icons/CursorOutline.svg'
+import CursorTextIcon from 'data-text:@Icons/CursorText.svg'
+import FeedbackIcon from 'data-text:@Icons/Feedback.svg'
+import HiraganaIcon from 'data-text:@Icons/Hiragana.svg'
+import PowerIcon from 'data-text:@Icons/Power.svg'
 import { computed, onMounted, reactive } from 'vue'
 
 import { Storage } from '@plasmohq/storage'
@@ -81,7 +81,7 @@ const powerOn = computed(() => ({
   <div class="menu">
     <MenuItem>
       <template #icon>
-        <div v-html="CursorOutline" />
+        <div v-html="CursorOutlineIcon" />
       </template>
       <template #content>
         <Button title="Add furigana" @click="customEvent" />
@@ -89,7 +89,7 @@ const powerOn = computed(() => ({
     </MenuItem>
     <MenuItem>
       <template #icon>
-        <div v-html="Power" :class="powerOn" />
+        <div v-html="PowerIcon" :class="powerOn" />
       </template>
       <template #content>
         <Button title="On-off extension" @click="switchPower" />
@@ -97,7 +97,7 @@ const powerOn = computed(() => ({
     </MenuItem>
     <MenuItem>
       <template #icon>
-        <div v-html="Hiragana" />
+        <div v-html="HiraganaIcon" />
       </template>
       <template #content>
         <Select
@@ -109,7 +109,7 @@ const powerOn = computed(() => ({
     </MenuItem>
     <MenuItem>
       <template #icon>
-        <div v-html="CursorText" />
+        <div v-html="CursorTextIcon" />
       </template>
       <template #content>
         <Select
@@ -159,7 +159,7 @@ const powerOn = computed(() => ({
     </div> -->
     <MenuItem>
       <template #icon>
-        <div v-html="Feedback" />
+        <div v-html="FeedbackIcon" />
       </template>
       <template #content>
         <Link
