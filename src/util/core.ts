@@ -58,7 +58,7 @@ export type Fontsize = number
  * @remarks
  * The parent element of the text node will be added with the FURIGANA_CLASS_NAME class.
  * Elements that have already been marked will be skipped.
- * Ruby tag is "\<ruby>original\<rt>reading\</rt>\</ruby>".
+ * Ruby tag is "\<ruby>original\<rp>(\</rp>\<rt>reading\</rt>\<rp>)\</rp>\</ruby>".
  **/
 export const addFurigana = async (elements: Element[]) => {
   const jaTextElements = elements.flatMap(collectTextElementsAndMark)
@@ -111,8 +111,12 @@ const createRuby = async (
   original: string,
   reading: string
 ): Promise<HTMLElement> => {
-  const rubyNode = document.createElement('ruby')
-  const originalTextNode = document.createTextNode(original)
+  const ruby = document.createElement('ruby')
+  const rightParenthesisRp = document.createElement('rp')
+  rightParenthesisRp.textContent = ')'
+  const leftParenthesisRp = document.createElement('rp')
+  leftParenthesisRp.textContent = '('
+  const originalText = document.createTextNode(original)
 
   const storage = new Storage()
   const furiganaType: FuriganaType = await storage.get(Event.FuriganaType)
@@ -130,7 +134,9 @@ const createRuby = async (
   const readingTextNode = document.createTextNode(reading)
   const rt = document.createElement('rt')
   rt.appendChild(readingTextNode)
-  rubyNode.appendChild(originalTextNode)
-  rubyNode.appendChild(rt)
-  return rubyNode
+  ruby.appendChild(originalText)
+  ruby.appendChild(leftParenthesisRp)
+  ruby.appendChild(rt)
+  ruby.appendChild(rightParenthesisRp)
+  return ruby
 }
