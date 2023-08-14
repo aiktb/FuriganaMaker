@@ -6,7 +6,7 @@ export default {
   singleQuote: true,
   trailingComma: 'none',
   bracketSpacing: true,
-  bracketSameLine: true,
+  bracketSameLine: false,
   plugins: ['@ianvs/prettier-plugin-sort-imports'],
   importOrder: [
     '<BUILTIN_MODULES>', // Node.js built-in modules

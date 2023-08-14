@@ -1,5 +1,12 @@
 <script setup lang="ts">
-import { Icon } from '@iconify/vue'
+import Button from '@Components/Button.vue'
+import Link from '@Components/Link.vue'
+import MenuItem from '@Components/MenuItem.vue'
+import CursorOutline from 'data-text:@Icons/CursorOutline.svg'
+import CursorText from 'data-text:@Icons/CursorText.svg'
+import Feedback from 'data-text:@Icons/Feedback.svg'
+import Hiragana from 'data-text:@Icons/Hiragana.svg'
+import Power from 'data-text:@Icons/Power.svg'
 import { computed, onMounted, reactive } from 'vue'
 
 import { Storage } from '@plasmohq/storage'
@@ -7,11 +14,14 @@ import { Storage } from '@plasmohq/storage'
 import { defaultConfig, Event } from '~util/core'
 import type { ChangeEvent, Config } from '~util/core'
 
+import Select from './components/Select.vue'
+
 const option = reactive(defaultConfig)
-const colorList = ['#000000', '#ffffff', '#ffebcd']
+// const colorList = ['#000000', '#ffffff', '#ffebcd']
 
 const changeEvent = async (event: ChangeEvent) => {
   const value = option[event]
+  console.log(event, value)
   const storage = new Storage()
   storage.set(event, value)
   const tabs = await chrome.tabs.query({ active: true, currentWindow: true })
@@ -27,28 +37,28 @@ const customEvent = async () => {
   }
 }
 
-const resetColor = () => {
-  option[Event.FuriganaColor] = 'currentColor'
-  changeEvent(Event.FuriganaColor)
-}
+// const resetColor = () => {
+//   option[Event.FuriganaColor] = 'currentColor'
+//   changeEvent(Event.FuriganaColor)
+// }
 
-// 'currentColor' does not conform to the color format,
-// which will cause a warning to be thrown, use the following method to bypass.
-const furiganaColor = computed({
-  get() {
-    return option[Event.FuriganaColor] === 'currentColor'
-      ? '#0075ff'
-      : option[Event.FuriganaColor]
-  },
-  set(newColor: string) {
-    option[Event.FuriganaColor] = newColor
-  }
-})
+// // 'currentColor' does not conform to the color format,
+// // which will cause a warning to be thrown, use the following method to bypass.
+// const furiganaColor = computed({
+//   get() {
+//     return option[Event.FuriganaColor] === 'currentColor'
+//       ? '#0075ff'
+//       : option[Event.FuriganaColor]
+//   },
+//   set(newColor: string) {
+//     option[Event.FuriganaColor] = newColor
+//   }
+// })
 
-const setColor = (color: string) => {
-  option[Event.FuriganaColor] = color
-  changeEvent(Event.FuriganaColor)
-}
+// const setColor = (color: string) => {
+//   option[Event.FuriganaColor] = color
+//   changeEvent(Event.FuriganaColor)
+// }
 
 const switchPower = () => {
   option[Event.Display] = !option[Event.Display]
@@ -61,57 +71,55 @@ onMounted(async () => {
     option[key as keyof Config] = await storage.get(key)
   }
 })
+
+const powerOn = computed(() => ({
+  powerOn: option[Event.Display]
+}))
 </script>
 
 <template>
-  <div class="container">
-    <div class="menu-item">
-      <Icon icon="basil:cursor-outline" />
-      <div
-        @click="customEvent"
-        id="custom"
-        class="content"
-        tabindex="1"
-        @keyup.enter="customEvent">
-        Add furigana
-      </div>
-    </div>
-    <div class="menu-item">
-      <Icon
-        icon="fluent:power-24-filled"
-        :class="{ 'power-on': option[Event.Display] }" />
-      <div
-        @click="switchPower"
-        id="power-on"
-        class="content"
-        tabindex="0"
-        @keyup.enter="switchPower">
-        On-off extension
-      </div>
-    </div>
-    <div class="menu-item">
-      <Icon icon="mdi:syllabary-hiragana" />
-      <select
-        class="select cursor"
-        v-model="option.FuriganaType"
-        @change="changeEvent(Event.FuriganaType)">
-        <option value="hiragana">Hiragana</option>
-        <option value="katakana">Katakana</option>
-        <option value="romaji">Romaji</option>
-      </select>
-    </div>
-    <div class="menu-item">
-      <Icon icon="ph:cursor-text-bold" />
-      <select
-        class="select cursor"
-        v-model="option.SelectMode"
-        @change="changeEvent(Event.SelectMode)">
-        <option value="original">Original</option>
-        <option value="furigana">Furigana</option>
-        <option value="all">All</option>
-      </select>
-    </div>
-    <div class="menu-item">
+  <div class="menu">
+    <MenuItem>
+      <template #icon>
+        <div v-html="CursorOutline" />
+      </template>
+      <template #content>
+        <Button title="Add furigana" @click="customEvent" />
+      </template>
+    </MenuItem>
+    <MenuItem>
+      <template #icon>
+        <div v-html="Power" :class="powerOn" />
+      </template>
+      <template #content>
+        <Button title="On-off extension" @click="switchPower" />
+      </template>
+    </MenuItem>
+    <MenuItem>
+      <template #icon>
+        <div v-html="Hiragana" />
+      </template>
+      <template #content>
+        <Select
+          :options="['hiragana', 'katakana', 'romaji']"
+          v-model="option.FuriganaType"
+          @change="changeEvent(Event.FuriganaType)"
+        />
+      </template>
+    </MenuItem>
+    <MenuItem>
+      <template #icon>
+        <div v-html="CursorText" />
+      </template>
+      <template #content>
+        <Select
+          :options="['original', 'furigana', 'all']"
+          v-model="option.SelectMode"
+          @change="changeEvent(Event.SelectMode)"
+        />
+      </template>
+    </MenuItem>
+    <!-- <div class="menu-item">
       <Icon icon="mingcute:font-size-line" />
       <div id="range">
         <input
@@ -119,7 +127,8 @@ onMounted(async () => {
           min="50"
           max="100"
           v-model="option.Fontsize"
-          @change="changeEvent(Event.Fontsize)" />
+          @change="changeEvent(Event.Fontsize)"
+        />
       </div>
     </div>
     <div class="menu-item">
@@ -131,49 +140,72 @@ onMounted(async () => {
           @click="setColor(color)"
           @keydown.enter="setColor(color)"
           tabindex="0"
-          :style="'background-color:' + color" />
+          :style="'background-color:' + color"
+        />
         <input
           type="color"
           v-model="furiganaColor"
           @change="changeEvent(Event.FuriganaColor)"
-          id="color-picker" />
+          id="color-picker"
+        />
         <Icon
           icon="eva:refresh-fill"
           id="reset-color"
           class="cursor"
           tabindex="0"
-          @click="resetColor" />
+          @click="resetColor"
+        />
       </div>
-    </div>
-    <div class="menu-item">
-      <Icon icon="material-symbols:feedback-outline-rounded" />
-      <a
-        href="https://github.com/aiktb/FuriganaMaker/issues"
-        target="_blank"
-        class="content"
-        id="feedback">
-        Feedback
-        <Icon icon="ci:link" id="link-icon" />
-      </a>
-    </div>
+    </div> -->
+    <MenuItem>
+      <template #icon>
+        <div v-html="Feedback" />
+      </template>
+      <template #content>
+        <Link
+          title="Feedback"
+          link="https://github.com/aiktb/FuriganaMaker/issues"
+        />
+      </template>
+    </MenuItem>
   </div>
 </template>
 
 <style>
-* {
-  padding: 0;
-  margin: 0;
-  font-weight: bold;
+:root {
+  --blue: #0075ff;
+  --gray: #e1e1e1;
+}
+
+body {
   font-size: 13px;
-  font-family:
-    'JetBrains Mono',
-    Roboto,
-    Helvetica Neue Light,
-    Helvetica Neue,
-    Helvetica,
-    Arial,
-    Lucida Grande,
-    sans-serif;
+}
+
+.menu {
+  user-select: none;
+  padding: 0.5rem 0.5rem;
+  width: 13.5rem;
+  font-family: 'JetBrains Mono';
+  font-weight: bold;
+  box-sizing: border-box;
+}
+
+/* .menuItem:not(:last-child) {
+  border-bottom: var(--gray) solid 1px;
+} */
+
+.menuItem > div {
+  display: flex;
+  align-items: center;
+}
+
+.menuItem > div > svg {
+  width: 1.5rem;
+  height: 1.5rem;
+}
+
+.powerOn {
+  color: var(--blue);
 }
 
 input[type='color'] {
@@ -216,64 +248,6 @@ input[type='color']::-webkit-color-swatch {
   margin: 0 0.35em;
 }
 
-.container {
-  user-select: none;
-  padding: 1rem 1rem;
-}
-
-.menu-item {
-  display: flex;
-  align-items: center;
-  padding: 0.5rem 0.5rem;
-}
-
-.iconify {
-  width: 24px;
-  height: 24px;
-  margin-right: 12px;
-}
-
-.content {
-  line-height: 24px;
-  box-sizing: border-box;
-  height: 24px;
-  text-align: left;
-  background-color: transparent;
-  border: none;
-  flex: 1;
-  background-color: #fff0;
-  transition: all 120ms;
-  border-radius: 5px;
-  margin: none;
-  cursor: pointer;
-  padding: 0 8px;
-}
-
-.content:hover {
-  background-color: #e1e1e1;
-}
-
-.select {
-  line-height: 24px;
-  box-sizing: border-box;
-  height: 24px;
-  text-align: left;
-  background-color: transparent;
-  border: none;
-  flex: 1;
-  background-color: #fff0;
-  transition: all 120ms;
-  border-radius: 5px;
-  margin: none;
-  cursor: pointer;
-  padding-left: 4px;
-  padding-right: 8px;
-}
-
-.select:hover {
-  background-color: #e1e1e1;
-}
-
 #color {
   box-sizing: border-box;
   text-align: left;
@@ -293,23 +267,14 @@ input[type='color']::-webkit-color-swatch {
   border: none;
   border-radius: 50%;
 }
+
 #reset-color:focus {
   border: none;
 }
+
 #reset-color:hover {
   border: none !important;
   background-color: #e1e1e1;
-}
-
-#feedback {
-  color: currentColor;
-  text-decoration: none;
-  display: flex;
-  align-items: center;
-}
-
-.cursor {
-  cursor: pointer;
 }
 
 ::-webkit-slider-runnable-track {
@@ -372,24 +337,5 @@ input[type='color']::-webkit-color-swatch {
 #range:hover {
   background-color: #e1e1e1;
   border-radius: 5px;
-}
-
-.power-on {
-  color: #0075ff;
-}
-
-#feedback:hover {
-  color: #0075ff;
-}
-
-#feedback:focus {
-  color: #0075ff;
-}
-
-#link-icon {
-  width: 13px;
-  height: 13px;
-  line-height: 24px;
-  margin-left: 4px;
 }
 </style>

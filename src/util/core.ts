@@ -17,6 +17,7 @@ export enum Event {
   Engine = 'Engine',
   Custom = 'Custom'
 }
+
 export type StyleEvent =
   | Event.SelectMode
   | Event.FuriganaColor
