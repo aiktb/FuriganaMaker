@@ -1,20 +1,23 @@
 <script setup lang="ts">
+import { computed, onMounted, reactive } from 'vue'
+
 import Button from '@Components/Button.vue'
 import Link from '@Components/Link.vue'
 import MenuItem from '@Components/MenuItem.vue'
+import RangeInput from '@Components/RangeInput.vue'
+import Select from '@Components/Select.vue'
+
 import CursorOutlineIcon from 'data-text:@Icons/CursorOutline.svg'
 import CursorTextIcon from 'data-text:@Icons/CursorText.svg'
 import FeedbackIcon from 'data-text:@Icons/Feedback.svg'
+import FontSizeIcon from 'data-text:@Icons/FontSize.svg'
 import HiraganaIcon from 'data-text:@Icons/Hiragana.svg'
 import PowerIcon from 'data-text:@Icons/Power.svg'
-import { computed, onMounted, reactive } from 'vue'
 
 import { Storage } from '@plasmohq/storage'
 
 import { defaultConfig, Event } from '~util/core'
 import type { ChangeEvent, Config } from '~util/core'
-
-import Select from './components/Select.vue'
 
 const option = reactive(defaultConfig)
 // const colorList = ['#000000', '#ffffff', '#ffebcd']
@@ -23,17 +26,17 @@ const changeEvent = async (event: ChangeEvent) => {
   const value = option[event]
   console.log(event, value)
   const storage = new Storage()
-  storage.set(event, value)
+  await storage.set(event, value)
   const tabs = await chrome.tabs.query({ active: true, currentWindow: true })
   for (const tab of tabs) {
-    chrome.tabs.sendMessage(tab.id!, event)
+    await chrome.tabs.sendMessage(tab.id!, event)
   }
 }
 
 const customEvent = async () => {
   const tabs = await chrome.tabs.query({ active: true, currentWindow: true })
   for (const tab of tabs) {
-    chrome.tabs.sendMessage(tab.id!, Event.Custom)
+    await chrome.tabs.sendMessage(tab.id!, Event.Custom)
   }
 }
 
@@ -84,7 +87,7 @@ const powerOn = computed(() => ({
         <div v-html="CursorOutlineIcon" />
       </template>
       <template #content>
-        <Button title="Add furigana" @click="customEvent" />
+        <Button @click="customEvent"> Add furigana </Button>
       </template>
     </MenuItem>
     <MenuItem>
@@ -92,7 +95,7 @@ const powerOn = computed(() => ({
         <div v-html="PowerIcon" :class="powerOn" />
       </template>
       <template #content>
-        <Button title="On-off extension" @click="switchPower" />
+        <Button @click="switchPower"> On-off extension </Button>
       </template>
     </MenuItem>
     <MenuItem>
@@ -119,18 +122,20 @@ const powerOn = computed(() => ({
         />
       </template>
     </MenuItem>
-    <!-- <div class="menu-item">
-      <Icon icon="mingcute:font-size-line" />
-      <div id="range">
-        <input
-          type="range"
-          min="50"
-          max="100"
+    <MenuItem>
+      <template #icon>
+        <div v-html="FontSizeIcon" />
+      </template>
+      <template #content>
+        <RangeInput
           v-model="option.Fontsize"
+          :min="50"
+          :max="100"
           @change="changeEvent(Event.Fontsize)"
         />
-      </div>
-    </div>
+      </template>
+    </MenuItem>
+    <!--
     <div class="menu-item">
       <Icon icon="pepicons-pop:color-picker" />
       <div id="color" class="color-container">
@@ -162,10 +167,9 @@ const powerOn = computed(() => ({
         <div v-html="FeedbackIcon" />
       </template>
       <template #content>
-        <Link
-          title="Feedback"
-          link="https://github.com/aiktb/FuriganaMaker/issues"
-        />
+        <Link link="https://github.com/aiktb/FuriganaMaker/issues">
+          Feedback
+        </Link>
       </template>
     </MenuItem>
   </div>
@@ -190,10 +194,6 @@ body {
   box-sizing: border-box;
 }
 
-/* .menuItem:not(:last-child) {
-  border-bottom: var(--gray) solid 1px;
-} */
-
 .menuItem > div {
   display: flex;
   align-items: center;
@@ -206,136 +206,5 @@ body {
 
 .powerOn {
   color: var(--blue);
-}
-
-input[type='color'] {
-  width: 20px;
-  height: 20px;
-  border-radius: 50%;
-  border: none;
-  outline: none;
-  cursor: pointer;
-  margin: 0 0.25rem;
-  vertical-align: middle;
-  display: inline-block;
-  border: 2px solid currentColor;
-}
-
-input[type='color']::-webkit-color-swatch-wrapper {
-  padding: 0;
-}
-
-input[type='color']::-webkit-color-swatch {
-  border-radius: 50%;
-  border: none;
-}
-
-.color-container {
-  display: flex;
-  flex-wrap: wrap;
-  align-items: center;
-  margin: 0 auto;
-  padding: 0rem 0.25rem;
-}
-
-.color-item {
-  width: 16px;
-  height: 16px;
-  display: inline-block;
-  border-radius: 5px;
-  border: 2px solid currentColor;
-  cursor: pointer;
-  margin: 0 0.35em;
-}
-
-#color {
-  box-sizing: border-box;
-  text-align: left;
-  background-color: transparent;
-  border: none;
-  flex: 1;
-  background-color: #fff0;
-  transition: all 120ms;
-  border-radius: 5px;
-}
-
-#reset-color {
-  display: inline;
-  justify-content: center;
-  align-items: center;
-  margin-right: 0;
-  border: none;
-  border-radius: 50%;
-}
-
-#reset-color:focus {
-  border: none;
-}
-
-#reset-color:hover {
-  border: none !important;
-  background-color: #e1e1e1;
-}
-
-::-webkit-slider-runnable-track {
-  -webkit-appearance: none;
-  -moz-appearance: none;
-  appearance: none;
-  position: relative;
-  margin: auto;
-  display: block;
-  height: 0.25rem;
-  border-radius: 22px;
-  background-color: #111;
-}
-
-::-moz-range-track {
-  -moz-appearance: none;
-  appearance: none;
-  position: relative;
-  margin: auto;
-  display: block;
-  height: 0.35rem;
-  border-radius: 22px;
-  background-color: #111;
-}
-
-::-ms-track {
-  -webkit-appearance: none;
-  -moz-appearance: none;
-  appearance: none;
-  position: relative;
-  margin: auto;
-  display: block;
-  height: 0.35rem;
-  border-radius: 22px;
-  background-color: #111;
-}
-
-/* range thumb */
-
-::-webkit-slider-thumb {
-  -webkit-appearance: none;
-  cursor: pointer;
-  margin-top: -0.45rem;
-  background-color: #0075ff;
-}
-
-::-moz-range-thumb {
-  cursor: pointer;
-}
-
-::-ms-thumb {
-  cursor: pointer;
-}
-
-#range {
-  padding: 0 8px;
-  height: 24px;
-}
-
-#range:hover {
-  background-color: #e1e1e1;
-  border-radius: 5px;
 }
 </style>

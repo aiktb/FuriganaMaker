@@ -1,8 +1,9 @@
 <script setup lang="ts">
 import { vOnClickOutside } from '@vueuse/components'
 import { useFocusWithin } from '@vueuse/core'
-import Down from 'data-text:@Icons/Down.svg'
 import { ref, watch } from 'vue'
+
+import DownIcon from 'data-text:@Icons/Down.svg'
 
 const props = defineProps<{
   options: string[]
@@ -51,7 +52,7 @@ watch(focused, () => {
       @click="displaySwitch"
     >
       {{ props.modelValue }}
-      <div v-html="Down" class="selectIcon" />
+      <div v-html="DownIcon" class="selectIcon" />
     </div>
     <div class="panel" :class="{ show: display }">
       <div
