@@ -29,8 +29,6 @@ chrome.runtime.onMessage.addListener((event: Event) => {
     case Event.FuriganaType:
       furiganaHandler()
       break
-    case Event.Engine:
-      break
     case Event.Custom:
       customHandler()
       break
