@@ -14,7 +14,6 @@ export enum Event {
   FuriganaColor = 'FuriganaColor',
   Display = 'Display',
   Fontsize = 'Fontsize',
-  Engine = 'Engine',
   Custom = 'Custom'
 }
 
@@ -25,13 +24,14 @@ export type StyleEvent =
   | Event.Fontsize
 
 export type ChangeEvent =
+  | Event.FuriganaType
   | Event.FuriganaColor
+  | Event.SelectMode
   | Event.Display
   | Event.Fontsize
-  | Event.FuriganaType
-  | Event.SelectMode
 
 export type Config = {
+  [key: string]: string | number | boolean
   FuriganaType: FuriganaType
   FuriganaColor: FuriganaColor
   SelectMode: SelectMode
