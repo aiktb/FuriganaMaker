@@ -1,12 +1,8 @@
-<script setup lang="ts">
-const props = defineProps<{
-  title: string
-}>()
-</script>
+<script setup lang="ts"></script>
 
 <template>
   <div class="button" tabindex="0" @keydown.enter="$emit('click')">
-    {{ props.title }}
+    <slot name="default" />
   </div>
 </template>
 

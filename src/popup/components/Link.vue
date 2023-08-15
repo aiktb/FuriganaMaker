@@ -1,16 +1,15 @@
 <script setup lang="ts">
-import Link from 'data-text:@Icons/Link.svg'
+import LinkIcon from 'data-text:@Icons/Link.svg'
 
 const props = defineProps<{
-  title: string
   link: string
 }>()
 </script>
 
 <template>
   <a target="_blank" :href="props.link" class="link">
-    {{ props.title }}
-    <div v-html="Link" class="linkIcon" />
+    <slot name="default" />
+    <div v-html="LinkIcon" class="linkIcon" />
   </a>
 </template>
 

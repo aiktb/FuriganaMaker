@@ -145,7 +145,7 @@ const smashToken = (token: SimplifiedToken): KurokanjiToken[] => {
 
 // Cases where phonetic notation does not correspond to text create an invalid regular expression.
 const buildRegex = (kanas: MarkTokenArray): RegExp => {
-  // Match a empty string, actual sub-capturing group is 0.
+  // Match empty string, actual sub-capturing group is 0.
   if (!kanas.length) {
     return new RegExp('^$', 'u')
   }
