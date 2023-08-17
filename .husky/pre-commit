@@ -3,4 +3,3 @@
 
 pnpm format
 pnpm lint
-pnpm test

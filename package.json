@@ -14,6 +14,7 @@
   "scripts": {
     "dev": "plasmo dev",
     "build": "plasmo build",
+    "package": "plasmo package",
     "debug": "plasmo dev --verbose",
     "test": "jest",
     "prepare": "husky install",
