@@ -131,7 +131,7 @@ onMounted(() => {
   outline: none;
 }
 
-.thumb:focus::before {
+.thumb:focus:not(:active)::before {
   content: '';
   position: absolute;
   top: -2px;
