@@ -12,7 +12,7 @@ const props = defineProps<{
 
 const emit = defineEmits<{
   'update:modelValue': [modelValue: string]
-  change: [option: string]
+  change: []
 }>()
 
 const display = ref(false)
@@ -28,7 +28,7 @@ const changeOption = (option: string) => {
   displayOff()
   // The order of emit of the following events cannot be reversed.
   emit('update:modelValue', option)
-  emit('change', option)
+  emit('change')
 }
 
 const select = ref<HTMLElement | null>(null)
@@ -120,7 +120,7 @@ watch(focused, () => {
   position: absolute;
   top: 1.5rem;
   box-sizing: border-box;
-  background-color: white;
+  background-color: var(--white);
   transition: all 250ms;
   z-index: 1;
   box-shadow: 0 0 1rem rgba(0, 0, 0, 0.35);
@@ -149,6 +149,10 @@ watch(focused, () => {
 .option:hover {
   background-color: var(--gray);
   z-index: 1;
+}
+
+.option:focus {
+  box-shadow: 0 0 0 2px var(--black);
 }
 
 .option:first-child {

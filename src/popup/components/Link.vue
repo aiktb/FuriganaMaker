@@ -38,6 +38,10 @@ const props = defineProps<{
   color: var(--blue);
 }
 
+.link:focus {
+  box-shadow: 0 0 0 2px var(--black);
+}
+
 .linkIcon {
   display: flex;
   align-items: center;
