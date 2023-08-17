@@ -42,7 +42,27 @@
   },
   "manifest": {
     "permissions": [
-      "activeTab"
-    ]
+      "activeTab",
+      "commands"
+    ],
+    "commands": {
+      "addFurigana": {
+        "suggested_key": {
+          "default": "Alt+Shift+A"
+        },
+        "description": "Add furigana on the current page."
+      },
+      "switchDisplay": {
+        "suggested_key": {
+          "default": "Alt+Shift+H"
+        },
+        "description": "Hide furigana on all pages."
+      },
+      "_execute_action": {
+        "suggested_key": {
+          "default": "Alt+Shift+X"
+        }
+      }
+    }
   }
 }
