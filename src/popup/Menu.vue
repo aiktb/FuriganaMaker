@@ -2,10 +2,12 @@
 import { computed, reactive } from 'vue'
 
 import Button from '@Components/Button.vue'
+import ColorPicker from '@Components/ColorPicker.vue'
 import Link from '@Components/Link.vue'
 import RangeInput from '@Components/RangeInput.vue'
 import Select from '@Components/Select.vue'
 
+import ColorPickerIcon from 'data-text:@Icons/ColorPicker.svg'
 import CursorOutlineIcon from 'data-text:@Icons/CursorOutline.svg'
 import CursorTextIcon from 'data-text:@Icons/CursorText.svg'
 import FeedbackIcon from 'data-text:@Icons/Feedback.svg'
@@ -64,6 +66,7 @@ const powerOn = computed(() => ({
       <template #content>
         <Button @click="customEvent"> Add furigana </Button>
       </template>
+      <template #tip> Press ESC to cancel </template>
     </MenuItem>
     <MenuItem>
       <template #icon>
@@ -112,6 +115,17 @@ const powerOn = computed(() => ({
     </MenuItem>
     <MenuItem>
       <template #icon>
+        <div v-html="ColorPickerIcon" />
+      </template>
+      <template #content>
+        <ColorPicker
+          v-model="Event.FuriganaColor"
+          @change="changeEvent(Event.FuriganaColor)"
+        />
+      </template>
+    </MenuItem>
+    <MenuItem>
+      <template #icon>
         <div v-html="FeedbackIcon" />
       </template>
       <template #content>
@@ -119,6 +133,7 @@ const powerOn = computed(() => ({
           Feedback
         </Link>
       </template>
+      <template #tip> Open an issue on GitHub </template>
     </MenuItem>
   </div>
 </template>
@@ -137,21 +152,11 @@ body {
 
 .menu {
   user-select: none;
-  padding: 0.5rem 0.5rem;
+  padding: 0 0.5rem;
   width: 13.5rem;
   font-family: 'JetBrains Mono';
   font-weight: bold;
   box-sizing: border-box;
-}
-
-.menuItem > div {
-  display: flex;
-  align-items: center;
-}
-
-.menuItem > div > svg {
-  width: 1.5rem;
-  height: 1.5rem;
 }
 
 .powerOn {
