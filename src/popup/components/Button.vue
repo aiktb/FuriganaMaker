@@ -20,10 +20,15 @@
   cursor: pointer;
   transition: all 250ms;
   padding: 0 0.5rem;
+  outline: none;
 }
 
 .button:hover,
 .button:focus {
   background-color: var(--gray);
+}
+
+.button:focus {
+  box-shadow: 0 0 0 2px black;
 }
 </style>
