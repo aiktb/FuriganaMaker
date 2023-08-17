@@ -43,7 +43,8 @@
   "manifest": {
     "permissions": [
       "activeTab",
-      "commands"
+      "commands",
+      "contextMenus"
     ],
     "commands": {
       "addFurigana": {
