@@ -34,3 +34,17 @@ chrome.commands.onCommand.addListener(async (command) => {
     await chrome.tabs.sendMessage(tab.id!, event)
   }
 })
+
+let contextMenuItem: chrome.contextMenus.CreateProperties = {
+  id: 'addFurigana',
+  title: 'Add furigana on the page',
+  contexts: ['page'],
+  documentUrlPatterns: ['https://*/*', 'http://*/*']
+}
+chrome.contextMenus.create(contextMenuItem)
+
+chrome.contextMenus.onClicked.addListener((info, tab) => {
+  if (info.menuItemId == 'addFurigana') {
+    chrome.tabs.sendMessage(tab!.id!, Event.Custom)
+  }
+})
