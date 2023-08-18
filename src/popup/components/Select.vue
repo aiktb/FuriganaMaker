@@ -60,7 +60,7 @@ watch(focused, () => {
         tabindex="0"
         v-for="option of props.options"
         :class="{ selected: option === props.modelValue }"
-        @keydown.enter="displaySwitch"
+        @keydown.enter="changeOption(option)"
         @click="changeOption(option)"
       >
         {{ option }}
