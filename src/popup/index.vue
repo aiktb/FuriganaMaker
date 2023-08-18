@@ -1,5 +1,5 @@
 <script setup lang="ts">
-import FillLogoIcon from 'data-text:@Icons/FillLogo.svg'
+import Logo from 'data-text:@Icons/Logo.svg'
 
 import Menu from '~popup/Menu.vue'
 </script>
@@ -11,7 +11,7 @@ import Menu from '~popup/Menu.vue'
       <Menu />
     </template>
     <template #fallback>
-      <div v-html="FillLogoIcon" class="logo" />
+      <div v-html="Logo" class="logo" />
     </template>
   </Suspense>
 </template>
