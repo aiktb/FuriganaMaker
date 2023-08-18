@@ -79,25 +79,17 @@ watch(focused, () => {
   text-transform: capitalize;
 }
 
-.select:focus-within {
-  background-color: var(--gray);
-}
-
 .selectIcon {
   display: none;
-  color: #aaaaaa;
+  color: var(--feature);
   width: 1rem;
-  height: 1rem;
+  height: auto;
 }
 
 .select:focus-within .selectIcon,
 .select:hover .selectIcon {
   display: flex;
   align-items: center;
-}
-
-.select:hover {
-  background-color: var(--gray);
 }
 
 .promptBar {
@@ -120,15 +112,15 @@ watch(focused, () => {
   position: absolute;
   top: 1.5rem;
   box-sizing: border-box;
-  background-color: var(--white);
   transition: all 250ms;
   z-index: 1;
   box-shadow: 0 0 1rem rgba(0, 0, 0, 0.35);
   border-radius: 0.3rem;
+  background-color: var(--background);
 }
 
 .selected {
-  background-color: var(--gray);
+  background-color: var(--hover);
 }
 
 .show {
@@ -147,12 +139,8 @@ watch(focused, () => {
 
 .option:focus,
 .option:hover {
-  background-color: var(--gray);
+  background-color: var(--hover);
   z-index: 1;
-}
-
-.option:focus {
-  box-shadow: 0 0 0 2px var(--black);
 }
 
 .option:first-child {

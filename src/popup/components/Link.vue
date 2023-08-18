@@ -22,24 +22,19 @@ const props = defineProps<{
   box-sizing: border-box;
   height: 1.5rem;
   text-align: left;
-  background-color: transparent;
   border: none;
   border-radius: 0.3rem;
   cursor: pointer;
-  transition: all 250ms;
   padding: 0 0.5rem;
   color: currentColor;
   text-decoration: none;
+  transition: all 120ms;
 }
 
-.link:hover,
-.link:focus {
-  background-color: var(--gray);
-  color: var(--blue);
-}
-
-.link:focus {
-  box-shadow: 0 0 0 2px var(--black);
+.link:focus,
+.link:hover {
+  background-color: var(--hover);
+  color: var(--feature);
 }
 
 .linkIcon {
@@ -47,6 +42,6 @@ const props = defineProps<{
   align-items: center;
   margin-left: 0.3rem;
   width: 0.8rem;
-  height: 0.8rem;
+  height: auto;
 }
 </style>
