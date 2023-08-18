@@ -2,7 +2,7 @@ import { Storage } from '@plasmohq/storage'
 
 import { defaultConfig, Event } from '~util/core'
 
-const storage = new Storage()
+const storage = new Storage({ area: 'local' })
 chrome.runtime.onInstalled.addListener(async () => {
   for (const key in defaultConfig) {
     const oldValue = await storage.get(key)

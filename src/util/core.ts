@@ -118,7 +118,7 @@ const createRuby = async (
   leftParenthesisRp.textContent = '('
   const originalText = document.createTextNode(original)
 
-  const storage = new Storage()
+  const storage = new Storage({ area: 'local' })
   const furiganaType: FuriganaType = await storage.get(Event.FuriganaType)
   switch (furiganaType) {
     case 'hiragana':

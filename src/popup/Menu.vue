@@ -25,14 +25,13 @@ import type { ChangeEvent } from '~util/core'
   otherwise the child component will get the wrong defaultConfig.
   Top-level await makes this component asynchronous. */
 const option = reactive(defaultConfig)
-const storage = new Storage()
+const storage = new Storage({ area: 'local' })
 for (const key in defaultConfig) {
   option[key] = await storage.get(key)
 }
 
 const changeEvent = async (event: ChangeEvent) => {
   const value = option[event]
-  const storage = new Storage()
   await storage.set(event, value)
   const tabs = await chrome.tabs.query({ active: true, currentWindow: true })
   for (const tab of tabs) {
