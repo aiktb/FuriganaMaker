@@ -13,10 +13,6 @@ chrome.runtime.onInstalled.addListener(async () => {
 })
 
 chrome.commands.onCommand.addListener(async (command) => {
-  const tabs = await chrome.tabs.query({
-    active: true,
-    currentWindow: true
-  })
   let event: Event
   switch (command) {
     case 'addFurigana':
@@ -30,19 +26,22 @@ chrome.commands.onCommand.addListener(async (command) => {
     default:
       throw new Error('Unknown command')
   }
+  const tabs = await chrome.tabs.query({
+    active: true,
+    currentWindow: true
+  })
   for (const tab of tabs) {
     await chrome.tabs.sendMessage(tab.id!, event)
   }
 })
 
-let contextMenuItem: chrome.contextMenus.CreateProperties = {
+const contextMenuItem: chrome.contextMenus.CreateProperties = {
   id: 'addFurigana',
   title: 'Add furigana on the page',
   contexts: ['page'],
   documentUrlPatterns: ['https://*/*', 'http://*/*']
 }
 chrome.contextMenus.create(contextMenuItem)
-
 chrome.contextMenus.onClicked.addListener((info, tab) => {
   if (info.menuItemId == 'addFurigana') {
     chrome.tabs.sendMessage(tab!.id!, Event.Custom)
