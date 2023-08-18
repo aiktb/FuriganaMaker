@@ -145,6 +145,7 @@ const powerOn = computed(() => ({
   font-family: 'JetBrains Mono';
   font-weight: bold;
   box-sizing: border-box;
+  border-right: 0.15rem solid var(--feature);
 }
 
 .powerOn {
