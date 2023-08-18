@@ -2,14 +2,24 @@
 import { useElementBounding } from '@vueuse/core'
 import { computed, ref } from 'vue'
 
+interface Props {
+  tip?: boolean
+}
+
+const props = withDefaults(defineProps<Props>(), {
+  tip: false
+})
+
 const tip = ref<HTMLElement | null>(null)
 
 const { top } = useElementBounding(tip)
 
 const isTopTip = computed(() => {
-  return top.value < 30
+  console.log(top.value)
+  return top.value < 40
 })
 </script>
+
 <template>
   <div class="menuItem">
     <div class="icon">
@@ -18,7 +28,7 @@ const isTopTip = computed(() => {
     <div class="content">
       <slot name="content" />
     </div>
-    <div class="tip" ref="tip" :class="{ topTip: isTopTip }">
+    <div class="tip" ref="tip" :class="{ topTip: isTopTip }" v-if="props.tip">
       <slot name="tip" />
     </div>
   </div>
