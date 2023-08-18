@@ -93,7 +93,6 @@ async function styleHandler(type: StyleEvent) {
           display: ${value === 'all' ? 'block' : 'none'};
           position: absolute;
           left: -9999px;
-          aria-hidden: true;
         }`
       break
     // <ruby> color will be passed to <rt>, so no control logic for <ruby> color will be added.
