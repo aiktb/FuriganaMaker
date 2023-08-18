@@ -5,17 +5,13 @@ import { computed, ref } from 'vue'
 interface Props {
   tip?: boolean
 }
-
 const props = withDefaults(defineProps<Props>(), {
   tip: false
 })
 
 const tip = ref<HTMLElement | null>(null)
-
 const { top } = useElementBounding(tip)
-
 const isTopTip = computed(() => {
-  console.log(top.value)
   return top.value < 40
 })
 </script>
@@ -50,18 +46,25 @@ const isTopTip = computed(() => {
 
 .icon svg {
   width: 1.5rem;
-  height: 1.5rem;
+  height: auto;
 }
 
 .content {
   flex-grow: 1;
+  border-radius: 0.3rem;
+}
+
+.content:hover,
+.content:focus-within {
+  transition: all 250ms;
+  background-color: var(--hover);
 }
 
 .tip {
   box-sizing: border-box;
-  color: var(--white);
+  color: var(--background);
   line-height: 1rem;
-  background-color: #2b2b2b;
+  background-color: var(--font);
   border-radius: 0.3rem;
   position: absolute;
   z-index: 1;

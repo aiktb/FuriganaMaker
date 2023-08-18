@@ -137,18 +137,7 @@ const powerOn = computed(() => ({
   </div>
 </template>
 
-<style>
-:root {
-  --blue: #0075ff;
-  --gray: #e1e1e1;
-  --black: #000000;
-  --white: #ffffff;
-}
-
-body {
-  font-size: 13px;
-}
-
+<style scoped>
 .menu {
   user-select: none;
   padding: 0 0.5rem;
@@ -159,6 +148,6 @@ body {
 }
 
 .powerOn {
-  color: var(--blue);
+  color: var(--feature);
 }
 </style>

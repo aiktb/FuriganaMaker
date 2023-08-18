@@ -105,16 +105,10 @@ onMounted(() => {
   box-sizing: border-box;
   height: 1.5rem;
   text-align: left;
-  background-color: transparent;
   border: none;
   border-radius: 0.3rem;
   transition: all 250ms;
   padding: 0 0.5rem;
-}
-
-.range:hover,
-.range:focus {
-  background-color: var(--gray);
 }
 
 .track {
@@ -129,7 +123,7 @@ onMounted(() => {
   width: 0.8rem;
   height: 0.8rem;
   border-radius: 50%;
-  background-color: var(--blue);
+  background-color: var(--feature);
   cursor: pointer;
   outline: none;
 }
