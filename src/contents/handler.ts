@@ -12,7 +12,7 @@ import {
 import { Selector } from '~util/selector'
 
 export const config: PlasmoCSConfig = {
-  matches: ['<all_urls>'],
+  matches: ['https://*/*', 'http://*/*'],
   all_frames: true
 }
 
