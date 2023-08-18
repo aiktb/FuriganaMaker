@@ -16,6 +16,9 @@ export const config: PlasmoCSConfig = {
   all_frames: true
 }
 
+// styleHandler uses storage and is called immediately,
+// so it needs to be initialized immediately.
+const storage = new Storage({ area: 'local' })
 const styleEvents: StyleEvent[] = [
   Event.SelectMode,
   Event.FuriganaColor,
@@ -24,6 +27,7 @@ const styleEvents: StyleEvent[] = [
 ]
 styleEvents.forEach(styleHandler)
 
+// The plasmo Storage watch API could be used instead, but is not necessary.
 chrome.runtime.onMessage.addListener((event: Event) => {
   switch (event) {
     case Event.FuriganaType:
@@ -39,7 +43,6 @@ chrome.runtime.onMessage.addListener((event: Event) => {
 })
 
 const furiganaHandler = async () => {
-  const storage = new Storage()
   const value = await storage.get(Event.FuriganaType)
   const nodes = document.querySelectorAll(rtSelector)
   switch (value) {
@@ -75,7 +78,6 @@ const customHandler = () => {
 const rtSelector = `.${FURIGANA_CLASS_NAME} > ruby > rt`
 const rpSelector = `.${FURIGANA_CLASS_NAME} > ruby > rp`
 async function styleHandler(type: StyleEvent) {
-  const storage = new Storage()
   const value = await storage.get(type)
   let css: string
   switch (type) {
