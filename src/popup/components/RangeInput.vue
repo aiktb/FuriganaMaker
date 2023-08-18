@@ -77,18 +77,20 @@ onMounted(() => {
 </script>
 
 <template>
-  <div class="range">
+  <div
+    class="range"
+    tabindex="0"
+    @keydown.left="keyHandler(KeyEvent.Subtract)"
+    @keydown.right="keyHandler(KeyEvent.Add)"
+    @keydown.up="keyHandler(KeyEvent.Add)"
+    @keydown.down="keyHandler(KeyEvent.Subtract)"
+    @keyup="keyHandler(KeyEvent.Emit)"
+  >
     <div class="track" ref="track">
       <div
         class="thumb"
         ref="thumb"
-        tabindex="0"
         :style="{ left: `${x}px`, top: `${y}px` }"
-        @keydown.left="keyHandler(KeyEvent.Subtract)"
-        @keydown.right="keyHandler(KeyEvent.Add)"
-        @keydown.up="keyHandler(KeyEvent.Add)"
-        @keydown.down="keyHandler(KeyEvent.Subtract)"
-        @keyup="keyHandler(KeyEvent.Emit)"
       />
     </div>
   </div>
@@ -110,7 +112,8 @@ onMounted(() => {
   padding: 0 0.5rem;
 }
 
-.range:hover {
+.range:hover,
+.range:focus {
   background-color: var(--gray);
 }
 
@@ -129,16 +132,5 @@ onMounted(() => {
   background-color: var(--blue);
   cursor: pointer;
   outline: none;
-}
-
-.thumb:focus:not(:active)::before {
-  content: '';
-  position: absolute;
-  top: -2px;
-  left: -2px;
-  right: -2px;
-  bottom: -2px;
-  border: 2px solid black;
-  border-radius: 4px;
 }
 </style>
