@@ -137,7 +137,7 @@ const powerOn = computed(() => ({
   </div>
 </template>
 
-<style scoped>
+<style>
 .menu {
   user-select: none;
   padding: 0 0.5rem;
@@ -150,5 +150,10 @@ const powerOn = computed(() => ({
 
 .powerOn {
   color: var(--feature);
+}
+
+.menuItem:first-child > .tip {
+  bottom: -1.5rem !important;
+  left: 2rem;
 }
 </style>
