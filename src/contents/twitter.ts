@@ -3,7 +3,7 @@ import type { PlasmoCSConfig } from 'plasmo'
 import { addFurigana } from '~util/core'
 
 export const config: PlasmoCSConfig = {
-  matches: ['https://*/*', 'http://*/*'],
+  matches: ['https://twitter.com/*'],
   all_frames: true
 }
 
