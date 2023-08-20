@@ -118,7 +118,7 @@ const powerOn = computed(() => ({
       </template>
       <template #content>
         <ColorPicker
-          v-model="Event.FuriganaColor"
+          v-model="option.FuriganaColor"
           @change="changeEvent(Event.FuriganaColor)"
         />
       </template>
