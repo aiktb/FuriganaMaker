@@ -28,7 +28,7 @@ const props = defineProps<{
   padding: 0 0.5rem;
   color: currentColor;
   text-decoration: none;
-  transition: all 120ms;
+  transition: all 250ms;
 }
 
 .link:focus,
