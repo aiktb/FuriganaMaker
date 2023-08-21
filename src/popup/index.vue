@@ -33,6 +33,14 @@ import Menu from '~popup/Menu.vue'
   }
 }
 
+@font-face {
+  font-display: swap;
+  font-family: 'JetBrains Mono';
+  font-style: bold;
+  font-weight: 700;
+  src: url('../../assets/jetbrains-mono-v18-latin-700.woff2') format('woff2');
+}
+
 body {
   font-size: 13px;
   color: var(--font);
