@@ -18,4 +18,9 @@
   transition: all 250ms;
   padding: 0 0.5rem;
 }
+
+.button:hover,
+.button:focus-within {
+  background-color: var(--hover);
+}
 </style>

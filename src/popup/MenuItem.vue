@@ -40,12 +40,6 @@ const props = withDefaults(defineProps<Props>(), {
   border-radius: 0.3rem;
 }
 
-.content:hover,
-.content:focus-within {
-  transition: all 250ms;
-  background-color: var(--hover);
-}
-
 .tip {
   box-sizing: border-box;
   color: var(--background);

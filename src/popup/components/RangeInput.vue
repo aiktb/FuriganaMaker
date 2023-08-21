@@ -111,6 +111,12 @@ onMounted(() => {
   padding: 0 0.5rem;
 }
 
+.range:hover,
+.range:focus-within {
+  transition: all 250ms;
+  background-color: var(--hover);
+}
+
 .track {
   height: 12%;
   width: 100%;

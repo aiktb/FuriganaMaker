@@ -27,7 +27,7 @@ import Menu from '~popup/Menu.vue'
 @media (prefers-color-scheme: dark) {
   :root {
     --feature: #0075ff;
-    --hover: #203549;
+    --hover: #27415a;
     --background: #1c2732;
     --font: #f5f5f5da;
   }
