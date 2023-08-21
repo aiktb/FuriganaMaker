@@ -23,7 +23,6 @@ const { left, right, top, bottom } = useElementBounding(track)
 const { width, height } = useElementBounding(thumb)
 
 const { x: useX } = useDraggable(thumb)
-const y = ref(0)
 const x = computed(() => {
   return clamp(useX.value, left.value, right.value - width.value)
 })
@@ -62,6 +61,10 @@ const keyHandler = (type: KeyEvent) => {
   }
 }
 
+const y = computed(() => {
+  return top.value + (bottom.value - top.value) / 2 - height.value / 2
+})
+
 // [left, right, top, bottom, width, height]
 // are only available after the component is mounted.
 onMounted(() => {
@@ -72,7 +75,6 @@ onMounted(() => {
     left.value,
     right.value - width.value
   )
-  y.value = (bottom.value - top.value - height.value) / 2 + top.value
 })
 </script>
 
