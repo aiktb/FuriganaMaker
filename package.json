@@ -13,7 +13,7 @@
   },
   "scripts": {
     "dev": "plasmo dev",
-    "build:chrome": "plasmo build --target=chrome-mv3",
+    "build": "plasmo build",
     "build:firefox": "plasmo build --target=firefox-mv2",
     "package": "plasmo package",
     "debug": "plasmo dev --verbose",

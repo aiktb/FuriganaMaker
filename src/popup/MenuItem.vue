@@ -53,7 +53,6 @@ const props = withDefaults(defineProps<Props>(), {
   visibility: hidden;
   will-change: transform;
   transition: all 120ms;
-  font-weight: normal;
 }
 
 .content:hover + .tip,
