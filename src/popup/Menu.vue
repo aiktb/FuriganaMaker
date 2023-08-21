@@ -18,17 +18,20 @@ import PowerIcon from 'data-text:@Icons/Power.svg'
 import { Storage } from '@plasmohq/storage'
 
 import MenuItem from '~popup/MenuItem.vue'
-import { defaultConfig, Event } from '~util/core'
+import { Event, type Config } from '~util/core'
 import type { ChangeEvent } from '~util/core'
 
 /* The data loading must be completed before the beforeMount life cycle, 
   otherwise the child component will get the wrong defaultConfig.
   Top-level await makes this component asynchronous. */
-const option = reactive(defaultConfig)
 const storage = new Storage({ area: 'local' })
-for (const key in defaultConfig) {
-  option[key] = await storage.get(key)
-}
+const option = reactive<Config>({
+  FuriganaType: await storage.get('FuriganaType'),
+  SelectMode: await storage.get('SelectMode'),
+  Display: await storage.get('Display'),
+  Fontsize: await storage.get('Fontsize'),
+  FuriganaColor: await storage.get('FuriganaColor')
+})
 
 const changeEvent = async (event: ChangeEvent) => {
   const value = option[event]
