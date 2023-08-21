@@ -44,6 +44,7 @@ watch(focused, () => {
     ref="select"
     v-on-click-outside="displayOff"
     :value="modelValue"
+    :class="{ display: display }"
   >
     <div
       class="promptBar"
@@ -77,6 +78,16 @@ watch(focused, () => {
   cursor: pointer;
   transition: all 250ms;
   text-transform: capitalize;
+}
+
+.display {
+  background-color: var(--hover);
+}
+
+.select:hover,
+.select:focus-within {
+  transition: all 250ms;
+  background-color: var(--hover);
 }
 
 .selectIcon {
@@ -114,13 +125,15 @@ watch(focused, () => {
   box-sizing: border-box;
   transition: all 250ms;
   z-index: 1;
-  box-shadow: 0 0 1rem rgba(0, 0, 0, 0.35);
-  border-radius: 0.3rem;
+  box-shadow: 0 0 1rem var(--hover);
+  border-radius: 0.4rem;
   background-color: var(--background);
+  border: 0.1rem solid var(--hover);
 }
 
 .selected {
   background-color: var(--hover);
+  color: var(--feature);
 }
 
 .show {
