@@ -19,6 +19,11 @@ const set = (color: string) => {
 
 const color = ref('#0075ff')
 
+const reset = () => {
+  set('currentColor')
+  color.value = '#0075ff'
+}
+
 onMounted(() => {
   if (props.modelValue !== 'currentColor') {
     color.value = props.modelValue
@@ -33,8 +38,8 @@ onMounted(() => {
       tabindex="0"
       class="resetIcon"
       v-html="ResetIcon"
-      @click="set('currentColor')"
-      @keyup.enter="set('currentColor')"
+      @click="reset"
+      @keyup.enter="reset"
     />
   </div>
 </template>
