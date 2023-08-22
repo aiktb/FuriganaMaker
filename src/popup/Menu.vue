@@ -21,11 +21,9 @@ import MenuItem from '~popup/MenuItem.vue'
 import { Event, type Config } from '~util/core'
 import type { ChangeEvent } from '~util/core'
 
-/* The data loading must be completed before the beforeMount life cycle, 
-  otherwise the child component will get the wrong defaultConfig.
-  Top-level await makes this component asynchronous. */
 const storage = new Storage({ area: 'local' })
-// Vue3 documentation: Not recommended to use the generic argument of reactive().
+// Top-level await makes this component asynchronous.
+// Vue3 doc: Not recommended to use the generic argument of reactive().
 const option: Config = reactive({
   FuriganaType: await storage.get('FuriganaType'),
   SelectMode: await storage.get('SelectMode'),
