@@ -55,18 +55,20 @@ watch(focused, () => {
       {{ props.modelValue }}
       <div v-html="DownIcon" class="selectIcon" />
     </div>
-    <div class="panel" :class="{ show: display }">
-      <div
-        class="option"
-        tabindex="0"
-        v-for="option of props.options"
-        :class="{ selected: option === props.modelValue }"
-        @keydown.enter="changeOption(option)"
-        @click="changeOption(option)"
-      >
-        {{ option }}
+    <Transition>
+      <div class="panel" v-if="display">
+        <div
+          class="option"
+          tabindex="0"
+          v-for="option of props.options"
+          :class="{ selected: option === props.modelValue }"
+          @keydown.enter="changeOption(option)"
+          @click="changeOption(option)"
+        >
+          {{ option }}
+        </div>
       </div>
-    </div>
+    </Transition>
   </div>
 </template>
 
@@ -118,7 +120,7 @@ watch(focused, () => {
 
 .panel {
   width: 100%;
-  display: none;
+  display: flex;
   flex-direction: column;
   position: absolute;
   top: 1.5rem;
@@ -134,10 +136,6 @@ watch(focused, () => {
 .selected {
   background-color: var(--hover);
   color: var(--feature);
-}
-
-.show {
-  display: flex;
 }
 
 .option {
@@ -162,5 +160,15 @@ watch(focused, () => {
 
 .option:last-child {
   border-radius: 0 0 0.3rem 0.3rem;
+}
+
+.v-enter-active,
+.v-leave-active {
+  transition: opacity 0.5s ease;
+}
+
+.v-enter-from,
+.v-leave-to {
+  opacity: 0;
 }
 </style>
