@@ -60,7 +60,7 @@ const powerOn = computed(() => ({
 
 <template>
   <div class="menu">
-    <MenuItem :tip="true">
+    <MenuItem tip>
       <template #icon>
         <div v-html="CursorOutlineIcon" />
       </template>
