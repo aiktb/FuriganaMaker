@@ -17,9 +17,9 @@ import PowerIcon from 'data-text:@Icons/Power.svg'
 
 import { Storage } from '@plasmohq/storage'
 
+import { Event, type Config } from '~contents/core'
+import type { ChangeEvent } from '~contents/core'
 import MenuItem from '~popup/MenuItem.vue'
-import { Event, type Config } from '~util/core'
-import type { ChangeEvent } from '~util/core'
 
 const storage = new Storage({ area: 'local' })
 // Top-level await makes this component asynchronous.
@@ -144,7 +144,7 @@ const powerOn = computed(() => ({
   user-select: none;
   padding: 0 0.5rem;
   width: 13.5rem;
-  font-family: 'JetBrains Mono';
+  font-family: 'JetBrains Mono', monospace;
   font-weight: bold;
   box-sizing: border-box;
   border-right: 0.15rem solid var(--feature);
