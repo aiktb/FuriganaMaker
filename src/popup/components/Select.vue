@@ -43,7 +43,6 @@ watch(focused, () => {
     class="select"
     ref="select"
     v-on-click-outside="displayOff"
-    :value="modelValue"
     :class="{ display: display }"
   >
     <div

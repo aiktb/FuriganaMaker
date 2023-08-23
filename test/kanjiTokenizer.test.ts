@@ -1,7 +1,7 @@
 import { tokenize } from 'kuromojin'
 
-import type { KuromojiToken } from '../src/util/kurokanji'
-import { toKurokanjiToken } from '../src/util/kurokanji'
+import type { KuromojiToken } from '~contents/kanjiTokenizer'
+import { toKurokanjiToken } from '~contents/kanjiTokenizer'
 
 test('Basic test 1', async () => {
   const kuromojiTokens = await tokenize(

@@ -1,6 +1,6 @@
 import { Storage } from '@plasmohq/storage'
 
-import { defaultConfig, Event } from '~util/core'
+import { defaultConfig, Event } from '~contents/core'
 
 const storage = new Storage({ area: 'local' })
 chrome.runtime.onInstalled.addListener(async () => {
@@ -39,7 +39,7 @@ const contextMenuItem: chrome.contextMenus.CreateProperties = {
   id: 'addFurigana',
   title: 'Add furigana on the page',
   contexts: ['page'],
-  documentUrlPatterns: ['https://*/*', 'http://*/*']
+  documentUrlPatterns: ['https://*/*']
 }
 chrome.contextMenus.create(contextMenuItem)
 chrome.contextMenus.onClicked.addListener((info, tab) => {

@@ -3,13 +3,9 @@ import { toHiragana, toKatakana, toRomaji } from 'wanakana'
 
 import { Storage } from '@plasmohq/storage'
 
-import {
-  addFurigana,
-  Event,
-  FURIGANA_CLASS_NAME,
-  type StyleEvent
-} from '~util/core'
-import { Selector } from '~util/selector'
+import { Event, FURIGANA_CLASS_NAME, type StyleEvent } from '~contents/core'
+import { Selector } from '~contents/customSelector'
+import { addFurigana } from '~contents/furiganaMaker'
 
 export const config: PlasmoCSConfig = {
   matches: ['https://*/*'],
@@ -93,8 +89,16 @@ async function styleHandler(type: StyleEvent) {
         
         ${rpSelector} {
           display: ${value === 'all' ? 'block' : 'none'};
-          position: absolute;
-          left: -9999px;
+          position: fixed; 
+          overflow: hidden;
+          white-space: nowrap;
+          margin: 0;
+          padding: 0;
+          height: 0.1px;
+          width: 0.1px; 
+          clip: rect(0 0 0 0);
+          clip-path: inset(100%);
+          left: -10000px;
         }`
       break
     // <ruby> color will be passed to <rt>, so no control logic for <ruby> color will be added.

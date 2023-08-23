@@ -58,10 +58,7 @@ export const toKurokanjiToken = (tokens: KuromojiToken[]): KurokanjiToken[] => {
 
 const isPhonetic = (token: KuromojiToken): boolean => {
   const hasKanji = token.surface_form.match(/\p{sc=Han}/u)
-  if (token.reading && token.reading !== '*' && hasKanji) {
-    return true
-  }
-  return false
+  return !!(token.reading && token.reading !== '*' && hasKanji)
 }
 
 interface SimplifiedToken {
@@ -128,11 +125,11 @@ const smashToken = (token: SimplifiedToken): KurokanjiToken[] => {
     })
   ) as KurokanjiToken[]
   // The first matching group is the entire string.
-  // All that's needed is the subcapturing group.
+  // All that's needed is the sub-capturing group.
   const hybridMatch = reading.match(hybridRegex)?.slice(1)
   // If the number of matching groups is not equal to the number of Kanji,
   // it means that the phonetic notation does not correspond to the text.
-  // e.g. "関ケ原"(セキガハラ)/"我々"(ワレワレ)
+  // E.g. "関ケ原"(セキガハラ)/"我々"(ワレワレ)
   if (!hybridMatch || hybridMatch.length !== kanjis.length) {
     return [{ original, reading, start, end }]
   }

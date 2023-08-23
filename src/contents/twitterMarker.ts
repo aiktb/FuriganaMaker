@@ -1,6 +1,6 @@
 import type { PlasmoCSConfig } from 'plasmo'
 
-import { addFurigana } from '~util/core'
+import { addFurigana } from '~contents/furiganaMaker'
 
 export const config: PlasmoCSConfig = {
   matches: ['https://twitter.com/*'],
@@ -14,7 +14,7 @@ const observer = new MutationObserver((records) => {
     .filter((node) => node.nodeType === Node.ELEMENT_NODE)
     .flatMap((node) => Array.from((node as Element).querySelectorAll(jaTweet)))
 
-  addFurigana(jaElements)
+  void addFurigana(jaElements)
 })
 
 observer.observe(document.body, { childList: true, subtree: true })

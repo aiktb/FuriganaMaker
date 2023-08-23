@@ -26,7 +26,7 @@ const props = withDefaults(defineProps<Props>(), {
   display: flex;
   align-items: center;
   gap: 0.5rem;
-  padding: 0.3rem 0rem;
+  padding: 0.3rem 0;
   position: relative;
 }
 
