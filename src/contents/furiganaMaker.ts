@@ -18,42 +18,39 @@ import {
  * Ruby tag is "\<ruby>original\<rp>(\</rp>\<rt>reading\</rt>\<rp>)\</rp>\</ruby>".
  **/
 export const addFurigana = async (elements: Element[]) => {
-  const jaTextElements = elements.flatMap(collectTextElementsAndMark)
-  jaTextElements.forEach((element) => {
-    element.parentElement!.classList.add(FURIGANA_CLASS_NAME)
-  })
-  // Refactor Notice: Map<Element, KurokanjiToken[]>
-  for (const element of jaTextElements) {
-    const tokens: KurokanjiToken[] = await tokenize(element.textContent!)
+  const japaneseTexts = elements.flatMap(collectTexts)
+  for (const text of japaneseTexts) {
+    const tokens: KurokanjiToken[] = await tokenize(text.textContent!)
     // reverse() prevents the range from being invalidated
     for (const token of tokens.reverse()) {
       const ruby = await createRuby(token.original, token.reading)
       const range = document.createRange()
-      range.setStart(element, token.start)
-      range.setEnd(element, token.end)
+      range.setStart(text, token.start)
+      range.setEnd(text, token.end)
       range.deleteContents()
       range.insertNode(ruby)
     }
   }
 }
 
-const collectTextElementsAndMark = (element: Element): Element[] => {
-  if (element.parentElement!.classList.contains(FURIGANA_CLASS_NAME)) {
+const collectTexts = (element: Element): Text[] => {
+  if (element.parentElement?.classList.contains(FURIGANA_CLASS_NAME)) {
     return []
   }
-  const textElements: Element[] = []
-  if (
-    element.nodeType === Node.TEXT_NODE &&
-    element.textContent?.trim().length
-  ) {
-    textElements.push(element)
+  element.normalize()
+  const texts: Text[] = []
+  const isText = element.nodeType === Node.TEXT_NODE
+  const isEmpty = !!element.textContent?.trim().length
+  if (isText && isEmpty) {
+    element.parentElement!.classList.add(FURIGANA_CLASS_NAME)
+    texts.push(element as Node as Text)
   } else {
     const elements = Array.from(
       element.childNodes as NodeListOf<Element>
-    ).flatMap(collectTextElementsAndMark)
-    textElements.push(...elements)
+    ).flatMap(collectTexts)
+    texts.push(...elements)
   }
-  return textElements
+  return texts
 }
 
 const tokenize = async (text: string): Promise<KurokanjiToken[]> => {
