@@ -21,7 +21,7 @@ const props = withDefaults(defineProps<Props>(), {
   </div>
 </template>
 
-<style>
+<style scoped>
 .menuItem {
   display: flex;
   align-items: center;
@@ -30,7 +30,7 @@ const props = withDefaults(defineProps<Props>(), {
   position: relative;
 }
 
-.icon svg {
+.icon :deep(svg) {
   width: 1.5rem;
   height: auto;
 }
