@@ -139,7 +139,7 @@ const powerOn = computed(() => ({
   </div>
 </template>
 
-<style>
+<style scoped>
 .menu {
   user-select: none;
   padding: 0 0.5rem;
