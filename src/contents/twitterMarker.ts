@@ -14,7 +14,7 @@ const observer = new MutationObserver((records) => {
     .filter((node) => node.nodeType === Node.ELEMENT_NODE)
     .flatMap((node) => Array.from((node as Element).querySelectorAll(jaTweet)))
 
-  void addFurigana(jaElements)
+  addFurigana(jaElements)
 })
 
 observer.observe(document.body, { childList: true, subtree: true })
