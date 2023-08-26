@@ -17,64 +17,54 @@ const emit = defineEmits<{
   'update:modelValue': [modelValue: number]
   change: []
 }>()
+
 const track = ref<HTMLElement | null>(null)
 const thumb = ref<HTMLElement | null>(null)
-const { left, right, top, bottom } = useElementBounding(track)
-const { width, height } = useElementBounding(thumb)
+const { left, right, top, width, height } = useElementBounding(track)
+const { x } = useDraggable(thumb)
 
-const { x: useX } = useDraggable(thumb)
-const x = computed(() => {
-  return clamp(useX.value, left.value, right.value - width.value)
+const style = computed(() => {
+  return {
+    left: `${clamp(x.value, left.value, right.value)}px`,
+    top: `${top.value + height.value / 2}px`
+  }
 })
 
-const newModelValue = computed(() => {
-  const trackWidth = right.value - left.value - width.value
-  const percent = (x.value - left.value) / trackWidth
-  return Math.round(percent * (props.max - props.min) + props.min)
-})
+const emitNewModelValue = () => {
+  const percent = (x.value - left.value) / width.value
+  const newModelValue = Math.round(
+    percent * (props.max - props.min) + props.min
+  )
+  emit('update:modelValue', newModelValue)
+  emit('change')
+}
 
 const { pressed } = useMousePressed({ target: thumb })
 watch(pressed, (pressed) => {
   if (!pressed) {
-    emit('update:modelValue', newModelValue.value)
-    emit('change')
+    emitNewModelValue()
   }
 })
 
-enum KeyEvent {
-  Add,
-  Subtract,
-  Emit
-}
+// prettier-ignore
+enum KeyEvent { Add, Subtract, Emit }
 const keyHandler = (type: KeyEvent) => {
   switch (type) {
     case KeyEvent.Add:
-      useX.value = clamp(useX.value + 1, left.value, right.value - width.value)
+      x.value = clamp(x.value + 1, left.value, right.value)
       break
     case KeyEvent.Subtract:
-      useX.value = clamp(useX.value - 1, left.value, right.value - width.value)
+      x.value = clamp(x.value - 1, left.value, right.value)
       break
     case KeyEvent.Emit:
-      emit('update:modelValue', newModelValue.value)
-      emit('change')
+      emitNewModelValue()
       break
   }
 }
 
-const y = computed(() => {
-  return top.value + (bottom.value - top.value) / 2 - height.value / 2
-})
-
-// [left, right, top, bottom, width, height]
-// are only available after the component is mounted.
 onMounted(() => {
   const percent = (props.modelValue - props.min) / (props.max - props.min)
-  const trackWidth = right.value - left.value - width.value
-  useX.value = clamp(
-    percent * trackWidth + left.value,
-    left.value,
-    right.value - width.value
-  )
+  x.value = percent * width.value + left.value
 })
 </script>
 
@@ -89,11 +79,7 @@ onMounted(() => {
     @keyup="keyHandler(KeyEvent.Emit)"
   >
     <div class="track" ref="track">
-      <div
-        class="thumb"
-        ref="thumb"
-        :style="{ left: `${x}px`, top: `${y}px` }"
-      />
+      <div class="thumb" ref="thumb" :style="style" />
     </div>
   </div>
 </template>
@@ -134,5 +120,6 @@ onMounted(() => {
   background-color: var(--feature);
   cursor: pointer;
   outline: none;
+  transform: translate(-50%, -50%);
 }
 </style>
