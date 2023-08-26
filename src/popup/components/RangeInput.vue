@@ -1,10 +1,6 @@
 <script setup lang="ts">
-import {
-  clamp,
-  useDraggable,
-  useElementBounding,
-  useMousePressed
-} from '@vueuse/core'
+import { useDraggable, useElementBounding, useMousePressed } from '@vueuse/core'
+import { useClamp } from '@vueuse/math'
 import { computed, onMounted, ref, watch } from 'vue'
 
 const props = defineProps<{
@@ -21,17 +17,17 @@ const emit = defineEmits<{
 const track = ref<HTMLElement | null>(null)
 const thumb = ref<HTMLElement | null>(null)
 const { left, right, top, width, height } = useElementBounding(track)
-const { x } = useDraggable(thumb)
-
+const { x: useX } = useDraggable(thumb)
+const x = useClamp(useX, left, right)
 const style = computed(() => {
   return {
-    left: `${clamp(x.value, left.value, right.value)}px`,
+    left: `${x.value}px`,
     top: `${top.value + height.value / 2}px`
   }
 })
 
 const emitNewModelValue = () => {
-  const percent = (x.value - left.value) / width.value
+  const percent = (useX.value - left.value) / width.value
   const newModelValue = Math.round(
     percent * (props.max - props.min) + props.min
   )
@@ -51,10 +47,10 @@ enum KeyEvent { Add, Subtract, Emit }
 const keyHandler = (type: KeyEvent) => {
   switch (type) {
     case KeyEvent.Add:
-      x.value = clamp(x.value + 1, left.value, right.value)
+      useX.value++
       break
     case KeyEvent.Subtract:
-      x.value = clamp(x.value - 1, left.value, right.value)
+      useX.value--
       break
     case KeyEvent.Emit:
       emitNewModelValue()
@@ -64,7 +60,7 @@ const keyHandler = (type: KeyEvent) => {
 
 onMounted(() => {
   const percent = (props.modelValue - props.min) / (props.max - props.min)
-  x.value = percent * width.value + left.value
+  useX.value = percent * width.value + left.value
 })
 </script>
 
