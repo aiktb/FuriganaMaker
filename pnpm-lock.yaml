@@ -17,9 +17,15 @@ dependencies:
   '@vueuse/core':
     specifier: ^10.3.0
     version: 10.3.0(vue@3.3.4)
+  '@vueuse/math':
+    specifier: ^10.4.0
+    version: 10.4.0(vue@3.3.4)
   plasmo:
     specifier: ^0.82.1
     version: 0.82.1
+  tinycolor2:
+    specifier: ^1.6.0
+    version: 1.6.0
   typescript:
     specifier: ^5.1.6
     version: 5.1.6
@@ -40,6 +46,9 @@ devDependencies:
   '@types/jest':
     specifier: ^29.5.3
     version: 29.5.3
+  '@types/tinycolor2':
+    specifier: ^1.4.3
+    version: 1.4.3
   '@types/wanakana':
     specifier: ^4.0.3
     version: 4.0.3
@@ -2887,6 +2896,10 @@ packages:
     resolution: {integrity: sha512-Hl219/BT5fLAaz6NDkSuhzasy49dwQS/DSdu4MdggFB8zcXv7vflBI3xp7FEmkmdDkBUI2bPUNeMttp2knYdxw==}
     dev: true
 
+  /@types/tinycolor2@1.4.3:
+    resolution: {integrity: sha512-Kf1w9NE5HEgGxCRyIcRXR/ZYtDv0V8FVPtYHwLxl0O+maGX0erE77pQlD0gpP+/KByMZ87mOA79SjifhSB3PjQ==}
+    dev: true
+
   /@types/wanakana@4.0.3:
     resolution: {integrity: sha512-AibaWzahBKizxmsAy8rEWSIqqcT0v9KZTS8S6zPLmStGBFdccYfXydhgwYOV+6lGqQ890MpA4h2MPET3uPk9Zg==}
     dev: true
@@ -3011,12 +3024,31 @@ packages:
       - vue
     dev: false
 
+  /@vueuse/math@10.4.0(vue@3.3.4):
+    resolution: {integrity: sha512-b519wKnQNRfimAjkDwYF4akvu481BogfSb1+JYk56jgNPxNnbF+h168Nv+a8sRtk23ajd85AjQbMNVnfHbqfig==}
+    dependencies:
+      '@vueuse/shared': 10.4.0(vue@3.3.4)
+      vue-demi: 0.14.5(vue@3.3.4)
+    transitivePeerDependencies:
+      - '@vue/composition-api'
+      - vue
+    dev: false
+
   /@vueuse/metadata@10.3.0:
     resolution: {integrity: sha512-Ema3YhNOa4swDsV0V7CEY5JXvK19JI/o1szFO1iWxdFg3vhdFtCtSTP26PCvbUpnUtNHBY2wx5y3WDXND5Pvnw==}
     dev: false
 
   /@vueuse/shared@10.3.0(vue@3.3.4):
     resolution: {integrity: sha512-kGqCTEuFPMK4+fNWy6dUOiYmxGcUbtznMwBZLC1PubidF4VZY05B+Oht7Jh7/6x4VOWGpvu3R37WHi81cKpiqg==}
+    dependencies:
+      vue-demi: 0.14.5(vue@3.3.4)
+    transitivePeerDependencies:
+      - '@vue/composition-api'
+      - vue
+    dev: false
+
+  /@vueuse/shared@10.4.0(vue@3.3.4):
+    resolution: {integrity: sha512-52asvLf5cbAS/h6xWjqoY4MgjxmFjnVNf/nA8BP7RbeIrIGcf+BZbeOcVo+92byqArXEJiBxptXpufQvbwJL/w==}
     dependencies:
       vue-demi: 0.14.5(vue@3.3.4)
     transitivePeerDependencies:
@@ -6538,6 +6570,10 @@ packages:
 
   /timsort@0.3.0:
     resolution: {integrity: sha512-qsdtZH+vMoCARQtyod4imc2nIJwg9Cc7lPRrw9CzF8ZKR0khdr8+2nX80PBhET3tcyTtJDxAffGh2rXH4tyU8A==}
+    dev: false
+
+  /tinycolor2@1.6.0:
+    resolution: {integrity: sha512-XPaBkWQJdsf3pLKJV9p4qN/S+fm2Oj8AIPo1BTUhg5oxkvm9+SVEGFdhyOz7tTdUTfvxMiAs4sp6/eZO2Ew+pw==}
     dev: false
 
   /tmp@0.0.33:
