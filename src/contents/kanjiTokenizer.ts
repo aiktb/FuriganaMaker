@@ -1,27 +1,14 @@
 import { isKanji, toKatakana } from 'wanakana'
 
 // kuromoji.js
-export type KuromojiToken = {
-  // Necessary attributes
+export type MojiToken = {
   word_position: number // Indexes start from 1
   surface_form: string
   reading: string // Katakana only
-  // Unnecessary attributes
-  word_id?: number
-  word_type?: 'KNOWN' | 'UNKNOWN'
-  pos?: string // Part of speech
-  pos_detail_1?: string
-  pos_detail_2?: string
-  pos_detail_3?: string
-  conjugated_type?: string
-  conjugated_form?: string
-  basic_form?: string
-  pronunciation?: string
 }
 
-// Reference: https://en.wikipedia.org/wiki/Ruby_character
 // It's not just kanji, such as "市ヶ谷" (イチガヤ), "我々" (ワレワレ).
-export type KurokanjiToken = {
+export type KanjiToken = {
   original: string
   reading: string
   start: number // Indexes start from 0
@@ -29,16 +16,6 @@ export type KurokanjiToken = {
 }
 /**
  * Extract useful kanji phonetic information from KuromojiToken[].
- * @param tokens - KuromojiToken[] from kuromoji.js.
- * @example
- * ```
- * Input: tokenizer('僕は耳')
- * Output:
- * [
- *  { original: '僕', reading: 'ボク', start: 0, end: 1 },
- *  { original: '耳', reading: 'ミミ', start: 2, end: 3 }
- * ]
- * ```
  * @example
  * ```
  * Input: tokenizer('「我々」と「関ケ原」')
@@ -48,15 +25,12 @@ export type KurokanjiToken = {
  *  { original: '関ケ原', reading: 'セキガハラ', start: 6, end: 9 }
  * ]
  * ```
- * @see {@link https://www.atilika.org/} for Kuromoji.
- * @see {@link https://unicode.org/reports/tr18/#property_examples} for regex property.
- * @see {@link https://docs.oracle.com/cd/E86824_01/html/E54763/perluniprops-1.html} for \p{sc=Han} & \p{sc=Hira} & \p{sc=Kana}
  */
-export const toKurokanjiToken = (tokens: KuromojiToken[]): KurokanjiToken[] => {
+export const toKanjiToken = (tokens: MojiToken[]): KanjiToken[] => {
   return tokens.filter(isPhonetic).map(toSimplifiedToken).flatMap(toRubyText)
 }
 
-const isPhonetic = (token: KuromojiToken): boolean => {
+const isPhonetic = (token: MojiToken): boolean => {
   const hasKanji = token.surface_form.match(/\p{sc=Han}/u)
   return !!(token.reading && token.reading !== '*' && hasKanji)
 }
@@ -68,18 +42,16 @@ interface SimplifiedToken {
   end: number
 }
 
-const toSimplifiedToken = (kuromojiToken: KuromojiToken): SimplifiedToken => {
+const toSimplifiedToken = (kuromojiToken: MojiToken): SimplifiedToken => {
   return {
     original: kuromojiToken.surface_form,
     reading: kuromojiToken.reading,
-    start: kuromojiToken.word_position - 1, // Indexes start from 0.
+    start: kuromojiToken.word_position - 1,
     end: kuromojiToken.word_position - 1 + kuromojiToken.surface_form.length
   }
 }
 
-const toRubyText = (
-  token: SimplifiedToken
-): KurokanjiToken | KurokanjiToken[] => {
+const toRubyText = (token: SimplifiedToken): KanjiToken | KanjiToken[] => {
   // The pure Kanji words do not need to be disassembled.
   if (isKanji(token.original)) {
     return {
@@ -93,7 +65,7 @@ const toRubyText = (
 }
 
 interface MarkToken {
-  original: string // Pure katakana.
+  original: string
   start: number
   end: number
 }
@@ -101,7 +73,7 @@ interface MarkToken {
 type MarkTokenArray = MarkToken[] & { hybridLength: number }
 
 // Must be a mixture of Kanji and Kana to use this function.
-const smashToken = (token: SimplifiedToken): KurokanjiToken[] => {
+const smashToken = (token: SimplifiedToken): KanjiToken[] => {
   const { original, reading, start, end } = token
   // Both \p{sc=Hira} and \p{sc=Kana} don’t contain 'ー々', which is bad.
   const kanaRegex = /(\p{sc=Hira}|\p{sc=Kana}|ー)+/gu
@@ -117,13 +89,13 @@ const smashToken = (token: SimplifiedToken): KurokanjiToken[] => {
   const hybridRegex = buildRegex(kanas)
 
   const kanjisRegex = /\p{sc=Han}+/gu
-  const kanjis: KurokanjiToken[] = [...original.matchAll(kanjisRegex)].map(
+  const kanjis: KanjiToken[] = [...original.matchAll(kanjisRegex)].map(
     (match) => ({
       original: match[0],
       start: start + match.index!,
       end: start + match.index! + match[0].length
     })
-  ) as KurokanjiToken[]
+  ) as KanjiToken[]
   // The first matching group is the entire string.
   // All that's needed is the sub-capturing group.
   const hybridMatch = reading.match(hybridRegex)?.slice(1)

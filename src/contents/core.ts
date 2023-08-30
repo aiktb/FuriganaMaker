@@ -1,4 +1,4 @@
-export const FURIGANA_CLASS_NAME = '--furigana--'
+export const FURIGANA_CLASS = '--furigana--'
 
 export enum CustomEvent {
   FuriganaType = 'FuriganaType',
