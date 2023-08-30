@@ -1,5 +1,5 @@
 <script setup lang="ts">
-import { computed, reactive } from 'vue'
+import { reactive } from 'vue'
 
 import Button from '@Components/Button.vue'
 import ColorPicker from '@Components/ColorPicker.vue'
@@ -17,7 +17,7 @@ import PowerIcon from 'data-text:@Icons/Power.svg'
 
 import { Storage } from '@plasmohq/storage'
 
-import { Event, type Config } from '~contents/core'
+import { CustomEvent, type Config } from '~contents/core'
 import type { ChangeEvent } from '~contents/core'
 import MenuItem from '~popup/MenuItem.vue'
 
@@ -25,17 +25,21 @@ const storage = new Storage({ area: 'local' })
 // Top-level await makes this component asynchronous.
 // Vue3 doc: Not recommended to use the generic argument of reactive().
 const option: Config = reactive({
-  FuriganaType: await storage.get('FuriganaType'),
-  SelectMode: await storage.get('SelectMode'),
-  Display: await storage.get('Display'),
-  Fontsize: await storage.get('Fontsize'),
-  FuriganaColor: await storage.get('FuriganaColor')
+  FuriganaType: await storage.get(CustomEvent.FuriganaType),
+  SelectMode: await storage.get(CustomEvent.SelectMode),
+  Display: await storage.get(CustomEvent.Display),
+  Fontsize: await storage.get(CustomEvent.Fontsize),
+  FuriganaColor: await storage.get(CustomEvent.FuriganaColor)
 })
 
 const changeEvent = async (event: ChangeEvent) => {
   const value = option[event]
   await storage.set(event, value)
-  const tabs = await chrome.tabs.query({ active: true, currentWindow: true })
+  const tabs = await chrome.tabs.query({
+    active: true,
+    currentWindow: true,
+    url: 'https://*/*'
+  })
   for (const tab of tabs) {
     await chrome.tabs.sendMessage(tab.id!, event)
   }
@@ -44,34 +48,32 @@ const changeEvent = async (event: ChangeEvent) => {
 const customEvent = async () => {
   const tabs = await chrome.tabs.query({ active: true, currentWindow: true })
   for (const tab of tabs) {
-    await chrome.tabs.sendMessage(tab.id!, Event.Custom)
+    await chrome.tabs.sendMessage(tab.id!, CustomEvent.Custom)
   }
 }
 
 const switchPower = () => {
-  option[Event.Display] = !option[Event.Display]
-  changeEvent(Event.Display)
+  option[CustomEvent.Display] = !option[CustomEvent.Display]
+  changeEvent(CustomEvent.Display)
 }
-
-const powerOn = computed(() => ({
-  powerOn: option[Event.Display]
-}))
 </script>
 
 <template>
   <div class="menu">
-    <MenuItem tip>
+    <MenuItem tip first>
       <template #icon>
         <div v-html="CursorOutlineIcon" />
       </template>
       <template #content>
-        <Button @click="customEvent"> Add furigana </Button>
+        <Button @click="customEvent" @keyup.enter="customEvent">
+          Add furigana
+        </Button>
       </template>
       <template #tip> Press ESC to cancel </template>
     </MenuItem>
-    <MenuItem>
+    <MenuItem :shiny="option[CustomEvent.Display]">
       <template #icon>
-        <div v-html="PowerIcon" :class="powerOn" />
+        <div v-html="PowerIcon" />
       </template>
       <template #content>
         <Button @click="switchPower"> On-off extension </Button>
@@ -85,7 +87,7 @@ const powerOn = computed(() => ({
         <Select
           :options="['hiragana', 'katakana', 'romaji']"
           v-model="option.FuriganaType"
-          @change="changeEvent(Event.FuriganaType)"
+          @change="changeEvent(CustomEvent.FuriganaType)"
         />
       </template>
     </MenuItem>
@@ -97,7 +99,7 @@ const powerOn = computed(() => ({
         <Select
           :options="['original', 'furigana', 'all']"
           v-model="option.SelectMode"
-          @change="changeEvent(Event.SelectMode)"
+          @change="changeEvent(CustomEvent.SelectMode)"
         />
       </template>
     </MenuItem>
@@ -110,7 +112,7 @@ const powerOn = computed(() => ({
           v-model="option.Fontsize"
           :min="50"
           :max="100"
-          @change="changeEvent(Event.Fontsize)"
+          @change="changeEvent(CustomEvent.Fontsize)"
         />
       </template>
     </MenuItem>
@@ -121,7 +123,7 @@ const powerOn = computed(() => ({
       <template #content>
         <ColorPicker
           v-model="option.FuriganaColor"
-          @change="changeEvent(Event.FuriganaColor)"
+          @change="changeEvent(CustomEvent.FuriganaColor)"
         />
       </template>
     </MenuItem>
@@ -141,21 +143,8 @@ const powerOn = computed(() => ({
 
 <style scoped>
 .menu {
-  user-select: none;
   padding: 0 0.5rem;
   width: 13.5rem;
-  font-family: 'JetBrains Mono', monospace;
-  font-weight: bold;
-  box-sizing: border-box;
   border-right: 0.15rem solid var(--feature);
-}
-
-.powerOn {
-  color: var(--feature);
-}
-
-.menuItem:first-child > .tip {
-  bottom: -1.5rem !important;
-  left: 2rem;
 }
 </style>

@@ -3,7 +3,11 @@ import { toHiragana, toKatakana, toRomaji } from 'wanakana'
 
 import { Storage } from '@plasmohq/storage'
 
-import { Event, FURIGANA_CLASS_NAME, type StyleEvent } from '~contents/core'
+import {
+  CustomEvent,
+  FURIGANA_CLASS_NAME,
+  type StyleEvent
+} from '~contents/core'
 import { Selector } from '~contents/customSelector'
 import { addFurigana } from '~contents/furiganaMaker'
 
@@ -16,20 +20,20 @@ export const config: PlasmoCSConfig = {
 // so it needs to be initialized immediately.
 const storage = new Storage({ area: 'local' })
 const styleEvents: StyleEvent[] = [
-  Event.SelectMode,
-  Event.FuriganaColor,
-  Event.Display,
-  Event.Fontsize
+  CustomEvent.SelectMode,
+  CustomEvent.FuriganaColor,
+  CustomEvent.Display,
+  CustomEvent.Fontsize
 ]
 styleEvents.forEach(styleHandler)
 
 // The plasmo Storage watch API could be used instead, but is not necessary.
-chrome.runtime.onMessage.addListener((event: Event) => {
+chrome.runtime.onMessage.addListener((event: CustomEvent) => {
   switch (event) {
-    case Event.FuriganaType:
+    case CustomEvent.FuriganaType:
       furiganaHandler()
       break
-    case Event.Custom:
+    case CustomEvent.Custom:
       customHandler()
       break
     default:
@@ -39,7 +43,7 @@ chrome.runtime.onMessage.addListener((event: Event) => {
 })
 
 const furiganaHandler = async () => {
-  const value = await storage.get(Event.FuriganaType)
+  const value = await storage.get(CustomEvent.FuriganaType)
   const nodes = document.querySelectorAll(rtSelector)
   switch (value) {
     case 'hiragana':
@@ -77,7 +81,7 @@ async function styleHandler(type: StyleEvent) {
   const value = await storage.get(type)
   let css: string
   switch (type) {
-    case Event.SelectMode:
+    case CustomEvent.SelectMode:
       css = `
         .${FURIGANA_CLASS_NAME} {
           user-select: ${value === 'furigana' ? 'none' : 'text'};
@@ -102,19 +106,19 @@ async function styleHandler(type: StyleEvent) {
         }`
       break
     // <ruby> color will be passed to <rt>, so no control logic for <ruby> color will be added.
-    case Event.FuriganaColor:
+    case CustomEvent.FuriganaColor:
       css = `
         ${rtSelector} {
           color: ${value};
         }`
       break
-    case Event.Display:
+    case CustomEvent.Display:
       css = `
         ${rtSelector} {
           display: ${value ? 'block' : 'none'};
         }`
       break
-    case Event.Fontsize:
+    case CustomEvent.Fontsize:
       css = `
         ${rtSelector} {
           font-size: ${value}%;
