@@ -1,6 +1,6 @@
 export const FURIGANA_CLASS_NAME = '--furigana--'
 
-export enum Event {
+export enum CustomEvent {
   FuriganaType = 'FuriganaType',
   SelectMode = 'SelectMode',
   FuriganaColor = 'FuriganaColor',
@@ -10,17 +10,17 @@ export enum Event {
 }
 
 export type StyleEvent =
-  | Event.SelectMode
-  | Event.FuriganaColor
-  | Event.Display
-  | Event.Fontsize
+  | CustomEvent.SelectMode
+  | CustomEvent.FuriganaColor
+  | CustomEvent.Display
+  | CustomEvent.Fontsize
 
 export type ChangeEvent =
-  | Event.FuriganaType
-  | Event.FuriganaColor
-  | Event.SelectMode
-  | Event.Display
-  | Event.Fontsize
+  | CustomEvent.FuriganaType
+  | CustomEvent.FuriganaColor
+  | CustomEvent.SelectMode
+  | CustomEvent.Display
+  | CustomEvent.Fontsize
 
 export type Config = {
   [key: string]: string | number | boolean

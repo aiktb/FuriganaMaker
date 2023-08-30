@@ -1,6 +1,6 @@
 import { Storage } from '@plasmohq/storage'
 
-import { defaultConfig, Event } from '~contents/core'
+import { CustomEvent, defaultConfig } from '~contents/core'
 
 const storage = new Storage({ area: 'local' })
 chrome.runtime.onInstalled.addListener(async () => {
@@ -13,15 +13,15 @@ chrome.runtime.onInstalled.addListener(async () => {
 })
 
 chrome.commands.onCommand.addListener(async (command) => {
-  let event: Event
+  let event: CustomEvent
   switch (command) {
     case 'addFurigana':
-      event = Event.Custom
+      event = CustomEvent.Custom
       break
     case 'switchDisplay':
-      event = Event.Display
-      const oldValue = await storage.get(Event.Display)
-      await storage.set(Event.Display, !oldValue)
+      event = CustomEvent.Display
+      const oldValue = await storage.get(CustomEvent.Display)
+      await storage.set(CustomEvent.Display, !oldValue)
       break
     default:
       throw new Error('Unknown command')
@@ -44,6 +44,6 @@ const contextMenuItem: chrome.contextMenus.CreateProperties = {
 chrome.contextMenus.create(contextMenuItem)
 chrome.contextMenus.onClicked.addListener((info, tab) => {
   if (info.menuItemId == 'addFurigana') {
-    chrome.tabs.sendMessage(tab!.id!, Event.Custom)
+    chrome.tabs.sendMessage(tab!.id!, CustomEvent.Custom)
   }
 })
