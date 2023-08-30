@@ -16,24 +16,19 @@ const props = defineProps<{
 <style scoped>
 .link {
   appearance: none;
-  display: flex;
-  align-items: center;
-  flex-grow: 1;
-  box-sizing: border-box;
-  height: 1.5rem;
-  text-align: left;
-  border: none;
-  border-radius: 0.3rem;
   cursor: pointer;
-  padding: 0 0.5rem;
   color: currentColor;
   text-decoration: none;
+  height: 1.5rem;
+  padding: 0 0.5rem;
+  border-radius: 0.3rem;
+  display: flex;
+  align-items: center;
   transition: all 250ms;
 }
 
 .link:focus,
 .link:hover {
-  background-color: var(--hover);
   color: var(--feature);
 }
 

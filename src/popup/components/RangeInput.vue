@@ -1,7 +1,7 @@
 <script setup lang="ts">
-import { useDraggable, useElementBounding, useMousePressed } from '@vueuse/core'
-import { useClamp } from '@vueuse/math'
-import { computed, onMounted, ref, watch } from 'vue'
+import { useClamp } from '@Composables/useClamp'
+import { useDraggable, useElementBounding } from '@vueuse/core'
+import { computed, onMounted, ref } from 'vue'
 
 const props = defineProps<{
   modelValue: number
@@ -14,10 +14,19 @@ const emit = defineEmits<{
   change: []
 }>()
 
+const update = () => {
+  const percent = (x.value - left.value) / width.value
+  const newModelValue = Math.round(
+    percent * (props.max - props.min) + props.min
+  )
+  emit('update:modelValue', newModelValue)
+  emit('change')
+}
+
 const track = ref<HTMLElement | null>(null)
 const thumb = ref<HTMLElement | null>(null)
 const { left, right, top, width, height } = useElementBounding(track)
-const { x: useX } = useDraggable(thumb)
+const { x: useX } = useDraggable(thumb, { onEnd: update })
 const x = useClamp(useX, left, right)
 const style = computed(() => {
   return {
@@ -26,41 +35,25 @@ const style = computed(() => {
   }
 })
 
-const emitNewModelValue = () => {
-  const percent = (useX.value - left.value) / width.value
-  const newModelValue = Math.round(
-    percent * (props.max - props.min) + props.min
-  )
-  emit('update:modelValue', newModelValue)
-  emit('change')
-}
-
-const { pressed } = useMousePressed({ target: thumb })
-watch(pressed, (pressed) => {
-  if (!pressed) {
-    emitNewModelValue()
-  }
-})
-
 // prettier-ignore
 enum KeyEvent { Add, Subtract, Emit }
 const keyHandler = (type: KeyEvent) => {
   switch (type) {
     case KeyEvent.Add:
-      useX.value++
+      x.value++
       break
     case KeyEvent.Subtract:
-      useX.value--
+      x.value--
       break
     case KeyEvent.Emit:
-      emitNewModelValue()
+      update()
       break
   }
 }
 
 onMounted(() => {
   const percent = (props.modelValue - props.min) / (props.max - props.min)
-  useX.value = percent * width.value + left.value
+  x.value = percent * width.value + left.value
 })
 </script>
 
@@ -82,23 +75,13 @@ onMounted(() => {
 
 <style scoped>
 .range {
+  position: relative;
+  height: 1.5rem;
+  padding: 0 0.5rem;
+  border-radius: 0.3rem;
   display: flex;
   align-items: center;
-  position: relative;
-  flex-grow: 1;
-  box-sizing: border-box;
-  height: 1.5rem;
-  text-align: left;
-  border: none;
-  border-radius: 0.3rem;
   transition: all 250ms;
-  padding: 0 0.5rem;
-}
-
-.range:hover,
-.range:focus-within {
-  transition: all 250ms;
-  background-color: var(--hover);
 }
 
 .track {
