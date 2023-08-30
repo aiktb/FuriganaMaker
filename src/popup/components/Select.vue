@@ -44,7 +44,7 @@ watch(focused, () => {
     v-on-click-outside="displayOff"
     :class="{ display: display }"
     @keydown.enter="displaySwitch"
-    @click="displaySwitch"
+    @pointerup="displaySwitch"
     tabindex="0"
   >
     {{ props.modelValue }}
@@ -57,7 +57,7 @@ watch(focused, () => {
           v-for="option of props.options"
           :class="{ selected: option === props.modelValue }"
           @keydown.enter="changeOption(option)"
-          @click="changeOption(option)"
+          @pointerup="changeOption(option)"
         >
           {{ option }}
         </div>

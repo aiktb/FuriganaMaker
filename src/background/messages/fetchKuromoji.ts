@@ -1,10 +1,10 @@
 import type { PlasmoMessaging } from '@plasmohq/messaging'
 
-import type { KuromojiToken } from '~contents/kanjiTokenizer'
+import type { MojiToken } from '~contents/kanjiTokenizer'
 
 const handler: PlasmoMessaging.MessageHandler<
   { text: string },
-  { message: KuromojiToken[] }
+  { message: MojiToken[] }
 > = async (req, res) => {
   const requestOptions = {
     method: 'POST',
@@ -19,7 +19,7 @@ const handler: PlasmoMessaging.MessageHandler<
     'https://api.aiktb.com/tokenizer',
     requestOptions
   )
-  const message: KuromojiToken[] = await response.json()
+  const message: MojiToken[] = await response.json()
 
   res.send({ message })
 }

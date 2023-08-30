@@ -7,14 +7,16 @@ export const config: PlasmoCSConfig = {
   all_frames: true
 }
 
-const jaTweet = 'div[lang="ja"] span'
+const japaneseTweet = 'div[lang="ja"] span'
 const observer = new MutationObserver((records) => {
-  const jaElements = records
+  const japaneseElements = records
     .flatMap((record) => Array.from(record.addedNodes))
     .filter((node) => node.nodeType === Node.ELEMENT_NODE)
-    .flatMap((node) => Array.from((node as Element).querySelectorAll(jaTweet)))
+    .flatMap((node) =>
+      Array.from((node as Element).querySelectorAll(japaneseTweet))
+    )
 
-  addFurigana(jaElements)
+  addFurigana(japaneseElements)
 })
 
 observer.observe(document.body, { childList: true, subtree: true })

@@ -86,7 +86,6 @@ const colorToPosition = (color: string) => {
   const isValid = tinycolor(color).isValid()
   if (isValid) {
     const hsv = tinycolor(color).toHsv()
-    console.log(hsv)
     hueX.value = hueWidth.value * (hsv.h / 360) + hueLeft.value
     shadeX.value = shadeWidth.value * hsv.s + shadeLeft.value
     shadeY.value = shadeHeight.value * (1 - hsv.v) + shadeTop.value
@@ -120,7 +119,7 @@ onMounted(() => {
 </script>
 
 <template>
-  <Button @click="display = true" @keydown.enter="display = true">
+  <Button @pointerup="display = true" @keydown.enter="display = true">
     Select color
   </Button>
   <Transition>
@@ -176,14 +175,26 @@ onMounted(() => {
           v-for="color of colors"
           :style="{ backgroundColor: color }"
           :class="{ selected: tinycolor(color).toHexString() === input }"
-          @click="colorToPosition(color)"
+          @pointerup="colorToPosition(color)"
           @keyup.enter="colorToPosition(color)"
         />
       </div>
       <div class="option">
         <input v-model="input" @change="colorToPosition(input)" />
-        <button class="clear" @click="update('currentColor')">clear</button>
-        <button class="ok" @click="update(input)">ok</button>
+        <button
+          class="clear"
+          @pointerup="update('currentColor')"
+          @keyup.enter="update('currentColor')"
+        >
+          clear
+        </button>
+        <button
+          class="ok"
+          @pointerup="update(input)"
+          @keyup.enter="update(input)"
+        >
+          ok
+        </button>
       </div>
     </div>
   </Transition>

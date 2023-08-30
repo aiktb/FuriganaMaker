@@ -3,24 +3,28 @@ import { toHiragana, toRomaji } from 'wanakana'
 import { sendToBackground } from '@plasmohq/messaging'
 import { Storage } from '@plasmohq/storage'
 
-import { CustomEvent, FURIGANA_CLASS_NAME, FuriganaType } from '~contents/core'
-import {
-  KurokanjiToken,
-  KuromojiToken,
-  toKurokanjiToken
-} from '~contents/kanjiTokenizer'
+import { CustomEvent, FURIGANA_CLASS, FuriganaType } from '~contents/core'
+import { KanjiToken, MojiToken, toKanjiToken } from '~contents/kanjiTokenizer'
 
 /**
  * Append ruby tag to all text nodes of a batch of elements.
  * @remarks
- * The parent element of the text node will be added with the FURIGANA_CLASS_NAME class.
+ * The parent element of the text node will be added with the FURIGANA_CLASS.
  * Elements that have already been marked will be skipped.
  * Ruby tag is "\<ruby>original\<rp>(\</rp>\<rt>reading\</rt>\<rp>)\</rp>\</ruby>".
  **/
-export const addFurigana = async (elements: Element[]) => {
-  const japaneseTexts = elements.flatMap(collectTexts)
+export function addFurigana(elements: Element): Promise<void>
+export function addFurigana(elements: Element[]): Promise<void>
+export async function addFurigana(elements: Element | Element[]) {
+  const japaneseTexts: Text[] = []
+  if (Array.isArray(elements)) {
+    japaneseTexts.push(...elements.flatMap(collectTexts))
+  } else {
+    japaneseTexts.push(...collectTexts(elements))
+  }
+
   for (const text of japaneseTexts) {
-    const tokens: KurokanjiToken[] = await tokenize(text.textContent!)
+    const tokens: KanjiToken[] = await tokenize(text.textContent!)
     // reverse() prevents the range from being invalidated
     for (const token of tokens.reverse()) {
       const ruby = await createRuby(token.original, token.reading)
@@ -34,7 +38,7 @@ export const addFurigana = async (elements: Element[]) => {
 }
 
 const collectTexts = (element: Element): Text[] => {
-  if (element.parentElement?.classList.contains(FURIGANA_CLASS_NAME)) {
+  if (element.parentElement?.classList.contains(FURIGANA_CLASS)) {
     return []
   }
   element.normalize()
@@ -42,7 +46,7 @@ const collectTexts = (element: Element): Text[] => {
   const isText = element.nodeType === Node.TEXT_NODE
   const isEmpty = !!element.textContent?.trim().length
   if (isText && isEmpty) {
-    element.parentElement!.classList.add(FURIGANA_CLASS_NAME)
+    element.parentElement!.classList.add(FURIGANA_CLASS)
     texts.push(element as Node as Text)
   } else {
     const elements = Array.from(
@@ -53,12 +57,12 @@ const collectTexts = (element: Element): Text[] => {
   return texts
 }
 
-const tokenize = async (text: string): Promise<KurokanjiToken[]> => {
+const tokenize = async (text: string): Promise<KanjiToken[]> => {
   const response = await sendToBackground<
     { text: string },
-    { message: KuromojiToken[] }
+    { message: MojiToken[] }
   >({ name: 'fetchKuromoji', body: { text } })
-  return toKurokanjiToken(response.message)
+  return toKanjiToken(response.message)
 }
 
 const createRuby = async (

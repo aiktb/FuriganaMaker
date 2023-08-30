@@ -65,7 +65,7 @@ const switchPower = () => {
         <div v-html="CursorOutlineIcon" />
       </template>
       <template #content>
-        <Button @click="customEvent" @keyup.enter="customEvent">
+        <Button @pointerup="customEvent" @keyup.enter="customEvent">
           Add furigana
         </Button>
       </template>
@@ -76,7 +76,7 @@ const switchPower = () => {
         <div v-html="PowerIcon" />
       </template>
       <template #content>
-        <Button @click="switchPower"> On-off extension </Button>
+        <Button @pointerup="switchPower"> On-off extension </Button>
       </template>
     </MenuItem>
     <MenuItem>

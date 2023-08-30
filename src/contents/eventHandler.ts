@@ -3,11 +3,7 @@ import { toHiragana, toKatakana, toRomaji } from 'wanakana'
 
 import { Storage } from '@plasmohq/storage'
 
-import {
-  CustomEvent,
-  FURIGANA_CLASS_NAME,
-  type StyleEvent
-} from '~contents/core'
+import { CustomEvent, FURIGANA_CLASS, type StyleEvent } from '~contents/core'
 import { Selector } from '~contents/customSelector'
 import { addFurigana } from '~contents/furiganaMaker'
 
@@ -64,42 +60,49 @@ const furiganaHandler = async () => {
   }
 }
 
+let isSelecting = false
 const customHandler = () => {
-  const selector = new Selector((element: HTMLElement) => {
-    addFurigana([element])
-  })
-  document.addEventListener('keydown', (event) => {
-    if (event.key === 'Escape') {
-      selector.close()
-    }
-  })
+  if (!isSelecting) {
+    isSelecting = true
+    const selector = new Selector(addFurigana)
+    document.addEventListener(
+      'keydown',
+      (event) => {
+        if (event.key === 'Escape') {
+          selector.close()
+          isSelecting = false
+        }
+      },
+      { once: true }
+    )
+  }
 }
 
-const rtSelector = `.${FURIGANA_CLASS_NAME} > ruby > rt`
-const rpSelector = `.${FURIGANA_CLASS_NAME} > ruby > rp`
+const rtSelector = `.${FURIGANA_CLASS} > ruby > rt`
+const rpSelector = `.${FURIGANA_CLASS} > ruby > rp`
 async function styleHandler(type: StyleEvent) {
   const value = await storage.get(type)
   let css: string
   switch (type) {
     case CustomEvent.SelectMode:
       css = `
-        .${FURIGANA_CLASS_NAME} {
+        .${FURIGANA_CLASS} {
           user-select: ${value === 'furigana' ? 'none' : 'text'};
         }
-        
+
         ${rtSelector} {
           user-select: ${value === 'original' ? 'none' : 'text'};
         }
-        
+
         ${rpSelector} {
           display: ${value === 'all' ? 'block' : 'none'};
-          position: fixed; 
+          position: fixed;
           overflow: hidden;
           white-space: nowrap;
           margin: 0;
           padding: 0;
           height: 0.1px;
-          width: 0.1px; 
+          width: 0.1px;
           clip: rect(0 0 0 0);
           clip-path: inset(100%);
           left: -10000px;
@@ -125,7 +128,7 @@ async function styleHandler(type: StyleEvent) {
         }`
       break
   }
-  const id = `${FURIGANA_CLASS_NAME}${type}`
+  const id = `${FURIGANA_CLASS}${type}`
   const oldStyle = document.getElementById(id)
   if (oldStyle) {
     oldStyle.textContent = css
