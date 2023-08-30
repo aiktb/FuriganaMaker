@@ -26,7 +26,6 @@ const displayOff = () => {
 
 const changeOption = (option: string) => {
   displayOff()
-  // The order of emit of the following events cannot be reversed.
   emit('update:modelValue', option)
   emit('change')
 }
@@ -44,16 +43,12 @@ watch(focused, () => {
     ref="select"
     v-on-click-outside="displayOff"
     :class="{ display: display }"
+    @keydown.enter="displaySwitch"
+    @click="displaySwitch"
+    tabindex="0"
   >
-    <div
-      class="promptBar"
-      tabindex="0"
-      @keydown.enter="displaySwitch"
-      @click="displaySwitch"
-    >
-      {{ props.modelValue }}
-      <div v-html="DownIcon" class="selectIcon" />
-    </div>
+    {{ props.modelValue }}
+    <div v-html="DownIcon" class="selectIcon" />
     <Transition>
       <div class="panel" v-if="display">
         <div
@@ -73,21 +68,20 @@ watch(focused, () => {
 
 <style scoped>
 .select {
-  flex-grow: 1;
   position: relative;
-  border-radius: 0.3rem;
   cursor: pointer;
-  transition: all 250ms;
   text-transform: capitalize;
+  height: 1.5rem;
+  padding: 0 0.5rem;
+  border-radius: 0.3rem;
+  display: flex;
+  align-items: center;
+  flex-grow: 1;
+  justify-content: space-between;
+  transition: all 250ms;
 }
 
 .display {
-  background-color: var(--hover);
-}
-
-.select:hover,
-.select:focus-within {
-  transition: all 250ms;
   background-color: var(--hover);
 }
 
@@ -104,27 +98,13 @@ watch(focused, () => {
   align-items: center;
 }
 
-.promptBar {
-  border-radius: 0.3rem;
-  display: flex;
-  align-items: center;
-  width: 100%;
-  padding: 0 0.5rem;
-  box-sizing: border-box;
-  height: 1.5rem;
-  transition: all 250ms;
-  text-align: left;
-  justify-content: space-between;
-}
-
 .panel {
   width: 100%;
   display: flex;
   flex-direction: column;
   position: absolute;
   top: 1.5rem;
-  box-sizing: border-box;
-  transition: all 250ms;
+  left: 0;
   z-index: 1;
   box-shadow: 0 0 1rem var(--hover);
   border-radius: 0.4rem;
@@ -143,8 +123,8 @@ watch(focused, () => {
   padding: 0 0.5rem;
   box-sizing: border-box;
   height: 1.5rem;
-  transition: all 250ms;
   text-align: left;
+  transition: all 250ms;
 }
 
 .option:focus,

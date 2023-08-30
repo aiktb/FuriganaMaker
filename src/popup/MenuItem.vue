@@ -1,21 +1,25 @@
 <script setup lang="ts">
 interface Props {
   tip?: boolean
+  shiny?: boolean
+  first?: boolean
 }
 const props = withDefaults(defineProps<Props>(), {
-  tip: false
+  tip: false,
+  shiny: false,
+  first: false
 })
 </script>
 
 <template>
   <div class="menuItem">
-    <div class="icon">
+    <div class="icon" :class="{ shiny: shiny }">
       <slot name="icon" />
     </div>
     <div class="content">
       <slot name="content" />
     </div>
-    <div class="tip" ref="tip" v-if="props.tip">
+    <div class="tip" ref="tip" v-if="props.tip" :class="{ first: first }">
       <slot name="tip" />
     </div>
   </div>
@@ -35,13 +39,21 @@ const props = withDefaults(defineProps<Props>(), {
   height: auto;
 }
 
+.shiny {
+  color: var(--feature);
+}
+
 .content {
   flex-grow: 1;
   border-radius: 0.3rem;
 }
 
+.content:hover,
+.content:focus-within {
+  background-color: var(--hover);
+}
+
 .tip {
-  box-sizing: border-box;
   color: var(--background);
   background-color: var(--font);
   border-radius: 0.3rem;
@@ -51,8 +63,6 @@ const props = withDefaults(defineProps<Props>(), {
   padding: 0.2rem 0.5rem;
   opacity: 0;
   visibility: hidden;
-  will-change: transform;
-  transition: all 120ms;
 }
 
 .content:hover + .tip,
@@ -64,5 +74,10 @@ const props = withDefaults(defineProps<Props>(), {
     transform 133ms cubic-bezier(0.4, 0, 0.2, 1);
   transition-delay: 0.7s;
   visibility: visible;
+}
+
+.first {
+  bottom: -1.5rem;
+  left: 2rem;
 }
 </style>

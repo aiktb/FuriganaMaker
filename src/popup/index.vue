@@ -45,12 +45,19 @@ body {
   font-size: 13px;
   color: var(--font);
   background-color: var(--background);
+  margin: 0.7rem;
+  user-select: none;
 }
 
-:focus-visible {
+* {
+  font-family: 'JetBrains Mono';
+  box-sizing: border-box;
+  text-align: left;
+}
+
+:focus {
   outline: 2px solid var(--font);
   box-shadow: none;
-  transition: all 100ms !important;
 }
 
 .logo svg {
