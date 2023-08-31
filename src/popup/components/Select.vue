@@ -109,7 +109,7 @@ watch(focused, () => {
   box-shadow: 0 0 1rem var(--hover);
   border-radius: 0.4rem;
   background-color: var(--background);
-  border: 0.1rem solid var(--hover);
+  border: 0.1rem solid var(--feature);
 }
 
 .selected {
