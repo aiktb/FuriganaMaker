@@ -1,10 +1,32 @@
+#
+
 <div align="center">
-    <h1>Furigana Maker</h1>
-    <b><p><i>Add Furigana to Japanese texts for any web page.  </i>🤔</p></b>
-    <img src="https://s2.loli.net/2023/08/03/RIaytHcZzNB5d1j.webp" alt="preview image">
+    <img src="./assets/logo.svg">
 </div>
 
-## TODO List
+# Furigana Maker
 
-- Log System
-- Perf: fetch data after merging data
+Add Furigana to Japanese text for any web page.
+
+Special thanks to **_[plasmo](https://github.com/PlasmoHQ/plasmo)_** for taking the frustration out of browser extension development for me.
+
+![Preview](https://s2.loli.net/2023/08/31/H8Y9zZEx3ny7osK.webp)
+
+## Features
+
+- [x] Customize the pages and regions that need to add furigana.
+
+- [x] Freely modify the font size and color of furigana.
+- [x] When selected, furigana can be included in the text in parentheses.
+- [x] Optionally show furigana only on hover state.
+- [ ] Configurable default pages and regions for adding furigana.
+- [ ] Local Japanese kanji parsing engine (no network required).
+
+## Inspired By
+
+- [Mirigana](https://chrome.google.com/webstore/detail/mirigana/hbekfodhcnfpkmoeaijgbamedofonjib)
+- [AdGuard AdBlocker](https://chrome.google.com/webstore/detail/adguard-adblocker/bgnkhhnnamicmpeenaelnjfhikgbkllg)
+- [Fix Translation](https://chrome.google.com/webstore/detail/fix-translation/nefkkabmejdacaifhjoinegmoggdbgee)
+
+- [Kuromoji](https://github.com/atilika/kuromoji)
+- [WanaKana](https://github.com/WaniKani/WanaKana)

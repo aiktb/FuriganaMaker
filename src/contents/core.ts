@@ -1,46 +1,39 @@
 export const FURIGANA_CLASS = '--furigana--'
 
 export enum CustomEvent {
-  FuriganaType = 'FuriganaType',
-  SelectMode = 'SelectMode',
-  FuriganaColor = 'FuriganaColor',
-  Display = 'Display',
-  Fontsize = 'Fontsize',
-  Custom = 'Custom'
+  Custom = 'custom',
+  Display = 'display',
+  Hover = 'hover',
+  Furigana = 'furigana',
+  Select = 'select',
+  Fontsize = 'fontsize',
+  Color = 'color'
 }
 
 export type StyleEvent =
-  | CustomEvent.SelectMode
-  | CustomEvent.FuriganaColor
   | CustomEvent.Display
+  | CustomEvent.Hover
+  | CustomEvent.Select
   | CustomEvent.Fontsize
+  | CustomEvent.Color
 
-export type ChangeEvent =
-  | CustomEvent.FuriganaType
-  | CustomEvent.FuriganaColor
-  | CustomEvent.SelectMode
-  | CustomEvent.Display
-  | CustomEvent.Fontsize
+export type ChangeEvent = StyleEvent | CustomEvent.Furigana
 
 export type Config = {
   [key: string]: string | number | boolean
-  FuriganaType: FuriganaType
-  FuriganaColor: FuriganaColor
-  SelectMode: SelectMode
-  Display: Display
-  Fontsize: Fontsize
+  display: boolean
+  hover: boolean
+  furigana: 'hiragana' | 'katakana' | 'romaji'
+  select: 'original' | 'furigana' | 'all'
+  fontsize: number
+  color: string
 }
 
 export const defaultConfig: Config = {
-  FuriganaType: 'hiragana',
-  FuriganaColor: 'currentColor',
-  SelectMode: 'original',
-  Display: true,
-  Fontsize: 75 // ${fontsize}% relative to the parent font.
+  display: true,
+  hover: false,
+  furigana: 'hiragana',
+  select: 'original',
+  fontsize: 75, // ${fontsize}% relative to the parent font.
+  color: 'currentColor'
 }
-
-export type FuriganaType = 'hiragana' | 'katakana' | 'romaji'
-export type Display = boolean
-export type SelectMode = 'original' | 'furigana' | 'all'
-export type FuriganaColor = string
-export type Fontsize = number

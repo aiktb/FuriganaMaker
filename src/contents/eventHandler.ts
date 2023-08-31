@@ -16,17 +16,18 @@ export const config: PlasmoCSConfig = {
 // so it needs to be initialized immediately.
 const storage = new Storage({ area: 'local' })
 const styleEvents: StyleEvent[] = [
-  CustomEvent.SelectMode,
-  CustomEvent.FuriganaColor,
   CustomEvent.Display,
-  CustomEvent.Fontsize
+  CustomEvent.Hover,
+  CustomEvent.Select,
+  CustomEvent.Fontsize,
+  CustomEvent.Color
 ]
 styleEvents.forEach(styleHandler)
 
 // The plasmo Storage watch API could be used instead, but is not necessary.
 chrome.runtime.onMessage.addListener((event: CustomEvent) => {
   switch (event) {
-    case CustomEvent.FuriganaType:
+    case CustomEvent.Furigana:
       furiganaHandler()
       break
     case CustomEvent.Custom:
@@ -39,7 +40,7 @@ chrome.runtime.onMessage.addListener((event: CustomEvent) => {
 })
 
 const furiganaHandler = async () => {
-  const value = await storage.get(CustomEvent.FuriganaType)
+  const value = await storage.get(CustomEvent.Furigana)
   const nodes = document.querySelectorAll(rtSelector)
   switch (value) {
     case 'hiragana':
@@ -73,20 +74,39 @@ const customHandler = () => {
           isSelecting = false
         }
       },
-      { once: true }
+      { once: true, capture: true }
     )
   }
 }
 
-const rtSelector = `.${FURIGANA_CLASS} > ruby > rt`
-const rpSelector = `.${FURIGANA_CLASS} > ruby > rp`
+const furiganaSelector = `.${FURIGANA_CLASS}`
+const rtSelector = `.${FURIGANA_CLASS} ruby > rt`
+const rpSelector = `.${FURIGANA_CLASS} ruby > rp`
+const rtHoverSelector = `.${FURIGANA_CLASS} ruby:hover > rt`
 async function styleHandler(type: StyleEvent) {
   const value = await storage.get(type)
   let css: string
   switch (type) {
-    case CustomEvent.SelectMode:
+    case CustomEvent.Display:
       css = `
-        .${FURIGANA_CLASS} {
+        ${rtSelector} {
+          display: ${value ? 'block' : 'none'};
+        }`
+      break
+    case CustomEvent.Hover:
+      css = `
+        ${rtSelector} {
+          opacity: ${value ? 0 : 1};
+        }
+
+        ${rtHoverSelector} {
+          opacity: 1;
+        }
+      `
+      break
+    case CustomEvent.Select:
+      css = `
+        ${furiganaSelector} {
           user-select: ${value === 'furigana' ? 'none' : 'text'};
         }
 
@@ -97,34 +117,20 @@ async function styleHandler(type: StyleEvent) {
         ${rpSelector} {
           display: ${value === 'all' ? 'block' : 'none'};
           position: fixed;
-          overflow: hidden;
-          white-space: nowrap;
-          margin: 0;
-          padding: 0;
-          height: 0.1px;
-          width: 0.1px;
-          clip: rect(0 0 0 0);
-          clip-path: inset(100%);
           left: -10000px;
-        }`
-      break
-    // <ruby> color will be passed to <rt>, so no control logic for <ruby> color will be added.
-    case CustomEvent.FuriganaColor:
-      css = `
-        ${rtSelector} {
-          color: ${value};
-        }`
-      break
-    case CustomEvent.Display:
-      css = `
-        ${rtSelector} {
-          display: ${value ? 'block' : 'none'};
         }`
       break
     case CustomEvent.Fontsize:
       css = `
+          ${rtSelector} {
+            font-size: ${value}%;
+          }`
+      break
+    // <ruby> color will be passed to <rt>, so no control logic for <ruby> color will be added.
+    case CustomEvent.Color:
+      css = `
         ${rtSelector} {
-          font-size: ${value}%;
+          color: ${value};
         }`
       break
   }
