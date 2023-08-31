@@ -148,7 +148,7 @@ const switchHoverMode = () => {
         />
       </template>
     </MenuItem>
-    <MenuItem :tip="true">
+    <MenuItem tip>
       <template #icon>
         <div v-html="FeedbackIcon" />
       </template>
