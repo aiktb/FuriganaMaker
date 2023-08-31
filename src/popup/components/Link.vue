@@ -24,7 +24,7 @@ const props = defineProps<{
   border-radius: 0.3rem;
   display: flex;
   align-items: center;
-  transition: all 250ms;
+  transition: color 500ms ease-in-out;
 }
 
 .link:focus,

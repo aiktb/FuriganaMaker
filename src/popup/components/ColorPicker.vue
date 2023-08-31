@@ -116,6 +116,11 @@ onMounted(() => {
   shadeCtx.fillStyle = blackGradient
   shadeCtx.fillRect(0, 0, shadeCanvas.width, shadeCanvas.height)
 })
+
+const pointerdownShade = (event: PointerEvent) => {
+  shadeX.value = event.clientX
+  shadeY.value = event.clientY
+}
 </script>
 
 <template>
@@ -132,12 +137,7 @@ onMounted(() => {
         class="shade"
         ref="shade"
         :style="{ backgroundColor: hueBarStyle.backgroundColor }"
-        @pointerdown="
-          (event) => {
-            shadeX = event.clientX
-            shadeY = event.clientY
-          }
-        "
+        @pointerdown="pointerdownShade"
       />
       <div
         class="shadeCursor cursor"
@@ -287,7 +287,6 @@ onMounted(() => {
   border-radius: 0.2rem;
   cursor: pointer;
   border: 0.1rem solid var(--hover);
-  transition: all 250ms;
 }
 
 .selected {
@@ -309,7 +308,7 @@ onMounted(() => {
   background-color: transparent;
   padding-left: 0.3rem;
   outline-color: var(--feature);
-  transition: all 250ms;
+  transition: all 250ms ease-in-out;
 }
 
 .option > button {
@@ -317,7 +316,7 @@ onMounted(() => {
   border-radius: 0.2rem;
   background-color: transparent;
   cursor: pointer;
-  transition: all 250ms;
+  transition: all 250ms ease-in-out;
 }
 
 .clear {

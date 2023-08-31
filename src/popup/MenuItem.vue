@@ -50,6 +50,7 @@ const props = withDefaults(defineProps<Props>(), {
 
 .content:hover,
 .content:focus-within {
+  transition: all 250ms ease-in-out;
   background-color: var(--hover);
 }
 
