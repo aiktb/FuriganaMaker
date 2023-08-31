@@ -13,6 +13,8 @@ import CursorTextIcon from 'data-text:@Icons/CursorText.svg'
 import FeedbackIcon from 'data-text:@Icons/Feedback.svg'
 import FontSizeIcon from 'data-text:@Icons/FontSize.svg'
 import HiraganaIcon from 'data-text:@Icons/Hiragana.svg'
+import HoverIcon from 'data-text:@Icons/Hover.svg'
+import HoverOffIcon from 'data-text:@Icons/HoverOff.svg'
 import PowerIcon from 'data-text:@Icons/Power.svg'
 
 import { Storage } from '@plasmohq/storage'
@@ -25,11 +27,12 @@ const storage = new Storage({ area: 'local' })
 // Top-level await makes this component asynchronous.
 // Vue3 doc: Not recommended to use the generic argument of reactive().
 const option: Config = reactive({
-  FuriganaType: await storage.get(CustomEvent.FuriganaType),
-  SelectMode: await storage.get(CustomEvent.SelectMode),
-  Display: await storage.get(CustomEvent.Display),
-  Fontsize: await storage.get(CustomEvent.Fontsize),
-  FuriganaColor: await storage.get(CustomEvent.FuriganaColor)
+  display: await storage.get(CustomEvent.Display),
+  hover: await storage.get(CustomEvent.Hover),
+  furigana: await storage.get(CustomEvent.Furigana),
+  select: await storage.get(CustomEvent.Select),
+  fontsize: await storage.get(CustomEvent.Fontsize),
+  color: await storage.get(CustomEvent.Color)
 })
 
 const changeEvent = async (event: ChangeEvent) => {
@@ -53,8 +56,13 @@ const customEvent = async () => {
 }
 
 const switchPower = () => {
-  option[CustomEvent.Display] = !option[CustomEvent.Display]
+  option.display = !option.display
   changeEvent(CustomEvent.Display)
+}
+
+const switchHoverMode = () => {
+  option.hover = !option.hover
+  changeEvent(CustomEvent.Hover)
 }
 </script>
 
@@ -71,12 +79,25 @@ const switchPower = () => {
       </template>
       <template #tip> Press ESC to cancel </template>
     </MenuItem>
-    <MenuItem :shiny="option[CustomEvent.Display]">
+    <MenuItem :shiny="option.display">
       <template #icon>
         <div v-html="PowerIcon" />
       </template>
       <template #content>
-        <Button @pointerup="switchPower"> On-off extension </Button>
+        <Button @pointerup="switchPower" @keyup.enter="switchPower">
+          On-off extension
+        </Button>
+      </template>
+    </MenuItem>
+    <MenuItem :shiny="option.hover">
+      <template #icon>
+        <div v-html="HoverIcon" v-if="option.hover" />
+        <div v-html="HoverOffIcon" v-else />
+      </template>
+      <template #content>
+        <Button @pointerup="switchHoverMode" @keyup.enter="switchHoverMode">
+          Hover mode
+        </Button>
       </template>
     </MenuItem>
     <MenuItem>
@@ -86,8 +107,8 @@ const switchPower = () => {
       <template #content>
         <Select
           :options="['hiragana', 'katakana', 'romaji']"
-          v-model="option.FuriganaType"
-          @change="changeEvent(CustomEvent.FuriganaType)"
+          v-model="option.furigana"
+          @change="changeEvent(CustomEvent.Furigana)"
         />
       </template>
     </MenuItem>
@@ -98,8 +119,8 @@ const switchPower = () => {
       <template #content>
         <Select
           :options="['original', 'furigana', 'all']"
-          v-model="option.SelectMode"
-          @change="changeEvent(CustomEvent.SelectMode)"
+          v-model="option.select"
+          @change="changeEvent(CustomEvent.Select)"
         />
       </template>
     </MenuItem>
@@ -109,7 +130,7 @@ const switchPower = () => {
       </template>
       <template #content>
         <RangeInput
-          v-model="option.Fontsize"
+          v-model="option.fontsize"
           :min="50"
           :max="100"
           @change="changeEvent(CustomEvent.Fontsize)"
@@ -122,8 +143,8 @@ const switchPower = () => {
       </template>
       <template #content>
         <ColorPicker
-          v-model="option.FuriganaColor"
-          @change="changeEvent(CustomEvent.FuriganaColor)"
+          v-model="option.color"
+          @change="changeEvent(CustomEvent.Color)"
         />
       </template>
     </MenuItem>

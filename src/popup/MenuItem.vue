@@ -34,6 +34,11 @@ const props = withDefaults(defineProps<Props>(), {
   position: relative;
 }
 
+.icon :deep(div) {
+  display: flex;
+  align-items: center;
+}
+
 .icon :deep(svg) {
   width: 1.5rem;
   height: auto;

@@ -3,7 +3,7 @@ import { toHiragana, toRomaji } from 'wanakana'
 import { sendToBackground } from '@plasmohq/messaging'
 import { Storage } from '@plasmohq/storage'
 
-import { CustomEvent, FURIGANA_CLASS, FuriganaType } from '~contents/core'
+import { CustomEvent, FURIGANA_CLASS } from '~contents/core'
 import { KanjiToken, MojiToken, toKanjiToken } from '~contents/kanjiTokenizer'
 
 /**
@@ -77,7 +77,7 @@ const createRuby = async (
   const originalText = document.createTextNode(original)
 
   const storage = new Storage({ area: 'local' })
-  const furiganaType: FuriganaType = await storage.get(CustomEvent.FuriganaType)
+  const furiganaType = await storage.get(CustomEvent.Furigana)
   switch (furiganaType) {
     case 'hiragana':
       reading = toHiragana(reading)
@@ -85,7 +85,7 @@ const createRuby = async (
     case 'romaji':
       reading = toRomaji(reading)
       break
-    case 'katakana':
+    default:
       // token.reading default is katakana
       break
   }
