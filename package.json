@@ -4,7 +4,7 @@
   "version": "1.0.0",
   "type": "module",
   "private": true,
-  "description": "Add Furigana to Japanese text for any web page.",
+  "description": "Add furigana to Japanese text for any web page.",
   "license": "MIT",
   "author": "aiktb <hey@aiktb.com>",
   "repository": {
