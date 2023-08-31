@@ -81,7 +81,7 @@ onMounted(() => {
   border-radius: 0.3rem;
   display: flex;
   align-items: center;
-  transition: all 250ms;
+  transition: opacity 250ms ease-in-out;
 }
 
 .track {

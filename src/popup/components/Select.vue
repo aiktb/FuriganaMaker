@@ -78,7 +78,7 @@ watch(focused, () => {
   align-items: center;
   flex-grow: 1;
   justify-content: space-between;
-  transition: all 250ms;
+  transition: opacity 250ms ease-in-out;
 }
 
 .display {
@@ -124,7 +124,7 @@ watch(focused, () => {
   box-sizing: border-box;
   height: 1.5rem;
   text-align: left;
-  transition: all 250ms;
+  transition: background-color 250ms ease-in-out;
 }
 
 .option:focus,
