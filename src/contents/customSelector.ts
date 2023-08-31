@@ -67,7 +67,6 @@ class Renderer {
     position: 'absolute',
     display: 'none',
     background: '#0d99ff',
-    borderRadius: '5px',
     zIndex: Number.MAX_SAFE_INTEGER
   }
   readonly #BOTTOM_CSS = {
