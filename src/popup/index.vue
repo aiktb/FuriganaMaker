@@ -55,8 +55,8 @@ body {
   text-align: left;
 }
 
-:focus {
-  outline: 2px solid var(--font);
+:focus-visible {
+  outline: 0.15rem solid var(--font);
   box-shadow: none;
 }
 

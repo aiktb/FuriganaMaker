@@ -98,7 +98,6 @@ onMounted(() => {
   border-radius: 50%;
   background-color: var(--feature);
   cursor: pointer;
-  outline: none;
   transform: translate(-50%, -50%);
 }
 </style>
