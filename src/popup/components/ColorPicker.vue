@@ -257,11 +257,14 @@ const pointerdownShade = (event: PointerEvent) => {
 
 .cursor:focus {
   transition: none;
+}
+
+.cursor:focus-visible {
   outline: none;
   box-shadow:
-    0 0 0 0.15rem white,
+    0 0 0 0.2rem white,
     inset 0 0 0.1rem 0.1rem #0006,
-    0 0 0.15rem 0.15rem #0006;
+    0 0 0.2rem 0.2rem #0006;
 }
 
 .shadeCursor {
