@@ -125,8 +125,8 @@ onMounted(() => {
 
 <template>
   <Button
-    @pointerup="display = true"
-    @keydown.enter="display = true"
+    @pointerup.self="display = !display"
+    @keydown.enter.self="display = !display"
     ref="colorPicker"
   >
     Select color
@@ -244,7 +244,6 @@ onMounted(() => {
   position: fixed;
   transform: translate(-50%, -50%);
   cursor: pointer;
-  /* transition: all 250ms; */
   box-shadow:
     0 0 0 0.1rem white,
     inset 0 0 0.1rem 0.1rem #0006,
@@ -252,7 +251,8 @@ onMounted(() => {
   transition: all 250ms;
 }
 
-.cursor:hover {
+.cursor:hover,
+.cursor:focus {
   transition: none;
 }
 
