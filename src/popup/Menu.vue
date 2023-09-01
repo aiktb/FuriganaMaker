@@ -10,11 +10,11 @@ import Select from '@Components/Select.vue'
 import ColorPickerIcon from 'data-text:@Icons/ColorPicker.svg'
 import CursorOutlineIcon from 'data-text:@Icons/CursorOutline.svg'
 import CursorTextIcon from 'data-text:@Icons/CursorText.svg'
+import EyeIcon from 'data-text:@Icons/Eye.svg'
+import EyeOffIcon from 'data-text:@Icons/EyeOff.svg'
 import FeedbackIcon from 'data-text:@Icons/Feedback.svg'
 import FontSizeIcon from 'data-text:@Icons/FontSize.svg'
 import HiraganaIcon from 'data-text:@Icons/Hiragana.svg'
-import HoverIcon from 'data-text:@Icons/Hover.svg'
-import HoverOffIcon from 'data-text:@Icons/HoverOff.svg'
 import PowerIcon from 'data-text:@Icons/Power.svg'
 
 import { Storage } from '@plasmohq/storage'
@@ -91,8 +91,8 @@ const switchHoverMode = () => {
     </MenuItem>
     <MenuItem :shiny="option.hover">
       <template #icon>
-        <div v-html="HoverIcon" v-if="option.hover" />
-        <div v-html="HoverOffIcon" v-else />
+        <div v-html="EyeIcon" v-if="option.hover" />
+        <div v-html="EyeOffIcon" v-else />
       </template>
       <template #content>
         <Button @pointerup="switchHoverMode" @keyup.enter="switchHoverMode">
