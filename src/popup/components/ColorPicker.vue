@@ -1,7 +1,7 @@
 <script setup lang="ts">
 import { useClamp } from '@Composables/useClamp'
 import { useDraggable } from '@Composables/useDraggable'
-import { useElementBounding } from '@vueuse/core'
+import { useElementBounding, useFocusWithin } from '@vueuse/core'
 import tinycolor from 'tinycolor2'
 import { computed, onMounted, ref, watch } from 'vue'
 
@@ -16,19 +16,23 @@ const emit = defineEmits<{
   change: []
 }>()
 
+const display = ref(false)
 const update = (color: string) => {
   emit('update:modelValue', color)
   emit('change')
   display.value = false
 }
+const colorPicker = ref<HTMLElement | null>(null)
+const { focused } = useFocusWithin(colorPicker)
+watch(focused, () => {
+  display.value = false
+})
 
 // prettier-ignore
 const colors = [
   'black', 'white', 'tomato', 'moccasin', 'orange',
   'yellow', 'lime', 'aqua', 'teal', 'fuchsia'
 ]
-
-const display = ref(false)
 
 const hue = ref<HTMLCanvasElement | null>(null)
 const hueCursor = ref<HTMLElement | null>(null)
@@ -120,71 +124,75 @@ onMounted(() => {
 </script>
 
 <template>
-  <Button @pointerup="display = true" @keydown.enter="display = true">
+  <Button
+    @pointerup="display = true"
+    @keydown.enter="display = true"
+    ref="colorPicker"
+  >
     Select color
-  </Button>
-  <Transition>
-    <div
-      class="panel"
-      v-show="display"
-      @transitionstart.self="colorToPosition(props.modelValue)"
-    >
-      <canvas
-        class="shade"
-        ref="shade"
-        :style="{ backgroundColor: hueBarStyle.backgroundColor }"
-      />
+    <Transition>
       <div
-        class="shadeCursor cursor"
-        tabindex="0"
-        :style="shadeBarStyle"
-        ref="shadeCursor"
-        @keydown.up="shadeY--"
-        @keydown.down="shadeY++"
-        @keydown.left="shadeX--"
-        @keydown.right="shadeX++"
-      />
-      <canvas class="hue" ref="hue" />
-      <div
-        class="hueCursor cursor"
-        tabindex="0"
-        :style="hueBarStyle"
-        ref="hueCursor"
-        @keydown.up="hueX--"
-        @keydown.down="hueX++"
-        @keydown.left="hueX--"
-        @keydown.right="hueX++"
-      />
-      <div class="switcher">
-        <div
-          class="color"
-          tabindex="0"
-          v-for="color of colors"
-          :style="{ backgroundColor: color }"
-          :class="{ selected: tinycolor(color).toHexString() === input }"
-          @pointerup="colorToPosition(color)"
-          @keyup.enter="colorToPosition(color)"
+        class="panel"
+        v-show="display"
+        @transitionstart.self="colorToPosition(props.modelValue)"
+      >
+        <canvas
+          class="shade"
+          ref="shade"
+          :style="{ backgroundColor: hueBarStyle.backgroundColor }"
         />
+        <div
+          class="shadeCursor cursor"
+          tabindex="0"
+          :style="shadeBarStyle"
+          ref="shadeCursor"
+          @keydown.up="shadeY--"
+          @keydown.down="shadeY++"
+          @keydown.left="shadeX--"
+          @keydown.right="shadeX++"
+        />
+        <canvas class="hue" ref="hue" />
+        <div
+          class="hueCursor cursor"
+          tabindex="0"
+          :style="hueBarStyle"
+          ref="hueCursor"
+          @keydown.up="hueX--"
+          @keydown.down="hueX++"
+          @keydown.left="hueX--"
+          @keydown.right="hueX++"
+        />
+        <div class="switcher">
+          <div
+            class="color"
+            tabindex="0"
+            v-for="color of colors"
+            :style="{ backgroundColor: color }"
+            :class="{ selected: tinycolor(color).toHexString() === input }"
+            @pointerup="colorToPosition(color)"
+            @keyup.enter="colorToPosition(color)"
+          />
+        </div>
+        <div class="option">
+          <input v-model="input" @change="colorToPosition(input)" />
+          <button
+            class="clear"
+            @pointerup="update('currentColor')"
+            @keyup.enter="update('currentColor')"
+          >
+            clear
+          </button>
+          <button
+            class="ok"
+            @pointerup="update(input)"
+            @keyup.enter="update(input)"
+          >
+            ok
+          </button>
+        </div>
       </div>
-      <div class="option">
-        <input v-model="input" @change="colorToPosition(input)" />
-        <button
-          class="clear"
-          @pointerup="update('currentColor')"
-          @keyup.enter="update('currentColor')"
-        >
-          clear
-        </button>
-        <button
-          class="ok"
-          @pointerup="update(input)"
-          @keyup.enter="update(input)"
-        >
-          ok
-        </button>
-      </div>
-    </div>
-  </Transition>
+    </Transition>
+  </Button>
 </template>
 
 <style scoped>
@@ -213,6 +221,7 @@ onMounted(() => {
   background-color: var(--background);
   z-index: 1;
   padding: 0.8rem 0.8rem;
+  cursor: default;
 }
 
 .shade {
