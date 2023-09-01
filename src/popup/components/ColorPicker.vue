@@ -249,6 +249,11 @@ onMounted(() => {
     0 0 0 0.1rem white,
     inset 0 0 0.1rem 0.1rem #0006,
     0 0 0.1rem 0.1rem #0006;
+  transition: all 250ms;
+}
+
+.cursor:hover {
+  transition: none;
 }
 
 .cursor:focus-visible {
