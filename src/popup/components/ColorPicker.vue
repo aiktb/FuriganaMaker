@@ -1,6 +1,7 @@
 <script setup lang="ts">
 import { useClamp } from '@Composables/useClamp'
-import { useDraggable, useElementBounding } from '@vueuse/core'
+import { useDraggable } from '@Composables/useDraggable'
+import { useElementBounding } from '@vueuse/core'
 import tinycolor from 'tinycolor2'
 import { computed, onMounted, ref, watch } from 'vue'
 
