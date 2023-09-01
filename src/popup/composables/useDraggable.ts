@@ -5,16 +5,24 @@ import { ref, type Ref } from 'vue'
  * @remark Need to be used with 'position: fixed;' & '@Composables/useClamp'.
  */
 export const useDraggable = (
-  draggableElement: Ref<HTMLElement | null>,
+  target: Ref<HTMLElement | null>,
+  container: Ref<HTMLElement | null>,
   onEnd?: () => void
 ) => {
   const x = ref(0)
   const y = ref(0)
   const pressed = ref(false)
 
-  const start = (event: PointerEvent) => {
+  const targetStart = (event: PointerEvent) => {
     pressed.value = true
-    draggableElement.value?.setPointerCapture(event.pointerId)
+    target.value?.setPointerCapture(event.pointerId)
+  }
+
+  const containerStart = (event: PointerEvent) => {
+    pressed.value = true
+    target.value?.setPointerCapture(event.pointerId)
+    x.value = event.clientX
+    y.value = event.clientY
   }
 
   const move = (event: PointerEvent) => {
@@ -26,13 +34,16 @@ export const useDraggable = (
 
   const end = (event: PointerEvent) => {
     pressed.value = false
-    draggableElement.value?.releasePointerCapture(event.pointerId)
+    target.value?.releasePointerCapture(event.pointerId)
     onEnd && onEnd()
   }
 
-  useEventListener(draggableElement, 'pointerdown', start)
-  useEventListener(draggableElement, 'pointermove', move)
-  useEventListener(draggableElement, 'pointerup', end)
+  useEventListener(target, 'pointerdown', targetStart)
+  useEventListener(target, 'pointermove', move)
+  useEventListener(target, 'pointerup', end)
+  useEventListener(container, 'pointerdown', containerStart)
+  useEventListener(container, 'pointermove', move)
+  useEventListener(container, 'pointerup', end)
 
   return { x, y }
 }
