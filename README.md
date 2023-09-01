@@ -8,7 +8,7 @@ Add furigana to Japanese text for any web page. 🤔
 
 Special thanks to **_[plasmo](https://github.com/PlasmoHQ/plasmo)_** for taking the frustration out of browser extension development for me.
 
-![Preview](https://s2.loli.net/2023/08/31/H8Y9zZEx3ny7osK.webp)
+![Preview](https://s2.loli.net/2023/09/01/hjMxiWmyOkf4GQB.webp)
 
 ## Features
 
