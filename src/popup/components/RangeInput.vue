@@ -27,7 +27,7 @@ const update = () => {
 const track = ref<HTMLElement | null>(null)
 const thumb = ref<HTMLElement | null>(null)
 const { left, right, top, width, height } = useElementBounding(track)
-const { x: useX } = useDraggable(thumb, update)
+const { x: useX } = useDraggable(thumb, track, update)
 const x = useClamp(useX, left, right)
 const style = computed(() => {
   return {

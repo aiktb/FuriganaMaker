@@ -39,7 +39,7 @@ const {
   width: hueWidth,
   height: hueHeight
 } = useElementBounding(hue)
-const { x: useHueX } = useDraggable(hueCursor)
+const { x: useHueX } = useDraggable(hueCursor, hue)
 const hueX = useClamp(useHueX, hueLeft, hueRight)
 const hueBarStyle = computed(() => {
   return {
@@ -59,7 +59,7 @@ const {
   width: shadeWidth,
   height: shadeHeight
 } = useElementBounding(shade)
-const { x: useShadeX, y: useShadeY } = useDraggable(shadeCursor)
+const { x: useShadeX, y: useShadeY } = useDraggable(shadeCursor, shade)
 const shadeX = useClamp(useShadeX, shadeLeft, shadeRight)
 const shadeY = useClamp(useShadeY, shadeTop, shadeBottom)
 const shadeBarStyle = computed(() => {
@@ -117,11 +117,6 @@ onMounted(() => {
   shadeCtx.fillStyle = blackGradient
   shadeCtx.fillRect(0, 0, shadeCanvas.width, shadeCanvas.height)
 })
-
-const pointerdownShade = (event: PointerEvent) => {
-  shadeX.value = event.clientX
-  shadeY.value = event.clientY
-}
 </script>
 
 <template>
@@ -138,7 +133,6 @@ const pointerdownShade = (event: PointerEvent) => {
         class="shade"
         ref="shade"
         :style="{ backgroundColor: hueBarStyle.backgroundColor }"
-        @pointerdown="pointerdownShade"
       />
       <div
         class="shadeCursor cursor"
@@ -150,15 +144,7 @@ const pointerdownShade = (event: PointerEvent) => {
         @keydown.left="shadeX--"
         @keydown.right="shadeX++"
       />
-      <canvas
-        class="hue"
-        ref="hue"
-        @pointerdown="
-          (event) => {
-            hueX = event.clientX
-          }
-        "
-      />
+      <canvas class="hue" ref="hue" />
       <div
         class="hueCursor cursor"
         tabindex="0"
@@ -249,15 +235,11 @@ const pointerdownShade = (event: PointerEvent) => {
   position: fixed;
   transform: translate(-50%, -50%);
   cursor: pointer;
-  transition: all 250ms;
+  /* transition: all 250ms; */
   box-shadow:
     0 0 0 0.1rem white,
     inset 0 0 0.1rem 0.1rem #0006,
     0 0 0.1rem 0.1rem #0006;
-}
-
-.cursor:focus {
-  transition: none;
 }
 
 .cursor:focus-visible {
