@@ -1,6 +1,7 @@
 <script setup lang="ts">
 import { useClamp } from '@Composables/useClamp'
-import { useDraggable, useElementBounding } from '@vueuse/core'
+import { useDraggable } from '@Composables/useDraggable'
+import { useElementBounding } from '@vueuse/core'
 import { computed, onMounted, ref } from 'vue'
 
 const props = defineProps<{
@@ -26,7 +27,7 @@ const update = () => {
 const track = ref<HTMLElement | null>(null)
 const thumb = ref<HTMLElement | null>(null)
 const { left, right, top, width, height } = useElementBounding(track)
-const { x: useX } = useDraggable(thumb, { onEnd: update })
+const { x: useX } = useDraggable(thumb, update)
 const x = useClamp(useX, left, right)
 const style = computed(() => {
   return {
