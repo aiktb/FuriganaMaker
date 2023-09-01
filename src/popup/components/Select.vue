@@ -16,16 +16,8 @@ const emit = defineEmits<{
 }>()
 
 const display = ref(false)
-const displaySwitch = () => {
-  display.value = !display.value
-}
-
-const displayOff = () => {
-  display.value = false
-}
-
 const changeOption = (option: string) => {
-  displayOff()
+  display.value = false
   emit('update:modelValue', option)
   emit('change')
 }
@@ -33,7 +25,7 @@ const changeOption = (option: string) => {
 const select = ref<HTMLElement | null>(null)
 const { focused } = useFocusWithin(select)
 watch(focused, () => {
-  displayOff()
+  display.value = false
 })
 </script>
 
@@ -41,10 +33,10 @@ watch(focused, () => {
   <div
     class="select"
     ref="select"
-    v-on-click-outside="displayOff"
+    v-on-click-outside="() => (display = false)"
     :class="{ display: display }"
-    @keydown.enter="displaySwitch"
-    @pointerup="displaySwitch"
+    @keydown.enter="display = true"
+    @pointerup="display = true"
     tabindex="0"
   >
     {{ props.modelValue }}
