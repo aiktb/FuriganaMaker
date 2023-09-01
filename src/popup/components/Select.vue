@@ -1,5 +1,4 @@
 <script setup lang="ts">
-import { vOnClickOutside } from '@vueuse/components'
 import { useFocusWithin } from '@vueuse/core'
 import { ref, watch } from 'vue'
 
@@ -33,10 +32,9 @@ watch(focused, () => {
   <div
     class="select"
     ref="select"
-    v-on-click-outside="() => (display = false)"
     :class="{ display: display }"
-    @keydown.enter="display = true"
-    @pointerup="display = true"
+    @keydown.enter.self="display = !display"
+    @pointerup.self="display = !display"
     tabindex="0"
   >
     {{ props.modelValue }}
@@ -122,6 +120,9 @@ watch(focused, () => {
 .option:focus,
 .option:hover {
   background-color: var(--hover);
+}
+
+.option:focus {
   z-index: 1;
 }
 
