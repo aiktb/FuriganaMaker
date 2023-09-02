@@ -19,8 +19,8 @@ import PowerIcon from 'data-text:@Icons/Power.svg'
 
 import { Storage } from '@plasmohq/storage'
 
-import { CustomEvent, type Config } from '~contents/core'
-import type { ChangeEvent } from '~contents/core'
+import { CustomEvent } from '~contents/core'
+import type { ChangeEvent, Config } from '~contents/core'
 import MenuItem from '~popup/MenuItem.vue'
 
 const storage = new Storage({ area: 'local' })
