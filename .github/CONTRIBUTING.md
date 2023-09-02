@@ -1,4 +1,4 @@
-# FuriganaMaker Contributing Guide
+# Furigana Maker Contributing Guide
 
 Hi! We're Really excited that you are interested in contributing to FuriganaMaker. Before submitting your contribution, please make sure to take a moment and Read through the following guidelines:
 
@@ -23,7 +23,11 @@ Hi! We're Really excited that you are interested in contributing to FuriganaMake
 
 ## Development Setup
 
-You will need [pnpm](https://pnpm.io)
+You will need [pnpm](https://pnpm.io):
+
+```bash
+npm install -g pnpm
+```
 
 After cloning the repo, run:
 
@@ -39,4 +43,4 @@ $ pnpm install
 $ pnpm dev
 ```
 
-After executing the above command, visit chrome extensions page, and click `Load unpacked` button, then select the `build/*.dev` folder in the project root directory, and try modifying the source code. You'll get live update.
+After executing the above command, visit [chrome extensions page](chrome://extensions/), and click `Load unpacked` button, then select the `build/chrome-mv3-dev` folder in the project root directory, and try modifying the source code. You'll get live update.

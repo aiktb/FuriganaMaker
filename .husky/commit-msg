@@ -2,7 +2,7 @@
 . "$(dirname -- "$0")/_/husky.sh"
 
 message="$(cat $1)"
-requiredPattern="^(revert: )?(feat|fix|docs|style|refactor|workflow|perf|test|build|ci|chore|types)(\(.+\))?: .{1,50}"
+requiredPattern="^(feat|fix|website|style|refactor|perf|test|workflow|build|ci|chore|types)(\(.+\))?: .{1,50}"
 if ! [[ $message =~ $requiredPattern ]]; then
     echo "-"
     echo "-"
@@ -11,10 +11,10 @@ if ! [[ $message =~ $requiredPattern ]]; then
     echo "The commit message must have this format:"
     echo "<verb in imperative mood> <what was done>"
     echo "Allowed verbs in imperative mood: feat|fix|docs|style|refactor|workflow|perf|test|build|ci|chore|types"
-    echo "Example: feat(theme): add new feature"
+    echo "Example: feat(style): add new feature"
     echo "-"
     echo "Your commit message was:"
-    echo $message
+    echo "$message"
     echo "-"
     echo "For more information, check script in .husky/commit-msg"
     echo "-"

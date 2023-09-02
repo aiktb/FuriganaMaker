@@ -35,9 +35,10 @@ body:
       label: Validations
       description: Before submitting the issue, please make sure you do the following
       options:
-        - label: Check if you're on the ***latest Rea version***.
+        - label: Check if you're on the ***latest Furigana Maker version***.
           required: true
         - label: Follow our [Code of Conduct](https://www.contributor-covenant.org/version/1/4/code-of-conduct/)
           required: true
         - label: Check that there isn't already an issue that asks for the same feature to avoid creating a duplicate.
           required: true
+        - label: I would like to implement this feature via a PR.

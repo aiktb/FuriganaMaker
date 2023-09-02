@@ -30,13 +30,20 @@ body:
       placeholder: Expected behavior
     validations:
       required: true
-  - type: textarea
-    id: system-info
+  - type: select
+    id: browser
     attributes:
-      label: System Info
-      description: Output of `npx envinfo --system --npmPackages vitepress --binaries --browsers`
-      render: sh
-      placeholder: System, Binaries, Browsers
+      label: Browser
+      description: Select the browser you are using.
+      options:
+        - label: Chrome
+          value: chrome
+        - label: Firefox
+          value: firefox
+        - label: Safari
+          value: safari
+        - label: Edge
+          value: edge
     validations:
       required: true
   - type: textarea
@@ -50,7 +57,13 @@ body:
       label: Validations
       description: Before submitting the issue, please make sure you do the following
       options:
-        - label: Check if you're on the ***latest Rea version***.
+        - label: Check if you're on the ***latest Furigana Maker version***.
           required: true
         - label: Follow our [Code of Conduct](https://www.contributor-covenant.org/version/1/4/code-of-conduct/)
           required: true
+        - label: Check that there isn't [already an issue](https://github.com/aiktb/FuriganaMaker/issues) that asks for the same feature to avoid creating a duplicate.
+          required: true
+        - label: Read the [Contributing Guidelines](https://github.com/aiktb/FuriganaMaker/blob/main/.github/CONTRIBUTING.md).
+          required: true
+        - label: I would like to fix this BUG via a PR.
+          required: false
