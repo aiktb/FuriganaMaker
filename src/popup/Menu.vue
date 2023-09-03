@@ -64,12 +64,7 @@ const change = async (event: ExtensionEvent) => {
         <div v-html="CursorOutlineIcon" />
       </template>
       <template #content>
-        <Button
-          @pointerup="change(ExtensionEvent.Custom)"
-          @keyup.enter="change(ExtensionEvent.Custom)"
-        >
-          Add furigana
-        </Button>
+        <Button @click="change(ExtensionEvent.Custom)"> Add furigana </Button>
       </template>
       <template #tip> Press ESC to cancel </template>
     </MenuItem>
@@ -78,10 +73,7 @@ const change = async (event: ExtensionEvent) => {
         <div v-html="PowerIcon" />
       </template>
       <template #content>
-        <Button
-          @pointerup="change(ExtensionEvent.Display)"
-          @keyup.enter="change(ExtensionEvent.Display)"
-        >
+        <Button @click="change(ExtensionEvent.Display)">
           On-off extension
         </Button>
       </template>
@@ -92,12 +84,7 @@ const change = async (event: ExtensionEvent) => {
         <div v-html="EyeOffIcon" v-else />
       </template>
       <template #content>
-        <Button
-          @pointerup="change(ExtensionEvent.Hover)"
-          @keyup.enter="change(ExtensionEvent.Hover)"
-        >
-          Hover mode
-        </Button>
+        <Button @click="change(ExtensionEvent.Hover)"> Hover mode </Button>
       </template>
     </MenuItem>
     <MenuItem>

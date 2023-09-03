@@ -124,11 +124,7 @@ onMounted(() => {
 </script>
 
 <template>
-  <Button
-    @pointerup.self="display = !display"
-    @keydown.enter.self="display = !display"
-    ref="colorPicker"
-  >
+  <Button @click.self="display = !display" ref="colorPicker">
     Select color
     <Transition>
       <div
@@ -141,7 +137,7 @@ onMounted(() => {
           ref="shade"
           :style="{ backgroundColor: hueBarStyle.backgroundColor }"
         />
-        <div
+        <button
           class="shadeCursor cursor"
           tabindex="0"
           :style="shadeBarStyle"
@@ -150,9 +146,10 @@ onMounted(() => {
           @keydown.down="shadeY++"
           @keydown.left="shadeX--"
           @keydown.right="shadeX++"
+          @keyup.enter="update(input)"
         />
         <canvas class="hue" ref="hue" />
-        <div
+        <button
           class="hueCursor cursor"
           tabindex="0"
           :style="hueBarStyle"
@@ -161,34 +158,22 @@ onMounted(() => {
           @keydown.down="hueX++"
           @keydown.left="hueX--"
           @keydown.right="hueX++"
+          @keyup.enter="update(input)"
         />
         <div class="switcher">
-          <div
+          <button
             class="color"
             tabindex="0"
             v-for="color of colors"
             :style="{ backgroundColor: color }"
             :class="{ selected: tinycolor(color).toHexString() === input }"
-            @pointerup="colorToPosition(color)"
-            @keyup.enter="colorToPosition(color)"
+            @click="colorToPosition(color)"
           />
         </div>
         <div class="option">
           <input v-model="input" @change="colorToPosition(input)" />
-          <button
-            class="clear"
-            @pointerup="update('currentColor')"
-            @keyup.enter="update('currentColor')"
-          >
-            clear
-          </button>
-          <button
-            class="ok"
-            @pointerup="update(input)"
-            @keyup.enter="update(input)"
-          >
-            ok
-          </button>
+          <button class="clear" @click="update('currentColor')">clear</button>
+          <button class="ok" @click="update(input)">ok</button>
         </div>
       </div>
     </Transition>
@@ -249,6 +234,7 @@ onMounted(() => {
     inset 0 0 0.1rem 0.1rem #0006,
     0 0 0.1rem 0.1rem #0006;
   transition: all 250ms;
+  border: none;
 }
 
 .cursor:hover,
