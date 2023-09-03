@@ -1,23 +1,28 @@
 export const FURIGANA_CLASS = '--furigana--'
 
-export enum CustomEvent {
+export enum ExtensionEvent {
+  // The user starts selecting elements on the page that need to be marked.
   Custom = 'custom',
+  // To switch the furigana display of the page, use the display property of CSS.
   Display = 'display',
+  // Show furigana when pointer hovers over Japanese Kanji.
   Hover = 'hover',
+  // Switches the display type of furigana.
   Furigana = 'furigana',
+  // Select the type of text that can be copied.
   Select = 'select',
+  // Change the font size of furigana.
   Fontsize = 'fontsize',
+  // Change the font color of furigana.
   Color = 'color'
 }
 
 export type StyleEvent =
-  | CustomEvent.Display
-  | CustomEvent.Hover
-  | CustomEvent.Select
-  | CustomEvent.Fontsize
-  | CustomEvent.Color
-
-export type ChangeEvent = StyleEvent | CustomEvent.Furigana
+  | ExtensionEvent.Display
+  | ExtensionEvent.Hover
+  | ExtensionEvent.Select
+  | ExtensionEvent.Fontsize
+  | ExtensionEvent.Color
 
 export type Config = {
   [key: string]: string | number | boolean

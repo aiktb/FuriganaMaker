@@ -19,50 +19,41 @@ import PowerIcon from 'data-text:@Icons/Power.svg'
 
 import { Storage } from '@plasmohq/storage'
 
-import { CustomEvent } from '~contents/core'
-import type { ChangeEvent, Config } from '~contents/core'
+import { ExtensionEvent, type Config } from '~contents/core'
 import MenuItem from '~popup/MenuItem.vue'
 
 const storage = new Storage({ area: 'local' })
 // Top-level await makes this component asynchronous.
 // Vue3 doc: Not recommended to use the generic argument of reactive().
 const option: Config = reactive({
-  display: await storage.get(CustomEvent.Display),
-  hover: await storage.get(CustomEvent.Hover),
-  furigana: await storage.get(CustomEvent.Furigana),
-  select: await storage.get(CustomEvent.Select),
-  fontsize: await storage.get(CustomEvent.Fontsize),
-  color: await storage.get(CustomEvent.Color)
+  display: await storage.get(ExtensionEvent.Display),
+  hover: await storage.get(ExtensionEvent.Hover),
+  furigana: await storage.get(ExtensionEvent.Furigana),
+  select: await storage.get(ExtensionEvent.Select),
+  fontsize: await storage.get(ExtensionEvent.Fontsize),
+  color: await storage.get(ExtensionEvent.Color)
 })
 
-const changeEvent = async (event: ChangeEvent) => {
-  const value = option[event]
-  await storage.set(event, value)
+const change = async (event: ExtensionEvent) => {
+  switch (event) {
+    case ExtensionEvent.Custom:
+      break
+    case ExtensionEvent.Display:
+    case ExtensionEvent.Hover:
+      option[event] = !option[event]
+      await storage.set(event, option[event])
+      break
+    default:
+      await storage.set(event, option[event])
+  }
+  // 'url' parameter requires 'tab' permission, calling in popup can be replaced by 'activeTab'.
   const tabs = await chrome.tabs.query({
     active: true,
-    currentWindow: true,
     url: 'https://*/*'
   })
   for (const tab of tabs) {
     await chrome.tabs.sendMessage(tab.id!, event)
   }
-}
-
-const customEvent = async () => {
-  const tabs = await chrome.tabs.query({ active: true, currentWindow: true })
-  for (const tab of tabs) {
-    await chrome.tabs.sendMessage(tab.id!, CustomEvent.Custom)
-  }
-}
-
-const switchPower = () => {
-  option.display = !option.display
-  changeEvent(CustomEvent.Display)
-}
-
-const switchHoverMode = () => {
-  option.hover = !option.hover
-  changeEvent(CustomEvent.Hover)
 }
 </script>
 
@@ -73,7 +64,10 @@ const switchHoverMode = () => {
         <div v-html="CursorOutlineIcon" />
       </template>
       <template #content>
-        <Button @pointerup="customEvent" @keyup.enter="customEvent">
+        <Button
+          @pointerup="change(ExtensionEvent.Custom)"
+          @keyup.enter="change(ExtensionEvent.Custom)"
+        >
           Add furigana
         </Button>
       </template>
@@ -84,7 +78,10 @@ const switchHoverMode = () => {
         <div v-html="PowerIcon" />
       </template>
       <template #content>
-        <Button @pointerup="switchPower" @keyup.enter="switchPower">
+        <Button
+          @pointerup="change(ExtensionEvent.Display)"
+          @keyup.enter="change(ExtensionEvent.Display)"
+        >
           On-off extension
         </Button>
       </template>
@@ -95,7 +92,10 @@ const switchHoverMode = () => {
         <div v-html="EyeOffIcon" v-else />
       </template>
       <template #content>
-        <Button @pointerup="switchHoverMode" @keyup.enter="switchHoverMode">
+        <Button
+          @pointerup="change(ExtensionEvent.Hover)"
+          @keyup.enter="change(ExtensionEvent.Hover)"
+        >
           Hover mode
         </Button>
       </template>
@@ -108,7 +108,7 @@ const switchHoverMode = () => {
         <Select
           :options="['hiragana', 'katakana', 'romaji']"
           v-model="option.furigana"
-          @change="changeEvent(CustomEvent.Furigana)"
+          @change="change(ExtensionEvent.Furigana)"
         />
       </template>
     </MenuItem>
@@ -120,7 +120,7 @@ const switchHoverMode = () => {
         <Select
           :options="['original', 'furigana', 'all']"
           v-model="option.select"
-          @change="changeEvent(CustomEvent.Select)"
+          @change="change(ExtensionEvent.Select)"
         />
       </template>
     </MenuItem>
@@ -133,7 +133,7 @@ const switchHoverMode = () => {
           v-model="option.fontsize"
           :min="50"
           :max="100"
-          @change="changeEvent(CustomEvent.Fontsize)"
+          @change="change(ExtensionEvent.Fontsize)"
         />
       </template>
     </MenuItem>
@@ -144,7 +144,7 @@ const switchHoverMode = () => {
       <template #content>
         <ColorPicker
           v-model="option.color"
-          @change="changeEvent(CustomEvent.Color)"
+          @change="change(ExtensionEvent.Color)"
         />
       </template>
     </MenuItem>
