@@ -3,7 +3,7 @@ import { toHiragana, toKatakana, toRomaji } from 'wanakana'
 
 import { Storage } from '@plasmohq/storage'
 
-import { CustomEvent, FURIGANA_CLASS, type StyleEvent } from '~contents/core'
+import { ExtensionEvent, FURIGANA_CLASS, type StyleEvent } from '~contents/core'
 import { Selector } from '~contents/customSelector'
 import { addFurigana } from '~contents/furiganaMaker'
 
@@ -16,21 +16,21 @@ export const config: PlasmoCSConfig = {
 // so it needs to be initialized immediately.
 const storage = new Storage({ area: 'local' })
 const styleEvents: StyleEvent[] = [
-  CustomEvent.Display,
-  CustomEvent.Hover,
-  CustomEvent.Select,
-  CustomEvent.Fontsize,
-  CustomEvent.Color
+  ExtensionEvent.Display,
+  ExtensionEvent.Hover,
+  ExtensionEvent.Select,
+  ExtensionEvent.Fontsize,
+  ExtensionEvent.Color
 ]
 styleEvents.forEach(styleHandler)
 
 // The plasmo Storage watch API could be used instead, but is not necessary.
-chrome.runtime.onMessage.addListener((event: CustomEvent) => {
+chrome.runtime.onMessage.addListener((event: ExtensionEvent) => {
   switch (event) {
-    case CustomEvent.Furigana:
+    case ExtensionEvent.Furigana:
       furiganaHandler()
       break
-    case CustomEvent.Custom:
+    case ExtensionEvent.Custom:
       customHandler()
       break
     default:
@@ -40,7 +40,7 @@ chrome.runtime.onMessage.addListener((event: CustomEvent) => {
 })
 
 const furiganaHandler = async () => {
-  const value = await storage.get(CustomEvent.Furigana)
+  const value = await storage.get(ExtensionEvent.Furigana)
   const nodes = document.querySelectorAll(rtSelector)
   switch (value) {
     case 'hiragana':
@@ -87,13 +87,13 @@ async function styleHandler(type: StyleEvent) {
   const value = await storage.get(type)
   let css: string
   switch (type) {
-    case CustomEvent.Display:
+    case ExtensionEvent.Display:
       css = `
         ${rtSelector} {
           display: ${value ? 'block' : 'none'};
         }`
       break
-    case CustomEvent.Hover:
+    case ExtensionEvent.Hover:
       css = `
         ${rtSelector} {
           opacity: ${value ? 0 : 1};
@@ -104,7 +104,7 @@ async function styleHandler(type: StyleEvent) {
         }
       `
       break
-    case CustomEvent.Select:
+    case ExtensionEvent.Select:
       css = `
         ${furiganaSelector} {
           user-select: ${value === 'furigana' ? 'none' : 'text'};
@@ -120,14 +120,14 @@ async function styleHandler(type: StyleEvent) {
           left: -10000px;
         }`
       break
-    case CustomEvent.Fontsize:
+    case ExtensionEvent.Fontsize:
       css = `
           ${rtSelector} {
             font-size: ${value}%;
           }`
       break
     // <ruby> color will be passed to <rt>, so no control logic for <ruby> color will be added.
-    case CustomEvent.Color:
+    case ExtensionEvent.Color:
       css = `
         ${rtSelector} {
           color: ${value};
