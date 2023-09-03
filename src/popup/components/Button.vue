@@ -1,7 +1,7 @@
 <template>
-  <div class="button" tabindex="0">
+  <button class="button" tabindex="0">
     <slot name="default" />
-  </div>
+  </button>
 </template>
 
 <style scoped>
@@ -12,5 +12,9 @@
   border-radius: 0.3rem;
   display: flex;
   align-items: center;
+  background-color: transparent;
+  color: var(--font);
+  border: none;
+  width: 100%;
 }
 </style>

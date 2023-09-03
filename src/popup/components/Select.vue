@@ -29,34 +29,40 @@ watch(focused, () => {
 </script>
 
 <template>
-  <div
+  <button
     class="select"
     ref="select"
     :class="{ display: display }"
-    @keydown.enter.self="display = !display"
-    @pointerup.self="display = !display"
+    @click.self="display = !display"
     tabindex="0"
   >
     {{ props.modelValue }}
     <div v-html="DownIcon" class="selectIcon" />
     <Transition>
       <div class="panel" v-if="display">
-        <div
+        <button
           class="option"
           tabindex="0"
           v-for="option of props.options"
           :class="{ selected: option === props.modelValue }"
-          @keydown.enter="changeOption(option)"
-          @pointerup="changeOption(option)"
+          @click="changeOption(option)"
         >
           {{ option }}
-        </div>
+        </button>
       </div>
     </Transition>
-  </div>
+  </button>
 </template>
 
 <style scoped>
+button {
+  background-color: transparent;
+  border: none;
+  color: currentColor;
+  width: 100%;
+  cursor: pointer;
+}
+
 .select {
   position: relative;
   cursor: pointer;
