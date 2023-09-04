@@ -35,16 +35,8 @@ const option: Config = reactive({
 })
 
 const change = async (event: ExtensionEvent) => {
-  switch (event) {
-    case ExtensionEvent.Custom:
-      break
-    case ExtensionEvent.Display:
-    case ExtensionEvent.Hover:
-      option[event] = !option[event]
-      await storage.set(event, option[event])
-      break
-    default:
-      await storage.set(event, option[event])
+  if (event !== ExtensionEvent.Custom) {
+    await storage.set(event, option[event])
   }
   // 'url' parameter requires 'tab' permission, calling in popup can be replaced by 'activeTab'.
   const tabs = await chrome.tabs.query({
@@ -73,7 +65,10 @@ const change = async (event: ExtensionEvent) => {
         <div v-html="PowerIcon" />
       </template>
       <template #content>
-        <Button @click="change(ExtensionEvent.Display)">
+        <Button
+          v-model="option.display"
+          @change="change(ExtensionEvent.Display)"
+        >
           On-off extension
         </Button>
       </template>
@@ -84,7 +79,9 @@ const change = async (event: ExtensionEvent) => {
         <div v-html="EyeOffIcon" v-else />
       </template>
       <template #content>
-        <Button @click="change(ExtensionEvent.Hover)"> Hover mode </Button>
+        <Button v-model="option.hover" @change="change(ExtensionEvent.Hover)">
+          Hover mode
+        </Button>
       </template>
     </MenuItem>
     <MenuItem>
