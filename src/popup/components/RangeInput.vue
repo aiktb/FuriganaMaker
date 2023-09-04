@@ -1,5 +1,4 @@
 <script setup lang="ts">
-import { useClamp } from '@Composables/useClamp'
 import { useDraggable } from '@Composables/useDraggable'
 import { useElementBounding } from '@vueuse/core'
 import { computed, onMounted, ref } from 'vue'
@@ -26,9 +25,8 @@ const update = () => {
 
 const track = ref<HTMLElement | null>(null)
 const thumb = ref<HTMLElement | null>(null)
-const { left, right, top, width, height } = useElementBounding(track)
-const { x: useX } = useDraggable(thumb, track, update)
-const x = useClamp(useX, left, right)
+const { left, top, width, height } = useElementBounding(track)
+const { x } = useDraggable(thumb, track, update)
 const style = computed(() => {
   return {
     left: `${x.value}px`,
