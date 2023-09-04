@@ -1,5 +1,4 @@
 <script setup lang="ts">
-import { useClamp } from '@Composables/useClamp'
 import { useDraggable } from '@Composables/useDraggable'
 import { useElementBounding, useFocusWithin } from '@vueuse/core'
 import tinycolor from 'tinycolor2'
@@ -38,13 +37,11 @@ const hue = ref<HTMLCanvasElement | null>(null)
 const hueCursor = ref<HTMLElement | null>(null)
 const {
   left: hueLeft,
-  right: hueRight,
   top: hueTop,
   width: hueWidth,
   height: hueHeight
 } = useElementBounding(hue)
-const { x: useHueX } = useDraggable(hueCursor, hue)
-const hueX = useClamp(useHueX, hueLeft, hueRight)
+const { x: hueX } = useDraggable(hueCursor, hue)
 const hueBarStyle = computed(() => {
   return {
     left: `${hueX.value}px`,
@@ -57,15 +54,11 @@ const shade = ref<HTMLCanvasElement | null>(null)
 const shadeCursor = ref<HTMLElement | null>(null)
 const {
   left: shadeLeft,
-  right: shadeRight,
   top: shadeTop,
-  bottom: shadeBottom,
   width: shadeWidth,
   height: shadeHeight
 } = useElementBounding(shade)
-const { x: useShadeX, y: useShadeY } = useDraggable(shadeCursor, shade)
-const shadeX = useClamp(useShadeX, shadeLeft, shadeRight)
-const shadeY = useClamp(useShadeY, shadeTop, shadeBottom)
+const { x: shadeX, y: shadeY } = useDraggable(shadeCursor, shade)
 const shadeBarStyle = computed(() => {
   return {
     left: `${shadeX.value}px`,

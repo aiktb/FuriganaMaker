@@ -1,8 +1,9 @@
-import { useEventListener } from '@vueuse/core'
+import { useElementBounding, useEventListener } from '@vueuse/core'
 import { ref, type Ref } from 'vue'
 
 /**
- * @remark Need to be used with 'position: fixed;' & '@Composables/useClamp'.
+ * Confine `target` to `container`, click `container` or drag `target` to move `target`.
+ * @remark Need to be used with 'position: fixed;'.
  */
 export const useDraggable = (
   target: Ref<HTMLElement | null>,
@@ -12,7 +13,7 @@ export const useDraggable = (
   const x = ref(0)
   const y = ref(0)
   const pressed = ref(false)
-
+  const { left, right, top, bottom } = useElementBounding(container)
   const targetStart = (event: PointerEvent) => {
     pressed.value = true
     target.value?.setPointerCapture(event.pointerId)
@@ -27,8 +28,8 @@ export const useDraggable = (
 
   const move = (event: PointerEvent) => {
     if (pressed.value) {
-      x.value = event.clientX
-      y.value = event.clientY
+      x.value = Math.min(Math.max(event.clientX, left.value), right.value)
+      y.value = Math.min(Math.max(event.clientY, top.value), bottom.value)
     }
   }
 
