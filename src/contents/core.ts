@@ -2,6 +2,7 @@ export const FURIGANA_CLASS = '--furigana--'
 
 export enum ExtensionEvent {
   // The user starts selecting elements on the page that need to be marked.
+  // This event does not require Storage.
   Custom = 'custom',
   // To switch the furigana display of the page, use the display property of CSS.
   Display = 'display',
@@ -10,6 +11,7 @@ export enum ExtensionEvent {
   // Switches the display type of furigana.
   Furigana = 'furigana',
   // Select the type of text that can be copied.
+  // This event does not require Storage.
   Select = 'select',
   // Change the font size of furigana.
   Fontsize = 'fontsize',
