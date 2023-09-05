@@ -61,12 +61,12 @@ button {
   color: currentColor;
   width: 100%;
   cursor: pointer;
+  text-transform: capitalize;
 }
 
 .select {
   position: relative;
   cursor: pointer;
-  text-transform: capitalize;
   height: 1.5rem;
   padding: 0 0.5rem;
   border-radius: 0.3rem;
