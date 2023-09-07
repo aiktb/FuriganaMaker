@@ -51,7 +51,7 @@ const change = async (event: ExtensionEvent) => {
 
 <template>
   <div class="menu">
-    <MenuItem tip first>
+    <MenuItem tip>
       <template #icon>
         <div v-html="CursorOutlineIcon" />
       </template>
