@@ -12,12 +12,12 @@ Special thanks to **_[plasmo](https://github.com/PlasmoHQ/plasmo)_** for taking 
 
 ## Features
 
+- [x] Local Japanese kanji parsing engine (no network required).
 - [x] Customize the pages and regions that need to add furigana.
 - [x] Freely modify the font size and color of furigana.
 - [x] When selected, furigana can be included in the text in parentheses.
 - [x] Optionally show furigana only on hover state.
 - [ ] Configurable default pages and regions for adding furigana.
-- [ ] Local Japanese kanji parsing engine (no network required).
 
 ## Inspired By
 
