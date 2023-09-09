@@ -4,7 +4,7 @@ import { isKanji, toKatakana } from 'wanakana'
 export type MojiToken = {
   word_position: number // Indexes start from 1
   surface_form: string
-  reading: string // Katakana only
+  reading?: string | undefined // Katakana only
 }
 
 // It's not just kanji, such as "市ヶ谷" (イチガヤ), "我々" (ワレワレ).
@@ -45,7 +45,7 @@ interface SimplifiedToken {
 const toSimplifiedToken = (kuromojiToken: MojiToken): SimplifiedToken => {
   return {
     original: kuromojiToken.surface_form,
-    reading: kuromojiToken.reading,
+    reading: kuromojiToken.reading!,
     start: kuromojiToken.word_position - 1,
     end: kuromojiToken.word_position - 1 + kuromojiToken.surface_form.length
   }
