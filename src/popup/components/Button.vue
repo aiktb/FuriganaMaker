@@ -22,7 +22,7 @@ const change = () => {
 </script>
 
 <template>
-  <button class="button" tabindex="0" @click="change">
+  <button class="button" @click="change">
     <slot name="default" />
   </button>
 </template>
