@@ -61,7 +61,7 @@ const tokenize = async (text: string): Promise<KanjiToken[]> => {
   const response = await sendToBackground<
     { text: string },
     { message: MojiToken[] }
-  >({ name: 'fetchKuromoji', body: { text } })
+  >({ name: 'tokenizer', body: { text } })
   return toKanjiToken(response.message)
 }
 
