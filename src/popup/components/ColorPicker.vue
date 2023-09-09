@@ -132,7 +132,6 @@ onMounted(() => {
         />
         <button
           class="shadeCursor cursor"
-          tabindex="0"
           :style="shadeBarStyle"
           ref="shadeCursor"
           @keydown.up="shadeY--"
@@ -144,7 +143,6 @@ onMounted(() => {
         <canvas class="hue" ref="hue" />
         <button
           class="hueCursor cursor"
-          tabindex="0"
           :style="hueBarStyle"
           ref="hueCursor"
           @keydown.up="hueX--"
@@ -156,7 +154,6 @@ onMounted(() => {
         <div class="switcher">
           <button
             class="color"
-            tabindex="0"
             v-for="color of colors"
             :style="{ backgroundColor: color }"
             :class="{ selected: tinycolor(color).toHexString() === input }"

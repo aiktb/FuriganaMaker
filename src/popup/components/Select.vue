@@ -34,7 +34,6 @@ watch(focused, () => {
     ref="select"
     :class="{ display: display }"
     @click.self="display = !display"
-    tabindex="0"
   >
     {{ props.modelValue }}
     <div v-html="DownIcon" class="selectIcon" />
@@ -42,7 +41,6 @@ watch(focused, () => {
       <div class="panel" v-if="display">
         <button
           class="option"
-          tabindex="0"
           v-for="option of props.options"
           :class="{ selected: option === props.modelValue }"
           @click="changeOption(option)"
