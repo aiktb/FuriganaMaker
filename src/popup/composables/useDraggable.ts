@@ -4,16 +4,19 @@ import { ref, type Ref } from 'vue'
 /**
  * Confine `target` to `container`, click `container` or drag `target` to move `target`.
  * @remark Need to be used with 'position: fixed;'.
+ * @remark This composable item does not have the ability to set normal initial values before mounting,
+ * and needs to be manually set in the `onMounted` hook.
  */
 export const useDraggable = (
   target: Ref<HTMLElement | null>,
   container: Ref<HTMLElement | null>,
   onEnd?: () => void
 ) => {
-  const x = ref(0)
-  const y = ref(0)
-  const pressed = ref(false)
+  // These values are all 0 before the component is mounted.
   const { left, right, top, bottom } = useElementBounding(container)
+  const x = ref(left.value)
+  const y = ref(right.value)
+  const pressed = ref(false)
   const targetStart = (event: PointerEvent) => {
     pressed.value = true
     target.value?.setPointerCapture(event.pointerId)
