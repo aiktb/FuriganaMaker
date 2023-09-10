@@ -1,0 +1,62 @@
+<script setup lang="ts">
+import { ref } from 'vue'
+
+import Button from '@Components/Button.vue'
+import ColorPicker from '@Components/ColorPicker.vue'
+
+const props = defineProps<{
+  modelValue: string
+}>()
+
+const emit = defineEmits<{
+  'update:modelValue': [modelValue: string]
+  change: []
+}>()
+
+const display = ref(false)
+const color = ref(props.modelValue)
+const change = () => {
+  display.value = false
+  emit('update:modelValue', color.value)
+  emit('change')
+}
+</script>
+
+<template>
+  <Button class="colorButton" @click.self="display = true">
+    Select color
+    <div class="colorIdentify" />
+    <Transition>
+      <ColorPicker v-model="color" v-if="display" @switchDisplay="change" />
+    </Transition>
+  </Button>
+</template>
+
+<style scoped>
+.colorButton {
+  justify-content: space-between;
+}
+
+.colorIdentify {
+  display: none;
+  width: 0.7rem;
+  height: 0.7rem;
+  border-radius: 50%;
+  background-color: v-bind('props.modelValue');
+}
+
+.colorButton:hover .colorIdentify,
+.colorButton:focus-within .colorIdentify {
+  display: block;
+}
+
+.v-enter-active,
+.v-leave-active {
+  transition: opacity 0.5s ease;
+}
+
+.v-enter-from,
+.v-leave-to {
+  opacity: 0;
+}
+</style>

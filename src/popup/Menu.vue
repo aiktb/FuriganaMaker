@@ -2,7 +2,7 @@
 import { reactive } from 'vue'
 
 import Button from '@Components/Button.vue'
-import ColorPicker from '@Components/ColorPicker.vue'
+import ColorButton from '@Components/ColorButton.vue'
 import Link from '@Components/Link.vue'
 import RangeInput from '@Components/RangeInput.vue'
 import Select from '@Components/Select.vue'
@@ -126,7 +126,7 @@ const change = async (event: ExtensionEvent) => {
         <div v-html="ColorPickerIcon" />
       </template>
       <template #content>
-        <ColorPicker
+        <ColorButton
           v-model="option.color"
           @change="change(ExtensionEvent.Color)"
         />

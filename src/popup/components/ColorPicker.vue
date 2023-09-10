@@ -1,10 +1,8 @@
 <script setup lang="ts">
 import { useDraggable } from '@Composables/useDraggable'
-import { useElementBounding, useFocusWithin } from '@vueuse/core'
+import { useElementBounding } from '@vueuse/core'
 import tinycolor from 'tinycolor2'
 import { computed, onMounted, ref, watch } from 'vue'
-
-import Button from '@Components/Button.vue'
 
 const props = defineProps<{
   modelValue: string
@@ -12,20 +10,13 @@ const props = defineProps<{
 
 const emit = defineEmits<{
   'update:modelValue': [modelValue: string]
-  change: []
+  switchDisplay: []
 }>()
 
-const display = ref(false)
 const update = (color: string) => {
   emit('update:modelValue', color)
-  emit('change')
-  display.value = false
+  emit('switchDisplay')
 }
-const colorPicker = ref<HTMLElement | null>(null)
-const { focused } = useFocusWithin(colorPicker)
-watch(focused, () => {
-  display.value = false
-})
 
 // prettier-ignore
 const colors = [
@@ -81,12 +72,15 @@ watch(hsv, (hsv) => {
 })
 
 const colorToPosition = (color: string) => {
-  const isValid = tinycolor(color).isValid()
-  if (isValid) {
+  if (tinycolor(color).isValid()) {
     const hsv = tinycolor(color).toHsv()
     hueX.value = hueWidth.value * (hsv.h / 360) + hueLeft.value
     shadeX.value = shadeWidth.value * hsv.s + shadeLeft.value
     shadeY.value = shadeHeight.value * (1 - hsv.v) + shadeTop.value
+  } else if (color === 'currentColor') {
+    hueX.value = hueLeft.value
+    shadeX.value = shadeLeft.value
+    shadeY.value = shadeTop.value
   }
 }
 
@@ -113,76 +107,64 @@ onMounted(() => {
   shadeCtx.fillRect(0, 0, shadeCanvas.width, shadeCanvas.height)
   shadeCtx.fillStyle = blackGradient
   shadeCtx.fillRect(0, 0, shadeCanvas.width, shadeCanvas.height)
+
+  colorToPosition(props.modelValue)
 })
 </script>
 
 <template>
-  <Button @click.self="display = !display" ref="colorPicker">
-    Select color
-    <Transition>
-      <div
-        class="panel"
-        v-show="display"
-        @transitionstart.self="colorToPosition(props.modelValue)"
+  <div class="panel">
+    <canvas
+      class="shade"
+      ref="shade"
+      :style="{ backgroundColor: hueBarStyle.backgroundColor }"
+    />
+    <button
+      class="shadeCursor cursor"
+      :style="shadeBarStyle"
+      ref="shadeCursor"
+      @keydown.shift.tab="$emit('switchDisplay')"
+      @keydown.up="shadeY--"
+      @keydown.down="shadeY++"
+      @keydown.left="shadeX--"
+      @keydown.right="shadeX++"
+      @keyup.enter="update(input)"
+    />
+    <canvas class="hue" ref="hue" />
+    <button
+      class="hueCursor cursor"
+      :style="hueBarStyle"
+      ref="hueCursor"
+      @keydown.up="hueX--"
+      @keydown.down="hueX++"
+      @keydown.left="hueX--"
+      @keydown.right="hueX++"
+      @keyup.enter="update(input)"
+    />
+    <div class="switcher">
+      <button
+        class="color"
+        v-for="color of colors"
+        :style="{ backgroundColor: color }"
+        :class="{ selected: tinycolor(color).toHexString() === input }"
+        @click="colorToPosition(color)"
+      />
+    </div>
+    <div class="option">
+      <input v-model="input" @change="colorToPosition(input)" />
+      <button class="clear" @click="update('currentColor')">clear</button>
+      <button
+        class="ok"
+        @click="update(input)"
+        @keydown.tab="$emit('switchDisplay')"
       >
-        <canvas
-          class="shade"
-          ref="shade"
-          :style="{ backgroundColor: hueBarStyle.backgroundColor }"
-        />
-        <button
-          class="shadeCursor cursor"
-          :style="shadeBarStyle"
-          ref="shadeCursor"
-          @keydown.up="shadeY--"
-          @keydown.down="shadeY++"
-          @keydown.left="shadeX--"
-          @keydown.right="shadeX++"
-          @keyup.enter="update(input)"
-        />
-        <canvas class="hue" ref="hue" />
-        <button
-          class="hueCursor cursor"
-          :style="hueBarStyle"
-          ref="hueCursor"
-          @keydown.up="hueX--"
-          @keydown.down="hueX++"
-          @keydown.left="hueX--"
-          @keydown.right="hueX++"
-          @keyup.enter="update(input)"
-        />
-        <div class="switcher">
-          <button
-            class="color"
-            v-for="color of colors"
-            :style="{ backgroundColor: color }"
-            :class="{ selected: tinycolor(color).toHexString() === input }"
-            @click="colorToPosition(color)"
-          />
-        </div>
-        <div class="option">
-          <input v-model="input" @change="colorToPosition(input)" />
-          <button class="clear" @click="update('currentColor')">clear</button>
-          <button class="ok" @click="update(input)">ok</button>
-        </div>
-      </div>
-    </Transition>
-  </Button>
+        ok
+      </button>
+    </div>
+  </div>
 </template>
 
 <style scoped>
-.button:hover::after,
-.button:focus-within::after {
-  display: block;
-  content: '';
-  position: absolute;
-  right: 0.5rem;
-  width: 0.7rem;
-  height: 0.7rem;
-  border-radius: 50%;
-  background-color: v-bind('props.modelValue');
-}
-
 .panel {
   position: fixed;
   width: 100%;
@@ -318,15 +300,5 @@ onMounted(() => {
   border-color: var(--feature);
   color: var(--feature);
   outline: none;
-}
-
-.v-enter-active,
-.v-leave-active {
-  transition: opacity 0.5s ease;
-}
-
-.v-enter-from,
-.v-leave-to {
-  opacity: 0;
 }
 </style>
