@@ -30,9 +30,8 @@ const getTokenizer = () => {
   }
   isLoading = true
   const builder = kuromoji.builder({
-    // This function relies on web_accessible_resources, and the effect is very strange.
-    // I don’t understand why for the time being.
-    dicPath: chrome.runtime.getURL('../assets/dict')
+    // This function relies on web_accessible_resources.
+    dicPath: '../../assets/dict'
   })
   builder.build((err: undefined | Error, tokenizer: Tokenizer) => {
     if (err) {
