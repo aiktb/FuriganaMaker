@@ -1,3 +1,4 @@
+// @ts-ignore
 import kuromoji from '@sglkc/kuromoji'
 
 import type { PlasmoMessaging } from '@plasmohq/messaging'
