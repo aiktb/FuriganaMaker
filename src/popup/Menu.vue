@@ -1,5 +1,6 @@
 <script setup lang="ts">
 import { reactive } from 'vue'
+import Browser from 'webextension-polyfill'
 
 import Button from '@Components/Button.vue'
 import ColorButton from '@Components/ColorButton.vue'
@@ -38,11 +39,9 @@ const change = async (event: ExtensionEvent) => {
   if (event !== ExtensionEvent.Custom) {
     await storage.set(event, option[event])
   }
-  // 'url' parameter requires 'tab' permission, calling in popup can be replaced by 'activeTab'.
-  const tabs = await chrome.tabs.query({
-    active: true,
-    url: 'https://*/*'
-  })
+  // 'url' parameter requires 'tabs' or 'activeTab' permission.
+  // `chrome.tabs.query` is not compatible with firefox.
+  const tabs = await Browser.tabs.query({ url: 'https://*/*' })
   for (const tab of tabs) {
     await chrome.tabs.sendMessage(tab.id!, event)
   }
