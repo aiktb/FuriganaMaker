@@ -14,8 +14,8 @@ import CursorOutlineIcon from 'data-text:@Icons/CursorOutline.svg'
 import CursorTextIcon from 'data-text:@Icons/CursorText.svg'
 import EyeIcon from 'data-text:@Icons/Eye.svg'
 import EyeOffIcon from 'data-text:@Icons/EyeOff.svg'
-import FeedbackIcon from 'data-text:@Icons/Feedback.svg'
 import FontSizeIcon from 'data-text:@Icons/FontSize.svg'
+import GithubIcon from 'data-text:@Icons/Github.svg'
 import HiraganaIcon from 'data-text:@Icons/Hiragana.svg'
 import PowerIcon from 'data-text:@Icons/Power.svg'
 
@@ -143,7 +143,7 @@ if (!isFirefox) {
     </MenuItem>
     <MenuItem tip>
       <template #icon>
-        <div v-html="FeedbackIcon" />
+        <div v-html="GithubIcon" />
       </template>
       <template #content>
         <Link link="https://github.com/aiktb/FuriganaMaker/issues">
