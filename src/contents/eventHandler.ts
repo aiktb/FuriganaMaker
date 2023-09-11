@@ -90,7 +90,7 @@ async function styleHandler(type: StyleEvent) {
     case ExtensionEvent.Display:
       css = `
         ${rtSelector} {
-          display: ${value ? 'block' : 'none'};
+          display: ${value ? 'revert' : 'none'};
         }`
       break
     case ExtensionEvent.Hover:
