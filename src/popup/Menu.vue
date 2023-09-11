@@ -1,4 +1,5 @@
 <script setup lang="ts">
+import { detect } from 'detect-browser'
 import { reactive } from 'vue'
 import Browser from 'webextension-polyfill'
 
@@ -46,6 +47,15 @@ const change = async (event: ExtensionEvent) => {
     await chrome.tabs.sendMessage(tab.id!, event)
   }
 }
+
+const furiganaOptions = ['hiragana', 'katakana', 'romaji']
+const selectOptions = ['original', 'furigana']
+// The copy behavior of the ruby tag in Firefox and Chrome is very different when selected.
+// It is very difficult to implement 'all' mode in Firefox.
+const isFirefox = detect()?.name === 'firefox'
+if (!isFirefox) {
+  selectOptions.push('all')
+}
 </script>
 
 <template>
@@ -89,7 +99,7 @@ const change = async (event: ExtensionEvent) => {
       </template>
       <template #content>
         <Select
-          :options="['hiragana', 'katakana', 'romaji']"
+          :options="furiganaOptions"
           v-model="option.furigana"
           @change="change(ExtensionEvent.Furigana)"
         />
@@ -101,7 +111,7 @@ const change = async (event: ExtensionEvent) => {
       </template>
       <template #content>
         <Select
-          :options="['original', 'furigana', 'all']"
+          :options="selectOptions"
           v-model="option.select"
           @change="change(ExtensionEvent.Select)"
         />
