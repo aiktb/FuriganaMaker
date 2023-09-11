@@ -30,22 +30,27 @@ body:
       placeholder: Expected behavior
     validations:
       required: true
-  - type: select
+  - type: dropdown
     id: browser
     attributes:
       label: Browser
       description: Select the browser you are using.
       options:
-        - label: Chrome
-          value: chrome
-        - label: Firefox
-          value: firefox
-        - label: Safari
-          value: safari
-        - label: Edge
-          value: edge
+        - chrome
+        - firefox
+        - safari
+        - edge
     validations:
       required: true
+  - type: textarea
+    id: system-info
+    attributes:
+      label: System Info
+      description: Output of `npx envinfo --system --binaries --browsers`
+      render: Shell
+      placeholder: System, Binaries, Browsers
+    validations:
+      required: false
   - type: textarea
     id: additional-context
     attributes:
