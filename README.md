@@ -19,6 +19,10 @@ Special thanks to **_[plasmo](https://github.com/PlasmoHQ/plasmo)_** for taking 
 - [x] Optionally show furigana only on hover state.
 - [ ] Configurable default pages and regions for adding furigana.
 
+## Contribution
+
+Please make sure to read the [Contributing Guide](https://github.com/aiktb/FuriganaMaker/blob/main/.github/CONTRIBUTING.md) before making a pull request.
+
 ## Inspired By
 
 - [Mirigana](https://chrome.google.com/webstore/detail/mirigana/hbekfodhcnfpkmoeaijgbamedofonjib)
