@@ -81,6 +81,9 @@ button {
 
 .selectIcon {
   display: none;
+}
+
+.selectIcon :deep(svg) {
   color: var(--feature);
   width: 1rem;
   height: auto;
