@@ -64,7 +64,6 @@ const furiganaHandler = async () => {
 const customHandler = () => {
   const selector = Selector.create()
   selector.open()
-  console.log('customHandler')
   const selectHandler = (event: KeyboardEvent) => {
     if (event.key === 'Escape') {
       selector.close()
