@@ -1,5 +1,6 @@
 import type { PlasmoCSConfig } from 'plasmo'
 import { toHiragana, toKatakana, toRomaji } from 'wanakana'
+import Browser from 'webextension-polyfill'
 
 import { Storage } from '@plasmohq/storage'
 
@@ -25,7 +26,7 @@ const styleEvents: StyleEvent[] = [
 styleEvents.forEach(styleHandler)
 
 // The plasmo Storage watch API could be used instead, but is not necessary.
-chrome.runtime.onMessage.addListener((event: ExtensionEvent) => {
+Browser.runtime.onMessage.addListener((event: ExtensionEvent) => {
   switch (event) {
     case ExtensionEvent.Furigana:
       furiganaHandler()
