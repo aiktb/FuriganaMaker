@@ -66,21 +66,19 @@ class Renderer {
   readonly #GENERAL_CSS = {
     position: 'absolute',
     display: 'none',
-    background: '#0d99ff',
+    background: 'DodgerBlue',
     zIndex: Number.MAX_SAFE_INTEGER
   }
   readonly #BOTTOM_CSS = {
-    position: 'absolute',
-    display: 'none',
     color: 'white',
     overflow: 'hidden',
-    background: '#0d99ff',
+    boxSizing: 'border-box',
+    fontFamily: 'sans-serif',
+    fontWeight: 'bold',
+    fontSize: `${this.#BORDER * 2}px`,
+    lineHeight: `${this.#BORDER * 4}px`,
     paddingLeft: `${this.#BORDER}px`,
     paddingRight: `${this.#BORDER}px`,
-    boxSizing: 'border-box',
-    fontSize: `${this.#BORDER * 2}px`,
-    fontWeight: 'bold',
-    lineHeight: `${this.#BORDER * 4}px`,
     zIndex: Number.MAX_SAFE_INTEGER
   }
   readonly #left = document.createElement('div')
@@ -88,12 +86,9 @@ class Renderer {
   readonly #top = document.createElement('div')
   readonly #bottom = document.createElement('div')
   readonly #getTagPath = (element: HTMLElement) => {
-    if (element.parentNode) {
-      return `${(
-        element.parentNode as HTMLElement
-      ).tagName.toLowerCase()} ${element.tagName.toLowerCase()}`
-    }
-    return element.tagName.toLowerCase()
+    const parent = element.parentNode as HTMLElement | null
+    const parentTagName = parent?.tagName.toLowerCase() ?? ''
+    return `${parentTagName} ${element.tagName.toLowerCase()}`
   }
   constructor() {
     document.documentElement.appendChild(this.#left)
