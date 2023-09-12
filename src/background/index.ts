@@ -1,9 +1,12 @@
+import Browser from 'webextension-polyfill'
+
 import { Storage } from '@plasmohq/storage'
 
 import { defaultConfig, ExtensionEvent } from '~contents/core'
 
 const storage = new Storage({ area: 'local' })
-chrome.runtime.onInstalled.addListener(async () => {
+
+Browser.runtime.onInstalled.addListener(async () => {
   for (const key in defaultConfig) {
     const oldValue = await storage.get(key)
     if (!oldValue) {
@@ -12,7 +15,7 @@ chrome.runtime.onInstalled.addListener(async () => {
   }
 })
 
-chrome.commands.onCommand.addListener(async (command) => {
+Browser.commands.onCommand.addListener(async (command) => {
   let event: ExtensionEvent
   switch (command) {
     case 'addFurigana':
@@ -26,24 +29,24 @@ chrome.commands.onCommand.addListener(async (command) => {
     default:
       throw new Error('Unknown command')
   }
-  const tabs = await chrome.tabs.query({
+  const tabs = await Browser.tabs.query({
     active: true,
     currentWindow: true
   })
   for (const tab of tabs) {
-    await chrome.tabs.sendMessage(tab.id!, event)
+    await Browser.tabs.sendMessage(tab.id!, event)
   }
 })
 
-const contextMenuItem: chrome.contextMenus.CreateProperties = {
+const contextMenuItem: Browser.Menus.CreateCreatePropertiesType = {
   id: 'addFurigana',
   title: 'Add furigana on the page',
   contexts: ['page'],
   documentUrlPatterns: ['https://*/*']
 }
-chrome.contextMenus.create(contextMenuItem)
-chrome.contextMenus.onClicked.addListener((info, tab) => {
+Browser.contextMenus.create(contextMenuItem)
+Browser.contextMenus.onClicked.addListener((info, tab) => {
   if (info.menuItemId == 'addFurigana') {
-    chrome.tabs.sendMessage(tab!.id!, ExtensionEvent.Custom)
+    Browser.tabs.sendMessage(tab!.id!, ExtensionEvent.Custom)
   }
 })

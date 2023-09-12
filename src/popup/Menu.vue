@@ -44,7 +44,7 @@ const change = async (event: ExtensionEvent) => {
   // `chrome.tabs.query` is not compatible with firefox.
   const tabs = await Browser.tabs.query({ url: 'https://*/*' })
   for (const tab of tabs) {
-    await chrome.tabs.sendMessage(tab.id!, event)
+    await Browser.tabs.sendMessage(tab.id!, event)
   }
 }
 
