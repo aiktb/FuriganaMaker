@@ -6,7 +6,6 @@ import { Storage } from '@plasmohq/storage'
 
 import { ExtensionEvent, FURIGANA_CLASS, type StyleEvent } from '~contents/core'
 import { Selector } from '~contents/customSelector'
-import { addFurigana } from '~contents/furiganaMaker'
 
 export const config: PlasmoCSConfig = {
   matches: ['https://*/*'],
@@ -62,22 +61,17 @@ const furiganaHandler = async () => {
   }
 }
 
-let isSelecting = false
 const customHandler = () => {
-  if (!isSelecting) {
-    isSelecting = true
-    const selector = new Selector(addFurigana)
-    document.addEventListener(
-      'keydown',
-      (event) => {
-        if (event.key === 'Escape') {
-          selector.close()
-          isSelecting = false
-        }
-      },
-      { once: true, capture: true }
-    )
+  const selector = Selector.create()
+  selector.open()
+  console.log('customHandler')
+  const selectHandler = (event: KeyboardEvent) => {
+    if (event.key === 'Escape') {
+      selector.close()
+      document.removeEventListener('keydown', selectHandler)
+    }
   }
+  document.addEventListener('keydown', selectHandler)
 }
 
 const furiganaSelector = `.${FURIGANA_CLASS}`
