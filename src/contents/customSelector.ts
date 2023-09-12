@@ -1,64 +1,5 @@
 import { FURIGANA_CLASS } from '~contents/core'
-
-export class Selector {
-  readonly #renderer = new Renderer()
-  readonly #onElementSelected: (element: HTMLElement) => void
-  readonly #pointeroverHandler = (event: Event) => {
-    event.preventDefault()
-    event.stopPropagation()
-    event.stopImmediatePropagation()
-    this.#renderer.hide()
-    if (event.target === document.body) {
-      return
-    }
-    this.#renderer.add(event.target! as HTMLElement)
-  }
-
-  readonly #pointerupOrClickHandler = (event: Event) => {
-    // The jump event of click an internal link in Vue SPA is not a default event and cannot be prevented.
-    event.preventDefault()
-    event.stopPropagation()
-    event.stopImmediatePropagation()
-    // Only need to handle events triggered non-programmatically.
-    if (!event.isTrusted) {
-      return
-    }
-    const target = event.target! as HTMLElement
-    this.#onElementSelected(target)
-  }
-
-  constructor(onElementSelected: (element: HTMLElement) => void) {
-    this.#onElementSelected = onElementSelected
-    const elements = document.querySelectorAll(`body *:not(.${FURIGANA_CLASS})`)
-    Array.from(elements).forEach((element) => {
-      element.addEventListener('pointerover', this.#pointeroverHandler, {
-        capture: true
-      })
-      element.addEventListener('pointerup', this.#pointerupOrClickHandler, {
-        capture: true
-      })
-      element.addEventListener('click', this.#pointerupOrClickHandler, {
-        capture: true
-      })
-    })
-  }
-
-  readonly close = () => {
-    this.#renderer.close()
-    const elements = document.querySelectorAll('body *')
-    Array.from(elements).forEach((element) => {
-      element.removeEventListener('pointerover', this.#pointeroverHandler, {
-        capture: true
-      })
-      element.removeEventListener('pointerup', this.#pointerupOrClickHandler, {
-        capture: true
-      })
-      element.removeEventListener('click', this.#pointerupOrClickHandler, {
-        capture: true
-      })
-    })
-  }
-}
+import { addFurigana } from '~contents/furiganaMaker'
 
 class Renderer {
   readonly #BORDER = 5
@@ -104,13 +45,6 @@ class Renderer {
     })
   }
 
-  public readonly close = () => {
-    document.documentElement.removeChild(this.#left)
-    document.documentElement.removeChild(this.#right)
-    document.documentElement.removeChild(this.#top)
-    document.documentElement.removeChild(this.#bottom)
-  }
-
   public readonly hide = () => {
     this.#left.style.display = 'none'
     this.#right.style.display = 'none'
@@ -127,8 +61,6 @@ class Renderer {
   public readonly add = (element: HTMLElement) => {
     this.hide()
 
-    // Reference: https://smms.app/image/vEHQ3UiTBs6jqV4
-    // left&top are relative to the upper left corner of the viewport rather
     // than the upper left corner of the web page.
     const { left, top, width, height } = element.getBoundingClientRect()
     const outerLeft = left + window.scrollX - this.#BORDER - this.#PADDING
@@ -159,5 +91,81 @@ class Renderer {
     this.#bottom.textContent = this.#getTagPath(element)
 
     this.show()
+  }
+}
+
+// Singleton pattern
+export class Selector {
+  readonly #renderer = new Renderer()
+  static readonly #selector = new Selector()
+  #isOpen = false
+  readonly #onElementSelected = addFurigana
+  readonly #pointeroverHandler = (event: Event) => {
+    event.preventDefault()
+    event.stopPropagation()
+    event.stopImmediatePropagation()
+    this.#renderer.hide()
+    if (event.target === document.body) {
+      return
+    }
+    this.#renderer.add(event.target! as HTMLElement)
+  }
+
+  readonly #pointerupOrClickHandler = (event: Event) => {
+    // The jump event of click an internal link in Vue SPA is not a default event and cannot be prevented.
+    event.preventDefault()
+    event.stopPropagation()
+    event.stopImmediatePropagation()
+    // Only need to handle events triggered non-programmatically.
+    if (!event.isTrusted) {
+      return
+    }
+    const target = event.target! as HTMLElement
+    this.#onElementSelected(target)
+  }
+
+  static readonly create = () => {
+    return this.#selector
+  }
+
+  readonly open = () => {
+    if (this.#isOpen) {
+      return
+    }
+    this.#isOpen = true
+    this.#renderer.show()
+    const elements = document.querySelectorAll(`body *:not(.${FURIGANA_CLASS})`)
+    Array.from(elements).forEach((element) => {
+      // click event is triggered after pointerup event.
+      element.addEventListener('click', this.#pointerupOrClickHandler, {
+        capture: true
+      })
+      element.addEventListener('pointerup', this.#pointerupOrClickHandler, {
+        capture: true
+      })
+      element.addEventListener('pointerover', this.#pointeroverHandler, {
+        capture: true
+      })
+    })
+  }
+
+  readonly close = () => {
+    if (!this.#isOpen) {
+      return
+    }
+    this.#isOpen = false
+    this.#renderer.hide()
+    const elements = document.querySelectorAll('body *')
+    Array.from(elements).forEach((element) => {
+      element.removeEventListener('click', this.#pointerupOrClickHandler, {
+        capture: true
+      })
+      element.removeEventListener('pointerup', this.#pointerupOrClickHandler, {
+        capture: true
+      })
+      element.removeEventListener('pointerover', this.#pointeroverHandler, {
+        capture: true
+      })
+    })
   }
 }
