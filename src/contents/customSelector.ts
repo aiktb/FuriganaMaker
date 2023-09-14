@@ -8,7 +8,7 @@ class Renderer {
     position: 'absolute',
     display: 'none',
     background: 'DodgerBlue',
-    zIndex: Number.MAX_SAFE_INTEGER
+    zIndex: 2 ** 31 - 1
   }
   readonly #BOTTOM_CSS = {
     color: 'white',
@@ -19,8 +19,7 @@ class Renderer {
     fontSize: `${this.#BORDER * 2}px`,
     lineHeight: `${this.#BORDER * 4}px`,
     paddingLeft: `${this.#BORDER}px`,
-    paddingRight: `${this.#BORDER}px`,
-    zIndex: Number.MAX_SAFE_INTEGER
+    paddingRight: `${this.#BORDER}px`
   }
   readonly #left = document.createElement('div')
   readonly #right = document.createElement('div')
