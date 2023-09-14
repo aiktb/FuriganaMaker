@@ -21,7 +21,7 @@ Special thanks to **_[plasmo](https://github.com/PlasmoHQ/plasmo)_** for taking 
 
 ## Contribution
 
-Please make sure to read the [Contributing Guide](https://github.com/aiktb/FuriganaMaker/blob/main/.github/CONTRIBUTING.md) before making a pull request.
+Please make sure to read the [Contributing Guide](./.github/CONTRIBUTING.md) before making a pull request.
 
 ## Inspired By
 
