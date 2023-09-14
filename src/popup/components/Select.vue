@@ -2,6 +2,8 @@
 import { useFocusWithin } from '@vueuse/core'
 import { ref, watch } from 'vue'
 
+import Button from '@Components/Button.vue'
+
 import DownIcon from 'data-text:@Icons/Down.svg'
 
 const props = defineProps<{
@@ -21,64 +23,51 @@ const changeOption = (option: string) => {
   emit('change')
 }
 
-const select = ref<HTMLElement | null>(null)
-const { focused } = useFocusWithin(select)
+const panel = ref<HTMLElement | null>(null)
+const { focused } = useFocusWithin(panel)
 watch(focused, () => {
-  display.value = false
+  if (!focused.value) {
+    display.value = false
+  }
 })
 </script>
 
 <template>
-  <button
+  <Button
     class="select"
-    ref="select"
     :class="{ display: display }"
-    @click.self="display = !display"
+    @click="display = !display"
+    @keydown.shift.tab="display = false"
   >
     {{ props.modelValue }}
     <div v-html="DownIcon" class="selectIcon" />
-    <Transition>
-      <div class="panel" v-if="display">
-        <button
-          class="option"
-          v-for="option of props.options"
-          :class="{ selected: option === props.modelValue }"
-          @click="changeOption(option)"
-        >
-          {{ option }}
-        </button>
-      </div>
-    </Transition>
-  </button>
+  </Button>
+  <Transition>
+    <div class="panel" v-if="display" ref="panel" tabindex="-1">
+      <button
+        class="option"
+        v-for="option of props.options"
+        :class="{ selected: option === props.modelValue }"
+        @click="changeOption(option)"
+      >
+        {{ option }}
+      </button>
+    </div>
+  </Transition>
 </template>
 
 <style scoped>
-button {
-  background-color: transparent;
-  border: none;
-  color: currentColor;
-  width: 100%;
-  cursor: pointer;
-  text-transform: capitalize;
-}
-
 .select {
-  position: relative;
-  cursor: pointer;
-  height: 1.5rem;
-  padding: 0 0.5rem;
-  border-radius: 0.3rem;
-  display: flex;
-  align-items: center;
-  flex-grow: 1;
-  justify-content: space-between;
-  transition: opacity 250ms ease-in-out;
+  text-transform: capitalize;
 }
 
 .display {
   background-color: var(--hover);
 }
 
+.display .selectIcon {
+  display: flex;
+}
 .selectIcon {
   display: none;
 }
@@ -92,26 +81,24 @@ button {
 .select:focus-within .selectIcon,
 .select:hover .selectIcon {
   display: flex;
-  align-items: center;
 }
 
 .panel {
-  width: 100%;
   display: flex;
   flex-direction: column;
   position: absolute;
-  top: 1.5rem;
+  top: 100%;
   left: 0;
+  width: 100%;
   z-index: 1;
-  box-shadow: 0 0 1rem var(--hover);
+  box-shadow: 0 0 0.1rem 0.1rem var(--font);
   border-radius: 0.4rem;
   background-color: var(--background);
-  border: 0.1rem solid var(--feature);
+  border: 0.1rem solid var(--hover);
 }
 
 .selected {
   background-color: var(--hover);
-  color: var(--feature);
 }
 
 .option {
@@ -122,6 +109,7 @@ button {
   height: 1.5rem;
   text-align: left;
   transition: background-color 250ms ease-in-out;
+  text-transform: capitalize;
 }
 
 .option:focus,

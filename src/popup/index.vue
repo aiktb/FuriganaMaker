@@ -55,6 +55,15 @@ body {
   text-align: left;
 }
 
+button {
+  cursor: pointer;
+  border: none;
+  background-color: transparent;
+  color: currentColor;
+  padding: 0;
+  margin: 0;
+}
+
 :focus-visible {
   outline: 0.15rem solid var(--font);
   box-shadow: none;

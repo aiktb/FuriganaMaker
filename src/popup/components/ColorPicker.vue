@@ -1,6 +1,6 @@
 <script setup lang="ts">
 import { useDraggable } from '@Composables/useDraggable'
-import { useElementBounding } from '@vueuse/core'
+import { useElementBounding, useFocusWithin } from '@vueuse/core'
 import tinycolor from 'tinycolor2'
 import { computed, onMounted, ref, watch } from 'vue'
 
@@ -109,11 +109,20 @@ onMounted(() => {
   shadeCtx.fillRect(0, 0, shadeCanvas.width, shadeCanvas.height)
 
   colorToPosition(props.modelValue)
+  panel.value?.focus()
+})
+
+const panel = ref<HTMLElement | null>(null)
+const { focused } = useFocusWithin(panel)
+watch(focused, () => {
+  if (!focused.value) {
+    emit('switchDisplay')
+  }
 })
 </script>
 
 <template>
-  <div class="panel">
+  <div class="panel" ref="panel" tabindex="-1">
     <canvas
       class="shade"
       ref="shade"
@@ -123,7 +132,6 @@ onMounted(() => {
       class="shadeCursor cursor"
       :style="shadeBarStyle"
       ref="shadeCursor"
-      @keydown.shift.tab="$emit('switchDisplay')"
       @keydown.up="shadeY--"
       @keydown.down="shadeY++"
       @keydown.left="shadeX--"
@@ -151,15 +159,9 @@ onMounted(() => {
       />
     </div>
     <div class="option">
-      <input v-model="input" @change="colorToPosition(input)" />
-      <button class="clear" @click="update('currentColor')">clear</button>
-      <button
-        class="ok"
-        @click="update(input)"
-        @keydown.tab="$emit('switchDisplay')"
-      >
-        ok
-      </button>
+      <input class="input" v-model="input" @change="colorToPosition(input)" />
+      <button class="clear" @click="update('currentColor')">CLEAR</button>
+      <button class="ok" @click="update(input)">OK</button>
     </div>
   </div>
 </template>
@@ -167,10 +169,10 @@ onMounted(() => {
 <style scoped>
 .panel {
   position: fixed;
-  width: 100%;
-  height: 100%;
   top: 0;
+  bottom: 0;
   left: 0;
+  right: 0;
   display: flex;
   flex-direction: column;
   align-items: center;
@@ -178,7 +180,6 @@ onMounted(() => {
   background-color: var(--background);
   z-index: 1;
   padding: 0.8rem 0.8rem;
-  cursor: default;
 }
 
 .shade {
@@ -200,13 +201,11 @@ onMounted(() => {
   border-radius: 50%;
   position: fixed;
   transform: translate(-50%, -50%);
-  cursor: pointer;
   box-shadow:
     0 0 0 0.1rem white,
     inset 0 0 0.1rem 0.1rem #0006,
     0 0 0.1rem 0.1rem #0006;
   transition: all 250ms;
-  border: none;
 }
 
 .cursor:hover,
@@ -243,7 +242,6 @@ onMounted(() => {
   width: 1rem;
   height: 1rem;
   border-radius: 0.2rem;
-  cursor: pointer;
   border: 0.1rem solid var(--hover);
 }
 
@@ -258,7 +256,7 @@ onMounted(() => {
   width: 100%;
 }
 
-.option > input {
+.input {
   width: 5rem;
   color: var(--font);
   border: 0.1rem solid var(--hover);
@@ -266,39 +264,36 @@ onMounted(() => {
   background-color: transparent;
   padding-left: 0.3rem;
   outline-color: var(--feature);
-  transition: all 250ms ease-in-out;
-}
-
-.option > button {
-  color: var(--font);
-  border-radius: 0.2rem;
-  background-color: transparent;
-  cursor: pointer;
-  transition: all 250ms ease-in-out;
+  transition: all 100ms ease-in-out;
+  text-transform: uppercase;
 }
 
 .clear {
-  color: var(--feature);
   padding: 0 0.2rem;
-  grid-column-start: 8;
+  grid-column-start: 6;
   border: none;
+  border-radius: 0.2rem;
+  transition: all 250ms ease-in-out;
 }
 
-.clear:hover,
-.clear:focus {
+.clear:hover {
   color: var(--feature);
-  outline: none;
 }
 
 .ok {
-  grid-column-start: 10;
+  grid-column-start: 8;
+  grid-column-end: span 3;
   border: 0.1rem solid var(--hover);
+  border-radius: 0.2rem;
+  transition: all 250ms ease-in-out;
+  display: flex;
+  justify-content: center;
+  align-items: center;
 }
 
-.ok:hover,
-.ok:focus {
+.ok:hover {
   border-color: var(--feature);
   color: var(--feature);
-  outline: none;
+  background-color: var(--hover);
 }
 </style>

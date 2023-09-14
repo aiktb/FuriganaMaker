@@ -45,6 +45,7 @@ const props = withDefaults(defineProps<{ tip?: boolean; shiny?: boolean }>(), {
 .content {
   flex-grow: 1;
   border-radius: 0.3rem;
+  position: relative;
 }
 
 .content:hover,
@@ -59,16 +60,17 @@ const props = withDefaults(defineProps<{ tip?: boolean; shiny?: boolean }>(), {
   border-radius: 0.3rem;
   position: absolute;
   z-index: 1;
-  bottom: 2rem;
+  top: -65%;
   padding: 0.2rem 0.5rem;
   opacity: 0;
   visibility: hidden;
 }
 
 .menuItem:first-child .tip {
-  bottom: -1.5rem;
+  top: 100%;
   left: 2rem;
 }
+
 .content:hover + .tip,
 .content:focus-within + .tip {
   opacity: 1;
