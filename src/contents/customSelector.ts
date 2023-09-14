@@ -5,9 +5,10 @@ class Renderer {
   readonly #BORDER = 5
   readonly #PADDING = 2
   readonly #GENERAL_CSS = {
-    position: 'absolute',
+    position: 'fixed',
     display: 'none',
     background: 'DodgerBlue',
+    // Max z-index.
     zIndex: 2 ** 31 - 1
   }
   readonly #BOTTOM_CSS = {
@@ -60,10 +61,9 @@ class Renderer {
   public readonly add = (element: HTMLElement) => {
     this.hide()
 
-    // than the upper left corner of the web page.
     const { left, top, width, height } = element.getBoundingClientRect()
-    const outerLeft = left + window.scrollX - this.#BORDER - this.#PADDING
-    const outerTop = top + window.scrollY - this.#BORDER - this.#PADDING
+    const outerLeft = left - this.#BORDER - this.#PADDING
+    const outerTop = top - this.#BORDER - this.#PADDING
     const outerWidth = width + this.#BORDER * 2 + this.#PADDING * 2
     const outerHeight = height + this.#BORDER * 4 + this.#PADDING * 2
 
