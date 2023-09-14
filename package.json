@@ -18,6 +18,8 @@
     "debug:firefox": "plasmo dev --target=firefox-mv2 --verbose",
     "build": "plasmo build",
     "build:firefox": "plasmo build --target=firefox-mv2",
+    "start": "web-ext run --source-dir ./build/chrome-mv3-dev -t chromium",
+    "start:firefox": "web-ext run --source-dir ./build/firefox-mv2-dev",
     "package": "plasmo package",
     "package:firefox": "plasmo package --target=firefox-mv2",
     "test": "jest",
@@ -49,7 +51,8 @@
     "kuromojin": "^3.0.0",
     "prettier": "^3.0.3",
     "pretty-quick": "^3.1.3",
-    "ts-jest": "^29.1.1"
+    "ts-jest": "^29.1.1",
+    "web-ext": "^7.7.0"
   },
   "manifest": {
     "permissions": [
