@@ -29,15 +29,13 @@ const change = () => {
 
 <style scoped>
 .button {
-  cursor: pointer;
   height: 1.5rem;
   padding: 0 0.5rem;
   border-radius: 0.3rem;
   display: flex;
+  justify-content: space-between;
   align-items: center;
-  background-color: transparent;
-  color: var(--font);
-  border: none;
   width: 100%;
+  transition: opacity 250ms ease-in-out;
 }
 </style>

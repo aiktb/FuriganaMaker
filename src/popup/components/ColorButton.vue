@@ -23,20 +23,16 @@ const change = () => {
 </script>
 
 <template>
-  <Button class="colorButton" @click.self="display = true">
+  <Button class="colorButton" @click="display = true">
     Select color
     <div class="colorIdentify" />
-    <Transition>
-      <ColorPicker v-model="color" v-if="display" @switchDisplay="change" />
-    </Transition>
   </Button>
+  <Transition>
+    <ColorPicker v-model="color" v-if="display" @switchDisplay="change" />
+  </Transition>
 </template>
 
 <style scoped>
-.colorButton {
-  justify-content: space-between;
-}
-
 .colorIdentify {
   display: none;
   width: 0.7rem;
