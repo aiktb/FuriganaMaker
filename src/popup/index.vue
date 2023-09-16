@@ -33,14 +33,6 @@ import Menu from '~popup/Menu.vue'
   }
 }
 
-@font-face {
-  font-display: swap;
-  font-family: 'JetBrains Mono';
-  font-style: normal;
-  font-weight: 700;
-  src: url('../../assets/jetbrains-mono.woff2') format('woff2');
-}
-
 body {
   font-size: 13px;
   color: var(--font);
@@ -50,7 +42,7 @@ body {
 }
 
 * {
-  font-family: 'JetBrains Mono';
+  font-family: 'JetBrains Mono', monospace;
   box-sizing: border-box;
   text-align: left;
 }
