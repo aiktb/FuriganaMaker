@@ -1,4 +1,6 @@
 <script setup lang="ts">
+import { ref } from 'vue'
+
 /*
  * Vue bug: https://github.com/vuejs/core/pull/8602, wait release.
  * Vue boolean prop behaves very strangely.
@@ -15,6 +17,13 @@ const emit = defineEmits<{
   change: []
 }>()
 
+const root = ref<HTMLElement | null>(null)
+defineExpose({
+  focus: () => {
+    root.value?.focus()
+  }
+})
+
 const change = () => {
   emit('update:modelValue', !props.modelValue)
   emit('change')
@@ -22,7 +31,7 @@ const change = () => {
 </script>
 
 <template>
-  <button class="button" @click="change">
+  <button class="button" @click="change" ref="root">
     <slot name="default" />
   </button>
 </template>

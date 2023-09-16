@@ -10,13 +10,21 @@ const props = defineProps<{
 
 const emit = defineEmits<{
   'update:modelValue': [modelValue: string]
-  switchDisplay: []
+  close: []
 }>()
 
 const update = (color: string) => {
   emit('update:modelValue', color)
-  emit('switchDisplay')
+  emit('close')
 }
+
+const panel = ref<HTMLElement | null>(null)
+const { focused } = useFocusWithin(panel)
+watch(focused, () => {
+  if (!focused.value) {
+    emit('close')
+  }
+})
 
 // prettier-ignore
 const colors = [
@@ -110,14 +118,6 @@ onMounted(() => {
 
   colorToPosition(props.modelValue)
   panel.value?.focus()
-})
-
-const panel = ref<HTMLElement | null>(null)
-const { focused } = useFocusWithin(panel)
-watch(focused, () => {
-  if (!focused.value) {
-    emit('switchDisplay')
-  }
 })
 </script>
 

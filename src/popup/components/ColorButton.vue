@@ -14,21 +14,23 @@ const emit = defineEmits<{
 }>()
 
 const display = ref(false)
-const color = ref(props.modelValue)
-const change = () => {
+const selected = ref(props.modelValue)
+const colorButton = ref<InstanceType<typeof Button> | null>(null)
+const close = () => {
   display.value = false
-  emit('update:modelValue', color.value)
+  colorButton.value?.focus()
+  emit('update:modelValue', selected.value)
   emit('change')
 }
 </script>
 
 <template>
-  <Button class="colorButton" @click="display = true">
+  <Button class="colorButton" @click="display = true" ref="colorButton">
     Select color
     <div class="colorIdentify" />
   </Button>
   <Transition>
-    <ColorPicker v-model="color" v-if="display" @switchDisplay="change" />
+    <ColorPicker v-model="selected" v-if="display" @close="close" />
   </Transition>
 </template>
 

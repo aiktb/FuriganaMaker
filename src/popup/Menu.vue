@@ -7,7 +7,7 @@ import Button from '@Components/Button.vue'
 import ColorButton from '@Components/ColorButton.vue'
 import Link from '@Components/Link.vue'
 import RangeInput from '@Components/RangeInput.vue'
-import Select from '@Components/Select.vue'
+import SelectButton from '@Components/SelectButton.vue'
 
 import ColorPickerIcon from 'data-text:@Icons/ColorPicker.svg'
 import CursorOutlineIcon from 'data-text:@Icons/CursorOutline.svg'
@@ -98,7 +98,7 @@ if (!isFirefox) {
         <div v-html="HiraganaIcon" />
       </template>
       <template #content>
-        <Select
+        <SelectButton
           :options="furiganaOptions"
           v-model="option.furigana"
           @change="change(ExtensionEvent.Furigana)"
@@ -110,7 +110,7 @@ if (!isFirefox) {
         <div v-html="CursorTextIcon" />
       </template>
       <template #content>
-        <Select
+        <SelectButton
           :options="selectOptions"
           v-model="option.select"
           @change="change(ExtensionEvent.Select)"
