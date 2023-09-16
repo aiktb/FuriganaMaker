@@ -52,10 +52,9 @@ onMounted(() => {
   left: 0;
   width: 100%;
   z-index: 1;
-  box-shadow: 0 0 0.1rem 0.1rem var(--font);
   border-radius: 0.4rem;
   background-color: var(--background);
-  border: 0.1rem solid var(--hover);
+  border: 0.15rem solid #798a9e;
 }
 
 .selected {
