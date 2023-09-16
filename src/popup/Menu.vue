@@ -102,7 +102,9 @@ if (!isFirefox) {
           :options="furiganaOptions"
           v-model="option.furigana"
           @change="change(ExtensionEvent.Furigana)"
-        />
+        >
+          Furigana type
+        </SelectButton>
       </template>
     </MenuItem>
     <MenuItem>
@@ -114,7 +116,9 @@ if (!isFirefox) {
           :options="selectOptions"
           v-model="option.select"
           @change="change(ExtensionEvent.Select)"
-        />
+        >
+          Select mode
+        </SelectButton>
       </template>
     </MenuItem>
     <MenuItem>
