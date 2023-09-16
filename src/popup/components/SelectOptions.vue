@@ -60,6 +60,7 @@ onMounted(() => {
 
 .selected {
   background-color: var(--hover);
+  color: var(--feature);
 }
 
 .option {

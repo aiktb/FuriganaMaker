@@ -34,7 +34,7 @@ const close = () => {
     @click="display = true"
     ref="selectButton"
   >
-    {{ props.modelValue }}
+    <slot name="default" />
     <div v-html="DownIcon" class="selectIcon" />
   </Button>
   <Transition>
@@ -48,7 +48,7 @@ const close = () => {
 </template>
 
 <style scoped>
-.selectButton {
+.selectButton::first-letter {
   text-transform: capitalize;
 }
 
