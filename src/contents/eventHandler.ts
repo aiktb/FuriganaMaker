@@ -4,7 +4,12 @@ import Browser from 'webextension-polyfill'
 
 import { Storage } from '@plasmohq/storage'
 
-import { ExtensionEvent, FURIGANA_CLASS, type StyleEvent } from '~contents/core'
+import {
+  ExtensionEvent,
+  FURIGANA_CLASS,
+  MenuEvent,
+  type StyleEvent
+} from '~contents/core'
 import { Selector } from '~contents/customSelector'
 
 export const config: PlasmoCSConfig = {
@@ -60,15 +65,18 @@ const furiganaHandler = async () => {
   }
 }
 
+// Extensions cannot send messages to content scripts using `Browser.runtime.sendMessage`.
 const customHandler = () => {
   const selector = Selector.create()
-  selector.open()
   const selectHandler = (event: KeyboardEvent) => {
     if (event.key === 'Escape') {
       selector.close()
+      window.postMessage(MenuEvent.Close)
       document.removeEventListener('keydown', selectHandler)
     }
   }
+  selector.open()
+  window.postMessage(MenuEvent.Open)
   document.addEventListener('keydown', selectHandler)
 }
 
