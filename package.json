@@ -60,16 +60,22 @@
       "activeTab"
     ],
     "commands": {
-      "addFurigana": {
-        "suggested_key": {
-          "default": "Alt+Shift+F"
-        },
-        "description": "Add furigana on the current page."
-      },
       "_execute_action": {
         "suggested_key": {
           "default": "Alt+Shift+X"
         }
+      },
+      "addFurigana": {
+        "suggested_key": {
+          "default": "Alt+Shift+F"
+        },
+        "description": "Add furigana on the current page"
+      },
+      "switchDisplay": {
+        "description": "Switch furigana display on all pages"
+      },
+      "openHoverMode": {
+        "description": "Turn on hover mode on all pages"
       }
     },
     "web_accessible_resources": [
