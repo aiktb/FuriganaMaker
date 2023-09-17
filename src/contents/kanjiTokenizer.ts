@@ -1,6 +1,10 @@
+import type { PlasmoCSConfig } from 'plasmo'
 import { isKanji, toKatakana } from 'wanakana'
 
-// kuromoji.js
+export const config: PlasmoCSConfig = {
+  matches: ['https://*/*']
+}
+
 export type MojiToken = {
   word_position: number // Indexes start from 1
   surface_form: string
