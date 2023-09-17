@@ -1,3 +1,4 @@
+import type { PlasmoCSConfig } from 'plasmo'
 import { toHiragana, toRomaji } from 'wanakana'
 
 import { sendToBackground } from '@plasmohq/messaging'
@@ -5,6 +6,10 @@ import { Storage } from '@plasmohq/storage'
 
 import { ExtensionEvent, FURIGANA_CLASS } from '~contents/core'
 import { KanjiToken, MojiToken, toKanjiToken } from '~contents/kanjiTokenizer'
+
+export const config: PlasmoCSConfig = {
+  matches: ['https://*/*']
+}
 
 /**
  * Append ruby tag to all text nodes of a batch of elements.

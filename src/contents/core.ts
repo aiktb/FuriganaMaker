@@ -1,4 +1,10 @@
+import type { PlasmoCSConfig } from 'plasmo'
+
 export const FURIGANA_CLASS = '--furigana--'
+
+export const config: PlasmoCSConfig = {
+  matches: ['https://*/*']
+}
 
 export enum ExtensionEvent {
   // The user starts selecting elements on the page that need to be marked.

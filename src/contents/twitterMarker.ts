@@ -3,8 +3,7 @@ import type { PlasmoCSConfig } from 'plasmo'
 import { addFurigana } from '~contents/furiganaMaker'
 
 export const config: PlasmoCSConfig = {
-  matches: ['https://twitter.com/*'],
-  all_frames: true
+  matches: ['https://twitter.com/*']
 }
 
 const japaneseTweet = 'div[lang="ja"] span'

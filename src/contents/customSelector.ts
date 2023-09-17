@@ -1,5 +1,11 @@
+import type { PlasmoCSConfig } from 'plasmo'
+
 import { FURIGANA_CLASS } from '~contents/core'
 import { addFurigana } from '~contents/furiganaMaker'
+
+export const config: PlasmoCSConfig = {
+  matches: ['https://*/*']
+}
 
 class Renderer {
   readonly #BORDER = 5

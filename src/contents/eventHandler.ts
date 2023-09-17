@@ -8,8 +8,7 @@ import { ExtensionEvent, FURIGANA_CLASS, type StyleEvent } from '~contents/core'
 import { Selector } from '~contents/customSelector'
 
 export const config: PlasmoCSConfig = {
-  matches: ['https://*/*'],
-  all_frames: true
+  matches: ['https://*/*']
 }
 
 // styleHandler uses storage and is called immediately,
