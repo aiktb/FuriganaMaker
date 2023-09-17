@@ -17,9 +17,33 @@ Browser.runtime.onInstalled.addListener(async () => {
 
 // Executing a keyboard shortcut from the commands API enable `activeTab`.
 Browser.commands.onCommand.addListener(async (command, tab) => {
-  const url = /^https:\/\/.*\/.*$/
-  if (command === 'addFurigana' && tab?.url && url.test(tab.url)) {
-    await Browser.tabs.sendMessage(tab.id!, ExtensionEvent.Custom)
+  const https = /^https:\/\/.*\/.*$/
+  if (!tab?.url || !https.test(tab.url)) {
+    // Using shortcut keys on a page that does not have a content script running can cause misunderstandings.
+    return
+  }
+
+  let event: ExtensionEvent | undefined
+  switch (command) {
+    case 'addFurigana':
+      await Browser.tabs.sendMessage(tab.id!, ExtensionEvent.Custom)
+      break
+    case 'switchDisplay':
+      event = ExtensionEvent.Display
+      break
+    case 'openHoverMode':
+      event = ExtensionEvent.Hover
+      break
+    default:
+      throw new Error('Unknown command')
+  }
+  if (event) {
+    const oldValue: boolean = await storage.get(event)
+    await storage.set(event, !oldValue)
+    const tabs = await Browser.tabs.query({ url: 'https://*/*' })
+    for (const tab of tabs) {
+      await Browser.tabs.sendMessage(tab.id!, event)
+    }
   }
 })
 
