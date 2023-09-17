@@ -15,26 +15,11 @@ Browser.runtime.onInstalled.addListener(async () => {
   }
 })
 
-Browser.commands.onCommand.addListener(async (command) => {
-  let event: ExtensionEvent
-  switch (command) {
-    case 'addFurigana':
-      event = ExtensionEvent.Custom
-      break
-    case 'switchDisplay':
-      event = ExtensionEvent.Display
-      const oldValue = await storage.get(ExtensionEvent.Display)
-      await storage.set(ExtensionEvent.Display, !oldValue)
-      break
-    default:
-      throw new Error('Unknown command')
-  }
-  const tabs = await Browser.tabs.query({
-    active: true,
-    currentWindow: true
-  })
-  for (const tab of tabs) {
-    await Browser.tabs.sendMessage(tab.id!, event)
+// Executing a keyboard shortcut from the commands API enable `activeTab`.
+Browser.commands.onCommand.addListener(async (command, tab) => {
+  const url = /^https:\/\/.*\/.*$/
+  if (command === 'addFurigana' && tab?.url && url.test(tab.url)) {
+    await Browser.tabs.sendMessage(tab.id!, ExtensionEvent.Custom)
   }
 })
 
