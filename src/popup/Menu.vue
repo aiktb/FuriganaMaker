@@ -38,6 +38,7 @@ const option: Config = reactive({
 
 const addFurigana = async () => {
   // `chrome.tabs.query` is not compatible with firefox.
+  // 'url' parameter requires 'tabs' or 'activeTab' permission.
   const tabs = await Browser.tabs.query({
     active: true,
     currentWindow: true,
@@ -45,14 +46,13 @@ const addFurigana = async () => {
   })
   const id = tabs[0]?.id
   if (id) {
-    Browser.tabs.sendMessage(id, ExtensionEvent.Custom)
+    await Browser.tabs.sendMessage(id, ExtensionEvent.Custom)
   }
 }
 
 const change = async (event: ExtensionEvent) => {
   const value = option[event]
   await storage.set(event, value)
-  // 'url' parameter requires 'tabs' or 'activeTab' permission.
   const tabs = await Browser.tabs.query({ url: 'https://*/*' })
   for (const tab of tabs) {
     await Browser.tabs.sendMessage(tab.id!, event)
