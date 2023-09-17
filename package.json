@@ -30,7 +30,7 @@
   "dependencies": {
     "@plasmohq/messaging": "^0.5.0",
     "@plasmohq/storage": "^1.8.0",
-    "@sglkc/kuromoji": "^1.0.1",
+    "@sglkc/kuromoji": "^1.1.0",
     "@vueuse/core": "^10.4.1",
     "detect-browser": "^5.3.0",
     "plasmo": "^0.83.0",
@@ -43,7 +43,7 @@
   "devDependencies": {
     "@ianvs/prettier-plugin-sort-imports": "^4.1.0",
     "@types/chrome": "^0.0.243",
-    "@types/jest": "^29.5.4",
+    "@types/jest": "^29.5.5",
     "@types/tinycolor2": "^1.4.4",
     "@types/wanakana": "^4.0.3",
     "@types/webextension-polyfill": "^0.10.2",
