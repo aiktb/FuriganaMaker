@@ -36,10 +36,10 @@ body:
       label: Browser
       description: Select the browser you are using.
       options:
-        - chrome
-        - firefox
-        - safari
-        - edge
+        - Chrome
+        - Firefox
+        - Safari
+        - Edge
     validations:
       required: true
   - type: textarea
