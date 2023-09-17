@@ -36,12 +36,23 @@ const option: Config = reactive({
   color: await storage.get(ExtensionEvent.Color)
 })
 
-const change = async (event: ExtensionEvent) => {
-  if (event !== ExtensionEvent.Custom) {
-    await storage.set(event, option[event])
-  }
-  // 'url' parameter requires 'tabs' or 'activeTab' permission.
+const addFurigana = async () => {
   // `chrome.tabs.query` is not compatible with firefox.
+  const tabs = await Browser.tabs.query({
+    active: true,
+    currentWindow: true,
+    url: 'https://*/*'
+  })
+  const id = tabs[0]?.id
+  if (id) {
+    Browser.tabs.sendMessage(id, ExtensionEvent.Custom)
+  }
+}
+
+const change = async (event: ExtensionEvent) => {
+  const value = option[event]
+  await storage.set(event, value)
+  // 'url' parameter requires 'tabs' or 'activeTab' permission.
   const tabs = await Browser.tabs.query({ url: 'https://*/*' })
   for (const tab of tabs) {
     await Browser.tabs.sendMessage(tab.id!, event)
@@ -65,7 +76,7 @@ if (!isFirefox) {
         <div v-html="CursorOutlineIcon" />
       </template>
       <template #content>
-        <Button @click="change(ExtensionEvent.Custom)"> Add furigana </Button>
+        <Button @click="addFurigana"> Add furigana </Button>
       </template>
       <template #tip> Press ESC to cancel </template>
     </MenuItem>
