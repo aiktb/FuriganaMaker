@@ -53,5 +53,7 @@ export const defaultConfig: Config = {
 
 export enum MenuEvent {
   Open = 'open',
-  Close = 'close'
+  Close = 'close',
+  Lock = 'lock',
+  SwitchMode = 'switchMode'
 }
