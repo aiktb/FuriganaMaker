@@ -50,3 +50,10 @@ export const defaultConfig: Config = {
   fontsize: 75, // ${fontsize}% relative to the parent font.
   color: 'currentColor'
 }
+
+export enum MenuEvent {
+  Open = 'open',
+  Close = 'close',
+  Lock = 'lock',
+  SwitchMode = 'switchMode'
+}
