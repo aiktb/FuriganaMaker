@@ -17,6 +17,7 @@ Browser.runtime.onInstalled.addListener(async () => {
 
 // Executing a keyboard shortcut from the commands API enable `activeTab`.
 Browser.commands.onCommand.addListener(async (command, tab) => {
+  // The root path of the website returned by tab.url contains '/' at the end. e.g. https://example.com/
   const https = /^https:\/\/.*\/.*$/
   if (!tab?.url || !https.test(tab.url)) {
     // Using shortcut keys on a page that does not have a content script running can cause misunderstandings.

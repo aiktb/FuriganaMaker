@@ -1,6 +1,7 @@
 <script setup lang="ts">
-import { useDraggable } from '@vueuse/core'
-import { Ref, ref } from 'vue'
+import { useDraggable, useEventListener } from '@vueuse/core'
+import { ref } from 'vue'
+import Browser from 'webextension-polyfill'
 
 import CloseIcon from 'data-text:@Icons/Close.svg'
 import CursorOutlineIcon from 'data-text:@Icons/CursorOutline.svg'
@@ -11,10 +12,10 @@ import SettingIcon from 'data-text:@Icons/Setting.svg'
 import { MenuEvent } from '~contents/core'
 
 const main = ref<HTMLElement | null>(null)
-const dragArea = ref<HTMLElement | null>(null)
-const { style } = useDraggable(main, {
-  handle: dragArea,
-  initialValue: { x: window.innerWidth - 630, y: 20 }
+const drag = ref<HTMLElement | null>(null)
+const { style, x, y } = useDraggable(main, {
+  handle: drag,
+  initialValue: { x: 20, y: 20 }
 })
 
 window.addEventListener('message', (event: MessageEvent<MenuEvent>) => {
@@ -30,8 +31,14 @@ window.addEventListener('message', (event: MessageEvent<MenuEvent>) => {
       break
   }
 })
+
+useEventListener(window, 'resize', () => {
+  x.value = 20
+  y.value = 20
+})
+
 const display = ref(true)
-const mode: Ref<'anywhere' | 'rule'> = ref('rule')
+const rule = ref(true)
 const lock = ref(true)
 const level = ref(0)
 const similar = ref(false)
@@ -39,44 +46,63 @@ const similar = ref(false)
 
 <template>
   <Transition>
-    <div class="main" ref="main" v-if="display" :style="style" tabindex="-1">
-      <button v-html="CloseIcon" class="close" @click="display = false" />
-      <div class="dragArea" ref="dragArea">
-        <h1>
+    <div id="main" ref="main" v-if="display" :style="style" tabindex="-1">
+      <header id="drag" ref="drag">
+        <h1 id="title">
           Element selecting
-          <span v-html="CursorOutlineIcon" class="cursorOutlineIcon" />
+          <span v-html="CursorOutlineIcon" class="icon" id="cursor" />
         </h1>
         <p>Choose elements on the page to add furigana.</p>
+        <button
+          v-html="CloseIcon"
+          class="icon"
+          id="close"
+          @click="display = false"
+        />
+      </header>
+      <div id="modes">
+        <button class="mode" :class="{ checked: !rule }" @click="rule = false">
+          Add anywhere
+        </button>
+        <button class="mode" :class="{ checked: rule }" @click="rule = true">
+          Rule edit
+        </button>
       </div>
-      <div class="mode">
-        <input type="radio" id="anywhere" v-model="mode" value="anywhere" />
-        <label for="anywhere" tabindex="0">Add anywhere</label>
-        <input type="radio" id="rule" v-model="mode" value="rule" />
-        <label for="rule" tabindex="0">Rule edit</label>
-      </div>
-      <div class="ruleEdit" v-if="mode === 'rule'">
-        <div v-if="lock" class="lock">
-          <div class="similar">
-            <input type="checkbox" id="checkbox" v-model="similar" />
-            <label for="checkbox" tabindex="0">Apply similar</label>
-            <a href="https://github.com/aiktb/FuriganaMaker" target="_blank">
-              Advanced settings
-              <span v-html="SettingIcon" class="settingIcon" />
-            </a>
-          </div>
-          <div class="container">
-            <div class="counter">
-              <button class="min">Min</button>
-              <button v-html="LeftIcon" class="subtract" @click="level--" />
-              <span class="level">{{ level }}</span>
-              <button v-html="RightIcon" class="add" @click="level++" />
-              <button class="max">Max</button>
-            </div>
-            <div class="buttons">
-              <button class="selectOther">Select a different element</button>
-              <button class="apply">Apply</button>
-            </div>
-          </div>
+      <div id="edit" v-if="rule">
+        <div v-if="lock" id="lock">
+          <button
+            class="mode"
+            id="similar"
+            :class="{ checked: similar }"
+            @click="similar = !similar"
+          >
+            Apply similar
+          </button>
+          <a
+            :href="Browser.runtime.getURL('options.html')"
+            target="_blank"
+            id="advanced"
+          >
+            Advanced settings
+            <span v-html="SettingIcon" class="setting icon" />
+          </a>
+          <button id="min" class="small">MIN</button>
+          <button
+            v-html="LeftIcon"
+            class="icon small"
+            id="subtract"
+            @click="level--"
+          />
+          <span id="level">{{ level }}</span>
+          <button
+            v-html="RightIcon"
+            class="icon small"
+            id="add"
+            @click="level++"
+          />
+          <button id="max" class="small">MAX</button>
+          <button id="other">Select a different element</button>
+          <button id="apply">Apply</button>
         </div>
         <div v-else class="unlock">Please select an element first!</div>
       </div>
@@ -85,252 +111,220 @@ const similar = ref(false)
 </template>
 
 <style scoped>
-.main {
-  --feature: #0075ff;
-  --hover: #27415a;
-  --background: #1c2732;
-  --font: #f5f5f5da;
-}
-input {
-  display: none;
+#main {
+  --blue: #0075ff;
+  --red: #8e2c13;
+  --white: #f5f5f5da;
+  --black: #1c2732;
+  --gray: #343a3f;
 }
 
-.cursorOutlineIcon {
+* {
+  box-sizing: border-box;
+  padding: 0;
+  margin: 0;
+  border: none;
+  background-color: var(--black);
+  color: var(--white);
+  font-family: Arial, Helvetica, sans-serif;
+  font-size: 16px;
+  font-weight: bold;
+}
+
+button {
+  cursor: pointer;
+}
+
+button,
+a {
+  transition: all 250ms;
+}
+
+#main {
+  position: fixed;
+  user-select: none;
+  z-index: 2147483647;
+  width: 600px;
+  outline: 1.5px solid var(--gray);
+  border-radius: 10px;
+  display: flex;
+  flex-direction: column;
+  font-size: 16px;
+  box-shadow: 0 0 10px 3px rgba(162, 161, 161, 0.3);
+}
+
+#main > :not(:last-child) {
+  border-bottom: 1.5px solid var(--gray);
+}
+
+#main > * {
+  padding: 15px 15px;
+}
+
+.icon {
   display: flex inline;
   align-items: center;
   justify-content: center;
-  margin-left: 10px;
-  color: var(--feature);
 }
-label {
-  cursor: pointer;
-  display: flex inline;
+
+.icon > :deep(svg) {
+  width: 100%;
+  height: 100%;
+}
+
+#drag {
+  cursor: move;
+}
+
+#title {
+  display: flex;
   align-items: center;
-  font-weight: bold;
-}
-
-label:hover {
-  text-decoration: underline wavy currentColor;
-  color: var(--feature);
-  transition: all 250ms;
-}
-label:before {
-  content: '';
-  display: inline-block;
-  width: 12px;
-  height: 12px;
-  margin-right: 10px;
-  border: 2px solid var(--font);
-  border-radius: 50%;
-  vertical-align: middle;
-  cursor: pointer;
-}
-
-input:checked + label:before {
-  background-color: var(--feature);
-}
-
-input:checked + label {
-  text-decoration: underline wavy var(--feature);
-}
-.main > div:not(:last-child) {
-  border-bottom: 1px solid var(--font);
-}
-
-h1,
-p {
-  margin: 0;
-}
-
-h1 {
+  gap: 10px;
   font-size: 20px;
-  margin-bottom: 10px;
-  display: flex;
-  align-items: center;
 }
 
-a {
-  color: var(--font);
-  display: flex;
-  align-items: center;
-  gap: 5px;
-  font-weight: bold;
-  text-decoration: underline currentColor;
-  transition: all 250ms;
-}
-
-a:focus,
-a:hover {
-  color: var(--feature);
-}
-button {
-  cursor: pointer;
-  border: none;
-  background-color: transparent;
-  color: currentColor;
-  padding: 0;
-  margin: 0;
-  font-family: Arial, Helvetica, sans-serif;
-}
-
-.main {
-  position: relative;
-  display: flex;
-  flex-direction: column;
-  background-color: var(--background);
-  box-shadow: 0 0 10px 3px rgba(162, 161, 161, 0.3);
-  position: fixed;
-  z-index: 999;
-  border-radius: 5px;
-  font-family: Arial, Helvetica, sans-serif;
-  font-size: 16px;
-  color: var(--font);
-  width: 600px;
-  border: 1px solid var(--font);
-  user-select: none;
-}
-
-.close {
-  display: block;
+#close {
   position: absolute;
   top: 10px;
   right: 10px;
-  transition: all 200ms;
-}
-
-.close :deep(svg) {
   width: 22px;
-  height: auto;
+  height: 22px;
 }
 
-.close:hover,
-.close:focus {
-  color: var(--feature);
+#close:hover,
+#close:focus-visible {
+  color: var(--blue);
 }
 
-.dragArea {
-  cursor: move;
-  padding: 15px 15px 10px 15px;
+#cursor {
+  color: var(--blue);
+}
+
+#modes {
+  display: flex;
+  gap: 20px;
 }
 
 .mode {
   display: flex;
   align-items: center;
-  padding: 15px 15px;
-  gap: 15px;
+  justify-content: start;
 }
 
-.ruleEdit {
-  padding: 15px 15px;
+.mode:hover,
+.mode:focus-visible {
+  color: var(--blue);
+  text-decoration: underline wavy currentColor;
 }
 
-.unlock {
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  font-weight: bold;
-  text-decoration: underline;
+.mode:before {
+  content: '';
+  display: inline-block;
+  width: 12px;
+  height: 12px;
+  margin-right: 10px;
+  border: 2px solid var(--white);
+  border-radius: 50%;
+  vertical-align: middle;
+  cursor: pointer;
 }
 
-.lock {
-  display: flex;
-  flex-direction: column;
+.checked {
+  text-decoration: underline wavy var(--blue);
 }
 
-.similar {
-  margin-bottom: 10px;
-  display: flex;
-  align-items: center;
-  justify-content: space-between;
+.checked:before {
+  background-color: var(--blue);
+  text-decoration-color: var(--blue);
 }
 
-.settingIcon {
+#lock {
+  display: grid;
+  grid-template-columns: repeat(7, 20px) 1fr auto auto;
+  grid-template-areas:
+    'similar similar similar  similar similar similar similar ... advanced advanced'
+    'min     min     subtract level   add     max     max     ... other    apply';
+  gap: 15px 5px;
+}
+
+#similar {
+  grid-area: similar;
+}
+
+#advanced {
+  grid-area: advanced;
+  justify-self: end;
   display: flex;
   align-items: center;
+  gap: 5px;
 }
-.similar :deep(svg) {
-  display: flex inline;
-  align-items: center;
-  justify-content: center;
-  width: 24px;
-  height: 24px;
+
+#advanced:hover {
+  color: var(--blue);
 }
-.container {
-  display: flex;
-  align-items: center;
-  justify-content: space-between;
+
+#advanced:hover > .icon {
+  color: var(--blue);
 }
-.counter {
-  display: flex;
-  align-items: center;
-  gap: 6px;
+.setting {
+  width: 25px;
+  height: 25px;
 }
-.counter > button:hover {
-  background-color: var(--feature);
-  transition: all 250ms;
-}
-.subtract,
-.add {
-  border: 2px solid currentColor;
-  box-sizing: border-box;
-  border-radius: 5px;
-  font-weight: bold;
-  width: 20px;
+
+.small {
+  font-size: 12px;
   height: 20px;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-}
-.max,
-.min {
-  border: 2px solid currentColor;
-  box-sizing: border-box;
-  border-radius: 5px;
-  font-weight: bold;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  padding: 0 8px;
-  height: 20px;
-  width: 40px;
-}
-.level {
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  width: 20px;
-  border-bottom: 2px solid var(--feature);
-  font-weight: bold;
-}
-.counter > button > :deep(svg) {
-  width: 20px;
-  height: 20px;
-}
-.buttons {
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  gap: 10px;
+  align-self: center;
 }
 
-.buttons > button {
-  border: 2px solid currentColor;
-  box-sizing: border-box;
+.small:hover {
+  background-color: var(--blue);
+}
+
+#min {
+  grid-area: min;
+}
+
+#subtract {
+  grid-area: subtract;
+}
+
+#level {
+  grid-area: level;
+  justify-self: center;
+  align-self: center;
+  border-bottom: 2px solid var(--blue);
+  width: 20px;
+  text-align: center;
+}
+
+#add {
+  grid-area: add;
+}
+
+#max {
+  grid-area: max;
+}
+
+#other {
+  grid-area: other;
   padding: 5px 8px;
+  background-color: var(--blue);
+}
+
+#apply {
+  grid-area: apply;
+  padding: 5px 8px;
+  background-color: var(--red);
+}
+
+#lock > button:not(#similar) {
+  border: 2px solid currentColor;
   border-radius: 5px;
-  font-weight: bold;
 }
-.buttons > button:hover {
+
+#lock > button:not(#similar):hover {
   color: #fff;
-  transition: all 250ms;
-}
-
-.selectOther {
-  background-color: var(--feature);
-}
-
-.apply {
-  background-color: #8e2c13;
 }
 
 .v-enter-active,
