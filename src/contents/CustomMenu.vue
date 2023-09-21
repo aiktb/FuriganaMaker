@@ -37,7 +37,7 @@ useEventListener(window, 'resize', () => {
   y.value = 20
 })
 
-const display = ref(true)
+const display = ref(false)
 const rule = ref(true)
 const lock = ref(true)
 const level = ref(0)
@@ -119,6 +119,16 @@ const similar = ref(false)
   --gray: #343a3f;
 }
 
+@font-face {
+  font-display: swap;
+  font-family: 'Inter';
+  font-style: normal;
+  font-weight: 700;
+  src:
+    local('Inter'),
+    url('../../assets/fonts/inter-v13-latin-700.woff2') format('woff2');
+}
+
 * {
   box-sizing: border-box;
   padding: 0;
@@ -126,7 +136,7 @@ const similar = ref(false)
   border: none;
   background-color: var(--black);
   color: var(--white);
-  font-family: Arial, Helvetica, sans-serif;
+  font-family: Inter, sans-serif;
   font-size: 16px;
   font-weight: bold;
 }
@@ -146,7 +156,7 @@ a {
   z-index: 2147483647;
   width: 600px;
   outline: 1.5px solid var(--gray);
-  border-radius: 10px;
+  border-radius: 50px;
   display: flex;
   flex-direction: column;
   font-size: 16px;
@@ -181,6 +191,7 @@ a {
   align-items: center;
   gap: 10px;
   font-size: 20px;
+  margin-bottom: 10px;
 }
 
 #close {
@@ -266,13 +277,14 @@ a {
 #advanced:hover > .icon {
   color: var(--blue);
 }
+
 .setting {
   width: 25px;
   height: 25px;
 }
 
 .small {
-  font-size: 12px;
+  font-size: 13px;
   height: 20px;
   align-self: center;
 }
