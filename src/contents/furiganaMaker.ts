@@ -43,21 +43,14 @@ export async function addFurigana(elements: Element | Element[]) {
 }
 
 const collectTexts = (element: Element): Text[] => {
-  if (element.parentElement?.classList.contains(FURIGANA_CLASS)) {
-    return []
-  }
-  element.normalize()
+  const walker = document.createTreeWalker(element, NodeFilter.SHOW_TEXT)
   const texts: Text[] = []
-  const isText = element.nodeType === Node.TEXT_NODE
-  const isNotEmpty = !!element.textContent?.trim().length
-  if (isText && isNotEmpty) {
-    element.parentElement!.classList.add(FURIGANA_CLASS)
-    texts.push(element as Node as Text)
-  } else {
-    const elements = Array.from(
-      element.childNodes as NodeListOf<Element>
-    ).flatMap(collectTexts)
-    texts.push(...elements)
+  while (walker.nextNode()) {
+    const node = walker.currentNode
+    const parent = node.parentElement! as Element
+    if (parent.tagName !== 'RUBY' && parent.tagName !== 'RT') {
+      texts.push(node as Text)
+    }
   }
   return texts
 }
@@ -75,6 +68,7 @@ const createRuby = async (
   reading: string
 ): Promise<HTMLElement> => {
   const ruby = document.createElement('ruby')
+  ruby.classList.add(FURIGANA_CLASS)
   const rightParenthesisRp = document.createElement('rp')
   rightParenthesisRp.textContent = ')'
   const leftParenthesisRp = document.createElement('rp')
