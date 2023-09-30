@@ -37,7 +37,7 @@ export type Config = {
   display: boolean
   hover: boolean
   furigana: 'hiragana' | 'katakana' | 'romaji'
-  select: 'original' | 'furigana' | 'all'
+  select: 'original' | 'furigana'
   fontsize: number
   color: string
 }
