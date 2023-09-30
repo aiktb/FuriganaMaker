@@ -80,8 +80,8 @@ const customHandler = () => {
   document.addEventListener('keydown', selectHandler)
 }
 
-const rtSelector = `.${FURIGANA_CLASS} ruby > rt`
-const rtHoverSelector = `.${FURIGANA_CLASS} ruby:hover > rt`
+const rtSelector = `ruby.${FURIGANA_CLASS} > rt`
+const rtHoverSelector = `ruby.${FURIGANA_CLASS}:hover > rt`
 async function styleHandler(type: StyleEvent) {
   const value = await storage.get(type)
   let css: string
