@@ -57,3 +57,14 @@ export enum MenuEvent {
   Lock = 'lock',
   SwitchMode = 'switchMode'
 }
+
+export type Rule = {
+  domain: string
+  selector: Selector[]
+}
+
+export type Selector = {
+  name: string
+  valid: boolean
+  observer: boolean
+}
