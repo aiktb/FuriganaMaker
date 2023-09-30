@@ -49,8 +49,8 @@ const collectTexts = (element: Element): Text[] => {
   element.normalize()
   const texts: Text[] = []
   const isText = element.nodeType === Node.TEXT_NODE
-  const isEmpty = !!element.textContent?.trim().length
-  if (isText && isEmpty) {
+  const isNotEmpty = !!element.textContent?.trim().length
+  if (isText && isNotEmpty) {
     element.parentElement!.classList.add(FURIGANA_CLASS)
     texts.push(element as Node as Text)
   } else {
