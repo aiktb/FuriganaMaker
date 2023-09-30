@@ -2,16 +2,21 @@ import Browser from 'webextension-polyfill'
 
 import { Storage } from '@plasmohq/storage'
 
-import { defaultConfig, ExtensionEvent } from '~contents/core'
+import { defaultConfig, ExtensionEvent, Rule } from '~contents/core'
 
 const storage = new Storage({ area: 'local' })
 
 Browser.runtime.onInstalled.addListener(async () => {
   for (const key in defaultConfig) {
-    const oldValue = await storage.get(key)
-    if (!oldValue) {
+    const oldConfig = await storage.get(key)
+    if (!oldConfig) {
       await storage.set(key, defaultConfig[key])
     }
+  }
+
+  const oldRules: any[] = await storage.get('rules')
+  if (!oldRules) {
+    await storage.set('rules', rules)
   }
 })
 
@@ -60,3 +65,26 @@ Browser.contextMenus.onClicked.addListener((info, tab) => {
     Browser.tabs.sendMessage(tab!.id!, ExtensionEvent.Custom)
   }
 })
+
+const rules: Rule[] = [
+  {
+    domain: 'twitter.com',
+    selector: [
+      {
+        name: "div[lang='ja'] span",
+        valid: true,
+        observer: true
+      }
+    ]
+  },
+  {
+    domain: 'www.asahi.com',
+    selector: [
+      {
+        name: '.nfyQp h1, .nfyQp h2, .nfyQp h3, .nfyQp h4, .nfyQp h5, .nfyQp h6, .nfyQp p',
+        valid: true,
+        observer: false
+      }
+    ]
+  }
+]
