@@ -80,9 +80,7 @@ const customHandler = () => {
   document.addEventListener('keydown', selectHandler)
 }
 
-const furiganaSelector = `.${FURIGANA_CLASS}`
 const rtSelector = `.${FURIGANA_CLASS} ruby > rt`
-const rpSelector = `.${FURIGANA_CLASS} ruby > rp`
 const rtHoverSelector = `.${FURIGANA_CLASS} ruby:hover > rt`
 async function styleHandler(type: StyleEvent) {
   const value = await storage.get(type)
@@ -92,7 +90,8 @@ async function styleHandler(type: StyleEvent) {
       css = `
         ${rtSelector} {
           display: ${value ? 'revert' : 'none'};
-        }`
+        }
+      `
       break
     case ExtensionEvent.Hover:
       css = `
@@ -107,32 +106,25 @@ async function styleHandler(type: StyleEvent) {
       break
     case ExtensionEvent.Select:
       css = `
-        ${furiganaSelector} {
-          user-select: ${value === 'furigana' ? 'none' : 'text'};
-        }
-
         ${rtSelector} {
           user-select: ${value === 'original' ? 'none' : 'text'};
         }
-
-        ${rpSelector} {
-          display: ${value === 'all' ? 'block' : 'none'};
-          position: fixed;
-          left: -10000px;
-        }`
+      `
       break
     case ExtensionEvent.Fontsize:
       css = `
-          ${rtSelector} {
-            font-size: ${value}%;
-          }`
+        ${rtSelector} {
+          font-size: ${value}%;
+        }
+      `
       break
     // <ruby> color will be passed to <rt>, so no control logic for <ruby> color will be added.
     case ExtensionEvent.Color:
       css = `
         ${rtSelector} {
           color: ${value};
-        }`
+        }
+      `
       break
   }
   const id = `${FURIGANA_CLASS}${type}`
