@@ -119,16 +119,6 @@ const similar = ref(false)
   --gray: #343a3f;
 }
 
-@font-face {
-  font-display: swap;
-  font-family: 'Inter';
-  font-style: normal;
-  font-weight: 700;
-  src:
-    local('Inter'),
-    url('../../assets/fonts/inter-v13-latin-700.woff2') format('woff2');
-}
-
 * {
   box-sizing: border-box;
   padding: 0;
@@ -136,7 +126,7 @@ const similar = ref(false)
   border: none;
   background-color: var(--black);
   color: var(--white);
-  font-family: Inter, sans-serif;
+  font-family: Arial, Helvetica, sans-serif;
   font-size: 16px;
   font-weight: bold;
 }
@@ -156,7 +146,6 @@ a {
   z-index: 2147483647;
   width: 600px;
   outline: 1.5px solid var(--gray);
-  border-radius: 50px;
   display: flex;
   flex-direction: column;
   font-size: 16px;
