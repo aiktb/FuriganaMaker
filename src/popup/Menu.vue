@@ -106,9 +106,7 @@ const selectOptions = ['original', 'furigana']
           :options="furiganaOptions"
           v-model="option.furigana"
           @change="change(ExtensionEvent.Furigana)"
-        >
-          Furigana type
-        </SelectButton>
+        />
       </template>
     </MenuItem>
     <MenuItem>
@@ -120,9 +118,7 @@ const selectOptions = ['original', 'furigana']
           :options="selectOptions"
           v-model="option.select"
           @change="change(ExtensionEvent.Select)"
-        >
-          Select mode
-        </SelectButton>
+        />
       </template>
     </MenuItem>
     <MenuItem>
