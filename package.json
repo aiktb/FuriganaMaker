@@ -11,6 +11,9 @@
     "type": "git",
     "url": "git+https://github.com/aiktb/FuriganaMaker.git"
   },
+  "bugs": {
+    "url": "https://github.com/aiktb/FuriganaMaker/issues"
+  },
   "scripts": {
     "dev": "plasmo dev",
     "dev:firefox": "plasmo dev --target=firefox-mv2",
@@ -74,7 +77,7 @@
         "description": "Switch furigana display on all pages"
       },
       "openHoverMode": {
-        "description": "Turn on hover mode on all pages"
+        "description": "Switch hover mode on all pages"
       }
     },
     "web_accessible_resources": [
