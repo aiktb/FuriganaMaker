@@ -5,8 +5,6 @@
   "compilerOptions": {
     "paths": {
       "~*": ["./src/*"],
-      "@Components/*": ["./src/popup/components/*"],
-      "@Composables/*": ["./src/popup/composables/*"],
       "@Icons/*": ["./assets/icons/*"]
     },
     "baseUrl": ".",

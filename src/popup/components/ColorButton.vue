@@ -1,8 +1,8 @@
 <script setup lang="ts">
 import { ref } from 'vue'
 
-import Button from '@Components/Button.vue'
-import ColorPicker from '@Components/ColorPicker.vue'
+import Button from './Button.vue'
+import ColorPicker from './ColorPicker.vue'
 
 const props = defineProps<{
   modelValue: string

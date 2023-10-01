@@ -2,12 +2,6 @@
 import { reactive } from 'vue'
 import Browser from 'webextension-polyfill'
 
-import Button from '@Components/Button.vue'
-import ColorButton from '@Components/ColorButton.vue'
-import Link from '@Components/Link.vue'
-import RangeInput from '@Components/RangeInput.vue'
-import SelectButton from '@Components/SelectButton.vue'
-
 import ColorPickerIcon from 'data-text:@Icons/ColorPicker.svg'
 import CursorOutlineIcon from 'data-text:@Icons/CursorOutline.svg'
 import CursorTextIcon from 'data-text:@Icons/CursorText.svg'
@@ -22,6 +16,12 @@ import { Storage } from '@plasmohq/storage'
 
 import { ExtensionEvent, type Config } from '~contents/core'
 import MenuItem from '~popup/MenuItem.vue'
+
+import Button from './components/Button.vue'
+import ColorButton from './components/ColorButton.vue'
+import Link from './components/Link.vue'
+import RangeInput from './components/RangeInput.vue'
+import SelectButton from './components/SelectButton.vue'
 
 const storage = new Storage({ area: 'local' })
 // Top-level await makes this component asynchronous.
