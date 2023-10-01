@@ -93,7 +93,7 @@ const selectOptions = ['original', 'furigana']
       </template>
       <template #content>
         <Button v-model="option.hover" @change="change(ExtensionEvent.Hover)">
-          Hover mode
+          On-off hover
         </Button>
       </template>
     </MenuItem>
