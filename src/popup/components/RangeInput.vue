@@ -1,7 +1,8 @@
 <script setup lang="ts">
-import { useDraggable } from '@Composables/useDraggable'
 import { useElementBounding } from '@vueuse/core'
 import { computed, onMounted, ref } from 'vue'
+
+import { useDraggable } from '../composables/useDraggable'
 
 const props = defineProps<{
   modelValue: number

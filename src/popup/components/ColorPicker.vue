@@ -1,8 +1,9 @@
 <script setup lang="ts">
-import { useDraggable } from '@Composables/useDraggable'
 import { useElementBounding, useFocusWithin } from '@vueuse/core'
 import tinycolor from 'tinycolor2'
 import { computed, onMounted, ref, watch } from 'vue'
+
+import { useDraggable } from '../composables/useDraggable'
 
 const props = defineProps<{
   modelValue: string

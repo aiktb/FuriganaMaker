@@ -1,10 +1,10 @@
 <script setup lang="ts">
 import { ref } from 'vue'
 
-import Button from '@Components/Button.vue'
-import SelectOptions from '@Components/SelectOptions.vue'
-
 import DownIcon from 'data-text:@Icons/Down.svg'
+
+import Button from './Button.vue'
+import SelectOptions from './SelectOptions.vue'
 
 const props = defineProps<{
   options: string[]

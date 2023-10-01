@@ -1,7 +1,7 @@
 <script setup lang="ts">
 import Logo from 'data-text:@Icons/Logo.svg'
 
-import Menu from '~popup/Menu.vue'
+import Menu from './Menu.vue'
 </script>
 
 <!-- All because <Menu /> needs to load chrome.storage asynchronously. -->
