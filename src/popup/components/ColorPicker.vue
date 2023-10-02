@@ -156,6 +156,7 @@ onMounted(() => {
         v-for="color of colors"
         :style="{ backgroundColor: color }"
         :class="{ selected: tinycolor(color).toHexString() === input }"
+        :aria-label="color"
         @click="colorToPosition(color)"
       />
     </div>

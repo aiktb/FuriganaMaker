@@ -25,7 +25,6 @@ import SelectButton from './components/SelectButton.vue'
 
 const storage = new Storage({ area: 'local' })
 // Top-level await makes this component asynchronous.
-// Vue3 doc: Not recommended to use the generic argument of reactive().
 const option: Config = reactive({
   display: await storage.get(ExtensionEvent.Display),
   hover: await storage.get(ExtensionEvent.Hover),
@@ -71,7 +70,7 @@ const selectOptions = ['original', 'furigana']
       <template #content>
         <Button @click="addFurigana"> Add furigana </Button>
       </template>
-      <template #tip> Press ESC to cancel </template>
+      <template #tip> Press <kbd>ESC</kbd> to cancel </template>
     </MenuItem>
     <MenuItem :shiny="option.display">
       <template #icon>

@@ -35,7 +35,7 @@ const close = () => {
     ref="selectButton"
   >
     {{ props.modelValue }}
-    <div v-html="DownIcon" class="selectIcon" />
+    <div v-html="DownIcon" class="selectIcon" aria-hidden="true" />
   </Button>
   <Transition>
     <SelectOptions
@@ -43,6 +43,7 @@ const close = () => {
       :options="options"
       v-if="display"
       @close="close"
+      role="listbox"
     />
   </Transition>
 </template>

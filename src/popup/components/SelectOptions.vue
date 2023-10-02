@@ -37,6 +37,8 @@ onMounted(() => {
       v-for="option of props.options"
       :class="{ selected: option === props.modelValue }"
       @click="update(option)"
+      role="option"
+      :aria-selected="option === props.modelValue"
     >
       {{ option }}
     </button>
