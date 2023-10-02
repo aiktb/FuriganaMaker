@@ -6,7 +6,7 @@ const props = withDefaults(defineProps<{ tip?: boolean; shiny?: boolean }>(), {
 </script>
 
 <template>
-  <div class="menuItem">
+  <li class="menuItem">
     <div class="icon" :class="{ shiny: shiny }">
       <slot name="icon" />
     </div>
@@ -16,7 +16,7 @@ const props = withDefaults(defineProps<{ tip?: boolean; shiny?: boolean }>(), {
     <div class="tip" ref="tip" v-if="props.tip">
       <slot name="tip" />
     </div>
-  </div>
+  </li>
 </template>
 
 <style scoped>
