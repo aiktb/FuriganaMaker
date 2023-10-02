@@ -9,7 +9,7 @@ const props = defineProps<{
 <template>
   <a target="_blank" :href="props.link" class="link">
     <slot name="default" />
-    <div v-html="LinkIcon" class="linkIcon" />
+    <div v-html="LinkIcon" class="linkIcon" aria-hidden="true" />
   </a>
 </template>
 

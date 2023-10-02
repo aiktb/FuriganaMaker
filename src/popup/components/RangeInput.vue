@@ -61,6 +61,11 @@ onMounted(() => {
   <div
     class="range"
     tabindex="0"
+    role="slider"
+    :aria-valuemin="props.min"
+    :aria-valuemax="props.max"
+    :aria-valuetext="props.modelValue.toString()"
+    aria-label="Font size"
     @keydown.left="keyHandler(KeyEvent.Subtract)"
     @keydown.right="keyHandler(KeyEvent.Add)"
     @keydown.up="keyHandler(KeyEvent.Add)"

@@ -7,7 +7,7 @@ const props = withDefaults(defineProps<{ tip?: boolean; shiny?: boolean }>(), {
 
 <template>
   <li class="menuItem">
-    <div class="icon" :class="{ shiny: shiny }">
+    <div class="icon" :class="{ shiny: shiny }" aria-hidden="true">
       <slot name="icon" />
     </div>
     <div class="content">
