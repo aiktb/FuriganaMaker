@@ -45,10 +45,7 @@ class Renderer {
     Object.assign(this.#left.style, this.#GENERAL_CSS)
     Object.assign(this.#right.style, this.#GENERAL_CSS)
     Object.assign(this.#top.style, this.#GENERAL_CSS)
-    Object.assign(this.#bottom.style, {
-      ...this.#GENERAL_CSS,
-      ...this.#BOTTOM_CSS
-    })
+    Object.assign(this.#bottom.style, this.#GENERAL_CSS, this.#BOTTOM_CSS)
   }
 
   public readonly hide = () => {
