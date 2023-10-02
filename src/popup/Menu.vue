@@ -63,7 +63,7 @@ const selectOptions = ['original', 'furigana']
 </script>
 
 <template>
-  <div class="menu">
+  <menu>
     <MenuItem tip>
       <template #icon>
         <div v-html="CursorOutlineIcon" />
@@ -156,11 +156,11 @@ const selectOptions = ['original', 'furigana']
       </template>
       <template #tip> Open an issue on GitHub </template>
     </MenuItem>
-  </div>
+  </menu>
 </template>
 
 <style scoped>
-.menu {
+menu {
   padding: 0 0.5rem;
   width: 13.5rem;
   border-right: 0.15rem solid var(--feature);
