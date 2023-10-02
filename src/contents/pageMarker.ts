@@ -16,6 +16,10 @@ const mark = async () => {
   >({ name: 'getSelector', body: { domain: location.hostname } })
 
   const selectors = response.selectors.filter((selector) => selector.valid)
+  if (!selectors.length) {
+    return
+  }
+
   const plainSelector = selectors
     .filter((selector) => !selector.observer)
     .map((selector) => selector.name)
