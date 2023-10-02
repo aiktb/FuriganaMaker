@@ -118,7 +118,6 @@ async function styleHandler(type: StyleEvent) {
         }
       `
       break
-    // <ruby> color will be passed to <rt>, so no control logic for <ruby> color will be added.
     case ExtensionEvent.Color:
       css = `
         ${rtSelector} {
