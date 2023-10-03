@@ -4,6 +4,8 @@ import { Storage } from '@plasmohq/storage'
 
 import { defaultConfig, ExtensionEvent, Rule } from '~contents/core'
 
+// Plasmo `dev` mode will force the Service Worker to be `active`, it will never become `inactive`.
+
 const storage = new Storage({ area: 'local' })
 
 Browser.runtime.onInstalled.addListener(async () => {
@@ -25,7 +27,6 @@ Browser.commands.onCommand.addListener(async (command, tab) => {
   // The root path of the website returned by tab.url contains '/' at the end. e.g. https://example.com/
   const https = /^https:\/\/.*\/.*$/
   if (!tab?.url || !https.test(tab.url)) {
-    // Using shortcut keys on a page that does not have a content script running can cause misunderstandings.
     return
   }
 
