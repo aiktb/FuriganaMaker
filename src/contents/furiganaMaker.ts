@@ -43,6 +43,7 @@ export async function addFurigana(elements: Element | Element[]) {
 }
 
 const collectTexts = (element: Element): Text[] => {
+  element.normalize()
   const walker = document.createTreeWalker(element, NodeFilter.SHOW_TEXT)
   const texts: Text[] = []
   while (walker.nextNode()) {
