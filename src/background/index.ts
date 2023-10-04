@@ -17,9 +17,9 @@ Browser.runtime.onInstalled.addListener(async () => {
   }
   const response = await fetch('../../assets/rules.json')
   const defaultRules: Rule[] = await response.json()
-  const oldRules: Rule[] = await storage.get('rules')
+  const oldRules: Rule[] = await storage.get(ExtensionEvent.Rules)
   if (!oldRules) {
-    await storage.set('rules', defaultRules)
+    await storage.set(ExtensionEvent.Rules, defaultRules)
   }
 })
 

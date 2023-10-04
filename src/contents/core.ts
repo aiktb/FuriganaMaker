@@ -22,7 +22,9 @@ export enum ExtensionEvent {
   // Change the font size of furigana.
   Fontsize = 'fontsize',
   // Change the font color of furigana.
-  Color = 'color'
+  Color = 'color',
+  // List of website rules that will auto add furigana.
+  Rules = 'rules'
 }
 
 export type StyleEvent =

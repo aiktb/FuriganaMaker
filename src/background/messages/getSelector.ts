@@ -1,14 +1,14 @@
 import type { PlasmoMessaging } from '@plasmohq/messaging'
 import { Storage } from '@plasmohq/storage'
 
-import { Rule, Selector } from '~contents/core'
+import { ExtensionEvent, Rule, Selector } from '~contents/core'
 
 const storage = new Storage({ area: 'local' })
 const handler: PlasmoMessaging.MessageHandler<
   { domain: string },
   { selector: Selector }
 > = async (req, res) => {
-  const allRules: Rule[] = await storage.get('rules')
+  const allRules: Rule[] = await storage.get(ExtensionEvent.Rules)
   const validRules = allRules.filter(
     (rule) => rule.domain === req.body!.domain && rule.enabled
   )
