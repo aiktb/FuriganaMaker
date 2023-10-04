@@ -1,7 +1,7 @@
 import type { PlasmoCSConfig } from 'plasmo'
 
-import { FURIGANA_CLASS } from '~contents/core'
-import { addFurigana } from '~contents/furiganaMaker'
+import { FURIGANA_CLASS } from './core'
+import { addFurigana } from './furiganaMaker'
 
 export const config: PlasmoCSConfig = {
   matches: ['https://*/*']

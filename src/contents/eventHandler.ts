@@ -4,8 +4,8 @@ import Browser from 'webextension-polyfill'
 
 import { Storage } from '@plasmohq/storage'
 
-import { ExtensionEvent, FURIGANA_CLASS, type StyleEvent } from '~contents/core'
-import { Selector } from '~contents/customSelector'
+import { ExtensionEvent, FURIGANA_CLASS, type StyleEvent } from './core'
+import { Selector } from './customSelector'
 
 export const config: PlasmoCSConfig = {
   matches: ['https://*/*']
