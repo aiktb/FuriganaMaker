@@ -6,7 +6,11 @@ import Main from './components/Main.vue'
 
 <template>
   <Header />
-  <Main />
+  <Suspense>
+    <template #default>
+      <Main />
+    </template>
+  </Suspense>
   <Footer />
 </template>
 
