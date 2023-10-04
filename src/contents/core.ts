@@ -51,13 +51,6 @@ export const defaultConfig: Config = {
   color: 'currentColor'
 }
 
-export enum MenuEvent {
-  Open = 'open',
-  Close = 'close',
-  Lock = 'lock',
-  SwitchMode = 'switchMode'
-}
-
 export type Rule = {
   domain: string
   selector: Selector[]
