@@ -11,6 +11,7 @@ import FontSizeIcon from 'data-text:@Icons/FontSize.svg'
 import GithubIcon from 'data-text:@Icons/Github.svg'
 import HiraganaIcon from 'data-text:@Icons/Hiragana.svg'
 import PowerIcon from 'data-text:@Icons/Power.svg'
+import SettingIcon from 'data-text:@Icons/Setting.svg'
 
 import { Storage } from '@plasmohq/storage'
 
@@ -122,6 +123,17 @@ const selectOptions = ['original', 'furigana']
     </MenuItem>
     <MenuItem>
       <template #icon>
+        <div v-html="ColorPickerIcon" />
+      </template>
+      <template #content>
+        <ColorButton
+          v-model="option.color"
+          @change="change(ExtensionEvent.Color)"
+        />
+      </template>
+    </MenuItem>
+    <MenuItem>
+      <template #icon>
         <div v-html="FontSizeIcon" />
       </template>
       <template #content>
@@ -135,13 +147,10 @@ const selectOptions = ['original', 'furigana']
     </MenuItem>
     <MenuItem>
       <template #icon>
-        <div v-html="ColorPickerIcon" />
+        <div v-html="SettingIcon" />
       </template>
       <template #content>
-        <ColorButton
-          v-model="option.color"
-          @change="change(ExtensionEvent.Color)"
-        />
+        <Link link="options.html"> Edit rules </Link>
       </template>
     </MenuItem>
     <MenuItem tip>
