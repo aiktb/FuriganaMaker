@@ -4,8 +4,8 @@ import { toHiragana, toRomaji } from 'wanakana'
 import { sendToBackground } from '@plasmohq/messaging'
 import { Storage } from '@plasmohq/storage'
 
-import { ExtensionEvent, FURIGANA_CLASS } from '~contents/core'
-import { KanjiToken, MojiToken, toKanjiToken } from '~contents/kanjiTokenizer'
+import { ExtensionEvent, FURIGANA_CLASS } from './core'
+import { KanjiToken, MojiToken, toKanjiToken } from './kanjiTokenizer'
 
 export const config: PlasmoCSConfig = {
   matches: ['https://*/*']

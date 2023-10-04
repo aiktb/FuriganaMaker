@@ -15,13 +15,13 @@ import PowerIcon from 'data-text:@Icons/Power.svg'
 import { Storage } from '@plasmohq/storage'
 
 import { ExtensionEvent, type Config } from '~contents/core'
-import MenuItem from '~popup/MenuItem.vue'
 
 import Button from './components/Button.vue'
 import ColorButton from './components/ColorButton.vue'
 import Link from './components/Link.vue'
 import RangeInput from './components/RangeInput.vue'
 import SelectButton from './components/SelectButton.vue'
+import MenuItem from './MenuItem.vue'
 
 const storage = new Storage({ area: 'local' })
 // Top-level await makes this component asynchronous.
