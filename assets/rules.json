@@ -48,12 +48,6 @@
     "enabled": true
   },
   {
-    "domain": "article.auone.jp",
-    "selector": "#main article .article, #main article .headline",
-    "dynamic": false,
-    "enabled": true
-  },
-  {
     "domain": "topics.smt.docomo.ne.jp",
     "selector": ".newsTopics-title-area h1, .newsTopics-title-area h2, .newsTopics-text",
     "dynamic": false,
