@@ -1,5 +1,5 @@
 <script setup lang="ts">
-import LinkIcon from 'data-text:@Icons/Link.svg'
+import { Icon } from '@iconify/vue'
 
 const props = defineProps<{
   link: string
@@ -9,7 +9,7 @@ const props = defineProps<{
 <template>
   <a target="_blank" :href="props.link" class="link">
     <slot name="default" />
-    <div v-html="LinkIcon" class="linkIcon" aria-hidden="true" />
+    <Icon icon="ci:link" aria-hidden="true" />
   </a>
 </template>
 
@@ -25,18 +25,11 @@ const props = defineProps<{
   display: flex;
   align-items: center;
   transition: color 500ms ease-in-out;
+  gap: 0.3rem;
 }
 
 .link:focus,
 .link:hover {
   color: var(--feature);
-}
-
-.linkIcon {
-  display: flex;
-  align-items: center;
-  margin-left: 0.3rem;
-  width: 0.8rem;
-  height: auto;
 }
 </style>
