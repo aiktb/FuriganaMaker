@@ -89,6 +89,14 @@
         "matches": [
           "https://*/*"
         ]
+      },
+      {
+        "resources": [
+          "assets/rules.json"
+        ],
+        "matches": [
+          "http://*/*"
+        ]
       }
     ]
   }

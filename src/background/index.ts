@@ -15,10 +15,11 @@ Browser.runtime.onInstalled.addListener(async () => {
       await storage.set(key, defaultConfig[key])
     }
   }
-
-  const oldRules: any[] = await storage.get('rules')
+  const response = await fetch('../../assets/rules.json')
+  const defaultRules: Rule[] = await response.json()
+  const oldRules: Rule[] = await storage.get('rules')
   if (!oldRules) {
-    await storage.set('rules', rules)
+    await storage.set('rules', defaultRules)
   }
 })
 
@@ -66,19 +67,3 @@ Browser.contextMenus.onClicked.addListener((info, tab) => {
     Browser.tabs.sendMessage(tab!.id!, ExtensionEvent.Custom)
   }
 })
-
-const rules: Rule[] = [
-  {
-    domain: 'twitter.com',
-    selector: "div[lang='ja'] span",
-    dynamic: true,
-    enabled: true
-  },
-  {
-    domain: 'www.asahi.com',
-    selector:
-      '.nfyQp h1, .nfyQp h2, .nfyQp h3, .nfyQp h4, .nfyQp h5, .nfyQp h6, .nfyQp p',
-    dynamic: false,
-    enabled: true
-  }
-]
