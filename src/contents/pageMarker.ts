@@ -2,8 +2,8 @@ import type { PlasmoCSConfig } from 'plasmo'
 
 import { sendToBackground } from '@plasmohq/messaging'
 
-import { Selector } from '~contents/core'
-import { addFurigana } from '~contents/furiganaMaker'
+import { Selector } from './core'
+import { addFurigana } from './furiganaMaker'
 
 export const config: PlasmoCSConfig = {
   matches: ['https://*/*']
@@ -12,22 +12,10 @@ export const config: PlasmoCSConfig = {
 const mark = async () => {
   const response = await sendToBackground<
     { domain: string },
-    { selectors: Selector[] }
+    { selector: Selector }
   >({ name: 'getSelector', body: { domain: location.hostname } })
-
-  const selectors = response.selectors.filter((selector) => selector.valid)
-  if (!selectors.length) {
-    return
-  }
-
-  const plainSelector = selectors
-    .filter((selector) => !selector.observer)
-    .map((selector) => selector.name)
-    .join(', ')
-  const observerSelector = selectors
-    .filter((selector) => selector.observer)
-    .map((selector) => selector.name)
-    .join(', ')
+  const plainSelector = response.selector.plain
+  const observerSelector = response.selector.observer
 
   if (plainSelector) {
     const elements = Array.from(document.querySelectorAll(plainSelector))

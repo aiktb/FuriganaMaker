@@ -53,11 +53,12 @@ export const defaultConfig: Config = {
 
 export type Rule = {
   domain: string
-  selector: Selector[]
+  selector: string
+  dynamic: boolean
+  enabled: boolean
 }
 
 export type Selector = {
-  name: string
-  valid: boolean
-  observer: boolean
+  plain?: string | undefined
+  observer?: string | undefined
 }

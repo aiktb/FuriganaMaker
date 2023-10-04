@@ -70,22 +70,15 @@ Browser.contextMenus.onClicked.addListener((info, tab) => {
 const rules: Rule[] = [
   {
     domain: 'twitter.com',
-    selector: [
-      {
-        name: "div[lang='ja'] span",
-        valid: true,
-        observer: true
-      }
-    ]
+    selector: "div[lang='ja'] span",
+    dynamic: true,
+    enabled: true
   },
   {
     domain: 'www.asahi.com',
-    selector: [
-      {
-        name: '.nfyQp h1, .nfyQp h2, .nfyQp h3, .nfyQp h4, .nfyQp h5, .nfyQp h6, .nfyQp p',
-        valid: true,
-        observer: false
-      }
-    ]
+    selector:
+      '.nfyQp h1, .nfyQp h2, .nfyQp h3, .nfyQp h4, .nfyQp h5, .nfyQp h6, .nfyQp p',
+    dynamic: false,
+    enabled: true
   }
 ]
