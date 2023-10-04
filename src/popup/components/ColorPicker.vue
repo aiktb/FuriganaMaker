@@ -123,14 +123,16 @@ onMounted(() => {
 </script>
 
 <template>
-  <div class="panel" ref="panel" tabindex="-1">
+  <div class="panel" ref="panel" tabindex="-1" aria-label="color picker">
     <canvas
       class="shade"
       ref="shade"
       :style="{ backgroundColor: hueBarStyle.backgroundColor }"
     />
-    <button
+    <div
+      aria-label="shade cursor"
       class="shadeCursor cursor"
+      tabindex="0"
       :style="shadeBarStyle"
       ref="shadeCursor"
       @keydown.up="shadeY--"
@@ -140,8 +142,10 @@ onMounted(() => {
       @keyup.enter="update(input)"
     />
     <canvas class="hue" ref="hue" />
-    <button
+    <div
+      aria-label="hue cursor"
       class="hueCursor cursor"
+      tabindex="0"
       :style="hueBarStyle"
       ref="hueCursor"
       @keydown.up="hueX--"
@@ -161,8 +165,13 @@ onMounted(() => {
       />
     </div>
     <div class="option">
-      <input class="input" v-model="input" @change="colorToPosition(input)" />
-      <button class="clear" @click="update('currentColor')">CLEAR</button>
+      <input
+        class="input"
+        aria-label="input HEX color"
+        v-model="input"
+        @change="colorToPosition(input)"
+      />
+      <button class="reset" @click="update('currentColor')">RESET</button>
       <button class="ok" @click="update(input)">OK</button>
     </div>
   </div>
@@ -270,7 +279,7 @@ onMounted(() => {
   text-transform: uppercase;
 }
 
-.clear {
+.reset {
   padding: 0 0.2rem;
   grid-column-start: 6;
   border: none;
@@ -278,7 +287,7 @@ onMounted(() => {
   transition: all 250ms ease-in-out;
 }
 
-.clear:hover {
+.reset:hover {
   color: var(--feature);
 }
 
