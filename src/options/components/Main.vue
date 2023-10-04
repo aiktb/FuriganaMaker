@@ -1,10 +1,10 @@
 <script setup lang="ts">
 import { Storage } from '@plasmohq/storage'
 
-import { Rule } from '~contents/core'
+import { ExtensionEvent, Rule } from '~contents/core'
 
 const storage = new Storage({ area: 'local' })
-const rules: Rule[] = await storage.get('rules')
+const rules: Rule[] = await storage.get(ExtensionEvent.Rules)
 </script>
 
 <template>

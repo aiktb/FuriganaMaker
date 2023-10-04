@@ -32,6 +32,8 @@ Browser.runtime.onMessage.addListener((event: ExtensionEvent) => {
     case ExtensionEvent.Custom:
       customHandler()
       break
+    case ExtensionEvent.Rules:
+      break
     default:
       styleHandler(event)
       break
