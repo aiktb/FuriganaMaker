@@ -23,6 +23,9 @@ const mark = async () => {
   }
 
   if (observerSelector) {
+    const elements = Array.from(document.querySelectorAll(observerSelector))
+    addFurigana(elements)
+
     const observer = new MutationObserver((records) => {
       const japaneseElements = records
         .flatMap((record) => Array.from(record.addedNodes))
