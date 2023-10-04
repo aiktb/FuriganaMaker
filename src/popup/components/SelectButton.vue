@@ -1,7 +1,6 @@
 <script setup lang="ts">
+import { Icon } from '@iconify/vue'
 import { ref } from 'vue'
-
-import DownIcon from 'data-text:@Icons/Down.svg'
 
 import Button from './Button.vue'
 import SelectOptions from './SelectOptions.vue'
@@ -35,7 +34,7 @@ const close = () => {
     ref="selectButton"
   >
     {{ props.modelValue }}
-    <div v-html="DownIcon" class="selectIcon" aria-hidden="true" />
+    <Icon icon="ep:arrow-down-bold" class="icon" aria-hidden="true" />
   </Button>
   <Transition>
     <SelectOptions
@@ -59,22 +58,17 @@ const close = () => {
   pointer-events: none;
 }
 
-.selectIcon {
+.icon {
   display: none;
+  color: var(--feature);
 }
 
-.display .selectIcon {
+.display .icon {
   display: flex;
 }
 
-.selectIcon :deep(svg) {
-  color: var(--feature);
-  width: 1rem;
-  height: auto;
-}
-
-.selectButton:focus-within .selectIcon,
-.selectButton:hover .selectIcon {
+.selectButton:focus-within .icon,
+.selectButton:hover .icon {
   display: flex;
 }
 
