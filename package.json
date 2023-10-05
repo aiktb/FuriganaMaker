@@ -81,10 +81,10 @@
         },
         "description": "Add furigana on the current page"
       },
-      "switchDisplay": {
+      "toggleDisplay": {
         "description": "Switch furigana display on all pages"
       },
-      "openHoverMode": {
+      "toggleHoverMode": {
         "description": "Switch hover mode on all pages"
       }
     },

@@ -3,13 +3,13 @@ import { ref } from 'vue'
 
 import { Storage } from '@plasmohq/storage'
 
-import { ExtensionEvent, Rule } from '~contents/core'
+import { ExtensionStorage, Rule } from '~contents/core'
 
 // import { Field, makeCompareFn, State } from '../util/sort'
 import TableButton from './TableButton.vue'
 
 const storage = new Storage({ area: 'local' })
-const originalRules: Rule[] = await storage.get(ExtensionEvent.Rules)
+const originalRules: Rule[] = await storage.get(ExtensionStorage.UserRule)
 const shownRules: Rule[] = originalRules
 const domainButton = ref<InstanceType<typeof TableButton> | null>(null)
 const selectorButton = ref<InstanceType<typeof TableButton> | null>(null)

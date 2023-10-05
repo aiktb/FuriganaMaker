@@ -7,40 +7,40 @@ export const config: PlasmoCSConfig = {
 }
 
 export enum ExtensionEvent {
-  // The user starts selecting elements on the page that need to be marked.
-  // This event does not require Storage.
-  Custom = 'custom',
-  // To switch the furigana display of the page, use the display property of CSS.
+  AddFurigana = 'addFurigana',
+  ToggleDisplay = 'toggleDisplay',
+  ToggleHoverMode = 'toggleHoverMode',
+  SwitchFuriganaType = 'switchFuriganaType',
+  SwitchSelectMode = 'switchSelectMode',
+  AdjustFontSize = 'adjustFontSize',
+  AdjustFontColor = 'adjustFontColor',
+  EditUserRule = 'editUserRule'
+}
+
+export enum ExtensionStorage {
   Display = 'display',
-  // Show furigana when pointer hovers over Japanese Kanji.
-  Hover = 'hover',
-  // Switches the display type of furigana.
-  Furigana = 'furigana',
-  // Select the type of text that can be copied.
-  // This event does not require Storage.
-  Select = 'select',
-  // Change the font size of furigana.
-  Fontsize = 'fontsize',
-  // Change the font color of furigana.
-  Color = 'color',
-  // List of website rules that will auto add furigana.
-  Rules = 'rules'
+  HoverMode = 'hoverMode',
+  FuriganaType = 'furiganaType',
+  SelectMode = 'selectMode',
+  FontSize = 'fontSize',
+  FontColor = 'fontColor',
+  UserRule = 'userRule'
 }
 
 export type StyleEvent =
-  | ExtensionEvent.Display
-  | ExtensionEvent.Hover
-  | ExtensionEvent.Select
-  | ExtensionEvent.Fontsize
-  | ExtensionEvent.Color
+  | ExtensionEvent.ToggleDisplay
+  | ExtensionEvent.ToggleHoverMode
+  | ExtensionEvent.SwitchSelectMode
+  | ExtensionEvent.AdjustFontSize
+  | ExtensionEvent.AdjustFontColor
 
-export enum Furigana {
+export enum FuriganaType {
   Hiragana = 'hiragana',
   Katakana = 'katakana',
   Romaji = 'romaji'
 }
 
-export enum Select {
+export enum SelectMode {
   Original = 'original',
   Furigana = 'furigana'
 }
@@ -48,20 +48,20 @@ export enum Select {
 export type Config = {
   [key: string]: string | number | boolean
   display: boolean
-  hover: boolean
-  furigana: Furigana
-  select: Select
-  fontsize: number
-  color: string
+  hoverMode: boolean
+  furiganaType: FuriganaType
+  selectMode: SelectMode
+  fontSize: number
+  fontColor: string
 }
 
 export const defaultConfig: Config = {
   display: true,
-  hover: false,
-  furigana: Furigana.Hiragana,
-  select: Select.Original,
-  fontsize: 75, // ${fontsize}% relative to the parent font.
-  color: 'currentColor'
+  hoverMode: false,
+  furiganaType: FuriganaType.Hiragana,
+  selectMode: SelectMode.Original,
+  fontSize: 75, // ${fontsize}% relative to the parent font.
+  fontColor: 'currentColor'
 }
 
 export type Rule = {
@@ -74,4 +74,29 @@ export type Rule = {
 export type Selector = {
   plain?: string | undefined
   observer?: string | undefined
+}
+
+export type StorageChangeEvent =
+  | ExtensionEvent.AdjustFontColor
+  | ExtensionEvent.AdjustFontSize
+  | ExtensionEvent.SwitchFuriganaType
+  | ExtensionEvent.SwitchSelectMode
+  | ExtensionEvent.ToggleDisplay
+  | ExtensionEvent.ToggleHoverMode
+
+export const toStorageKey = (event: StorageChangeEvent) => {
+  switch (event) {
+    case ExtensionEvent.AdjustFontColor:
+      return ExtensionStorage.FontColor
+    case ExtensionEvent.AdjustFontSize:
+      return ExtensionStorage.FontSize
+    case ExtensionEvent.SwitchFuriganaType:
+      return ExtensionStorage.FuriganaType
+    case ExtensionEvent.SwitchSelectMode:
+      return ExtensionStorage.SelectMode
+    case ExtensionEvent.ToggleDisplay:
+      return ExtensionStorage.Display
+    case ExtensionEvent.ToggleHoverMode:
+      return ExtensionStorage.HoverMode
+  }
 }

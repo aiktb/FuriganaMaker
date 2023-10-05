@@ -4,7 +4,7 @@ import { toHiragana, toRomaji } from 'wanakana'
 import { sendToBackground } from '@plasmohq/messaging'
 import { Storage } from '@plasmohq/storage'
 
-import { ExtensionEvent, Furigana, FURIGANA_CLASS } from './core'
+import { ExtensionStorage, FURIGANA_CLASS, FuriganaType } from './core'
 import { KanjiToken, MojiToken, toKanjiToken } from './kanjiTokenizer'
 
 export const config: PlasmoCSConfig = {
@@ -29,13 +29,15 @@ export async function addFurigana(elements: Element | Element[]) {
   }
 
   const storage = new Storage({ area: 'local' })
-  const furigana: Furigana = await storage.get(ExtensionEvent.Furigana)
+  const furiganaType: FuriganaType = await storage.get(
+    ExtensionStorage.FuriganaType
+  )
 
   for (const text of japaneseTexts) {
     const tokens: KanjiToken[] = await tokenize(text.textContent!)
     // reverse() prevents the range from being invalidated
     for (const token of tokens.reverse()) {
-      const ruby = createRuby(token.original, token.reading, furigana)
+      const ruby = createRuby(token.original, token.reading, furiganaType)
       const range = document.createRange()
       range.setStart(text, token.start)
       range.setEnd(text, token.end)
@@ -70,7 +72,7 @@ const tokenize = async (text: string): Promise<KanjiToken[]> => {
 const createRuby = (
   original: string,
   reading: string,
-  furigana: Furigana
+  furiganaType: FuriganaType
 ): HTMLElement => {
   const ruby = document.createElement('ruby')
   ruby.classList.add(FURIGANA_CLASS)
@@ -80,14 +82,14 @@ const createRuby = (
   leftParenthesisRp.textContent = '('
   const originalText = document.createTextNode(original)
 
-  switch (furigana) {
-    case Furigana.Hiragana:
+  switch (furiganaType) {
+    case FuriganaType.Hiragana:
       reading = toHiragana(reading)
       break
-    case Furigana.Romaji:
+    case FuriganaType.Romaji:
       reading = toRomaji(reading)
       break
-    case Furigana.Katakana:
+    case FuriganaType.Katakana:
       // token.reading default is katakana
       break
   }

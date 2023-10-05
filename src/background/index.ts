@@ -2,7 +2,12 @@ import Browser from 'webextension-polyfill'
 
 import { Storage } from '@plasmohq/storage'
 
-import { defaultConfig, ExtensionEvent, Rule } from '~contents/core'
+import {
+  defaultConfig,
+  ExtensionEvent,
+  ExtensionStorage,
+  Rule
+} from '~contents/core'
 
 // Plasmo `dev` mode will force the Service Worker to be `active`, it will never become `inactive`.
 
@@ -15,11 +20,11 @@ Browser.runtime.onInstalled.addListener(async () => {
       await storage.set(key, defaultConfig[key])
     }
   }
-  const response = await fetch('../../assets/rules.json')
-  const defaultRules: Rule[] = await response.json()
-  const oldRules: Rule[] = await storage.get(ExtensionEvent.Rules)
+  const oldRules: Rule[] = await storage.get(ExtensionStorage.UserRule)
   if (!oldRules) {
-    await storage.set(ExtensionEvent.Rules, defaultRules)
+    const response = await fetch('../../assets/rules.json')
+    const defaultRules: Rule[] = await response.json()
+    await storage.set(ExtensionStorage.UserRule, defaultRules)
   }
 })
 
@@ -33,14 +38,14 @@ Browser.commands.onCommand.addListener(async (command, tab) => {
 
   let event: ExtensionEvent | undefined
   switch (command) {
-    case 'addFurigana':
-      await Browser.tabs.sendMessage(tab.id!, ExtensionEvent.Custom)
+    case ExtensionEvent.AddFurigana:
+      await Browser.tabs.sendMessage(tab.id!, ExtensionEvent.AddFurigana)
       break
-    case 'switchDisplay':
-      event = ExtensionEvent.Display
+    case ExtensionEvent.ToggleDisplay:
+      event = ExtensionEvent.ToggleDisplay
       break
-    case 'openHoverMode':
-      event = ExtensionEvent.Hover
+    case ExtensionEvent.ToggleHoverMode:
+      event = ExtensionEvent.ToggleHoverMode
       break
     default:
       throw new Error('Unknown command')
@@ -56,14 +61,14 @@ Browser.commands.onCommand.addListener(async (command, tab) => {
 })
 
 const contextMenuItem: Browser.Menus.CreateCreatePropertiesType = {
-  id: 'addFurigana',
+  id: ExtensionEvent.AddFurigana,
   title: 'Add furigana on the page',
   contexts: ['page'],
   documentUrlPatterns: ['https://*/*']
 }
 Browser.contextMenus.create(contextMenuItem)
 Browser.contextMenus.onClicked.addListener((info, tab) => {
-  if (info.menuItemId == 'addFurigana') {
-    Browser.tabs.sendMessage(tab!.id!, ExtensionEvent.Custom)
+  if (info.menuItemId == ExtensionEvent.AddFurigana) {
+    Browser.tabs.sendMessage(tab!.id!, ExtensionEvent.AddFurigana)
   }
 })
