@@ -15,7 +15,15 @@ import SettingIcon from 'data-text:@Icons/Setting.svg'
 
 import { Storage } from '@plasmohq/storage'
 
-import { ExtensionEvent, Furigana, Select, type Config } from '~contents/core'
+import {
+  ExtensionEvent,
+  ExtensionStorage,
+  FuriganaType,
+  SelectMode,
+  StorageChangeEvent,
+  toStorageKey,
+  type Config
+} from '~contents/core'
 
 import BaseButton from './components/BaseButton.vue'
 import BaseLink from './components/BaseLink.vue'
@@ -27,12 +35,12 @@ import MenuItem from './MenuItem.vue'
 const storage = new Storage({ area: 'local' })
 // Top-level await makes this component asynchronous.
 const option: Config = reactive({
-  display: await storage.get(ExtensionEvent.Display),
-  hover: await storage.get(ExtensionEvent.Hover),
-  furigana: await storage.get(ExtensionEvent.Furigana),
-  select: await storage.get(ExtensionEvent.Select),
-  fontsize: await storage.get(ExtensionEvent.Fontsize),
-  color: await storage.get(ExtensionEvent.Color)
+  display: await storage.get(ExtensionStorage.Display),
+  hoverMode: await storage.get(ExtensionStorage.HoverMode),
+  furiganaType: await storage.get(ExtensionStorage.FuriganaType),
+  selectMode: await storage.get(ExtensionStorage.SelectMode),
+  fontSize: await storage.get(ExtensionStorage.FontSize),
+  fontColor: await storage.get(ExtensionStorage.FontColor)
 })
 
 const addFurigana = async () => {
@@ -45,21 +53,22 @@ const addFurigana = async () => {
   })
   const id = tabs[0]?.id
   if (id) {
-    await Browser.tabs.sendMessage(id, ExtensionEvent.Custom)
+    await Browser.tabs.sendMessage(id, ExtensionEvent.AddFurigana)
   }
 }
-
-const change = async (event: ExtensionEvent) => {
-  const value = option[event]
-  await storage.set(event, value)
+const change = async (event: StorageChangeEvent) => {
+  const key = toStorageKey(event)
+  const value = option[key]
+  await storage.set(key, value)
   const tabs = await Browser.tabs.query({ url: 'https://*/*' })
   for (const tab of tabs) {
     await Browser.tabs.sendMessage(tab.id!, event)
   }
 }
 
-const furiganaOptions = [Furigana.Hiragana, Furigana.Katakana, Furigana.Romaji]
-const selectOptions = [Select.Furigana, Select.Original]
+// prettier-ignore
+const furiganaOptions = [FuriganaType.Hiragana, FuriganaType.Katakana, FuriganaType.Romaji ]
+const selectOptions = [SelectMode.Original, SelectMode.Furigana]
 </script>
 
 <template>
@@ -80,23 +89,23 @@ const selectOptions = [Select.Furigana, Select.Original]
       <template #content>
         <BaseButton
           v-model="option.display"
-          @change="change(ExtensionEvent.Display)"
+          @change="change(ExtensionEvent.ToggleDisplay)"
         >
           On-off extension
         </BaseButton>
       </template>
     </MenuItem>
-    <MenuItem :shiny="option.hover">
+    <MenuItem :shiny="option.hoverMode">
       <template #icon>
         <div v-if="option.hover" v-html="EyeIcon" />
         <div v-else v-html="EyeOffIcon" />
       </template>
       <template #content>
         <BaseButton
-          v-model="option.hover"
-          @change="change(ExtensionEvent.Hover)"
+          v-model="option.hoverMode"
+          @change="change(ExtensionEvent.ToggleHoverMode)"
         >
-          On-off hover
+          On-off hover mode
         </BaseButton>
       </template>
     </MenuItem>
@@ -106,9 +115,9 @@ const selectOptions = [Select.Furigana, Select.Original]
       </template>
       <template #content>
         <SelectButton
-          v-model="option.furigana"
+          v-model="option.furiganaType"
           :options="furiganaOptions"
-          @change="change(ExtensionEvent.Furigana)"
+          @change="change(ExtensionEvent.SwitchFuriganaType)"
         />
       </template>
     </MenuItem>
@@ -118,9 +127,9 @@ const selectOptions = [Select.Furigana, Select.Original]
       </template>
       <template #content>
         <SelectButton
-          v-model="option.select"
+          v-model="option.selectMode"
           :options="selectOptions"
-          @change="change(ExtensionEvent.Select)"
+          @change="change(ExtensionEvent.SwitchSelectMode)"
         />
       </template>
     </MenuItem>
@@ -130,8 +139,8 @@ const selectOptions = [Select.Furigana, Select.Original]
       </template>
       <template #content>
         <ColorButton
-          v-model="option.color"
-          @change="change(ExtensionEvent.Color)"
+          v-model="option.fontColor"
+          @change="change(ExtensionEvent.AdjustFontColor)"
         />
       </template>
     </MenuItem>
@@ -141,10 +150,10 @@ const selectOptions = [Select.Furigana, Select.Original]
       </template>
       <template #content>
         <RangeInput
-          v-model="option.fontsize"
+          v-model="option.fontSize"
           :min="50"
           :max="100"
-          @change="change(ExtensionEvent.Fontsize)"
+          @change="change(ExtensionEvent.AdjustFontSize)"
         />
       </template>
     </MenuItem>
