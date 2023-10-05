@@ -4,7 +4,7 @@ import { toHiragana, toRomaji } from 'wanakana'
 import { sendToBackground } from '@plasmohq/messaging'
 import { Storage } from '@plasmohq/storage'
 
-import { ExtensionEvent, FURIGANA_CLASS } from './core'
+import { ExtensionEvent, Furigana, FURIGANA_CLASS } from './core'
 import { KanjiToken, MojiToken, toKanjiToken } from './kanjiTokenizer'
 
 export const config: PlasmoCSConfig = {
@@ -28,11 +28,14 @@ export async function addFurigana(elements: Element | Element[]) {
     japaneseTexts.push(...collectTexts(elements))
   }
 
+  const storage = new Storage({ area: 'local' })
+  const furigana: Furigana = await storage.get(ExtensionEvent.Furigana)
+
   for (const text of japaneseTexts) {
     const tokens: KanjiToken[] = await tokenize(text.textContent!)
     // reverse() prevents the range from being invalidated
     for (const token of tokens.reverse()) {
-      const ruby = await createRuby(token.original, token.reading)
+      const ruby = createRuby(token.original, token.reading, furigana)
       const range = document.createRange()
       range.setStart(text, token.start)
       range.setEnd(text, token.end)
@@ -64,10 +67,11 @@ const tokenize = async (text: string): Promise<KanjiToken[]> => {
   return toKanjiToken(response.message)
 }
 
-const createRuby = async (
+const createRuby = (
   original: string,
-  reading: string
-): Promise<HTMLElement> => {
+  reading: string,
+  furigana: Furigana
+): HTMLElement => {
   const ruby = document.createElement('ruby')
   ruby.classList.add(FURIGANA_CLASS)
   const rightParenthesisRp = document.createElement('rp')
@@ -76,16 +80,14 @@ const createRuby = async (
   leftParenthesisRp.textContent = '('
   const originalText = document.createTextNode(original)
 
-  const storage = new Storage({ area: 'local' })
-  const furiganaType = await storage.get(ExtensionEvent.Furigana)
-  switch (furiganaType) {
-    case 'hiragana':
+  switch (furigana) {
+    case Furigana.Hiragana:
       reading = toHiragana(reading)
       break
-    case 'romaji':
+    case Furigana.Romaji:
       reading = toRomaji(reading)
       break
-    default:
+    case Furigana.Katakana:
       // token.reading default is katakana
       break
   }
