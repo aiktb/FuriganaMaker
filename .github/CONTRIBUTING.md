@@ -36,8 +36,6 @@ npm install -g pnpm
 After cloning the repo, run:
 
 ```bash
-# install the dependencies of the project
-# This will automatically set up git hooks with prettier and lint for you.
 pnpm install
 ```
 
@@ -49,7 +47,7 @@ pnpm install
 pnpm dev
 ```
 
-After executing the above command, visit [chrome extensions page](chrome://extensions/), and click `Load unpacked` button, then select the `build/chrome-mv3-dev` folder in the project root directory, and try modifying the source code. You'll get live update.
+After executing the above command, visit **chrome extensions page** `chrome://extensions/`, and click `Load unpacked` button, then select the `build/chrome-mv3-dev` folder in the project root directory, and try modifying the source code. You'll get live update.
 
 Alternatively, you can open a new CLI window and run the following command, this will open a clean chrome window.
 
@@ -63,7 +61,7 @@ pnpm start
 pnpm dev:firefox
 ```
 
-After executing the above command, visit [firefox add-on page](about:debugging#/runtime/this-firefox), and click `Load Temporary Add-on...` button, then select the `build/firefox-mv2-dev/manifest.json` file in the project root directory, and try modifying the source code. You'll get live update.
+After executing the above command, visit **firefox debugging page** `about:debugging#/runtime/this-firefox`, and click `Load Temporary Add-on...` button, then select the `build/firefox-mv2-dev/manifest.json` file in the project root directory, and try modifying the source code. You'll get live update.
 
 Alternatively, you can open a new CLI window and run the following command，this will open a clean firefox window.
 
