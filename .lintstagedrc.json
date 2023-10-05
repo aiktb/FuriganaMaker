@@ -1,4 +1,5 @@
 {
   "*": "prettier --write",
-  "*.{ts, vue}": "eslint"
+  "*.{ts, vue}": "eslint",
+  "*.ts": "jest --bail --findRelatedTests --passWithNoTests"
 }
