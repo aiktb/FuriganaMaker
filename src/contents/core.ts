@@ -34,12 +34,23 @@ export type StyleEvent =
   | ExtensionEvent.Fontsize
   | ExtensionEvent.Color
 
+export enum Furigana {
+  Hiragana = 'hiragana',
+  Katakana = 'katakana',
+  Romaji = 'romaji'
+}
+
+export enum Select {
+  Original = 'original',
+  Furigana = 'furigana'
+}
+
 export type Config = {
   [key: string]: string | number | boolean
   display: boolean
   hover: boolean
-  furigana: 'hiragana' | 'katakana' | 'romaji'
-  select: 'original' | 'furigana'
+  furigana: Furigana
+  select: Select
   fontsize: number
   color: string
 }
@@ -47,8 +58,8 @@ export type Config = {
 export const defaultConfig: Config = {
   display: true,
   hover: false,
-  furigana: 'hiragana',
-  select: 'original',
+  furigana: Furigana.Hiragana,
+  select: Select.Original,
   fontsize: 75, // ${fontsize}% relative to the parent font.
   color: 'currentColor'
 }
