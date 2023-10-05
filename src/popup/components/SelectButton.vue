@@ -2,7 +2,7 @@
 import { Icon } from '@iconify/vue'
 import { ref } from 'vue'
 
-import Button from './Button.vue'
+import BaseButton from './BaseButton.vue'
 import SelectOptions from './SelectOptions.vue'
 
 const props = defineProps<{
@@ -17,7 +17,7 @@ const emit = defineEmits<{
 
 const display = ref(false)
 const selected = ref(props.modelValue)
-const selectButton = ref<InstanceType<typeof Button> | null>(null)
+const selectButton = ref<InstanceType<typeof BaseButton> | null>(null)
 const close = () => {
   display.value = false
   selectButton.value?.focus()
@@ -27,22 +27,22 @@ const close = () => {
 </script>
 
 <template>
-  <Button
+  <BaseButton
+    ref="selectButton"
     class="selectButton"
     :class="{ display: display }"
     @click="display = true"
-    ref="selectButton"
   >
     {{ props.modelValue }}
     <Icon icon="ep:arrow-down-bold" class="icon" aria-hidden="true" />
-  </Button>
+  </BaseButton>
   <Transition>
     <SelectOptions
+      v-if="display"
       v-model="selected"
       :options="options"
-      v-if="display"
-      @close="close"
       role="listbox"
+      @close="close"
     />
   </Transition>
 </template>

@@ -1,17 +1,17 @@
 <script setup lang="ts">
-import Footer from './components/Footer.vue'
-import Header from './components/Header.vue'
-import Main from './components/Main.vue'
+import MyFooter from './components/MyFooter.vue'
+import MyHeader from './components/MyHeader.vue'
+import MyMain from './components/MyMain.vue'
 </script>
 
 <template>
-  <Header />
+  <MyHeader />
   <Suspense>
     <template #default>
-      <Main />
+      <MyMain />
     </template>
   </Suspense>
-  <Footer />
+  <MyFooter />
 </template>
 
 <style>

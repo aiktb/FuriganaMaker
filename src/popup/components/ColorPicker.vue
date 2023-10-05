@@ -123,31 +123,31 @@ onMounted(() => {
 </script>
 
 <template>
-  <div class="panel" ref="panel" tabindex="-1" aria-label="color picker">
+  <div ref="panel" class="panel" tabindex="-1" aria-label="color picker">
     <canvas
-      class="shade"
       ref="shade"
+      class="shade"
       :style="{ backgroundColor: hueBarStyle.backgroundColor }"
     />
     <div
+      ref="shadeCursor"
       aria-label="shade cursor"
       class="shadeCursor cursor"
       tabindex="0"
       :style="shadeBarStyle"
-      ref="shadeCursor"
       @keydown.up="shadeY--"
       @keydown.down="shadeY++"
       @keydown.left="shadeX--"
       @keydown.right="shadeX++"
       @keyup.enter="update(input)"
     />
-    <canvas class="hue" ref="hue" />
+    <canvas ref="hue" class="hue" />
     <div
+      ref="hueCursor"
       aria-label="hue cursor"
       class="hueCursor cursor"
       tabindex="0"
       :style="hueBarStyle"
-      ref="hueCursor"
       @keydown.up="hueX--"
       @keydown.down="hueX++"
       @keydown.left="hueX--"
@@ -156,8 +156,9 @@ onMounted(() => {
     />
     <div class="switcher">
       <button
-        class="color"
         v-for="color of colors"
+        :key="color"
+        class="color"
         :style="{ backgroundColor: color }"
         :class="{ selected: tinycolor(color).toHexString() === input }"
         :aria-label="color"
@@ -166,9 +167,9 @@ onMounted(() => {
     </div>
     <div class="option">
       <input
+        v-model="input"
         class="input"
         aria-label="input HEX color"
-        v-model="input"
         @change="colorToPosition(input)"
       />
       <button class="reset" @click="update('currentColor')">RESET</button>

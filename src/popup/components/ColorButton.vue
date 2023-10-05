@@ -1,7 +1,7 @@
 <script setup lang="ts">
 import { ref } from 'vue'
 
-import Button from './Button.vue'
+import BaseButton from './BaseButton.vue'
 import ColorPicker from './ColorPicker.vue'
 
 const props = defineProps<{
@@ -15,7 +15,7 @@ const emit = defineEmits<{
 
 const display = ref(false)
 const selected = ref(props.modelValue)
-const colorButton = ref<InstanceType<typeof Button> | null>(null)
+const colorButton = ref<InstanceType<typeof BaseButton> | null>(null)
 const close = () => {
   display.value = false
   colorButton.value?.focus()
@@ -25,12 +25,12 @@ const close = () => {
 </script>
 
 <template>
-  <Button class="colorButton" @click="display = true" ref="colorButton">
+  <BaseButton ref="colorButton" class="colorButton" @click="display = true">
     Select color
     <div class="colorIdentify" />
-  </Button>
+  </BaseButton>
   <Transition>
-    <ColorPicker v-model="selected" v-if="display" @close="close" />
+    <ColorPicker v-if="display" v-model="selected" @close="close" />
   </Transition>
 </template>
 

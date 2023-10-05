@@ -5,7 +5,7 @@ import Logo from 'data-text:@Icons/Logo.svg'
 <template>
   <header>
     <div class="title">
-      <div v-html="Logo" class="logo" />
+      <div class="logo" v-html="Logo" />
       Furigana Maker
     </div>
     <div class="github"></div>

@@ -7,19 +7,19 @@ import PlasmoLogo from 'data-text:@Icons/Plasmo.svg'
   <div class="line">
     <a
       class="icon github"
-      v-html="GithubLogo"
       href="https://github.com/aiktb/FuriganaMaker"
       target="_blank"
+      v-html="GithubLogo"
     />
   </div>
   <footer>
     <div class="made">
       Made by
       <a
-        v-html="PlasmoLogo"
         class="icon plasmo"
         href="https://plasmo.com"
         target="_blank"
+        v-html="PlasmoLogo"
       />
     </div>
     <div class="license">
