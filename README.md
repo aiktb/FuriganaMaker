@@ -4,6 +4,8 @@
 
 # Furigana Maker
 
+> This software is under development and there is no stable version yet.
+
 Add furigana to Japanese text for any web page. 🤔
 
 Special thanks to **_[plasmo](https://github.com/PlasmoHQ/plasmo)_** for taking the frustration out of browser extension development for me.
@@ -28,5 +30,5 @@ Please make sure to read the [Contributing Guide](./.github/CONTRIBUTING.md) bef
 - [Mirigana](https://chrome.google.com/webstore/detail/mirigana/hbekfodhcnfpkmoeaijgbamedofonjib)
 - [AdGuard AdBlocker](https://chrome.google.com/webstore/detail/adguard-adblocker/bgnkhhnnamicmpeenaelnjfhikgbkllg)
 - [Fix Translation](https://chrome.google.com/webstore/detail/fix-translation/nefkkabmejdacaifhjoinegmoggdbgee)
-- [Kuromoji](https://github.com/atilika/kuromoji)
+- [Kuromoji](https://github.com/sglkc/kuromoji.js)
 - [WanaKana](https://github.com/WaniKani/WanaKana)
