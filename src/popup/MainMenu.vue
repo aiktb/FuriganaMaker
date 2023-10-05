@@ -15,7 +15,7 @@ import SettingIcon from 'data-text:@Icons/Setting.svg'
 
 import { Storage } from '@plasmohq/storage'
 
-import { ExtensionEvent, type Config } from '~contents/core'
+import { ExtensionEvent, Furigana, Select, type Config } from '~contents/core'
 
 import BaseButton from './components/BaseButton.vue'
 import BaseLink from './components/BaseLink.vue'
@@ -58,8 +58,8 @@ const change = async (event: ExtensionEvent) => {
   }
 }
 
-const furiganaOptions = ['hiragana', 'katakana', 'romaji']
-const selectOptions = ['original', 'furigana']
+const furiganaOptions = [Furigana.Hiragana, Furigana.Katakana, Furigana.Romaji]
+const selectOptions = [Select.Furigana, Select.Original]
 </script>
 
 <template>
