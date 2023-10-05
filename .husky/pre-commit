@@ -1,5 +1,4 @@
 #!/usr/bin/env bash
 . "$(dirname -- "$0")/_/husky.sh"
 
-pnpm format
-pnpm lint
+npx lint-staged
