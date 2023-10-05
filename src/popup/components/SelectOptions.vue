@@ -31,14 +31,15 @@ onMounted(() => {
 </script>
 
 <template>
-  <div class="panel" ref="panel" tabindex="-1">
+  <div ref="panel" class="panel" tabindex="-1">
     <button
-      class="option"
       v-for="option of props.options"
-      :class="{ selected: option === props.modelValue }"
-      @click="update(option)"
+      :key="option"
+      class="option"
       role="option"
+      :class="{ selected: option === props.modelValue }"
       :aria-selected="option === props.modelValue"
+      @click="update(option)"
     >
       {{ option }}
     </button>

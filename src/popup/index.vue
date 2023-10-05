@@ -1,17 +1,17 @@
 <script setup lang="ts">
 import Logo from 'data-text:@Icons/Logo.svg'
 
-import Menu from './Menu.vue'
+import MainMenu from './MainMenu.vue'
 </script>
 
 <!-- All because <Menu /> needs to load chrome.storage asynchronously. -->
 <template>
   <Suspense>
     <template #default>
-      <Menu />
+      <MainMenu />
     </template>
     <template #fallback>
-      <div v-html="Logo" class="logo" />
+      <div class="logo" v-html="Logo" />
     </template>
   </Suspense>
 </template>

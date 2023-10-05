@@ -72,8 +72,8 @@ onMounted(() => {
     @keydown.down="keyHandler(KeyEvent.Subtract)"
     @keyup="keyHandler(KeyEvent.Emit)"
   >
-    <div class="track" ref="track">
-      <div class="thumb" ref="thumb" :style="style" />
+    <div ref="track" class="track">
+      <div ref="thumb" class="thumb" :style="style" />
     </div>
   </div>
 </template>

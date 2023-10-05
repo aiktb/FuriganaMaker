@@ -13,7 +13,7 @@ const props = withDefaults(defineProps<{ tip?: boolean; shiny?: boolean }>(), {
     <div class="content">
       <slot name="content" />
     </div>
-    <div class="tip" ref="tip" v-if="props.tip">
+    <div v-if="props.tip" ref="tip" class="tip">
       <slot name="tip" />
     </div>
   </li>

@@ -122,7 +122,7 @@ const buildRegex = (kanas: MarkTokenArray): RegExp => {
   if (!kanas.length) {
     return new RegExp('^$', 'u')
   }
-  // "作り方"　=>　"^(.+)リ(.+)$", "り方"　=>　"^リ(.+)$", "作り"　=>　"^(.+)リ$".
+  // "作り方" => "^(.+)リ(.+)$", "り方" => "^リ(.+)$", "作り" => "^(.+)リ$".
   const firstKana = kanas.at(0)!
   const lastKana = kanas.at(-1)!
   let regex = '^'

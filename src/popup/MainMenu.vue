@@ -17,9 +17,9 @@ import { Storage } from '@plasmohq/storage'
 
 import { ExtensionEvent, type Config } from '~contents/core'
 
-import Button from './components/Button.vue'
+import BaseButton from './components/BaseButton.vue'
+import BaseLink from './components/BaseLink.vue'
 import ColorButton from './components/ColorButton.vue'
-import Link from './components/Link.vue'
 import RangeInput from './components/RangeInput.vue'
 import SelectButton from './components/SelectButton.vue'
 import MenuItem from './MenuItem.vue'
@@ -69,7 +69,7 @@ const selectOptions = ['original', 'furigana']
         <div v-html="CursorOutlineIcon" />
       </template>
       <template #content>
-        <Button @click="addFurigana"> Add furigana </Button>
+        <BaseButton @click="addFurigana"> Add furigana </BaseButton>
       </template>
       <template #tip> Press <kbd>ESC</kbd> to cancel </template>
     </MenuItem>
@@ -78,23 +78,26 @@ const selectOptions = ['original', 'furigana']
         <div v-html="PowerIcon" />
       </template>
       <template #content>
-        <Button
+        <BaseButton
           v-model="option.display"
           @change="change(ExtensionEvent.Display)"
         >
           On-off extension
-        </Button>
+        </BaseButton>
       </template>
     </MenuItem>
     <MenuItem :shiny="option.hover">
       <template #icon>
-        <div v-html="EyeIcon" v-if="option.hover" />
-        <div v-html="EyeOffIcon" v-else />
+        <div v-if="option.hover" v-html="EyeIcon" />
+        <div v-else v-html="EyeOffIcon" />
       </template>
       <template #content>
-        <Button v-model="option.hover" @change="change(ExtensionEvent.Hover)">
+        <BaseButton
+          v-model="option.hover"
+          @change="change(ExtensionEvent.Hover)"
+        >
           On-off hover
-        </Button>
+        </BaseButton>
       </template>
     </MenuItem>
     <MenuItem>
@@ -103,8 +106,8 @@ const selectOptions = ['original', 'furigana']
       </template>
       <template #content>
         <SelectButton
-          :options="furiganaOptions"
           v-model="option.furigana"
+          :options="furiganaOptions"
           @change="change(ExtensionEvent.Furigana)"
         />
       </template>
@@ -115,8 +118,8 @@ const selectOptions = ['original', 'furigana']
       </template>
       <template #content>
         <SelectButton
-          :options="selectOptions"
           v-model="option.select"
+          :options="selectOptions"
           @change="change(ExtensionEvent.Select)"
         />
       </template>
@@ -150,7 +153,7 @@ const selectOptions = ['original', 'furigana']
         <div v-html="SettingIcon" />
       </template>
       <template #content>
-        <Link link="options.html"> Edit rules </Link>
+        <BaseLink link="options.html"> Edit rules </BaseLink>
       </template>
     </MenuItem>
     <MenuItem tip>
@@ -158,9 +161,9 @@ const selectOptions = ['original', 'furigana']
         <div v-html="GithubIcon" />
       </template>
       <template #content>
-        <Link link="https://github.com/aiktb/FuriganaMaker/issues">
+        <BaseLink link="https://github.com/aiktb/FuriganaMaker/issues">
           Feedback
-        </Link>
+        </BaseLink>
       </template>
       <template #tip> Open an issue on GitHub </template>
     </MenuItem>

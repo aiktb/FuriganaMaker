@@ -31,7 +31,7 @@ const change = () => {
 </script>
 
 <template>
-  <button class="button" @click="change" ref="root">
+  <button ref="root" class="button" @click="change">
     <slot name="default" />
   </button>
 </template>
