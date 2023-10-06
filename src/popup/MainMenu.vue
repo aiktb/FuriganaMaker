@@ -181,8 +181,8 @@ const selectOptions = [SelectMode.Original, SelectMode.Furigana]
 
 <style scoped>
 menu {
-  padding: 0 0.5rem;
-  width: 13.5rem;
+  margin: 0.8rem 0.8rem;
+  white-space: nowrap;
   border-right: 0.15rem solid var(--feature);
 }
 </style>

@@ -23,8 +23,8 @@ const props = withDefaults(defineProps<{ tip?: boolean; shiny?: boolean }>(), {
 .menuItem {
   display: flex;
   align-items: center;
-  gap: 0.5rem;
-  padding: 0.3rem 0;
+  gap: 0.4rem;
+  padding: 0.25rem 0.5rem;
   position: relative;
 }
 
@@ -46,6 +46,7 @@ const props = withDefaults(defineProps<{ tip?: boolean; shiny?: boolean }>(), {
   flex-grow: 1;
   border-radius: 0.3rem;
   position: relative;
+  padding: 0.1rem 0.15rem;
 }
 
 .content:hover,
