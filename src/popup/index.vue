@@ -43,11 +43,10 @@ import MainMenu from './MainMenu.vue'
     url('../../assets/fonts/jetbrains-mono-v18-latin-700.woff2') format('woff2');
 }
 
-body {
-  font-size: 13px;
+html {
+  font-size: 16px;
   color: var(--font);
   background-color: var(--background);
-  margin: 0.7rem;
   user-select: none;
 }
 
@@ -55,6 +54,9 @@ body {
   font-family: 'JetBrains Mono', monospace;
   box-sizing: border-box;
   text-align: left;
+  font-size: 1rem;
+  margin: 0;
+  padding: 0;
 }
 
 button {
@@ -62,8 +64,6 @@ button {
   border: none;
   background-color: transparent;
   color: currentColor;
-  padding: 0;
-  margin: 0;
 }
 
 :focus-visible {
