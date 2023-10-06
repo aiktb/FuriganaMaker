@@ -31,7 +31,7 @@ const getTokenizer = () => {
   isLoading = true
   const builder = kuromoji.builder({
     // This function relies on web_accessible_resources.
-    dicPath: '../../assets/dict'
+    dicPath: '../../assets/dicts'
   })
   builder.build((err: undefined | Error, tokenizer: Tokenizer) => {
     if (err) {
