@@ -15,23 +15,6 @@ import MyMain from './components/MyMain.vue'
 </template>
 
 <style>
-:root {
-  --feature: #0075ff;
-  --hover: #e1e1e1;
-  --background: #f5f5f5;
-  --font: #000000;
-}
-
-@media (prefers-color-scheme: dark) {
-  :root {
-    --feature: #0075ff;
-    --hover: #27415a;
-    --background: #1c2732;
-    --font: #9ca3af;
-    --strong: #ffffff;
-  }
-}
-
 @font-face {
   font-display: swap;
   font-family: 'JetBrains Mono';
@@ -52,9 +35,28 @@ import MyMain from './components/MyMain.vue'
     url('../../assets/fonts/dm-sans-v14-latin-regular.woff2') format('woff2');
 }
 
-body {
-  margin: 0;
-  font-family: 'DM Sans', sans-serif;
+:root {
+  --fm-blue-light: #12b8fd;
+  --fm-blue-deep: #007fff;
+  --fm-white-light: #e1e1e1;
+  --fm-white-deep: #d5d7d8;
+  --fm-black-light: #27415a;
+  --fm-black-deep: #1c2732;
+}
+
+:root {
+  --background: var(--fm-white-light);
+  --font: var(--fm-black-deep);
+}
+
+@media (prefers-color-scheme: dark) {
+  :root {
+    --background: var(--fm-black-deep);
+    --font: var(--fm-white-deep);
+  }
+}
+
+html {
   font-size: 14px;
   line-height: 1.5;
   color: var(--font);
@@ -63,6 +65,7 @@ body {
 
 * {
   box-sizing: border-box;
+  font-family: 'DM Sans', sans-serif;
   padding: 0;
   margin: 0;
   text-decoration: none;
