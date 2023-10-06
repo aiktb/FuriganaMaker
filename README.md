@@ -1,5 +1,5 @@
 <div align="center">
-    <img src="./assets/logo.svg">
+    <img src="./assets/icons/DemoLogo.svg">
 </div>
 
 # Furigana Maker
