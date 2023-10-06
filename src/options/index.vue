@@ -1,17 +1,7 @@
-<script setup lang="ts">
-import MyFooter from './components/MyFooter.vue'
-import MyHeader from './components/MyHeader.vue'
-import MyMain from './components/MyMain.vue'
-</script>
+<script setup lang="ts"></script>
 
 <template>
-  <MyHeader />
-  <Suspense>
-    <template #default>
-      <MyMain />
-    </template>
-  </Suspense>
-  <MyFooter />
+  <main></main>
 </template>
 
 <style>
@@ -57,7 +47,7 @@ import MyMain from './components/MyMain.vue'
 }
 
 html {
-  font-size: 14px;
+  font-size: 16px;
   line-height: 1.5;
   color: var(--font);
   background-color: var(--background);
@@ -71,5 +61,22 @@ html {
   text-decoration: none;
   background-color: transparent;
   color: currentColor;
+}
+
+body {
+  min-height: 100vh;
+  width: 100%;
+  align-items: center;
+  max-width: 48rem;
+  margin-inline-end: auto;
+  margin-inline-start: auto;
+  padding: 0.5rem;
+}
+
+main {
+  width: 100%;
+  min-height: 100vh;
+  border: 2px solid var(--fm-black-light);
+  border-radius: 0.375rem;
 }
 </style>
