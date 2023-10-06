@@ -97,7 +97,7 @@ const selectOptions = [SelectMode.Original, SelectMode.Furigana]
     </MenuItem>
     <MenuItem :shiny="option.hoverMode">
       <template #icon>
-        <div v-if="option.hover" v-html="EyeIcon" />
+        <div v-if="option.hoverMode" v-html="EyeIcon" />
         <div v-else v-html="EyeOffIcon" />
       </template>
       <template #content>
