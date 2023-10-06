@@ -17,22 +17,6 @@ import MainMenu from './MainMenu.vue'
 </template>
 
 <style>
-:root {
-  --feature: #0075ff;
-  --hover: #e1e1e1;
-  --background: #f5f5f5;
-  --font: #000000;
-}
-
-@media (prefers-color-scheme: dark) {
-  :root {
-    --feature: #0075ff;
-    --hover: #27415a;
-    --background: #1c2732;
-    --font: #f5f5f5da;
-  }
-}
-
 @font-face {
   font-display: swap;
   font-family: 'JetBrains Mono';
@@ -41,6 +25,30 @@ import MainMenu from './MainMenu.vue'
   src:
     local('JetBrains Mono'),
     url('../../assets/fonts/jetbrains-mono-v18-latin-700.woff2') format('woff2');
+}
+
+:root {
+  --fm-blue-deep: #007fff;
+  --fm-white-light: #e1e1e1;
+  --fm-white-deep: #d5d7d8;
+  --fm-black-light: #27415a;
+  --fm-black-deep: #1c2732;
+}
+
+:root {
+  --feature: var(--fm-blue-deep);
+  --hover: var(--fm-white-light);
+  --background: var(--fm-white-light);
+  --font: var(--fm-black-deep);
+}
+
+@media (prefers-color-scheme: dark) {
+  :root {
+    --feature: var(--fm-blue-deep);
+    --hover: var(--fm-black-light);
+    --background: var(--fm-black-deep);
+    --font: var(--fm-white-deep);
+  }
 }
 
 html {
