@@ -110,9 +110,10 @@ const smashToken = (token: SimplifiedToken): KanjiToken[] => {
     return [{ original, reading, start, end }]
   }
 
-  for (let i = 0; i < hybridMatch.length; i++) {
-    kanjis[i]!.reading = hybridMatch[i]!
-  }
+  kanjis.forEach((kanji, index) => {
+    kanji.reading = hybridMatch[index]!
+  })
+
   return kanjis
 }
 
