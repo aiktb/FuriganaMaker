@@ -2,7 +2,7 @@ import type { Config } from 'tailwindcss'
 
 export default {
   mode: 'jit',
-  content: ['./src/popup/**/*.{vue, html}'],
+  content: ['./src/{popup, options}/**/*.{vue, html}'],
   theme: {
     fontFamily: {
       sans: ['DM Sans', 'sans-serif'],

@@ -31,20 +31,11 @@ const change = () => {
 </script>
 
 <template>
-  <button ref="root" class="button" @click="change">
+  <button
+    ref="root"
+    class="flex grow items-center justify-between px-2"
+    @click="change"
+  >
     <slot name="default" />
   </button>
 </template>
-
-<style scoped>
-.button {
-  height: 1.5rem;
-  padding: 0 0.5rem;
-  border-radius: 0.3rem;
-  display: flex;
-  justify-content: space-between;
-  align-items: center;
-  width: 100%;
-  transition: opacity 250ms ease-in-out;
-}
-</style>

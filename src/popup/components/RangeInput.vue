@@ -25,9 +25,9 @@ const update = () => {
 }
 
 const track = ref<HTMLElement | null>(null)
-const thumb = ref<HTMLElement | null>(null)
+const slider = ref<HTMLElement | null>(null)
 const { left, top, width, height } = useElementBounding(track)
-const { x } = useDraggable(thumb, track, update)
+const { x } = useDraggable(slider, track, update)
 const style = computed(() => {
   return {
     left: `${x.value}px`,
@@ -59,7 +59,7 @@ onMounted(() => {
 
 <template>
   <div
-    class="range"
+    class="relative flex h-5 grow items-center px-2"
     tabindex="0"
     role="slider"
     :aria-valuemin="props.min"
@@ -72,37 +72,12 @@ onMounted(() => {
     @keydown.down="keyHandler(KeyEvent.Subtract)"
     @keyup="keyHandler(KeyEvent.Emit)"
   >
-    <div ref="track" class="track">
-      <div ref="thumb" class="thumb" :style="style" />
+    <div ref="track" class="h-[3px] w-full rounded-lg bg-current">
+      <div
+        ref="slider"
+        class="fixed h-3.5 w-3.5 cursor-pointer rounded-full bg-[--feature-color] [transform:translate(-50%,-50%)]"
+        :style="style"
+      />
     </div>
   </div>
 </template>
-
-<style scoped>
-.range {
-  position: relative;
-  height: 1.5rem;
-  padding: 0 0.5rem;
-  border-radius: 0.3rem;
-  display: flex;
-  align-items: center;
-  transition: opacity 250ms ease-in-out;
-}
-
-.track {
-  height: 12%;
-  width: 100%;
-  border-radius: 0.5rem;
-  background-color: currentColor;
-}
-
-.thumb {
-  position: fixed;
-  width: 0.8rem;
-  height: 0.8rem;
-  border-radius: 50%;
-  background-color: var(--feature);
-  cursor: pointer;
-  transform: translate(-50%, -50%);
-}
-</style>

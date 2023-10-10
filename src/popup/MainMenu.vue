@@ -67,12 +67,14 @@ const change = async (event: StorageChangeEvent) => {
 }
 
 // prettier-ignore
-const furiganaOptions = [FuriganaType.Hiragana, FuriganaType.Katakana, FuriganaType.Romaji ]
+const furiganaOptions = [FuriganaType.Hiragana, FuriganaType.Katakana, FuriganaType.Romaji]
 const selectOptions = [SelectMode.Original, SelectMode.Furigana]
 </script>
 
 <template>
-  <menu>
+  <menu
+    class="select-none whitespace-nowrap border-r-2 border-[--feature-color] font-mono text-sm"
+  >
     <MenuItem tip>
       <template #icon>
         <div v-html="CursorOutlineIcon" />
@@ -80,11 +82,14 @@ const selectOptions = [SelectMode.Original, SelectMode.Furigana]
       <template #content>
         <BaseButton @click="addFurigana"> Add furigana </BaseButton>
       </template>
-      <template #tip> Press <kbd>ESC</kbd> to cancel </template>
+      <template #tip> Press ESC to cancel </template>
     </MenuItem>
-    <MenuItem :shiny="option.display">
+    <MenuItem>
       <template #icon>
-        <div v-html="PowerIcon" />
+        <div
+          :class="{ 'text-[--feature-color]': option.display }"
+          v-html="PowerIcon"
+        />
       </template>
       <template #content>
         <BaseButton
@@ -95,9 +100,13 @@ const selectOptions = [SelectMode.Original, SelectMode.Furigana]
         </BaseButton>
       </template>
     </MenuItem>
-    <MenuItem :shiny="option.hoverMode">
+    <MenuItem>
       <template #icon>
-        <div v-if="option.hoverMode" v-html="EyeIcon" />
+        <div
+          v-if="option.hoverMode"
+          class="text-[--feature-color]"
+          v-html="EyeIcon"
+        />
         <div v-else v-html="EyeOffIcon" />
       </template>
       <template #content>
@@ -178,11 +187,3 @@ const selectOptions = [SelectMode.Original, SelectMode.Furigana]
     </MenuItem>
   </menu>
 </template>
-
-<style scoped>
-menu {
-  margin: 0.8rem 0.8rem;
-  white-space: nowrap;
-  border-right: 0.15rem solid var(--feature);
-}
-</style>
