@@ -123,16 +123,23 @@ onMounted(() => {
 </script>
 
 <template>
-  <div ref="panel" class="panel" tabindex="-1" aria-label="color picker">
+  <div
+    ref="panel"
+    class="fixed bottom-0 left-0 right-0 top-0 z-10 flex flex-col items-center justify-between bg-slate-200 p-3 dark:bg-slate-800"
+    tabindex="-1"
+    aria-label="color picker"
+  >
     <canvas
+      id="shade"
       ref="shade"
-      class="shade"
+      class="h-[70%] w-full rounded-sm"
       :style="{ backgroundColor: hueBarStyle.backgroundColor }"
     />
     <div
+      id="shadeCursor"
       ref="shadeCursor"
       aria-label="shade cursor"
-      class="shadeCursor cursor"
+      class="fixed h-4 w-4 cursor-pointer rounded-full shadow-md transition-all duration-300 [transform:translate(-50%,-50%)] hover:transition-none focus:transition-none"
       tabindex="0"
       :style="shadeBarStyle"
       @keydown.up="shadeY--"
@@ -141,11 +148,12 @@ onMounted(() => {
       @keydown.right="shadeX++"
       @keyup.enter="update(input)"
     />
-    <canvas ref="hue" class="hue" />
+    <canvas id="hue" ref="hue" class="h-[3%] w-full rounded" />
     <div
+      id="hueCursor"
       ref="hueCursor"
       aria-label="hue cursor"
-      class="hueCursor cursor"
+      class="fixed h-3 w-3 cursor-pointer rounded-full shadow-md transition-all duration-300 [transform:translate(-50%,-50%)] hover:transition-none focus:transition-none"
       tabindex="0"
       :style="hueBarStyle"
       @keydown.up="hueX--"
@@ -154,158 +162,53 @@ onMounted(() => {
       @keydown.right="hueX++"
       @keyup.enter="update(input)"
     />
-    <div class="switcher">
+    <div class="flex w-full flex-wrap justify-between">
       <button
         v-for="color of colors"
         :key="color"
-        class="color"
+        class="border-1 h-3.5 w-3.5 rounded border-slate-700"
         :style="{ backgroundColor: color }"
-        :class="{ selected: tinycolor(color).toHexString() === input }"
+        :class="{ 'border-none': tinycolor(color).toHexString() === input }"
         :aria-label="color"
         @click="colorToPosition(color)"
       />
     </div>
-    <div class="option">
+    <div class="grid w-full grid-cols-10">
       <input
         v-model="input"
-        class="input"
-        aria-label="input HEX color"
+        class="w-20 rounded border-2 border-slate-300 bg-inherit px-1 uppercase transition-all dark:border-slate-700"
+        aria-label="Input a HEX color"
         @change="colorToPosition(input)"
       />
-      <button class="reset" @click="update('currentColor')">RESET</button>
-      <button class="ok" @click="update(input)">OK</button>
+      <button
+        class="col-start-6 grid-flow-row-dense rounded px-1 transition-all hover:text-blue-600 focus:text-blue-600"
+        @click="update('currentColor')"
+      >
+        RESET
+      </button>
+      <button
+        class="col-start-9 col-end-11 flex items-center justify-center rounded border-2 border-slate-300 transition-all hover:text-[--feature-color] focus:text-[--feature-color] dark:border-slate-700"
+        @click="update(input)"
+      >
+        OK
+      </button>
     </div>
   </div>
 </template>
 
 <style scoped>
-.panel {
-  position: fixed;
-  top: 0;
-  bottom: 0;
-  left: 0;
-  right: 0;
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  justify-content: space-between;
-  background-color: var(--background);
-  z-index: 1;
-  padding: 0.8rem 0.8rem;
-}
-
-.shade {
-  width: 100%;
-  height: 65%;
-  border-radius: 0.1rem;
+#shade,
+#hue {
   box-shadow:
-    0 0 0 0.05rem var(--background),
-    0 0 0.05rem 0.05rem var(--font);
+    0 0 0 0.05rem rgb(51 65 85),
+    0 0 0.05rem 0.05rem currentColor;
 }
 
-.hue {
-  width: 100%;
-  height: 3%;
-  border-radius: 0.2rem;
-}
-
-.cursor {
-  border-radius: 50%;
-  position: fixed;
-  transform: translate(-50%, -50%);
+#shadeCursor,
+#hueCursor {
   box-shadow:
     0 0 0 0.1rem white,
     inset 0 0 0.1rem 0.1rem #0006,
     0 0 0.1rem 0.1rem #0006;
-  transition: all 250ms;
-}
-
-.cursor:hover,
-.cursor:focus {
-  transition: none;
-}
-
-.cursor:focus-visible {
-  outline: none;
-  box-shadow:
-    0 0 0 0.2rem white,
-    inset 0 0 0.1rem 0.1rem #0006,
-    0 0 0.2rem 0.2rem #0006;
-}
-
-.shadeCursor {
-  width: 1rem;
-  height: 1rem;
-}
-
-.hueCursor {
-  width: 0.8rem;
-  height: 0.8rem;
-}
-
-.switcher {
-  width: 100%;
-  display: flex;
-  flex-wrap: wrap;
-  justify-content: space-between;
-}
-
-.color {
-  width: 1rem;
-  height: 1rem;
-  border-radius: 0.2rem;
-  border: 0.1rem solid var(--hover);
-}
-
-.selected {
-  box-shadow: 0 0 0.2rem 0.2rem var(--feature);
-  border: none;
-}
-
-.option {
-  display: grid;
-  grid-template-columns: repeat(10, 1fr);
-  width: 100%;
-}
-
-.input {
-  width: 5rem;
-  color: var(--font);
-  border: 0.1rem solid var(--hover);
-  border-radius: 0.2rem;
-  background-color: transparent;
-  padding-left: 0.3rem;
-  outline-color: var(--feature);
-  transition: all 100ms ease-in-out;
-  text-transform: uppercase;
-}
-
-.reset {
-  padding: 0 0.2rem;
-  grid-column-start: 6;
-  border: none;
-  border-radius: 0.2rem;
-  transition: all 250ms ease-in-out;
-}
-
-.reset:hover {
-  color: var(--feature);
-}
-
-.ok {
-  grid-column-start: 8;
-  grid-column-end: span 3;
-  border: 0.1rem solid var(--hover);
-  border-radius: 0.2rem;
-  transition: all 250ms ease-in-out;
-  display: flex;
-  justify-content: center;
-  align-items: center;
-}
-
-.ok:hover {
-  border-color: var(--feature);
-  color: var(--feature);
-  background-color: var(--hover);
 }
 </style>

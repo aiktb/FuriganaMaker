@@ -1,3 +1,27 @@
 @tailwind base;
 @tailwind components;
 @tailwind utilities;
+
+@font-face {
+  font-display: swap;
+  font-family: 'JetBrains Mono';
+  font-style: normal;
+  font-weight: 700;
+  src:
+    local('JetBrains Mono'),
+    url('../../assets/fonts/jetbrains-mono-v18-latin-700.woff2') format('woff2');
+}
+
+:root {
+  --feature-color: #0075ff;
+}
+
+.v-enter-active,
+.v-leave-active {
+  transition: opacity 0.5s ease;
+}
+
+.v-enter-from,
+.v-leave-to {
+  opacity: 0;
+}

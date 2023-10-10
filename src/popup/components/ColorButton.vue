@@ -25,36 +25,14 @@ const close = () => {
 </script>
 
 <template>
-  <BaseButton ref="colorButton" class="colorButton" @click="display = true">
+  <BaseButton ref="colorButton" class="group" @click="display = true">
     Select color
-    <div class="colorIdentify" />
+    <div
+      class="hidden h-3 w-3 rounded-full group-focus-within:block group-hover:block"
+      :style="{ backgroundColor: props.modelValue }"
+    />
   </BaseButton>
   <Transition>
     <ColorPicker v-if="display" v-model="selected" @close="close" />
   </Transition>
 </template>
-
-<style scoped>
-.colorIdentify {
-  display: none;
-  width: 0.7rem;
-  height: 0.7rem;
-  border-radius: 50%;
-  background-color: v-bind('props.modelValue');
-}
-
-.colorButton:hover .colorIdentify,
-.colorButton:focus-within .colorIdentify {
-  display: block;
-}
-
-.v-enter-active,
-.v-leave-active {
-  transition: opacity 0.5s ease;
-}
-
-.v-enter-from,
-.v-leave-to {
-  opacity: 0;
-}
-</style>

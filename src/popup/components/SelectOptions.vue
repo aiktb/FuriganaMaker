@@ -31,13 +31,21 @@ onMounted(() => {
 </script>
 
 <template>
-  <div ref="panel" class="panel" tabindex="-1">
+  <div
+    id="panel"
+    ref="panel"
+    class="column absolute left-0 top-full z-10 flex w-full flex-col overflow-hidden rounded-md border-2 border-slate-500 bg-slate-200 dark:border-slate-700 dark:bg-slate-800"
+    tabindex="-1"
+  >
     <button
       v-for="option of props.options"
       :key="option"
-      class="option"
+      class="box-content flex items-center px-2 capitalize transition-all hover:bg-slate-300 focus:z-10 focus:bg-slate-300 focus:text-blue-600 dark:hover:bg-slate-700 dark:focus:bg-slate-700"
       role="option"
-      :class="{ selected: option === props.modelValue }"
+      :class="{
+        'bg-slate-300 text-[--feature-color] dark:bg-slate-700':
+          option === props.modelValue
+      }"
       :aria-selected="option === props.modelValue"
       @click="update(option)"
     >
@@ -47,49 +55,7 @@ onMounted(() => {
 </template>
 
 <style scoped>
-.panel {
-  display: flex;
-  flex-direction: column;
-  position: absolute;
-  top: 100%;
-  left: 0;
-  width: 100%;
-  z-index: 1;
-  border-radius: 0.4rem;
-  background-color: var(--background);
-  border: 0.15rem solid #798a9e;
-}
-
-.selected {
-  background-color: var(--hover);
-  color: var(--feature);
-}
-
-.option {
-  display: flex;
-  align-items: center;
-  padding: 0 0.5rem;
-  box-sizing: border-box;
-  height: 1.5rem;
-  text-align: left;
-  transition: background-color 250ms ease-in-out;
-  text-transform: capitalize;
-}
-
-.option:focus,
-.option:hover {
-  background-color: var(--hover);
-}
-
-.option:focus {
-  z-index: 1;
-}
-
-.option:first-child {
-  border-radius: 0.3rem 0.3rem 0 0;
-}
-
-.option:last-child {
-  border-radius: 0 0 0.3rem 0.3rem;
+#panel {
+  box-shadow: 0 0 0.2rem 0.1rem gray;
 }
 </style>
