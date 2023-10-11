@@ -6,10 +6,24 @@
   font-display: swap;
   font-family: 'JetBrains Mono';
   font-style: normal;
-  font-weight: 700;
-  src:
-    local('JetBrains Mono'),
-    url('../../assets/fonts/jetbrains-mono-v18-latin-700.woff2') format('woff2');
+  font-weight: normal;
+  src: url('../../assets/fonts/jetbrains-mono-regular.woff2') format('woff2');
+}
+
+@font-face {
+  font-display: swap;
+  font-family: 'JetBrains Mono';
+  font-style: normal;
+  font-weight: bold;
+  src: url('../../assets/fonts/jetbrains-mono-bold.woff2') format('woff2');
+}
+
+@font-face {
+  font-display: swap;
+  font-family: 'DM Sans';
+  font-style: normal;
+  font-weight: normal;
+  src: url('../../assets/fonts/dm-sans-regular.woff2') format('woff2');
 }
 
 :root {
