@@ -7,7 +7,7 @@ import './tailwind.css'
 <!-- All because <Menu /> needs to load chrome.storage asynchronously. -->
 <template>
   <div
-    class="bg-slate-200 p-2 text-slate-800 dark:bg-slate-800 dark:text-slate-200"
+    class="select-none whitespace-nowrap bg-slate-200 p-2 font-mono text-sm font-bold text-slate-800 dark:bg-slate-800 dark:text-slate-200"
   >
     <Suspense>
       <template #default>

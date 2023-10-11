@@ -72,9 +72,7 @@ const selectOptions = [SelectMode.Original, SelectMode.Furigana]
 </script>
 
 <template>
-  <menu
-    class="select-none whitespace-nowrap border-r-2 border-[--feature-color] font-mono text-sm"
-  >
+  <menu class="border-r-2 border-[--feature-color]">
     <MenuItem tip>
       <template #icon>
         <div v-html="CursorOutlineIcon" />
