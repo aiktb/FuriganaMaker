@@ -9,6 +9,8 @@ import {
   Rule
 } from '~contents/core'
 
+import defaultRules from '../../assets/rules.json'
+
 // Plasmo `dev` mode will force the Service Worker to be `active`, it will never become `inactive`.
 
 const storage = new Storage({ area: 'local' })
@@ -22,8 +24,6 @@ Browser.runtime.onInstalled.addListener(async () => {
   }
   const oldRules: Rule[] = await storage.get(ExtensionStorage.UserRule)
   if (!oldRules) {
-    const response = await fetch('../../assets/rules.json')
-    const defaultRules: Rule[] = await response.json()
     await storage.set(ExtensionStorage.UserRule, defaultRules)
   }
 })
