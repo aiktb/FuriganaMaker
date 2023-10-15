@@ -41,7 +41,7 @@ pnpm install
 
 ### Setup Dev Environment
 
-#### Chrome
+#### Chrome/Edge
 
 ```bash
 pnpm dev
@@ -67,4 +67,20 @@ Alternatively, you can open a new CLI window and run the following command，thi
 
 ```bash
 pnpm start:firefox
+```
+
+### Get build target(.zip)
+
+#### Chrome/Edge: `build/chrome-mv3-prod.zip`
+
+```bash
+pnpm build
+pnpm package
+```
+
+#### Firefox: `build/firefox-mv2-prod.zip`
+
+```bash
+pnpm build:firefox
+pnpm package:firefox
 ```
