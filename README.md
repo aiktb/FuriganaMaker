@@ -24,6 +24,7 @@ Special thanks to **_[plasmo](https://github.com/PlasmoHQ/plasmo)_** for taking 
 ## Contribution
 
 Please make sure to read the [Contributing Guide](./.github/CONTRIBUTING.md) before making a pull request.
+This includes instructions on how to setup development environment, test extensions, and build the final product.
 
 ## Inspired By
 
