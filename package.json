@@ -7,6 +7,11 @@
   "description": "Add furigana to Japanese text for any web page.",
   "license": "MIT",
   "author": "aiktb <hey@aiktb.com>",
+  "engines": {
+    "node": ">=20.0.0",
+    "npm": ">=10.0.0"
+  },
+  "browserslist": "> 0.5%, last 2 versions, not dead",
   "repository": {
     "type": "git",
     "url": "git+https://github.com/aiktb/FuriganaMaker.git"
