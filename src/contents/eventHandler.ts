@@ -48,6 +48,7 @@ Browser.runtime.onMessage.addListener((event: ExtensionEvent) => {
 })
 
 async function switchFuriganaHandler() {
+  const rtSelector = `ruby.${FURIGANA_CLASS} > rt`
   const nodes = document.querySelectorAll(rtSelector)
   const value: FuriganaType = await storage.get(ExtensionStorage.FuriganaType)
   switch (value) {
@@ -81,9 +82,10 @@ function addFuriganaHandler() {
   document.addEventListener('keydown', selectHandler)
 }
 
-const rtSelector = `ruby.${FURIGANA_CLASS} > rt`
-const rtHoverSelector = `ruby.${FURIGANA_CLASS}:hover > rt`
 async function styleHandler(type: StyleEvent) {
+  const rtSelector = `ruby.${FURIGANA_CLASS} > rt`
+  const rtHoverSelector = `ruby.${FURIGANA_CLASS}:hover > rt`
+
   let value: string | number | boolean
   let css: string
   switch (type) {
