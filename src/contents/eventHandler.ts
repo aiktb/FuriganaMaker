@@ -34,10 +34,10 @@ styleEvents.forEach(styleHandler)
 Browser.runtime.onMessage.addListener((event: ExtensionEvent) => {
   switch (event) {
     case ExtensionEvent.SwitchFuriganaType:
-      furiganaHandler()
+      switchFuriganaHandler()
       break
     case ExtensionEvent.AddFurigana:
-      customHandler()
+      addFuriganaHandler()
       break
     case ExtensionEvent.EditUserRule:
       break
@@ -47,8 +47,7 @@ Browser.runtime.onMessage.addListener((event: ExtensionEvent) => {
   }
 })
 
-const furiganaHandler = async () => {
-  // prettier-ignore
+async function switchFuriganaHandler() {
   const nodes = document.querySelectorAll(rtSelector)
   const value: FuriganaType = await storage.get(ExtensionStorage.FuriganaType)
   switch (value) {
@@ -70,8 +69,7 @@ const furiganaHandler = async () => {
   }
 }
 
-// Extensions cannot send messages to content scripts using `Browser.runtime.sendMessage`.
-const customHandler = () => {
+function addFuriganaHandler() {
   const selector = Selector.create()
   const selectHandler = (event: KeyboardEvent) => {
     if (event.key === 'Escape') {
