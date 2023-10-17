@@ -1,4 +1,5 @@
 import type { PlasmoCSConfig } from 'plasmo'
+import Browser from 'webextension-polyfill'
 
 export const FURIGANA_CLASS = '--furigana--'
 
@@ -98,5 +99,13 @@ export const toStorageKey = (event: StorageChangeEvent) => {
       return ExtensionStorage.Display
     case ExtensionEvent.ToggleHoverMode:
       return ExtensionStorage.HoverMode
+  }
+}
+
+export const sendMessage = async (id: number, event: ExtensionEvent) => {
+  try {
+    await Browser.tabs.sendMessage(id, event)
+  } catch (error) {
+    // Could not establish connection. Receiving end does not exist.
   }
 }

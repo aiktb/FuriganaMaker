@@ -6,7 +6,8 @@ import {
   defaultConfig,
   ExtensionEvent,
   ExtensionStorage,
-  Rule
+  Rule,
+  sendMessage
 } from '~contents/core'
 
 import defaultRules from '../../assets/rules.json'
@@ -28,35 +29,21 @@ Browser.runtime.onInstalled.addListener(async () => {
   }
 })
 
-// Executing a keyboard shortcut from the commands API enable `activeTab`.
 Browser.commands.onCommand.addListener(async (command, tab) => {
-  // The root path of the website returned by tab.url contains '/' at the end. e.g. https://example.com/
-  const https = /^https:\/\/.*\/.*$/
-  if (!tab?.url || !https.test(tab.url)) {
-    return
-  }
-
-  let event: ExtensionEvent | undefined
   switch (command) {
     case ExtensionEvent.AddFurigana:
-      await Browser.tabs.sendMessage(tab.id!, ExtensionEvent.AddFurigana)
+      await sendMessage(tab!.id!, ExtensionEvent.AddFurigana)
       break
     case ExtensionEvent.ToggleDisplay:
-      event = ExtensionEvent.ToggleDisplay
-      break
     case ExtensionEvent.ToggleHoverMode:
-      event = ExtensionEvent.ToggleHoverMode
+      {
+        const oldValue: boolean = await storage.get(command)
+        await storage.set(command, !oldValue)
+        await sendMessage(tab!.id!, command)
+      }
       break
     default:
       throw new Error('Unknown command')
-  }
-  if (event) {
-    const oldValue: boolean = await storage.get(event)
-    await storage.set(event, !oldValue)
-    const tabs = await Browser.tabs.query({ url: 'https://*/*' })
-    for (const tab of tabs) {
-      await Browser.tabs.sendMessage(tab.id!, event)
-    }
   }
 })
 
@@ -69,6 +56,6 @@ const contextMenuItem: Browser.Menus.CreateCreatePropertiesType = {
 Browser.contextMenus.create(contextMenuItem)
 Browser.contextMenus.onClicked.addListener((info, tab) => {
   if (info.menuItemId == ExtensionEvent.AddFurigana) {
-    Browser.tabs.sendMessage(tab!.id!, ExtensionEvent.AddFurigana)
+    sendMessage(tab!.id!, ExtensionEvent.AddFurigana)
   }
 })
