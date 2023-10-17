@@ -113,7 +113,7 @@ export class Selector {
     this.#renderer.add(event.target! as HTMLElement)
   }
 
-  readonly #pointerupOrClickHandler = (event: Event) => {
+  readonly #clickHandler = (event: Event) => {
     // The jump event of click an internal link in Vue SPA is not a default event and cannot be prevented.
     event.preventDefault()
     event.stopPropagation()
@@ -138,11 +138,7 @@ export class Selector {
     this.#renderer.show()
     const elements = document.querySelectorAll(`body *:not(.${FURIGANA_CLASS})`)
     Array.from(elements).forEach((element) => {
-      // click event is triggered after pointerup event.
-      element.addEventListener('click', this.#pointerupOrClickHandler, {
-        capture: true
-      })
-      element.addEventListener('pointerup', this.#pointerupOrClickHandler, {
+      element.addEventListener('click', this.#clickHandler, {
         capture: true
       })
       element.addEventListener('pointerover', this.#pointeroverHandler, {
@@ -159,10 +155,7 @@ export class Selector {
     this.#renderer.hide()
     const elements = document.querySelectorAll('body *')
     Array.from(elements).forEach((element) => {
-      element.removeEventListener('click', this.#pointerupOrClickHandler, {
-        capture: true
-      })
-      element.removeEventListener('pointerup', this.#pointerupOrClickHandler, {
+      element.removeEventListener('click', this.#clickHandler, {
         capture: true
       })
       element.removeEventListener('pointerover', this.#pointeroverHandler, {
