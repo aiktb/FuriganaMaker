@@ -38,30 +38,40 @@ class Renderer {
     return `${parentTagName} ${element.tagName.toLowerCase()}`
   }
   constructor() {
-    document.documentElement.appendChild(this.#left)
-    document.documentElement.appendChild(this.#right)
-    document.documentElement.appendChild(this.#top)
-    document.documentElement.appendChild(this.#bottom)
     Object.assign(this.#left.style, this.#GENERAL_CSS)
     Object.assign(this.#right.style, this.#GENERAL_CSS)
     Object.assign(this.#top.style, this.#GENERAL_CSS)
     Object.assign(this.#bottom.style, this.#GENERAL_CSS, this.#BOTTOM_CSS)
   }
 
-  public readonly hide = () => {
+  readonly initialize = () => {
+    document.documentElement.appendChild(this.#left)
+    document.documentElement.appendChild(this.#right)
+    document.documentElement.appendChild(this.#top)
+    document.documentElement.appendChild(this.#bottom)
+  }
+
+  readonly destroy = () => {
+    this.#left.remove()
+    this.#right.remove()
+    this.#top.remove()
+    this.#bottom.remove()
+  }
+
+  readonly hide = () => {
     this.#left.style.display = 'none'
     this.#right.style.display = 'none'
     this.#top.style.display = 'none'
     this.#bottom.style.display = 'none'
   }
 
-  public readonly show = () => {
+  readonly show = () => {
     this.#left.style.display = 'block'
     this.#right.style.display = 'block'
     this.#top.style.display = 'block'
     this.#bottom.style.display = 'block'
   }
-  public readonly add = (element: HTMLElement) => {
+  readonly add = (element: HTMLElement) => {
     this.hide()
 
     const { left, top, width, height } = element.getBoundingClientRect()
@@ -106,7 +116,6 @@ export class Selector {
     event.preventDefault()
     event.stopPropagation()
     event.stopImmediatePropagation()
-    this.#renderer.hide()
     if (event.target === document.body) {
       return
     }
@@ -131,6 +140,7 @@ export class Selector {
   }
 
   readonly open = () => {
+    this.#renderer.initialize()
     if (this.#isOpen) {
       return
     }
@@ -148,6 +158,7 @@ export class Selector {
   }
 
   readonly close = () => {
+    this.#renderer.destroy()
     if (!this.#isOpen) {
       return
     }
