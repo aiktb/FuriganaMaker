@@ -20,6 +20,7 @@ import {
   ExtensionStorage,
   FuriganaType,
   SelectMode,
+  sendMessage,
   StorageChangeEvent,
   toStorageKey,
   type Config
@@ -45,25 +46,15 @@ const option: Config = reactive({
 
 const addFurigana = async () => {
   // `chrome.tabs.query` is not compatible with firefox.
-  // 'url' parameter requires 'tabs' or 'activeTab' permission.
-  const tabs = await Browser.tabs.query({
-    active: true,
-    currentWindow: true,
-    url: 'https://*/*'
-  })
-  const id = tabs[0]?.id
-  if (id) {
-    await Browser.tabs.sendMessage(id, ExtensionEvent.AddFurigana)
-  }
+  const tabs = await Browser.tabs.query({ active: true, currentWindow: true })
+  sendMessage(tabs[0]!.id!, ExtensionEvent.AddFurigana)
 }
 const change = async (event: StorageChangeEvent) => {
   const key = toStorageKey(event)
   const value = option[key]
   await storage.set(key, value)
-  const tabs = await Browser.tabs.query({ url: 'https://*/*' })
-  for (const tab of tabs) {
-    await Browser.tabs.sendMessage(tab.id!, event)
-  }
+  const tabs = await Browser.tabs.query({ active: true, currentWindow: true })
+  await sendMessage(tabs[0]!.id!, event)
 }
 
 // prettier-ignore
