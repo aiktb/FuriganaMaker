@@ -14,8 +14,8 @@ class Renderer {
     position: 'fixed',
     display: 'none',
     background: 'DodgerBlue',
-    // Max z-index - 1, leaving a larger z-index available for <CustomMenu />.
-    zIndex: 2 ** 31 - 2
+    // Max z-index - 1
+    zIndex: 2 ** 31 - 1
   }
   readonly #BOTTOM_CSS = {
     color: 'white',
