@@ -114,7 +114,6 @@ export class Selector {
   readonly #onElementSelected = addFurigana
   readonly #pointeroverHandler = (event: Event) => {
     event.preventDefault()
-    event.stopPropagation()
     event.stopImmediatePropagation()
     if (event.target === document.body) {
       return
@@ -125,7 +124,6 @@ export class Selector {
   readonly #clickHandler = (event: Event) => {
     // The jump event of click an internal link in Vue SPA is not a default event and cannot be prevented.
     event.preventDefault()
-    event.stopPropagation()
     event.stopImmediatePropagation()
     // Only need to handle events triggered non-programmatically.
     if (!event.isTrusted) {
