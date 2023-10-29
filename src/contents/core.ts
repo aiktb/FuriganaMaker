@@ -107,11 +107,11 @@ export const sendMessage = async (id: number, event: ExtensionEvent) => {
     await Browser.tabs.sendMessage(id, event)
   } catch (error) {
     if (
-      error instanceof Error &&
-      error.message ===
+      !(error instanceof Error) ||
+      error.message !==
         'Could not establish connection. Receiving end does not exist.'
     ) {
-      // There are many pages that cannot inject contents script.
+      throw error
     }
   }
 }
