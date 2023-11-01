@@ -4,15 +4,16 @@
 
 # Furigana Maker
 
+> It has been submitted for review and will be released soon.
+
 Add furigana to Japanese text for any web page. 🤔
 
 Special thanks to **_[plasmo](https://github.com/PlasmoHQ/plasmo)_** for taking the frustration out of browser extension development for me.
 
-![Preview](https://s2.loli.net/2023/10/01/iQ83MSu57JCLhKA.webp)
+![Preview](https://s2.loli.net/2023/11/01/cjFbz9PyIChrv5S.webp)
 
 ## Features
 
-- [x] Full support Chrome & Edge & Firefox.
 - [x] Local Japanese kanji parsing engine (no network required).
 - [x] Customize the pages and regions that need to add furigana.
 - [x] Freely modify the font size and color of furigana.
@@ -22,6 +23,7 @@ Special thanks to **_[plasmo](https://github.com/PlasmoHQ/plasmo)_** for taking 
 ## Contribution
 
 Please make sure to read the [Contributing Guide](./.github/CONTRIBUTING.md) before making a pull request.
+
 This includes instructions on how to setup development environment, test extensions, and build the final product.
 
 ## Inspired By
