@@ -30,6 +30,10 @@
   --feature-color: #0075ff;
 }
 
+:focus-visible {
+  outline: 2px solid currentColor;
+  outline-offset: 1px;
+}
 .v-enter-active,
 .v-leave-active {
   transition: opacity 0.5s ease;

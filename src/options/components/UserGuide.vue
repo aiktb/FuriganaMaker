@@ -30,7 +30,7 @@ import { Icon } from '@iconify/vue'
     <p class="py-1">
       Turn on the flag
       <code
-        class="rounded bg-gray-200 px-1 text-sky-600 dark:bg-slate-800 dark:text-sky-400"
+        class="gray-200 rounded px-1 text-sky-600 dark:bg-slate-800 dark:text-sky-400"
         >dynamic</code
       >
       and Furigana Maker will track newly loaded content in the page, which is
@@ -39,7 +39,7 @@ import { Icon } from '@iconify/vue'
     <p class="py-1">
       Set
       <code
-        class="rounded bg-gray-200 px-1 text-sky-600 dark:bg-slate-800 dark:text-sky-400"
+        class="gray-200 rounded px-1 text-sky-600 dark:bg-slate-800 dark:text-sky-400"
         >enable="false"</code
       >
       to disable the corresponding rule.
@@ -47,7 +47,7 @@ import { Icon } from '@iconify/vue'
     <p class="py-1">
       In textarea you can use
       <kbd
-        class="rounded bg-gray-200 px-1 text-sky-600 dark:bg-slate-800 dark:text-sky-400"
+        class="gray-200 rounded px-1 text-sky-600 dark:bg-slate-800 dark:text-sky-400"
         >ctrl + s</kbd
       >
       to save the settings.
