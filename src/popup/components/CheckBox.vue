@@ -1,16 +1,7 @@
 <script setup lang="ts">
 import { ref } from 'vue'
 
-/*
- * Vue bug: https://github.com/vuejs/core/pull/8602, wait release.
- * Vue boolean prop behaves very strangely.
- * const props = withDefaults(defineProps<{ modelValue?: boolean }>(), {
- *    modelValue: undefined
- * })
- */
-const props = defineProps<{
-  modelValue?: boolean
-}>()
+const props = defineProps<{ modelValue?: boolean }>()
 
 const emit = defineEmits<{
   'update:modelValue': [modelValue: boolean]
@@ -33,7 +24,7 @@ const change = () => {
 <template>
   <button
     ref="root"
-    class="flex grow items-center justify-between px-2"
+    class="flex grow items-center justify-between rounded px-2"
     @click="change"
   >
     <slot name="default" />
