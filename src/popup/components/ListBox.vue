@@ -27,6 +27,8 @@ watch(focused, () => {
   <div ref="panel" class="group flex grow">
     <button
       ref="selectButton"
+      role="listbox"
+      :aria-expanded="display"
       class="group peer flex grow items-center justify-between rounded px-2 capitalize"
       :class="{ 'bg-slate-300 dark:bg-slate-700': display }"
       @click="display = !display"
