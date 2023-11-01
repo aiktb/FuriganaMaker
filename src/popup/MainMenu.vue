@@ -26,11 +26,11 @@ import {
   type Config
 } from '~contents/core'
 
-import BaseButton from './components/BaseButton.vue'
 import BaseLink from './components/BaseLink.vue'
-import ColorButton from './components/ColorButton.vue'
+import CheckBox from './components/CheckBox.vue'
+import ColorPicker from './components/ColorPicker.vue'
+import ListBox from './components/ListBox.vue'
 import RangeInput from './components/RangeInput.vue'
-import SelectButton from './components/SelectButton.vue'
 import MenuItem from './MenuItem.vue'
 
 const storage = new Storage({ area: 'local' })
@@ -69,7 +69,7 @@ const selectOptions = [SelectMode.Original, SelectMode.Furigana]
         <div v-html="CursorOutlineIcon" />
       </template>
       <template #content>
-        <BaseButton @click="addFurigana"> Add furigana </BaseButton>
+        <CheckBox @click="addFurigana"> Add furigana </CheckBox>
       </template>
       <template #tip> Press ESC to cancel </template>
     </MenuItem>
@@ -81,12 +81,12 @@ const selectOptions = [SelectMode.Original, SelectMode.Furigana]
         />
       </template>
       <template #content>
-        <BaseButton
+        <CheckBox
           v-model="option.display"
           @change="change(ExtensionEvent.ToggleDisplay)"
         >
           On-off extension
-        </BaseButton>
+        </CheckBox>
       </template>
     </MenuItem>
     <MenuItem>
@@ -99,12 +99,12 @@ const selectOptions = [SelectMode.Original, SelectMode.Furigana]
         <div v-else v-html="EyeOffIcon" />
       </template>
       <template #content>
-        <BaseButton
+        <CheckBox
           v-model="option.hoverMode"
           @change="change(ExtensionEvent.ToggleHoverMode)"
         >
           On-off hover mode
-        </BaseButton>
+        </CheckBox>
       </template>
     </MenuItem>
     <MenuItem>
@@ -112,7 +112,7 @@ const selectOptions = [SelectMode.Original, SelectMode.Furigana]
         <div v-html="HiraganaIcon" />
       </template>
       <template #content>
-        <SelectButton
+        <ListBox
           v-model="option.furiganaType"
           :options="furiganaOptions"
           @change="change(ExtensionEvent.SwitchFuriganaType)"
@@ -124,7 +124,7 @@ const selectOptions = [SelectMode.Original, SelectMode.Furigana]
         <div v-html="CursorTextIcon" />
       </template>
       <template #content>
-        <SelectButton
+        <ListBox
           v-model="option.selectMode"
           :options="selectOptions"
           @change="change(ExtensionEvent.SwitchSelectMode)"
@@ -136,7 +136,7 @@ const selectOptions = [SelectMode.Original, SelectMode.Furigana]
         <div v-html="ColorPickerIcon" />
       </template>
       <template #content>
-        <ColorButton
+        <ColorPicker
           v-model="option.fontColor"
           @change="change(ExtensionEvent.AdjustFontColor)"
         />

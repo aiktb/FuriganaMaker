@@ -49,40 +49,43 @@ const copy = () => {
       v-if="!validJSON"
       class="my-3 flex w-full items-center rounded-md bg-red-300 p-4 py-2 text-lg font-[500] text-red-600 outline outline-2 outline-current"
     >
-      <Icon class="mr-2 inline-block h-5 w-5" icon="carbon:error" />
+      <Icon class="mr-2 inline-block h-6 w-6" icon="mingcute:warning-line" />
       Invalid JSON format, please check your JSON config!
     </div>
   </Transition>
   <div
-    class="my-3 flex w-full justify-between gap-x-2 rounded-md bg-slate-900 p-4 py-2 text-lg font-[500] outline outline-2 outline-slate-600"
+    class="my-3 flex w-full justify-between gap-x-2 rounded-md bg-slate-300 p-4 py-2 text-lg font-[500] outline outline-2 outline-slate-600 dark:bg-slate-900"
   >
     <button
-      class="flex cursor-pointer items-center transition-all hover:text-sky-400"
+      class="flex cursor-pointer items-center transition-all hover:text-sky-600 dark:hover:text-sky-400"
       @click="cancel"
     >
       Cancel
-      <Icon class="ml-1 inline-block h-5 w-5" icon="carbon:close-outline" />
+      <Icon
+        class="ml-1 inline-block h-6 w-6"
+        icon="mingcute:close-circle-line"
+      />
     </button>
     <button
-      class="flex cursor-pointer items-center transition-all hover:text-sky-400"
+      class="flex cursor-pointer items-center transition-all hover:text-sky-600 dark:hover:text-sky-400"
       @click="save"
     >
       Save
-      <Icon class="ml-1 inline-block h-5 w-5" icon="carbon:save" />
+      <Icon class="ml-1 inline-block h-6 w-6" icon="mingcute:save-2-line" />
     </button>
     <button
-      class="flex cursor-pointer items-center transition-all hover:text-sky-400"
+      class="flex cursor-pointer items-center transition-all hover:text-sky-600 dark:hover:text-sky-400"
       @click="copy"
     >
       <span class="sm:hidden">Copy</span>
       <span class="hidden sm:inline">Copy JSON config</span>
-      <Icon class="ml-1 inline-block h-5 w-5" icon="carbon:copy" />
+      <Icon class="ml-1 inline-block h-6 w-6" icon="mingcute:copy-line" />
     </button>
   </div>
   <textarea
     v-model="rulesJSON"
     spellcheck="false"
-    class="min-h-screen w-full whitespace-nowrap rounded-md bg-slate-900 bg-transparent p-3 font-mono outline outline-2 outline-slate-600 focus:outline-[3px] focus:outline-sky-400"
+    class="min-h-screen w-full rounded-md bg-slate-300 p-3 font-mono outline outline-2 outline-slate-600 focus:outline-[3px] focus:outline-sky-400 dark:bg-slate-900"
     @keydown.ctrl.s.prevent="save"
   />
 </template>
