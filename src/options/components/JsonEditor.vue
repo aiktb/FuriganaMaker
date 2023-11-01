@@ -12,8 +12,9 @@ const rulesJSON = ref(JSON.stringify(rules, null, 2))
 
 const validJSON = ref(true)
 
-const cancel = () => {
+const cancel = async () => {
   validJSON.value = true
+  const rules: Rule[] = await storage.get(ExtensionStorage.UserRule)
   rulesJSON.value = JSON.stringify(rules, null, 2)
 }
 const save = () => {
