@@ -40,7 +40,7 @@ const close = () => {
   </Transition>
   <BaseButton
     ref="selectButton"
-    class="group capitalize peer-open:pointer-events-none peer-open:bg-slate-300 dark:peer-open:bg-slate-700"
+    class="group rounded-md capitalize peer-open:pointer-events-none peer-open:bg-slate-300 dark:peer-open:bg-slate-700"
     @click="display = true"
   >
     {{ props.modelValue }}
