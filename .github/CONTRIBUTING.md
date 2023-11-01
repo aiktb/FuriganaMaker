@@ -22,7 +22,7 @@ Hi! We're Really excited that you are interested in contributing to Furigana Mak
 - Commit messages must be matched by the following regex:
 
 ```txt
-/^(feat|fix|website|style|refactor|perf|test|workflow|build|ci|chore|types)(\(.+\))?: .{1,50}/
+/^(feat|fix|website|style|refactor|perf|test|workflow|build|ci|chore|types)(\(.+\))?: .{1,80}/
 ```
 
 ## Development Setup
