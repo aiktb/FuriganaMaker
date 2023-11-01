@@ -4,8 +4,6 @@
 
 # Furigana Maker
 
-> This software is under development and there is no stable version yet.
-
 Add furigana to Japanese text for any web page. 🤔
 
 Special thanks to **_[plasmo](https://github.com/PlasmoHQ/plasmo)_** for taking the frustration out of browser extension development for me.
@@ -19,7 +17,7 @@ Special thanks to **_[plasmo](https://github.com/PlasmoHQ/plasmo)_** for taking 
 - [x] Customize the pages and regions that need to add furigana.
 - [x] Freely modify the font size and color of furigana.
 - [x] Optionally show furigana only on hover state.
-- [ ] Configurable default pages and regions for adding furigana.
+- [x] Configurable default pages and regions for adding furigana.
 
 ## Contribution
 
