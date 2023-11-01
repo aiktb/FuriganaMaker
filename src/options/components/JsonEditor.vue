@@ -28,12 +28,18 @@ const save = () => {
           'domain' in object &&
           'selector' in object &&
           'dynamic' in object &&
-          'enabled' in object
+          'enabled' in object &&
+          typeof object.domain === 'string' &&
+          typeof object.selector === 'string' &&
+          typeof object.dynamic === 'boolean' &&
+          typeof object.enabled === 'boolean'
         )
       })
     if (isValid) {
       validJSON.value = true
       storage.set(ExtensionStorage.UserRule, newJsonConfig as Rule[])
+    } else {
+      validJSON.value = false
     }
   } catch (error) {
     validJSON.value = false
