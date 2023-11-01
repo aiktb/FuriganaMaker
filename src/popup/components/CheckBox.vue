@@ -24,6 +24,8 @@ const change = () => {
 <template>
   <button
     ref="root"
+    role="checkbox"
+    :aria-checked="props.modelValue"
     class="flex grow items-center justify-between rounded px-2"
     @click="change"
   >
