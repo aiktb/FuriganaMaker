@@ -204,25 +204,27 @@ const keyHandler = (type: KeyEvent) => {
         @click="colorToPosition(color)"
       />
     </div>
-    <div class="grid w-full grid-cols-10">
+    <div class="flex w-full justify-between">
       <input
         v-model="input"
         class="w-20 rounded border-2 border-slate-400 bg-white px-1 uppercase transition-all dark:border-slate-700 dark:bg-slate-900"
         aria-label="Input a HEX color"
         @change="colorToPosition(input)"
       />
-      <button
-        class="col-start-6 grid-flow-row-dense rounded px-1 transition-all hover:text-blue-600 focus:text-blue-600"
-        @click="update('currentColor')"
-      >
-        RESET
-      </button>
-      <button
-        class="col-start-9 col-end-11 flex items-center justify-center rounded border-2 border-slate-400 bg-white transition-all hover:text-[--feature-color] focus:text-[--feature-color] dark:border-slate-700 dark:bg-slate-900"
-        @click="update(input)"
-      >
-        OK
-      </button>
+      <div class="flex gap-2">
+        <button
+          class="rounded px-1 transition-all hover:text-blue-600 focus:text-blue-600"
+          @click="update('currentColor')"
+        >
+          RESET
+        </button>
+        <button
+          class="flex w-10 items-center justify-center rounded border-2 border-slate-400 bg-white transition-all hover:text-[--feature-color] focus:text-[--feature-color] dark:border-slate-700 dark:bg-slate-900"
+          @click="update(input)"
+        >
+          OK
+        </button>
+      </div>
     </div>
   </div>
 </template>
