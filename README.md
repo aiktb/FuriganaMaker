@@ -14,8 +14,9 @@ Special thanks to **_[plasmo](https://github.com/PlasmoHQ/plasmo)_** for taking 
 
 ## Features
 
+- [x] Many common Japanese websites are supported by default.
 - [x] Local Japanese kanji parsing engine (no network required).
-- [x] Customize the pages and regions that need to add furigana.
+- [x] Add furigana to any regions on the page.
 - [x] Freely modify the font size and color of furigana.
 - [x] Optionally show furigana only on hover state.
 - [x] Configurable default pages and regions for adding furigana.
