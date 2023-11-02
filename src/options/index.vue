@@ -8,7 +8,7 @@ import UserGuide from './components/UserGuide.vue'
 
 <template>
   <div
-    class="w-full bg-slate-200 text-slate-800 dark:bg-slate-800 dark:text-slate-200"
+    class="w-full bg-slate-200 font-sans text-slate-800 dark:bg-slate-800 dark:text-slate-200"
   >
     <div class="mx-auto min-h-screen w-full max-w-3xl p-2 text-lg">
       <UserGuide />
