@@ -44,7 +44,7 @@ watch(focused, () => {
     <Transition>
       <div
         v-if="display"
-        class="column absolute left-0 top-full z-10 flex w-full flex-col rounded-md border-2 border-slate-500 bg-slate-200 shadow-2xl dark:border-slate-700 dark:bg-slate-900"
+        class="column absolute left-0 top-full z-10 flex w-full flex-col rounded-md border-2 border-slate-500 bg-slate-100 shadow-2xl dark:border-slate-700 dark:bg-slate-900"
         tabindex="-1"
       >
         <button
