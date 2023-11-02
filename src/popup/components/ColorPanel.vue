@@ -38,6 +38,7 @@ const hueCursor = ref<HTMLElement | null>(null)
 const {
   left: hueLeft,
   top: hueTop,
+  right: hueRight,
   width: hueWidth,
   height: hueHeight
 } = useElementBounding(hue)
@@ -54,7 +55,9 @@ const shade = ref<HTMLCanvasElement | null>(null)
 const shadeCursor = ref<HTMLElement | null>(null)
 const {
   left: shadeLeft,
+  right: shadeRight,
   top: shadeTop,
+  bottom: shadeBottom,
   width: shadeWidth,
   height: shadeHeight
 } = useElementBounding(shade)
@@ -120,6 +123,34 @@ onMounted(() => {
   colorToPosition(props.modelValue)
   panel.value?.focus()
 })
+
+const bound = (value: number, min: number, max: number) => {
+  return Math.min(Math.max(value, min), max)
+}
+// prettier-ignore
+enum KeyEvent {HueLeft, HueRight, ShadeUp, ShadeDown, ShadeLeft, ShadeRight}
+const keyHandler = (type: KeyEvent) => {
+  switch (type) {
+    case KeyEvent.HueLeft:
+      hueX.value = bound(hueX.value - 1, hueLeft.value, hueRight.value)
+      break
+    case KeyEvent.HueRight:
+      hueX.value = bound(hueX.value + 1, hueLeft.value, hueRight.value)
+      break
+    case KeyEvent.ShadeUp:
+      shadeY.value = bound(shadeY.value - 1, shadeTop.value, shadeBottom.value)
+      break
+    case KeyEvent.ShadeDown:
+      shadeY.value = bound(shadeY.value + 1, shadeTop.value, shadeBottom.value)
+      break
+    case KeyEvent.ShadeLeft:
+      shadeX.value = bound(shadeX.value - 1, shadeLeft.value, shadeRight.value)
+      break
+    case KeyEvent.ShadeRight:
+      shadeX.value = bound(shadeX.value + 1, shadeLeft.value, shadeRight.value)
+      break
+  }
+}
 </script>
 
 <template>
@@ -142,10 +173,10 @@ onMounted(() => {
       class="fixed h-4 w-4 cursor-pointer rounded-full shadow-md transition-all duration-300 [transform:translate(-50%,-50%)] hover:transition-none focus:transition-none"
       tabindex="0"
       :style="shadeBarStyle"
-      @keydown.up="shadeY--"
-      @keydown.down="shadeY++"
-      @keydown.left="shadeX--"
-      @keydown.right="shadeX++"
+      @keydown.up="keyHandler(KeyEvent.ShadeUp)"
+      @keydown.down="keyHandler(KeyEvent.ShadeDown)"
+      @keydown.left="keyHandler(KeyEvent.ShadeLeft)"
+      @keydown.right="keyHandler(KeyEvent.ShadeRight)"
       @keyup.enter="update(input)"
     />
     <canvas id="hue" ref="hue" class="h-[3%] w-full rounded" />
@@ -156,10 +187,10 @@ onMounted(() => {
       class="fixed h-3 w-3 cursor-pointer rounded-full shadow-md transition-all duration-300 [transform:translate(-50%,-50%)] hover:transition-none focus:transition-none"
       tabindex="0"
       :style="hueBarStyle"
-      @keydown.up="hueX--"
-      @keydown.down="hueX++"
-      @keydown.left="hueX--"
-      @keydown.right="hueX++"
+      @keydown.up="keyHandler(KeyEvent.HueRight)"
+      @keydown.down="keyHandler(KeyEvent.HueLeft)"
+      @keydown.left="keyHandler(KeyEvent.HueLeft)"
+      @keydown.right="keyHandler(KeyEvent.HueRight)"
       @keyup.enter="update(input)"
     />
     <div class="flex w-full flex-wrap justify-between">
