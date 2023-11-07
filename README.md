@@ -8,7 +8,7 @@
   <a href="https://addons.mozilla.org/en-US/firefox/addon/furigana-maker/">
   	<img alt="Add-ons for Firefox" src="https://img.shields.io/badge/Add--ons%20for%20Firefox-141e24?style=for-the-badge&logo=firefoxbrowser&logoColor=%23ffffff">
   </a>
-  <a href="https://chromewebstore.google.com/detail/furigana-maker/heodojceeinbkfjfilnfminlkgbacpfp?hl=en">
+  <a href="https://microsoftedge.microsoft.com/addons/detail/furigana-maker/kohpoklaaeicnkdapjkmljdachedmbbi">
     <img alt="Microsoft Edge Add-ons" src="https://img.shields.io/badge/Microsoft%20Edge%20Add--ons-141e24?style=for-the-badge&logo=microsoftedge&logoColor=%23ffffff">
   </a>
 </p>
