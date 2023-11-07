@@ -27,8 +27,6 @@ const handler: PlasmoMessaging.MessageHandler<
   const selector: Selector = { plain, observer }
 
   res.send({ selector })
-
-  // TODO: Add an event listener to reset the data structure here after the rule is edited.
 }
 
 export default handler
