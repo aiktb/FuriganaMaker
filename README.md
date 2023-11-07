@@ -1,20 +1,7 @@
 <div align="center">
     <img src="./assets/icons/DemoLogo.svg">
 </div>
-<p align="center">
-  <img src="./assets/logo.svg" width="128" height="128">
-</p>
-<p align="center">
-  <a href="https://chromewebstore.google.com/detail/furigana-maker/heodojceeinbkfjfilnfminlkgbacpfp?hl=en">
-    <img alt="Chrome Web Store" src="https://img.shields.io/badge/Chrome%20Web%20Store-141e24?style=for-the-badge&logo=googlechrome&logoColor=%23ffffff">
-  </a>
-  <a href="https://addons.mozilla.org/en-US/firefox/addon/furigana-maker/">
-  	<img alt="Add-ons for Firefox" src="https://img.shields.io/badge/Add--ons%20for%20Firefox-141e24?style=for-the-badge&logo=firefoxbrowser&logoColor=%23ffffff">
-  </a>
-  <a href="https://chromewebstore.google.com/detail/furigana-maker/heodojceeinbkfjfilnfminlkgbacpfp?hl=en">
-    <img alt="Microsoft Edge Add-ons" src="https://img.shields.io/badge/Microsoft%20Edge%20Add--ons-141e24?style=for-the-badge&logo=microsoftedge&logoColor=%23ffffff">
-  </a>
-</p>
+
 # Furigana Maker
 
 > It has been submitted for review and will be released soon.
