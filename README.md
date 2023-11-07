@@ -14,8 +14,6 @@
 </p>
 # Furigana Maker
 
-> It has been submitted for review and will be released soon.
-
 Add furigana to Japanese text for any web page. 🤔
 
 Special thanks to **_[plasmo](https://github.com/PlasmoHQ/plasmo)_** for taking the frustration out of browser extension development for me.
