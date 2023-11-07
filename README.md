@@ -12,6 +12,7 @@
     <img alt="Microsoft Edge Add-ons" src="https://img.shields.io/badge/Microsoft%20Edge%20Add--ons-141e24?style=for-the-badge&logo=microsoftedge&logoColor=%23ffffff">
   </a>
 </p>
+
 # Furigana Maker
 
 Add furigana to Japanese text for any web page. 🤔
