@@ -1,5 +1,5 @@
 <script setup lang="ts">
-import '../popup/tailwind.css'
+import './style.css'
 
 import ItemMessage from './components/ItemMessage.vue'
 import JsonEditor from './components/JsonEditor.vue'
