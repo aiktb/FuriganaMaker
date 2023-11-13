@@ -8,8 +8,7 @@
   "license": "MIT",
   "author": "aiktb <hey@aiktb.com>",
   "engines": {
-    "node": ">=20.0.0",
-    "npm": ">=10.0.0"
+    "node": ">=20.0.0"
   },
   "browserslist": "> 0.5%, last 2 versions, not dead",
   "repository": {
