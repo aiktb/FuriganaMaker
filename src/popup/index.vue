@@ -1,7 +1,7 @@
 <script setup lang="ts">
 import MainMenu from './MainMenu.vue'
 
-import './tailwind.css'
+import './style.css'
 </script>
 
 <!-- All because <MainMenu /> needs to load chrome.storage asynchronously. -->
