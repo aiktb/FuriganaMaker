@@ -2,5 +2,5 @@
   "*.svg": "prettier --write --parser html",
   "*.{json, md, vue, html, ts}": "prettier --write",
   "*.{ts, vue}": "eslint --fix",
-  "*.ts": "jest --bail --findRelatedTests --passWithNoTests"
+  "*.ts": "vitest run related --passWithNoTests"
 }
