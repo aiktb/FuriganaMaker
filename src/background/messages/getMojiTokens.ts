@@ -43,10 +43,10 @@ const getTokenizer = () => {
   return deferred.promise
 }
 
-const handler: PlasmoMessaging.MessageHandler<
-  { text: string },
-  { message: MojiToken[] }
-> = async (req, res) => {
+const handler: PlasmoMessaging.MessageHandler<{ text: string }, { message: MojiToken[] }> = async (
+  req,
+  res
+) => {
   const tokenizer = await getTokenizer()
   const message: MojiToken[] = tokenizer.tokenize(req.body!.text)
   res.send({ message })

@@ -68,10 +68,7 @@ const copy = () => {
       @click="cancel"
     >
       Cancel
-      <Icon
-        class="ml-1 inline-block h-6 w-6"
-        icon="mingcute:close-circle-line"
-      />
+      <Icon class="ml-1 inline-block h-6 w-6" icon="mingcute:close-circle-line" />
     </button>
     <button
       class="flex cursor-pointer items-center transition-all hover:text-sky-600 dark:hover:text-sky-400"

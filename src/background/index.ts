@@ -2,13 +2,7 @@ import Browser from 'webextension-polyfill'
 
 import { Storage } from '@plasmohq/storage'
 
-import {
-  defaultConfig,
-  ExtensionEvent,
-  ExtensionStorage,
-  Rule,
-  sendMessage
-} from '~contents/core'
+import { defaultConfig, ExtensionEvent, ExtensionStorage, Rule, sendMessage } from '~contents/core'
 
 import defaultRules from '../../assets/rules.json'
 

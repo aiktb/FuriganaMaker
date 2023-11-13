@@ -17,9 +17,7 @@ const emit = defineEmits<{
 
 const update = () => {
   const percent = (x.value - left.value) / width.value
-  const newModelValue = Math.round(
-    percent * (props.max - props.min) + props.min
-  )
+  const newModelValue = Math.round(percent * (props.max - props.min) + props.min)
   emit('update:modelValue', newModelValue)
   emit('change')
 }
