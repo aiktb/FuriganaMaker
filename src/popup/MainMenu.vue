@@ -63,7 +63,7 @@ const selectOptions = [SelectMode.Original, SelectMode.Furigana]
 </script>
 
 <template>
-  <menu class="border-r-2 border-blue-600">
+  <menu class="border-azure-700 border-r-2">
     <MenuItem tip>
       <template #icon>
         <div v-html="CursorOutlineIcon" />
@@ -75,7 +75,7 @@ const selectOptions = [SelectMode.Original, SelectMode.Furigana]
     </MenuItem>
     <MenuItem>
       <template #icon>
-        <div :class="{ 'text-blue-600': option.display }" v-html="PowerIcon" />
+        <div :class="{ 'text-azure-700': option.display }" v-html="PowerIcon" />
       </template>
       <template #content>
         <CheckBox v-model="option.display" @change="change(ExtensionEvent.ToggleDisplay)">
@@ -85,7 +85,7 @@ const selectOptions = [SelectMode.Original, SelectMode.Furigana]
     </MenuItem>
     <MenuItem>
       <template #icon>
-        <div v-if="option.hoverMode" class="text-blue-600" v-html="EyeIcon" />
+        <div v-if="option.hoverMode" class="text-azure-700" v-html="EyeIcon" />
         <div v-else v-html="EyeOffIcon" />
       </template>
       <template #content>

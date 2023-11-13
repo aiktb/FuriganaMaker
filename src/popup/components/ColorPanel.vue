@@ -213,13 +213,13 @@ const keyHandler = (type: KeyEvent) => {
       />
       <div class="flex gap-2">
         <button
-          class="rounded px-1 transition-all hover:text-blue-600 focus:text-blue-600"
+          class="hover:text-azure-700 focus:text-azure-700 rounded px-1 transition-all"
           @click="update('currentColor')"
         >
           RESET
         </button>
         <button
-          class="flex w-10 items-center justify-center rounded border-2 border-slate-400 bg-white transition-all hover:text-blue-600 focus:text-blue-600 dark:border-slate-700 dark:bg-slate-900"
+          class="hover:text-azure-700 focus:text-azure-700 flex w-10 items-center justify-center rounded border-2 border-slate-400 bg-white transition-all dark:border-slate-700 dark:bg-slate-900"
           @click="update(input)"
         >
           OK

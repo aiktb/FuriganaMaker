@@ -64,21 +64,21 @@ const copy = () => {
     class="my-3 flex w-full justify-between gap-x-2 rounded-md bg-slate-300 p-4 py-2 text-lg font-[500] outline outline-2 outline-slate-600 dark:bg-slate-900"
   >
     <button
-      class="flex cursor-pointer items-center transition-all hover:text-sky-600 dark:hover:text-blue-600"
+      class="dark:hover:text-azure-700 flex cursor-pointer items-center transition-all hover:text-sky-600"
       @click="cancel"
     >
       Cancel
       <Icon class="ml-1 inline-block h-6 w-6" icon="mingcute:close-circle-line" />
     </button>
     <button
-      class="flex cursor-pointer items-center transition-all hover:text-sky-600 dark:hover:text-blue-600"
+      class="dark:hover:text-azure-700 flex cursor-pointer items-center transition-all hover:text-sky-600"
       @click="save"
     >
       Save
       <Icon class="ml-1 inline-block h-6 w-6" icon="mingcute:save-2-line" />
     </button>
     <button
-      class="flex cursor-pointer items-center transition-all hover:text-sky-600 dark:hover:text-blue-600"
+      class="dark:hover:text-azure-700 flex cursor-pointer items-center transition-all hover:text-sky-600"
       @click="copy"
     >
       <span class="sm:hidden">Copy</span>
@@ -89,7 +89,7 @@ const copy = () => {
   <textarea
     v-model="rulesJSON"
     spellcheck="false"
-    class="min-h-screen w-full rounded-md bg-slate-300 p-3 font-mono outline outline-2 outline-slate-600 focus:outline-[3px] focus:outline-blue-600 dark:bg-slate-900"
+    class="focus:outline-azure-700 min-h-screen w-full rounded-md bg-slate-300 p-3 font-mono outline outline-2 outline-slate-600 focus:outline-[3px] dark:bg-slate-900"
     @keydown.ctrl.s.prevent="save"
   />
 </template>
