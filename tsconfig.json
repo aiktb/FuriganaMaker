@@ -8,8 +8,6 @@
       "@Icons/*": ["./assets/icons/*"]
     },
     "baseUrl": ".",
-    /* https://github.com/kulshekhar/ts-jest/issues/4081 */
-    "verbatimModuleSyntax": false,
     /* Linting */
     "strict": true,
     "allowUnreachableCode": false,
