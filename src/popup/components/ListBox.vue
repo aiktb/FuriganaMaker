@@ -35,7 +35,7 @@ watch(focused, () => {
     >
       {{ props.modelValue }}
       <Icon
-        class="text-blue-600 group-focus-within:flex group-hover:flex"
+        class="text-azure-700 group-focus-within:flex group-hover:flex"
         :class="{ hidden: !display }"
         aria-hidden="true"
         icon="ep:arrow-down-bold"
@@ -50,7 +50,7 @@ watch(focused, () => {
         <button
           v-for="option of props.options"
           :key="option"
-          class="box-content flex items-center px-2 capitalize transition-all first:rounded-t last:rounded-b hover:bg-slate-300 focus:z-10 focus:bg-slate-300 focus:text-blue-600 dark:hover:bg-slate-700 dark:focus:bg-slate-700"
+          class="focus:text-azure-700 box-content flex items-center px-2 capitalize transition-all first:rounded-t last:rounded-b hover:bg-slate-300 focus:z-10 focus:bg-slate-300 dark:hover:bg-slate-700 dark:focus:bg-slate-700"
           role="option"
           :aria-selected="option === props.modelValue"
           @click="

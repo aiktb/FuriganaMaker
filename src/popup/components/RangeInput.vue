@@ -73,7 +73,7 @@ onMounted(() => {
     <div ref="track" class="h-[3px] w-full rounded-lg bg-current">
       <div
         ref="slider"
-        class="fixed h-3.5 w-3.5 cursor-pointer rounded-full bg-blue-600 [transform:translate(-50%,-50%)]"
+        class="bg-azure-700 fixed h-3.5 w-3.5 cursor-pointer rounded-full [transform:translate(-50%,-50%)]"
         :style="style"
       />
     </div>
