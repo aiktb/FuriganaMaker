@@ -10,10 +10,10 @@ export const config: PlasmoCSConfig = {
 }
 
 const mark = async () => {
-  const response = await sendToBackground<
-    { domain: string },
-    { selector: Selector }
-  >({ name: 'getSelector', body: { domain: location.hostname } })
+  const response = await sendToBackground<{ domain: string }, { selector: Selector }>({
+    name: 'getSelector',
+    body: { domain: location.hostname }
+  })
   const plainSelector = response.selector.plain
   const observerSelector = response.selector.observer
 
@@ -30,9 +30,7 @@ const mark = async () => {
       const japaneseElements = records
         .flatMap((record) => Array.from(record.addedNodes))
         .filter((node) => node.nodeType === Node.ELEMENT_NODE)
-        .flatMap((node) =>
-          Array.from((node as Element).querySelectorAll(observerSelector))
-        )
+        .flatMap((node) => Array.from((node as Element).querySelectorAll(observerSelector)))
 
       addFurigana(japaneseElements)
     })

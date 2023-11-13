@@ -75,34 +75,21 @@ const selectOptions = [SelectMode.Original, SelectMode.Furigana]
     </MenuItem>
     <MenuItem>
       <template #icon>
-        <div
-          :class="{ 'text-[--feature-color]': option.display }"
-          v-html="PowerIcon"
-        />
+        <div :class="{ 'text-[--feature-color]': option.display }" v-html="PowerIcon" />
       </template>
       <template #content>
-        <CheckBox
-          v-model="option.display"
-          @change="change(ExtensionEvent.ToggleDisplay)"
-        >
+        <CheckBox v-model="option.display" @change="change(ExtensionEvent.ToggleDisplay)">
           On-off extension
         </CheckBox>
       </template>
     </MenuItem>
     <MenuItem>
       <template #icon>
-        <div
-          v-if="option.hoverMode"
-          class="text-[--feature-color]"
-          v-html="EyeIcon"
-        />
+        <div v-if="option.hoverMode" class="text-[--feature-color]" v-html="EyeIcon" />
         <div v-else v-html="EyeOffIcon" />
       </template>
       <template #content>
-        <CheckBox
-          v-model="option.hoverMode"
-          @change="change(ExtensionEvent.ToggleHoverMode)"
-        >
+        <CheckBox v-model="option.hoverMode" @change="change(ExtensionEvent.ToggleHoverMode)">
           On-off hover mode
         </CheckBox>
       </template>
@@ -136,10 +123,7 @@ const selectOptions = [SelectMode.Original, SelectMode.Furigana]
         <div v-html="ColorPickerIcon" />
       </template>
       <template #content>
-        <ColorPicker
-          v-model="option.fontColor"
-          @change="change(ExtensionEvent.AdjustFontColor)"
-        />
+        <ColorPicker v-model="option.fontColor" @change="change(ExtensionEvent.AdjustFontColor)" />
       </template>
     </MenuItem>
     <MenuItem>
@@ -168,9 +152,7 @@ const selectOptions = [SelectMode.Original, SelectMode.Furigana]
         <div v-html="GithubIcon" />
       </template>
       <template #content>
-        <BaseLink link="https://github.com/aiktb/FuriganaMaker/issues">
-          Feedback
-        </BaseLink>
+        <BaseLink link="https://github.com/aiktb/FuriganaMaker/issues"> Feedback </BaseLink>
       </template>
       <template #tip> Open an issue on GitHub </template>
     </MenuItem>

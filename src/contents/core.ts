@@ -108,8 +108,7 @@ export const sendMessage = async (id: number, event: ExtensionEvent) => {
   } catch (error) {
     if (
       !(error instanceof Error) ||
-      error.message !==
-        'Could not establish connection. Receiving end does not exist.'
+      error.message !== 'Could not establish connection. Receiving end does not exist.'
     ) {
       throw error
     }

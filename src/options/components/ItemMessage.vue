@@ -24,10 +24,7 @@ import { Icon } from '@iconify/vue'
       >.
     </p>
     <a href="https://github.com/aiktb/FuriganaMaker" title="Open in Github">
-      <Icon
-        class="h-6 w-6 transition-all hover:text-sky-600"
-        icon="akar-icons:github-fill"
-      />
+      <Icon class="h-6 w-6 transition-all hover:text-sky-600" icon="akar-icons:github-fill" />
     </a>
   </footer>
 </template>

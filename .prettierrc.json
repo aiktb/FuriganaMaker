@@ -1,5 +1,5 @@
 {
-  "printWidth": 80,
+  "printWidth": 100,
   "tabWidth": 2,
   "useTabs": false,
   "semi": false,
@@ -7,10 +7,7 @@
   "trailingComma": "none",
   "bracketSpacing": true,
   "bracketSameLine": false,
-  "plugins": [
-    "@ianvs/prettier-plugin-sort-imports",
-    "prettier-plugin-tailwindcss"
-  ],
+  "plugins": ["@ianvs/prettier-plugin-sort-imports", "prettier-plugin-tailwindcss"],
   "importOrder": [
     "<BUILTIN_MODULES>",
     "<THIRD_PARTY_MODULES>",

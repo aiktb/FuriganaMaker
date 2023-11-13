@@ -81,25 +81,21 @@ const smashToken = (token: SimplifiedToken): KanjiToken[] => {
   const { original, reading, start, end } = token
   // Both \p{sc=Hira} and \p{sc=Kana} don’t contain 'ー々', which is bad.
   const kanaRegex = /(\p{sc=Hira}|\p{sc=Kana}|ー)+/gu
-  const kanas: MarkTokenArray = [...original.matchAll(kanaRegex)].map(
-    (match) => ({
-      original: toKatakana(match[0]),
-      start: match.index!,
-      end: match.index! + match[0].length
-    })
-  ) as MarkTokenArray
+  const kanas: MarkTokenArray = [...original.matchAll(kanaRegex)].map((match) => ({
+    original: toKatakana(match[0]),
+    start: match.index!,
+    end: match.index! + match[0].length
+  })) as MarkTokenArray
   kanas.hybridLength = original.length
 
   const hybridRegex = buildRegex(kanas)
 
   const kanjisRegex = /\p{sc=Han}+/gu
-  const kanjis: KanjiToken[] = [...original.matchAll(kanjisRegex)].map(
-    (match) => ({
-      original: match[0],
-      start: start + match.index!,
-      end: start + match.index! + match[0].length
-    })
-  ) as KanjiToken[]
+  const kanjis: KanjiToken[] = [...original.matchAll(kanjisRegex)].map((match) => ({
+    original: match[0],
+    start: start + match.index!,
+    end: start + match.index! + match[0].length
+  })) as KanjiToken[]
   // The first matching group is the entire string.
   // All that's needed is the sub-capturing group.
   const hybridMatch = reading.match(hybridRegex)?.slice(1)

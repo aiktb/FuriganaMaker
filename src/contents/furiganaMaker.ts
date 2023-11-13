@@ -29,9 +29,7 @@ export async function addFurigana(elements: Element | Element[]) {
   }
 
   const storage = new Storage({ area: 'local' })
-  const furiganaType: FuriganaType = await storage.get(
-    ExtensionStorage.FuriganaType
-  )
+  const furiganaType: FuriganaType = await storage.get(ExtensionStorage.FuriganaType)
 
   for (const text of japaneseTexts) {
     const tokens: KanjiToken[] = await tokenize(text.textContent!)
@@ -62,18 +60,14 @@ const collectTexts = (element: Element): Text[] => {
 }
 
 const tokenize = async (text: string): Promise<KanjiToken[]> => {
-  const response = await sendToBackground<
-    { text: string },
-    { message: MojiToken[] }
-  >({ name: 'getMojiTokens', body: { text } })
+  const response = await sendToBackground<{ text: string }, { message: MojiToken[] }>({
+    name: 'getMojiTokens',
+    body: { text }
+  })
   return toKanjiToken(response.message)
 }
 
-const createRuby = (
-  original: string,
-  reading: string,
-  furiganaType: FuriganaType
-): HTMLElement => {
+const createRuby = (original: string, reading: string, furiganaType: FuriganaType): HTMLElement => {
   const ruby = document.createElement('ruby')
   ruby.classList.add(FURIGANA_CLASS)
   const rightParenthesisRp = document.createElement('rp')

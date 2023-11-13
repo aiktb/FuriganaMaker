@@ -4,9 +4,7 @@ import type { MojiToken } from '~contents/kanjiTokenizer'
 import { toKanjiToken } from '~contents/kanjiTokenizer'
 
 test('Basic test 1', async () => {
-  const kuromojiTokens = await tokenize(
-    '「僕は耳と目を閉じ、口を噤んだ人間になろうと考えた」'
-  )
+  const kuromojiTokens = await tokenize('「僕は耳と目を閉じ、口を噤んだ人間になろうと考えた」')
   expect(toKanjiToken(kuromojiTokens)).toEqual([
     { original: '僕', reading: 'ボク', start: 1, end: 2 },
     { original: '耳', reading: 'ミミ', start: 3, end: 4 },
@@ -71,9 +69,7 @@ test('Unnecessary attributes', async () => {
 
 test('reading is "*"', async () => {
   // fake example
-  const kuromojiTokens: MojiToken[] = [
-    { word_position: 1, reading: '*', surface_form: '我' }
-  ]
+  const kuromojiTokens: MojiToken[] = [{ word_position: 1, reading: '*', surface_form: '我' }]
   expect(toKanjiToken(kuromojiTokens)).toEqual([])
 })
 
