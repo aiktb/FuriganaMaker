@@ -7,7 +7,6 @@
       "~*": ["./src/*"],
       "@Icons/*": ["./assets/icons/*"]
     },
-    "baseUrl": ".",
     /* Linting */
     "strict": true,
     "allowUnreachableCode": false,
