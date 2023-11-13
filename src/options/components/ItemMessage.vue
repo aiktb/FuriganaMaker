@@ -10,14 +10,14 @@ import { Icon } from '@iconify/vue'
       Made by
       <a
         href="https://plasmo.com"
-        class="text text-sky-600 underline transition-all hover:text-sky-700 dark:text-sky-400"
+        class="text text-sky-600 underline transition-all hover:text-sky-700 dark:text-blue-600"
         target="_blank"
       >
         Plasmo</a
       >, developed by
       <a
         href="https://aiktb.com"
-        class="text text-sky-600 underline transition-all hover:text-sky-700 dark:text-sky-400"
+        class="text text-sky-600 underline transition-all hover:text-sky-700 dark:text-blue-600"
         target="_blank"
       >
         aiktb</a

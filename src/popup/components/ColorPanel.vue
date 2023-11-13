@@ -156,7 +156,7 @@ const keyHandler = (type: KeyEvent) => {
 <template>
   <div
     ref="panel"
-    class="fixed bottom-0 left-0 right-0 top-0 z-10 flex flex-col items-center justify-between bg-slate-100 p-3 dark:bg-slate-800"
+    class="fixed bottom-0 left-0 right-0 top-0 z-10 flex flex-col items-center justify-between bg-slate-100 p-3 dark:bg-slate-900"
     tabindex="-1"
     aria-label="color picker"
   >
@@ -219,7 +219,7 @@ const keyHandler = (type: KeyEvent) => {
           RESET
         </button>
         <button
-          class="flex w-10 items-center justify-center rounded border-2 border-slate-400 bg-white transition-all hover:text-[--feature-color] focus:text-[--feature-color] dark:border-slate-700 dark:bg-slate-900"
+          class="flex w-10 items-center justify-center rounded border-2 border-slate-400 bg-white transition-all hover:text-blue-600 focus:text-blue-600 dark:border-slate-700 dark:bg-slate-900"
           @click="update(input)"
         >
           OK

@@ -35,7 +35,7 @@ watch(focused, () => {
     >
       {{ props.modelValue }}
       <Icon
-        class="text-[--feature-color] group-focus-within:flex group-hover:flex"
+        class="text-blue-600 group-focus-within:flex group-hover:flex"
         :class="{ hidden: !display }"
         aria-hidden="true"
         icon="ep:arrow-down-bold"
