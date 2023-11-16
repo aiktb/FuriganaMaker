@@ -103,12 +103,7 @@
       <stop offset="1" stop-color="#298AFC" />
     </linearGradient>
     <clipPath id="clip0_21_34">
-      <rect
-        width="512"
-        height="512"
-        fill="white"
-        transform="translate(174 64)"
-      />
+      <rect width="512" height="512" fill="white" transform="translate(174 64)" />
     </clipPath>
   </defs>
 </svg>
