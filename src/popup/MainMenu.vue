@@ -63,13 +63,15 @@ const selectOptions = [SelectMode.Original, SelectMode.Furigana]
 </script>
 
 <template>
-  <menu class="border-azure-700 border-r-2">
+  <menu class="border-r-2 border-azure-700">
     <MenuItem tip>
       <template #icon>
         <div v-html="CursorOutlineIcon" />
       </template>
       <template #content>
-        <CheckBox @click="addFurigana"> Add furigana </CheckBox>
+        <button class="flex grow items-center justify-between rounded px-2" @click="addFurigana">
+          Add furigana
+        </button>
       </template>
       <template #tip> Press ESC to cancel </template>
     </MenuItem>

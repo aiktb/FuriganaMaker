@@ -41,7 +41,14 @@ watch(focused, () => {
         icon="ep:arrow-down-bold"
       />
     </button>
-    <Transition>
+    <Transition
+      enter-active-class="transition duration-100 ease-out"
+      enter-from-class="transform scale-95 opacity-0"
+      enter-to-class="transform scale-100 opacity-100"
+      leave-active-class="transition duration-75 ease-in"
+      leave-from-class="transform scale-100 opacity-100"
+      leave-to-class="transform scale-95 opacity-0"
+    >
       <div
         v-if="display"
         class="column absolute left-0 top-full z-10 flex w-full flex-col rounded-md border-2 border-slate-500 bg-slate-100 shadow-2xl dark:border-slate-700 dark:bg-slate-900"
@@ -50,7 +57,7 @@ watch(focused, () => {
         <button
           v-for="option of props.options"
           :key="option"
-          class="focus:text-azure-700 box-content flex items-center px-2 capitalize transition-all first:rounded-t last:rounded-b hover:bg-slate-300 focus:z-10 focus:bg-slate-300 dark:hover:bg-slate-700 dark:focus:bg-slate-700"
+          class="box-content flex items-center px-2 capitalize transition-all first:rounded-t last:rounded-b hover:bg-slate-300 focus:z-10 focus:bg-slate-300 focus:text-azure-700 dark:hover:bg-slate-700 dark:focus:bg-slate-700"
           role="option"
           :aria-selected="option === props.modelValue"
           @click="

@@ -2,7 +2,6 @@ import type { PlasmoCSConfig } from 'plasmo'
 
 import { sendToBackground } from '@plasmohq/messaging'
 
-import { Selector } from './core'
 import { addFurigana } from './furiganaMaker'
 
 export const config: PlasmoCSConfig = {
@@ -10,27 +9,22 @@ export const config: PlasmoCSConfig = {
 }
 
 const mark = async () => {
-  const response = await sendToBackground<{ domain: string }, { selector: Selector }>({
+  const response = await sendToBackground<{ domain: string }, { selector: string }>({
     name: 'getSelector',
     body: { domain: location.hostname }
   })
-  const plainSelector = response.selector.plain
-  const observerSelector = response.selector.observer
 
-  if (plainSelector) {
-    const elements = Array.from(document.querySelectorAll(plainSelector))
-    addFurigana(elements)
-  }
-
-  if (observerSelector) {
-    const elements = Array.from(document.querySelectorAll(observerSelector))
+  if (response.selector) {
+    // Observer will not observe the element that is loaded for the first time on the page,
+    // so it needs to execute `addFurigana` once immediately.
+    const elements = Array.from(document.querySelectorAll(response.selector))
     addFurigana(elements)
 
     const observer = new MutationObserver((records) => {
       const japaneseElements = records
         .flatMap((record) => Array.from(record.addedNodes))
         .filter((node) => node.nodeType === Node.ELEMENT_NODE)
-        .flatMap((node) => Array.from((node as Element).querySelectorAll(observerSelector)))
+        .flatMap((node) => Array.from((node as Element).querySelectorAll(response.selector)))
 
       addFurigana(japaneseElements)
     })

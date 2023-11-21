@@ -2,7 +2,13 @@ import Browser from 'webextension-polyfill'
 
 import { Storage } from '@plasmohq/storage'
 
-import { defaultConfig, ExtensionEvent, ExtensionStorage, Rule, sendMessage } from '~contents/core'
+import {
+  defaultConfig,
+  ExtensionEvent,
+  ExtensionStorage,
+  sendMessage,
+  type Rule
+} from '~contents/core'
 
 import defaultRules from '../../assets/rules.json'
 
@@ -17,9 +23,9 @@ Browser.runtime.onInstalled.addListener(async () => {
       await storage.set(key, defaultConfig[key])
     }
   }
-  const oldRules: Rule[] = await storage.get(ExtensionStorage.UserRule)
+  const oldRules: Rule[] = await storage.get(ExtensionStorage.UserRules)
   if (!oldRules) {
-    await storage.set(ExtensionStorage.UserRule, defaultRules)
+    await storage.set(ExtensionStorage.UserRules, defaultRules)
   }
 })
 

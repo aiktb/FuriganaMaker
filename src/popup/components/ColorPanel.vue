@@ -207,19 +207,19 @@ const keyHandler = (type: KeyEvent) => {
     <div class="flex w-full justify-between">
       <input
         v-model="input"
-        class="w-20 rounded border-2 border-slate-400 bg-white px-1 uppercase transition-all dark:border-slate-700 dark:bg-slate-900"
+        class="w-20 rounded border-2 border-slate-400 bg-white px-1 py-0 text-sm uppercase transition-all dark:border-slate-700 dark:bg-slate-900"
         aria-label="Input a HEX color"
         @change="colorToPosition(input)"
       />
       <div class="flex gap-2">
         <button
-          class="hover:text-azure-700 focus:text-azure-700 rounded px-1 transition-all"
+          class="rounded px-1 transition-all hover:text-azure-700 focus:text-azure-700"
           @click="update('currentColor')"
         >
           RESET
         </button>
         <button
-          class="hover:text-azure-700 focus:text-azure-700 flex w-10 items-center justify-center rounded border-2 border-slate-400 bg-white transition-all dark:border-slate-700 dark:bg-slate-900"
+          class="flex w-10 items-center justify-center rounded border-2 border-slate-400 bg-white transition-all hover:text-azure-700 focus:text-azure-700 dark:border-slate-700 dark:bg-slate-900"
           @click="update(input)"
         >
           OK
@@ -255,8 +255,8 @@ const keyHandler = (type: KeyEvent) => {
 
 #selected {
   box-shadow:
-    0 0 0 0.1rem var(--feature-color),
-    inset 0 0 0.1rem 0.1rem var(--feature-color),
-    0 0 0.2rem 0.2rem var(--feature-color);
+    0 0 0 0.1rem #0079ff,
+    inset 0 0 0.1rem 0.1rem #0079ff,
+    0 0 0.2rem 0.2rem #0079ff;
 }
 </style>

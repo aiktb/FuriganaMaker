@@ -4,22 +4,6 @@
 
 @font-face {
   font-display: swap;
-  font-family: 'JetBrains Mono';
-  font-style: normal;
-  font-weight: normal;
-  src: url('../../assets/fonts/jetbrains-mono-regular.woff2') format('woff2');
-}
-
-@font-face {
-  font-display: swap;
-  font-family: 'JetBrains Mono';
-  font-style: normal;
-  font-weight: bold;
-  src: url('../../assets/fonts/jetbrains-mono-bold.woff2') format('woff2');
-}
-
-@font-face {
-  font-display: swap;
   font-family: 'DM Sans';
   font-style: normal;
   font-weight: 400;
@@ -29,39 +13,7 @@
 @font-face {
   font-display: swap;
   font-family: 'DM Sans';
-  font-style: italic;
-  font-weight: 400;
-  src: url('../../assets/fonts/dm-sans-regular-italic.woff2') format('woff2');
-}
-
-@font-face {
-  font-display: swap;
-  font-family: 'DM Sans';
   font-style: normal;
   font-weight: 700;
   src: url('../../assets/fonts/dm-sans-bold.woff2') format('woff2');
-}
-
-@font-face {
-  font-display: swap;
-  font-family: 'DM Sans';
-  font-style: italic;
-  font-weight: 700;
-  src: url('../../assets/fonts/dm-sans-bold-italic.woff2') format('woff2');
-}
-
-:focus-visible {
-  outline: 2px solid currentColor;
-  outline-offset: 1px;
-  border-radius: 2px;
-}
-
-.v-enter-active,
-.v-leave-active {
-  transition: opacity 0.5s ease;
-}
-
-.v-enter-from,
-.v-leave-to {
-  opacity: 0;
 }
