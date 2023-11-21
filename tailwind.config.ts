@@ -1,7 +1,10 @@
+import forms from '@tailwindcss/forms'
 import type { Config } from 'tailwindcss'
 
 export default {
   content: ['./src/**/*.{vue,html}'],
+  plugins: [forms],
+  darkMode: 'class',
   theme: {
     fontFamily: {
       sans: ['DM Sans', 'sans-serif'],
@@ -24,6 +27,5 @@ export default {
         }
       }
     }
-  },
-  plugins: []
+  }
 } satisfies Config

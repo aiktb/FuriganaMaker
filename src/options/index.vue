@@ -1,21 +1,17 @@
 <script setup lang="ts">
-import './style.css'
+import Footer from './components/Footer.vue'
+import Header from './components/Header.vue'
+import Main from './components/Main.vue'
 
-import ItemMessage from './components/ItemMessage.vue'
-import JsonEditor from './components/JsonEditor.vue'
-import UserGuide from './components/UserGuide.vue'
+import './style.css'
 </script>
 
 <template>
-  <div class="w-full bg-slate-200 font-sans text-slate-800 dark:bg-slate-900 dark:text-slate-200">
-    <div class="mx-auto min-h-screen w-full max-w-3xl p-2 text-lg">
-      <UserGuide />
-      <main>
-        <Suspense>
-          <JsonEditor />
-        </Suspense>
-      </main>
-      <ItemMessage />
-    </div>
+  <div class="flex min-h-screen flex-col">
+    <Header />
+    <Suspense>
+      <Main />
+    </Suspense>
+    <Footer />
   </div>
 </template>

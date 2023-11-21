@@ -35,7 +35,14 @@ const close = () => {
       :style="{ backgroundColor: props.modelValue }"
     />
   </button>
-  <Transition>
+  <Transition
+    enter-active-class="duration-300 ease-out"
+    enter-from-class="opacity-0"
+    enter-to-class="opacity-100"
+    leave-active-class="duration-200"
+    leave-from-class="opacity-100"
+    leave-to-class="opacity-0"
+  >
     <ColorPanel v-if="display" v-model="selected" @close="close" />
   </Transition>
 </template>

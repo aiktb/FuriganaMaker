@@ -49,17 +49,22 @@
     "lint": "eslint --ext .ts,.vue src/**/* test/**/*"
   },
   "dependencies": {
+    "@headlessui/vue": "^1.7.16",
     "@plasmohq/messaging": "^0.5.0",
     "@plasmohq/storage": "^1.9.0",
     "@sglkc/kuromoji": "^1.1.0",
+    "@tailwindcss/forms": "^0.5.7",
+    "@types/file-saver": "^2.0.7",
     "@vueuse/core": "^10.6.0",
+    "file-saver": "^2.0.5",
     "plasmo": "^0.84.0",
     "tailwindcss": "^3.3.5",
     "tinycolor2": "^1.6.0",
     "typescript": "^5.2.2",
     "vue": "^3.3.8",
     "wanakana": "^5.2.0",
-    "webextension-polyfill": "^0.10.0"
+    "webextension-polyfill": "^0.10.0",
+    "zod": "^3.22.4"
   },
   "devDependencies": {
     "@ianvs/prettier-plugin-sort-imports": "^4.1.1",

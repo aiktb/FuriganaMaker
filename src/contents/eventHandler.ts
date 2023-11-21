@@ -39,8 +39,6 @@ Browser.runtime.onMessage.addListener((event: ExtensionEvent) => {
     case ExtensionEvent.AddFurigana:
       addFuriganaHandler()
       break
-    case ExtensionEvent.EditUserRule:
-      break
     default:
       styleHandler(event)
       break

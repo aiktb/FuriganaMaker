@@ -14,8 +14,7 @@ export enum ExtensionEvent {
   SwitchFuriganaType = 'switchFuriganaType',
   SwitchSelectMode = 'switchSelectMode',
   AdjustFontSize = 'adjustFontSize',
-  AdjustFontColor = 'adjustFontColor',
-  EditUserRule = 'editUserRule'
+  AdjustFontColor = 'adjustFontColor'
 }
 
 export enum ExtensionStorage {
@@ -25,7 +24,7 @@ export enum ExtensionStorage {
   SelectMode = 'selectMode',
   FontSize = 'fontSize',
   FontColor = 'fontColor',
-  UserRule = 'userRule'
+  UserRules = 'userRules'
 }
 
 export type StyleEvent =
@@ -68,13 +67,7 @@ export const defaultConfig: Config = {
 export type Rule = {
   domain: string
   selector: string
-  dynamic: boolean
   enabled: boolean
-}
-
-export type Selector = {
-  plain?: string | undefined
-  observer?: string | undefined
 }
 
 export type StorageChangeEvent =
