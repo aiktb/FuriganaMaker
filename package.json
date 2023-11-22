@@ -100,10 +100,10 @@
         "description": "Add furigana on the current page"
       },
       "toggleDisplay": {
-        "description": "Switch furigana display on all pages"
+        "description": "Toggle furigana display on all pages"
       },
       "toggleHoverMode": {
-        "description": "Switch hover mode on all pages"
+        "description": "Toggle hover mode on all pages"
       }
     },
     "web_accessible_resources": [
