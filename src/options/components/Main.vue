@@ -95,7 +95,7 @@ const toggleRule = (index: number) => {
 
 const createNewRule = (rule: Rule) => {
   const index = rules.value.findIndex((item) => item.domain === rule.domain)
-  if (index) {
+  if (index !== -1) {
     rules.value[index]!.selector = `${rule.selector}, ${rules.value[index]!.selector}`
   } else {
     rules.value.push(rule)
@@ -214,7 +214,7 @@ const update = () => {
                 Invalid JSON format!
               </DialogTitle>
               <div class="mt-2">
-                <p class="whitespace-pre-wrap text-sm text-gray-500">
+                <p class="whitespace-pre-wrap text-sm text-gray-500 dark:text-gray-400">
                   {{ importFailedMessage }}
                 </p>
               </div>
@@ -305,7 +305,7 @@ const update = () => {
                 Warning!
               </DialogTitle>
               <div class="mt-2">
-                <p class="text-sm text-gray-500">
+                <p class="text-sm text-gray-500 dark:text-gray-400">
                   This will overwrite the existing configuration file and this action is not
                   undoable, sure about this?
                 </p>

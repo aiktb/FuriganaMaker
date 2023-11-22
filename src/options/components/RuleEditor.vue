@@ -63,7 +63,7 @@ const submit = () => {
               syntax to specify the element to be tagged on the page.
             </li>
             <li class="my-2">
-              If you are not familiar with the CSS Selector syntax, please do not modify this field,
+              If you are not familiar with the CSS selector syntax, please do not modify this field,
               as this may invalidate the extension.
             </li>
             <li class="my-2">
@@ -134,7 +134,7 @@ const submit = () => {
                   href="https://developer.mozilla.org/en-US/docs/Web/CSS/CSS_selectors"
                   class="font-semibold text-sky-600 transition hover:text-sky-500 dark:text-sky-500 dark:hover:text-sky-600"
                 >
-                  Don't know Selector?
+                  Don't know selector?
                 </a>
               </div>
             </div>
