@@ -96,15 +96,7 @@
       "contextMenus"
     ],
     "commands": {
-      "_execute_action": {
-        "suggested_key": {
-          "default": "Alt+Shift+X"
-        }
-      },
       "addFurigana": {
-        "suggested_key": {
-          "default": "Alt+Shift+F"
-        },
         "description": "Add furigana on the current page"
       },
       "toggleDisplay": {
