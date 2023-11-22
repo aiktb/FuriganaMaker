@@ -97,7 +97,7 @@ const submit = () => {
         <h2
           class="text-center text-2xl font-bold leading-9 tracking-tight text-gray-900 dark:text-white"
         >
-          Edit your custom rule
+          <span> {{ props.rule ? 'Update' : 'Create' }} </span> your custom rule
         </h2>
       </div>
 

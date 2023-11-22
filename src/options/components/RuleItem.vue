@@ -110,10 +110,10 @@ const update = (rule: Rule) => {
   </div>
   <button
     v-else
-    class="w-full rounded-md px-4 py-5 text-sm font-semibold leading-6 shadow-sm transition duration-150 ease-in-out hover:bg-transparent/10 hover:text-black dark:hover:bg-transparent/20 dark:hover:text-white"
+    class="w-full rounded-md px-16 py-5 text-sm font-bold leading-6 shadow-sm transition duration-150 ease-in-out hover:bg-transparent/10 hover:text-black dark:hover:bg-transparent/20 dark:hover:text-white sm:px-40 lg:px-60"
     @click="undoDelete"
   >
-    <div class="inline-flex h-12 items-center">
+    <div class="flex h-12 items-center">
       <svg
         class="-ml-1 mr-3 h-5 w-5 animate-spin text-sky-500 dark:text-sky-300"
         xmlns="http://www.w3.org/2000/svg"
