@@ -46,7 +46,7 @@
     "test": "vitest",
     "prepare": "husky install",
     "format": "prettier --check --write .",
-    "lint": "eslint --ext .ts,.vue src/**/* test/**/*",
+    "lint": "eslint --ext .ts,.vue src/ test/",
     "type-check": "tsc --noEmit && vue-tsc --noEmit"
   },
   "dependencies": {
