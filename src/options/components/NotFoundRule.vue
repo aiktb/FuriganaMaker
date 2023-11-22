@@ -13,5 +13,3 @@ import { Icon } from '@iconify/vue'
     </p>
   </div>
 </template>
-
-<style scoped></style>

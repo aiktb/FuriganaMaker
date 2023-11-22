@@ -10,7 +10,12 @@ import './style.css'
   <div class="flex min-h-screen flex-col">
     <Header />
     <Suspense>
-      <Main />
+      <template #default>
+        <Main />
+      </template>
+      <template #fallback>
+        <div class="my-auto" />
+      </template>
     </Suspense>
     <Footer />
   </div>

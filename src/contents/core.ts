@@ -65,9 +65,9 @@ export const defaultConfig: Config = {
 }
 
 export type Rule = {
-  domain: string
+  domain: string // This field is unique.
   selector: string
-  enabled: boolean
+  active: boolean
 }
 
 export type StorageChangeEvent =

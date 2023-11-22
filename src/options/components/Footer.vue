@@ -25,7 +25,7 @@ const generateYear = () => {
         <span class="block sm:inline">All rights reserved.</span>
       </div>
       <a
-        class="transition hover:text-gray-400"
+        class="transition hover:text-black dark:hover:text-white"
         href="https://github.com/aiktb/FuriganaMaker"
         target="_blank"
       >

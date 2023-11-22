@@ -2,81 +2,76 @@
   {
     "domain": "twitter.com",
     "selector": "div[lang='ja'] span",
-    "enabled": true
+    "active": true
   },
   {
     "domain": "www.asahi.com",
     "selector": ".nfyQp h1, .nfyQp h2, .nfyQp h3, .nfyQp h4, .nfyQp h5, .nfyQp h6, .nfyQp p",
-    "enabled": true
+    "active": true
   },
   {
     "domain": "ja.wikipedia.org",
     "selector": "main > #bodyContent",
-    "enabled": true
+    "active": true
   },
   {
     "domain": "www3.nhk.or.jp",
     "selector": "main section.content--detail-main, main article header h1.content--title",
-    "enabled": true
+    "active": true
   },
   {
     "domain": "news.yahoo.co.jp",
     "selector": "main article .article_body, main article header h1 ",
-    "enabled": true
+    "active": true
   },
   {
     "domain": "finders.me",
     "selector": "section article",
-    "enabled": true
+    "active": true
   },
   {
     "domain": "news.livedoor.com",
     "selector": "#main article header h1, #main article .articleBody",
-    "enabled": true
+    "active": true
   },
   {
     "domain": "ncode.syosetu.com",
     "selector": "#container #novel_color",
-    "enabled": true
+    "active": true
   },
   {
     "domain": "topics.smt.docomo.ne.jp",
-    "selector": ".newsTopics-title-area h1, .newsTopics-title-area h2, .newsTopics-text",
-    "enabled": true
-  },
-  {
-    "domain": "topics.smt.docomo.ne.jp",
-    "selector": ".newsArticle-title-area h1, .newsArticle-title-area h2, .newsArticle-text",
-    "enabled": true
+    "selector": ".newsTopics-title-area h1, .newsTopics-title-area h2, .newsTopics-text, .newsArticle-title-area h1, .newsArticle-title-area h2, .newsArticle-text",
+    "active": true
   },
   {
     "domain": "5ch.net",
     "selector": ".thread-content, .thread_title",
-    "enabled": true
+    "active": true
   },
   {
     "domain": "www.itmedia.co.jp",
     "selector": ".title__maintext, #cmsBody",
-    "enabled": true
+    "active": true
   },
   {
     "domain": "news.goo.ne.jp",
     "selector": ".topics-title, .topics-text",
-    "enabled": true
+    "active": true
   },
   {
     "domain": "ameblo.jp",
     "selector": "h1.skin-entryTitle, #app #entryBody",
-    "enabled": true
+    "active": true
   },
   {
     "domain": "tenki.jp",
     "selector": "#main-column section .forecaster-article-h2, #main-column section .forecaster-article-text",
-    "enabled": true
+    "active": true
   },
   {
     "domain": "www.nikkei.com",
     "selector": "main header h1, main section",
-    "enabled": true
+    "active": true
   }
 ]
