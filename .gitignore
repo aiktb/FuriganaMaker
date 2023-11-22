@@ -34,3 +34,4 @@ dist/
 .idea
 
 TODO.md
+tsconfig.tsbuildinfo
