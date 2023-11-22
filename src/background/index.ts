@@ -7,6 +7,7 @@ import {
   ExtensionEvent,
   ExtensionStorage,
   sendMessage,
+  toStorageKey,
   type Rule
 } from '~contents/core'
 
@@ -14,9 +15,8 @@ import defaultRules from '../../assets/rules.json'
 
 // Plasmo `dev` mode will force the Service Worker to be `active`, it will never become `inactive`.
 
-const storage = new Storage({ area: 'local' })
-
 Browser.runtime.onInstalled.addListener(async () => {
+  const storage = new Storage({ area: 'local' })
   for (const key in defaultConfig) {
     const oldConfig = await storage.get(key)
     if (!oldConfig) {
@@ -30,6 +30,7 @@ Browser.runtime.onInstalled.addListener(async () => {
 })
 
 Browser.commands.onCommand.addListener(async (command, tab) => {
+  const storage = new Storage({ area: 'local' })
   switch (command) {
     case ExtensionEvent.AddFurigana:
       await sendMessage(tab!.id!, ExtensionEvent.AddFurigana)
@@ -37,8 +38,9 @@ Browser.commands.onCommand.addListener(async (command, tab) => {
     case ExtensionEvent.ToggleDisplay:
     case ExtensionEvent.ToggleHoverMode:
       {
-        const oldValue: boolean = await storage.get(command)
-        await storage.set(command, !oldValue)
+        const key = toStorageKey(command)
+        const oldValue: boolean = await storage.get(toStorageKey(command))
+        await storage.set(key, !oldValue)
         await sendMessage(tab!.id!, command)
       }
       break
@@ -55,7 +57,7 @@ const contextMenuItem: Browser.Menus.CreateCreatePropertiesType = {
 }
 Browser.contextMenus.create(contextMenuItem)
 Browser.contextMenus.onClicked.addListener((info, tab) => {
-  if (info.menuItemId == ExtensionEvent.AddFurigana) {
+  if (info.menuItemId === ExtensionEvent.AddFurigana) {
     sendMessage(tab!.id!, ExtensionEvent.AddFurigana)
   }
 })
