@@ -12,7 +12,7 @@ const handler: PlasmoMessaging.MessageHandler<{ domain: string }, { selector: st
 
   const selector =
     allRules
-      .filter((rule) => rule.domain === req.body!.domain && rule.enabled)
+      .filter((rule) => rule.domain === req.body!.domain && rule.active)
       .map((rule) => rule.selector)
       .join(', ') || ''
 

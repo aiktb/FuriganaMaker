@@ -5,7 +5,7 @@ import { sendToBackground } from '@plasmohq/messaging'
 import { Storage } from '@plasmohq/storage'
 
 import { ExtensionStorage, FURIGANA_CLASS, FuriganaType } from './core'
-import { KanjiToken, MojiToken, toKanjiToken } from './kanjiTokenizer'
+import { toKanjiToken, type KanjiToken, type MojiToken } from './kanjiTokenizer'
 
 export const config: PlasmoCSConfig = {
   matches: ['https://*/*']

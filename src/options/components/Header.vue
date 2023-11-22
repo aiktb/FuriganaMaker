@@ -27,10 +27,10 @@ const toggleTheme = () => {
 </script>
 
 <template>
-  <header class="sticky top-0 z-30 h-[72px] backdrop-blur backdrop-filter">
+  <header class="sticky top-0 z-10 h-[72px]">
     <div class="max-w-8xl mx-auto xl:px-8">
       <div
-        class="mx-auto flex max-w-3xl items-center justify-between border-b border-gray-200 px-4 py-5 dark:border-slate-800 sm:px-6 lg:max-w-7xl lg:px-8"
+        class="mx-auto flex max-w-3xl items-center justify-between border-b border-gray-200 px-4 py-5 backdrop-blur backdrop-filter dark:border-slate-800 sm:px-6 lg:max-w-7xl lg:px-8"
       >
         <div class="flex items-center text-base">
           <Icon
@@ -51,7 +51,10 @@ const toggleTheme = () => {
             />
             <Icon v-else class="h-6 w-6 text-sky-500" aria-hidden="true" icon="tabler:moon-stars" />
           </button>
-          <a class="transition hover:text-gray-400" href="https://github.com/aiktb/FuriganaMaker">
+          <a
+            class="transition hover:text-black dark:hover:text-white"
+            href="https://github.com/aiktb/FuriganaMaker"
+          >
             <span class="sr-only">GitHub repository</span>
             <Icon class="h-6 w-6" icon="mdi:github" />
           </a>
