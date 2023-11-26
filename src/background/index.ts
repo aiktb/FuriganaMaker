@@ -16,6 +16,7 @@ import defaultRules from '../../assets/rules.json'
 // Plasmo `dev` mode will force the Service Worker to be `active`, it will never become `inactive`.
 
 Browser.runtime.onInstalled.addListener(async () => {
+  // Initialize default extension settings and custom rules.
   const storage = new Storage({ area: 'local' })
   for (const key in defaultConfig) {
     const oldConfig = await storage.get(key)
@@ -26,6 +27,22 @@ Browser.runtime.onInstalled.addListener(async () => {
   const oldRules: Rule[] = await storage.get(ExtensionStorage.UserRules)
   if (!oldRules) {
     await storage.set(ExtensionStorage.UserRules, defaultRules)
+  }
+
+  // Setting the contextMenu must not be outside of `runtime.onInstalled`,
+  // otherwise it will report an error for creating the contextMenu multiple times.
+  const contextMenuItem: Browser.Menus.CreateCreatePropertiesType = {
+    id: ExtensionEvent.AddFurigana,
+    title: 'Add furigana on the page',
+    contexts: ['page'],
+    documentUrlPatterns: ['https://*/*']
+  }
+  Browser.contextMenus.create(contextMenuItem)
+})
+
+Browser.contextMenus.onClicked.addListener((info, tab) => {
+  if (info.menuItemId === ExtensionEvent.AddFurigana) {
+    sendMessage(tab!.id!, ExtensionEvent.AddFurigana)
   }
 })
 
@@ -46,18 +63,5 @@ Browser.commands.onCommand.addListener(async (command, tab) => {
       break
     default:
       throw new Error('Unknown command')
-  }
-})
-
-const contextMenuItem: Browser.Menus.CreateCreatePropertiesType = {
-  id: ExtensionEvent.AddFurigana,
-  title: 'Add furigana on the page',
-  contexts: ['page'],
-  documentUrlPatterns: ['https://*/*']
-}
-Browser.contextMenus.create(contextMenuItem)
-Browser.contextMenus.onClicked.addListener((info, tab) => {
-  if (info.menuItemId === ExtensionEvent.AddFurigana) {
-    sendMessage(tab!.id!, ExtensionEvent.AddFurigana)
   }
 })
