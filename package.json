@@ -1,7 +1,7 @@
 {
   "name": "furigana-maker",
   "displayName": "Furigana Maker",
-  "version": "1.0.0",
+  "version": "1.1.0",
   "type": "module",
   "private": true,
   "description": "Add furigana to Japanese text for any web page.",
