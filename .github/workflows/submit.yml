@@ -1,4 +1,4 @@
-name: 'Submit to Web Store'
+name: 'Submit to Web Store(Chrome/Edge/Firefox)'
 on:
   workflow_dispatch:
 
@@ -24,11 +24,10 @@ jobs:
           node-version: 20.x
           cache: 'pnpm'
       - name: Build the extension
-        run: pnpm build
+        run: pnpm build && pnpm build:firefox
       - name: Package the extension into a zip artifact
-        run: pnpm package
+        run: pnpm package && pnpm package:firefox
       - name: Browser Platform Publish
         uses: PlasmoHQ/bpp@v3
         with:
           keys: ${{ secrets.SUBMIT_KEYS }}
-          artifact: build/chrome-mv3-prod.zip
