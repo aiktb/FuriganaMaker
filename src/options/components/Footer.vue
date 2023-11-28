@@ -22,7 +22,16 @@ const generateYear = () => {
             >aiktb</a
           >.
         </span>
-        <span class="block sm:inline">All rights reserved.</span>
+        <span class="block sm:inline"
+          >Released under the
+          <a
+            class="text-sky-500 transition hover:text-sky-700"
+            href="https://github.com/aiktb/FuriganaMaker/blob/main/LICENSE"
+            target="_blank"
+            >MIT</a
+          >
+          license.</span
+        >
       </div>
       <a
         class="transition hover:text-black dark:hover:text-white"
