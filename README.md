@@ -2,7 +2,7 @@
     <img src="./assets/icons/DemoLogo.svg">
 </div>
 <p align="center">
-  <a href="https://chromewebstore.google.com/detail/furigana-maker/heodojceeinbkfjfilnfminlkgbacpfp?hl=en">
+  <a href="https://chromewebstore.google.com/detail/furigana-maker/heodojceeinbkfjfilnfminlkgbacpfp">
     <img alt="Chrome Web Store" src="https://img.shields.io/badge/Chrome%20Web%20Store-141e24?style=for-the-badge&logo=googlechrome&logoColor=%23ffffff">
   </a>
   <a href="https://addons.mozilla.org/en-US/firefox/addon/furigana-maker/">
