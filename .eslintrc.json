@@ -2,19 +2,18 @@
   "extends": [
     "eslint:recommended",
     "plugin:@typescript-eslint/recommended",
-    "plugin:vue/vue3-recommended",
+    "plugin:react/jsx-runtime",
     "prettier"
   ],
-  "parser": "vue-eslint-parser",
+  "settings": {
+    "react": {
+      "version": "detect"
+    }
+  },
   "parserOptions": {
     "parser": "@typescript-eslint/parser",
     "sourceType": "module"
   },
-  "plugins": ["@typescript-eslint"],
-  "root": true,
-  "rules": {
-    "vue/no-v-html": "off",
-    "vue/comment-directive": "off",
-    "vue/multi-word-component-names": "off"
-  }
+  "plugins": ["@typescript-eslint", "react"],
+  "root": true
 }
