@@ -1,5 +1,5 @@
-import forms from '@tailwindcss/forms'
-import type { Config } from 'tailwindcss'
+import forms from '@tailwindcss/forms';
+import type { Config } from 'tailwindcss';
 
 export default {
   content: ['./src/**/*.{tsx,html}'],
@@ -8,7 +8,7 @@ export default {
   theme: {
     fontFamily: {
       sans: ['DM Sans', 'sans-serif'],
-      mono: ['JetBrains Mono', 'monospace']
+      mono: ['JetBrains Mono', 'monospace'],
     },
     extend: {
       colors: {
@@ -23,9 +23,9 @@ export default {
           '700': '#0079ff',
           '800': '#085cc5',
           '900': '#0d509b',
-          '950': '#0e315d'
-        }
-      }
-    }
-  }
-} satisfies Config
+          '950': '#0e315d',
+        },
+      },
+    },
+  },
+} satisfies Config;

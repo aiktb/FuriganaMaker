@@ -1,17 +1,17 @@
-import js from '@eslint/js'
-import typescript from '@typescript-eslint/eslint-plugin'
-import typescriptParser from '@typescript-eslint/parser'
-import prettier from 'eslint-config-prettier'
-import jsxA11y from 'eslint-plugin-jsx-a11y'
-import react from 'eslint-plugin-react'
-import reactHooks from 'eslint-plugin-react-hooks'
-import globals from 'globals'
+import js from '@eslint/js';
+import typescript from '@typescript-eslint/eslint-plugin';
+import typescriptParser from '@typescript-eslint/parser';
+import prettier from 'eslint-config-prettier';
+import jsxA11y from 'eslint-plugin-jsx-a11y';
+import react from 'eslint-plugin-react';
+import reactHooks from 'eslint-plugin-react-hooks';
+import globals from 'globals';
 
 /** @type {import('eslint').Linter.FlatConfig[]} */
 export default [
   // Global
   {
-    ignores: ['build', '.plasmo']
+    ignores: ['build', '.plasmo'],
   },
   // React
   {
@@ -20,18 +20,18 @@ export default [
       ...react.configs.recommended.rules,
       ...react.configs['jsx-runtime'].rules,
       ...reactHooks.configs.recommended.rules,
-      ...jsxA11y.configs.recommended.rules
+      ...jsxA11y.configs.recommended.rules,
     },
     settings: {
       react: {
-        version: 'detect'
-      }
+        version: 'detect',
+      },
     },
     plugins: {
       react,
       'react-hooks': reactHooks,
-      'jsx-a11y': jsxA11y
-    }
+      'jsx-a11y': jsxA11y,
+    },
   },
   // TypeScript
   {
@@ -44,25 +44,25 @@ export default [
       'prefer-const': 'error',
       '@typescript-eslint/no-non-null-assertion': 'off',
       '@typescript-eslint/no-misused-promises': 'off',
-      '@typescript-eslint/no-unsafe-enum-comparison': 'off'
+      '@typescript-eslint/no-unsafe-enum-comparison': 'off',
     },
     plugins: {
-      '@typescript-eslint': typescript
+      '@typescript-eslint': typescript,
     },
     languageOptions: {
       parser: typescriptParser,
       parserOptions: {
         project: './tsconfig.json',
         ecmaVersion: 'latest',
-        sourceType: 'module'
+        sourceType: 'module',
       },
       globals: {
-        ...globals.browser
-      }
+        ...globals.browser,
+      },
     },
     linterOptions: {
       noInlineConfig: true,
-      reportUnusedDisableDirectives: true
-    }
-  }
-]
+      reportUnusedDisableDirectives: true,
+    },
+  },
+];
