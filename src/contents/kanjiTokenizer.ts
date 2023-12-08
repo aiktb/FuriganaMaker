@@ -5,14 +5,14 @@ export const config: PlasmoCSConfig = {
   matches: ['https://*/*']
 }
 
-export type MojiToken = {
+export interface MojiToken {
   word_position: number // Indexes start from 1
   surface_form: string
   reading?: string | undefined // Katakana only
 }
 
 // It's not just kanji, such as "市ヶ谷" (イチガヤ), "我々" (ワレワレ).
-export type KanjiToken = {
+export interface KanjiToken {
   original: string
   reading: string
   start: number // Indexes start from 0
@@ -117,7 +117,7 @@ const smashToken = (token: SimplifiedToken): KanjiToken[] => {
 const buildRegex = (kanas: MarkTokenArray): RegExp => {
   // Match empty string, actual sub-capturing group is 0.
   if (!kanas.length) {
-    return new RegExp('^$', 'u')
+    return /^$/u
   }
   // "作り方" => "^(.+)リ(.+)$", "り方" => "^リ(.+)$", "作り" => "^(.+)リ$".
   const firstKana = kanas.at(0)!

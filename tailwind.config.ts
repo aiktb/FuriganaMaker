@@ -2,7 +2,7 @@ import forms from '@tailwindcss/forms'
 import type { Config } from 'tailwindcss'
 
 export default {
-  content: ['./src/**/*.{vue,html}'],
+  content: ['./src/**/*.{tsx,html}'],
   plugins: [forms],
   darkMode: 'class',
   theme: {

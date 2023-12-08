@@ -18,15 +18,8 @@ export const config: PlasmoCSConfig = {
  * Elements that have already been marked will be skipped.
  * Ruby tag is "\<ruby>original\<rp>(\</rp>\<rt>reading\</rt>\<rp>)\</rp>\</ruby>".
  **/
-export function addFurigana(elements: Element): Promise<void>
-export function addFurigana(elements: Element[]): Promise<void>
-export async function addFurigana(elements: Element | Element[]) {
-  const japaneseTexts: Text[] = []
-  if (Array.isArray(elements)) {
-    japaneseTexts.push(...elements.flatMap(collectTexts))
-  } else {
-    japaneseTexts.push(...collectTexts(elements))
-  }
+export async function addFurigana(...elements: Element[]) {
+  const japaneseTexts = [...elements.flatMap(collectTexts)]
 
   const storage = new Storage({ area: 'local' })
   const furiganaType: FuriganaType = await storage.get(ExtensionStorage.FuriganaType)

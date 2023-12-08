@@ -20,27 +20,29 @@ export const config: PlasmoCSConfig = {
 
 // styleHandler uses storage and is called immediately,
 // so it needs to be initialized immediately.
-const storage = new Storage({ area: 'local' })
-const styleEvents: StyleEvent[] = [
-  ExtensionEvent.ToggleDisplay,
-  ExtensionEvent.ToggleHoverMode,
-  ExtensionEvent.SwitchSelectMode,
-  ExtensionEvent.AdjustFontSize,
-  ExtensionEvent.AdjustFontColor
-]
-styleEvents.forEach(styleHandler)
+void initialize()
+async function initialize() {
+  const styleEvents: StyleEvent[] = [
+    ExtensionEvent.ToggleDisplay,
+    ExtensionEvent.ToggleHoverMode,
+    ExtensionEvent.SwitchSelectMode,
+    ExtensionEvent.AdjustFontSize,
+    ExtensionEvent.AdjustFontColor
+  ]
+  await Promise.all(styleEvents.map((item) => styleHandler(item)))
+}
 
 // The plasmo Storage watch API could be used instead, but is not necessary.
 Browser.runtime.onMessage.addListener((event: ExtensionEvent) => {
   switch (event) {
     case ExtensionEvent.SwitchFuriganaType:
-      switchFuriganaHandler()
+      void switchFuriganaHandler()
       break
     case ExtensionEvent.AddFurigana:
       addFuriganaHandler()
       break
     default:
-      styleHandler(event)
+      void styleHandler(event)
       break
   }
 })
@@ -48,6 +50,7 @@ Browser.runtime.onMessage.addListener((event: ExtensionEvent) => {
 async function switchFuriganaHandler() {
   const rtSelector = `ruby.${FURIGANA_CLASS} > rt`
   const nodes = document.querySelectorAll(rtSelector)
+  const storage = new Storage({ area: 'local' })
   const value: FuriganaType = await storage.get(ExtensionStorage.FuriganaType)
   switch (value) {
     case FuriganaType.Hiragana:
@@ -83,6 +86,7 @@ function addFuriganaHandler() {
 async function styleHandler(type: StyleEvent) {
   const rtSelector = `ruby.${FURIGANA_CLASS} > rt`
   const rtHoverSelector = `ruby.${FURIGANA_CLASS}:hover > rt`
+  const storage = new Storage({ area: 'local' })
 
   let value: string | number | boolean
   let css: string

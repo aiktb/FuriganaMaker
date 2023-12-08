@@ -14,9 +14,10 @@ class Renderer {
     position: 'fixed',
     display: 'none',
     background: 'DodgerBlue',
-    // Max z-index - 1
+    // Max z-index
     zIndex: 2 ** 31 - 1
   }
+
   readonly #BOTTOM_CSS = {
     color: 'white',
     overflow: 'hidden',
@@ -28,6 +29,7 @@ class Renderer {
     paddingLeft: `${this.#BORDER}px`,
     paddingRight: `${this.#BORDER}px`
   }
+
   readonly #left = document.createElement('div')
   readonly #right = document.createElement('div')
   readonly #top = document.createElement('div')
@@ -37,6 +39,7 @@ class Renderer {
     const parentTagName = parent?.tagName.toLowerCase() ?? ''
     return `${parentTagName} ${element.tagName.toLowerCase()}`
   }
+
   constructor() {
     Object.assign(this.#left.style, this.#GENERAL_CSS)
     Object.assign(this.#right.style, this.#GENERAL_CSS)
@@ -71,6 +74,7 @@ class Renderer {
     this.#top.style.display = 'block'
     this.#bottom.style.display = 'block'
   }
+
   readonly add = (element: HTMLElement) => {
     this.hide()
 
@@ -130,7 +134,7 @@ export class Selector {
       return
     }
     const target = event.target! as HTMLElement
-    this.#onElementSelected(target)
+    void this.#onElementSelected(target)
   }
 
   static readonly create = () => {

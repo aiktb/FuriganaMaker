@@ -5,7 +5,7 @@ import type { PlasmoMessaging } from '@plasmohq/messaging'
 import type { MojiToken } from '~contents/kanjiTokenizer'
 
 // Referenced from @azu/kuromojin.
-type Tokenizer = {
+interface Tokenizer {
   tokenize: (text: string) => MojiToken[]
 }
 
@@ -24,9 +24,9 @@ class Deferred {
 const deferred = new Deferred()
 let isLoading = false
 
-const getTokenizer = () => {
+const getTokenizer = async () => {
   if (isLoading) {
-    return deferred.promise
+    return await deferred.promise
   }
   isLoading = true
   const builder = kuromoji.builder({
@@ -40,7 +40,7 @@ const getTokenizer = () => {
       deferred.resolve(tokenizer)
     }
   })
-  return deferred.promise
+  return await deferred.promise
 }
 
 const handler: PlasmoMessaging.MessageHandler<{ text: string }, { message: MojiToken[] }> = async (

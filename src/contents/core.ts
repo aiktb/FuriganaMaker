@@ -45,7 +45,7 @@ export enum SelectMode {
   Furigana = 'furigana'
 }
 
-export type Config = {
+export interface Config {
   [key: string]: string | number | boolean
   display: boolean
   hoverMode: boolean
@@ -64,7 +64,7 @@ export const defaultConfig: Config = {
   fontColor: 'currentColor'
 }
 
-export type Rule = {
+export interface Rule {
   domain: string // This field is unique.
   selector: string
   active: boolean

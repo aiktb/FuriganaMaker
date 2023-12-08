@@ -7,8 +7,7 @@ import {
   ExtensionEvent,
   ExtensionStorage,
   sendMessage,
-  toStorageKey,
-  type Rule
+  toStorageKey
 } from '~contents/core'
 
 import defaultRules from '../../assets/rules.json'
@@ -24,7 +23,7 @@ Browser.runtime.onInstalled.addListener(async () => {
       await storage.set(key, defaultConfig[key])
     }
   }
-  const oldRules: Rule[] = await storage.get(ExtensionStorage.UserRules)
+  const oldRules = await storage.get(ExtensionStorage.UserRules)
   if (!oldRules) {
     await storage.set(ExtensionStorage.UserRules, defaultRules)
   }
@@ -42,7 +41,7 @@ Browser.runtime.onInstalled.addListener(async () => {
 
 Browser.contextMenus.onClicked.addListener((info, tab) => {
   if (info.menuItemId === ExtensionEvent.AddFurigana) {
-    sendMessage(tab!.id!, ExtensionEvent.AddFurigana)
+    void sendMessage(tab!.id!, ExtensionEvent.AddFurigana)
   }
 })
 

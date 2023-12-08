@@ -51,7 +51,7 @@ test('Input is empty array', async () => {
   expect(toKanjiToken(kuromojiTokens)).toEqual([])
 })
 
-test('Unnecessary attributes', async () => {
+test('Unnecessary attributes', () => {
   const kuromojiTokens: MojiToken[] = [
     { word_position: 1, reading: 'キミ', surface_form: '君' },
     { word_position: 2, reading: 'ノ', surface_form: 'の' },
@@ -68,7 +68,7 @@ test('Unnecessary attributes', async () => {
   ])
 })
 
-test('reading is "*"', async () => {
+test('reading is "*"', () => {
   // fake example
   const kuromojiTokens: MojiToken[] = [{ word_position: 1, reading: '*', surface_form: '我' }]
   expect(toKanjiToken(kuromojiTokens)).toEqual([])
@@ -81,7 +81,7 @@ test('Known kuromoji bugs', async () => {
   ])
 })
 
-test('Special case', async () => {
+test('Special case', () => {
   const kuromojiTokens: MojiToken[] = [
     { word_position: 1, reading: 'シチガツ', surface_form: '７月' },
     { word_position: 1, reading: 'レイ', surface_form: '〇' },
