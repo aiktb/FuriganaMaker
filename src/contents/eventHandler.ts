@@ -20,7 +20,7 @@ export const config: PlasmoCSConfig = {
 
 // styleHandler uses storage and is called immediately,
 // so it needs to be initialized immediately.
-void initialize();
+initialize();
 async function initialize() {
   const styleEvents: StyleEvent[] = [
     ExtensionEvent.ToggleDisplay,
@@ -36,13 +36,13 @@ async function initialize() {
 Browser.runtime.onMessage.addListener((event: ExtensionEvent) => {
   switch (event) {
     case ExtensionEvent.SwitchFuriganaType:
-      void switchFuriganaHandler();
+      switchFuriganaHandler();
       break;
     case ExtensionEvent.AddFurigana:
       addFuriganaHandler();
       break;
     default:
-      void styleHandler(event);
+      styleHandler(event);
       break;
   }
 });

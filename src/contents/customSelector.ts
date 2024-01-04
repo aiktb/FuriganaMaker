@@ -134,7 +134,7 @@ export class Selector {
       return;
     }
     const target = event.target! as HTMLElement;
-    void this.#onElementSelected(target);
+    this.#onElementSelected(target);
   };
 
   static readonly create = () => {
