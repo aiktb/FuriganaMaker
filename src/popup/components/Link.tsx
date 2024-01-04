@@ -10,6 +10,7 @@ export default function Link({ href, text }: LinkProps) {
     <a
       target="_blank"
       href={href}
+      rel="noopener noreferrer"
       className="hover:text-azure-700 focus:text-azure-700 flex grow items-center gap-x-1 rounded px-2"
     >
       {text}

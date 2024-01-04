@@ -21,7 +21,6 @@ export default [
       ...react.configs['jsx-runtime'].rules,
       ...reactHooks.configs.recommended.rules,
       ...jsxA11y.configs.recommended.rules,
-      'react/jsx-no-target-blank': 'off',
     },
     settings: {
       react: {
