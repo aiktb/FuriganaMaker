@@ -19,7 +19,7 @@ export default function Select({ label, selected, options, onChange }: SelectPro
         >
           {selected}
           <Icon
-            className="text-azure-700 hidden focus-visible:group-focus-within:flex group-hover:flex ui-open:flex"
+            className="hidden group-focus-within:flex group-hover:flex ui-open:flex"
             aria-hidden="true"
             icon="ep:arrow-down-bold"
           />
@@ -40,7 +40,7 @@ export default function Select({ label, selected, options, onChange }: SelectPro
                   <li
                     className={`${active ? 'text-primary' : 'text-current'}
                     ${selected ? 'text-primary' : ''}
-                    focus:text-azure-700 box-content flex cursor-pointer items-center justify-between px-[6px] capitalize transition-all hover:bg-slate-300 focus:z-10 focus:bg-slate-300 ui-active:bg-slate-700 dark:hover:bg-slate-700 dark:focus:bg-slate-700`}
+                    box-content flex cursor-pointer items-center justify-between px-[6px] capitalize transition-all hover:bg-slate-300 focus:z-10 focus:bg-slate-300 ui-active:bg-slate-700 dark:hover:bg-slate-700 dark:focus:bg-slate-700`}
                   >
                     {item}
                     {selected && <Icon aria-hidden="true" icon="ep:select" />}

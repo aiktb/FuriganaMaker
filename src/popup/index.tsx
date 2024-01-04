@@ -1,4 +1,4 @@
-import './style.css';
+import '~/assets/style.css';
 
 import { Suspense, use, useReducer } from 'react';
 import Browser from 'webextension-polyfill';

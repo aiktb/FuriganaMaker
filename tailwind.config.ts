@@ -3,11 +3,75 @@ import forms from '@tailwindcss/forms';
 import typography from '@tailwindcss/typography';
 import type { Config } from 'tailwindcss';
 import defaultTheme from 'tailwindcss/defaultTheme';
+import plugin from 'tailwindcss/plugin';
 
 export default {
   content: ['./src/**/*.{tsx,html}'],
   darkMode: 'class',
-  plugins: [typography, forms, headlessui({ prefix: 'ui' }).handler],
+  plugins: [
+    typography,
+    forms,
+    headlessui({ prefix: 'ui' }).handler,
+    plugin(({ addBase }) => {
+      addBase({
+        ':focus-visible': { outline: '2px solid currentColor' },
+      });
+      addBase({
+        '@font-face': {
+          fontDisplay: 'swap',
+          fontFamily: 'DM Sans',
+          fontStyle: 'normal',
+          fontWeight: 'normal',
+          src: "url('./fonts/dm-sans-regular.woff2') format('woff2')",
+        },
+      });
+      addBase({
+        '@font-face': {
+          fontDisplay: 'swap',
+          fontFamily: 'DM Sans',
+          fontStyle: 'normal',
+          fontWeight: 'bold',
+          src: "url('./fonts/dm-sans-bold.woff2') format('woff2')",
+        },
+      });
+      addBase({
+        '@font-face': {
+          fontDisplay: 'swap',
+          fontFamily: 'JetBrains Mono',
+          fontStyle: 'normal',
+          fontWeight: 'normal',
+          src: "url('./fonts/jetbrains-mono-regular.woff2') format('woff2')",
+        },
+      });
+      addBase({
+        '@font-face': {
+          fontDisplay: 'swap',
+          fontFamily: 'JetBrains Mono',
+          fontStyle: 'normal',
+          fontWeight: 'bold',
+          src: "url('./fonts/jetbrains-mono-bold.woff2') format('woff2')",
+        },
+      });
+      addBase({
+        '@font-face': {
+          fontDisplay: 'swap',
+          fontFamily: 'JetBrains Mono',
+          fontStyle: 'normal',
+          fontWeight: 'normal',
+          src: "url('./fonts/jetbrains-mono-regular.woff2') format('woff2')",
+        },
+      });
+      addBase({
+        '@font-face': {
+          fontDisplay: 'swap',
+          fontFamily: 'JetBrains Mono',
+          fontStyle: 'normal',
+          fontWeight: 'bold',
+          src: "url('./fonts/jetbrains-mono-bold.woff2') format('woff2')",
+        },
+      });
+    }),
+  ],
   theme: {
     fontFamily: {
       sans: ['DM Sans', ...defaultTheme.fontFamily.sans],
