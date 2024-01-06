@@ -1,5 +1,5 @@
 <div align="center">
-    <img src="./assets/icons/DemoLogo.svg">
+    <img src="./assets/icons/DemoLogo.svg" alt="Logo">
 </div>
 <p align="center">
   <a href="https://chromewebstore.google.com/detail/furigana-maker/heodojceeinbkfjfilnfminlkgbacpfp">

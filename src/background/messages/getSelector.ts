@@ -1,22 +1,22 @@
-import type { PlasmoMessaging } from '@plasmohq/messaging'
-import { Storage } from '@plasmohq/storage'
+import type { PlasmoMessaging } from '@plasmohq/messaging';
+import { Storage } from '@plasmohq/storage';
 
-import { ExtensionStorage, type Rule } from '~contents/core'
+import { ExtensionStorage, type Rule } from '~contents/core';
 
-const storage = new Storage({ area: 'local' })
+const storage = new Storage({ area: 'local' });
 const handler: PlasmoMessaging.MessageHandler<{ domain: string }, { selector: string }> = async (
   req,
-  res
+  res,
 ) => {
-  const allRules: Rule[] = await storage.get(ExtensionStorage.UserRules)
+  const allRules: Rule[] = await storage.get(ExtensionStorage.UserRules);
 
   const selector =
     allRules
-      .filter((rule) => rule.domain === req.body!.domain && rule.active)
+      .filter((rule) => rule.domain === req.body?.domain && rule.active)
       .map((rule) => rule.selector)
-      .join(', ') || ''
+      .join(', ') || '';
 
-  res.send({ selector })
-}
+  res.send({ selector });
+};
 
-export default handler
+export default handler;
