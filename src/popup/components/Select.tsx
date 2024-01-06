@@ -14,9 +14,7 @@ export default function Select({ label, selected, options, onChange }: SelectPro
     <Listbox value={selected} onChange={onChange}>
       <div className="relative w-full">
         <Listbox.Label className="sr-only">{label}</Listbox.Label>
-        <Listbox.Button
-          className={`group peer flex w-full items-center justify-between rounded px-2 capitalize ui-open:bg-slate-700`}
-        >
+        <Listbox.Button className="group peer flex w-full items-center justify-between rounded px-2 capitalize ui-open:bg-gray-200 dark:ui-open:bg-slate-700">
           {selected}
           <Icon
             className="hidden group-focus-within:flex group-hover:flex ui-open:flex"
@@ -40,7 +38,7 @@ export default function Select({ label, selected, options, onChange }: SelectPro
                   <li
                     className={`${active ? 'text-primary' : 'text-current'}
                     ${selected ? 'text-primary' : ''}
-                    box-content flex cursor-pointer items-center justify-between px-[6px] capitalize transition-all hover:bg-slate-300 focus:z-10 focus:bg-slate-300 ui-active:bg-slate-700 dark:hover:bg-slate-700 dark:focus:bg-slate-700`}
+                    box-content flex cursor-pointer items-center justify-between px-[6px] capitalize transition-all hover:bg-gray-200 focus:z-10 focus:bg-gray-200 ui-active:bg-gray-200 dark:hover:bg-slate-700 dark:focus:bg-slate-700 dark:ui-active:bg-slate-700`}
                   >
                     {item}
                     {selected && <Icon aria-hidden="true" icon="ep:select" />}

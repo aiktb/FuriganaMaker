@@ -27,7 +27,7 @@ export default function RangeSlider({ value, min, max, step, onChange }: RangeSl
       <div className="flex h-[3px] w-full justify-center rounded-lg bg-current" aria-hidden="true">
         <div className="relative h-[3px] w-[90%] rounded-lg bg-current">
           <div
-            className="absolute top-1/2 h-3.5 w-3.5 -translate-x-1/2 -translate-y-1/2 cursor-pointer rounded-full bg-primary"
+            className="absolute top-1/2 size-3.5 -translate-x-1/2 -translate-y-1/2 cursor-pointer rounded-full bg-primary"
             style={{ left: `${((value - min) / (max - min)) * 100}%` }}
           />
         </div>

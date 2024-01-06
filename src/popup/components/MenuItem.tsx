@@ -12,7 +12,7 @@ export default function MenuItem({ children, icon, tip }: MenuItemProps) {
       <div className="text-2xl" aria-hidden="true">
         {icon}
       </div>
-      <div className="peer relative flex grow rounded transition-all hover:bg-slate-300  dark:hover:bg-slate-700">
+      <div className="peer relative flex grow rounded transition-all hover:bg-gray-200  dark:hover:bg-slate-700">
         {children}
       </div>
       {tip && (
