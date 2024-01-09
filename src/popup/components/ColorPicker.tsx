@@ -191,7 +191,7 @@ function ColorPickerPanel({ color, onChange }: ColorPickerProps) {
           // prettier-ignore
           [
           '#d0021b', '#f5a623', '#f8e71c', '#8b572a', '#7ed321', '#417505', '#bd10e0', '#9013fe',
-          '#4a90e2', '#50e3c2', '#b8e986', '#1273de', '#000000', '#4a4a4a', '#9b9b9b', '#ffffff',
+          '#4a90e2', '#08f3f2', '#b8e986', '#1273de', '#000000', '#4a4a4a', '#9b9b9b', '#ffffff',
         ].map((color) => {
           const baseShadow = 'rgba(0, 0, 0, 0.15) 0px 0px 0px 1px inset';
           const focusShadow = `${baseShadow} ,${color} 0px 0px 6px`;
