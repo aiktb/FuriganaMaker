@@ -14,7 +14,7 @@ export default function RangeSlider({ value, min, max, step, onChange }: RangeSl
     onChange(value);
   }
   return (
-    <div className="relative flex h-5 grow items-center justify-start gap-x-1 rounded px-2 leading-5 focus-within:outline">
+    <div className="relative flex h-5 grow items-center justify-start gap-x-1 rounded px-2 leading-5">
       <input
         className="absolute left-1/2 top-1/2 z-10 w-[90%] -translate-x-1/2 -translate-y-1/2 cursor-pointer opacity-0"
         type="range"

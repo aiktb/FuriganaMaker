@@ -44,7 +44,9 @@ export default function RuleItem({ rule, onChange, onDelete }: RuleItemProps) {
           <div className="flex w-full items-center justify-between gap-x-1.5 sm:flex-col sm:items-end sm:justify-evenly">
             <button
               className="mr-1 flex flex-row-reverse items-center gap-x-1.5 sm:flex-row"
-              onClick={() => onChange({ ...rule, active: !rule.active })}
+              onClick={() => {
+                onChange({ ...rule, active: !rule.active });
+              }}
             >
               <p className="text-sm leading-5 transition hover:text-slate-950 dark:hover:text-white">
                 {rule.active ? 'Active' : 'Inactive'}
@@ -65,14 +67,18 @@ export default function RuleItem({ rule, onChange, onDelete }: RuleItemProps) {
             <div className="mt-1 flex gap-x-1.5">
               <button
                 className="flex items-center gap-x-1 rounded-md border border-gray-200 px-1 py-0.5 text-sm font-bold text-sky-500 shadow transition-[background-color] hover:bg-transparent/10 dark:border-slate-800 dark:hover:bg-transparent/20"
-                onClick={() => setEditorIsOpen(true)}
+                onClick={() => {
+                  setEditorIsOpen(true);
+                }}
               >
                 <Icon className="size-4" aria-hidden="true" icon="tabler:edit" />
                 Edit
               </button>
               <button
                 className="flex items-center gap-x-1 rounded-md border border-gray-200 px-1 py-0.5 text-sm font-bold text-red-600 shadow transition-[background-color] hover:bg-transparent/10 dark:border-slate-800 dark:text-red-500 dark:hover:bg-transparent/20"
-                onClick={() => setDeleteDialogIsOpen(true)}
+                onClick={() => {
+                  setDeleteDialogIsOpen(true);
+                }}
               >
                 <Icon className="size-4" aria-hidden="true" icon="tabler:trash" />
                 Delete
@@ -86,10 +92,19 @@ export default function RuleItem({ rule, onChange, onDelete }: RuleItemProps) {
         <Dialog
           as="div"
           className="fixed left-1/2 top-1/2 z-20 -translate-x-1/2 -translate-y-1/2"
-          onClose={() => setEditorIsOpen(false)}
+          onClose={() => {
+            setEditorIsOpen(false);
+          }}
         >
           <Dialog.Panel className="w-full min-w-[28rem] max-w-md transform overflow-hidden rounded-2xl bg-white p-6 text-left align-middle shadow-xl transition-all dark:bg-slate-900">
-            <RuleEditor rule={rule} mode="update" onChange={onChange} />
+            <RuleEditor
+              rule={rule}
+              mode="update"
+              onChange={(rule) => {
+                onChange(rule);
+                setEditorIsOpen(false);
+              }}
+            />
           </Dialog.Panel>
         </Dialog>
       </PopupTransition>
@@ -98,7 +113,9 @@ export default function RuleItem({ rule, onChange, onDelete }: RuleItemProps) {
         <Dialog
           as="div"
           className="fixed left-1/2 top-1/2 z-20 -translate-x-1/2 -translate-y-1/2"
-          onClose={() => setDeleteDialogIsOpen(false)}
+          onClose={() => {
+            setDeleteDialogIsOpen(false);
+          }}
         >
           <Dialog.Panel className="w-full max-w-md transform overflow-hidden rounded-2xl bg-white p-6 text-left align-middle shadow-xl transition-all dark:bg-slate-900">
             <Dialog.Title
@@ -124,7 +141,9 @@ export default function RuleItem({ rule, onChange, onDelete }: RuleItemProps) {
               </button>
               <button
                 className="inline-flex justify-center rounded-md border border-transparent bg-blue-100 px-4 py-2 text-sm font-medium text-blue-900 transition hover:bg-blue-200 focus:outline-none focus-visible:ring-2 focus-visible:ring-blue-500 focus-visible:ring-offset-2 dark:bg-slate-700 dark:text-slate-200 dark:hover:bg-slate-800"
-                onClick={() => setDeleteDialogIsOpen(false)}
+                onClick={() => {
+                  setDeleteDialogIsOpen(false);
+                }}
               >
                 Cancel
               </button>
