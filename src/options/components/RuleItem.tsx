@@ -88,7 +88,7 @@ export default function RuleItem({ rule, onChange, onDelete }: RuleItemProps) {
           className="fixed left-1/2 top-1/2 z-20 -translate-x-1/2 -translate-y-1/2"
           onClose={() => setEditorIsOpen(false)}
         >
-          <Dialog.Panel className="w-full max-w-md transform overflow-hidden rounded-2xl bg-white p-6 text-left align-middle shadow-xl transition-all dark:bg-slate-900">
+          <Dialog.Panel className="w-full min-w-[28rem] max-w-md transform overflow-hidden rounded-2xl bg-white p-6 text-left align-middle shadow-xl transition-all dark:bg-slate-900">
             <RuleEditor rule={rule} mode="update" onChange={onChange} />
           </Dialog.Panel>
         </Dialog>

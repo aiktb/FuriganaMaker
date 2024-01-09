@@ -1,5 +1,6 @@
 import '~/assets/style.css';
 
+import { Transition } from '@headlessui/react';
 import { Suspense, use, useReducer } from 'react';
 import Browser from 'webextension-polyfill';
 
@@ -58,7 +59,18 @@ export default function Popup() {
 
   return (
     <Suspense fallback={<Logo width="192" height="192" />}>
-      <Menu configPromise={initializeConfig()} />
+      <Transition
+        appear
+        show={true}
+        enter="transition-opacity duration-300"
+        enterFrom="opacity-0"
+        enterTo="opacity-100"
+        leave="transition-opacity duration-300"
+        leaveFrom="opacity-100"
+        leaveTo="opacity-0"
+      >
+        <Menu configPromise={initializeConfig()} />
+      </Transition>
     </Suspense>
   );
 }
