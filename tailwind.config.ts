@@ -1,31 +1,87 @@
-import forms from '@tailwindcss/forms'
-import type { Config } from 'tailwindcss'
+import headlessui from '@headlessui/tailwindcss';
+import forms from '@tailwindcss/forms';
+import type { Config } from 'tailwindcss';
+import defaultTheme from 'tailwindcss/defaultTheme';
+import plugin from 'tailwindcss/plugin';
 
 export default {
-  content: ['./src/**/*.{vue,html}'],
-  plugins: [forms],
+  content: ['./src/**/*.{tsx,html}'],
   darkMode: 'class',
+  plugins: [
+    forms,
+    headlessui({ prefix: 'ui' }).handler,
+    plugin(({ addBase }) => {
+      addBase({
+        ':focus-visible': {
+          outline: '2px solid currentColor',
+          borderRadius: '0.25rem',
+        },
+      });
+      addBase({
+        '@font-face': {
+          fontDisplay: 'swap',
+          fontFamily: 'DM Sans',
+          fontStyle: 'normal',
+          fontWeight: 'normal',
+          src: "url('./fonts/dm-sans-regular.woff2') format('woff2')",
+        },
+      });
+      addBase({
+        '@font-face': {
+          fontDisplay: 'swap',
+          fontFamily: 'DM Sans',
+          fontStyle: 'normal',
+          fontWeight: 'bold',
+          src: "url('./fonts/dm-sans-bold.woff2') format('woff2')",
+        },
+      });
+      addBase({
+        '@font-face': {
+          fontDisplay: 'swap',
+          fontFamily: 'JetBrains Mono',
+          fontStyle: 'normal',
+          fontWeight: 'normal',
+          src: "url('./fonts/jetbrains-mono-regular.woff2') format('woff2')",
+        },
+      });
+      addBase({
+        '@font-face': {
+          fontDisplay: 'swap',
+          fontFamily: 'JetBrains Mono',
+          fontStyle: 'normal',
+          fontWeight: 'bold',
+          src: "url('./fonts/jetbrains-mono-bold.woff2') format('woff2')",
+        },
+      });
+      addBase({
+        '@font-face': {
+          fontDisplay: 'swap',
+          fontFamily: 'JetBrains Mono',
+          fontStyle: 'normal',
+          fontWeight: 'normal',
+          src: "url('./fonts/jetbrains-mono-regular.woff2') format('woff2')",
+        },
+      });
+      addBase({
+        '@font-face': {
+          fontDisplay: 'swap',
+          fontFamily: 'JetBrains Mono',
+          fontStyle: 'normal',
+          fontWeight: 'bold',
+          src: "url('./fonts/jetbrains-mono-bold.woff2') format('woff2')",
+        },
+      });
+    }),
+  ],
   theme: {
     fontFamily: {
-      sans: ['DM Sans', 'sans-serif'],
-      mono: ['JetBrains Mono', 'monospace']
+      sans: ['DM Sans', ...defaultTheme.fontFamily.sans],
+      mono: ['JetBrains Mono', ...defaultTheme.fontFamily.mono],
     },
     extend: {
       colors: {
-        azure: {
-          '50': '#edfaff',
-          '100': '#d6f2ff',
-          '200': '#b5eaff',
-          '300': '#83deff',
-          '400': '#48caff',
-          '500': '#1eabff',
-          '600': '#068dff',
-          '700': '#0079ff',
-          '800': '#085cc5',
-          '900': '#0d509b',
-          '950': '#0e315d'
-        }
-      }
-    }
-  }
-} satisfies Config
+        primary: '#0079ff',
+      },
+    },
+  },
+} satisfies Config;
