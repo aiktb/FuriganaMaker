@@ -1,6 +1,5 @@
 import headlessui from '@headlessui/tailwindcss';
 import forms from '@tailwindcss/forms';
-import typography from '@tailwindcss/typography';
 import type { Config } from 'tailwindcss';
 import defaultTheme from 'tailwindcss/defaultTheme';
 import plugin from 'tailwindcss/plugin';
@@ -9,12 +8,14 @@ export default {
   content: ['./src/**/*.{tsx,html}'],
   darkMode: 'class',
   plugins: [
-    typography,
     forms,
     headlessui({ prefix: 'ui' }).handler,
     plugin(({ addBase }) => {
       addBase({
-        ':focus-visible': { outline: '2px solid currentColor' },
+        ':focus-visible': {
+          outline: '2px solid currentColor',
+          borderRadius: '0.25rem',
+        },
       });
       addBase({
         '@font-face': {

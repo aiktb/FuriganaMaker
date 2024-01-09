@@ -35,17 +35,9 @@ export default [
     files: ['**/*.{ts,tsx}'],
     rules: {
       ...js.configs.recommended.rules,
-      ...typescript.configs['strict-type-checked'].rules,
-      ...typescript.configs['stylistic-type-checked'].rules,
+      ...typescript.configs.recommended.rules,
       ...prettier.rules,
       'prefer-const': 'error',
-      '@typescript-eslint/no-non-null-assertion': 'off',
-      '@typescript-eslint/no-misused-promises': 'off',
-      '@typescript-eslint/no-unsafe-enum-comparison': 'off',
-      '@typescript-eslint/no-floating-promises': 'off',
-      '@typescript-eslint/no-unsafe-assignment': 'off',
-      '@typescript-eslint/no-unsafe-member-access': 'off',
-      '@typescript-eslint/no-unsafe-call': 'off',
     },
     plugins: {
       '@typescript-eslint': typescript,

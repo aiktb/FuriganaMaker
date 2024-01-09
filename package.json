@@ -57,7 +57,6 @@
     "@plasmohq/storage": "^1.9.0",
     "@sglkc/kuromoji": "^1.1.0",
     "@tailwindcss/forms": "^0.5.7",
-    "@tailwindcss/typography": "^0.5.10",
     "file-saver": "^2.0.5",
     "plasmo": "^0.84.0",
     "react": "18.3.0-canary-c5b937576-20231219",

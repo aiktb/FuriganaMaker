@@ -31,7 +31,7 @@ export default function Select({ label, selected, options, onChange }: SelectPro
           leaveTo="transform scale-95 opacity-0"
           as={Fragment}
         >
-          <Listbox.Options className="absolute left-0 z-50 mt-1 flex w-full flex-col rounded-md border-2 border-slate-500 bg-slate-100 py-1 shadow-2xl dark:border-slate-700 dark:bg-slate-900">
+          <Listbox.Options className="absolute left-0 z-50 mt-1 flex w-full flex-col rounded-md border-2 border-gray-300 bg-white py-1 shadow dark:border-slate-700 dark:bg-slate-900">
             {options.map((item) => (
               <Listbox.Option key={item} value={item} as={Fragment}>
                 {({ active, selected }) => (
