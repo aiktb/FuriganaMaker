@@ -1,11 +1,11 @@
-import type { PlasmoCSConfig } from 'plasmo'
-import Browser from 'webextension-polyfill'
+import type { PlasmoCSConfig } from 'plasmo';
+import Browser from 'webextension-polyfill';
 
-export const FURIGANA_CLASS = '--furigana--'
+export const FURIGANA_CLASS = '--furigana--';
 
 export const config: PlasmoCSConfig = {
-  matches: ['https://*/*']
-}
+  matches: ['https://*/*'],
+};
 
 export enum ExtensionEvent {
   AddFurigana = 'addFurigana',
@@ -14,7 +14,7 @@ export enum ExtensionEvent {
   SwitchFuriganaType = 'switchFuriganaType',
   SwitchSelectMode = 'switchSelectMode',
   AdjustFontSize = 'adjustFontSize',
-  AdjustFontColor = 'adjustFontColor'
+  AdjustFontColor = 'adjustFontColor',
 }
 
 export enum ExtensionStorage {
@@ -24,7 +24,7 @@ export enum ExtensionStorage {
   SelectMode = 'selectMode',
   FontSize = 'fontSize',
   FontColor = 'fontColor',
-  UserRules = 'userRules'
+  UserRules = 'userRules',
 }
 
 export type StyleEvent =
@@ -32,27 +32,27 @@ export type StyleEvent =
   | ExtensionEvent.ToggleHoverMode
   | ExtensionEvent.SwitchSelectMode
   | ExtensionEvent.AdjustFontSize
-  | ExtensionEvent.AdjustFontColor
+  | ExtensionEvent.AdjustFontColor;
 
 export enum FuriganaType {
   Hiragana = 'hiragana',
   Katakana = 'katakana',
-  Romaji = 'romaji'
+  Romaji = 'romaji',
 }
 
 export enum SelectMode {
   Original = 'original',
-  Furigana = 'furigana'
+  Furigana = 'furigana',
 }
 
-export type Config = {
-  [key: string]: string | number | boolean
-  display: boolean
-  hoverMode: boolean
-  furiganaType: FuriganaType
-  selectMode: SelectMode
-  fontSize: number
-  fontColor: string
+export interface Config {
+  [key: string]: string | number | boolean;
+  display: boolean;
+  hoverMode: boolean;
+  furiganaType: FuriganaType;
+  selectMode: SelectMode;
+  fontSize: number;
+  fontColor: string;
 }
 
 export const defaultConfig: Config = {
@@ -61,13 +61,13 @@ export const defaultConfig: Config = {
   furiganaType: FuriganaType.Hiragana,
   selectMode: SelectMode.Original,
   fontSize: 75, // ${fontsize}% relative to the parent font.
-  fontColor: 'currentColor'
-}
+  fontColor: 'currentColor',
+};
 
-export type Rule = {
-  domain: string // This field is unique.
-  selector: string
-  active: boolean
+export interface Rule {
+  domain: string; // This field is unique.
+  selector: string;
+  active: boolean;
 }
 
 export type StorageChangeEvent =
@@ -76,34 +76,34 @@ export type StorageChangeEvent =
   | ExtensionEvent.SwitchFuriganaType
   | ExtensionEvent.SwitchSelectMode
   | ExtensionEvent.ToggleDisplay
-  | ExtensionEvent.ToggleHoverMode
+  | ExtensionEvent.ToggleHoverMode;
 
 export const toStorageKey = (event: StorageChangeEvent) => {
   switch (event) {
     case ExtensionEvent.AdjustFontColor:
-      return ExtensionStorage.FontColor
+      return ExtensionStorage.FontColor;
     case ExtensionEvent.AdjustFontSize:
-      return ExtensionStorage.FontSize
+      return ExtensionStorage.FontSize;
     case ExtensionEvent.SwitchFuriganaType:
-      return ExtensionStorage.FuriganaType
+      return ExtensionStorage.FuriganaType;
     case ExtensionEvent.SwitchSelectMode:
-      return ExtensionStorage.SelectMode
+      return ExtensionStorage.SelectMode;
     case ExtensionEvent.ToggleDisplay:
-      return ExtensionStorage.Display
+      return ExtensionStorage.Display;
     case ExtensionEvent.ToggleHoverMode:
-      return ExtensionStorage.HoverMode
+      return ExtensionStorage.HoverMode;
   }
-}
+};
 
 export const sendMessage = async (id: number, event: ExtensionEvent) => {
   try {
-    await Browser.tabs.sendMessage(id, event)
+    await Browser.tabs.sendMessage(id, event);
   } catch (error) {
     if (
       !(error instanceof Error) ||
       error.message !== 'Could not establish connection. Receiving end does not exist.'
     ) {
-      throw error
+      throw error;
     }
   }
-}
+};
