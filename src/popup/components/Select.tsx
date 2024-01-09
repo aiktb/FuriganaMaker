@@ -17,7 +17,7 @@ export default function Select({ label, selected, options, onChange }: SelectPro
         <Listbox.Button className="group peer flex w-full items-center justify-between rounded px-2 capitalize ui-open:bg-gray-200 dark:ui-open:bg-slate-700">
           {selected}
           <Icon
-            className="hidden group-focus-within:flex group-hover:flex ui-open:flex"
+            className="hidden group-hover:flex group-focus-visible:flex ui-open:flex"
             aria-hidden="true"
             icon="ep:arrow-down-bold"
           />
