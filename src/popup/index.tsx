@@ -11,6 +11,7 @@ import {
   ExtensionStorage,
   FuriganaType,
   SelectMode,
+  sendMessage,
   toStorageKey,
   type Config,
 } from '~contents/core';
@@ -78,7 +79,7 @@ export default function Popup() {
 async function addFurigana() {
   // `chrome.tabs.query` is not compatible with firefox.
   const tabId = (await Browser.tabs.query({ active: true, currentWindow: true })).at(0)!.id!;
-  await Browser.tabs.sendMessage(tabId, ExtensionEvent.AddFurigana);
+  await sendMessage(tabId, ExtensionEvent.AddFurigana);
 }
 
 type ACTIONTYPE =
@@ -90,18 +91,12 @@ type ACTIONTYPE =
   | { type: ExtensionEvent.AdjustFontColor; payload: string };
 
 function reducer(state: Config, action: ACTIONTYPE) {
-  async function sendMessage() {
-    /* There are many pages that cannot inject content scripts, such as "newtab" and "chromewebstore.google.com",
-    and using `chrome.tabs.sendMessage` on these pages throws the following Error:
-    error.message: "Could not establish connection. Receiving end does not exist." */
-    /* Refactor Note: Move the `storage.set` logic to the content script. */
+  Browser.tabs.query({ active: true, currentWindow: true }).then(async (tabs) => {
     const storage = new Storage({ area: 'local' });
     await storage.set(toStorageKey(action.type), action.payload);
-    const tabs = await Browser.tabs.query({ active: true, currentWindow: true });
     const tabId = tabs[0]!.id!;
-    await Browser.tabs.sendMessage(tabId, action.type);
-  }
-  sendMessage();
+    await sendMessage(tabId, action.type);
+  });
 
   switch (action.type) {
     case ExtensionEvent.ToggleDisplay:

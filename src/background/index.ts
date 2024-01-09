@@ -2,7 +2,13 @@ import Browser from 'webextension-polyfill';
 
 import { Storage } from '@plasmohq/storage';
 
-import { defaultConfig, ExtensionEvent, ExtensionStorage, toStorageKey } from '~contents/core';
+import {
+  defaultConfig,
+  ExtensionEvent,
+  ExtensionStorage,
+  sendMessage,
+  toStorageKey,
+} from '~contents/core';
 
 import defaultRules from '../../assets/rules.json';
 
@@ -35,7 +41,7 @@ Browser.runtime.onInstalled.addListener(async () => {
 
 Browser.contextMenus.onClicked.addListener(async (info, tab) => {
   if (info.menuItemId === ExtensionEvent.AddFurigana) {
-    await Browser.tabs.sendMessage(tab!.id!, ExtensionEvent.AddFurigana);
+    await sendMessage(tab!.id!, ExtensionEvent.AddFurigana);
   }
 });
 
@@ -43,7 +49,7 @@ Browser.commands.onCommand.addListener(async (command, tab) => {
   const storage = new Storage({ area: 'local' });
   switch (command) {
     case ExtensionEvent.AddFurigana:
-      await Browser.tabs.sendMessage(tab!.id!, ExtensionEvent.AddFurigana);
+      await sendMessage(tab!.id!, ExtensionEvent.AddFurigana);
       break;
     case ExtensionEvent.ToggleDisplay:
     case ExtensionEvent.ToggleHoverMode:
@@ -51,7 +57,7 @@ Browser.commands.onCommand.addListener(async (command, tab) => {
         const key = toStorageKey(command);
         const oldValue: boolean = await storage.get(key);
         await storage.set(key, !oldValue);
-        await Browser.tabs.sendMessage(tab!.id!, command);
+        await sendMessage(tab!.id!, command);
       }
       break;
     default:
