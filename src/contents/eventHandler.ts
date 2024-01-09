@@ -10,6 +10,7 @@ import {
   FURIGANA_CLASS,
   FuriganaType,
   SelectMode,
+  toStorageKey,
   type StyleEvent,
 } from './core';
 import { Selector } from './customSelector';
@@ -86,13 +87,13 @@ function addFuriganaHandler() {
 async function styleHandler(type: StyleEvent) {
   const rtSelector = `ruby.${FURIGANA_CLASS} > rt`;
   const rtHoverSelector = `ruby.${FURIGANA_CLASS}:hover > rt`;
+  const rpSelector = `ruby.${FURIGANA_CLASS} > rp`;
   const storage = new Storage({ area: 'local' });
 
-  let value: string | number | boolean;
+  const value = await storage.get(toStorageKey(type));
   let css: string;
   switch (type) {
     case ExtensionEvent.ToggleDisplay:
-      value = await storage.get(ExtensionStorage.Display);
       css = `
         ${rtSelector} {
           display: ${value ? 'revert' : 'none'};
@@ -100,7 +101,6 @@ async function styleHandler(type: StyleEvent) {
       `;
       break;
     case ExtensionEvent.ToggleHoverMode:
-      value = await storage.get(ExtensionStorage.HoverMode);
       css = `
         ${rtSelector} {
           opacity: ${value ? 0 : 1};
@@ -112,15 +112,26 @@ async function styleHandler(type: StyleEvent) {
       `;
       break;
     case ExtensionEvent.SwitchSelectMode:
-      value = await storage.get(ExtensionStorage.SelectMode);
       css = `
         ${rtSelector} {
           user-select: ${value === SelectMode.Original ? 'none' : 'text'};
         }
+
+        ${rpSelector} {
+          display: ${value === SelectMode.Parentheses ? 'block' : 'none'};
+          position: absolute;
+          width: 1px;
+          height: 1px;
+          padding: 0;
+          margin: -1px;
+          overflow: hidden;
+          clip: rect(0, 0, 0, 0);
+          white-space: nowrap;
+          border-width: 0;
+        }
       `;
       break;
     case ExtensionEvent.AdjustFontSize:
-      value = await storage.get(ExtensionStorage.FontSize);
       css = `
         ${rtSelector} {
           font-size: ${value}%;
@@ -128,7 +139,6 @@ async function styleHandler(type: StyleEvent) {
       `;
       break;
     case ExtensionEvent.AdjustFontColor:
-      value = await storage.get(ExtensionStorage.FontColor);
       css = `
         ${rtSelector} {
           color: ${value};
