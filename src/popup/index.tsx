@@ -1,6 +1,7 @@
 import '~/assets/style.css';
 
 import { Transition } from '@headlessui/react';
+import { detect } from 'detect-browser';
 import { Suspense, use, useReducer } from 'react';
 import Browser from 'webextension-polyfill';
 
@@ -116,6 +117,12 @@ function reducer(state: Config, action: ACTIONTYPE) {
 
 function Menu({ configPromise }: { configPromise: Promise<Config> }) {
   const [state, dispatch] = useReducer(reducer, use(configPromise));
+  const furiganaTypeOptions = [FuriganaType.Hiragana, FuriganaType.Katakana, FuriganaType.Romaji];
+  const browser = detect();
+  const selectModeOptions =
+    browser?.name === 'firefox'
+      ? [SelectMode.Original, SelectMode.Furigana]
+      : [SelectMode.Original, SelectMode.Furigana, SelectMode.Parentheses];
 
   return (
     <menu className="space-y-1.5 border-r-2 border-primary pr-2">
@@ -144,7 +151,7 @@ function Menu({ configPromise }: { configPromise: Promise<Config> }) {
         <Select
           label="Switch furigana type"
           selected={state.furiganaType}
-          options={[FuriganaType.Hiragana, FuriganaType.Katakana, FuriganaType.Romaji]}
+          options={furiganaTypeOptions}
           onChange={(selected) => {
             dispatch({
               type: ExtensionEvent.SwitchFuriganaType,
@@ -157,7 +164,7 @@ function Menu({ configPromise }: { configPromise: Promise<Config> }) {
         <Select
           label="Switch select mode"
           selected={state.selectMode}
-          options={[SelectMode.Original, SelectMode.Furigana]}
+          options={selectModeOptions}
           onChange={(selected) => {
             dispatch({
               type: ExtensionEvent.SwitchSelectMode,
