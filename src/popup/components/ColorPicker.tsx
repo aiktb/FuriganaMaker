@@ -28,14 +28,29 @@ export default function ColorPicker({ color, onChange }: ColorPickerProps) {
         leaveTo="opacity-0 translate-y-1"
       >
         <Popover.Panel focus className="fixed inset-0 z-50 bg-white dark:bg-slate-900">
-          <ColorPickerPanel color={color} onChange={onChange} />
+          <ColorPickerPanel color={color} onChange={onChange}>
+            <Popover.Button className="flex items-center justify-center gap-2 rounded border-none px-1.5 font-sans shadow-sm outline-none ring-1 ring-gray-300 transition-all hover:text-primary focus-visible:text-primary focus-visible:ring-2 focus-visible:ring-primary dark:ring-slate-700">
+              <span className="">Close Picker Panel</span>
+              <Icon
+                className="size-4"
+                aria-hidden="true"
+                icon="line-md:circle-to-confirm-circle-transition"
+              />
+            </Popover.Button>
+          </ColorPickerPanel>
         </Popover.Panel>
       </Transition>
     </Popover>
   );
 }
 
-function ColorPickerPanel({ color, onChange }: ColorPickerProps) {
+interface ColorPickerPanelProps {
+  color: string;
+  children: React.ReactNode;
+  onChange: (color: string) => void;
+}
+
+function ColorPickerPanel({ color, children, onChange }: ColorPickerPanelProps) {
   const [input, setInput] = useState(tinycolor(color).toHexString());
 
   useEffect(() => {
@@ -105,7 +120,7 @@ function ColorPickerPanel({ color, onChange }: ColorPickerProps) {
     }
   }
   return (
-    <div className="flex size-full flex-col justify-between px-2.5 py-3.5">
+    <div className="flex size-full flex-col justify-between px-2.5 py-3">
       <div className="relative aspect-[4/3] w-full cursor-crosshair rounded-sm">
         <div
           onPointerDown={handleSaturationCanvasPointerDown}
@@ -176,7 +191,7 @@ function ColorPickerPanel({ color, onChange }: ColorPickerProps) {
             />
           </label>
           <button
-            className="flex h-6 items-center justify-center gap-0.5 rounded border-none px-1.5 shadow-sm outline-none ring-1 ring-gray-300 transition-all hover:text-primary focus-visible:text-primary focus-visible:ring-2 focus-visible:ring-primary dark:bg-slate-950 dark:ring-slate-700"
+            className="flex h-6 items-center justify-center gap-0.5 rounded border-none px-1.5 font-sans shadow-sm outline-none ring-1 ring-gray-300 transition-all hover:text-primary focus-visible:text-primary focus-visible:ring-2 focus-visible:ring-primary dark:bg-slate-950 dark:ring-slate-700"
             onClick={() => {
               onChange('currentColor');
             }}
@@ -186,7 +201,7 @@ function ColorPickerPanel({ color, onChange }: ColorPickerProps) {
           </button>
         </div>
       </div>
-      <div className="flex flex-wrap justify-around gap-2.5 border-t border-gray-200 pt-2.5 dark:border-gray-700">
+      <div className="flex flex-wrap justify-around gap-2.5">
         {
           // prettier-ignore
           [
@@ -220,6 +235,7 @@ function ColorPickerPanel({ color, onChange }: ColorPickerProps) {
         })
         }
       </div>
+      {children}
     </div>
   );
 }
