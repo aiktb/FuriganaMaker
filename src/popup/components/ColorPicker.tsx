@@ -11,10 +11,10 @@ interface ColorPickerProps {
 export default function ColorPicker({ color, onChange }: ColorPickerProps) {
   return (
     <Popover className="relative flex grow">
-      <Popover.Button className="flex grow items-center justify-between rounded px-2">
+      <Popover.Button className="group flex grow items-center justify-between rounded px-2">
         Select color
         <div
-          className="hidden size-3 rounded-full group-focus-within:block group-hover:block"
+          className="hidden size-3 rounded-full group-hover:block group-focus-visible:block"
           style={{ backgroundColor: color }}
         />
       </Popover.Button>
@@ -30,7 +30,7 @@ export default function ColorPicker({ color, onChange }: ColorPickerProps) {
         <Popover.Panel focus className="fixed inset-0 z-50 bg-white dark:bg-slate-900">
           <ColorPickerPanel color={color} onChange={onChange}>
             <Popover.Button className="flex items-center justify-center gap-2 rounded border-none px-1.5 font-sans shadow-sm outline-none ring-1 ring-gray-300 transition-all hover:text-primary focus-visible:text-primary focus-visible:ring-2 focus-visible:ring-primary dark:ring-slate-700">
-              <span className="">Close Picker Panel</span>
+              Close Picker Panel
               <Icon
                 className="size-4"
                 aria-hidden="true"
