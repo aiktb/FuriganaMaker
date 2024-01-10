@@ -1,9 +1,10 @@
 import type { PlasmoCSConfig } from 'plasmo';
-import { toHiragana, toRomaji } from 'wanakana';
+import { toHiragana, toKatakana, toRomaji } from 'wanakana';
 
 import { sendToBackground } from '@plasmohq/messaging';
 import { Storage } from '@plasmohq/storage';
 
+import n5kanjiList from '../../assets/n5kanji.json';
 import { ExtensionStorage, FURIGANA_CLASS, FuriganaType } from './core';
 import { toKanjiToken, type KanjiToken, type MojiToken } from './kanjiTokenizer';
 
@@ -63,6 +64,9 @@ const tokenize = async (text: string): Promise<KanjiToken[]> => {
 const createRuby = (original: string, reading: string, furiganaType: FuriganaType): HTMLElement => {
   const ruby = document.createElement('ruby');
   ruby.classList.add(FURIGANA_CLASS);
+  if (isN5Kanji(original, reading)) {
+    ruby.classList.add('n5');
+  }
   const rightParenthesisRp = document.createElement('rp');
   rightParenthesisRp.textContent = ')';
   const leftParenthesisRp = document.createElement('rp');
@@ -88,4 +92,13 @@ const createRuby = (original: string, reading: string, furiganaType: FuriganaTyp
   ruby.appendChild(rt);
   ruby.appendChild(rightParenthesisRp);
   return ruby;
+};
+
+// TODO: Performance optimization
+const isN5Kanji = (kanji: string, reading: string): boolean => {
+  const n5KanjiMap = new Map<string, string[]>(
+    n5kanjiList.map((n5Kanji) => [n5Kanji.kanji, n5Kanji.reading]),
+  );
+  const isN5Kanji = n5KanjiMap.has(kanji) && n5KanjiMap.get(kanji)!.includes(toKatakana(reading));
+  return isN5Kanji;
 };

@@ -22,6 +22,8 @@ import CursorOutlineIcon from 'react:~/assets/icons/CursorOutline.svg';
 import CursorTextIcon from 'react:~/assets/icons/CursorText.svg';
 import EyeIcon from 'react:~/assets/icons/Eye.svg';
 import EyeOffIcon from 'react:~/assets/icons/EyeOff.svg';
+import FilterIcon from 'react:~/assets/icons/Filter.svg';
+import FilterOffIcon from 'react:~/assets/icons/FilterOff.svg';
 import FontSizeIcon from 'react:~/assets/icons/FontSize.svg';
 import GithubIcon from 'react:~/assets/icons/Github.svg';
 import HiraganaIcon from 'react:~/assets/icons/Hiragana.svg';
@@ -46,6 +48,7 @@ const initializeConfig = async () => {
     selectMode: await storage.get(ExtensionStorage.SelectMode),
     fontSize: await storage.get(ExtensionStorage.FontSize),
     fontColor: await storage.get(ExtensionStorage.FontColor),
+    n5Filter: await storage.get(ExtensionStorage.N5Filter),
   } as Config;
 };
 
@@ -89,7 +92,8 @@ type ACTIONTYPE =
   | { type: ExtensionEvent.SwitchFuriganaType; payload: FuriganaType }
   | { type: ExtensionEvent.SwitchSelectMode; payload: SelectMode }
   | { type: ExtensionEvent.AdjustFontSize; payload: number }
-  | { type: ExtensionEvent.AdjustFontColor; payload: string };
+  | { type: ExtensionEvent.AdjustFontColor; payload: string }
+  | { type: ExtensionEvent.ToggleN5Filter; payload: boolean };
 
 function reducer(state: Config, action: ACTIONTYPE) {
   Browser.tabs.query({ active: true, currentWindow: true }).then(async (tabs) => {
@@ -112,6 +116,8 @@ function reducer(state: Config, action: ACTIONTYPE) {
       return { ...state, fontSize: action.payload };
     case ExtensionEvent.AdjustFontColor:
       return { ...state, fontColor: action.payload };
+    case ExtensionEvent.ToggleN5Filter:
+      return { ...state, n5Filter: action.payload };
   }
 }
 
@@ -135,6 +141,15 @@ function Menu({ configPromise }: { configPromise: Promise<Config> }) {
           checked={state.display}
           onChange={(checked) => {
             dispatch({ type: ExtensionEvent.ToggleDisplay, payload: checked });
+          }}
+        />
+      </MenuItem>
+      <MenuItem icon={state.n5Filter ? <FilterIcon className="text-primary" /> : <FilterOffIcon />}>
+        <CheckBox
+          text="N5 kanji filter"
+          checked={state.n5Filter}
+          onChange={(checked) => {
+            dispatch({ type: ExtensionEvent.ToggleN5Filter, payload: checked });
           }}
         />
       </MenuItem>

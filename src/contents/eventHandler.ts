@@ -29,6 +29,7 @@ async function initialize() {
     ExtensionEvent.SwitchSelectMode,
     ExtensionEvent.AdjustFontSize,
     ExtensionEvent.AdjustFontColor,
+    ExtensionEvent.ToggleN5Filter,
   ];
   await Promise.all(styleEvents.map((item) => styleHandler(item)));
 }
@@ -88,6 +89,7 @@ async function styleHandler(type: StyleEvent) {
   const rtSelector = `ruby.${FURIGANA_CLASS} > rt`;
   const rtHoverSelector = `ruby.${FURIGANA_CLASS}:hover > rt`;
   const rpSelector = `ruby.${FURIGANA_CLASS} > rp`;
+  const n5RtSelector = `ruby.${FURIGANA_CLASS}.n5 > rt`;
   const storage = new Storage({ area: 'local' });
 
   const value = await storage.get(toStorageKey(type));
@@ -96,7 +98,7 @@ async function styleHandler(type: StyleEvent) {
     case ExtensionEvent.ToggleDisplay:
       css = `
         ${rtSelector} {
-          display: ${value ? 'revert' : 'none'};
+          display: ${value ? 'revert' : 'none !important'};
         }
       `;
       break;
@@ -142,6 +144,13 @@ async function styleHandler(type: StyleEvent) {
       css = `
         ${rtSelector} {
           color: ${value};
+        }
+      `;
+      break;
+    case ExtensionEvent.ToggleN5Filter:
+      css = `
+        ${n5RtSelector} {
+          display: ${value ? 'none' : 'revert'};
         }
       `;
       break;
