@@ -53,6 +53,7 @@ Browser.commands.onCommand.addListener(async (command, tab) => {
       break;
     case ExtensionEvent.ToggleDisplay:
     case ExtensionEvent.ToggleHoverMode:
+    case ExtensionEvent.ToggleKanjiFilter:
       {
         const key = toStorageKey(command);
         const oldValue: boolean = await storage.get(key);
