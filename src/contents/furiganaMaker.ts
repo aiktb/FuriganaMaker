@@ -4,7 +4,7 @@ import { toHiragana, toKatakana, toRomaji } from 'wanakana';
 import { sendToBackground } from '@plasmohq/messaging';
 import { Storage } from '@plasmohq/storage';
 
-import n5kanjiList from '../../assets/n5kanji.json';
+import kanjiList from '../../assets/rules/kanji.json';
 import { ExtensionStorage, FURIGANA_CLASS, FuriganaType } from './core';
 import { toKanjiToken, type KanjiToken, type MojiToken } from './kanjiTokenizer';
 
@@ -97,7 +97,7 @@ const createRuby = (original: string, reading: string, furiganaType: FuriganaTyp
 // TODO: Performance optimization
 const isN5Kanji = (kanji: string, reading: string): boolean => {
   const n5KanjiMap = new Map<string, string[]>(
-    n5kanjiList.map((n5Kanji) => [n5Kanji.kanji, n5Kanji.reading]),
+    kanjiList.map((n5Kanji) => [n5Kanji.kanji, n5Kanji.reading]),
   );
   const isN5Kanji = n5KanjiMap.has(kanji) && n5KanjiMap.get(kanji)!.includes(toKatakana(reading));
   return isN5Kanji;

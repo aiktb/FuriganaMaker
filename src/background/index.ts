@@ -10,7 +10,7 @@ import {
   toStorageKey,
 } from '~contents/core';
 
-import defaultRules from '../../assets/rules.json';
+import defaultRules from '../../assets/rules/selector.json';
 
 // Plasmo `dev` mode will force the Service Worker to be `active`, it will never become `inactive`.
 
