@@ -44,19 +44,32 @@ const getTokenizer = async () => {
   return await deferred.promise;
 };
 
-const handler: PlasmoMessaging.MessageHandler<{ text: string }, { message: KanjiToken[] }> = async (
+export interface KanjiMark extends KanjiToken {
+  n5: boolean;
+}
+
+const handler: PlasmoMessaging.MessageHandler<{ text: string }, { message: KanjiMark[] }> = async (
   req,
   res,
 ) => {
   const tokenizer = await getTokenizer();
-  const mojiTokens: MojiToken[] = tokenizer.tokenize(req.body!.text);
-  const message = toKanjiToken(mojiTokens);
+  const mojiTokens = tokenizer.tokenize(req.body!.text);
+  const kanjiMap = new Map<string, string[]>(
+    kanjiList.map((n5Kanji) => [n5Kanji.kanji, n5Kanji.reading]),
+  );
+  const message = toKanjiToken(mojiTokens).map((token) => {
+    return {
+      ...token,
+      n5: kanjiMap.has(token.original) && kanjiMap.get(token.original)!.includes(token.reading),
+    };
+  });
+
   res.send({ message });
 };
 
 export default handler;
 
-interface MojiToken {
+export interface MojiToken {
   word_position: number; // Indexes start from 1
   surface_form: string;
   reading?: string | undefined; // Katakana only
@@ -68,7 +81,6 @@ export interface KanjiToken {
   reading: string;
   start: number; // Indexes start from 0
   end: number;
-  n5: boolean;
 }
 /**
  * Extract useful kanji phonetic information from KuromojiToken[].
@@ -82,7 +94,7 @@ export interface KanjiToken {
  * ]
  * ```
  */
-const toKanjiToken = (tokens: MojiToken[]): KanjiToken[] => {
+export const toKanjiToken = (tokens: MojiToken[]): KanjiToken[] => {
   return tokens.filter(isPhonetic).map(toSimplifiedToken).flatMap(toRubyText);
 };
 
@@ -115,19 +127,9 @@ const toRubyText = (token: SimplifiedToken): KanjiToken | KanjiToken[] => {
       reading: token.reading,
       start: token.start,
       end: token.end,
-      n5: isN5Kanji(token.original, token.reading),
     };
   }
   return smashToken(token);
-};
-
-// n5KanjiMap is a large Map, but it is only created once, so it is not a performance problem.
-const n5KanjiMap = new Map<string, string[]>(
-  kanjiList.map((n5Kanji) => [n5Kanji.kanji, n5Kanji.reading]),
-);
-const isN5Kanji = (kanji: string, reading: string): boolean => {
-  const isN5Kanji = n5KanjiMap.has(kanji) && n5KanjiMap.get(kanji)!.includes(reading);
-  return isN5Kanji;
 };
 
 interface MarkToken {
@@ -163,9 +165,8 @@ const smashToken = (token: SimplifiedToken): KanjiToken[] => {
   const hybridMatch = reading.match(hybridRegex)?.slice(1);
   // If the number of matching groups is not equal to the number of Kanji,
   // it means that the phonetic notation does not correspond to the text.
-  // E.g. "関ケ原"(セキガハラ)/"我々"(ワレワレ)
   if (!hybridMatch || hybridMatch.length !== kanjis.length) {
-    return [{ original, reading, start, end, n5: isN5Kanji(original, reading) }];
+    return [{ original, reading, start, end }];
   }
 
   kanjis.forEach((kanji, index) => {

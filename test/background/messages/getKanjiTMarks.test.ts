@@ -1,8 +1,7 @@
 import { tokenize } from 'kuromojin';
 import { expect, test } from 'vitest';
 
-import type { MojiToken } from '../../src/contents/kanjiTokenizer';
-import { toKanjiToken } from '../../src/contents/kanjiTokenizer';
+import { toKanjiToken, type MojiToken } from '../../../src/background/messages/getKanjiMarks';
 
 test('Basic test 1', async () => {
   const kuromojiTokens = await tokenize('「僕は耳と目を閉じ、口を噤んだ人間になろうと考えた」');
