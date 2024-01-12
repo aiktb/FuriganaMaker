@@ -4,7 +4,7 @@ import { toHiragana, toRomaji } from 'wanakana';
 import { sendToBackground } from '@plasmohq/messaging';
 import { Storage } from '@plasmohq/storage';
 
-import type { KanjiToken } from '~background/messages/getKanjiTokens';
+import type { KanjiMark } from '~background/messages/getKanjiMarks';
 
 import { ExtensionStorage, FURIGANA_CLASS, FuriganaType } from './core';
 
@@ -26,7 +26,7 @@ export async function addFurigana(...elements: Element[]) {
   const furiganaType: FuriganaType = await storage.get(ExtensionStorage.FuriganaType);
 
   for (const text of japaneseTexts) {
-    const tokens: KanjiToken[] = await tokenize(text.textContent!);
+    const tokens: KanjiMark[] = await tokenize(text.textContent!);
     // reverse() prevents the range from being invalidated
     for (const token of tokens.reverse()) {
       const ruby = createRuby(token, furiganaType);
@@ -53,15 +53,15 @@ const collectTexts = (element: Element): Text[] => {
   return texts;
 };
 
-const tokenize = async (text: string): Promise<KanjiToken[]> => {
-  const response = await sendToBackground<{ text: string }, { message: KanjiToken[] }>({
-    name: 'getKanjiTokens',
+const tokenize = async (text: string): Promise<KanjiMark[]> => {
+  const response = await sendToBackground<{ text: string }, { message: KanjiMark[] }>({
+    name: 'getKanjiMarks',
     body: { text },
   });
   return response.message;
 };
 
-const createRuby = (token: KanjiToken, furiganaType: FuriganaType): HTMLElement => {
+const createRuby = (token: KanjiMark, furiganaType: FuriganaType): HTMLElement => {
   const ruby = document.createElement('ruby');
   ruby.classList.add(FURIGANA_CLASS);
   if (token.n5) {
