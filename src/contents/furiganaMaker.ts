@@ -1,12 +1,12 @@
 import type { PlasmoCSConfig } from 'plasmo';
-import { toHiragana, toKatakana, toRomaji } from 'wanakana';
+import { toHiragana, toRomaji } from 'wanakana';
 
 import { sendToBackground } from '@plasmohq/messaging';
 import { Storage } from '@plasmohq/storage';
 
-import kanjiList from '../../assets/rules/kanji.json';
+import type { KanjiToken } from '~background/messages/getKanjiTokens';
+
 import { ExtensionStorage, FURIGANA_CLASS, FuriganaType } from './core';
-import { toKanjiToken, type KanjiToken, type MojiToken } from './kanjiTokenizer';
 
 export const config: PlasmoCSConfig = {
   matches: ['https://*/*'],
@@ -29,7 +29,7 @@ export async function addFurigana(...elements: Element[]) {
     const tokens: KanjiToken[] = await tokenize(text.textContent!);
     // reverse() prevents the range from being invalidated
     for (const token of tokens.reverse()) {
-      const ruby = createRuby(token.original, token.reading, furiganaType);
+      const ruby = createRuby(token, furiganaType);
       const range = document.createRange();
       range.setStart(text, token.start);
       range.setEnd(text, token.end);
@@ -54,37 +54,37 @@ const collectTexts = (element: Element): Text[] => {
 };
 
 const tokenize = async (text: string): Promise<KanjiToken[]> => {
-  const response = await sendToBackground<{ text: string }, { message: MojiToken[] }>({
-    name: 'getMojiTokens',
+  const response = await sendToBackground<{ text: string }, { message: KanjiToken[] }>({
+    name: 'getKanjiTokens',
     body: { text },
   });
-  return toKanjiToken(response.message);
+  return response.message;
 };
 
-const createRuby = (original: string, reading: string, furiganaType: FuriganaType): HTMLElement => {
+const createRuby = (token: KanjiToken, furiganaType: FuriganaType): HTMLElement => {
   const ruby = document.createElement('ruby');
   ruby.classList.add(FURIGANA_CLASS);
-  if (isN5Kanji(original, reading)) {
+  if (token.n5) {
     ruby.classList.add('n5');
   }
   const rightParenthesisRp = document.createElement('rp');
   rightParenthesisRp.textContent = ')';
   const leftParenthesisRp = document.createElement('rp');
   leftParenthesisRp.textContent = '(';
-  const originalText = document.createTextNode(original);
+  const originalText = document.createTextNode(token.original);
 
   switch (furiganaType) {
     case FuriganaType.Hiragana:
-      reading = toHiragana(reading);
+      token.reading = toHiragana(token.reading);
       break;
     case FuriganaType.Romaji:
-      reading = toRomaji(reading);
+      token.reading = toRomaji(token.reading);
       break;
     case FuriganaType.Katakana:
       // token.reading default is katakana
       break;
   }
-  const readingTextNode = document.createTextNode(reading);
+  const readingTextNode = document.createTextNode(token.reading);
   const rt = document.createElement('rt');
   rt.appendChild(readingTextNode);
   ruby.appendChild(originalText);
@@ -92,13 +92,4 @@ const createRuby = (original: string, reading: string, furiganaType: FuriganaTyp
   ruby.appendChild(rt);
   ruby.appendChild(rightParenthesisRp);
   return ruby;
-};
-
-// TODO: Performance optimization
-const isN5Kanji = (kanji: string, reading: string): boolean => {
-  const n5KanjiMap = new Map<string, string[]>(
-    kanjiList.map((n5Kanji) => [n5Kanji.kanji, n5Kanji.reading]),
-  );
-  const isN5Kanji = n5KanjiMap.has(kanji) && n5KanjiMap.get(kanji)!.includes(toKatakana(reading));
-  return isN5Kanji;
 };
