@@ -1,11 +1,62 @@
-import type { PlasmoCSConfig } from 'plasmo';
+import kuromoji from '@sglkc/kuromoji';
 import { isKanji, toKatakana } from 'wanakana';
 
-export const config: PlasmoCSConfig = {
-  matches: ['https://*/*'],
+import type { PlasmoMessaging } from '@plasmohq/messaging';
+
+import kanjiList from '../../../assets/rules/kanji.json';
+
+// Referenced from @azu/kuromojin.
+interface Tokenizer {
+  tokenize: (text: string) => MojiToken[];
+}
+
+class Deferred {
+  promise: Promise<Tokenizer>;
+  resolve!: (value: Tokenizer) => void;
+  reject!: (reason: Error) => void;
+  constructor() {
+    this.promise = new Promise<Tokenizer>((resolve, reject) => {
+      this.resolve = resolve;
+      this.reject = reject;
+    });
+  }
+}
+
+const deferred = new Deferred();
+let isLoading = false;
+
+const getTokenizer = async () => {
+  if (isLoading) {
+    return await deferred.promise;
+  }
+  isLoading = true;
+  const builder = kuromoji.builder({
+    // This function relies on web_accessible_resources.
+    dicPath: '../../assets/dicts',
+  });
+  builder.build((err: undefined | Error, tokenizer: Tokenizer) => {
+    if (err) {
+      deferred.reject(err);
+    } else {
+      deferred.resolve(tokenizer);
+    }
+  });
+  return await deferred.promise;
 };
 
-export interface MojiToken {
+const handler: PlasmoMessaging.MessageHandler<{ text: string }, { message: KanjiToken[] }> = async (
+  req,
+  res,
+) => {
+  const tokenizer = await getTokenizer();
+  const mojiTokens: MojiToken[] = tokenizer.tokenize(req.body!.text);
+  const message = toKanjiToken(mojiTokens);
+  res.send({ message });
+};
+
+export default handler;
+
+interface MojiToken {
   word_position: number; // Indexes start from 1
   surface_form: string;
   reading?: string | undefined; // Katakana only
@@ -17,6 +68,7 @@ export interface KanjiToken {
   reading: string;
   start: number; // Indexes start from 0
   end: number;
+  n5: boolean;
 }
 /**
  * Extract useful kanji phonetic information from KuromojiToken[].
@@ -30,7 +82,7 @@ export interface KanjiToken {
  * ]
  * ```
  */
-export const toKanjiToken = (tokens: MojiToken[]): KanjiToken[] => {
+const toKanjiToken = (tokens: MojiToken[]): KanjiToken[] => {
   return tokens.filter(isPhonetic).map(toSimplifiedToken).flatMap(toRubyText);
 };
 
@@ -63,9 +115,19 @@ const toRubyText = (token: SimplifiedToken): KanjiToken | KanjiToken[] => {
       reading: token.reading,
       start: token.start,
       end: token.end,
+      n5: isN5Kanji(token.original, token.reading),
     };
   }
   return smashToken(token);
+};
+
+// n5KanjiMap is a large Map, but it is only created once, so it is not a performance problem.
+const n5KanjiMap = new Map<string, string[]>(
+  kanjiList.map((n5Kanji) => [n5Kanji.kanji, n5Kanji.reading]),
+);
+const isN5Kanji = (kanji: string, reading: string): boolean => {
+  const isN5Kanji = n5KanjiMap.has(kanji) && n5KanjiMap.get(kanji)!.includes(reading);
+  return isN5Kanji;
 };
 
 interface MarkToken {
@@ -103,7 +165,7 @@ const smashToken = (token: SimplifiedToken): KanjiToken[] => {
   // it means that the phonetic notation does not correspond to the text.
   // E.g. "関ケ原"(セキガハラ)/"我々"(ワレワレ)
   if (!hybridMatch || hybridMatch.length !== kanjis.length) {
-    return [{ original, reading, start, end }];
+    return [{ original, reading, start, end, n5: isN5Kanji(original, reading) }];
   }
 
   kanjis.forEach((kanji, index) => {
