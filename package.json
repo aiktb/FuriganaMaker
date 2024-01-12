@@ -108,6 +108,9 @@
       },
       "toggleHoverMode": {
         "description": "Toggle hover mode on all pages"
+      },
+      "toggleKanjiFilter": {
+        "description": "Toggle N5 kanji filter on all pages"
       }
     },
     "web_accessible_resources": [

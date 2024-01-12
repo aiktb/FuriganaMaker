@@ -29,7 +29,7 @@ async function initialize() {
     ExtensionEvent.SwitchSelectMode,
     ExtensionEvent.AdjustFontSize,
     ExtensionEvent.AdjustFontColor,
-    ExtensionEvent.ToggleN5Filter,
+    ExtensionEvent.ToggleKanjiFilter,
   ];
   await Promise.all(styleEvents.map((item) => styleHandler(item)));
 }
@@ -147,7 +147,7 @@ async function styleHandler(type: StyleEvent) {
         }
       `;
       break;
-    case ExtensionEvent.ToggleN5Filter:
+    case ExtensionEvent.ToggleKanjiFilter:
       css = `
         ${n5RtSelector} {
           display: ${value ? 'none' : 'revert'};

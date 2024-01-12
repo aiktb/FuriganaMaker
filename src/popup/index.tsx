@@ -93,7 +93,7 @@ type ACTIONTYPE =
   | { type: ExtensionEvent.SwitchSelectMode; payload: SelectMode }
   | { type: ExtensionEvent.AdjustFontSize; payload: number }
   | { type: ExtensionEvent.AdjustFontColor; payload: string }
-  | { type: ExtensionEvent.ToggleN5Filter; payload: boolean };
+  | { type: ExtensionEvent.ToggleKanjiFilter; payload: boolean };
 
 function reducer(state: Config, action: ACTIONTYPE) {
   Browser.tabs.query({ active: true, currentWindow: true }).then(async (tabs) => {
@@ -116,7 +116,7 @@ function reducer(state: Config, action: ACTIONTYPE) {
       return { ...state, fontSize: action.payload };
     case ExtensionEvent.AdjustFontColor:
       return { ...state, fontColor: action.payload };
-    case ExtensionEvent.ToggleN5Filter:
+    case ExtensionEvent.ToggleKanjiFilter:
       return { ...state, n5Filter: action.payload };
   }
 }
@@ -149,7 +149,7 @@ function Menu({ configPromise }: { configPromise: Promise<Config> }) {
           text="N5 kanji filter"
           checked={state.n5Filter}
           onChange={(checked) => {
-            dispatch({ type: ExtensionEvent.ToggleN5Filter, payload: checked });
+            dispatch({ type: ExtensionEvent.ToggleKanjiFilter, payload: checked });
           }}
         />
       </MenuItem>

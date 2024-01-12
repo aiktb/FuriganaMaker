@@ -15,7 +15,7 @@ export enum ExtensionEvent {
   SwitchSelectMode = 'switchSelectMode',
   AdjustFontSize = 'adjustFontSize',
   AdjustFontColor = 'adjustFontColor',
-  ToggleN5Filter = 'toggleN5Filter',
+  ToggleKanjiFilter = 'toggleN5Filter',
 }
 
 export enum ExtensionStorage {
@@ -35,7 +35,7 @@ export type StyleEvent =
   | ExtensionEvent.SwitchSelectMode
   | ExtensionEvent.AdjustFontSize
   | ExtensionEvent.AdjustFontColor
-  | ExtensionEvent.ToggleN5Filter;
+  | ExtensionEvent.ToggleKanjiFilter;
 
 export enum FuriganaType {
   Hiragana = 'hiragana',
@@ -86,7 +86,7 @@ export type StorageChangeEvent =
   | ExtensionEvent.SwitchSelectMode
   | ExtensionEvent.ToggleDisplay
   | ExtensionEvent.ToggleHoverMode
-  | ExtensionEvent.ToggleN5Filter;
+  | ExtensionEvent.ToggleKanjiFilter;
 
 export const toStorageKey = (event: StorageChangeEvent) => {
   switch (event) {
@@ -102,7 +102,7 @@ export const toStorageKey = (event: StorageChangeEvent) => {
       return ExtensionStorage.Display;
     case ExtensionEvent.ToggleHoverMode:
       return ExtensionStorage.HoverMode;
-    case ExtensionEvent.ToggleN5Filter:
+    case ExtensionEvent.ToggleKanjiFilter:
       return ExtensionStorage.N5Filter;
   }
 };
