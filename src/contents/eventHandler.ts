@@ -86,10 +86,11 @@ function addFuriganaHandler() {
 }
 
 async function styleHandler(type: StyleEvent) {
-  const rtSelector = `ruby.${FURIGANA_CLASS} > rt`;
-  const rtHoverSelector = `ruby.${FURIGANA_CLASS}:hover > rt`;
-  const rpSelector = `ruby.${FURIGANA_CLASS} > rp`;
-  const n5RtSelector = `ruby.${FURIGANA_CLASS}.n5 > rt`;
+  const rubySelector = `ruby.${FURIGANA_CLASS}`;
+  const rtSelector = `${rubySelector} > rt`;
+  const rtHoverSelector = `${rubySelector}:hover > rt`;
+  const rpSelector = `${rubySelector} > rp`;
+  const n5RtSelector = `${rubySelector}.n5 > rt`;
   const storage = new Storage({ area: 'local' });
 
   const value = await storage.get(toStorageKey(type));

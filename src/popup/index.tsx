@@ -127,8 +127,8 @@ function Menu({ configPromise }: { configPromise: Promise<Config> }) {
   const browser = detect();
   const selectModeOptions =
     browser?.name === 'firefox'
-      ? [SelectMode.Original, SelectMode.Furigana]
-      : [SelectMode.Original, SelectMode.Furigana, SelectMode.Parentheses];
+      ? [SelectMode.Original, SelectMode.Default]
+      : [SelectMode.Original, SelectMode.Default, SelectMode.Parentheses];
 
   return (
     <menu className="space-y-1.5 border-r-2 border-primary pr-2">
