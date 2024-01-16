@@ -13,7 +13,6 @@ export default {
     plugin(({ addBase }) => {
       addBase({
         ':focus-visible': {
-          outline: '2px solid currentColor',
           borderRadius: '0.25rem',
         },
       });
@@ -33,24 +32,6 @@ export default {
           fontStyle: 'normal',
           fontWeight: 'bold',
           src: "url('./fonts/dm-sans-bold.woff2') format('woff2')",
-        },
-      });
-      addBase({
-        '@font-face': {
-          fontDisplay: 'swap',
-          fontFamily: 'JetBrains Mono',
-          fontStyle: 'normal',
-          fontWeight: 'normal',
-          src: "url('./fonts/jetbrains-mono-regular.woff2') format('woff2')",
-        },
-      });
-      addBase({
-        '@font-face': {
-          fontDisplay: 'swap',
-          fontFamily: 'JetBrains Mono',
-          fontStyle: 'normal',
-          fontWeight: 'bold',
-          src: "url('./fonts/jetbrains-mono-bold.woff2') format('woff2')",
         },
       });
       addBase({
