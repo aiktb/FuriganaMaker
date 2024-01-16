@@ -17,7 +17,7 @@ import defaultRules from '../../assets/rules/selector.json';
 Browser.runtime.onInstalled.addListener(async () => {
   // Initialize default extension settings and custom rules.
   const storage = new Storage({ area: 'local' });
-  for (const key in defaultConfig) {
+  for (const key of Object.keys(defaultConfig)) {
     const oldConfig = await storage.get(key);
     if (!oldConfig) {
       await storage.set(key, defaultConfig[key]);
