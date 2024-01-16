@@ -45,7 +45,7 @@ export enum FuriganaType {
 
 export enum SelectMode {
   Original = 'original',
-  Furigana = 'furigana',
+  Default = 'default',
   /* Since Firefox and Chromium have different rendering strategies for ruby tags,
    this mode cannot be implemented in Firefox using only CSS,
    so this mode is limited to Chrome/Edge. */
