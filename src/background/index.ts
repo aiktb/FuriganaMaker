@@ -72,22 +72,27 @@ Browser.commands.onCommand.addListener(async (command, tab) => {
     case 'toggleKanjiFilter': {
       const kanjiFilter: boolean = await storage.get(ExtensionStorage.KanjiFilter);
       await storage.set(ExtensionStorage.KanjiFilter, !kanjiFilter);
+      await sendMessage(tab!.id!, ExtensionEvent.ToggleKanjiFilter);
       break;
     }
     case 'hideFurigana': {
       await storage.set(ExtensionStorage.DisplayMode, DisplayMode.Never);
+      await sendMessage(tab!.id!, ExtensionEvent.SwitchDisplayMode);
       break;
     }
     case 'showFurigana': {
       await storage.set(ExtensionStorage.DisplayMode, DisplayMode.Always);
+      await sendMessage(tab!.id!, ExtensionEvent.SwitchDisplayMode);
       break;
     }
     case 'openHoverMode': {
       await storage.set(ExtensionStorage.DisplayMode, DisplayMode.Hover);
+      await sendMessage(tab!.id!, ExtensionEvent.SwitchDisplayMode);
       break;
     }
     case 'openHoverNoGapMode': {
       await storage.set(ExtensionStorage.DisplayMode, DisplayMode.HoverNoGap);
+      await sendMessage(tab!.id!, ExtensionEvent.SwitchDisplayMode);
       break;
     }
     default:
