@@ -142,7 +142,7 @@ function Menu({ configPromise }: { configPromise: Promise<Config> }) {
         tip="Please refresh the page"
       >
         <CheckBox
-          text="On-off Auto Mode"
+          text="On-off auto mode"
           checked={state.autoMode}
           onChange={(checked) => {
             dispatch({ type: ExtensionEvent.ToggleAutoMode, payload: checked });

@@ -11,7 +11,7 @@ export default function CheckBox({ text, onChange, checked }: CheckBoxProps) {
     <Switch
       checked={checked}
       onChange={onChange}
-      className="flex grow items-center justify-between rounded px-2"
+      className="flex grow items-center justify-between rounded px-2 capitalize"
     >
       {text}
     </Switch>

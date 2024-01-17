@@ -11,7 +11,7 @@ export default function Link({ href, text }: LinkProps) {
       target="_blank"
       href={href}
       rel="noopener noreferrer"
-      className="flex grow items-center gap-x-1 rounded px-2"
+      className="flex grow items-center gap-x-1 rounded px-2 capitalize"
     >
       {text}
       <Icon aria-hidden="true" icon="ci:link" />

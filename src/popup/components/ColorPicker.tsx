@@ -11,7 +11,7 @@ interface ColorPickerProps {
 export default function ColorPicker({ color, onChange }: ColorPickerProps) {
   return (
     <Popover className="relative flex grow">
-      <Popover.Button className="group flex grow items-center justify-between rounded px-2">
+      <Popover.Button className="group flex grow items-center justify-between rounded px-2 capitalize">
         Select color
         <div
           className="hidden size-3 rounded-full group-hover:block group-focus-visible:block"
