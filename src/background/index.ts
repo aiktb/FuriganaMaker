@@ -3,11 +3,13 @@ import Browser from 'webextension-polyfill';
 import { Storage } from '@plasmohq/storage';
 
 import {
-  defaultConfig,
+  DisplayMode,
   ExtensionEvent,
   ExtensionStorage,
+  FuriganaType,
+  SelectMode,
   sendMessage,
-  toStorageKey,
+  type Config,
 } from '~contents/core';
 
 import defaultRules from '../../assets/rules/selector.json';
@@ -16,6 +18,15 @@ import defaultRules from '../../assets/rules/selector.json';
 
 Browser.runtime.onInstalled.addListener(async () => {
   // Initialize default extension settings and custom rules.
+  const defaultConfig: Config = {
+    [ExtensionStorage.AutoMode]: true,
+    [ExtensionStorage.KanjiFilter]: false,
+    [ExtensionStorage.DisplayMode]: DisplayMode.Always,
+    [ExtensionStorage.FuriganaType]: FuriganaType.Hiragana,
+    [ExtensionStorage.SelectMode]: SelectMode.Original,
+    [ExtensionStorage.FontSize]: 75, // ${fontsize}% relative to the parent font.
+    [ExtensionStorage.FontColor]: 'currentColor',
+  };
   const storage = new Storage({ area: 'local' });
   for (const key of Object.keys(defaultConfig)) {
     const oldConfig = await storage.get(key);
@@ -45,22 +56,40 @@ Browser.contextMenus.onClicked.addListener(async (info, tab) => {
   }
 });
 
+// Please see `package.json` for a list of shortcut keys.
 Browser.commands.onCommand.addListener(async (command, tab) => {
   const storage = new Storage({ area: 'local' });
   switch (command) {
-    case ExtensionEvent.AddFurigana:
+    case 'addFurigana': {
       await sendMessage(tab!.id!, ExtensionEvent.AddFurigana);
       break;
-    case ExtensionEvent.ToggleDisplay:
-    case ExtensionEvent.ToggleHoverMode:
-    case ExtensionEvent.ToggleKanjiFilter:
-      {
-        const key = toStorageKey(command);
-        const oldValue: boolean = await storage.get(key);
-        await storage.set(key, !oldValue);
-        await sendMessage(tab!.id!, command);
-      }
+    }
+    case 'toggleAutoMode': {
+      const autoMode: boolean = await storage.get(ExtensionStorage.AutoMode);
+      await storage.set(ExtensionStorage.AutoMode, !autoMode);
       break;
+    }
+    case 'toggleKanjiFilter': {
+      const kanjiFilter: boolean = await storage.get(ExtensionStorage.KanjiFilter);
+      await storage.set(ExtensionStorage.KanjiFilter, !kanjiFilter);
+      break;
+    }
+    case 'hideFurigana': {
+      await storage.set(ExtensionStorage.DisplayMode, DisplayMode.Never);
+      break;
+    }
+    case 'showFurigana': {
+      await storage.set(ExtensionStorage.DisplayMode, DisplayMode.Always);
+      break;
+    }
+    case 'openHoverMode': {
+      await storage.set(ExtensionStorage.DisplayMode, DisplayMode.Hover);
+      break;
+    }
+    case 'openHoverNoGapMode': {
+      await storage.set(ExtensionStorage.DisplayMode, DisplayMode.HoverNoGap);
+      break;
+    }
     default:
       throw new Error('Unknown command');
   }

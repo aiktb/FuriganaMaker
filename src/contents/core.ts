@@ -9,33 +9,42 @@ export const config: PlasmoCSConfig = {
 
 export enum ExtensionEvent {
   AddFurigana = 'addFurigana',
-  ToggleDisplay = 'toggleDisplay',
-  ToggleHoverMode = 'toggleHoverMode',
+  ToggleAutoMode = 'toggleAutoMode',
+  ToggleKanjiFilter = 'toggleKanjiFilter',
+  SwitchDisplayMode = 'switchDisplayMode',
   SwitchFuriganaType = 'switchFuriganaType',
   SwitchSelectMode = 'switchSelectMode',
   AdjustFontSize = 'adjustFontSize',
   AdjustFontColor = 'adjustFontColor',
-  ToggleKanjiFilter = 'toggleN5Filter',
 }
 
+// Please see `background/index.ts` for the default value.
 export enum ExtensionStorage {
-  Display = 'display',
-  HoverMode = 'hoverMode',
+  AutoMode = 'autoMode',
+  KanjiFilter = 'kanjiFilter',
+  DisplayMode = 'displayMode',
   FuriganaType = 'furiganaType',
   SelectMode = 'selectMode',
   FontSize = 'fontSize',
   FontColor = 'fontColor',
-  N5Filter = 'n5Filter',
   UserRules = 'userRules',
 }
 
 export type StyleEvent =
-  | ExtensionEvent.ToggleDisplay
-  | ExtensionEvent.ToggleHoverMode
+  | ExtensionEvent.ToggleAutoMode
+  | ExtensionEvent.SwitchDisplayMode
   | ExtensionEvent.SwitchSelectMode
   | ExtensionEvent.AdjustFontSize
   | ExtensionEvent.AdjustFontColor
   | ExtensionEvent.ToggleKanjiFilter;
+
+export enum DisplayMode {
+  Always = 'always',
+  Never = 'never',
+  Hover = 'hover',
+  // "Hover No-gap" mode will cause the page layout to shift frequently, but it is more beautiful.
+  HoverNoGap = 'hover no-gap',
+}
 
 export enum FuriganaType {
   Hiragana = 'hiragana',
@@ -44,8 +53,8 @@ export enum FuriganaType {
 }
 
 export enum SelectMode {
-  Original = 'original',
   Default = 'default',
+  Original = 'original',
   /* Since Firefox and Chromium have different rendering strategies for ruby tags,
    this mode cannot be implemented in Firefox using only CSS,
    so this mode is limited to Chrome/Edge. */
@@ -54,24 +63,14 @@ export enum SelectMode {
 
 export interface Config {
   [key: string]: string | number | boolean;
-  display: boolean;
-  hoverMode: boolean;
-  furiganaType: FuriganaType;
-  selectMode: SelectMode;
-  fontSize: number;
-  fontColor: string;
-  n5Filter: boolean;
+  [ExtensionStorage.AutoMode]: boolean;
+  [ExtensionStorage.KanjiFilter]: boolean;
+  [ExtensionStorage.DisplayMode]: DisplayMode;
+  [ExtensionStorage.FuriganaType]: FuriganaType;
+  [ExtensionStorage.SelectMode]: SelectMode;
+  [ExtensionStorage.FontSize]: number;
+  [ExtensionStorage.FontColor]: string;
 }
-
-export const defaultConfig: Config = {
-  display: true,
-  hoverMode: false,
-  furiganaType: FuriganaType.Hiragana,
-  selectMode: SelectMode.Original,
-  fontSize: 75, // ${fontsize}% relative to the parent font.
-  fontColor: 'currentColor',
-  n5Filter: false,
-};
 
 export interface Rule {
   domain: string; // This field is unique.
@@ -80,16 +79,20 @@ export interface Rule {
 }
 
 export type StorageChangeEvent =
+  | ExtensionEvent.ToggleKanjiFilter
+  | ExtensionEvent.SwitchDisplayMode
   | ExtensionEvent.AdjustFontColor
   | ExtensionEvent.AdjustFontSize
   | ExtensionEvent.SwitchFuriganaType
   | ExtensionEvent.SwitchSelectMode
-  | ExtensionEvent.ToggleDisplay
-  | ExtensionEvent.ToggleHoverMode
-  | ExtensionEvent.ToggleKanjiFilter;
+  | ExtensionEvent.ToggleAutoMode;
 
 export const toStorageKey = (event: StorageChangeEvent) => {
   switch (event) {
+    case ExtensionEvent.ToggleKanjiFilter:
+      return ExtensionStorage.KanjiFilter;
+    case ExtensionEvent.SwitchDisplayMode:
+      return ExtensionStorage.DisplayMode;
     case ExtensionEvent.AdjustFontColor:
       return ExtensionStorage.FontColor;
     case ExtensionEvent.AdjustFontSize:
@@ -98,12 +101,8 @@ export const toStorageKey = (event: StorageChangeEvent) => {
       return ExtensionStorage.FuriganaType;
     case ExtensionEvent.SwitchSelectMode:
       return ExtensionStorage.SelectMode;
-    case ExtensionEvent.ToggleDisplay:
-      return ExtensionStorage.Display;
-    case ExtensionEvent.ToggleHoverMode:
-      return ExtensionStorage.HoverMode;
-    case ExtensionEvent.ToggleKanjiFilter:
-      return ExtensionStorage.N5Filter;
+    case ExtensionEvent.ToggleAutoMode:
+      return ExtensionStorage.AutoMode;
   }
 };
 
