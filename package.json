@@ -116,7 +116,7 @@
         "description": "Show furigana on all pages"
       },
       "openHoverMode": {
-        "description": "Open hover mode on all pages"
+        "description": "Open hover-Gap mode on all pages"
       },
       "openHoverNoGapMode": {
         "description": "Open hover-NoGap mode on all pages"

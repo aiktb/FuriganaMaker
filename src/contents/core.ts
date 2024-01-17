@@ -39,9 +39,9 @@ export type StyleEvent =
   | ExtensionEvent.ToggleKanjiFilter;
 
 export enum DisplayMode {
-  Always = 'always',
-  Never = 'never',
-  Hover = 'hover',
+  Always = 'always show',
+  Never = 'never show',
+  Hover = 'hover gap',
   // "Hover No-gap" mode will cause the page layout to shift frequently, but it is more beautiful.
   HoverNoGap = 'hover no-gap',
 }
