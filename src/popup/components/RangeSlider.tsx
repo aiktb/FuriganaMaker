@@ -51,6 +51,10 @@ export default function RangeSlider({ value, min, max, step, onChange }: RangeSl
   return (
     <div
       tabIndex={0}
+      role="slider"
+      aria-valuemin={min}
+      aria-valuemax={max}
+      aria-valuenow={value}
       className="relative flex h-5 grow cursor-pointer items-center justify-start gap-x-1 rounded px-2 leading-5"
       onPointerDown={handlePointerDown}
       onKeyDown={handleKeyDown}
