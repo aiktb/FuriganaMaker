@@ -8,6 +8,7 @@ import Browser from 'webextension-polyfill';
 import { Storage } from '@plasmohq/storage';
 
 import {
+  DisplayMode,
   ExtensionEvent,
   ExtensionStorage,
   FuriganaType,
@@ -21,7 +22,6 @@ import ColorPickerIcon from 'react:~/assets/icons/ColorPicker.svg';
 import CursorOutlineIcon from 'react:~/assets/icons/CursorOutline.svg';
 import CursorTextIcon from 'react:~/assets/icons/CursorText.svg';
 import EyeIcon from 'react:~/assets/icons/Eye.svg';
-import EyeOffIcon from 'react:~/assets/icons/EyeOff.svg';
 import FilterIcon from 'react:~/assets/icons/Filter.svg';
 import FilterOffIcon from 'react:~/assets/icons/FilterOff.svg';
 import FontSizeIcon from 'react:~/assets/icons/FontSize.svg';
@@ -42,13 +42,13 @@ import Select from './components/Select';
 const initializeConfig = async () => {
   const storage = new Storage({ area: 'local' });
   return {
-    display: await storage.get(ExtensionStorage.Display),
-    hoverMode: await storage.get(ExtensionStorage.HoverMode),
-    furiganaType: await storage.get(ExtensionStorage.FuriganaType),
-    selectMode: await storage.get(ExtensionStorage.SelectMode),
-    fontSize: await storage.get(ExtensionStorage.FontSize),
-    fontColor: await storage.get(ExtensionStorage.FontColor),
-    n5Filter: await storage.get(ExtensionStorage.N5Filter),
+    [ExtensionStorage.AutoMode]: await storage.get(ExtensionStorage.AutoMode),
+    [ExtensionStorage.KanjiFilter]: await storage.get(ExtensionStorage.KanjiFilter),
+    [ExtensionStorage.DisplayMode]: await storage.get(ExtensionStorage.DisplayMode),
+    [ExtensionStorage.FuriganaType]: await storage.get(ExtensionStorage.FuriganaType),
+    [ExtensionStorage.SelectMode]: await storage.get(ExtensionStorage.SelectMode),
+    [ExtensionStorage.FontSize]: await storage.get(ExtensionStorage.FontSize),
+    [ExtensionStorage.FontColor]: await storage.get(ExtensionStorage.FontColor),
   } as Config;
 };
 
@@ -87,13 +87,13 @@ async function addFurigana() {
 }
 
 type ACTIONTYPE =
-  | { type: ExtensionEvent.ToggleDisplay; payload: boolean }
-  | { type: ExtensionEvent.ToggleHoverMode; payload: boolean }
+  | { type: ExtensionEvent.ToggleAutoMode; payload: boolean }
+  | { type: ExtensionEvent.ToggleKanjiFilter; payload: boolean }
+  | { type: ExtensionEvent.SwitchDisplayMode; payload: DisplayMode }
   | { type: ExtensionEvent.SwitchFuriganaType; payload: FuriganaType }
   | { type: ExtensionEvent.SwitchSelectMode; payload: SelectMode }
   | { type: ExtensionEvent.AdjustFontSize; payload: number }
-  | { type: ExtensionEvent.AdjustFontColor; payload: string }
-  | { type: ExtensionEvent.ToggleKanjiFilter; payload: boolean };
+  | { type: ExtensionEvent.AdjustFontColor; payload: string };
 
 function reducer(state: Config, action: ACTIONTYPE) {
   Browser.tabs.query({ active: true, currentWindow: true }).then(async (tabs) => {
@@ -104,25 +104,27 @@ function reducer(state: Config, action: ACTIONTYPE) {
   });
 
   switch (action.type) {
-    case ExtensionEvent.ToggleDisplay:
-      return { ...state, display: action.payload };
-    case ExtensionEvent.ToggleHoverMode:
-      return { ...state, hoverMode: action.payload };
-    case ExtensionEvent.SwitchFuriganaType:
-      return { ...state, furiganaType: action.payload };
-    case ExtensionEvent.SwitchSelectMode:
-      return { ...state, selectMode: action.payload };
-    case ExtensionEvent.AdjustFontSize:
-      return { ...state, fontSize: action.payload };
-    case ExtensionEvent.AdjustFontColor:
-      return { ...state, fontColor: action.payload };
+    case ExtensionEvent.ToggleAutoMode:
+      return { ...state, [ExtensionStorage.AutoMode]: action.payload };
     case ExtensionEvent.ToggleKanjiFilter:
-      return { ...state, n5Filter: action.payload };
+      return { ...state, [ExtensionStorage.KanjiFilter]: action.payload };
+    case ExtensionEvent.SwitchDisplayMode:
+      return { ...state, [ExtensionStorage.DisplayMode]: action.payload };
+    case ExtensionEvent.SwitchFuriganaType:
+      return { ...state, [ExtensionStorage.FuriganaType]: action.payload };
+    case ExtensionEvent.SwitchSelectMode:
+      return { ...state, [ExtensionStorage.SelectMode]: action.payload };
+    case ExtensionEvent.AdjustFontSize:
+      return { ...state, [ExtensionStorage.FontSize]: action.payload };
+    case ExtensionEvent.AdjustFontColor:
+      return { ...state, [ExtensionStorage.FontColor]: action.payload };
   }
 }
 
 function Menu({ configPromise }: { configPromise: Promise<Config> }) {
   const [state, dispatch] = useReducer(reducer, use(configPromise));
+  // prettier-ignore
+  const displayModeOptions = [DisplayMode.Always, DisplayMode.Never, DisplayMode.Hover, DisplayMode.HoverNoGap];
   const furiganaTypeOptions = [FuriganaType.Hiragana, FuriganaType.Katakana, FuriganaType.Romaji];
   const browser = detect();
   const selectModeOptions =
@@ -135,30 +137,39 @@ function Menu({ configPromise }: { configPromise: Promise<Config> }) {
       <MenuItem icon={<CursorOutlineIcon />} tip="Press ESC to cancel">
         <Button text="Add furigana" onClick={addFurigana} />
       </MenuItem>
-      <MenuItem icon={<PowerIcon className={state.display ? 'text-primary' : ''} />}>
+      <MenuItem
+        icon={<PowerIcon className={state.autoMode ? 'text-primary' : ''} />}
+        tip="Please refresh the page"
+      >
         <CheckBox
-          text="On-off extension"
-          checked={state.display}
+          text="On-off Auto Mode"
+          checked={state.autoMode}
           onChange={(checked) => {
-            dispatch({ type: ExtensionEvent.ToggleDisplay, payload: checked });
+            dispatch({ type: ExtensionEvent.ToggleAutoMode, payload: checked });
           }}
         />
       </MenuItem>
-      <MenuItem icon={state.n5Filter ? <FilterIcon className="text-primary" /> : <FilterOffIcon />}>
+      <MenuItem
+        icon={state.kanjiFilter ? <FilterIcon className="text-primary" /> : <FilterOffIcon />}
+      >
         <CheckBox
           text="N5 kanji filter"
-          checked={state.n5Filter}
+          checked={state.kanjiFilter}
           onChange={(checked) => {
             dispatch({ type: ExtensionEvent.ToggleKanjiFilter, payload: checked });
           }}
         />
       </MenuItem>
-      <MenuItem icon={state.hoverMode ? <EyeIcon className="text-primary" /> : <EyeOffIcon />}>
-        <CheckBox
-          text="Hover mode"
-          checked={state.hoverMode}
-          onChange={(checked) => {
-            dispatch({ type: ExtensionEvent.ToggleHoverMode, payload: checked });
+      <MenuItem icon={<EyeIcon />}>
+        <Select
+          label="Switch display mode"
+          selected={state.displayMode}
+          options={displayModeOptions}
+          onChange={(selected) => {
+            dispatch({
+              type: ExtensionEvent.SwitchDisplayMode,
+              payload: selected as DisplayMode,
+            });
           }}
         />
       </MenuItem>

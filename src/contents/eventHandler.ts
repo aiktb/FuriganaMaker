@@ -5,6 +5,7 @@ import Browser from 'webextension-polyfill';
 import { Storage } from '@plasmohq/storage';
 
 import {
+  DisplayMode,
   ExtensionEvent,
   ExtensionStorage,
   FURIGANA_CLASS,
@@ -24,8 +25,7 @@ export const config: PlasmoCSConfig = {
 initialize();
 async function initialize() {
   const styleEvents: StyleEvent[] = [
-    ExtensionEvent.ToggleDisplay,
-    ExtensionEvent.ToggleHoverMode,
+    ExtensionEvent.SwitchDisplayMode,
     ExtensionEvent.SwitchSelectMode,
     ExtensionEvent.AdjustFontSize,
     ExtensionEvent.AdjustFontColor,
@@ -90,29 +90,40 @@ async function styleHandler(type: StyleEvent) {
   const rtSelector = `${rubySelector} > rt`;
   const rtHoverSelector = `${rubySelector}:hover > rt`;
   const rpSelector = `${rubySelector} > rp`;
-  const n5RtSelector = `${rubySelector}.n5 > rt`;
+  const filteredRtSelector = `${rubySelector}.n5 > rt`;
   const storage = new Storage({ area: 'local' });
 
   const value = await storage.get(toStorageKey(type));
-  let css: string;
+  let css: string = '';
   switch (type) {
-    case ExtensionEvent.ToggleDisplay:
-      css = `
-        ${rtSelector} {
-          display: ${value ? 'revert' : 'none !important'};
-        }
-      `;
-      break;
-    case ExtensionEvent.ToggleHoverMode:
-      css = `
-        ${rtSelector} {
-          opacity: ${value ? 0 : 1};
-        }
+    case ExtensionEvent.SwitchDisplayMode:
+      if (value === DisplayMode.Never) {
+        css = `
+          ${rtSelector} {
+            display: none;
+          }
+        `;
+      } else if (value === DisplayMode.Hover) {
+        css = `
+          ${rtSelector} {
+            opacity: 0;
+          }
 
-        ${rtHoverSelector} {
-          opacity: 1;
-        }
-      `;
+          ${rtHoverSelector} {
+            opacity: 1;
+          }
+        `;
+      } else if (value === DisplayMode.HoverNoGap) {
+        css = `
+          ${rtSelector} {
+            display: none;
+          }
+
+          ${rtHoverSelector} {
+            display: revert;
+          }
+        `;
+      }
       break;
     case ExtensionEvent.SwitchSelectMode:
       css = `
@@ -149,11 +160,13 @@ async function styleHandler(type: StyleEvent) {
       `;
       break;
     case ExtensionEvent.ToggleKanjiFilter:
-      css = `
-        ${n5RtSelector} {
-          display: ${value ? 'none' : 'revert'};
-        }
-      `;
+      if (value) {
+        css = `
+          ${filteredRtSelector} {
+            display: none;
+          }
+        `;
+      }
       break;
   }
   const id = `${FURIGANA_CLASS}${type}`;

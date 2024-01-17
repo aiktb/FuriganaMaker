@@ -57,6 +57,7 @@
     "@plasmohq/storage": "^1.9.0",
     "@sglkc/kuromoji": "^1.1.0",
     "@tailwindcss/forms": "^0.5.7",
+    "detect-browser": "^5.3.0",
     "file-saver": "^2.0.5",
     "plasmo": "^0.84.0",
     "react": "18.3.0-canary-c5b937576-20231219",
@@ -79,7 +80,6 @@
     "@typescript-eslint/eslint-plugin": "^6.15.0",
     "@typescript-eslint/parser": "^6.15.0",
     "autoprefixer": "^10.4.16",
-    "detect-browser": "^5.3.0",
     "eslint": "^8.56.0",
     "eslint-config-prettier": "^9.1.0",
     "eslint-plugin-react": "^7.33.2",
@@ -103,14 +103,23 @@
       "addFurigana": {
         "description": "Add furigana on the current page"
       },
-      "toggleDisplay": {
-        "description": "Toggle furigana display on all pages"
-      },
-      "toggleHoverMode": {
-        "description": "Toggle hover mode on all pages"
+      "toggleAutoMode": {
+        "description": "Toggle auto mode on all pages"
       },
       "toggleKanjiFilter": {
-        "description": "Toggle N5 kanji filter on all pages"
+        "description": "Toggle kanji filter on all pages"
+      },
+      "hideFurigana": {
+        "description": "Hide furigana on all pages"
+      },
+      "showFurigana": {
+        "description": "Show furigana on all pages"
+      },
+      "openHoverMode": {
+        "description": "Open hover mode on all pages"
+      },
+      "openHoverNoGapMode": {
+        "description": "Open hover-NoGap mode on all pages"
       }
     },
     "web_accessible_resources": [
