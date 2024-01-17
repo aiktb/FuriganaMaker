@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useRef } from 'react';
 
 interface RangeSliderProps {
   value: number;
@@ -9,25 +9,60 @@ interface RangeSliderProps {
 }
 
 export default function RangeSlider({ value, min, max, step, onChange }: RangeSliderProps) {
-  function handleChange(event: React.ChangeEvent<HTMLInputElement>) {
-    const value = parseInt(event.target.value);
-    onChange(value);
+  function clamp(value: number, min: number, max: number): number {
+    return Math.min(Math.max(value, min), max);
+  }
+
+  const trackRef = useRef<HTMLInputElement>(null);
+  const thumbRef = useRef<HTMLDivElement>(null);
+  function handlePointerDown(event: React.PointerEvent) {
+    const track = trackRef.current;
+    const thumb = thumbRef.current;
+    if (!track || !thumb) return;
+
+    const updateValue = (clientX: number) => {
+      const { width, left } = track.getBoundingClientRect();
+      const percent = clamp((clientX - left) / width, 0, 1);
+      const value = Math.round(percent * (max - min) + min);
+      onChange(value);
+    };
+    const handlePointerMove = (event: PointerEvent) => {
+      updateValue(event.clientX);
+    };
+    const handlePointerUp = (event: PointerEvent) => {
+      track.releasePointerCapture(event.pointerId);
+      track.removeEventListener('pointermove', handlePointerMove);
+      track.removeEventListener('pointerup', handlePointerUp);
+    };
+
+    track.setPointerCapture(event.pointerId);
+    track.addEventListener('pointermove', handlePointerMove);
+    track.addEventListener('pointerup', handlePointerUp);
+    updateValue(event.clientX);
+  }
+
+  function handleKeyDown(event: React.KeyboardEvent) {
+    if (event.key === 'ArrowLeft' || event.key === 'ArrowDown') {
+      onChange(clamp(value - step, min, max));
+    } else if (event.key === 'ArrowRight' || event.key === 'ArrowUp') {
+      onChange(clamp(value + step, min, max));
+    }
   }
   return (
-    <div className="relative flex h-5 grow items-center justify-start gap-x-1 rounded px-2 leading-5">
-      <input
-        className="absolute left-1/2 top-1/2 z-10 w-[90%] -translate-x-1/2 -translate-y-1/2 cursor-pointer opacity-0"
-        type="range"
-        value={value}
-        min={min}
-        max={max}
-        step={step}
-        onChange={handleChange}
-      />
-      <div className="flex h-[3px] w-full justify-center rounded-lg bg-current" aria-hidden="true">
-        <div className="relative h-[3px] w-[90%] rounded-lg bg-current">
+    <div
+      tabIndex={0}
+      className="relative flex h-5 grow cursor-pointer items-center justify-start gap-x-1 rounded px-2 leading-5"
+      onPointerDown={handlePointerDown}
+      onKeyDown={handleKeyDown}
+    >
+      <div
+        className="flex h-[3px] w-full justify-center rounded-full bg-current"
+        aria-hidden="true"
+      >
+        <div ref={trackRef} className="relative h-[3px] w-[90%] rounded-lg bg-current">
           <div
-            className="absolute top-1/2 size-3.5 -translate-x-1/2 -translate-y-1/2 cursor-pointer rounded-full bg-primary"
+            ref={thumbRef}
+            className="absolute top-1/2 size-[15px] -translate-x-1/2 -translate-y-1/2 rounded-full bg-primary"
             style={{ left: `${((value - min) / (max - min)) * 100}%` }}
           />
         </div>
