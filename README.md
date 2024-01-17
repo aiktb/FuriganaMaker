@@ -19,27 +19,20 @@ Add furigana to Japanese text for any web page. 🤔
 
 Special thanks to **_[plasmo](https://github.com/PlasmoHQ/plasmo)_** for taking the frustration out of browser extension development for me.
 
-![Preview](https://s2.loli.net/2023/11/01/cjFbz9PyIChrv5S.webp)
+![Preview](./assets/social-preview.png)
 
 ## Features
 
-- [x] Many common Japanese websites are supported by default.
-- [x] Local Japanese kanji parsing engine (no network required).
-- [x] Add furigana to any regions on the page.
-- [x] Freely modify the font size and color of furigana.
-- [x] Optionally show furigana only on hover state.
-- [x] Configurable default pages and regions for adding furigana.
+- Many common Japanese websites are supported by default.
+- Local Japanese kanji parsing engine (no network required).
+- Add furigana to any regions on the page.
+- Freely modify the font size and color of furigana.
+- Optionally show furigana only on hover state.
+- N5 Kanji filter for JLPT learners.
+- Configurable default pages and regions for adding furigana.
 
 ## Contribution
 
 Please make sure to read the [Contributing Guide](./.github/CONTRIBUTING.md) before making a pull request.
 
 This includes instructions on how to setup development environment, test extensions, and build the final product.
-
-## Inspired By
-
-- [Mirigana](https://chrome.google.com/webstore/detail/mirigana/hbekfodhcnfpkmoeaijgbamedofonjib)
-- [AdGuard AdBlocker](https://chrome.google.com/webstore/detail/adguard-adblocker/bgnkhhnnamicmpeenaelnjfhikgbkllg)
-- [Fix Translation](https://chrome.google.com/webstore/detail/fix-translation/nefkkabmejdacaifhjoinegmoggdbgee)
-- [Kuromoji](https://github.com/sglkc/kuromoji.js)
-- [WanaKana](https://github.com/WaniKani/WanaKana)
