@@ -23,9 +23,9 @@ import CursorOutlineIcon from 'react:~/assets/icons/CursorOutline.svg';
 import CursorTextIcon from 'react:~/assets/icons/CursorText.svg';
 import EyeIcon from 'react:~/assets/icons/Eye.svg';
 import FilterIcon from 'react:~/assets/icons/Filter.svg';
-import FilterOffIcon from 'react:~/assets/icons/FilterOff.svg';
 import FontSizeIcon from 'react:~/assets/icons/FontSize.svg';
 import GithubIcon from 'react:~/assets/icons/Github.svg';
+import HeartIcon from 'react:~/assets/icons/Heart.svg';
 import HiraganaIcon from 'react:~/assets/icons/Hiragana.svg';
 import Logo from 'react:~/assets/icons/Logo.svg';
 import PowerIcon from 'react:~/assets/icons/Power.svg';
@@ -149,9 +149,7 @@ function Menu({ configPromise }: { configPromise: Promise<Config> }) {
           }}
         />
       </MenuItem>
-      <MenuItem
-        icon={state.kanjiFilter ? <FilterIcon className="text-primary" /> : <FilterOffIcon />}
-      >
+      <MenuItem icon={<FilterIcon className={state.kanjiFilter ? 'text-primary' : ''} />}>
         <CheckBox
           text="N5 kanji filter"
           checked={state.kanjiFilter}
@@ -223,6 +221,9 @@ function Menu({ configPromise }: { configPromise: Promise<Config> }) {
       </MenuItem>
       <MenuItem icon={<GithubIcon />} tip="Open an issue on GitHub">
         <Link href="https://github.com/aiktb/FuriganaMaker/issues" text="Feedback" />
+      </MenuItem>
+      <MenuItem icon={<HeartIcon />} tip="Buy me a coffee☕">
+        <Link href="https://www.buymeacoffee.com/aiktb" text="Sponsor" />
       </MenuItem>
     </menu>
   );
