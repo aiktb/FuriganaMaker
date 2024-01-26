@@ -7,19 +7,19 @@ settings:
 dependencies:
   '@headlessui/react':
     specifier: ^1.7.18
-    version: 1.7.18(react-dom@18.2.0)(react@18.2.0)
+    version: 1.7.18(react-dom@18.3.0-canary-c5b937576-20231219)(react@18.3.0-canary-c5b937576-20231219)
   '@headlessui/tailwindcss':
     specifier: ^0.2.0
     version: 0.2.0(tailwindcss@3.4.1)
   '@iconify/react':
     specifier: ^4.1.1
-    version: 4.1.1(react@18.2.0)
+    version: 4.1.1(react@18.3.0-canary-c5b937576-20231219)
   '@plasmohq/messaging':
     specifier: ^0.6.1
-    version: 0.6.1(react@18.2.0)
+    version: 0.6.1(react@18.3.0-canary-c5b937576-20231219)
   '@plasmohq/storage':
     specifier: ^1.9.0
-    version: 1.9.0(react@18.2.0)
+    version: 1.9.0(react@18.3.0-canary-c5b937576-20231219)
   '@sglkc/kuromoji':
     specifier: ^1.1.0
     version: 1.1.0
@@ -34,13 +34,13 @@ dependencies:
     version: 2.0.5
   plasmo:
     specifier: ^0.84.1
-    version: 0.84.1(postcss@8.4.33)(react-dom@18.2.0)(react@18.2.0)
+    version: 0.84.1(postcss@8.4.33)(react-dom@18.3.0-canary-c5b937576-20231219)(react@18.3.0-canary-c5b937576-20231219)
   react:
-    specifier: 18.2.0
-    version: 18.2.0
+    specifier: 18.3.0-canary-c5b937576-20231219
+    version: 18.3.0-canary-c5b937576-20231219
   react-dom:
-    specifier: 18.2.0
-    version: 18.2.0(react@18.2.0)
+    specifier: 18.3.0-canary-c5b937576-20231219
+    version: 18.3.0-canary-c5b937576-20231219(react@18.3.0-canary-c5b937576-20231219)
   tailwindcss:
     specifier: ^3.4.1
     version: 3.4.1
@@ -817,17 +817,17 @@ packages:
     engines: {node: '>=14.0.0', npm: '>=7.0.0'}
     dev: true
 
-  /@headlessui/react@1.7.18(react-dom@18.2.0)(react@18.2.0):
+  /@headlessui/react@1.7.18(react-dom@18.3.0-canary-c5b937576-20231219)(react@18.3.0-canary-c5b937576-20231219):
     resolution: {integrity: sha512-4i5DOrzwN4qSgNsL4Si61VMkUcWbcSKueUV7sFhpHzQcSShdlHENE5+QBntMSRvHt8NyoFO2AGG8si9lq+w4zQ==}
     engines: {node: '>=10'}
     peerDependencies:
       react: ^16 || ^17 || ^18
       react-dom: ^16 || ^17 || ^18
     dependencies:
-      '@tanstack/react-virtual': 3.0.2(react-dom@18.2.0)(react@18.2.0)
+      '@tanstack/react-virtual': 3.0.2(react-dom@18.3.0-canary-c5b937576-20231219)(react@18.3.0-canary-c5b937576-20231219)
       client-only: 0.0.1
-      react: 18.2.0
-      react-dom: 18.2.0(react@18.2.0)
+      react: 18.3.0-canary-c5b937576-20231219
+      react-dom: 18.3.0-canary-c5b937576-20231219(react@18.3.0-canary-c5b937576-20231219)
     dev: false
 
   /@headlessui/tailwindcss@0.2.0(tailwindcss@3.4.1):
@@ -879,13 +879,13 @@ packages:
       - supports-color
     dev: true
 
-  /@iconify/react@4.1.1(react@18.2.0):
+  /@iconify/react@4.1.1(react@18.3.0-canary-c5b937576-20231219):
     resolution: {integrity: sha512-jed14EjvKjee8mc0eoscGxlg7mSQRkwQG3iX3cPBCO7UlOjz0DtlvTqxqEcHUJGh+z1VJ31Yhu5B9PxfO0zbdg==}
     peerDependencies:
       react: '>=16'
     dependencies:
       '@iconify/types': 2.0.0
-      react: 18.2.0
+      react: 18.3.0-canary-c5b937576-20231219
     dev: false
 
   /@iconify/types@2.0.0:
@@ -2156,7 +2156,7 @@ packages:
     requiresBuild: true
     optional: true
 
-  /@plasmohq/consolidate@0.17.0(react-dom@18.2.0)(react@18.2.0):
+  /@plasmohq/consolidate@0.17.0(react-dom@18.3.0-canary-c5b937576-20231219)(react@18.3.0-canary-c5b937576-20231219):
     resolution: {integrity: sha512-Na8imBnvzYPtzkK+9Uv9hPZ/oJti/0jgiQWD222SHxHw2QCVuR4KzslxXCy/rS8gGluSiTs1BGVvc3d2O6aJCA==}
     engines: {node: '>= 0.10.0'}
     peerDependencies:
@@ -2301,15 +2301,15 @@ packages:
         optional: true
     dependencies:
       bluebird: 3.7.2
-      react: 18.2.0
-      react-dom: 18.2.0(react@18.2.0)
+      react: 18.3.0-canary-c5b937576-20231219
+      react-dom: 18.3.0-canary-c5b937576-20231219(react@18.3.0-canary-c5b937576-20231219)
     dev: false
 
   /@plasmohq/init@0.7.0:
     resolution: {integrity: sha512-P75g48dqOGneJ+n0AcqnLE/TYflcaPc3B7h6EopnCBBYUDnCNBMwYmKAkaf5pnhsEB0ybPS6TU1C2DTGfqaW7A==}
     dev: false
 
-  /@plasmohq/messaging@0.6.1(react@18.2.0):
+  /@plasmohq/messaging@0.6.1(react@18.3.0-canary-c5b937576-20231219):
     resolution: {integrity: sha512-/nn1k8SG5z++o/NnZu+byHWcC9MhPLxfmvj+AP3buqMn7uwfYDcYWURLuMW2Knw08HBg+wku2v1Ltt4evN0nzA==}
     peerDependencies:
       react: ^16.8.6 || ^17 || ^18
@@ -2318,7 +2318,7 @@ packages:
         optional: true
     dependencies:
       nanoid: 5.0.3
-      react: 18.2.0
+      react: 18.3.0-canary-c5b937576-20231219
     dev: false
 
   /@plasmohq/parcel-bundler@0.5.5:
@@ -2343,7 +2343,7 @@ packages:
       - '@parcel/core'
     dev: false
 
-  /@plasmohq/parcel-config@0.40.1(postcss@8.4.33)(react-dom@18.2.0)(react@18.2.0)(typescript@5.2.2):
+  /@plasmohq/parcel-config@0.40.1(postcss@8.4.33)(react-dom@18.3.0-canary-c5b937576-20231219)(react@18.3.0-canary-c5b937576-20231219)(typescript@5.2.2):
     resolution: {integrity: sha512-80zXQHVsIGlEqwbfIUpgiuIv049taaJNJ3aRYg6DT93F6Yc9C2JaJe75N6Qa4O5lLaEEG2PF52Ca9LiSghiuOQ==}
     dependencies:
       '@parcel/compressor-raw': 2.9.3(@parcel/core@2.9.3)
@@ -2380,7 +2380,7 @@ packages:
       '@plasmohq/parcel-transformer-inline-css': 0.3.10
       '@plasmohq/parcel-transformer-manifest': 0.17.8
       '@plasmohq/parcel-transformer-svelte': 0.5.2
-      '@plasmohq/parcel-transformer-vue': 0.5.0(react-dom@18.2.0)(react@18.2.0)
+      '@plasmohq/parcel-transformer-vue': 0.5.0(react-dom@18.3.0-canary-c5b937576-20231219)(react@18.3.0-canary-c5b937576-20231219)
     transitivePeerDependencies:
       - '@swc/core'
       - '@swc/helpers'
@@ -2598,7 +2598,7 @@ packages:
       svelte: 4.0.1
     dev: false
 
-  /@plasmohq/parcel-transformer-vue@0.5.0(react-dom@18.2.0)(react@18.2.0):
+  /@plasmohq/parcel-transformer-vue@0.5.0(react-dom@18.3.0-canary-c5b937576-20231219)(react@18.3.0-canary-c5b937576-20231219):
     resolution: {integrity: sha512-/3oVbajt+DRqtbM0RkKFtfyZR8DVjcsYpj1jHqPParGVBiXwgP0D/8Bj5p5/5Iqihs08gzasTcjKcwQKKdj0og==}
     engines: {parcel: '>= 2.7.0'}
     dependencies:
@@ -2608,7 +2608,7 @@ packages:
       '@parcel/source-map': 2.1.1
       '@parcel/types': 2.9.3(@parcel/core@2.9.3)
       '@parcel/utils': 2.9.3
-      '@plasmohq/consolidate': 0.17.0(react-dom@18.2.0)(react@18.2.0)
+      '@plasmohq/consolidate': 0.17.0(react-dom@18.3.0-canary-c5b937576-20231219)(react@18.3.0-canary-c5b937576-20231219)
       '@vue/compiler-sfc': 3.3.4
       nullthrows: 1.1.1
       semver: 7.5.4
@@ -2662,7 +2662,7 @@ packages:
       - whiskers
     dev: false
 
-  /@plasmohq/storage@1.9.0(react@18.2.0):
+  /@plasmohq/storage@1.9.0(react@18.3.0-canary-c5b937576-20231219):
     resolution: {integrity: sha512-mntoJ0EVh7JfYyMKWKnt6yqVlJnwavEkwdXssSOxS1CEeyNX2GPkXQfChvlGhuEJplqcRhLaym6rEc690Ao0fg==}
     peerDependencies:
       react: ^16.8.6 || ^17 || ^18
@@ -2671,7 +2671,7 @@ packages:
         optional: true
     dependencies:
       pify: 6.1.0
-      react: 18.2.0
+      react: 18.3.0-canary-c5b937576-20231219
     dev: false
 
   /@pnpm/config.env-replace@1.1.0:
@@ -3207,15 +3207,15 @@ packages:
       tailwindcss: 3.4.1
     dev: false
 
-  /@tanstack/react-virtual@3.0.2(react-dom@18.2.0)(react@18.2.0):
+  /@tanstack/react-virtual@3.0.2(react-dom@18.3.0-canary-c5b937576-20231219)(react@18.3.0-canary-c5b937576-20231219):
     resolution: {integrity: sha512-9XbRLPKgnhMwwmuQMnJMv+5a9sitGNCSEtf/AZXzmJdesYk7XsjYHaEDny+IrJzvPNwZliIIDwCRiaUqR3zzCA==}
     peerDependencies:
       react: ^16.8.0 || ^17.0.0 || ^18.0.0
       react-dom: ^16.8.0 || ^17.0.0 || ^18.0.0
     dependencies:
       '@tanstack/virtual-core': 3.0.0
-      react: 18.2.0
-      react-dom: 18.2.0(react@18.2.0)
+      react: 18.3.0-canary-c5b937576-20231219
+      react-dom: 18.3.0-canary-c5b937576-20231219(react@18.3.0-canary-c5b937576-20231219)
     dev: false
 
   /@tanstack/virtual-core@3.0.0:
@@ -7701,7 +7701,7 @@ packages:
       pathe: 1.1.2
     dev: true
 
-  /plasmo@0.84.1(postcss@8.4.33)(react-dom@18.2.0)(react@18.2.0):
+  /plasmo@0.84.1(postcss@8.4.33)(react-dom@18.3.0-canary-c5b937576-20231219)(react@18.3.0-canary-c5b937576-20231219):
     resolution: {integrity: sha512-87U0ryQGhefBQ8aBRGiRB4l3MShbLQtXpv5aVO90q4e/7fhW6hcRc2Y+XzW1ukK6y65RWwzTGVN6HKwGQze55g==}
     hasBin: true
     dependencies:
@@ -7711,7 +7711,7 @@ packages:
       '@parcel/package-manager': 2.9.3(@parcel/core@2.9.3)
       '@parcel/watcher': 2.2.0
       '@plasmohq/init': 0.7.0
-      '@plasmohq/parcel-config': 0.40.1(postcss@8.4.33)(react-dom@18.2.0)(react@18.2.0)(typescript@5.2.2)
+      '@plasmohq/parcel-config': 0.40.1(postcss@8.4.33)(react-dom@18.3.0-canary-c5b937576-20231219)(react@18.3.0-canary-c5b937576-20231219)(typescript@5.2.2)
       '@plasmohq/parcel-core': 0.1.8
       buffer: 6.0.3
       chalk: 5.3.0
@@ -8076,14 +8076,14 @@ packages:
       minimist: 1.2.8
       strip-json-comments: 2.0.1
 
-  /react-dom@18.2.0(react@18.2.0):
-    resolution: {integrity: sha512-6IMTriUmvsjHUjNtEDudZfuDQUoWXVxKHhlEGSk81n4YFS+r/Kl99wXiwlVXtPBtJenozv2P+hxDsw9eA7Xo6g==}
+  /react-dom@18.3.0-canary-c5b937576-20231219(react@18.3.0-canary-c5b937576-20231219):
+    resolution: {integrity: sha512-MahkLDRcM+y8gNEgDHZOvfogjinhvwjjDhgNuTNHyqtC78Xz0iClZ7weD+Gdv9XL2R/AKV/EqYCpUzpey9mDLA==}
     peerDependencies:
-      react: ^18.2.0
+      react: 18.3.0-canary-c5b937576-20231219
     dependencies:
       loose-envify: 1.4.0
-      react: 18.2.0
-      scheduler: 0.23.0
+      react: 18.3.0-canary-c5b937576-20231219
+      scheduler: 0.24.0-canary-c5b937576-20231219
     dev: false
 
   /react-error-overlay@6.0.9:
@@ -8108,8 +8108,8 @@ packages:
     engines: {node: '>=0.10.0'}
     dev: false
 
-  /react@18.2.0:
-    resolution: {integrity: sha512-/3IjMdb2L9QbBdWiW5e3P2/npwMBaU9mHCSCUzNln0ZCYbcfTsGbTJrU/kGemdH2IWmB2ioZ+zkxtmq6g09fGQ==}
+  /react@18.3.0-canary-c5b937576-20231219:
+    resolution: {integrity: sha512-gvMxGf2wlOMq387pdOypG4li5iuLdpu/wDRuyETZsdLFrDcCH4RuJCIcTWcLIlP/oG5uD5yXMi2hePYuB+toyw==}
     engines: {node: '>=0.10.0'}
     dependencies:
       loose-envify: 1.4.0
@@ -8428,8 +8428,8 @@ packages:
     resolution: {integrity: sha512-0s+oAmw9zLl1V1cS9BtZN7JAd0cW5e0QH4W3LWEK6a4LaLEA2OTpGYWDY+6XasBLtz6wkm3u1xRw95mRuJ59WA==}
     requiresBuild: true
 
-  /scheduler@0.23.0:
-    resolution: {integrity: sha512-CtuThmgHNg7zIZWAXi3AsyIzA3n4xx7aNyjwC2VJldO2LMVDhFK+63xGqq6CsJH4rTAt6/M+N4GhZiDYPx9eUw==}
+  /scheduler@0.24.0-canary-c5b937576-20231219:
+    resolution: {integrity: sha512-eFiLsRse2DGq3davC8B6qmVlbdrikiHDcqeys+Dp7l5YQ+Jw9tPVQ5RZbEA0o7zO2rjyPFzxNOtE6fRMQcWrKQ==}
     dependencies:
       loose-envify: 1.4.0
     dev: false
