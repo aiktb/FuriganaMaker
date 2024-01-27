@@ -10,7 +10,7 @@ interface ColorPickerProps {
 
 export default function ColorPicker({ color, onChange }: ColorPickerProps) {
   return (
-    <Popover className="relative flex grow">
+    <Popover className="flex grow">
       <Popover.Button className="group flex grow items-center justify-between rounded px-2 capitalize">
         Select color
         <div
@@ -20,14 +20,17 @@ export default function ColorPicker({ color, onChange }: ColorPickerProps) {
       </Popover.Button>
       <Transition
         as={Fragment}
-        enter="transition ease-out duration-200"
-        enterFrom="opacity-0 translate-y-1"
-        enterTo="opacity-100 translate-y-0"
+        enter="transition ease-out duration-300"
+        enterFrom="opacity-0"
+        enterTo="opacity-100"
         leave="transition ease-in duration-150"
-        leaveFrom="opacity-100 translate-y-0"
-        leaveTo="opacity-0 translate-y-1"
+        leaveFrom="opacity-100"
+        leaveTo="opacity-0"
       >
-        <Popover.Panel focus className="fixed inset-0 z-50 bg-white dark:bg-slate-900">
+        <Popover.Panel
+          focus
+          className="absolute inset-0 z-50 h-[22rem] w-[14rem] bg-white dark:bg-slate-900"
+        >
           <ColorPickerPanel color={color} onChange={onChange}>
             <Popover.Button className="flex items-center justify-center gap-2 rounded border-none px-1.5 font-sans shadow-sm outline-none ring-1 ring-gray-300 transition-all hover:text-primary focus-visible:text-primary focus-visible:ring-2 focus-visible:ring-primary dark:ring-slate-700">
               Close Picker Panel
