@@ -50,6 +50,7 @@
     "type-check": "tsc --noEmit"
   },
   "dependencies": {
+    "@floating-ui/react": "^0.26.7",
     "@headlessui/react": "^1.7.18",
     "@headlessui/tailwindcss": "^0.2.0",
     "@iconify/react": "^4.1.1",
@@ -85,7 +86,7 @@
     "eslint-plugin-react": "^7.33.2",
     "eslint-plugin-react-hooks": "^4.6.0",
     "globals": "^13.24.0",
-    "husky": "^9.0.3",
+    "husky": "^9.0.6",
     "kuromojin": "^3.0.0",
     "lint-staged": "^15.2.0",
     "postcss": "^8.4.33",
