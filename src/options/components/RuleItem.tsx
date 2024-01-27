@@ -29,7 +29,7 @@ export default function RuleItem({ rule, onChange, onDelete }: RuleItemProps) {
           <div className="flex-auto">
             <a
               className="truncate text-sm font-semibold leading-6 text-sky-500 transition hover:text-sky-700"
-              href={`https://${rule.domain}`}
+              href={encodeURI(`https://${rule.domain}`)}
               target="_blank"
               rel="noopener noreferrer"
             >
