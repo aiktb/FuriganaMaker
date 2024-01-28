@@ -4,7 +4,7 @@ import { Suspense } from 'react';
 
 import { Storage } from '@plasmohq/storage';
 
-import { ExtensionStorage, type Rule } from '~contents/core';
+import { ExtensionStorage, type SelectorRule } from '~contents/core';
 
 import Footer from './components/Footer';
 import Header from './components/Header';
@@ -22,14 +22,14 @@ export default function Options() {
 
   async function initializeRules() {
     const storage = new Storage({ area: 'local' });
-    const rules: Rule[] = await storage.get(ExtensionStorage.UserRules);
+    const rules: SelectorRule[] = await storage.get(ExtensionStorage.SelectorRules);
     return rules;
   }
   return (
     <div className="flex min-h-screen flex-col">
       <Header />
-      <p className="mx-auto my-2 max-w-full whitespace-normal text-balance text-center text-base font-bold">
-        Feel free to share your custom selector rules in the{' '}
+      <p className="mx-auto mb-2 max-w-full whitespace-normal text-balance border-b border-gray-200 p-4 text-center text-base font-bold dark:border-slate-800">
+        Feel free to share your custom rules in the{' '}
         <a
           href="https://github.com/aiktb/FuriganaMaker/discussions"
           className="text-sky-500 underline transition hover:text-sky-700"

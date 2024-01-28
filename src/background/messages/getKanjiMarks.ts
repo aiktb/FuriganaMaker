@@ -2,8 +2,9 @@ import kuromoji from '@sglkc/kuromoji';
 import { isKanji, toKatakana } from 'wanakana';
 
 import type { PlasmoMessaging } from '@plasmohq/messaging';
+import { Storage } from '@plasmohq/storage';
 
-import kanjiList from '../../../assets/rules/kanji.json';
+import type { FilterRule } from '~contents/core';
 
 // Referenced from @azu/kuromojin.
 interface Tokenizer {
@@ -45,7 +46,7 @@ const getTokenizer = async () => {
 };
 
 export interface KanjiMark extends KanjiToken {
-  n5: boolean;
+  isFiltered: boolean;
 }
 
 const handler: PlasmoMessaging.MessageHandler<{ text: string }, { message: KanjiMark[] }> = async (
@@ -54,13 +55,16 @@ const handler: PlasmoMessaging.MessageHandler<{ text: string }, { message: Kanji
 ) => {
   const tokenizer = await getTokenizer();
   const mojiTokens = tokenizer.tokenize(req.body!.text);
+  const storage = new Storage({ area: 'local' });
+  const kanjiList: FilterRule[] = await storage.get('kanjiList');
   const kanjiMap = new Map<string, string[]>(
-    kanjiList.map((n5Kanji) => [n5Kanji.kanji, n5Kanji.reading]),
+    kanjiList.map((filterRule) => [filterRule.kanji, filterRule.reading]),
   );
   const message = toKanjiToken(mojiTokens).map((token) => {
     return {
       ...token,
-      n5: kanjiMap.has(token.original) && kanjiMap.get(token.original)!.includes(token.reading),
+      isFiltered:
+        kanjiMap.has(token.original) && kanjiMap.get(token.original)!.includes(token.reading),
     };
   });
 

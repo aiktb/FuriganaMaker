@@ -90,7 +90,7 @@ async function styleHandler(type: StyleEvent) {
   const rtSelector = `${rubySelector} > rt`;
   const rtHoverSelector = `${rubySelector}:hover > rt`;
   const rpSelector = `${rubySelector} > rp`;
-  const filteredRtSelector = `${rubySelector}.n5 > rt`;
+  const filteredRtSelector = `${rubySelector}.isFiltered > rt`;
   const storage = new Storage({ area: 'local' });
 
   const value = await storage.get(toStorageKey(type));
