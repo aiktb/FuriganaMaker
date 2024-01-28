@@ -75,7 +75,7 @@ export default function RuleItem({ rule, onChange, onDelete }: RuleItemProps) {
                 Edit
               </button>
               <button
-                className="flex items-center gap-x-1 rounded-md border border-gray-200 px-1 py-0.5 text-sm font-bold text-red-600 shadow transition-[background-color] hover:bg-transparent/10 dark:border-slate-800 dark:text-red-500 dark:hover:bg-transparent/20"
+                className="flex items-center gap-x-1 rounded-md border border-gray-200 px-1 py-0.5 text-sm font-bold text-sky-500 shadow transition-[background-color] hover:bg-transparent/10 dark:border-slate-800 dark:hover:bg-transparent/20"
                 onClick={() => {
                   setDeleteDialogIsOpen(true);
                 }}
