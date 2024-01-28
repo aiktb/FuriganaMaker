@@ -33,7 +33,7 @@ export const config: PlasmoCSConfig = {
   // Reflow on a huge page causes severe page freezes and even the browser becomes unresponsive. (issue#16)
   const htmlSize = document.documentElement.outerHTML.length / 1024; // KB
   if (htmlSize > 500) {
-    const warningAttrsLight: CSSProperties = {
+    const warningAttrs: CSSProperties = {
       position: 'fixed',
       display: 'flex',
       gap: '10px',
@@ -50,7 +50,7 @@ export const config: PlasmoCSConfig = {
     };
 
     const warning = document.createElement('div');
-    Object.assign(warning.style, warningAttrsLight);
+    Object.assign(warning.style, warningAttrs);
     const icon = document.createElement('div');
     icon.textContent = '⚠️';
     const text = document.createElement('span');

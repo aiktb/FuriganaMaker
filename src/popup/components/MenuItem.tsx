@@ -12,7 +12,7 @@ export default function MenuItem({ children, icon, tip }: MenuItemProps) {
   const [isOpen, setIsOpen] = useState(false);
   const { refs, floatingStyles } = useFloating({
     open: isOpen,
-    placement: 'top',
+    placement: 'bottom',
     strategy: 'fixed',
     middleware: [offset(6), flip()],
   });
