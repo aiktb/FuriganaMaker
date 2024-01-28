@@ -149,9 +149,12 @@ function Menu({ configPromise }: { configPromise: Promise<Config> }) {
           }}
         />
       </MenuItem>
-      <MenuItem icon={<FilterIcon className={state.kanjiFilter ? 'text-primary' : ''} />}>
+      <MenuItem
+        icon={<FilterIcon className={state.kanjiFilter ? 'text-primary' : ''} />}
+        tip="Default level is N5"
+      >
         <CheckBox
-          text="N5 kanji filter"
+          text="On-off kanji filter"
           checked={state.kanjiFilter}
           onChange={(checked) => {
             dispatch({ type: ExtensionEvent.ToggleKanjiFilter, payload: checked });
