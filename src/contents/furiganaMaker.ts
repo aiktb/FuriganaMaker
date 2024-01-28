@@ -64,8 +64,8 @@ const tokenize = async (text: string): Promise<KanjiMark[]> => {
 const createRuby = (token: KanjiMark, furiganaType: FuriganaType): HTMLElement => {
   const ruby = document.createElement('ruby');
   ruby.classList.add(FURIGANA_CLASS);
-  if (token.n5) {
-    ruby.classList.add('n5');
+  if (token.isFiltered) {
+    ruby.classList.add('isFiltered');
   }
   const rightParenthesisRp = document.createElement('rp');
   rightParenthesisRp.textContent = ')';

@@ -2,20 +2,20 @@ import { Disclosure } from '@headlessui/react';
 import { Icon } from '@iconify/react';
 import React, { useState } from 'react';
 
-import type { Rule } from '~contents/core';
+import type { SelectorRule } from '~contents/core';
 
 type RuleEditorProps = UpdateProps | CreateProps;
 
 interface UpdateProps {
-  rule: Rule;
+  rule: SelectorRule;
   mode: 'update';
-  onChange: (rule: Rule) => void;
+  onChange: (rule: SelectorRule) => void;
 }
 
 interface CreateProps {
   rule?: undefined;
   mode: 'create';
-  onChange: (rule: Rule) => void;
+  onChange: (rule: SelectorRule) => void;
 }
 
 export default function RuleEditor({ rule, mode, onChange }: RuleEditorProps) {
@@ -107,7 +107,7 @@ export default function RuleEditor({ rule, mode, onChange }: RuleEditorProps) {
                   disabled={mode === 'update'}
                   required
                   placeholder="example.com"
-                  className="block w-full rounded-md border-0 py-1.5 text-gray-900 shadow-sm ring-1 ring-inset ring-gray-300 placeholder:text-gray-400 focus:ring-2 focus:ring-inset focus:ring-sky-600 disabled:cursor-not-allowed sm:text-sm sm:leading-6 dark:bg-slate-900 dark:text-white dark:ring-gray-700 dark:focus:ring-sky-600"
+                  className="block w-full rounded-md border-0 py-1.5 text-gray-900 shadow-sm ring-1 ring-inset ring-gray-300 placeholder:text-gray-400 focus:ring-2 focus:ring-inset focus:ring-sky-600 disabled:cursor-not-allowed dark:bg-slate-900 dark:text-white dark:ring-gray-700 dark:focus:ring-sky-600 sm:text-sm sm:leading-6"
                   value={domain}
                   onChange={(e) => setDomain(e.target.value)}
                 />
@@ -137,7 +137,7 @@ export default function RuleEditor({ rule, mode, onChange }: RuleEditorProps) {
                   name="selector"
                   required
                   placeholder="body"
-                  className="block w-full rounded-md border-0 py-1.5 text-gray-900 shadow-sm ring-1 ring-inset ring-gray-300 placeholder:text-gray-400 focus:ring-2 focus:ring-inset focus:ring-sky-600 sm:text-sm sm:leading-6 dark:bg-slate-900 dark:text-white dark:ring-gray-700 dark:focus:ring-sky-600"
+                  className="block w-full rounded-md border-0 py-1.5 text-gray-900 shadow-sm ring-1 ring-inset ring-gray-300 placeholder:text-gray-400 focus:ring-2 focus:ring-inset focus:ring-sky-600 dark:bg-slate-900 dark:text-white dark:ring-gray-700 dark:focus:ring-sky-600 sm:text-sm sm:leading-6"
                   value={selector}
                   onChange={(e) => setSelector(e.target.value)}
                 />

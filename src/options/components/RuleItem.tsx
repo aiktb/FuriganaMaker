@@ -2,15 +2,15 @@ import { Dialog } from '@headlessui/react';
 import { Icon } from '@iconify/react';
 import { useState } from 'react';
 
-import type { Rule } from '~contents/core';
+import type { SelectorRule } from '~contents/core';
 
 import PopupTransition from './PopupTransition';
 import RuleEditor from './RuleEditor';
 
 interface RuleItemProps {
-  rule: Rule;
-  onChange: (rule: Rule) => void;
-  onDelete: (rule: Rule) => void;
+  rule: SelectorRule;
+  onChange: (rule: SelectorRule) => void;
+  onDelete: (rule: SelectorRule) => void;
 }
 
 export default function RuleItem({ rule, onChange, onDelete }: RuleItemProps) {

@@ -27,7 +27,8 @@ export enum ExtensionStorage {
   SelectMode = 'selectMode',
   FontSize = 'fontSize',
   FontColor = 'fontColor',
-  UserRules = 'userRules',
+  SelectorRules = 'selectorRules',
+  FilterRules = 'filterRules',
 }
 
 export type StyleEvent =
@@ -72,10 +73,15 @@ export interface Config {
   [ExtensionStorage.FontColor]: string;
 }
 
-export interface Rule {
+export interface SelectorRule {
   domain: string; // This field is unique.
   selector: string;
   active: boolean;
+}
+
+export interface FilterRule {
+  kanji: string;
+  reading: string[];
 }
 
 export type StorageChangeEvent =

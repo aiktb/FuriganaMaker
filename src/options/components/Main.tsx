@@ -6,14 +6,14 @@ import { z } from 'zod';
 
 import { Storage } from '@plasmohq/storage';
 
-import { ExtensionStorage, type Rule } from '~contents/core';
+import { ExtensionStorage, type SelectorRule } from '~contents/core';
 
 import NotFoundRule from './NotFoundRule';
 import PopupTransition from './PopupTransition';
 import RuleEditor from './RuleEditor';
 import RuleItem from './RuleItem';
 
-export default function Main({ rulesPromise }: { rulesPromise: Promise<Rule[]> }) {
+export default function Main({ rulesPromise }: { rulesPromise: Promise<SelectorRule[]> }) {
   const [rules, setRules] = useState(use(rulesPromise));
   const [createRuleDialogIsOpen, setCreateRuleDialogIsOpen] = useState(false);
   const [importDialogIsOpen, setImportDialogIsOpen] = useState(false);
@@ -22,10 +22,10 @@ export default function Main({ rulesPromise }: { rulesPromise: Promise<Rule[]> }
 
   useEffect(() => {
     const storage = new Storage({ area: 'local' });
-    storage.set(ExtensionStorage.UserRules, rules);
+    storage.set(ExtensionStorage.SelectorRules, rules);
   }, [rules]);
 
-  function createNewRule(rule: Rule) {
+  function createNewRule(rule: SelectorRule) {
     const sameDomainRule = rules.find((r) => r.domain === rule.domain);
     if (sameDomainRule) {
       const mergedRule = {
@@ -66,17 +66,17 @@ export default function Main({ rulesPromise }: { rulesPromise: Promise<Rule[]> }
           setImportFailedDialogIsOpen(true);
           return;
         }
-        const importedRules = JSON.parse(reader.result as string) as Rule[];
+        const importedRules = JSON.parse(reader.result as string) as SelectorRule[];
         const mergedRules = mergeSameDomainRules(importedRules);
 
         const storage = new Storage({ area: 'local' });
-        await storage.set(ExtensionStorage.UserRules, mergedRules);
+        await storage.set(ExtensionStorage.SelectorRules, mergedRules);
         setRules(mergedRules);
       };
       reader.readAsText(file);
     }
 
-    function mergeSameDomainRules(rules: Rule[]) {
+    function mergeSameDomainRules(rules: SelectorRule[]) {
       return rules.reduce((acc, cur) => {
         const index = acc.findIndex((item) => item.domain === cur.domain);
         if (index !== -1) {
@@ -85,7 +85,7 @@ export default function Main({ rulesPromise }: { rulesPromise: Promise<Rule[]> }
           acc.push(cur);
         }
         return acc;
-      }, [] as Rule[]);
+      }, [] as SelectorRule[]);
     }
 
     function checkJSONErrorMessage(data: string) {
