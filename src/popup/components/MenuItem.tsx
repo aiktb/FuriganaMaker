@@ -45,7 +45,7 @@ export default function MenuItem({ children, icon, tip }: MenuItemProps) {
           <div
             ref={refs.setFloating}
             style={floatingStyles}
-            className="text-slate-20 inline-flex rounded bg-slate-900 px-2 text-white dark:bg-slate-200 dark:text-slate-800"
+            className="text-slate-20 z-50 inline-flex rounded bg-slate-900 px-2 text-white dark:bg-slate-200 dark:text-slate-800"
           >
             {tip}
           </div>
