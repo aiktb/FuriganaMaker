@@ -32,7 +32,7 @@ export default function ColorPicker({ color, onChange }: ColorPickerProps) {
           className="absolute inset-0 z-50 h-[22rem] w-[14rem] bg-white dark:bg-slate-900"
         >
           <ColorPickerPanel color={color} onChange={onChange}>
-            <Popover.Button className="flex items-center justify-center gap-2 rounded border-none px-1.5 font-sans shadow-sm outline-none ring-1 ring-gray-300 transition-all hover:text-primary focus-visible:text-primary focus-visible:ring-2 focus-visible:ring-primary dark:ring-slate-700">
+            <Popover.Button className="flex items-center justify-center gap-2 rounded border-none px-1.5 font-sans shadow-sm outline-none ring-1 ring-gray-300 transition-all hover:text-primary focus-visible:text-primary focus-visible:ring-2 focus-visible:ring-primary dark:ring-slate-700 dark:focus-visible:ring-primary">
               Close Picker Panel
               <Icon
                 className="size-4"
@@ -181,7 +181,7 @@ function ColorPickerPanel({ color, children, onChange }: ColorPickerPanelProps) 
           <label>
             <span>HEX </span>
             <input
-              className="h-6 w-[5rem] rounded border-none px-1.5 font-mono text-sm uppercase shadow-sm ring-1 ring-inset ring-gray-300 focus:border-none focus:ring-2 focus:ring-primary dark:bg-slate-950 dark:ring-slate-700"
+              className="h-6 w-[5rem] rounded border-none px-1.5 font-mono text-sm uppercase shadow-sm ring-1 ring-inset ring-gray-300 focus:border-none focus:ring-2 focus:ring-primary dark:bg-slate-950 dark:ring-slate-700 dark:focus-visible:ring-primary"
               value={input}
               onChange={(event) => {
                 setInput(event.target.value);
@@ -194,7 +194,7 @@ function ColorPickerPanel({ color, children, onChange }: ColorPickerPanelProps) 
             />
           </label>
           <button
-            className="flex h-6 items-center justify-center gap-0.5 rounded border-none px-1.5 font-sans shadow-sm outline-none ring-1 ring-gray-300 transition-all hover:text-primary focus-visible:text-primary focus-visible:ring-2 focus-visible:ring-primary dark:bg-slate-950 dark:ring-slate-700"
+            className="flex h-6 items-center justify-center gap-0.5 rounded border-none px-1.5 font-sans shadow-sm outline-none ring-1 ring-gray-300 transition-all hover:text-primary focus-visible:text-primary focus-visible:ring-2 focus-visible:ring-primary dark:bg-slate-950 dark:ring-slate-700 dark:focus-visible:ring-primary"
             onClick={() => {
               onChange('currentColor');
             }}
