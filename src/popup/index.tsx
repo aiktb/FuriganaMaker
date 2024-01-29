@@ -133,7 +133,7 @@ function Menu({ configPromise }: { configPromise: Promise<Config> }) {
       : [SelectMode.Default, SelectMode.Original, SelectMode.Parentheses];
 
   return (
-    <menu className="space-y-1.5 border-r-2 border-primary pr-3">
+    <menu className="space-y-2 border-r-2 border-primary pr-2">
       <MenuItem icon={<CursorOutlineIcon />} tip="Press ESC to cancel">
         <Button text="Add furigana" onClick={addFurigana} />
       </MenuItem>
