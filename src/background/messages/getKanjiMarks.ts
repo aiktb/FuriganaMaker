@@ -4,7 +4,7 @@ import { isKanji, toKatakana } from 'wanakana';
 import type { PlasmoMessaging } from '@plasmohq/messaging';
 import { Storage } from '@plasmohq/storage';
 
-import type { FilterRule } from '~contents/core';
+import { ExtensionStorage, type FilterRule } from '~contents/core';
 
 // Referenced from @azu/kuromojin.
 interface Tokenizer {
@@ -56,7 +56,7 @@ const handler: PlasmoMessaging.MessageHandler<{ text: string }, { message: Kanji
   const tokenizer = await getTokenizer();
   const mojiTokens = tokenizer.tokenize(req.body!.text);
   const storage = new Storage({ area: 'local' });
-  const kanjiList: FilterRule[] = await storage.get('kanjiList');
+  const kanjiList: FilterRule[] = await storage.get(ExtensionStorage.FilterRules);
   const kanjiMap = new Map<string, string[]>(
     kanjiList.map((filterRule) => [filterRule.kanji, filterRule.reading]),
   );
