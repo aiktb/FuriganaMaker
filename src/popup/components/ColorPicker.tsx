@@ -27,10 +27,7 @@ export default function ColorPicker({ color, onChange }: ColorPickerProps) {
         leaveFrom="opacity-100"
         leaveTo="opacity-0"
       >
-        <Popover.Panel
-          focus
-          className="absolute inset-0 z-50 h-[22rem] w-[14rem] bg-white dark:bg-slate-900"
-        >
+        <Popover.Panel focus className="absolute inset-0 z-50 bg-white dark:bg-slate-900">
           <ColorPickerPanel color={color} onChange={onChange}>
             <Popover.Button className="flex items-center justify-center gap-2 rounded border-none px-1.5 font-sans shadow-sm outline-none ring-1 ring-gray-300 transition-all hover:text-primary focus-visible:text-primary focus-visible:ring-2 focus-visible:ring-primary dark:ring-slate-700 dark:focus-visible:ring-primary">
               Close Picker Panel
@@ -204,11 +201,12 @@ function ColorPickerPanel({ color, children, onChange }: ColorPickerPanelProps) 
           </button>
         </div>
       </div>
-      <div className="flex flex-wrap justify-around gap-2.5">
+      <div className="grid grid-cols-8 grid-rows-3 gap-2.5">
         {
           // prettier-ignore
           [
           '#d0021b', '#f5a623', '#f8e71c', '#8b572a', '#7ed321', '#417505', '#bd10e0', '#9013fe',
+          '#ff6900', '#7bdcb5', '#00d084', '#8ed1fc', '#0693e3', '#abb8c3', '#eb144c', '#f78da7',
           '#4a90e2', '#08f3f2', '#b8e986', '#1273de', '#000000', '#4a4a4a', '#9b9b9b', '#ffffff',
         ].map((color) => {
           const baseShadow = 'rgba(0, 0, 0, 0.15) 0px 0px 0px 1px inset';
