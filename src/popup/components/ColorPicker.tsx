@@ -58,7 +58,32 @@ interface ColorPickerPanelProps {
 
 function ColorPickerPanel({ color, children, onChange }: ColorPickerPanelProps) {
   const [input, setInput] = useState(tinycolor(color).toHexString());
-
+  const presetColors = [
+    'black',
+    'white',
+    'violet',
+    'orange',
+    'gold',
+    'sienna',
+    'lime',
+    'springgreen',
+    'fuchsia',
+    'blueviolet',
+    'orangered',
+    'aquamarine',
+    'teal',
+    'royalblue',
+    'darkturquoise',
+    'silver',
+    'crimson',
+    'pink',
+    'lightskyblue',
+    'aqua',
+    'lightsalmon',
+    'paleturquoise',
+    'gray',
+    'tomato',
+  ];
   useEffect(() => {
     setInput(tinycolor(color).toHexString());
   }, [color]);
@@ -208,13 +233,7 @@ function ColorPickerPanel({ color, children, onChange }: ColorPickerPanelProps) 
         </div>
       </div>
       <div className="grid grid-cols-8 grid-rows-3 gap-2.5">
-        {
-          // prettier-ignore
-          [
-          '#d0021b', '#f5a623', '#f8e71c', '#8b572a', '#7ed321', '#417505', '#bd10e0', '#9013fe',
-          '#ff6900', '#7bdcb5', '#00d084', '#8ed1fc', '#0693e3', '#abb8c3', '#eb144c', '#f78da7',
-          '#4a90e2', '#08f3f2', '#b8e986', '#1273de', '#000000', '#4a4a4a', '#9b9b9b', '#ffffff',
-        ].map((color) => {
+        {presetColors.map((color) => {
           const baseShadow = 'rgba(0, 0, 0, 0.15) 0px 0px 0px 1px inset';
           const focusShadow = `${baseShadow} ,${color} 0px 0px 6px`;
           return (
@@ -232,15 +251,14 @@ function ColorPickerPanel({ color, children, onChange }: ColorPickerPanelProps) 
               onBlur={(event) => {
                 event.currentTarget.style.boxShadow = baseShadow;
               }}
-              onClick={()=>{
+              onClick={() => {
                 onChange(color);
               }}
             >
               <span className="sr-only">{color}</span>
             </button>
           );
-        })
-        }
+        })}
       </div>
       {children}
     </div>
