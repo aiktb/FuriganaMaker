@@ -11,35 +11,41 @@ interface ColorPickerProps {
 export default function ColorPicker({ color, onChange }: ColorPickerProps) {
   return (
     <Popover className="flex grow">
-      <Popover.Button className="group flex grow items-center justify-between rounded px-2 capitalize">
-        Select color
-        <div
-          className="hidden size-3 rounded-full group-hover:block group-focus-visible:block"
-          style={{ backgroundColor: color }}
-        />
-      </Popover.Button>
-      <Transition
-        as={Fragment}
-        enter="transition ease-out duration-300"
-        enterFrom="opacity-0"
-        enterTo="opacity-100"
-        leave="transition ease-in duration-150"
-        leaveFrom="opacity-100"
-        leaveTo="opacity-0"
-      >
-        <Popover.Panel focus className="absolute inset-0 z-50 bg-white dark:bg-slate-900">
-          <ColorPickerPanel color={color} onChange={onChange}>
-            <Popover.Button className="flex items-center justify-center gap-2 rounded border-none px-1.5 font-sans shadow-sm outline-none ring-1 ring-gray-300 transition-all hover:text-primary focus-visible:text-primary focus-visible:ring-2 focus-visible:ring-primary dark:ring-slate-700 dark:focus-visible:ring-primary">
-              Close Picker Panel
-              <Icon
-                className="size-4"
-                aria-hidden="true"
-                icon="line-md:circle-to-confirm-circle-transition"
-              />
-            </Popover.Button>
-          </ColorPickerPanel>
-        </Popover.Panel>
-      </Transition>
+      {({ open }) => (
+        <>
+          <Popover.Button className="group flex grow items-center justify-between rounded px-2 capitalize">
+            Select color
+            <div
+              className="hidden size-3 rounded-full group-hover:block group-focus-visible:block"
+              style={{ backgroundColor: color }}
+            />
+          </Popover.Button>
+          <Transition
+            appear
+            show={open}
+            as={Fragment}
+            enter="transition ease-out duration-300"
+            enterFrom="opacity-0 scale-95"
+            enterTo="opacity-100 scale-100"
+            leave="transition ease-in duration-200"
+            leaveFrom="opacity-100 scale-100"
+            leaveTo="opacity-0 scale-95"
+          >
+            <Popover.Panel focus className="absolute inset-0 z-50 bg-white dark:bg-slate-900">
+              <ColorPickerPanel color={color} onChange={onChange}>
+                <Popover.Button className="flex items-center justify-center gap-2 rounded border-none px-1.5 font-sans shadow-sm outline-none ring-1 ring-gray-300 transition-all hover:text-primary focus-visible:text-primary focus-visible:ring-2 focus-visible:ring-primary dark:ring-slate-700 dark:focus-visible:ring-primary">
+                  Close Picker Panel
+                  <Icon
+                    className="size-4"
+                    aria-hidden="true"
+                    icon="line-md:circle-to-confirm-circle-transition"
+                  />
+                </Popover.Button>
+              </ColorPickerPanel>
+            </Popover.Panel>
+          </Transition>
+        </>
+      )}
     </Popover>
   );
 }
