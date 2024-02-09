@@ -19,7 +19,7 @@ import {
 } from '~contents/core';
 
 import ColorPickerIcon from 'react:~/assets/icons/ColorPicker.svg';
-import CursorOutlineIcon from 'react:~/assets/icons/CursorOutline.svg';
+import CursorOutlineIcon from 'react:~/assets/icons/CursorDefault.svg';
 import CursorTextIcon from 'react:~/assets/icons/CursorText.svg';
 import EyeIcon from 'react:~/assets/icons/Eye.svg';
 import FilterIcon from 'react:~/assets/icons/Filter.svg';
@@ -30,6 +30,7 @@ import HiraganaIcon from 'react:~/assets/icons/Hiragana.svg';
 import Logo from 'react:~/assets/icons/Logo.svg';
 import PowerIcon from 'react:~/assets/icons/Power.svg';
 import SettingIcon from 'react:~/assets/icons/Setting.svg';
+import ShareIcon from 'react:~/assets/icons/Share.svg';
 
 import Button from './components/Button';
 import CheckBox from './components/CheckBox';
@@ -38,6 +39,7 @@ import Link from './components/Link';
 import MenuItem from './components/MenuItem';
 import RangeSlider from './components/RangeSlider';
 import Select from './components/Select';
+import SharedCard from './components/SharedCard';
 
 const initializeConfig = async () => {
   const storage = new Storage({ area: 'local' });
@@ -127,6 +129,7 @@ function Menu({ configPromise }: { configPromise: Promise<Config> }) {
   const displayModeOptions = [DisplayMode.Always, DisplayMode.Never, DisplayMode.Hover, DisplayMode.HoverNoGap];
   const furiganaTypeOptions = [FuriganaType.Hiragana, FuriganaType.Katakana, FuriganaType.Romaji];
   const browser = detect();
+  // `SelectMode.Parentheses` is not compatible with firefox.
   const selectModeOptions =
     browser?.name === 'firefox'
       ? [SelectMode.Default, SelectMode.Original]
@@ -227,6 +230,9 @@ function Menu({ configPromise }: { configPromise: Promise<Config> }) {
       </MenuItem>
       <MenuItem icon={<HeartIcon />} tip="Buy me a coffee☕">
         <Link href="https://www.buymeacoffee.com/aiktb" text="Sponsor" />
+      </MenuItem>
+      <MenuItem icon={<ShareIcon />}>
+        <SharedCard />
       </MenuItem>
     </menu>
   );
