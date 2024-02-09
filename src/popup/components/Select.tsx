@@ -14,7 +14,7 @@ export default function Select({ label, selected, options, onChange }: SelectPro
     <Listbox value={selected} onChange={onChange}>
       <div className="relative w-full">
         <Listbox.Label className="sr-only">{label}</Listbox.Label>
-        <Listbox.Button className="group peer flex w-full items-center justify-between rounded px-2 capitalize ui-open:bg-gray-200 dark:ui-open:bg-slate-700">
+        <Listbox.Button className="group peer flex w-full items-center justify-between rounded px-2 capitalize transition-all hover:bg-gray-200 focus-visible:bg-gray-200 ui-open:bg-gray-200 dark:hover:bg-slate-700 dark:focus-visible:bg-slate-700 dark:ui-open:bg-slate-700">
           {selected}
           <Icon
             className="hidden group-hover:flex group-focus-visible:flex ui-open:flex"

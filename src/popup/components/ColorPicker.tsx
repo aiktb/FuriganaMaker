@@ -13,7 +13,7 @@ export default function ColorPicker({ color, onChange }: ColorPickerProps) {
     <Popover className="flex grow">
       {({ open }) => (
         <>
-          <Popover.Button className="group flex grow items-center justify-between rounded px-2 capitalize">
+          <Popover.Button className="group flex flex-1 items-center justify-between rounded px-2 capitalize transition-all hover:bg-gray-200 focus-visible:bg-gray-200 dark:hover:bg-slate-700 dark:focus-visible:bg-slate-700">
             Select color
             <div
               className="hidden size-3 rounded-full group-hover:block group-focus-visible:block"
@@ -67,6 +67,7 @@ function ColorPickerPanel({ color, children, onChange }: ColorPickerPanelProps) 
     'sienna',
     'lime',
     'springgreen',
+    'forestgreen',
     'fuchsia',
     'blueviolet',
     'orangered',
@@ -232,15 +233,14 @@ function ColorPickerPanel({ color, children, onChange }: ColorPickerPanelProps) 
           </button>
         </div>
       </div>
-      <div className="grid grid-cols-8 grid-rows-3 gap-2.5">
+      <div className="grid grid-cols-5 grid-rows-5 gap-2.5 border-t-2 border-gray-300 pt-3 dark:border-slate-700">
         {presetColors.map((color) => {
           const baseShadow = 'rgba(0, 0, 0, 0.15) 0px 0px 0px 1px inset';
           const focusShadow = `${baseShadow} ,${color} 0px 0px 6px`;
           return (
             <button
               key={color}
-              title={color}
-              className="size-4 cursor-pointer rounded-sm outline-none"
+              className="h-4 w-8 cursor-pointer rounded-sm outline-none"
               style={{
                 boxShadow: baseShadow,
                 backgroundColor: color,
