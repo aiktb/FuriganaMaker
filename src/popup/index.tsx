@@ -137,14 +137,12 @@ function Menu({ configPromise }: { configPromise: Promise<Config> }) {
 
   return (
     <menu className="space-y-2 border-r-2 border-primary pr-2">
-      <MenuItem icon={<CursorOutlineIcon />} tip="Press ESC to cancel">
-        <Button text="Add furigana" onClick={addFurigana} />
+      <MenuItem icon={<CursorOutlineIcon />}>
+        <Button tip="Press ESC to cancel" text="Add furigana" onClick={addFurigana} />
       </MenuItem>
-      <MenuItem
-        icon={<PowerIcon className={state.autoMode ? 'text-primary' : ''} />}
-        tip="Please refresh the page"
-      >
+      <MenuItem icon={<PowerIcon className={state.autoMode ? 'text-primary' : ''} />}>
         <CheckBox
+          tip="Please refresh the page"
           text="On-off auto mode"
           checked={state.autoMode}
           onChange={(checked) => {
@@ -152,11 +150,9 @@ function Menu({ configPromise }: { configPromise: Promise<Config> }) {
           }}
         />
       </MenuItem>
-      <MenuItem
-        icon={<FilterIcon className={state.kanjiFilter ? 'text-primary' : ''} />}
-        tip="Default level is N5"
-      >
+      <MenuItem icon={<FilterIcon className={state.kanjiFilter ? 'text-primary' : ''} />}>
         <CheckBox
+          tip="Default level is N5"
           text="On-off kanji filter"
           checked={state.kanjiFilter}
           onChange={(checked) => {
@@ -193,6 +189,7 @@ function Menu({ configPromise }: { configPromise: Promise<Config> }) {
       <MenuItem icon={<CursorTextIcon />}>
         <Select
           label="Switch select mode"
+          tip="Try copying Japanese text"
           selected={state.selectMode}
           options={selectModeOptions}
           onChange={(selected) => {
@@ -222,14 +219,18 @@ function Menu({ configPromise }: { configPromise: Promise<Config> }) {
           }}
         />
       </MenuItem>
-      <MenuItem icon={<SettingIcon />} tip="Open the options page">
-        <Link href="options.html" text="Edit rules" />
+      <MenuItem icon={<SettingIcon />}>
+        <Link tip="Open the options page" href="options.html" text="Edit rules" />
       </MenuItem>
-      <MenuItem icon={<GithubIcon />} tip="Open an issue on GitHub">
-        <Link href="https://github.com/aiktb/FuriganaMaker/issues" text="Feedback" />
+      <MenuItem icon={<GithubIcon />}>
+        <Link
+          tip="Open an issue on GitHub"
+          href="https://github.com/aiktb/FuriganaMaker/issues"
+          text="Feedback"
+        />
       </MenuItem>
-      <MenuItem icon={<HeartIcon />} tip="Buy me a coffee☕">
-        <Link href="https://www.buymeacoffee.com/aiktb" text="Sponsor" />
+      <MenuItem icon={<HeartIcon />}>
+        <Link tip="Buy me a coffee☕" href="https://www.buymeacoffee.com/aiktb" text="Sponsor" />
       </MenuItem>
       <MenuItem icon={<ShareIcon />}>
         <SharedCard />

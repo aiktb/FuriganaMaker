@@ -1,4 +1,14 @@
-import { arrow, flip, FloatingArrow, offset, shift, useFloating } from '@floating-ui/react';
+import {
+  arrow,
+  flip,
+  FloatingArrow,
+  offset,
+  shift,
+  useFloating,
+  useHover,
+  useInteractions,
+  useRole,
+} from '@floating-ui/react';
 import { Transition } from '@headlessui/react';
 import React, { Fragment, useRef, useState } from 'react';
 
@@ -12,7 +22,8 @@ export default function ToolTip({ tip, children }: ToolTipProps) {
   const [isOpen, setIsOpen] = useState(false);
   const { refs, floatingStyles, context } = useFloating({
     open: isOpen,
-    placement: 'bottom',
+    onOpenChange: setIsOpen,
+    placement: 'top',
     strategy: 'fixed',
     middleware: [
       offset(6),
@@ -23,15 +34,24 @@ export default function ToolTip({ tip, children }: ToolTipProps) {
       }),
     ],
   });
-
+  const hover = useHover(context);
+  const role = useRole(context);
+  const { getReferenceProps, getFloatingProps } = useInteractions([hover, role]);
   return (
     <>
       <div
         ref={refs.setReference}
-        onPointerEnter={() => setIsOpen(true)}
-        onPointerLeave={() => setIsOpen(false)}
-        onFocus={() => setIsOpen(true)}
-        onBlur={() => setIsOpen(false)}
+        onFocus={(event) => {
+          if (event.target.matches(':focus-visible')) {
+            setIsOpen(true);
+          }
+        }}
+        onBlur={(event) => {
+          if (!event.target.matches(':hover')) {
+            setIsOpen(false);
+          }
+        }}
+        {...getReferenceProps()}
         className="flex flex-1"
       >
         {children}
@@ -49,6 +69,7 @@ export default function ToolTip({ tip, children }: ToolTipProps) {
         <div
           ref={refs.setFloating}
           style={floatingStyles}
+          {...getFloatingProps()}
           className="text-slate-20 z-50 inline-flex rounded bg-slate-900 px-2 text-white dark:bg-slate-200  dark:text-slate-800"
         >
           <FloatingArrow
