@@ -2,7 +2,7 @@ import '~/assets/style.css';
 
 import { Transition } from '@headlessui/react';
 import { detect } from 'detect-browser';
-import { Suspense, use, useReducer } from 'react';
+import React, { Suspense, use, useReducer } from 'react';
 import Browser from 'webextension-polyfill';
 
 import { Storage } from '@plasmohq/storage';
@@ -36,7 +36,6 @@ import Button from './components/Button';
 import CheckBox from './components/CheckBox';
 import ColorPicker from './components/ColorPicker';
 import Link from './components/Link';
-import MenuItem from './components/MenuItem';
 import RangeSlider from './components/RangeSlider';
 import Select from './components/Select';
 import SharedCard from './components/SharedCard';
@@ -121,6 +120,22 @@ function reducer(state: Config, action: ACTIONTYPE) {
     case ExtensionEvent.AdjustFontColor:
       return { ...state, [ExtensionStorage.FontColor]: action.payload };
   }
+}
+
+interface MenuItemProps {
+  children: React.ReactNode;
+  icon: React.ReactNode;
+}
+
+function MenuItem({ children, icon }: MenuItemProps) {
+  return (
+    <li className="flex items-center gap-x-1.5">
+      <div className="text-2xl" aria-hidden="true">
+        {icon}
+      </div>
+      {children}
+    </li>
+  );
 }
 
 function Menu({ configPromise }: { configPromise: Promise<Config> }) {
