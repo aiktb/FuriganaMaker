@@ -35,7 +35,7 @@ export default function ToolTip({ tip, children }: ToolTipProps) {
     ],
   });
   const hover = useHover(context);
-  const role = useRole(context);
+  const role = useRole(context, { role: 'tooltip' });
   const { getReferenceProps, getFloatingProps } = useInteractions([hover, role]);
   return (
     <>

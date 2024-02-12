@@ -5,10 +5,11 @@ interface RangeSliderProps {
   min: number;
   max: number;
   step: number;
+  label: string;
   onChange: (value: number) => void;
 }
 
-export default function RangeSlider({ value, min, max, step, onChange }: RangeSliderProps) {
+export default function RangeSlider({ value, min, max, step, label, onChange }: RangeSliderProps) {
   function clamp(value: number, min: number, max: number): number {
     return Math.min(Math.max(value, min), max);
   }
@@ -55,6 +56,8 @@ export default function RangeSlider({ value, min, max, step, onChange }: RangeSl
       aria-valuemin={min}
       aria-valuemax={max}
       aria-valuenow={value}
+      aria-valuetext={`${value}%`}
+      aria-label={label}
       className="relative flex h-5 grow cursor-pointer items-center justify-start gap-x-1 rounded px-2 leading-5 transition-all hover:bg-gray-200 focus-visible:bg-gray-200 dark:hover:bg-slate-700  dark:focus-visible:bg-slate-700"
       onPointerDown={handlePointerDown}
       onKeyDown={handleKeyDown}
