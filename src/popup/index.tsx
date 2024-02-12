@@ -177,7 +177,6 @@ function Menu({ configPromise }: { configPromise: Promise<Config> }) {
       </MenuItem>
       <MenuItem icon={<EyeIcon />}>
         <Select
-          label="Switch display mode"
           selected={state.displayMode}
           options={displayModeOptions}
           onChange={(selected) => {
@@ -190,7 +189,6 @@ function Menu({ configPromise }: { configPromise: Promise<Config> }) {
       </MenuItem>
       <MenuItem icon={<HiraganaIcon />}>
         <Select
-          label="Switch furigana type"
           selected={state.furiganaType}
           options={furiganaTypeOptions}
           onChange={(selected) => {
@@ -203,7 +201,6 @@ function Menu({ configPromise }: { configPromise: Promise<Config> }) {
       </MenuItem>
       <MenuItem icon={<CursorTextIcon />}>
         <Select
-          label="Switch select mode"
           tip="Try copying Japanese text"
           selected={state.selectMode}
           options={selectModeOptions}
@@ -221,6 +218,7 @@ function Menu({ configPromise }: { configPromise: Promise<Config> }) {
           min={50}
           max={100}
           step={1}
+          label="Adjust furigana font size"
           onChange={(value) => {
             dispatch({ type: ExtensionEvent.AdjustFontSize, payload: value });
           }}

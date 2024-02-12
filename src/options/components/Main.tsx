@@ -107,6 +107,18 @@ export default function Main({ rulesPromise }: { rulesPromise: Promise<SelectorR
   return (
     <>
       <main className="flex grow flex-col justify-start">
+        <p className="mx-auto mb-2 max-w-full whitespace-normal text-pretty border-b border-gray-200 p-4 text-center text-base font-bold dark:border-slate-800">
+          Feel free to share your custom rules in the{' '}
+          <a
+            href="https://github.com/aiktb/FuriganaMaker/discussions"
+            className="text-sky-500 underline transition hover:text-sky-700"
+            target="_blank"
+            rel="noreferrer noopener"
+          >
+            Github Discussions
+          </a>
+          !
+        </p>
         <div className="mx-auto my-2 flex max-w-5xl flex-col items-center justify-between gap-1.5 px-5 text-base font-bold text-sky-500 sm:px-6 md:flex-row md:justify-between lg:max-w-7xl lg:px-8">
           <button
             className="flex items-center gap-x-1.5 rounded-md border border-gray-200 px-1.5 py-0.5 shadow-md transition-[background-color] hover:bg-transparent/10 dark:border-slate-800 dark:hover:bg-transparent/20"

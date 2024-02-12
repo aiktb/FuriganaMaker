@@ -5,14 +5,13 @@ import { Fragment } from 'react';
 import ToolTip from './ToolTip';
 
 interface SelectProps {
-  label: string;
   selected: string;
   options: string[];
   tip?: string;
   onChange: (selected: string) => void;
 }
 
-export default function Select({ label, selected, options, tip, onChange }: SelectProps) {
+export default function Select({ selected, options, tip, onChange }: SelectProps) {
   function ListBoxButton() {
     return (
       <Listbox.Button className="group peer flex w-full items-center justify-between rounded px-2 capitalize transition-all hover:bg-gray-200 focus-visible:bg-gray-200 ui-open:bg-gray-200 dark:hover:bg-slate-700 dark:focus-visible:bg-slate-700 dark:ui-open:bg-slate-700">
@@ -29,7 +28,6 @@ export default function Select({ label, selected, options, tip, onChange }: Sele
   return (
     <Listbox value={selected} onChange={onChange}>
       <div className="relative w-full">
-        <Listbox.Label className="sr-only">{label}</Listbox.Label>
         {tip ? (
           <ToolTip tip={tip}>
             <ListBoxButton />

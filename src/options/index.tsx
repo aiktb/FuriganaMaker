@@ -28,18 +28,6 @@ export default function Options() {
   return (
     <div className="flex min-h-screen flex-col">
       <Header />
-      <p className="mx-auto mb-2 max-w-full whitespace-normal text-balance border-b border-gray-200 p-4 text-center text-base font-bold dark:border-slate-800">
-        Feel free to share your custom rules in the{' '}
-        <a
-          href="https://github.com/aiktb/FuriganaMaker/discussions"
-          className="text-sky-500 underline transition hover:text-sky-700"
-          target="_blank"
-          rel="noreferrer noopener"
-        >
-          Github Discussions
-        </a>
-        !
-      </p>
       <Suspense fallback={<div className="min-h-screen" />}>
         <Main rulesPromise={initializeRules()} />
       </Suspense>

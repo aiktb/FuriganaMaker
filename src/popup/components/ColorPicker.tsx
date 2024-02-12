@@ -240,7 +240,7 @@ function ColorPickerPanel({ color, children, onChange }: ColorPickerPanelProps) 
           return (
             <button
               key={color}
-              className="h-4 w-8 cursor-pointer rounded-sm outline-none"
+              className="h-4 w-8 cursor-pointer rounded-sm outline-offset-2"
               style={{
                 boxShadow: baseShadow,
                 backgroundColor: color,

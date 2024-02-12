@@ -19,7 +19,7 @@ export default function Header() {
   return (
     <header className="sticky top-0 z-10 h-[72px]">
       <div className="max-w-8xl mx-auto xl:px-8">
-        <div className="mx-auto flex max-w-3xl items-center justify-between border-b border-gray-200 px-4 py-5 backdrop-blur backdrop-filter sm:px-6 lg:max-w-7xl lg:px-8 dark:border-slate-800">
+        <div className="mx-auto flex max-w-3xl items-center justify-between border-b border-gray-200 px-4 py-5 backdrop-blur backdrop-filter dark:border-slate-800 sm:px-6 lg:max-w-7xl lg:px-8">
           <div className="flex items-center text-base">
             <Icon
               className="mr-1 size-6 text-sky-500"
