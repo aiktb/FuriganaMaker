@@ -27,6 +27,8 @@ export enum ExtensionStorage {
   SelectMode = 'selectMode',
   FontSize = 'fontSize',
   FontColor = 'fontColor',
+  // The following two items exceed the `chrome.stage.sync` quota,
+  // so this extension doesn't consider synchronizing user settings.
   SelectorRules = 'selectorRules',
   FilterRules = 'filterRules',
 }
