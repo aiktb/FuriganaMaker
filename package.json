@@ -111,17 +111,8 @@
       "toggleKanjiFilter": {
         "description": "Toggle kanji filter on all pages"
       },
-      "hideFurigana": {
-        "description": "Hide furigana on all pages"
-      },
-      "showFurigana": {
-        "description": "Show furigana on all pages"
-      },
-      "openHoverMode": {
-        "description": "Open hover gap mode on all pages"
-      },
-      "openHoverNoGapMode": {
-        "description": "Open hover no-gap mode on all pages"
+      "toggleFuriganaDisplay": {
+        "description": "Toggle furigana display mode on all pages"
       }
     },
     "web_accessible_resources": [
