@@ -210,7 +210,7 @@ function ColorPickerPanel({ color, children, onChange }: ColorPickerPanelProps) 
           <label>
             <span>HEX </span>
             <input
-              className="h-6 w-[5rem] rounded border-none px-1.5 font-mono text-sm uppercase shadow-sm ring-1 ring-inset ring-gray-300 focus:border-none focus:ring-2 focus:ring-primary dark:bg-slate-950 dark:ring-slate-700 dark:focus-visible:ring-primary"
+              className="h-6 w-[4.5rem] rounded border-none px-1.5 font-mono text-sm uppercase shadow-sm ring-1 ring-inset ring-gray-300 focus:border-none focus:ring-2 focus:ring-primary dark:bg-slate-950 dark:ring-slate-700 dark:focus-visible:ring-primary"
               value={input}
               onChange={(event) => {
                 setInput(event.target.value);
@@ -240,7 +240,7 @@ function ColorPickerPanel({ color, children, onChange }: ColorPickerPanelProps) 
           return (
             <button
               key={color}
-              className="h-4 w-8 cursor-pointer rounded-sm outline-offset-2"
+              className="h-4 w-full cursor-pointer rounded-sm outline-offset-2"
               style={{
                 boxShadow: baseShadow,
                 backgroundColor: color,
