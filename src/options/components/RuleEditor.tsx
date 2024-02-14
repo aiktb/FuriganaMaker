@@ -50,7 +50,10 @@ export default function RuleEditor({ rule, mode, onChange }: RuleEditorProps) {
                       selector
                     </code>{' '}
                     field uses the{' '}
-                    <a className="cursor-pointer border-b border-sky-500 font-bold text-slate-900 hover:border-b-2 dark:text-slate-200">
+                    <a
+                      className="cursor-pointer border-b border-sky-500 font-bold text-slate-900 hover:border-b-2 dark:text-slate-200"
+                      href="https://developer.mozilla.org/en-US/docs/Web/CSS/CSS_selectors"
+                    >
                       CSS selector
                     </a>{' '}
                     syntax to specify the element to be tagged on the page.
@@ -122,14 +125,6 @@ export default function RuleEditor({ rule, mode, onChange }: RuleEditorProps) {
                 >
                   Selector
                 </label>
-                <div className="text-sm">
-                  <a
-                    href="https://developer.mozilla.org/en-US/docs/Web/CSS/CSS_selectors"
-                    className="font-semibold text-sky-600 transition hover:text-sky-500 dark:text-sky-500 dark:hover:text-sky-600"
-                  >
-                    Don&apos;t know selector?
-                  </a>
-                </div>
               </div>
               <div className="mt-2">
                 <input
