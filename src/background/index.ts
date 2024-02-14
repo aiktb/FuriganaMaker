@@ -83,24 +83,15 @@ Browser.commands.onCommand.addListener(async (command, tab) => {
       await sendMessage(tab!.id!, ExtensionEvent.ToggleKanjiFilter);
       break;
     }
-    case 'hideFurigana': {
-      await storage.set(ExtensionStorage.DisplayMode, DisplayMode.Never);
-      await sendMessage(tab!.id!, ExtensionEvent.SwitchDisplayMode);
-      break;
-    }
-    case 'showFurigana': {
-      await storage.set(ExtensionStorage.DisplayMode, DisplayMode.Always);
-      await sendMessage(tab!.id!, ExtensionEvent.SwitchDisplayMode);
-      break;
-    }
-    case 'openHoverMode': {
-      await storage.set(ExtensionStorage.DisplayMode, DisplayMode.Hover);
-      await sendMessage(tab!.id!, ExtensionEvent.SwitchDisplayMode);
-      break;
-    }
-    case 'openHoverNoGapMode': {
-      await storage.set(ExtensionStorage.DisplayMode, DisplayMode.HoverNoGap);
-      await sendMessage(tab!.id!, ExtensionEvent.SwitchDisplayMode);
+    case 'toggleFuriganaDisplay': {
+      const displayMode: DisplayMode = await storage.get(ExtensionStorage.DisplayMode);
+      if (displayMode === DisplayMode.Always) {
+        await storage.set(ExtensionStorage.DisplayMode, DisplayMode.Never);
+        await sendMessage(tab!.id!, ExtensionEvent.SwitchDisplayMode);
+      } else {
+        await storage.set(ExtensionStorage.DisplayMode, DisplayMode.Always);
+        await sendMessage(tab!.id!, ExtensionEvent.SwitchDisplayMode);
+      }
       break;
     }
     default:
