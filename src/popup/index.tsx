@@ -129,7 +129,7 @@ interface MenuItemProps {
 
 function MenuItem({ children, icon }: MenuItemProps) {
   return (
-    <li className="flex items-center gap-x-1.5">
+    <li className="flex items-center gap-x-1">
       <div className="text-2xl" aria-hidden="true">
         {icon}
       </div>
@@ -151,7 +151,7 @@ function Menu({ configPromise }: { configPromise: Promise<Config> }) {
       : [SelectMode.Default, SelectMode.Original, SelectMode.Parentheses];
 
   return (
-    <menu className="space-y-2 border-r-2 border-primary pr-2">
+    <menu className="space-y-2 border-r-2 border-primary pr-1">
       <MenuItem icon={<CursorOutlineIcon />}>
         <Button tip="Press ESC to cancel" text="Add furigana" onClick={addFurigana} />
       </MenuItem>
@@ -201,7 +201,7 @@ function Menu({ configPromise }: { configPromise: Promise<Config> }) {
       </MenuItem>
       <MenuItem icon={<CursorTextIcon />}>
         <Select
-          tip="Try copying Japanese text"
+          tip="Try copy Japanese text"
           selected={state.selectMode}
           options={selectModeOptions}
           onChange={(selected) => {
