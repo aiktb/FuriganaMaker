@@ -15,7 +15,7 @@
 
 # Furigana Maker
 
-Add furigana to Japanese text for any web page. 🤔
+Add furigana to Japanese text on any page for learning kanji pronunciation. 🤔
 
 Special thanks to **_[plasmo](https://github.com/PlasmoHQ/plasmo)_** for taking the frustration out of browser extension development for me.
 
@@ -23,13 +23,12 @@ Special thanks to **_[plasmo](https://github.com/PlasmoHQ/plasmo)_** for taking 
 
 ## Features
 
-- Many common Japanese websites are supported by default.
-- Local Japanese kanji parsing engine (no network required).
-- Add furigana to any regions on the page.
-- Freely modify the font size and color of furigana.
-- Optionally show furigana only on hover state.
-- N5 Kanji filter for JLPT learners.
-- Configurable default pages and regions for adding furigana.
+- By default, furigana is automatically added to many [common Japanese websites](https://github.com/aiktb/FuriganaMaker/blob/main/assets/rules/selector.json).
+- The list of rules used by Auto Mode can be customized using CSS selectors and domains.
+- Users can use their mouse to select areas on any web page to add furigana to.
+- N5 kanji filter prepared for JLPT learners, these kanji will not be added furigana.
+- The font size and color of furigana can be freely modified, and toggle the display of furigana.
+- Optional support for hover mode, only showing furigana when mouseover kanji.
 
 ## Contribution
 
