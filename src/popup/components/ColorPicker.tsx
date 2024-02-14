@@ -153,7 +153,7 @@ function ColorPickerPanel({ color, children, onChange }: ColorPickerPanelProps) 
   }
   return (
     <div className="flex size-full flex-col justify-between px-2.5 py-3">
-      <div className="relative aspect-[4/3] w-full cursor-crosshair rounded-sm">
+      <div className="relative aspect-[7/6] w-full cursor-crosshair rounded-sm">
         <div
           onPointerDown={handleSaturationCanvasPointerDown}
           className="absolute inset-0 rounded-sm shadow-inner"
