@@ -30,6 +30,11 @@ Special thanks to **_[plasmo](https://github.com/PlasmoHQ/plasmo)_** for taking 
 - The font size and color of furigana can be freely modified, and toggle the display of furigana.
 - Optional support for hover mode, only showing furigana when mouseover kanji.
 
+## Note
+
+- This extension can't guarantee completely correct word segmentation and kanji pronunciation.
+- [This extension isn't suitable for use on large pages, otherwise the page will freeze.](https://github.com/aiktb/FuriganaMaker/issues/16)
+
 ## Contribution
 
 Please make sure to read the [Contributing Guide](./.github/CONTRIBUTING.md) before making a pull request.
