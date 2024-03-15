@@ -1,16 +1,15 @@
 #!/usr/bin/env bash
-. "$(dirname -- "$0")/_/husky.sh"
 
 message="$(cat $1)"
-requiredPattern="^(feat|fix|website|style|refactor|perf|test|workflow|build|ci|chore|types)(\(.+\))?: .{1,50}"
-if ! [[ $message =~ $requiredPattern ]]; then
+requiredPattern="^(feat|fix|website|style|refactor|perf|test|build|ci|chore|types|workflow)(\(.+\))?: .{1,50}"
+if ! echo "$message" | grep -E "$requiredPattern" >/dev/null; then
     echo "-"
     echo "-"
     echo "-"
     echo "🚨 Wrong commit message! 😕"
     echo "The commit message must have this format:"
     echo "<verb in imperative mood> <what was done>"
-    echo "Allowed verbs in imperative mood: feat|fix|docs|style|refactor|workflow|perf|test|build|ci|chore|types"
+    echo "Allowed verbs in imperative mood: feat|fix|website|style|refactor|perf|test|build|ci|chore|types|workflow"
     echo "Example: feat(style): add new feature"
     echo "-"
     echo "Your commit message was:"
