@@ -27,10 +27,14 @@ Hi! We're Really excited that you are interested in contributing to Furigana Mak
 
 ## Development Setup
 
+Node.JS version: `.nvmrc`.
+
 You will need [pnpm](https://pnpm.io):
 
 ```bash
 npm install -g pnpm
+# Or use corepack
+# corepack enable pnpm
 ```
 
 After cloning the repo, run:
