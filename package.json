@@ -1,7 +1,7 @@
 {
   "name": "furigana-maker",
   "displayName": "Furigana Maker",
-  "version": "1.3.0",
+  "version": "1.3.1",
   "type": "module",
   "private": true,
   "description": "Add furigana to Japanese text on any page for learning kanji pronunciation.",
@@ -56,7 +56,7 @@
     "@tailwindcss/forms": "^0.5.7",
     "detect-browser": "^5.3.0",
     "file-saver": "^2.0.5",
-    "plasmo": "^0.84.2",
+    "plasmo": "^0.85.0",
     "react": "18.3.0-canary-c5b937576-20231219",
     "react-dom": "18.3.0-canary-c5b937576-20231219",
     "react-share": "^5.0.3",
