@@ -5,6 +5,9 @@ settings:
   excludeLinksFromLockfile: false
 
 dependencies:
+  '@aiktb/kuromoji':
+    specifier: ^1.0.1
+    version: 1.0.1
   '@floating-ui/react':
     specifier: ^0.26.7
     version: 0.26.7(react-dom@18.3.0-canary-c5b937576-20231219)(react@18.3.0-canary-c5b937576-20231219)
@@ -23,9 +26,6 @@ dependencies:
   '@plasmohq/storage':
     specifier: ^1.9.0
     version: 1.9.0(react@18.3.0-canary-c5b937576-20231219)
-  '@sglkc/kuromoji':
-    specifier: ^1.1.0
-    version: 1.1.0
   '@tailwindcss/forms':
     specifier: ^0.5.7
     version: 0.5.7(tailwindcss@3.4.1)
@@ -146,6 +146,14 @@ packages:
     resolution: {integrity: sha512-1Yjs2SvM8TflER/OD3cOjhWWOZb58A2t7wpE2S9XfBYTiIl+XFhQG2bjy4Pu1I+EAlCNUzRDYDdFwFYUKvXcIA==}
     engines: {node: '>=0.10.0'}
     dev: true
+
+  /@aiktb/kuromoji@1.0.1:
+    resolution: {integrity: sha512-EoWBS2sOQIOLkKBsx2xLLVWP9Chtt6OFa3M5DPNZWxDKR2PF5gUMXnym5s/sNfnPuxlzxhG9ppzOhLm6P/Qr7w==}
+    dependencies:
+      async: 2.6.4
+      doublearray: 0.0.2
+      fflate: 0.8.1
+    dev: false
 
   /@alloc/quick-lru@5.2.0:
     resolution: {integrity: sha512-UrcABB+4bUrFABwbluTIBErXwvbsU/V7TZWfmbgJfbkwiBuziS9gxdODUyuiecfdGQ85jglMW6juS3+z5TsKLw==}
@@ -2842,14 +2850,6 @@ packages:
     requiresBuild: true
     dev: true
     optional: true
-
-  /@sglkc/kuromoji@1.1.0:
-    resolution: {integrity: sha512-uKxXYUM5XNjZw0ia0yMYTI3jHSh/c1gEMNvcvS6J49B4mI+PAq8iRYPTxh2ma0RWm45LyWWrILxCJAIXpi/pww==}
-    dependencies:
-      async: 2.6.4
-      doublearray: 0.0.2
-      fflate: 0.8.1
-    dev: false
 
   /@sinclair/typebox@0.27.8:
     resolution: {integrity: sha512-+Fj43pSMwJs4KRrH/938Uf+uAELIgVBmQzg/q1YG10djyfA3TnrU8N8XzqCh/okZdszqBQTZf96idMfE5lnwTA==}
