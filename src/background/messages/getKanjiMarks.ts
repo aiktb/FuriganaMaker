@@ -1,4 +1,4 @@
-import kuromoji from '@sglkc/kuromoji';
+import kuromoji from '@aiktb/kuromoji';
 import { isKanji, toKatakana } from 'wanakana';
 
 import type { PlasmoMessaging } from '@plasmohq/messaging';
