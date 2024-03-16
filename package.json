@@ -7,10 +7,6 @@
   "description": "Add furigana to Japanese text on any page for learning kanji pronunciation.",
   "license": "MIT",
   "author": "aiktb <hey@aiktb.dev>",
-  "engines": {
-    "node": ">=20.0.0"
-  },
-  "browserslist": "> 0.5%, last 2 versions, not dead",
   "repository": {
     "type": "git",
     "url": "git+https://github.com/aiktb/FuriganaMaker.git"
