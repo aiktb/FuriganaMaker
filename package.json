@@ -114,7 +114,18 @@
     "web_accessible_resources": [
       {
         "resources": [
-          "assets/dicts/*.dat"
+          "@aiktb/kuromoji/dict/base.dat",
+          "@aiktb/kuromoji/dict/cc.dat",
+          "@aiktb/kuromoji/dict/check.dat",
+          "@aiktb/kuromoji/dict/tid.dat",
+          "@aiktb/kuromoji/dict/tid_map.dat",
+          "@aiktb/kuromoji/dict/tid_pos.dat",
+          "@aiktb/kuromoji/dict/unk_char.dat",
+          "@aiktb/kuromoji/dict/unk_compat.dat",
+          "@aiktb/kuromoji/dict/unk.dat",
+          "@aiktb/kuromoji/dict/unk_invoke.dat",
+          "@aiktb/kuromoji/dict/unk_map.dat",
+          "@aiktb/kuromoji/dict/unk_pos.dat"
         ],
         "matches": [
           "https://*/*"
