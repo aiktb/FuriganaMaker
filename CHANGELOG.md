@@ -1,35 +1,35 @@
 # Changelog
 
-# v1.3.1
+## v1.3.1
 
-## BREAKING CHANGE
+### BREAKING CHANGE
 
 - `*.dat` is no longer stored directly in this repository, these large files (about 100MB) were removed through large-scale rebase.
 
-## Fix Bugs
+### Fix Bugs
 
 - Unable to submit to Edge: "error: The uploaded package consists of a compressed file." (Closed #21)
 
-# v1.3.0
+## v1.3.0
 
-## Features
+### Features
 
 - Optimize popup menu, such as color, aspect ratio, a11y, font, animation, tooltip, color-picker, etc.
 - Add sponsor button and share card to popup.
 - More user-friendly shortcut keys.
 - Add Github Discussions tip to options page.
 
-## Fix Bugs
+### Fix Bugs
 
 - Causes the browser to become unresponsive on pages containing a large number of kanji. (Closed #16)
 
-# v1.2.0
+## v1.2.0
 
-## BREAKING CHANGE
+### BREAKING CHANGE
 
 - Migrate from Vue to React.
 
-## Features
+### Features
 
 - Fully optimize the UI.
 - Support N5 kanji filter.
@@ -37,24 +37,24 @@
 - Support SelectMode.Parentheses in Chrome/Edge, which can automatically add brackets to the copied furigana text.
 - Support more shortcut keys. (See [this](https://github.com/aiktb/FuriganaMaker/blob/main/package.json))
 
-## Fix Bugs
+### Fix Bugs
 
 - Corrected the semantics of "On-off extension" to "On-off Auto Mode".
 
-# v1.1.0
+## v1.1.0
 
-## Features:
+### Features
 
 - User-defined rule editor completely controlled by the GUI.
 
-## Bug Fixes
+### Fix Bugs
 
 - Invalid JSON format anyway. (Closed #10)
 - Browser shortcuts don't work. (Closed #11)
 
 ## v1.0.0
 
-### Features:
+### Features
 
 - Many common Japanese websites are supported by default.
 - Local Japanese kanji parsing engine (no network required).
