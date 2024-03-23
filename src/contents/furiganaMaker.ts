@@ -91,14 +91,5 @@ const createRuby = (token: KanjiMark, furiganaType: FuriganaType): HTMLElement =
   ruby.appendChild(leftParenthesisRp);
   ruby.appendChild(rt);
   ruby.appendChild(rightParenthesisRp);
-  ruby.addEventListener('copy', (event) => {
-    // 阻止复制 rb 和 rt 内容
-    event.preventDefault();
-    event.stopPropagation();
-
-    // 复制其他内容
-    const text = ruby.textContent.replace(/<rb>|<\/rb>|<rt>|<\/rt>/g, '');
-    navigator.clipboard.writeText(text);
-  });
   return ruby;
 };

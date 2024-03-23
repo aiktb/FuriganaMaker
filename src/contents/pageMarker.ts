@@ -16,6 +16,7 @@ export const config: PlasmoCSConfig = {
 window.addEventListener('load', mark);
 
 async function mark() {
+  injectCSS();
   const storage = new Storage({ area: 'local' });
   const autoModeIsEnabled: boolean = await storage.get(ExtensionStorage.AutoMode);
   if (!autoModeIsEnabled) {
@@ -112,4 +113,15 @@ function isJapanesePage() {
   // }
 
   return true;
+}
+
+function injectCSS() {
+  const style = document.createElement('style');
+  style.textContent = `ruby rb, ruby rt {
+    user-select: none;
+    -webkit-user-select: none;
+    -moz-user-select: none;
+    -ms-user-select: none;
+  }`;
+  document.head.appendChild(style);
 }
