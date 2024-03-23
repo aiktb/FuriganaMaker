@@ -30,7 +30,12 @@ async function mark() {
   });
 
   if (!response.selector) {
-    return;
+    if (isJapanesePage()){
+      console.log('janpanese page auto add furigana');
+      response.selector = 'body';
+    } else {
+      return
+    }
   }
 
   // Reflow on a huge page causes severe page freezes and even the browser becomes unresponsive. (issue#16)
@@ -84,4 +89,27 @@ async function mark() {
   });
 
   observer.observe(document.body, { childList: true, subtree: true });
+}
+
+function isJapanesePage() {
+  // 检查域名是否为 .jp 域名
+  const hostname = window.location.hostname;
+  if (!hostname.endsWith('.jp')) {
+    return false;
+  }
+
+  // 检查网页内容 lang 属性
+  const lang = document.documentElement.lang;
+  if (lang !== 'ja') {
+    return false;
+  }
+
+  // // 检查网页内容是否包含日语文本
+  // const text = document.body.textContent;
+  // const jaRegex = /[\u3040-\u309F\u30A0-\u30FF\u4E00-\u9FFF]/;
+  // if (!jaRegex.test(text)) {
+  //   return false;
+  // }
+
+  return true;
 }
