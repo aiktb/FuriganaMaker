@@ -1,5 +1,5 @@
 import { Transition } from '@headlessui/react';
-import React, { Fragment } from 'react';
+import { Fragment } from 'react';
 
 interface PopupTransitionProps {
   show: boolean;

@@ -29,6 +29,11 @@ export default [
       react,
       'react-hooks': reactHooks,
     },
+    languageOptions: {
+      globals: {
+        React: 'readonly',
+      },
+    },
   },
   // TypeScript
   {

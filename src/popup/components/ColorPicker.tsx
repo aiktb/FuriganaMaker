@@ -1,6 +1,6 @@
 import { Popover, Transition } from '@headlessui/react';
 import { Icon } from '@iconify/react';
-import React, { Fragment, useEffect, useState } from 'react';
+import { Fragment, useEffect, useState } from 'react';
 import tinycolor from 'tinycolor2';
 
 interface ColorPickerProps {
