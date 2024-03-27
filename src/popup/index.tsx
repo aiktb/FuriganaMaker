@@ -2,7 +2,7 @@ import '~/assets/style.css';
 
 import { Transition } from '@headlessui/react';
 import { detect } from 'detect-browser';
-import React, { Suspense, use, useReducer } from 'react';
+import { Suspense, use, useReducer } from 'react';
 import Browser from 'webextension-polyfill';
 
 import { Storage } from '@plasmohq/storage';

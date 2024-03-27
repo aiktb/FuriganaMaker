@@ -1,6 +1,6 @@
 import { Disclosure } from '@headlessui/react';
 import { Icon } from '@iconify/react';
-import React, { useState } from 'react';
+import { useState } from 'react';
 
 import type { SelectorRule } from '~contents/core';
 
