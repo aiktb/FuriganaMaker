@@ -25,7 +25,9 @@
       "har-validator": "5.1.5",
       "request": "2.88.2",
       "stable": "0.1.8",
-      "uuid": "3.4.0"
+      "uuid": "3.4.0",
+      "rollup-plugin-inject": "3.0.2",
+      "sourcemap-codec": "1.4.8"
     }
   },
   "scripts": {
