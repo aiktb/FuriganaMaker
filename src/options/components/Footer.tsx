@@ -8,7 +8,7 @@ const generateYear = () => {
 export default function Footer() {
   return (
     <footer>
-      <div className="mx-auto flex max-w-3xl items-center justify-between border-t border-gray-200 px-4 sm:px-6 lg:max-w-7xl lg:px-8 dark:border-slate-800">
+      <div className="mx-auto flex max-w-3xl items-center justify-between border-t border-gray-200 px-4 dark:border-slate-800 sm:px-6 lg:max-w-7xl lg:px-8">
         <p className="py-8 text-center text-sm sm:text-left">
           <span className="block whitespace-nowrap sm:inline">
             Copyright &copy; {generateYear()}
