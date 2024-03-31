@@ -23,5 +23,5 @@ jobs:
       # https://github.com/PlasmoHQ/plasmo/issues/528#issuecomment-1510146052
       - run: pnpm build
 
-      - run: pnpm lint
+      - run: pnpm eslint .
       - run: pnpm type-check
