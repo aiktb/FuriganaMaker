@@ -70,7 +70,8 @@ function ColorPickerPanel({ color, children, onChange }: ColorPickerPanelProps) 
     }).toHexString();
     setInput(newColor);
     onChange(newColor);
-  }, [hue, saturationAndValue, onChange]);
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, [hue, saturationAndValue]);
 
   function updateHSV(color: string) {
     const hsv = tinycolor(color).toHsv();
