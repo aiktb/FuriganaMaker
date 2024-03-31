@@ -70,7 +70,7 @@ function ColorPickerPanel({ color, children, onChange }: ColorPickerPanelProps) 
     }).toHexString();
     setInput(newColor);
     onChange(newColor);
-  }, [hue, saturationAndValue]);
+  }, [hue, saturationAndValue, onChange]);
 
   function updateHSV(color: string) {
     const hsv = tinycolor(color).toHsv();
