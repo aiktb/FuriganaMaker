@@ -27,20 +27,16 @@ Hi! We're Really excited that you are interested in contributing to Furigana Mak
 
 ## Development Setup
 
-Node.JS version: `.nvmrc`.
-
-You will need [pnpm](https://pnpm.io):
+You will need [bun](https://bun.sh):
 
 ```bash
-npm install -g pnpm
-# Or use corepack
-# corepack enable pnpm
+npm install -g bun
 ```
 
 After cloning the repo, run:
 
 ```bash
-pnpm install
+bun install
 ```
 
 ### Setup Dev Environment
@@ -48,21 +44,21 @@ pnpm install
 #### Chrome/Edge
 
 ```bash
-pnpm dev
+bun dev
 ```
 
 After executing the above command, visit **chrome extensions page** `chrome://extensions/`, and click `Load unpacked` button, then select the `build/chrome-mv3-dev` folder in the project root directory, and try modifying the source code. You'll get live update.
 
 Alternatively, you can open a new CLI window and run the following command, this will open a clean chrome window.
 
-```
-pnpm start
+```bash
+bun start
 ```
 
 #### Firefox
 
 ```bash
-pnpm dev:firefox
+bun dev:firefox
 ```
 
 After executing the above command, visit **firefox debugging page** `about:debugging#/runtime/this-firefox`, and click `Load Temporary Add-on...` button, then select the `build/firefox-mv2-dev/manifest.json` file in the project root directory, and try modifying the source code. You'll get live update.
@@ -70,7 +66,7 @@ After executing the above command, visit **firefox debugging page** `about:debug
 Alternatively, you can open a new CLI window and run the following command，this will open a clean firefox window.
 
 ```bash
-pnpm start:firefox
+bun start:firefox
 ```
 
 ### Get build target(.zip)
@@ -78,13 +74,13 @@ pnpm start:firefox
 #### Chrome/Edge: `build/chrome-mv3-prod.zip`
 
 ```bash
-pnpm build
-pnpm package
+bun build
+bun package
 ```
 
 #### Firefox: `build/firefox-mv2-prod.zip`
 
 ```bash
-pnpm build:firefox
-pnpm package:firefox
+bun build:firefox
+bun package:firefox
 ```
