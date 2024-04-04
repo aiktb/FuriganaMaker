@@ -1,4 +1,4 @@
-import { Icon } from '@iconify/react';
+import { Icon } from "@iconify/react";
 
 const generateYear = () => {
   const year = new Date().getFullYear();
@@ -18,9 +18,9 @@ export default function Footer() {
               target="_blank"
               rel="noreferrer noopener"
             >
-              {' aiktb'}
+              {" aiktb"}
             </a>
-            {'. '}
+            {". "}
           </span>
           <span className="block sm:inline">
             Released under the
@@ -30,7 +30,7 @@ export default function Footer() {
               target="_blank"
               rel="noreferrer noopener"
             >
-              {' MIT '}
+              {" MIT "}
             </a>
             license.
           </span>

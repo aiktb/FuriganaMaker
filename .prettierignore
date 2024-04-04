@@ -1,8 +1,0 @@
-dist
-cache
-.vscode
-.idea
-build
-.plasmo
-.husky
-pnpm-lock.yaml

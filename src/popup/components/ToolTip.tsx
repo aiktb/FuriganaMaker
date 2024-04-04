@@ -1,16 +1,16 @@
 import {
+  FloatingArrow,
   arrow,
   flip,
-  FloatingArrow,
   offset,
   shift,
   useFloating,
   useHover,
   useInteractions,
   useRole,
-} from '@floating-ui/react';
-import { Transition } from '@headlessui/react';
-import { Fragment, useRef, useState } from 'react';
+} from "@floating-ui/react";
+import { Transition } from "@headlessui/react";
+import { Fragment, useRef, useState } from "react";
 
 interface ToolTipProps {
   tip: string;
@@ -23,8 +23,8 @@ export default function ToolTip({ tip, children }: ToolTipProps) {
   const { refs, floatingStyles, context } = useFloating({
     open: isOpen,
     onOpenChange: setIsOpen,
-    placement: 'top',
-    strategy: 'fixed',
+    placement: "top",
+    strategy: "fixed",
     middleware: [
       offset(6),
       flip(),
@@ -35,19 +35,19 @@ export default function ToolTip({ tip, children }: ToolTipProps) {
     ],
   });
   const hover = useHover(context);
-  const role = useRole(context, { role: 'tooltip' });
+  const role = useRole(context, { role: "tooltip" });
   const { getReferenceProps, getFloatingProps } = useInteractions([hover, role]);
   return (
     <>
       <div
         ref={refs.setReference}
         onFocus={(event) => {
-          if (event.target.matches(':focus-visible')) {
+          if (event.target.matches(":focus-visible")) {
             setIsOpen(true);
           }
         }}
         onBlur={(event) => {
-          if (!event.target.matches(':hover')) {
+          if (!event.target.matches(":hover")) {
             setIsOpen(false);
           }
         }}

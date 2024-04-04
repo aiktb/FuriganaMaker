@@ -1,4 +1,4 @@
-import { isKanji, toKatakana } from 'wanakana';
+import { isKanji, toKatakana } from "wanakana";
 
 export interface MojiToken {
   word_position: number; // Indexes start from 1
@@ -31,7 +31,7 @@ export const toKanjiToken = (tokens: MojiToken[]): KanjiToken[] => {
 
 const isPhonetic = (token: MojiToken): boolean => {
   const hasKanji = token.surface_form.match(/\p{sc=Han}/u);
-  return !!(token.reading && token.reading !== '*' && hasKanji);
+  return !!(token.reading && token.reading !== "*" && hasKanji);
 };
 
 interface SimplifiedToken {
@@ -116,8 +116,8 @@ const buildRegex = (kanas: MarkTokenArray): RegExp => {
   // "作り方" => "^(.+)リ(.+)$", "り方" => "^リ(.+)$", "作り" => "^(.+)リ$".
   const firstKana = kanas.at(0)!;
   const lastKana = kanas.at(-1)!;
-  let regex = '^';
-  const placeholder = '(.+)';
+  let regex = "^";
+  const placeholder = "(.+)";
   if (firstKana.start) {
     regex += placeholder;
   }
@@ -130,6 +130,6 @@ const buildRegex = (kanas: MarkTokenArray): RegExp => {
   if (lastKana.end !== kanas.hybridLength) {
     regex += placeholder;
   }
-  regex += '$';
-  return new RegExp(regex, 'u');
+  regex += "$";
+  return new RegExp(regex, "u");
 };

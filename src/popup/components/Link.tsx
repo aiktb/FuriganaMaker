@@ -1,6 +1,6 @@
-import { Icon } from '@iconify/react';
+import { Icon } from "@iconify/react";
 
-import ToolTip from './ToolTip';
+import ToolTip from "./ToolTip";
 
 interface LinkProps {
   href: string;

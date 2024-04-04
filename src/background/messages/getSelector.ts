@@ -1,9 +1,9 @@
-import type { PlasmoMessaging } from '@plasmohq/messaging';
-import { Storage } from '@plasmohq/storage';
+import type { PlasmoMessaging } from "@plasmohq/messaging";
+import { Storage } from "@plasmohq/storage";
 
-import { ExtensionStorage, type SelectorRule } from '~contents/core';
+import { ExtensionStorage, type SelectorRule } from "~contents/core";
 
-const storage = new Storage({ area: 'local' });
+const storage = new Storage({ area: "local" });
 const handler: PlasmoMessaging.MessageHandler<{ domain: string }, { selector: string }> = async (
   req,
   res,
@@ -14,7 +14,7 @@ const handler: PlasmoMessaging.MessageHandler<{ domain: string }, { selector: st
     allRules
       .filter((rule) => rule.domain === req.body?.domain && rule.active)
       .map((rule) => rule.selector)
-      .join(', ') || '';
+      .join(", ") || "";
 
   res.send({ selector });
 };

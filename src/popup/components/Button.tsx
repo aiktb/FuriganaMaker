@@ -1,4 +1,4 @@
-import ToolTip from './ToolTip';
+import ToolTip from "./ToolTip";
 
 interface ButtonProps {
   text: string;

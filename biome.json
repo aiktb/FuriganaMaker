@@ -1,0 +1,29 @@
+{
+  "$schema": "https://biomejs.dev/schemas/1.6.4/schema.json",
+  "files": {
+    "ignore": ["build", ".plasmo"]
+  },
+  "organizeImports": {
+    "enabled": true
+  },
+  "formatter": {
+    "enabled": true,
+    "formatWithErrors": true,
+    "indentStyle": "space",
+    "indentWidth": 2,
+    "lineWidth": 100,
+    "lineEnding": "lf"
+  },
+  "linter": {
+    "enabled": true,
+    "rules": {
+      "recommended": true,
+      "style": {
+        "noNonNullAssertion": "off"
+      },
+      "a11y": {
+        "useButtonType": "off"
+      }
+    }
+  }
+}

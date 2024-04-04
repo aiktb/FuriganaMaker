@@ -1,4 +1,4 @@
-import { useRef } from 'react';
+import { useRef } from "react";
 
 interface RangeSliderProps {
   value: number;
@@ -32,20 +32,20 @@ export default function RangeSlider({ value, min, max, step, label, onChange }: 
     };
     const handlePointerUp = (event: PointerEvent) => {
       track.releasePointerCapture(event.pointerId);
-      track.removeEventListener('pointermove', handlePointerMove);
-      track.removeEventListener('pointerup', handlePointerUp);
+      track.removeEventListener("pointermove", handlePointerMove);
+      track.removeEventListener("pointerup", handlePointerUp);
     };
 
     track.setPointerCapture(event.pointerId);
-    track.addEventListener('pointermove', handlePointerMove);
-    track.addEventListener('pointerup', handlePointerUp);
+    track.addEventListener("pointermove", handlePointerMove);
+    track.addEventListener("pointerup", handlePointerUp);
     updateValue(event.clientX);
   }
 
   function handleKeyDown(event: React.KeyboardEvent) {
-    if (event.key === 'ArrowLeft' || event.key === 'ArrowDown') {
+    if (event.key === "ArrowLeft" || event.key === "ArrowDown") {
       onChange(clamp(value - step, min, max));
-    } else if (event.key === 'ArrowRight' || event.key === 'ArrowUp') {
+    } else if (event.key === "ArrowRight" || event.key === "ArrowUp") {
       onChange(clamp(value + step, min, max));
     }
   }

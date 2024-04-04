@@ -1,18 +1,18 @@
-import { Icon } from '@iconify/react';
-import { useState } from 'react';
+import { Icon } from "@iconify/react";
+import { useState } from "react";
 
 export default function Header() {
-  const [theme, setTheme] = useState<'light' | 'dark'>(localStorage.theme ?? 'light');
+  const [theme, setTheme] = useState<"light" | "dark">(localStorage.theme ?? "light");
 
   const toggleTheme = () => {
-    if (document.documentElement.classList.contains('dark')) {
-      document.documentElement.classList.remove('dark');
-      localStorage.theme = 'light';
-      setTheme('light');
+    if (document.documentElement.classList.contains("dark")) {
+      document.documentElement.classList.remove("dark");
+      localStorage.theme = "light";
+      setTheme("light");
     } else {
-      document.documentElement.classList.add('dark');
-      localStorage.theme = 'dark';
-      setTheme('dark');
+      document.documentElement.classList.add("dark");
+      localStorage.theme = "dark";
+      setTheme("dark");
     }
   };
 
@@ -31,7 +31,7 @@ export default function Header() {
           <div className="flex gap-x-6">
             <button onClick={toggleTheme}>
               <span className="sr-only">Toggle Theme Mode</span>
-              {theme === 'light' ? (
+              {theme === "light" ? (
                 <Icon className="size-6 text-sky-500" aria-hidden="true" icon="tabler:sun" />
               ) : (
                 <Icon className="size-6 text-sky-500" aria-hidden="true" icon="tabler:moon-stars" />

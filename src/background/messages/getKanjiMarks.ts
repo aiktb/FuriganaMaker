@@ -1,11 +1,11 @@
-import kuromoji from '@aiktb/kuromoji';
+import kuromoji from "@aiktb/kuromoji";
 
-import type { PlasmoMessaging } from '@plasmohq/messaging';
-import { Storage } from '@plasmohq/storage';
+import type { PlasmoMessaging } from "@plasmohq/messaging";
+import { Storage } from "@plasmohq/storage";
 
-import { ExtensionStorage, type FilterRule } from '~contents/core';
+import { ExtensionStorage, type FilterRule } from "~contents/core";
 
-import { toKanjiToken, type KanjiToken, type MojiToken } from './toKanjiToken';
+import { type KanjiToken, type MojiToken, toKanjiToken } from "./toKanjiToken";
 
 // Referenced from @azu/kuromojin.
 interface Tokenizer {
@@ -34,7 +34,7 @@ const getTokenizer = async () => {
   isLoading = true;
   const builder = kuromoji.builder({
     // This function relies on web_accessible_resources.
-    dicPath: '/',
+    dicPath: "/",
   });
   builder.build((err: undefined | Error, tokenizer: Tokenizer) => {
     if (err) {
@@ -56,7 +56,7 @@ const handler: PlasmoMessaging.MessageHandler<{ text: string }, { message: Kanji
 ) => {
   const tokenizer = await getTokenizer();
   const mojiTokens = tokenizer.tokenize(req.body!.text);
-  const storage = new Storage({ area: 'local' });
+  const storage = new Storage({ area: "local" });
   const kanjiList = (await storage.get(ExtensionStorage.FilterRules)) as FilterRule[];
   const kanjiMap = new Map<string, string[]>(
     kanjiList.map((filterRule) => [filterRule.kanji, filterRule.reading]),

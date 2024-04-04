@@ -1,5 +1,3 @@
 {
-  "*.svg": "prettier --write --parser html",
-  "*.{json,md,html,ts,tsx,css}": "prettier --write",
-  "*.{ts,tsx}": "eslint --fix"
+  "*.{ts,tsx,js,json}": "biome check --apply --no-errors-on-unmatched --error-on-warnings"
 }
