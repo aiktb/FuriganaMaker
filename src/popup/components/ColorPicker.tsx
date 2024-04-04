@@ -107,7 +107,7 @@ function ColorPickerPanel({ color, children, onChange }: ColorPickerPanelProps) 
                 setInput(event.target.value);
               }}
               onKeyDown={(event) => {
-                if (event.key === "Enter" && new TinyColor(input).isValid()) {
+                if (event.key === "Enter" && new TinyColor(input).isValid) {
                   updateHSV(input);
                 }
               }}
