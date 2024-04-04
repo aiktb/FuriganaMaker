@@ -1,7 +1,7 @@
+import { TinyColor } from "@ctrl/tinycolor";
 import { Popover, Transition } from "@headlessui/react";
 import { Icon } from "@iconify/react";
 import { Fragment, useEffect, useState } from "react";
-import tinycolor from "tinycolor2";
 
 interface ColorPickerProps {
   color: string;
@@ -57,14 +57,14 @@ interface ColorPickerPanelProps {
 }
 
 function ColorPickerPanel({ color, children, onChange }: ColorPickerPanelProps) {
-  const hsv = tinycolor(color).toHsv();
+  const hsv = new TinyColor(color).toHsv();
   const [hue, setHue] = useState(hsv.h);
   const [saturationAndValue, setSaturationAndValue] = useState({ s: hsv.s, v: hsv.v });
-  const [input, setInput] = useState(tinycolor(color).toHexString());
+  const [input, setInput] = useState(new TinyColor(color).toHexString());
 
   // biome-ignore lint/correctness/useExhaustiveDependencies: `onChange` never updated
   useEffect(() => {
-    const newColor = tinycolor({
+    const newColor = new TinyColor({
       h: hue,
       s: saturationAndValue.s,
       v: saturationAndValue.v,
@@ -74,7 +74,7 @@ function ColorPickerPanel({ color, children, onChange }: ColorPickerPanelProps) 
   }, [hue, saturationAndValue]);
 
   function updateHSV(color: string) {
-    const hsv = tinycolor(color).toHsv();
+    const hsv = new TinyColor(color).toHsv();
     setHue(hsv.h);
     setSaturationAndValue({ s: hsv.s, v: hsv.v });
   }
@@ -107,7 +107,7 @@ function ColorPickerPanel({ color, children, onChange }: ColorPickerPanelProps) 
                 setInput(event.target.value);
               }}
               onKeyDown={(event) => {
-                if (event.key === "Enter" && tinycolor(input).isValid()) {
+                if (event.key === "Enter" && new TinyColor(input).isValid()) {
                   updateHSV(input);
                 }
               }}
@@ -186,7 +186,7 @@ function SaturationAndValuePicker({ color, hue, onChange }: SaturationAndValuePi
         onPointerDown={handleSaturationCanvasPointerDown}
         className="absolute inset-0 rounded-sm shadow-inner"
         style={{
-          background: `linear-gradient(to right, white, ${tinycolor({
+          background: `linear-gradient(to right, white, ${new TinyColor({
             h: hue,
             s: 100,
             v: 100,
