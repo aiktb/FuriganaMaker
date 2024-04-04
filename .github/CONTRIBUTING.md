@@ -74,13 +74,11 @@ bun run start:firefox
 #### Chrome/Edge: `build/chrome-mv3-prod.zip`
 
 ```bash
-bun run build
 bun run package
 ```
 
 #### Firefox: `build/firefox-mv2-prod.zip`
 
 ```bash
-bun run build:firefox
 bun run package:firefox
 ```
