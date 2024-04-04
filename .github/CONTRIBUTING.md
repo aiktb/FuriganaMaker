@@ -44,7 +44,7 @@ bun install
 #### Chrome/Edge
 
 ```bash
-bun dev
+bun run dev
 ```
 
 After executing the above command, visit **chrome extensions page** `chrome://extensions/`, and click `Load unpacked` button, then select the `build/chrome-mv3-dev` folder in the project root directory, and try modifying the source code. You'll get live update.
@@ -52,13 +52,13 @@ After executing the above command, visit **chrome extensions page** `chrome://ex
 Alternatively, you can open a new CLI window and run the following command, this will open a clean chrome window.
 
 ```bash
-bun start
+bun run start
 ```
 
 #### Firefox
 
 ```bash
-bun dev:firefox
+bun run dev:firefox
 ```
 
 After executing the above command, visit **firefox debugging page** `about:debugging#/runtime/this-firefox`, and click `Load Temporary Add-on...` button, then select the `build/firefox-mv2-dev/manifest.json` file in the project root directory, and try modifying the source code. You'll get live update.
@@ -66,7 +66,7 @@ After executing the above command, visit **firefox debugging page** `about:debug
 Alternatively, you can open a new CLI window and run the following command，this will open a clean firefox window.
 
 ```bash
-bun start:firefox
+bun run start:firefox
 ```
 
 ### Get build target(.zip)
@@ -74,13 +74,13 @@ bun start:firefox
 #### Chrome/Edge: `build/chrome-mv3-prod.zip`
 
 ```bash
-bun build
-bun package
+bun run build
+bun run package
 ```
 
 #### Firefox: `build/firefox-mv2-prod.zip`
 
 ```bash
-bun build:firefox
-bun package:firefox
+bun run build:firefox
+bun run package:firefox
 ```
