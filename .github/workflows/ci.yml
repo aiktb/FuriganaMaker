@@ -1,9 +1,6 @@
 name: Run linter and check types
 on:
   workflow_dispatch:
-  push:
-    branches:
-      - main
   pull_request:
 jobs:
   lint:
