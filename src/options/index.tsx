@@ -1,28 +1,28 @@
-import '~/assets/style.css';
+import "~/assets/style.css";
 
-import { Suspense } from 'react';
+import { Suspense } from "react";
 
-import { Storage } from '@plasmohq/storage';
+import { Storage } from "@plasmohq/storage";
 
-import { ExtensionStorage, type SelectorRule } from '~contents/core';
+import { ExtensionStorage, type SelectorRule } from "~core/constants";
 
-import Footer from './components/Footer';
-import Header from './components/Header';
-import Main from './components/Main';
+import Footer from "./components/Footer";
+import Header from "./components/Header";
+import Main from "./components/Main";
 
 export default function Options() {
   if (
-    localStorage.theme === 'dark' ||
-    (!('theme' in localStorage) && window.matchMedia('(prefers-color-scheme: dark)').matches)
+    localStorage.theme === "dark" ||
+    (!("theme" in localStorage) && window.matchMedia("(prefers-color-scheme: dark)").matches)
   ) {
-    document.documentElement.classList.add('dark');
+    document.documentElement.classList.add("dark");
   } else {
-    document.documentElement.classList.remove('dark');
+    document.documentElement.classList.remove("dark");
   }
 
   async function initializeRules() {
-    const storage = new Storage({ area: 'local' });
-    const rules: SelectorRule[] = await storage.get(ExtensionStorage.SelectorRules);
+    const storage = new Storage({ area: "local" });
+    const rules = (await storage.get(ExtensionStorage.SelectorRules)) as SelectorRule[];
     return rules;
   }
   return (

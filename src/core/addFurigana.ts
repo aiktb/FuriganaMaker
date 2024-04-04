@@ -1,16 +1,11 @@
-import type { PlasmoCSConfig } from 'plasmo';
-import { toHiragana, toRomaji } from 'wanakana';
+import { toHiragana, toRomaji } from "wanakana";
 
-import { sendToBackground } from '@plasmohq/messaging';
-import { Storage } from '@plasmohq/storage';
+import { sendToBackground } from "@plasmohq/messaging";
+import { Storage } from "@plasmohq/storage";
 
-import type { KanjiMark } from '~background/messages/getKanjiMarks';
+import type { KanjiMark } from "~background/messages/getKanjiMarks";
 
-import { ExtensionStorage, FURIGANA_CLASS, FuriganaType } from './core';
-
-export const config: PlasmoCSConfig = {
-  matches: ['https://*/*'],
-};
+import { ExtensionStorage, FURIGANA_CLASS, FuriganaType } from "./constants";
 
 /**
  * Append ruby tag to all text nodes of a batch of elements.
@@ -22,8 +17,8 @@ export const config: PlasmoCSConfig = {
 export async function addFurigana(...elements: Element[]) {
   const japaneseTexts = [...elements.flatMap(collectTexts)];
 
-  const storage = new Storage({ area: 'local' });
-  const furiganaType: FuriganaType = await storage.get(ExtensionStorage.FuriganaType);
+  const storage = new Storage({ area: "local" });
+  const furiganaType = (await storage.get(ExtensionStorage.FuriganaType)) as FuriganaType;
 
   for (const text of japaneseTexts) {
     const tokens: KanjiMark[] = await tokenize(text.textContent!);
@@ -46,7 +41,7 @@ const collectTexts = (element: Element): Text[] => {
   while (walker.nextNode()) {
     const node = walker.currentNode;
     const parent = node.parentElement! as Element;
-    if (parent.tagName !== 'RUBY' && parent.tagName !== 'RT') {
+    if (parent.tagName !== "RUBY" && parent.tagName !== "RT") {
       texts.push(node as Text);
     }
   }
@@ -55,22 +50,22 @@ const collectTexts = (element: Element): Text[] => {
 
 const tokenize = async (text: string): Promise<KanjiMark[]> => {
   const response = await sendToBackground<{ text: string }, { message: KanjiMark[] }>({
-    name: 'getKanjiMarks',
+    name: "getKanjiMarks",
     body: { text },
   });
   return response.message;
 };
 
 const createRuby = (token: KanjiMark, furiganaType: FuriganaType): HTMLElement => {
-  const ruby = document.createElement('ruby');
+  const ruby = document.createElement("ruby");
   ruby.classList.add(FURIGANA_CLASS);
   if (token.isFiltered) {
-    ruby.classList.add('isFiltered');
+    ruby.classList.add("isFiltered");
   }
-  const rightParenthesisRp = document.createElement('rp');
-  rightParenthesisRp.textContent = ')';
-  const leftParenthesisRp = document.createElement('rp');
-  leftParenthesisRp.textContent = '(';
+  const rightParenthesisRp = document.createElement("rp");
+  rightParenthesisRp.textContent = ")";
+  const leftParenthesisRp = document.createElement("rp");
+  leftParenthesisRp.textContent = "(";
   const originalText = document.createTextNode(token.original);
 
   switch (furiganaType) {
@@ -85,7 +80,7 @@ const createRuby = (token: KanjiMark, furiganaType: FuriganaType): HTMLElement =
       break;
   }
   const readingTextNode = document.createTextNode(token.reading);
-  const rt = document.createElement('rt');
+  const rt = document.createElement("rt");
   rt.appendChild(readingTextNode);
   ruby.appendChild(originalText);
   ruby.appendChild(leftParenthesisRp);

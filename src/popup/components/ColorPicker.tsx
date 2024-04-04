@@ -1,7 +1,7 @@
-import { Popover, Transition } from '@headlessui/react';
-import { Icon } from '@iconify/react';
-import { Fragment, useEffect, useState } from 'react';
-import tinycolor from 'tinycolor2';
+import { TinyColor } from "@ctrl/tinycolor";
+import { Popover, Transition } from "@headlessui/react";
+import { Icon } from "@iconify/react";
+import { Fragment, useEffect, useState } from "react";
 
 interface ColorPickerProps {
   color: string;
@@ -57,24 +57,24 @@ interface ColorPickerPanelProps {
 }
 
 function ColorPickerPanel({ color, children, onChange }: ColorPickerPanelProps) {
-  const hsv = tinycolor(color).toHsv();
+  const hsv = new TinyColor(color).toHsv();
   const [hue, setHue] = useState(hsv.h);
   const [saturationAndValue, setSaturationAndValue] = useState({ s: hsv.s, v: hsv.v });
-  const [input, setInput] = useState(tinycolor(color).toHexString());
+  const [input, setInput] = useState(new TinyColor(color).toHexString());
 
+  // biome-ignore lint/correctness/useExhaustiveDependencies: `onChange` never updated
   useEffect(() => {
-    const newColor = tinycolor({
+    const newColor = new TinyColor({
       h: hue,
       s: saturationAndValue.s,
       v: saturationAndValue.v,
     }).toHexString();
     setInput(newColor);
     onChange(newColor);
-    // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [hue, saturationAndValue]);
 
   function updateHSV(color: string) {
-    const hsv = tinycolor(color).toHsv();
+    const hsv = new TinyColor(color).toHsv();
     setHue(hsv.h);
     setSaturationAndValue({ s: hsv.s, v: hsv.v });
   }
@@ -91,7 +91,7 @@ function ColorPickerPanel({ color, children, onChange }: ColorPickerPanelProps) 
           className="size-4 rounded-sm"
           style={{
             boxShadow:
-              'rgba(0, 0, 0, 0.15) 0px 0px 0px 1px inset, rgba(0, 0, 0, 0.25) 0px 0px 4px inset',
+              "rgba(0, 0, 0, 0.15) 0px 0px 0px 1px inset, rgba(0, 0, 0, 0.25) 0px 0px 4px inset",
             backgroundColor: color,
           }}
         />
@@ -107,7 +107,7 @@ function ColorPickerPanel({ color, children, onChange }: ColorPickerPanelProps) 
                 setInput(event.target.value);
               }}
               onKeyDown={(event) => {
-                if (event.key === 'Enter' && tinycolor(input).isValid()) {
+                if (event.key === "Enter" && new TinyColor(input).isValid) {
                   updateHSV(input);
                 }
               }}
@@ -116,7 +116,7 @@ function ColorPickerPanel({ color, children, onChange }: ColorPickerPanelProps) 
           <button
             className="flex h-6 items-center justify-center gap-0.5 rounded border-none px-1.5 font-sans shadow-sm outline-none ring-1 ring-gray-300 transition-all hover:text-primary focus-visible:text-primary focus-visible:ring-2 focus-visible:ring-primary dark:bg-slate-950 dark:ring-slate-700 dark:focus-visible:ring-primary"
             onClick={() => {
-              updateHSV('currentColor');
+              updateHSV("currentColor");
             }}
           >
             Reset
@@ -140,12 +140,12 @@ function addPointerEventListener(
   listener: (event: PointerEvent) => void,
 ) {
   element.setPointerCapture(pointerId);
-  element.addEventListener('pointermove', listener);
+  element.addEventListener("pointermove", listener);
   element.addEventListener(
-    'pointerup',
+    "pointerup",
     () => {
       element.releasePointerCapture(pointerId);
-      element.removeEventListener('pointermove', listener);
+      element.removeEventListener("pointermove", listener);
     },
     { once: true },
   );
@@ -186,7 +186,11 @@ function SaturationAndValuePicker({ color, hue, onChange }: SaturationAndValuePi
         onPointerDown={handleSaturationCanvasPointerDown}
         className="absolute inset-0 rounded-sm shadow-inner"
         style={{
-          background: `linear-gradient(to right, white, ${tinycolor({ h: hue, s: 100, v: 100 }).toHexString()})`,
+          background: `linear-gradient(to right, white, ${new TinyColor({
+            h: hue,
+            s: 100,
+            v: 100,
+          }).toHexString()})`,
         }}
       >
         <div className="absolute inset-0 rounded-sm bg-gradient-to-b from-transparent to-black" />
@@ -194,7 +198,7 @@ function SaturationAndValuePicker({ color, hue, onChange }: SaturationAndValuePi
           className="absolute size-1 -translate-x-1/2 -translate-y-1/2 rounded-full "
           style={{
             boxShadow:
-              'rgb(255, 255, 255) 0px 0px 0px 1.5px, rgba(0, 0, 0, 0.3) 0px 0px 1px 1px inset, rgba(0, 0, 0, 0.4) 0px 0px 1px 2px',
+              "rgb(255, 255, 255) 0px 0px 0px 1.5px, rgba(0, 0, 0, 0.3) 0px 0px 1px 1px inset, rgba(0, 0, 0, 0.4) 0px 0px 1px 2px",
             left: `${color.s * 100}%`,
             top: `${100 - color.v * 100}%`,
           }}
@@ -225,13 +229,13 @@ function HuePicker({ hue, onChange }: HuePickerProps) {
       className="relative h-4 flex-1 cursor-crosshair rounded-sm"
       style={{
         background:
-          'linear-gradient(to right, rgb(255, 0, 0) 0%, rgb(255, 255, 0) 17%, rgb(0, 255, 0) 33%, rgb(0, 255, 255) 50%, rgb(0, 0, 255) 67%, rgb(255, 0, 255) 83%, rgb(255, 0, 0) 100%)',
+          "linear-gradient(to right, rgb(255, 0, 0) 0%, rgb(255, 255, 0) 17%, rgb(0, 255, 0) 33%, rgb(0, 255, 255) 50%, rgb(0, 0, 255) 67%, rgb(255, 0, 255) 83%, rgb(255, 0, 0) 100%)",
       }}
     >
       <div
         className="absolute top-1/2 h-3.5 w-1 -translate-x-1/2 -translate-y-1/2 rounded-[1px] bg-white"
         style={{
-          boxShadow: 'rgba(0, 0, 0, 0.6) 0px 0px 2px',
+          boxShadow: "rgba(0, 0, 0, 0.6) 0px 0px 2px",
           left: `${(hue / 360) * 100}%`,
         }}
       />
@@ -240,7 +244,7 @@ function HuePicker({ hue, onChange }: HuePickerProps) {
 }
 
 function ColorSwitcher({ onChange }: { onChange: (color: string) => void }) {
-  // prettier-ignore
+  // biome-ignore format: next-line
   const colors = [
     'black', 'white', 'violet', 'orange', 'gold',
     'sienna', 'lime', 'springgreen', 'forestgreen', 'fuchsia',
@@ -251,7 +255,7 @@ function ColorSwitcher({ onChange }: { onChange: (color: string) => void }) {
   return (
     <div className="grid grid-cols-5 grid-rows-5 gap-2.5 border-t-2 border-gray-300 pt-3 dark:border-slate-700">
       {colors.map((color) => {
-        const baseShadow = 'rgba(0, 0, 0, 0.15) 0px 0px 0px 1px inset';
+        const baseShadow = "rgba(0, 0, 0, 0.15) 0px 0px 0px 1px inset";
         const focusShadow = `${baseShadow} ,${color} 0px 0px 6px`;
         return (
           <button

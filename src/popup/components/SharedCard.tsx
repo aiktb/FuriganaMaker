@@ -1,39 +1,39 @@
-import { Icon } from '@iconify/react';
-import { detect } from 'detect-browser';
+import { Icon } from "@iconify/react";
+import { detect } from "detect-browser";
 import {
   FacebookShareButton,
   RedditShareButton,
   TelegramShareButton,
   TwitterShareButton,
   WhatsappShareButton,
-} from 'react-share';
+} from "react-share";
 
-import TelegramSquareIcon from 'react:~/assets/icons/TelegramSquare.svg';
+import TelegramSquareIcon from "react:~/assets/icons/TelegramSquare.svg";
 
-import ToolTip from './ToolTip';
+import ToolTip from "./ToolTip";
 
 export default function SharedCard() {
   const socialLinks = {
     chrome:
-      'https://chromewebstore.google.com/detail/furigana-maker/heodojceeinbkfjfilnfminlkgbacpfp',
-    firefox: 'https://addons.mozilla.org/en-US/firefox/addon/furigana-maker/',
-    edge: 'https://microsoftedge.microsoft.com/addons/detail/furigana-maker/kohpoklaaeicnkdapjkmljdachedmbbi',
+      "https://chromewebstore.google.com/detail/furigana-maker/heodojceeinbkfjfilnfminlkgbacpfp",
+    firefox: "https://addons.mozilla.org/en-US/firefox/addon/furigana-maker/",
+    edge: "https://microsoftedge.microsoft.com/addons/detail/furigana-maker/kohpoklaaeicnkdapjkmljdachedmbbi",
   };
 
   const browser = detect();
   let shareUrl: string;
   switch (browser?.name) {
-    case 'firefox':
+    case "firefox":
       shareUrl = socialLinks.firefox;
       break;
-    case 'edge':
+    case "edge":
       shareUrl = socialLinks.edge;
       break;
     default:
       shareUrl = socialLinks.chrome;
   }
 
-  // prettier-ignore
+  // biome-ignore format: next-line
   const shareItems = [
     { ShareButton: TwitterShareButton, media: 'Twitter', Icon: <Icon className='text-xl' icon="fa6-brands:square-x-twitter" /> },
     { ShareButton: FacebookShareButton, media: 'Facebook', Icon: <Icon className='text-xl' icon="fa6-brands:square-facebook" /> },

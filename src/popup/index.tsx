@@ -1,47 +1,46 @@
-import '~/assets/style.css';
+import "~/assets/style.css";
 
-import { Transition } from '@headlessui/react';
-import { detect } from 'detect-browser';
-import { Suspense, use, useReducer } from 'react';
-import Browser from 'webextension-polyfill';
+import { Transition } from "@headlessui/react";
+import { detect } from "detect-browser";
+import { Suspense, use, useReducer } from "react";
+import Browser from "webextension-polyfill";
 
-import { Storage } from '@plasmohq/storage';
+import { Storage } from "@plasmohq/storage";
 
 import {
+  type Config,
   DisplayMode,
   ExtensionEvent,
   ExtensionStorage,
   FuriganaType,
   SelectMode,
-  sendMessage,
-  toStorageKey,
-  type Config,
-} from '~contents/core';
+} from "~core/constants";
 
-import ColorPickerIcon from 'react:~/assets/icons/ColorPicker.svg';
-import CursorOutlineIcon from 'react:~/assets/icons/CursorDefault.svg';
-import CursorTextIcon from 'react:~/assets/icons/CursorText.svg';
-import EyeIcon from 'react:~/assets/icons/Eye.svg';
-import FilterIcon from 'react:~/assets/icons/Filter.svg';
-import FontSizeIcon from 'react:~/assets/icons/FontSize.svg';
-import GithubIcon from 'react:~/assets/icons/Github.svg';
-import HeartIcon from 'react:~/assets/icons/Heart.svg';
-import HiraganaIcon from 'react:~/assets/icons/Hiragana.svg';
-import Logo from 'react:~/assets/icons/Logo.svg';
-import PowerIcon from 'react:~/assets/icons/Power.svg';
-import SettingIcon from 'react:~/assets/icons/Setting.svg';
-import ShareIcon from 'react:~/assets/icons/Share.svg';
+import ColorPickerIcon from "react:~/assets/icons/ColorPicker.svg";
+import CursorOutlineIcon from "react:~/assets/icons/CursorDefault.svg";
+import CursorTextIcon from "react:~/assets/icons/CursorText.svg";
+import EyeIcon from "react:~/assets/icons/Eye.svg";
+import FilterIcon from "react:~/assets/icons/Filter.svg";
+import FontSizeIcon from "react:~/assets/icons/FontSize.svg";
+import GithubIcon from "react:~/assets/icons/Github.svg";
+import HeartIcon from "react:~/assets/icons/Heart.svg";
+import HiraganaIcon from "react:~/assets/icons/Hiragana.svg";
+import Logo from "react:~/assets/icons/Logo.svg";
+import PowerIcon from "react:~/assets/icons/Power.svg";
+import SettingIcon from "react:~/assets/icons/Setting.svg";
+import ShareIcon from "react:~/assets/icons/Share.svg";
+import { sendMessage, toStorageKey } from "~core/utils";
 
-import Button from './components/Button';
-import CheckBox from './components/CheckBox';
-import ColorPicker from './components/ColorPicker';
-import Link from './components/Link';
-import RangeSlider from './components/RangeSlider';
-import Select from './components/Select';
-import SharedCard from './components/SharedCard';
+import Button from "./components/Button";
+import CheckBox from "./components/CheckBox";
+import ColorPicker from "./components/ColorPicker";
+import Link from "./components/Link";
+import RangeSlider from "./components/RangeSlider";
+import Select from "./components/Select";
+import SharedCard from "./components/SharedCard";
 
 const initializeConfig = async () => {
-  const storage = new Storage({ area: 'local' });
+  const storage = new Storage({ area: "local" });
   return {
     [ExtensionStorage.AutoMode]: await storage.get(ExtensionStorage.AutoMode),
     [ExtensionStorage.KanjiFilter]: await storage.get(ExtensionStorage.KanjiFilter),
@@ -55,12 +54,12 @@ const initializeConfig = async () => {
 
 export default function Popup() {
   if (
-    localStorage.theme === 'dark' ||
-    (!('theme' in localStorage) && window.matchMedia('(prefers-color-scheme: dark)').matches)
+    localStorage.theme === "dark" ||
+    (!("theme" in localStorage) && window.matchMedia("(prefers-color-scheme: dark)").matches)
   ) {
-    document.documentElement.classList.add('dark');
+    document.documentElement.classList.add("dark");
   } else {
-    document.documentElement.classList.remove('dark');
+    document.documentElement.classList.remove("dark");
   }
 
   return (
@@ -98,7 +97,7 @@ type ACTIONTYPE =
 
 function reducer(state: Config, action: ACTIONTYPE) {
   Browser.tabs.query({ active: true, currentWindow: true }).then(async (tabs) => {
-    const storage = new Storage({ area: 'local' });
+    const storage = new Storage({ area: "local" });
     await storage.set(toStorageKey(action.type), action.payload);
     const tabId = tabs[0]!.id!;
     await sendMessage(tabId, action.type);
@@ -140,13 +139,13 @@ function MenuItem({ children, icon }: MenuItemProps) {
 
 function Menu({ configPromise }: { configPromise: Promise<Config> }) {
   const [state, dispatch] = useReducer(reducer, use(configPromise));
-  // prettier-ignore
+  // biome-ignore format: next-line
   const displayModeOptions = [DisplayMode.Always, DisplayMode.Never, DisplayMode.Hover, DisplayMode.HoverNoGap];
   const furiganaTypeOptions = [FuriganaType.Hiragana, FuriganaType.Katakana, FuriganaType.Romaji];
   const browser = detect();
   // `SelectMode.Parentheses` is not compatible with firefox.
   const selectModeOptions =
-    browser?.name === 'firefox'
+    browser?.name === "firefox"
       ? [SelectMode.Default, SelectMode.Original]
       : [SelectMode.Default, SelectMode.Original, SelectMode.Parentheses];
 
@@ -155,7 +154,7 @@ function Menu({ configPromise }: { configPromise: Promise<Config> }) {
       <MenuItem icon={<CursorOutlineIcon />}>
         <Button tip="Press ESC to cancel" text="Add furigana" onClick={addFurigana} />
       </MenuItem>
-      <MenuItem icon={<PowerIcon className={state.autoMode ? 'text-primary' : ''} />}>
+      <MenuItem icon={<PowerIcon className={state.autoMode ? "text-primary" : ""} />}>
         <CheckBox
           tip="Please refresh the page"
           text="On-off auto mode"
@@ -165,7 +164,7 @@ function Menu({ configPromise }: { configPromise: Promise<Config> }) {
           }}
         />
       </MenuItem>
-      <MenuItem icon={<FilterIcon className={state.kanjiFilter ? 'text-primary' : ''} />}>
+      <MenuItem icon={<FilterIcon className={state.kanjiFilter ? "text-primary" : ""} />}>
         <CheckBox
           tip="Default level is N5"
           text="On-off kanji filter"

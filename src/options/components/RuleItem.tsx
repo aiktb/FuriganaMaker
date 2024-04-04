@@ -1,11 +1,11 @@
-import { Dialog } from '@headlessui/react';
-import { Icon } from '@iconify/react';
-import { useState } from 'react';
+import { Dialog } from "@headlessui/react";
+import { Icon } from "@iconify/react";
+import { useState } from "react";
 
-import type { SelectorRule } from '~contents/core';
+import type { SelectorRule } from "~core/constants";
 
-import PopupTransition from './PopupTransition';
-import RuleEditor from './RuleEditor';
+import PopupTransition from "./PopupTransition";
+import RuleEditor from "./RuleEditor";
 
 interface RuleItemProps {
   rule: SelectorRule;
@@ -49,17 +49,17 @@ export default function RuleItem({ rule, onChange, onDelete }: RuleItemProps) {
               }}
             >
               <p className="text-sm leading-5 transition hover:text-slate-950 dark:hover:text-white">
-                {rule.active ? 'Active' : 'Inactive'}
+                {rule.active ? "Active" : "Inactive"}
               </p>
               <span className="relative flex size-2">
                 <span
                   className={`absolute inline-flex h-full w-full animate-ping rounded-full opacity-75 ${
-                    rule.active ? 'bg-sky-400' : 'bg-gray-400'
+                    rule.active ? "bg-sky-400" : "bg-gray-400"
                   }`}
                 />
                 <span
                   className={`relative inline-flex size-2 rounded-full ${
-                    rule.active ? 'bg-sky-500' : 'bg-gray-500'
+                    rule.active ? "bg-sky-500" : "bg-gray-500"
                   }`}
                 />
               </span>

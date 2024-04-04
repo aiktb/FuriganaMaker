@@ -1,27 +1,27 @@
-import { Dialog, Transition } from '@headlessui/react';
-import { Icon } from '@iconify/react';
-import { saveAs } from 'file-saver';
-import { use, useEffect, useState } from 'react';
-import { z } from 'zod';
+import { Dialog, Transition } from "@headlessui/react";
+import { Icon } from "@iconify/react";
+import { saveAs } from "file-saver";
+import { use, useEffect, useState } from "react";
+import { z } from "zod";
 
-import { Storage } from '@plasmohq/storage';
+import { Storage } from "@plasmohq/storage";
 
-import { ExtensionStorage, type SelectorRule } from '~contents/core';
+import { ExtensionStorage, type SelectorRule } from "~core/constants";
 
-import NotFoundRule from './NotFoundRule';
-import PopupTransition from './PopupTransition';
-import RuleEditor from './RuleEditor';
-import RuleItem from './RuleItem';
+import NotFoundRule from "./NotFoundRule";
+import PopupTransition from "./PopupTransition";
+import RuleEditor from "./RuleEditor";
+import RuleItem from "./RuleItem";
 
 export default function Main({ rulesPromise }: { rulesPromise: Promise<SelectorRule[]> }) {
   const [rules, setRules] = useState(use(rulesPromise));
   const [createRuleDialogIsOpen, setCreateRuleDialogIsOpen] = useState(false);
   const [importDialogIsOpen, setImportDialogIsOpen] = useState(false);
   const [importFailedDialogIsOpen, setImportFailedDialogIsOpen] = useState(false);
-  const [importFailedMessage, setImportFailedMessage] = useState('');
+  const [importFailedMessage, setImportFailedMessage] = useState("");
 
   useEffect(() => {
-    const storage = new Storage({ area: 'local' });
+    const storage = new Storage({ area: "local" });
     storage.set(ExtensionStorage.SelectorRules, rules);
   }, [rules]);
 
@@ -41,17 +41,17 @@ export default function Main({ rulesPromise }: { rulesPromise: Promise<SelectorR
   }
 
   function exportConfig() {
-    const blob = new Blob([JSON.stringify(rules, null, 2)], { type: 'application/json' });
-    saveAs(blob, 'FuriganaMakerConfig.json');
+    const blob = new Blob([JSON.stringify(rules, null, 2)], { type: "application/json" });
+    saveAs(blob, "FuriganaMakerConfig.json");
   }
 
   async function importConfig() {
-    const input = document.createElement('input');
-    input.type = 'file';
-    input.accept = '.json';
+    const input = document.createElement("input");
+    input.type = "file";
+    input.accept = ".json";
 
     const file: File | null | undefined = await new Promise((resolve) => {
-      input.addEventListener('change', () => {
+      input.addEventListener("change", () => {
         resolve(input.files?.length ? input.files[0] : null);
       });
       input.click();
@@ -69,7 +69,7 @@ export default function Main({ rulesPromise }: { rulesPromise: Promise<SelectorR
         const importedRules = JSON.parse(reader.result as string) as SelectorRule[];
         const mergedRules = mergeSameDomainRules(importedRules);
 
-        const storage = new Storage({ area: 'local' });
+        const storage = new Storage({ area: "local" });
         await storage.set(ExtensionStorage.SelectorRules, mergedRules);
         setRules(mergedRules);
       };
@@ -108,7 +108,7 @@ export default function Main({ rulesPromise }: { rulesPromise: Promise<SelectorR
     <>
       <main className="flex grow flex-col justify-start">
         <p className="mx-auto mb-2 max-w-full whitespace-normal text-pretty border-b border-gray-200 p-4 text-center text-base font-bold dark:border-slate-800">
-          Feel free to share your custom rules in the{' '}
+          Feel free to share your custom rules in the{" "}
           <a
             href="https://github.com/aiktb/FuriganaMaker/discussions"
             className="text-sky-500 underline transition hover:text-sky-700"
@@ -136,7 +136,7 @@ export default function Main({ rulesPromise }: { rulesPromise: Promise<SelectorR
           <div className="flex gap-x-1.5">
             <button
               className={`${
-                rules.length === 0 ? 'cursor-not-allowed' : ''
+                rules.length === 0 ? "cursor-not-allowed" : ""
               } flex items-center gap-x-1.5 rounded-md border border-gray-200 px-1.5 py-0.5 shadow-md transition-[background-color] hover:bg-transparent/10 dark:border-slate-800 dark:hover:bg-transparent/20`}
               onClick={exportConfig}
             >
@@ -158,7 +158,7 @@ export default function Main({ rulesPromise }: { rulesPromise: Promise<SelectorR
           {rules.length === 0 ? (
             <NotFoundRule />
           ) : (
-            <ul role="list" className="divide-y divide-gray-100 dark:divide-slate-800">
+            <ul className="divide-y divide-gray-100 dark:divide-slate-800">
               {rules.map((rule) => {
                 return (
                   <Transition

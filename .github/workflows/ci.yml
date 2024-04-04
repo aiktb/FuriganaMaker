@@ -1,0 +1,19 @@
+name: Run linter and check types
+on:
+  workflow_dispatch:
+  pull_request:
+jobs:
+  lint:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - uses: oven-sh/setup-bun@v1
+        with:
+          bun-version: 1.1.0
+      - run: bun install --frozen-lockfile
+      # This generates the type files necessary for `sendToBackground`.
+      # https://github.com/PlasmoHQ/plasmo/issues/528#issuecomment-1510146052
+      - run: bun run make
+      - run: bun run lint
+      - run: bun run type-check
+      - run: bun test

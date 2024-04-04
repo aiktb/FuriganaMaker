@@ -1,20 +1,18 @@
-import Browser from 'webextension-polyfill';
+import Browser from "webextension-polyfill";
 
-import { Storage } from '@plasmohq/storage';
+import { Storage } from "@plasmohq/storage";
 
 import {
+  type Config,
   DisplayMode,
   ExtensionEvent,
   ExtensionStorage,
   FuriganaType,
   SelectMode,
-  sendMessage,
-  type Config,
-} from '~contents/core';
-
-// Default kanji filter level is N5.
-import defaultFilterRules from '../../assets/rules/filter.json';
-import defaultSelectorRules from '../../assets/rules/selector.json';
+} from "~core/constants";
+import { sendMessage } from "~core/utils";
+import defaultFilterRules from "../../assets/rules/filter.json";
+import defaultSelectorRules from "../../assets/rules/selector.json";
 
 // Plasmo `dev` mode will force the Service Worker to be `active`, it will never become `inactive`.
 
@@ -27,9 +25,9 @@ Browser.runtime.onInstalled.addListener(async () => {
     [ExtensionStorage.FuriganaType]: FuriganaType.Hiragana,
     [ExtensionStorage.SelectMode]: SelectMode.Original,
     [ExtensionStorage.FontSize]: 75, // ${fontsize}% relative to the parent font.
-    [ExtensionStorage.FontColor]: 'currentColor',
+    [ExtensionStorage.FontColor]: "currentColor",
   };
-  const storage = new Storage({ area: 'local' });
+  const storage = new Storage({ area: "local" });
   for (const key of Object.keys(defaultConfig)) {
     const oldConfig = await storage.get(key);
     if (!oldConfig) {
@@ -51,9 +49,9 @@ Browser.runtime.onInstalled.addListener(async () => {
   // otherwise it will report an error for creating the contextMenu multiple times.
   const contextMenuItem: Browser.Menus.CreateCreatePropertiesType = {
     id: ExtensionEvent.AddFurigana,
-    title: 'Add furigana on the page',
-    contexts: ['page'],
-    documentUrlPatterns: ['https://*/*'],
+    title: "Add furigana on the page",
+    contexts: ["page"],
+    documentUrlPatterns: ["https://*/*"],
   };
   Browser.contextMenus.create(contextMenuItem);
 });
@@ -66,25 +64,25 @@ Browser.contextMenus.onClicked.addListener(async (info, tab) => {
 
 // Please see `package.json` for a list of shortcut keys.
 Browser.commands.onCommand.addListener(async (command, tab) => {
-  const storage = new Storage({ area: 'local' });
+  const storage = new Storage({ area: "local" });
   switch (command) {
-    case 'addFurigana': {
+    case "addFurigana": {
       await sendMessage(tab!.id!, ExtensionEvent.AddFurigana);
       break;
     }
-    case 'toggleAutoMode': {
-      const autoMode: boolean = await storage.get(ExtensionStorage.AutoMode);
+    case "toggleAutoMode": {
+      const autoMode = (await storage.get(ExtensionStorage.AutoMode)) as boolean;
       await storage.set(ExtensionStorage.AutoMode, !autoMode);
       break;
     }
-    case 'toggleKanjiFilter': {
-      const kanjiFilter: boolean = await storage.get(ExtensionStorage.KanjiFilter);
+    case "toggleKanjiFilter": {
+      const kanjiFilter = (await storage.get(ExtensionStorage.KanjiFilter)) as boolean;
       await storage.set(ExtensionStorage.KanjiFilter, !kanjiFilter);
       await sendMessage(tab!.id!, ExtensionEvent.ToggleKanjiFilter);
       break;
     }
-    case 'toggleFuriganaDisplay': {
-      const displayMode: DisplayMode = await storage.get(ExtensionStorage.DisplayMode);
+    case "toggleFuriganaDisplay": {
+      const displayMode = (await storage.get(ExtensionStorage.DisplayMode)) as DisplayMode;
       if (displayMode === DisplayMode.Always) {
         await storage.set(ExtensionStorage.DisplayMode, DisplayMode.Never);
         await sendMessage(tab!.id!, ExtensionEvent.SwitchDisplayMode);
@@ -95,6 +93,6 @@ Browser.commands.onCommand.addListener(async (command, tab) => {
       break;
     }
     default:
-      throw new Error('Unknown command');
+      throw new Error("Unknown command");
   }
 });

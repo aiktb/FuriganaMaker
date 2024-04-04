@@ -1,42 +1,36 @@
-import type { PlasmoCSConfig } from 'plasmo';
-
-import { FURIGANA_CLASS } from './core';
-import { addFurigana } from './furiganaMaker';
-
-export const config: PlasmoCSConfig = {
-  matches: ['https://*/*'],
-};
+import { addFurigana } from "./addFurigana";
+import { FURIGANA_CLASS } from "./constants";
 
 class Renderer {
   readonly #BORDER = 5;
   readonly #PADDING = 2;
   readonly #GENERAL_CSS = {
-    position: 'fixed',
-    display: 'none',
-    background: 'DodgerBlue',
+    position: "fixed",
+    display: "none",
+    background: "DodgerBlue",
     // Max z-index
     zIndex: 2 ** 31 - 1,
   };
 
   readonly #BOTTOM_CSS = {
-    color: 'white',
-    overflow: 'hidden',
-    boxSizing: 'border-box',
-    fontFamily: 'sans-serif',
-    fontWeight: 'bold',
+    color: "white",
+    overflow: "hidden",
+    boxSizing: "border-box",
+    fontFamily: "sans-serif",
+    fontWeight: "bold",
     fontSize: `${this.#BORDER * 2}px`,
     lineHeight: `${this.#BORDER * 4}px`,
     paddingLeft: `${this.#BORDER}px`,
     paddingRight: `${this.#BORDER}px`,
   };
 
-  readonly #left = document.createElement('div');
-  readonly #right = document.createElement('div');
-  readonly #top = document.createElement('div');
-  readonly #bottom = document.createElement('div');
+  readonly #left = document.createElement("div");
+  readonly #right = document.createElement("div");
+  readonly #top = document.createElement("div");
+  readonly #bottom = document.createElement("div");
   readonly #getTagPath = (element: HTMLElement) => {
     const parent = element.parentNode as HTMLElement | null;
-    const parentTagName = parent?.tagName.toLowerCase() ?? '';
+    const parentTagName = parent?.tagName.toLowerCase() ?? "";
     return `${parentTagName} ${element.tagName.toLowerCase()}`;
   };
 
@@ -62,17 +56,17 @@ class Renderer {
   };
 
   readonly hide = () => {
-    this.#left.style.display = 'none';
-    this.#right.style.display = 'none';
-    this.#top.style.display = 'none';
-    this.#bottom.style.display = 'none';
+    this.#left.style.display = "none";
+    this.#right.style.display = "none";
+    this.#top.style.display = "none";
+    this.#bottom.style.display = "none";
   };
 
   readonly show = () => {
-    this.#left.style.display = 'block';
-    this.#right.style.display = 'block';
-    this.#top.style.display = 'block';
-    this.#bottom.style.display = 'block';
+    this.#left.style.display = "block";
+    this.#right.style.display = "block";
+    this.#top.style.display = "block";
+    this.#bottom.style.display = "block";
   };
 
   readonly add = (element: HTMLElement) => {
@@ -111,6 +105,7 @@ class Renderer {
 }
 
 // Singleton pattern
+// Adds a "border" indicator when the user selects text on the page with the mouse.
 export class Selector {
   readonly #renderer = new Renderer();
   static readonly #selector = new Selector();
@@ -149,14 +144,14 @@ export class Selector {
     this.#isOpen = true;
     this.#renderer.show();
     const elements = document.querySelectorAll(`body *:not(.${FURIGANA_CLASS})`);
-    Array.from(elements).forEach((element) => {
-      element.addEventListener('click', this.#clickHandler, {
+    for (const element of elements) {
+      element.addEventListener("click", this.#clickHandler, {
         capture: true,
       });
-      element.addEventListener('pointerover', this.#pointeroverHandler, {
+      element.addEventListener("pointerover", this.#pointeroverHandler, {
         capture: true,
       });
-    });
+    }
   };
 
   readonly close = () => {
@@ -166,14 +161,14 @@ export class Selector {
     }
     this.#isOpen = false;
     this.#renderer.hide();
-    const elements = document.querySelectorAll('body *');
-    Array.from(elements).forEach((element) => {
-      element.removeEventListener('click', this.#clickHandler, {
+    const elements = document.querySelectorAll("body *");
+    for (const element of elements) {
+      element.removeEventListener("click", this.#clickHandler, {
         capture: true,
       });
-      element.removeEventListener('pointerover', this.#pointeroverHandler, {
+      element.removeEventListener("pointerover", this.#pointeroverHandler, {
         capture: true,
       });
-    });
+    }
   };
 }

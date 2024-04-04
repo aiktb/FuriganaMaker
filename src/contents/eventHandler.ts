@@ -1,8 +1,8 @@
-import type { PlasmoCSConfig } from 'plasmo';
-import { toHiragana, toKatakana, toRomaji } from 'wanakana';
-import Browser from 'webextension-polyfill';
+import type { PlasmoCSConfig } from "plasmo";
+import { toHiragana, toKatakana, toRomaji } from "wanakana";
+import Browser from "webextension-polyfill";
 
-import { Storage } from '@plasmohq/storage';
+import { Storage } from "@plasmohq/storage";
 
 import {
   DisplayMode,
@@ -11,13 +11,14 @@ import {
   FURIGANA_CLASS,
   FuriganaType,
   SelectMode,
-  toStorageKey,
   type StyleEvent,
-} from './core';
-import { Selector } from './customSelector';
+} from "~core/constants";
+
+import { Selector } from "~core/selectElement";
+import { toStorageKey } from "~core/utils";
 
 export const config: PlasmoCSConfig = {
-  matches: ['https://*/*'],
+  matches: ["https://*/*"],
 };
 
 // styleHandler uses storage and is called immediately,
@@ -52,23 +53,23 @@ Browser.runtime.onMessage.addListener((event: ExtensionEvent) => {
 async function switchFuriganaHandler() {
   const rtSelector = `ruby.${FURIGANA_CLASS} > rt`;
   const nodes = document.querySelectorAll(rtSelector);
-  const storage = new Storage({ area: 'local' });
-  const value: FuriganaType = await storage.get(ExtensionStorage.FuriganaType);
+  const storage = new Storage({ area: "local" });
+  const value = (await storage.get(ExtensionStorage.FuriganaType)) as FuriganaType;
   switch (value) {
     case FuriganaType.Hiragana:
-      nodes.forEach((node) => {
+      for (const node of nodes) {
         node.textContent = toHiragana(node.textContent!);
-      });
+      }
       break;
     case FuriganaType.Katakana:
-      nodes.forEach((node) => {
+      for (const node of nodes) {
         node.textContent = toKatakana(node.textContent!);
-      });
+      }
       break;
     case FuriganaType.Romaji:
-      nodes.forEach((node) => {
+      for (const node of nodes) {
         node.textContent = toRomaji(node.textContent!);
-      });
+      }
       break;
   }
 }
@@ -76,13 +77,13 @@ async function switchFuriganaHandler() {
 function addFuriganaHandler() {
   const selector = Selector.create();
   const selectHandler = (event: KeyboardEvent) => {
-    if (event.key === 'Escape') {
+    if (event.key === "Escape") {
       selector.close();
-      document.removeEventListener('keydown', selectHandler);
+      document.removeEventListener("keydown", selectHandler);
     }
   };
   selector.open();
-  document.addEventListener('keydown', selectHandler);
+  document.addEventListener("keydown", selectHandler);
 }
 
 async function styleHandler(type: StyleEvent) {
@@ -91,10 +92,10 @@ async function styleHandler(type: StyleEvent) {
   const rtHoverSelector = `${rubySelector}:hover > rt`;
   const rpSelector = `${rubySelector} > rp`;
   const filteredRtSelector = `${rubySelector}.isFiltered > rt`;
-  const storage = new Storage({ area: 'local' });
+  const storage = new Storage({ area: "local" });
 
   const value = await storage.get(toStorageKey(type));
-  let css: string = '';
+  let css = "";
   switch (type) {
     case ExtensionEvent.SwitchDisplayMode:
       if (value === DisplayMode.Never) {
@@ -128,11 +129,11 @@ async function styleHandler(type: StyleEvent) {
     case ExtensionEvent.SwitchSelectMode:
       css = `
         ${rtSelector} {
-          user-select: ${value === SelectMode.Original ? 'none' : 'text'};
+          user-select: ${value === SelectMode.Original ? "none" : "text"};
         }
 
         ${rpSelector} {
-          display: ${value === SelectMode.Parentheses ? 'block' : 'none'};
+          display: ${value === SelectMode.Parentheses ? "block" : "none"};
           position: absolute;
           width: 1px;
           height: 1px;
@@ -174,9 +175,9 @@ async function styleHandler(type: StyleEvent) {
   if (oldStyle) {
     oldStyle.textContent = css;
   } else {
-    const style = document.createElement('style');
-    style.setAttribute('type', 'text/css');
-    style.setAttribute('id', id);
+    const style = document.createElement("style");
+    style.setAttribute("type", "text/css");
+    style.setAttribute("id", id);
     style.textContent = css;
     document.head.appendChild(style);
   }
