@@ -53,7 +53,7 @@ async function switchFuriganaHandler() {
   const rtSelector = `ruby.${FURIGANA_CLASS} > rt`;
   const nodes = document.querySelectorAll(rtSelector);
   const storage = new Storage({ area: 'local' });
-  const value: FuriganaType = await storage.get(ExtensionStorage.FuriganaType);
+  const value = (await storage.get(ExtensionStorage.FuriganaType)) as FuriganaType;
   switch (value) {
     case FuriganaType.Hiragana:
       nodes.forEach((node) => {

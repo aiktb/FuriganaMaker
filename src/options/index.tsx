@@ -22,7 +22,7 @@ export default function Options() {
 
   async function initializeRules() {
     const storage = new Storage({ area: 'local' });
-    const rules: SelectorRule[] = await storage.get(ExtensionStorage.SelectorRules);
+    const rules = (await storage.get(ExtensionStorage.SelectorRules)) as SelectorRule[];
     return rules;
   }
   return (

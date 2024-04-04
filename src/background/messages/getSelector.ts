@@ -8,7 +8,7 @@ const handler: PlasmoMessaging.MessageHandler<{ domain: string }, { selector: st
   req,
   res,
 ) => {
-  const allRules: SelectorRule[] = await storage.get(ExtensionStorage.SelectorRules);
+  const allRules = (await storage.get(ExtensionStorage.SelectorRules)) as SelectorRule[];
 
   const selector =
     allRules

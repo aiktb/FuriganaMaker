@@ -23,7 +23,7 @@ export async function addFurigana(...elements: Element[]) {
   const japaneseTexts = [...elements.flatMap(collectTexts)];
 
   const storage = new Storage({ area: 'local' });
-  const furiganaType: FuriganaType = await storage.get(ExtensionStorage.FuriganaType);
+  const furiganaType = (await storage.get(ExtensionStorage.FuriganaType)) as FuriganaType;
 
   for (const text of japaneseTexts) {
     const tokens: KanjiMark[] = await tokenize(text.textContent!);

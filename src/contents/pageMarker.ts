@@ -17,7 +17,7 @@ window.addEventListener('load', mark);
 
 async function mark() {
   const storage = new Storage({ area: 'local' });
-  const autoModeIsEnabled: boolean = await storage.get(ExtensionStorage.AutoMode);
+  const autoModeIsEnabled = await storage.get(ExtensionStorage.AutoMode);
   if (!autoModeIsEnabled) {
     /* If the user does not enable the extension, the extension will not attempt to add furigana to the page.
     The page must be refreshed after switching the extension to the enabled state. */

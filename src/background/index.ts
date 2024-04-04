@@ -73,18 +73,18 @@ Browser.commands.onCommand.addListener(async (command, tab) => {
       break;
     }
     case 'toggleAutoMode': {
-      const autoMode: boolean = await storage.get(ExtensionStorage.AutoMode);
+      const autoMode = (await storage.get(ExtensionStorage.AutoMode)) as boolean;
       await storage.set(ExtensionStorage.AutoMode, !autoMode);
       break;
     }
     case 'toggleKanjiFilter': {
-      const kanjiFilter: boolean = await storage.get(ExtensionStorage.KanjiFilter);
+      const kanjiFilter = (await storage.get(ExtensionStorage.KanjiFilter)) as boolean;
       await storage.set(ExtensionStorage.KanjiFilter, !kanjiFilter);
       await sendMessage(tab!.id!, ExtensionEvent.ToggleKanjiFilter);
       break;
     }
     case 'toggleFuriganaDisplay': {
-      const displayMode: DisplayMode = await storage.get(ExtensionStorage.DisplayMode);
+      const displayMode = (await storage.get(ExtensionStorage.DisplayMode)) as DisplayMode;
       if (displayMode === DisplayMode.Always) {
         await storage.set(ExtensionStorage.DisplayMode, DisplayMode.Never);
         await sendMessage(tab!.id!, ExtensionEvent.SwitchDisplayMode);
