@@ -24,7 +24,7 @@
     "start": "web-ext run --source-dir ./build/chrome-mv3-dev -t chromium --start-url chrome://newtab",
     "start:firefox": "web-ext run --source-dir ./build/firefox-mv2-dev",
     "package": "plasmo build && plasmo package",
-    "package:firefox": "plasmo build && plasmo package --target=firefox-mv2",
+    "package:firefox": "plasmo build --target=firefox-mv2 && plasmo package --target=firefox-mv2",
     "prepare": "husky",
     "format": "biome format --write .",
     "lint": "biome check .",

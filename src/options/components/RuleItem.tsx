@@ -2,7 +2,7 @@ import { Dialog } from "@headlessui/react";
 import { Icon } from "@iconify/react";
 import { useState } from "react";
 
-import type { SelectorRule } from "~contents/core";
+import type { SelectorRule } from "~core/constants";
 
 import PopupTransition from "./PopupTransition";
 import RuleEditor from "./RuleEditor";

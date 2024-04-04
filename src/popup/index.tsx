@@ -14,9 +14,7 @@ import {
   ExtensionStorage,
   FuriganaType,
   SelectMode,
-  sendMessage,
-  toStorageKey,
-} from "~contents/core";
+} from "~core/constants";
 
 import ColorPickerIcon from "react:~/assets/icons/ColorPicker.svg";
 import CursorOutlineIcon from "react:~/assets/icons/CursorDefault.svg";
@@ -31,6 +29,7 @@ import Logo from "react:~/assets/icons/Logo.svg";
 import PowerIcon from "react:~/assets/icons/Power.svg";
 import SettingIcon from "react:~/assets/icons/Setting.svg";
 import ShareIcon from "react:~/assets/icons/Share.svg";
+import { sendMessage, toStorageKey } from "~core/utils";
 
 import Button from "./components/Button";
 import CheckBox from "./components/CheckBox";

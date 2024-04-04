@@ -1,4 +1,3 @@
-import type { PlasmoCSConfig } from "plasmo";
 import { toHiragana, toRomaji } from "wanakana";
 
 import { sendToBackground } from "@plasmohq/messaging";
@@ -6,11 +5,7 @@ import { Storage } from "@plasmohq/storage";
 
 import type { KanjiMark } from "~background/messages/getKanjiMarks";
 
-import { ExtensionStorage, FURIGANA_CLASS, FuriganaType } from "./core";
-
-export const config: PlasmoCSConfig = {
-  matches: ["https://*/*"],
-};
+import { ExtensionStorage, FURIGANA_CLASS, FuriganaType } from "./constants";
 
 /**
  * Append ruby tag to all text nodes of a batch of elements.

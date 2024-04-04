@@ -1,7 +1,7 @@
 import type { PlasmoMessaging } from "@plasmohq/messaging";
 import { Storage } from "@plasmohq/storage";
 
-import { ExtensionStorage, type SelectorRule } from "~contents/core";
+import { ExtensionStorage, type SelectorRule } from "~core/constants";
 
 const storage = new Storage({ area: "local" });
 const handler: PlasmoMessaging.MessageHandler<{ domain: string }, { selector: string }> = async (

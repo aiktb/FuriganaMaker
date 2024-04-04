@@ -4,8 +4,8 @@ import type { CSSProperties } from "react";
 import { sendToBackground } from "@plasmohq/messaging";
 import { Storage } from "@plasmohq/storage";
 
-import { ExtensionStorage } from "./core";
-import { addFurigana } from "./furiganaMaker";
+import { addFurigana } from "~core/addFurigana";
+import { ExtensionStorage } from "~core/constants";
 
 export const config: PlasmoCSConfig = {
   matches: ["https://*/*"],

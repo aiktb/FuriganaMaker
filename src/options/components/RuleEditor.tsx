@@ -2,7 +2,7 @@ import { Disclosure } from "@headlessui/react";
 import { Icon } from "@iconify/react";
 import { useState } from "react";
 
-import type { SelectorRule } from "~contents/core";
+import type { SelectorRule } from "~core/constants";
 
 type RuleEditorProps = UpdateProps | CreateProps;
 

@@ -4,7 +4,7 @@ import { Suspense } from "react";
 
 import { Storage } from "@plasmohq/storage";
 
-import { ExtensionStorage, type SelectorRule } from "~contents/core";
+import { ExtensionStorage, type SelectorRule } from "~core/constants";
 
 import Footer from "./components/Footer";
 import Header from "./components/Header";

@@ -12,9 +12,10 @@ import {
   FuriganaType,
   SelectMode,
   type StyleEvent,
-  toStorageKey,
-} from "./core";
-import { Selector } from "./customSelector";
+} from "~core/constants";
+
+import { Selector } from "~core/selectElement";
+import { toStorageKey } from "~core/utils";
 
 export const config: PlasmoCSConfig = {
   matches: ["https://*/*"],

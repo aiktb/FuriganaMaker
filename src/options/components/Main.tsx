@@ -6,7 +6,7 @@ import { z } from "zod";
 
 import { Storage } from "@plasmohq/storage";
 
-import { ExtensionStorage, type SelectorRule } from "~contents/core";
+import { ExtensionStorage, type SelectorRule } from "~core/constants";
 
 import NotFoundRule from "./NotFoundRule";
 import PopupTransition from "./PopupTransition";

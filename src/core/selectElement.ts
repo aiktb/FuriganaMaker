@@ -1,11 +1,5 @@
-import type { PlasmoCSConfig } from "plasmo";
-
-import { FURIGANA_CLASS } from "./core";
-import { addFurigana } from "./furiganaMaker";
-
-export const config: PlasmoCSConfig = {
-  matches: ["https://*/*"],
-};
+import { addFurigana } from "./addFurigana";
+import { FURIGANA_CLASS } from "./constants";
 
 class Renderer {
   readonly #BORDER = 5;
@@ -111,6 +105,7 @@ class Renderer {
 }
 
 // Singleton pattern
+// Adds a "border" indicator when the user selects text on the page with the mouse.
 export class Selector {
   readonly #renderer = new Renderer();
   static readonly #selector = new Selector();

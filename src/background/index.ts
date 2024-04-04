@@ -9,10 +9,8 @@ import {
   ExtensionStorage,
   FuriganaType,
   SelectMode,
-  sendMessage,
-} from "~contents/core";
-
-// Default kanji filter level is N5.
+} from "~core/constants";
+import { sendMessage } from "~core/utils";
 import defaultFilterRules from "../../assets/rules/filter.json";
 import defaultSelectorRules from "../../assets/rules/selector.json";
 
