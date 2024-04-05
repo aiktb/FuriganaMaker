@@ -2,7 +2,6 @@ import { TinyColor } from "@ctrl/tinycolor";
 import { Popover, Transition } from "@headlessui/react";
 import { Icon } from "@iconify/react";
 import { Fragment, useState } from "react";
-import { set } from "zod";
 
 interface ColorPickerProps {
   color: string;

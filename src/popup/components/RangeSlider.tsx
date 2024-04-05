@@ -19,7 +19,9 @@ export default function RangeSlider({ value, min, max, step, label, onChange }: 
   function handlePointerDown(event: React.PointerEvent) {
     const track = trackRef.current;
     const thumb = thumbRef.current;
-    if (!track || !thumb) return;
+    if (!(track && thumb)) {
+      return;
+    }
 
     const updateValue = (clientX: number) => {
       const { width, left } = track.getBoundingClientRect();
