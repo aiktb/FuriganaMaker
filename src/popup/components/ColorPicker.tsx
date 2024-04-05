@@ -1,7 +1,8 @@
 import { TinyColor } from "@ctrl/tinycolor";
 import { Popover, Transition } from "@headlessui/react";
 import { Icon } from "@iconify/react";
-import { Fragment, useEffect, useState } from "react";
+import { Fragment, useState } from "react";
+import { set } from "zod";
 
 interface ColorPickerProps {
   color: string;
@@ -59,34 +60,40 @@ interface ColorPickerPanelProps {
 function ColorPickerPanel({ color, children, onChange }: ColorPickerPanelProps) {
   const hsv = new TinyColor(color).toHsv();
   const [hue, setHue] = useState(hsv.h);
-  const [saturationAndValue, setSaturationAndValue] = useState({ s: hsv.s, v: hsv.v });
+  const [saturationAndValue, setSaturationAndValue] = useState(
+    color === "currentColor" ? { s: 1, v: 1 } : { s: hsv.s, v: hsv.v },
+  );
   const [input, setInput] = useState(new TinyColor(color).toHexString());
 
-  // biome-ignore lint/correctness/useExhaustiveDependencies: `onChange` never updated
-  useEffect(() => {
-    const newColor = new TinyColor({
-      h: hue,
-      s: saturationAndValue.s,
-      v: saturationAndValue.v,
-    }).toHexString();
-    setInput(newColor);
-    onChange(newColor);
-  }, [hue, saturationAndValue]);
-
-  function updateHSV(color: string) {
-    const hsv = new TinyColor(color).toHsv();
-    setHue(hsv.h);
-    setSaturationAndValue({ s: hsv.s, v: hsv.v });
-  }
   return (
     <div className="flex size-full flex-col justify-between px-2.5 py-3">
       <SaturationAndValuePicker
         color={{ s: saturationAndValue.s, v: saturationAndValue.v }}
         hue={hue}
-        onChange={setSaturationAndValue}
+        onChange={(sv) => {
+          setSaturationAndValue(sv);
+          const newColor = new TinyColor({
+            h: hue,
+            ...sv,
+          }).toHexString();
+          setInput(newColor);
+          onChange(newColor);
+        }}
       />
       <div className="flex gap-1">
-        <HuePicker hue={hue} onChange={setHue} />
+        <HuePicker
+          hue={hue}
+          onChange={(h) => {
+            setHue(h);
+            const newColor = new TinyColor({
+              s: saturationAndValue.s,
+              v: saturationAndValue.v,
+              h,
+            }).toHexString();
+            setInput(newColor);
+            onChange(newColor);
+          }}
+        />
         <div
           className="size-4 rounded-sm"
           style={{
@@ -108,7 +115,12 @@ function ColorPickerPanel({ color, children, onChange }: ColorPickerPanelProps) 
               }}
               onKeyDown={(event) => {
                 if (event.key === "Enter" && new TinyColor(input).isValid) {
-                  updateHSV(input);
+                  const hsv = new TinyColor(input).toHsv();
+                  setHue(hsv.h);
+                  setSaturationAndValue({ s: hsv.s, v: hsv.v });
+                  const colorStr = new TinyColor(input).toHexString();
+                  setInput(colorStr);
+                  onChange(colorStr);
                 }
               }}
             />
@@ -116,7 +128,10 @@ function ColorPickerPanel({ color, children, onChange }: ColorPickerPanelProps) 
           <button
             className="flex h-6 items-center justify-center gap-0.5 rounded border-none px-1.5 font-sans shadow-sm outline-none ring-1 ring-gray-300 transition-all hover:text-primary focus-visible:text-primary focus-visible:ring-2 focus-visible:ring-primary dark:bg-slate-950 dark:ring-slate-700 dark:focus-visible:ring-primary"
             onClick={() => {
-              updateHSV("currentColor");
+              setHue(0);
+              setSaturationAndValue({ s: 1, v: 1 });
+              setInput("#000000");
+              onChange("currentColor");
             }}
           >
             Reset
@@ -126,7 +141,11 @@ function ColorPickerPanel({ color, children, onChange }: ColorPickerPanelProps) 
       </div>
       <ColorSwitcher
         onChange={(color) => {
-          updateHSV(color);
+          const tinycolor = new TinyColor(color);
+          setHue(tinycolor.toHsv().h);
+          setSaturationAndValue(tinycolor.toHsv());
+          setInput(tinycolor.toHexString());
+          onChange(color);
         }}
       />
       {children}
