@@ -1,11 +1,11 @@
 import kuromoji from "@aiktb/kuromoji";
 
-import type { PlasmoMessaging } from "@plasmohq/messaging";
 import { Storage } from "@plasmohq/storage";
 
 import { ExtensionStorage, type FilterRule } from "~core/constants";
 
-import { type KanjiToken, type MojiToken, toKanjiToken } from "../../core/toKanjiToken";
+import type { PlasmoMessaging } from "@plasmohq/messaging";
+import { type KanjiToken, type MojiToken, toKanjiToken } from "~core/toKanjiToken";
 
 // Referenced from @azu/kuromojin.
 interface Tokenizer {
