@@ -1,5 +1,11 @@
 # Changelog
 
+## v1.3.2
+
+### Fix Bugs
+
+- The `ColorPicker` component does not represent the HSV/HSL color space correctly. (Closed [#19](https://github.com/aiktb/FuriganaMaker/issues/19))
+
 ## v1.3.1
 
 ### BREAKING CHANGE
@@ -8,7 +14,7 @@
 
 ### Fix Bugs
 
-- Unable to submit to Edge: "error: The uploaded package consists of a compressed file." (Closed #21)
+- Unable to submit to Edge: "error: The uploaded package consists of a compressed file." (Closed [#21](https://github.com/aiktb/FuriganaMaker/issues/21))
 
 ## v1.3.0
 
@@ -21,7 +27,7 @@
 
 ### Fix Bugs
 
-- Causes the browser to become unresponsive on pages containing a large number of kanji. (Closed #16)
+- Causes the browser to become unresponsive on pages containing a large number of kanji. (Closed [#16](https://github.com/aiktb/FuriganaMaker/issues/16))
 
 ## v1.2.0
 
@@ -49,8 +55,8 @@
 
 ### Fix Bugs
 
-- Invalid JSON format anyway. (Closed #10)
-- Browser shortcuts don't work. (Closed #11)
+- Invalid JSON format anyway. (Closed [#10](https://github.com/aiktb/FuriganaMaker/issues/10))
+- Browser shortcuts don't work. (Closed [#11](https://github.com/aiktb/FuriganaMaker/issues/11))
 
 ## v1.0.0
 
