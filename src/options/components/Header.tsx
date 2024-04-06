@@ -1,4 +1,3 @@
-import { Icon } from "@iconify/react";
 import { useState } from "react";
 
 export default function Header() {
@@ -21,10 +20,9 @@ export default function Header() {
       <div className="max-w-8xl mx-auto xl:px-8">
         <div className="mx-auto flex max-w-3xl items-center justify-between border-b border-gray-200 px-4 py-5 backdrop-blur backdrop-filter dark:border-slate-800 sm:px-6 lg:max-w-7xl lg:px-8">
           <div className="flex items-center text-base">
-            <Icon
-              className="mr-1 size-6 text-sky-500"
+            <span
+              className="mr-1 size-6 text-sky-500 i-[material-symbols--rule-rounded]"
               aria-hidden="true"
-              icon="material-symbols:rule-rounded"
             />
             <span className="font-bold text-black dark:text-white">User Rules Editor</span>
           </div>
@@ -32,9 +30,9 @@ export default function Header() {
             <button onClick={toggleTheme}>
               <span className="sr-only">Toggle Theme Mode</span>
               {theme === "light" ? (
-                <Icon className="size-6 text-sky-500" aria-hidden="true" icon="tabler:sun" />
+                <span className="size-6 text-sky-500 i-[tabler--sun]" aria-hidden="true" />
               ) : (
-                <Icon className="size-6 text-sky-500" aria-hidden="true" icon="tabler:moon-stars" />
+                <span className="size-6 text-sky-500 i-[tabler--moon-stars]" aria-hidden="true" />
               )}
             </button>
             <a
@@ -42,7 +40,7 @@ export default function Header() {
               href="https://github.com/aiktb/FuriganaMaker"
             >
               <span className="sr-only">GitHub repository</span>
-              <Icon className="size-6" icon="mdi:github" />
+              <span className="size-6 i-[fa6-brands--github]" />
             </a>
           </div>
         </div>

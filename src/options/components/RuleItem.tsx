@@ -1,5 +1,4 @@
 import { Dialog } from "@headlessui/react";
-import { Icon } from "@iconify/react";
 import { useState } from "react";
 
 import type { SelectorRule } from "~core/constants";
@@ -21,10 +20,9 @@ export default function RuleItem({ rule, onChange, onDelete }: RuleItemProps) {
     <>
       <div className="flex flex-col justify-between gap-x-6 py-5 sm:flex-row">
         <div className="flex min-w-0 gap-x-4">
-          <Icon
-            className="size-12 flex-none text-sky-500"
+          <span
+            className="size-12 flex-none text-sky-500 i-[solar--layers-minimalistic-outline]"
             aria-hidden="true"
-            icon="solar:layers-minimalistic-outline"
           />
           <div className="flex-auto">
             <a
@@ -71,7 +69,7 @@ export default function RuleItem({ rule, onChange, onDelete }: RuleItemProps) {
                   setEditorIsOpen(true);
                 }}
               >
-                <Icon className="size-4" aria-hidden="true" icon="tabler:edit" />
+                <span className="size-4 i-[tabler--edit]" aria-hidden="true" />
                 Edit
               </button>
               <button
@@ -80,7 +78,7 @@ export default function RuleItem({ rule, onChange, onDelete }: RuleItemProps) {
                   setDeleteDialogIsOpen(true);
                 }}
               >
-                <Icon className="size-4" aria-hidden="true" icon="tabler:trash" />
+                <span className="size-4 i-[tabler--trash]" aria-hidden="true" />
                 Delete
               </button>
             </div>
