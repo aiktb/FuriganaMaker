@@ -32,13 +32,32 @@ export default function SharedCard() {
       shareUrl = socialLinks.chrome;
   }
 
-  // biome-ignore format: next-line
   const shareItems = [
-    { ShareButton: TwitterShareButton, media: "Twitter", Icon: <span className="text-xl i-[fa6-brands--square-x-twitter]" /> },
-    { ShareButton: FacebookShareButton, media: "Facebook", Icon: <span className="text-xl i-[fa6-brands--square-facebook]" /> },
-    { ShareButton: WhatsappShareButton, media: "WhatsAPP", Icon: <span className="text-xl i-[fa6-brands--square-whatsapp]" /> },
-    { ShareButton: TelegramShareButton, media: "Telegram", Icon: <TelegramSquareIcon className='text-xl' /> },
-    { ShareButton: RedditShareButton, media: "Reddit", Icon: <span className="text-xl i-[fa6-brands--square-reddit]" /> },
+    {
+      ShareButton: TwitterShareButton,
+      media: "Twitter",
+      Icon: <span className="text-xl i-[fa6-brands--square-x-twitter]" />,
+    },
+    {
+      ShareButton: FacebookShareButton,
+      media: "Facebook",
+      Icon: <span className="text-xl i-[fa6-brands--square-facebook]" />,
+    },
+    {
+      ShareButton: WhatsappShareButton,
+      media: "WhatsAPP",
+      Icon: <span className="text-xl i-[fa6-brands--square-whatsapp]" />,
+    },
+    {
+      ShareButton: TelegramShareButton,
+      media: "Telegram",
+      Icon: <TelegramSquareIcon className="text-xl" />,
+    },
+    {
+      ShareButton: RedditShareButton,
+      media: "Reddit",
+      Icon: <span className="text-xl i-[fa6-brands--square-reddit]" />,
+    },
   ];
 
   return (
