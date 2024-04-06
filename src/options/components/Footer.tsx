@@ -40,7 +40,7 @@ export default function Footer() {
           rel="noreferrer noopener"
         >
           <span className="sr-only">GitHub repository</span>
-          <span className="size-6 i-fa6-brands--github" />
+          <span className="size-6 i-[fa6-brands--github]" />
         </a>
       </div>
     </footer>

@@ -138,7 +138,7 @@ export default function Main({ rulesPromise }: { rulesPromise: Promise<SelectorR
               } flex items-center gap-x-1.5 rounded-md border border-gray-200 px-1.5 py-0.5 shadow-md transition-[background-color] hover:bg-transparent/10 dark:border-slate-800 dark:hover:bg-transparent/20`}
               onClick={exportConfig}
             >
-              <span className="size-5 i-pajamas--export" aria-hidden="true" />
+              <span className="size-5 i-[pajamas--export]" aria-hidden="true" />
               Export Config
             </button>
             <button
