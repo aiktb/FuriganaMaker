@@ -1,6 +1,5 @@
 import { TinyColor } from "@ctrl/tinycolor";
 import { Popover, Transition } from "@headlessui/react";
-import { Icon } from "@iconify/react";
 import { Fragment, useState } from "react";
 
 interface ColorPickerProps {
@@ -35,11 +34,7 @@ export default function ColorPicker({ color, onChange }: ColorPickerProps) {
               <ColorPickerPanel color={color} onChange={onChange}>
                 <Popover.Button className="flex items-center justify-center gap-2 rounded border-none px-1.5 font-sans shadow-sm outline-none ring-1 ring-gray-300 transition-all hover:text-primary focus-visible:text-primary focus-visible:ring-2 focus-visible:ring-primary dark:ring-slate-700 dark:focus-visible:ring-primary">
                   Close Picker Panel
-                  <Icon
-                    className="size-4"
-                    aria-hidden="true"
-                    icon="line-md:circle-to-confirm-circle-transition"
-                  />
+                  <span className="size-4 i-[material-symbols--close-rounded]" aria-hidden="true" />
                 </Popover.Button>
               </ColorPickerPanel>
             </Popover.Panel>
@@ -134,7 +129,7 @@ function ColorPickerPanel({ color, children, onChange }: ColorPickerPanelProps) 
             }}
           >
             Reset
-            <Icon className="text-lg" aria-hidden="true" icon="material-symbols:refresh-rounded" />
+            <span className="text-lg i-[material-symbols--refresh-rounded]" aria-hidden="true" />
           </button>
         </div>
       </div>

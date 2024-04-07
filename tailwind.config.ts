@@ -1,15 +1,17 @@
+import { dynamicIconsPlugin, iconsPlugin } from "@egoist/tailwindcss-icons";
 import headlessui from "@headlessui/tailwindcss";
 import forms from "@tailwindcss/forms";
 import type { Config } from "tailwindcss";
 import defaultTheme from "tailwindcss/defaultTheme";
 import plugin from "tailwindcss/plugin";
-
 export default {
   content: ["./src/**/*.{tsx,html}"],
   darkMode: "class",
   plugins: [
     forms,
     headlessui({ prefix: "ui" }).handler,
+    iconsPlugin().handler,
+    dynamicIconsPlugin().handler,
     plugin(({ addBase }) => {
       addBase({
         ":focus-visible": {

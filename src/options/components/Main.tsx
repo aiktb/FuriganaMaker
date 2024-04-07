@@ -1,5 +1,4 @@
 import { Dialog, Transition } from "@headlessui/react";
-import { Icon } from "@iconify/react";
 import { saveAs } from "file-saver";
 import { use, useEffect, useState } from "react";
 import { z } from "zod";
@@ -126,10 +125,9 @@ export default function Main({ rulesPromise }: { rulesPromise: Promise<SelectorR
               setCreateRuleDialogIsOpen(true);
             }}
           >
-            <Icon
-              className="size-5"
+            <span
+              className="size-5 i-[material-symbols--add-to-photos-outline-rounded]"
               aria-hidden="true"
-              icon="material-symbols:add-to-photos-outline-rounded"
             />
             Add New Rule
           </button>
@@ -140,7 +138,7 @@ export default function Main({ rulesPromise }: { rulesPromise: Promise<SelectorR
               } flex items-center gap-x-1.5 rounded-md border border-gray-200 px-1.5 py-0.5 shadow-md transition-[background-color] hover:bg-transparent/10 dark:border-slate-800 dark:hover:bg-transparent/20`}
               onClick={exportConfig}
             >
-              <Icon className="size-5" aria-hidden="true" icon="pajamas:export" />
+              <span className="size-5 i-[pajamas--export]" aria-hidden="true" />
               Export Config
             </button>
             <button
@@ -149,7 +147,7 @@ export default function Main({ rulesPromise }: { rulesPromise: Promise<SelectorR
                 setImportDialogIsOpen(true);
               }}
             >
-              <Icon className="size-5" aria-hidden="true" icon="pajamas:import" />
+              <span className="size-5 i-[pajamas--import]" aria-hidden="true" />
               Import Config
             </button>
           </div>

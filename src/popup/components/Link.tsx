@@ -1,5 +1,3 @@
-import { Icon } from "@iconify/react";
-
 import ToolTip from "./ToolTip";
 
 interface LinkProps {
@@ -18,7 +16,7 @@ export default function Link({ href, text, tip }: LinkProps) {
         className="flex flex-1 items-center gap-x-1 rounded px-2 capitalize transition duration-300 hover:bg-gray-200 hover:text-primary focus-visible:bg-gray-200 focus-visible:text-primary dark:hover:bg-slate-700 dark:focus-visible:bg-slate-700"
       >
         {text}
-        <Icon aria-hidden="true" icon="ci:link" />
+        <span className="-rotate-45 i-[material-symbols--link-rounded]" aria-hidden="true" />
       </a>
     );
   }

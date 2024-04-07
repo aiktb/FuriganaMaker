@@ -1,5 +1,3 @@
-import { Icon } from "@iconify/react";
-
 const generateYear = () => {
   const year = new Date().getFullYear();
   return year === 2023 ? year : `2023-${year}`;
@@ -42,7 +40,7 @@ export default function Footer() {
           rel="noreferrer noopener"
         >
           <span className="sr-only">GitHub repository</span>
-          <Icon className="size-6" icon="mdi:github" />
+          <span className="size-6 i-[fa6-brands--github]" />
         </a>
       </div>
     </footer>
