@@ -12,7 +12,7 @@ jobs:
           bun-version: latest
       - run: bun install --frozen-lockfile
 
-      - name: Build the extension(Edge, Chrome, and Firefox)
+      - name: Build the extension
         run: bun run package && bun run package:firefox
 
       - name: Browser Platform Publish

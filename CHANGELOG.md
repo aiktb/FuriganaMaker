@@ -1,5 +1,11 @@
 # Changelog
 
+## v1.3.3
+
+### Features
+
+- Reduce FOUC(Flash of unstyled content) caused by network-loaded icons. (closed [#42](https://github.com/aiktb/FuriganaMaker/issues/42))
+
 ## v1.3.2
 
 ### Fix Bugs
