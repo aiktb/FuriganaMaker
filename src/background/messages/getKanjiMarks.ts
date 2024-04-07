@@ -1,4 +1,4 @@
-import kuromoji from "@aiktb/kuromoji";
+import kuromoji from "@sglkc/kuromoji";
 
 import { Storage } from "@plasmohq/storage";
 

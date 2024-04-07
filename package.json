@@ -32,12 +32,12 @@
     "type-check": "tsc"
   },
   "dependencies": {
-    "@aiktb/kuromoji": "^1.0.2",
     "@ctrl/tinycolor": "^4.0.3",
     "@floating-ui/react": "^0.26.10",
     "@headlessui/react": "^1.7.18",
     "@plasmohq/messaging": "^0.6.2",
     "@plasmohq/storage": "^1.9.3",
+    "@sglkc/kuromoji": "^1.1.0",
     "detect-browser": "^5.3.0",
     "file-saver": "^2.0.5",
     "plasmo": "^0.85.2",
@@ -87,18 +87,18 @@
     "web_accessible_resources": [
       {
         "resources": [
-          "@aiktb/kuromoji/dict/base.dat",
-          "@aiktb/kuromoji/dict/cc.dat",
-          "@aiktb/kuromoji/dict/check.dat",
-          "@aiktb/kuromoji/dict/tid.dat",
-          "@aiktb/kuromoji/dict/tid_map.dat",
-          "@aiktb/kuromoji/dict/tid_pos.dat",
-          "@aiktb/kuromoji/dict/unk_char.dat",
-          "@aiktb/kuromoji/dict/unk_compat.dat",
-          "@aiktb/kuromoji/dict/unk.dat",
-          "@aiktb/kuromoji/dict/unk_invoke.dat",
-          "@aiktb/kuromoji/dict/unk_map.dat",
-          "@aiktb/kuromoji/dict/unk_pos.dat"
+          "@sglkc/kuromoji/dict/base.dat.gz",
+          "@sglkc/kuromoji/dict/cc.dat.gz",
+          "@sglkc/kuromoji/dict/check.dat.gz",
+          "@sglkc/kuromoji/dict/tid.dat.gz",
+          "@sglkc/kuromoji/dict/tid_map.dat.gz",
+          "@sglkc/kuromoji/dict/tid_pos.dat.gz",
+          "@sglkc/kuromoji/dict/unk_char.dat.gz",
+          "@sglkc/kuromoji/dict/unk_compat.dat.gz",
+          "@sglkc/kuromoji/dict/unk.dat.gz",
+          "@sglkc/kuromoji/dict/unk_invoke.dat.gz",
+          "@sglkc/kuromoji/dict/unk_map.dat.gz",
+          "@sglkc/kuromoji/dict/unk_pos.dat.gz"
         ],
         "matches": ["https://*/*"]
       }
