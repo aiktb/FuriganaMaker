@@ -9,11 +9,12 @@ import { ExtensionStorage } from "~core/constants";
 
 export const config: PlasmoCSConfig = {
   matches: ["https://*/*"],
+  // This script will run when the `window.load` event fires,
+  // before then the script is considered to have run prematurely.
+  run_at: "document_idle",
 };
 
-/* 1. Only the `body` selector may not select any elements before `load` is completed.
-   2. Calculating `htmlSize` before `load` is completed will cause the calculated value to be too small. */
-window.addEventListener("load", mark);
+mark();
 
 async function mark() {
   const storage = new Storage({ area: "local" });
