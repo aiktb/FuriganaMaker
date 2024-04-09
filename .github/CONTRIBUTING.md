@@ -51,6 +51,9 @@ After executing the above command, visit **chrome extensions page** `chrome://ex
 
 Alternatively, you can open a new CLI window and run the following command, this will open a clean chrome window.
 
+> [!WARNING]
+> The `start` and `start:firefox` scripts are not compatible with WSL2.
+
 ```bash
 bun run start
 ```
