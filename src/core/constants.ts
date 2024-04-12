@@ -9,6 +9,7 @@ export enum ExtensionEvent {
   SwitchSelectMode = "switchSelectMode",
   AdjustFontSize = "adjustFontSize",
   AdjustFontColor = "adjustFontColor",
+  MarkActiveTab = "markActiveTab",
 }
 
 // Please see `background/index.ts` for the default value.

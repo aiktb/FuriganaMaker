@@ -4,8 +4,9 @@ import type { CSSProperties } from "react";
 import { sendToBackground } from "@plasmohq/messaging";
 import { Storage } from "@plasmohq/storage";
 
+import Browser from "webextension-polyfill";
 import { addFurigana } from "~core/addFurigana";
-import { ExtensionStorage } from "~core/constants";
+import { ExtensionEvent, ExtensionStorage } from "~core/constants";
 
 export const config: PlasmoCSConfig = {
   matches: ["https://*/*"],
@@ -33,6 +34,9 @@ async function mark() {
   if (!response.selector) {
     return;
   }
+
+  // Add an active flag (little green dot) to the image.
+  Browser.runtime.sendMessage(ExtensionEvent.MarkActiveTab);
 
   // Reflow on a huge page causes severe page freezes and even the browser becomes unresponsive. (issue#16)
   const encoder = new TextEncoder();

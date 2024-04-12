@@ -96,3 +96,28 @@ Browser.commands.onCommand.addListener(async (command, tab) => {
       throw new Error("Unknown command");
   }
 });
+
+Browser.runtime.onMessage.addListener((event, sender) => {
+  if (event === ExtensionEvent.MarkActiveTab) {
+    const activeTabTitle = `${Browser.runtime.getManifest().name} (Custom Rule Active)`;
+    Browser.action.setTitle({ title: activeTabTitle, tabId: sender.tab!.id! });
+
+    const SIZE = 32;
+    const iconPath = `/${Browser.runtime.getManifest().icons![SIZE]!}`;
+    fetch(iconPath)
+      .then((response) => response.blob())
+      .then((blob) => createImageBitmap(blob))
+      .then((imageBitmap) => {
+        const canvas = new OffscreenCanvas(SIZE, SIZE);
+        const context = canvas.getContext("2d")!;
+        context.drawImage(imageBitmap, 0, 0);
+        context.fillStyle = "lime";
+        context.beginPath();
+        const RADIUS = 5;
+        context.arc(SIZE - RADIUS, SIZE - RADIUS, RADIUS, 0, 2 * Math.PI);
+        context.fill();
+        const imageData = context.getImageData(0, 0, SIZE, SIZE) as Browser.Action.ImageDataType;
+        Browser.action.setIcon({ imageData, tabId: sender.tab!.id! });
+      });
+  }
+});
