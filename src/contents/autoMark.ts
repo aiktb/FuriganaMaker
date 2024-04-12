@@ -36,7 +36,7 @@ async function mark() {
   }
 
   // Add an active flag (little green dot) to the image.
-  Browser.runtime.sendMessage(ExtensionEvent.MarkActiveRuleTab);
+  Browser.runtime.sendMessage(ExtensionEvent.MarkActiveTab);
 
   // Reflow on a huge page causes severe page freezes and even the browser becomes unresponsive. (issue#16)
   const encoder = new TextEncoder();

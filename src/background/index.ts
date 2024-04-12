@@ -98,7 +98,7 @@ Browser.commands.onCommand.addListener(async (command, tab) => {
 });
 
 Browser.runtime.onMessage.addListener((event, sender) => {
-  if (event === ExtensionEvent.MarkActiveRuleTab) {
+  if (event === ExtensionEvent.MarkActiveTab) {
     const activeTabTitle = `${Browser.runtime.getManifest().name} (Custom Rule Active)`;
     Browser.action.setTitle({ title: activeTabTitle, tabId: sender.tab!.id! });
 

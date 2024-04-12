@@ -44,6 +44,8 @@ Browser.runtime.onMessage.addListener((event: ExtensionEvent) => {
     case ExtensionEvent.AddFurigana:
       addFuriganaHandler();
       break;
+    case ExtensionEvent.MarkActiveTab:
+      break;
     default:
       styleHandler(event);
       break;
