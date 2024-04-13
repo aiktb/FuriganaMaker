@@ -1,10 +1,17 @@
 # Changelog
 
-## v1.3.3
+## v1.4.0
 
 ### Features
 
-- Reduce FOUC(Flash of unstyled content) caused by network-loaded icons. (closed [#42](https://github.com/aiktb/FuriganaMaker/issues/42))
+- Supports N4 levels of kanji filters. (Closed [#20](https://github.com/aiktb/FuriganaMaker/issues/20))
+- Enable active flag for the icon of the page containing custom rules. (Closed [#48](https://github.com/aiktb/FuriganaMaker/issues/48))
+
+## v1.3.3
+
+### Performance Improvements
+
+- Reduce FOUC(Flash of unstyled content) caused by network-loaded icons. (Closed [#42](https://github.com/aiktb/FuriganaMaker/issues/42))
 
 ## v1.3.2
 
