@@ -26,14 +26,9 @@ Special thanks to **_[plasmo](https://github.com/PlasmoHQ/plasmo)_** for taking 
 - By default, furigana is automatically added to many [common Japanese websites](https://github.com/aiktb/FuriganaMaker/blob/main/assets/rules/selector.json).
 - The list of rules used by Auto Mode can be customized using CSS selectors and domains.
 - Users can use their mouse to select areas on any web page to add furigana to.
-- N5 kanji filter prepared for JLPT learners, these kanji will not be added furigana.
+- N5 & N4 kanji filter prepared for JLPT learners, these kanji will not be added furigana.
 - The font size and color of furigana can be freely modified, and toggle the display of furigana.
 - Optional support for hover mode, only showing furigana when mouseover kanji.
-
-## Note
-
-- This extension can't guarantee completely correct word segmentation and kanji pronunciation.
-- [This extension isn't suitable for use on large pages, otherwise the page will freeze.](https://github.com/aiktb/FuriganaMaker/issues/16)
 
 ## Contribution
 
