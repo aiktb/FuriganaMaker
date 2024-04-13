@@ -1,13 +1,10 @@
 import kuromoji from "@sglkc/kuromoji";
 
-import { Storage } from "@plasmohq/storage";
-
-import { ExtensionStorage, type FilterRule } from "~core/constants";
-
 import type { PlasmoMessaging } from "@plasmohq/messaging";
 import { type KanjiToken, type MojiToken, toKanjiToken } from "~core/toKanjiToken";
+// `filter.json` exceeded Browser.storage.local` maximum limit.
+import filterList from "../../../assets/rules/filter.json";
 
-// Referenced from @azu/kuromojin.
 interface Tokenizer {
   tokenize: (text: string) => MojiToken[];
 }
@@ -56,16 +53,14 @@ const handler: PlasmoMessaging.MessageHandler<{ text: string }, { message: Kanji
 ) => {
   const tokenizer = await getTokenizer();
   const mojiTokens = tokenizer.tokenize(req.body!.text);
-  const storage = new Storage({ area: "local" });
-  const kanjiList = (await storage.get(ExtensionStorage.FilterRules)) as FilterRule[];
-  const kanjiMap = new Map<string, string[]>(
-    kanjiList.map((filterRule) => [filterRule.kanji, filterRule.reading]),
+  const filterMap = new Map<string, string[]>(
+    filterList.map((filterRule) => [filterRule.kanji, filterRule.reading]),
   );
   const message = toKanjiToken(mojiTokens).map((token) => {
     return {
       ...token,
       isFiltered:
-        kanjiMap.has(token.original) && kanjiMap.get(token.original)!.includes(token.reading),
+        filterMap.has(token.original) && filterMap.get(token.original)!.includes(token.reading),
     };
   });
 
