@@ -30,7 +30,6 @@ Special thanks to **_[plasmo](https://github.com/PlasmoHQ/plasmo)_** for taking 
 - The font size and color of furigana can be freely modified, and toggle the display of furigana.
 - Optional support for hover mode, only showing furigana when mouseover kanji.
 
-
 ## Contribution
 
 Please make sure to read the [Contributing Guide](./.github/CONTRIBUTING.md) before making a pull request.
