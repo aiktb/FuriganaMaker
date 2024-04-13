@@ -166,7 +166,7 @@ function Menu({ configPromise }: { configPromise: Promise<Config> }) {
       </MenuItem>
       <MenuItem icon={<FilterIcon className={state.kanjiFilter ? "text-primary" : ""} />}>
         <CheckBox
-          tip="Default level is N5"
+          tip="Level is JLPT N5 & N4"
           text="On-off kanji filter"
           checked={state.kanjiFilter}
           onChange={(checked) => {

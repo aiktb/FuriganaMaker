@@ -11,7 +11,6 @@ import {
   SelectMode,
 } from "~core/constants";
 import { sendMessage } from "~core/utils";
-import defaultFilterRules from "../../assets/rules/filter.json";
 import defaultSelectorRules from "../../assets/rules/selector.json";
 
 // Plasmo `dev` mode will force the Service Worker to be `active`, it will never become `inactive`.
@@ -38,11 +37,6 @@ Browser.runtime.onInstalled.addListener(async () => {
   const oldSelectorRules = await storage.get(ExtensionStorage.SelectorRules);
   if (!oldSelectorRules) {
     await storage.set(ExtensionStorage.SelectorRules, defaultSelectorRules);
-  }
-
-  const oldKanjiRules = await storage.get(ExtensionStorage.FilterRules);
-  if (!oldKanjiRules) {
-    await storage.set(ExtensionStorage.FilterRules, defaultFilterRules);
   }
 
   // Setting the contextMenu must not be outside of `runtime.onInstalled`,
