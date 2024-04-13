@@ -1,4 +1,4 @@
-import { isKanji, toHiragana, toRomaji } from "wanakana";
+import { toHiragana, toRomaji } from "wanakana";
 
 import { sendToBackground } from "@plasmohq/messaging";
 import { Storage } from "@plasmohq/storage";
@@ -50,7 +50,8 @@ const collectTexts = (element: Element): Text[] => {
 
 const tokenize = async (text: string): Promise<KanjiMark[]> => {
   // Performance Optimization: This will reduce the number of Service Worker requests by more than 50%.
-  if (!isKanji(text)) {
+  const hasKanji = text.match(/\p{sc=Han}/u);
+  if (!hasKanji) {
     return [];
   }
   const response = await sendToBackground<{ text: string }, { message: KanjiMark[] }>({
