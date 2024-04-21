@@ -82,8 +82,8 @@ export default function Popup() {
 
 async function addFurigana() {
   // `chrome.tabs.query` is not compatible with firefox.
-  const tabId = (await Browser.tabs.query({ active: true, currentWindow: true })).at(0)!.id!;
-  await sendMessage(tabId, ExtensionEvent.AddFurigana);
+  const [tab] = await Browser.tabs.query({ active: true, currentWindow: true });
+  await sendMessage(tab!.id!, ExtensionEvent.AddFurigana);
 }
 
 type ACTIONTYPE =
