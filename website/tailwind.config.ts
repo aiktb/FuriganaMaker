@@ -5,7 +5,6 @@ import type { Config } from "tailwindcss";
 import defaultTheme from "tailwindcss/defaultTheme";
 export default {
   content: ["./app/**/*.tsx"],
-  darkMode: "selector",
   plugins: [
     forms,
     headlessui({ prefix: "ui" }).handler,
