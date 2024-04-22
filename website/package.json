@@ -12,6 +12,7 @@
   },
   "dependencies": {
     "@remix-run/cloudflare": "^2.8.1",
+    "@remix-run/cloudflare-pages": "^2.8.1",
     "@remix-run/react": "^2.8.1",
     "isbot": "^5.1.4"
   },
