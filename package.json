@@ -1,6 +1,7 @@
 {
   "name": "furigana-maker",
   "displayName": "Furigana Maker",
+  "workspaces": ["website"],
   "version": "1.4.0",
   "type": "module",
   "private": true,

@@ -1,0 +1,27 @@
+{
+  "name": "website",
+  "private": true,
+  "sideEffects": false,
+  "type": "module",
+  "scripts": {
+    "build": "remix vite:build",
+    "deploy": "wrangler pages deploy ./build/client",
+    "dev": "remix vite:dev",
+    "start": "wrangler pages dev ./build/client",
+    "typegen": "wrangler types"
+  },
+  "dependencies": {
+    "@remix-run/cloudflare": "^2.8.1",
+    "@remix-run/react": "^2.8.1",
+    "isbot": "^5.1.4"
+  },
+  "devDependencies": {
+    "@cloudflare/workers-types": "^4.20230518.0",
+    "@remix-run/dev": "^2.8.1",
+    "@remix-run/node": "^2.8.1",
+    "remix-development-tools": "^4.1.4",
+    "vite": "^5.1.0",
+    "vite-tsconfig-paths": "^4.2.1",
+    "wrangler": "^3.24.0"
+  }
+}
