@@ -1,10 +1,13 @@
 {
   "extends": "plasmo/templates/tsconfig.base",
   "exclude": ["node_modules"],
-  "include": [".plasmo/index.d.ts", "./**/*.ts", "./**/*.tsx"],
+  "include": [".plasmo/index.d.ts", "./**/*.ts", "./**/*.tsx", "./website/tsconfig.json"],
   "compilerOptions": {
+    "baseUrl": ".",
     "paths": {
-      "~*": ["./src/*"]
+      "~*": ["./src/*"],
+      // Only used to eliminate `tsc --noEmit` errors.
+      "@/*": ["./website/app/*"]
     },
     "types": ["react/canary", "react-dom/canary", "bun"],
     /* Linting */
