@@ -33,7 +33,7 @@ export function Layout({ children }: { children: React.ReactNode }) {
         <Meta />
         <Links />
       </head>
-      <body className="font-sans text-base min-h-screen flex flex-col">
+      <body className="font-sans text-base min-h-screen flex flex-col text-white">
         <LinksContext.Provider value={links}>
           <Header />
           <main className="flex-1">{children}</main>
