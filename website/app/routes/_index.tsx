@@ -1,8 +1,8 @@
+import AddToBrowser from "@/components/AddToBrowser";
+import { LinksContext } from "@/contexts";
 import type { MetaFunction } from "@remix-run/cloudflare";
 import { Link } from "@remix-run/react";
-import { detect } from "detect-browser";
 import { useContext, useEffect, useState } from "react";
-import { LinksContext } from "../contexts";
 export const meta: MetaFunction = () => {
   return [
     {
@@ -18,31 +18,7 @@ export const meta: MetaFunction = () => {
 
 export default function Index() {
   const links = useContext(LinksContext)!;
-  const [browser, setBrowser] = useState({
-    name: "Google Chrome",
-    link: links.chrome,
-    icon: "i-fa6-brands-chrome",
-  });
   const [star, setStar] = useState(0);
-  useEffect(() => {
-    switch (detect()?.name) {
-      case "edge":
-        setBrowser({
-          name: "Microsoft Edge",
-          link: links.edge,
-          icon: "i-fa6-brands-edge",
-        });
-        break;
-      case "firefox":
-        setBrowser({
-          name: "Mozilla Firefox",
-          link: links.firefox,
-          icon: "i-fa6-brands-firefox-browser",
-        });
-        break;
-    }
-  }, [links]);
-
   interface Repo {
     stargazers_count: number;
   }
@@ -64,22 +40,7 @@ export default function Index() {
         </p>
       </section>
       <div className="relative flex gap-3 items-center flex-col sm:flex-row">
-        <div className="inline-flex relative items-center justify-center font-bold gap-2 bg-white text-black rounded-full px-4 py-2">
-          <Link
-            to={browser.link}
-            prefetch="viewport"
-            className="flex items-center justify-center gap-2"
-          >
-            <span className={`${browser.icon}`} />
-            Add to {browser.name}
-            <div className="size-7 ml-2" />
-            <div className="flex items-center absolute top-0 right-0 pr-2 pl-2 py-2 rounded-r-full bg-gray-100">
-              <div className="size-7 flex items-center">
-                <span className="size-5 i-mdi-plus" />
-              </div>
-            </div>
-          </Link>
-        </div>
+        <AddToBrowser />
         <Link
           to={links.github}
           target="_blank"
@@ -97,12 +58,7 @@ export default function Index() {
           please consider giving it a Star to motivate me to implement new features and fix bugs for
           it! Any good idea and PR are welcome. Thank you. ❤️
         </p>
-        <a
-          target="_blank"
-          rel="noreferrer"
-          className="flex"
-          href="https://github.com/psycho-baller/sniptube"
-        >
+        <a target="_blank" rel="noreferrer" className="flex" href={links.github}>
           <div className="flex h-10 w-10 items-center justify-center space-x-2 rounded-md border-2 bg-muted border-primary">
             <span className="i-mdi-github text-2xl" />
           </div>

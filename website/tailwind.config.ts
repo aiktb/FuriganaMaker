@@ -8,7 +8,7 @@ export default {
   plugins: [
     forms,
     headlessui({ prefix: "ui" }).handler,
-    iconsPlugin({ collections: getIconCollections(["fa6-brands", "mdi"]) }).handler,
+    iconsPlugin({ collections: getIconCollections(["logos", "fa6-brands", "mdi"]) }).handler,
   ],
   theme: {
     fontFamily: {

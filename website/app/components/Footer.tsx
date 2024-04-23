@@ -1,3 +1,4 @@
+import cloudflare from "@/assets/cloudflare.svg";
 import { LinksContext } from "@/contexts";
 import { Link } from "@remix-run/react";
 import { useContext } from "react";
@@ -36,7 +37,7 @@ export default function Footer() {
             </Link>
           ))}
         </nav>
-        <div className="mt-10 flex justify-center space-x-10">
+        <div className="mt-8 flex justify-center space-x-10">
           {iconLinkItems.map((item) => (
             <Link
               key={item.icon}
@@ -49,8 +50,12 @@ export default function Footer() {
             </Link>
           ))}
         </div>
+        <div className="mt-8 text-xs flex items-center justify-center">
+          Proudly hosted with <span className="sr-only">Cloudflare Pages.</span>
+          <img src={cloudflare} alt="Cloudflare Logo" className="h-8 w-auto inline-block" />
+        </div>
         <div>
-          <p className="mt-10 text-pretty text-center text-xs leading-5 text-text/90">
+          <p className="mt-8 text-pretty text-center text-xs leading-5 text-text/90">
             © {getCopiedYear()} Furigana Maker. All rights reserved.
           </p>
         </div>
