@@ -1,7 +1,6 @@
 import AddToBrowser from "@/components/AddToBrowser";
 import { LinksContext } from "@/contexts";
-import type { MetaFunction } from "@remix-run/cloudflare";
-import { json } from "@remix-run/node";
+import { type MetaFunction, json } from "@remix-run/cloudflare";
 import { Link } from "@remix-run/react";
 import { useLoaderData } from "@remix-run/react";
 import { useContext } from "react";

@@ -1,4 +1,4 @@
-import type { LinksFunction } from "@remix-run/node";
+import type { LinksFunction } from "@remix-run/cloudflare";
 import { Links, Meta, Outlet, Scripts, ScrollRestoration } from "@remix-run/react";
 import favicon from "./assets/favicon.ico";
 import tailwindcss from "./assets/style.css?url";
