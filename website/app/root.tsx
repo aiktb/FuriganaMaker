@@ -1,11 +1,22 @@
-import type { LinksFunction } from "@remix-run/node";
+import "@fontsource/dm-sans/400.css";
+import "@fontsource/dm-sans/700.css";
+import "@fontsource/jetbrains-mono/400.css";
+import "@fontsource/jetbrains-mono/700.css";
+import "@fontsource/lobster/400.css";
+
+import type { LinksFunction } from "@remix-run/cloudflare";
+import { cssBundleHref } from "@remix-run/css-bundle";
 import { Links, Meta, Outlet, Scripts, ScrollRestoration } from "@remix-run/react";
 import favicon from "./assets/favicon.ico";
 import tailwindcss from "./assets/style.css?url";
 import Footer from "./components/Footer";
 import Header from "./components/Header";
 import { LinksContext } from "./contexts";
-export const links: LinksFunction = () => [{ rel: "stylesheet", href: tailwindcss }];
+
+export const links: LinksFunction = () => [
+  { rel: "stylesheet", href: tailwindcss },
+  ...(cssBundleHref ? [{ rel: "stylesheet", href: cssBundleHref }] : []),
+];
 
 export function Layout({ children }: { children: React.ReactNode }) {
   const links = {
@@ -25,11 +36,6 @@ export function Layout({ children }: { children: React.ReactNode }) {
         <link rel="icon" href={favicon} />
         <link rel="preconnect" href="https://fonts.googleapis.com" />
         <link rel="preconnect" href="https://fonts.gstatic.com" crossOrigin="anonymous" />
-        {/* Lobster + DM Sans + JetBrains Mono from Google Fonts */}
-        <link
-          href="https://fonts.googleapis.com/css2?family=DM+Sans:ital,opsz,wght@0,9..40,100..1000;1,9..40,100..1000&family=JetBrains+Mono:ital,wght@0,100..800;1,100..800&family=Lobster&display=swap"
-          rel="stylesheet"
-        />
         <Meta />
         <Links />
       </head>

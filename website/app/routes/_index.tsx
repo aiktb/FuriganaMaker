@@ -1,8 +1,25 @@
 import AddToBrowser from "@/components/AddToBrowser";
 import { LinksContext } from "@/contexts";
-import type { MetaFunction } from "@remix-run/cloudflare";
+import { type MetaFunction, json } from "@remix-run/cloudflare";
 import { Link } from "@remix-run/react";
-import { useContext, useEffect, useState } from "react";
+import { useLoaderData } from "@remix-run/react";
+import { useContext } from "react";
+
+interface Repo {
+  stargazers_count: number;
+}
+export const loader = async () => {
+  const res = await fetch("https://api.github.com/repos/aiktb/FuriganaMaker", {
+    headers: {
+      "User-Agent": "FuriganaMaker",
+    },
+  });
+  const { stargazers_count: data } = (await res.json()) as Repo;
+  const AN_HOUR = 60 * 60;
+  return json(data, {
+    headers: { "Cache-Control": `public, max-age=${AN_HOUR}` },
+  });
+};
 export const meta: MetaFunction = () => {
   return [
     {
@@ -18,16 +35,9 @@ export const meta: MetaFunction = () => {
 
 export default function Index() {
   const links = useContext(LinksContext)!;
-  const [star, setStar] = useState(0);
-  interface Repo {
-    stargazers_count: number;
-  }
 
-  useEffect(() => {
-    fetch("https://api.github.com/repos/aiktb/FuriganaMaker")
-      .then((response) => response.json())
-      .then((data) => setStar((data as Repo).stargazers_count));
-  });
+  const data = useLoaderData<typeof loader>();
+
   return (
     <div className="space-y-6 pb-8 pt-6 md:pb-12 md:pt-10 lg:py-36 mt-16 flex flex-col items-center w-full">
       <section className="container flex max-w-[75rem] flex-col items-center text-pretty px-10 gap-5 text-center">
@@ -65,7 +75,7 @@ export default function Index() {
           <div className="flex items-center">
             <div className="h-4 w-4 border-y-8 border-l-0 border-r-8 border-solid border-y-transparent border-primary" />
             <div className="flex font-display h-10 items-center gap-2 rounded-md border-2 px-4 font-medium border-primary">
-              {star} Stars on GitHub
+              <span>{data}</span> Stars on GitHub
             </div>
           </div>
         </a>

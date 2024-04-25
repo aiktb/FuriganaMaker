@@ -11,18 +11,21 @@
     "typegen": "wrangler types"
   },
   "dependencies": {
-    "@remix-run/cloudflare": "^2.8.1",
-    "@remix-run/cloudflare-pages": "^2.8.1",
-    "@remix-run/react": "^2.8.1",
-    "isbot": "^5.1.4"
+    "@remix-run/cloudflare": "^2.9.1",
+    "@remix-run/cloudflare-pages": "^2.9.1",
+    "@remix-run/react": "^2.9.1",
+    "isbot": "^5.1.5"
   },
   "devDependencies": {
-    "@cloudflare/workers-types": "^4.20230518.0",
-    "@remix-run/dev": "^2.8.1",
-    "@remix-run/node": "^2.8.1",
-    "remix-development-tools": "^4.1.4",
+    "@cloudflare/workers-types": "^4.20240423.0",
+    "@fontsource/dm-sans": "^5.0.21",
+    "@fontsource/jetbrains-mono": "^5.0.20",
+    "@fontsource/lobster": "^5.0.20",
+    "@remix-run/css-bundle": "^2.9.1",
+    "@remix-run/dev": "^2.9.1",
+    "@remix-run/node": "^2.9.1",
     "vite": "^5.1.0",
     "vite-tsconfig-paths": "^4.2.1",
-    "wrangler": "^3.24.0"
+    "wrangler": "^3.52.0"
   }
 }
