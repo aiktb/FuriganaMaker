@@ -1,3 +1,0 @@
-{
-  "*.{ts,tsx,js,json}": "biome check --apply --no-errors-on-unmatched --error-on-warnings"
-}
