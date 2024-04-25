@@ -9,14 +9,17 @@ interface Repo {
   stargazers_count: number;
 }
 export const loader = async () => {
-  const res = await fetch("https://api.github.com/repos/aiktb/FuriganaMaker");
+  const res = await fetch("https://api.github.com/repos/aiktb/FuriganaMaker", {
+    headers: {
+      "User-Agent": "FuriganaMaker",
+    },
+  });
   const { stargazers_count: data } = (await res.json()) as Repo;
   const AN_HOUR = 60 * 60;
   return json(data, {
     headers: { "Cache-Control": `public, max-age=${AN_HOUR}` },
   });
 };
-
 export const meta: MetaFunction = () => {
   return [
     {
