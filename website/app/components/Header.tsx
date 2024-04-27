@@ -1,3 +1,4 @@
+import Logo from "@/assets/Logo.svg";
 import { LinksContext } from "@/contexts";
 import { Link, useLocation } from "@remix-run/react";
 import { useContext } from "react";
@@ -33,8 +34,11 @@ export default function Header() {
           ))}
         </nav>
       </div>
-      <div className="container fixed mx-auto px-8 pt-8 z-40">
-        <div className="lg:flex items-center justify-end hidden h-9">
+      <div className="container fixed mx-auto px-8 pt-8 z-40 -translate-x-1/2 left-1/2">
+        <div className="lg:flex items-center justify-between hidden h-9">
+          <Link to="/">
+            <img src={Logo} alt="Furigana Maker" className="size-8" />
+          </Link>
           <Link className="i-mdi-github size-8" to={links.github} target="_blank" />
         </div>
       </div>

@@ -11,6 +11,7 @@
     "typegen": "wrangler types"
   },
   "dependencies": {
+    "@fireworks-js/react": "^2.10.7",
     "@remix-run/cloudflare": "^2.9.1",
     "@remix-run/cloudflare-pages": "^2.9.1",
     "@remix-run/react": "^2.9.1",
@@ -19,8 +20,8 @@
   "devDependencies": {
     "@cloudflare/workers-types": "^4.20240423.0",
     "@fontsource/dm-sans": "^5.0.21",
-    "@fontsource/jetbrains-mono": "^5.0.20",
     "@fontsource/lobster": "^5.0.20",
+    "@fontsource/m-plus-rounded-1c": "^5.0.13",
     "@remix-run/css-bundle": "^2.9.1",
     "@remix-run/dev": "^2.9.1",
     "@remix-run/node": "^2.9.1",

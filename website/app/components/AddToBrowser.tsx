@@ -76,7 +76,7 @@ export default function AddToBrowser() {
           <>
             <Popover.Button className="z-30 flex items-center absolute top-0 right-0 pr-2 pl-2 py-2 rounded-r-full">
               <div className="size-7 flex items-center">
-                <span className="text-black hover:text-primary transition size-5 i-mdi-information-slab-circle-outline" />
+                <span className="text-black hover:text-sky-400 transition size-5 i-mdi-information-slab-circle-outline" />
               </div>
             </Popover.Button>
             <Transition

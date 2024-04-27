@@ -40,9 +40,9 @@ export default function Footer() {
   }, []);
 
   return (
-    <footer className="bg-[hsl(228,_32%,_16%)] border-t border-stroke border-[hsl(228,_32%,_30%)]">
+    <footer className="bg-slate-800 border-t border-stroke border-slate-600 w-full">
       <button
-        className={`fixed bottom-6 right-6 transition-all duration-500 bg-primary size-10 rounded-full ${
+        className={`fixed bottom-6 right-6 transition-all duration-500 bg-sky-400 size-10 rounded-full ${
           isAtBottom ? "" : "opacity-0 pointer-events-none"
         }`}
         onClick={toTop}
@@ -56,7 +56,7 @@ export default function Footer() {
             <Link
               target="_blank"
               key={item.text}
-              className="text-sm leading-6 text-[#BFBFBF] hover:text-primary"
+              className="text-sm leading-6 text-[#BFBFBF] hover:text-sky-400"
               to={item.to}
             >
               {item.text}
@@ -67,7 +67,7 @@ export default function Footer() {
           {iconLinkItems.map((item) => (
             <Link
               key={item.icon}
-              className="text-[#BFBFBF] hover:text-primary size-6"
+              className="text-[#BFBFBF] hover:text-sky-400 size-6"
               to={item.to}
               target="_blank"
             >
