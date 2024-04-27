@@ -39,12 +39,16 @@ export function Layout({ children }: { children: React.ReactNode }) {
         <Meta />
         <Links />
       </head>
-      <body className="font-sans text-base min-h-screen flex flex-col text-white">
-        <LinksContext.Provider value={links}>
-          <Header />
-          <main className="flex-1">{children}</main>
-          <Footer />
-        </LinksContext.Provider>
+      <body className="font-sans text-base min-h-screen text-white flex flex-col">
+        <div className="flex flex-col justify-between">
+          <LinksContext.Provider value={links}>
+            <Header />
+            <main className="flex-1 relative" id="main">
+              {children}
+            </main>
+            <Footer />
+          </LinksContext.Provider>
+        </div>
         <ScrollRestoration />
         <Scripts />
       </body>

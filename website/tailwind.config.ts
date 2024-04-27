@@ -20,6 +20,28 @@ export default {
       colors: {
         primary: "hsl(161, 55%, 66%)",
       },
+      keyframes: {
+        rising: {
+          from: { transform: "translateY(-20px)", opacity: "0" },
+          to: { transform: "translateY(0%)", opacity: "1" },
+        },
+        floating: {
+          from: {
+            transform: "translateY(0px) rotate(0deg)",
+            opacity: "1",
+            borderRadius: "0",
+          },
+          to: {
+            transform: "translateY(-1000px) rotate(720deg)",
+            opacity: "0",
+            borderRadius: "50%",
+          },
+        },
+      },
+      animation: {
+        rising: "rising 2s ease",
+        floating: "float 25s linear infinite",
+      },
     },
   },
 } satisfies Config;

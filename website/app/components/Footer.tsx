@@ -1,11 +1,15 @@
 import cloudflare from "@/assets/cloudflare.svg";
 import { LinksContext } from "@/contexts";
 import { Link } from "@remix-run/react";
-import { useContext } from "react";
+import { useContext, useEffect, useState } from "react";
 
 const getCopiedYear = () => {
   const currentYear = new Date().getFullYear();
   return currentYear === 2023 ? "2023" : `2023-${currentYear}`;
+};
+
+const toTop = () => {
+  window.scrollTo({ top: 0, behavior: "smooth" });
 };
 
 export default function Footer() {
@@ -22,8 +26,30 @@ export default function Footer() {
     { title: "microsoft edge addons", to: links.edge, icon: "i-fa6-brands-edge" },
     { title: "github", to: links.github, icon: "i-fa6-brands-github" },
   ];
+
+  const [isAtBottom, setIsAtBottom] = useState(false);
+  useEffect(() => {
+    const onScroll = () => {
+      const TOLERANCE = 100;
+      const result =
+        window.innerHeight + Math.round(window.scrollY) >= document.body.offsetHeight - TOLERANCE;
+      setIsAtBottom(result);
+    };
+    window.addEventListener("scroll", onScroll);
+    return () => window.removeEventListener("scroll", onScroll);
+  }, []);
+
   return (
     <footer className="bg-[hsl(228,_32%,_16%)] border-t border-stroke border-[hsl(228,_32%,_30%)]">
+      <button
+        className={`fixed bottom-6 right-6 transition-all duration-500 bg-primary size-10 rounded-full ${
+          isAtBottom ? "" : "opacity-0 pointer-events-none"
+        }`}
+        onClick={toTop}
+      >
+        <span className="sr-only">Back to top</span>
+        <span className="i-mdi-chevron-up size-10" />
+      </button>
       <div className="mx-auto max-w-7xl overflow-hidden px-6 py-20 sm:py-24 lg:px-8">
         <nav className="flex items-center justify-center space-x-8 sm:space-x-12 ">
           {navItems.map((item) => (
