@@ -47,13 +47,18 @@ export default function Index() {
 
   useEffect(() => {
     const riseObserver = new IntersectionObserver((entries) => {
-      if (entries[0].isIntersecting) {
-        entries[0].target.classList.add("animate-rising");
+      for (const entry of entries) {
+        if (entry.isIntersecting) {
+          entry.target.classList.add("animate-rising");
+          riseObserver.unobserve(entry.target);
+        }
       }
     });
     for (const el of document.querySelectorAll(".animeTop")) {
       riseObserver.observe(el);
     }
+
+    return () => riseObserver.disconnect();
   }, []);
 
   const backgroundAnimeGroup = [
@@ -93,7 +98,7 @@ export default function Index() {
           pronunciation of kanji, allowing automation!
         </p>
       </section>
-      <div className="animeTop relative flex gap-3 items-center flex-col mt-6 sm:flex-row">
+      <div className="animeTop relative flex gap-6 items-center flex-col mt-6 sm:flex-row">
         <AddToBrowser />
         <Link
           to={links.github}
