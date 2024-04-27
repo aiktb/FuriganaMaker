@@ -25,7 +25,7 @@ export default {
           from: { transform: "translateY(-20px)", opacity: "0" },
           to: { transform: "translateY(0%)", opacity: "1" },
         },
-        floating: {
+        float: {
           from: {
             transform: "translateY(0px) rotate(0deg)",
             opacity: "1",
