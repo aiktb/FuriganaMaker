@@ -74,9 +74,9 @@ export default function AddToBrowser() {
       {browser.name === "Microsoft Edge" && (
         <Popover>
           <>
-            <Popover.Button className="z-30 flex items-center absolute top-0 right-0 pr-2 pl-2 py-2 rounded-r-full">
+            <Popover.Button className="group outline-none focus-visible:ring-2 ring-sky-400 z-30 flex items-center absolute top-0 right-0 pr-2 pl-2 py-2 rounded-r-full bg-white">
               <div className="size-7 flex items-center">
-                <span className="text-black hover:text-sky-400 transition size-5 i-mdi-information-slab-circle-outline" />
+                <span className="text-black group-hover:text-sky-400 transition size-5 i-mdi-information-slab-circle-outline" />
               </div>
             </Popover.Button>
             <Transition
