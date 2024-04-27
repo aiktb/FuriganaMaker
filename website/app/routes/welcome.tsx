@@ -3,7 +3,6 @@ import "@fontsource/m-plus-rounded-1c/700.css";
 import type { MetaFunction } from "@remix-run/cloudflare";
 
 import { LinksContext } from "@/contexts";
-import { useRising } from "@/useRising";
 import { Fireworks, type FireworksHandlers } from "@fireworks-js/react";
 import { Link } from "@remix-run/react";
 import { useEffect, useRef } from "react";
@@ -25,10 +24,20 @@ export default function Welcome() {
     setTimeout(() => {
       ref.current?.waitStop();
     }, 30 * 1000);
-    return () => ref.current?.stop();
-  }, []);
 
-  useRising();
+    const riseObserver = new IntersectionObserver((entries) => {
+      for (const entry of entries) {
+        if (entry.isIntersecting) {
+          entry.target.classList.add("animate-rising");
+          riseObserver.unobserve(entry.target);
+        }
+      }
+    });
+    for (const el of document.querySelectorAll(".animeRising")) {
+      riseObserver.observe(el);
+    }
+    return () => ref.current?.stop() && riseObserver.disconnect();
+  }, []);
 
   return (
     <div className="relative min-h-screen py-8 pt-24 mt-5 lg:mt-16 lg:pt-36 flex flex-col items-center text-pretty px-10 gap-5 text-center">

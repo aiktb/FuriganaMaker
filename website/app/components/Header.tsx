@@ -27,6 +27,7 @@ export default function Header() {
               className={`block px-3.5 sm:px-6 py-1 sm:py-1.5 font-medium rounded-full hover:bg-white/10 text-gray-300 hover:text-gray-100 transition ease-in-out ${
                 isActive(item.to) ? "bg-white/10" : ""
               }`}
+              prefetch="render"
               to={item.to}
             >
               {item.text}
