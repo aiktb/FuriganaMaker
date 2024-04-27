@@ -14,11 +14,36 @@ export default {
     fontFamily: {
       display: ["Lobster", ...defaultTheme.fontFamily.sans],
       sans: ["DM Sans", ...defaultTheme.fontFamily.sans],
-      mono: ["JetBrains Mono", ...defaultTheme.fontFamily.mono],
+      japanese: ["'M Plus Rounded 1C'", ...defaultTheme.fontFamily.sans],
     },
     extend: {
-      colors: {
-        primary: "hsl(161, 55%, 66%)",
+      keyframes: {
+        rising: {
+          from: { transform: "translateY(-20px)", opacity: "0" },
+          to: { transform: "translateY(0%)", opacity: "1" },
+        },
+        float: {
+          from: {
+            transform: "translateY(0px) rotate(0deg)",
+            opacity: "1",
+            borderRadius: "5%",
+          },
+          to: {
+            transform: "translateY(-3500px) rotate(720deg)",
+            opacity: "0.2",
+            borderRadius: "50%",
+          },
+        },
+        firework: {
+          "0%": { transform: "translate(-50%, 60vh)", width: "0.5vmin", opacity: "1" },
+          "50%": { width: "0.5vmin", opacity: "1" },
+          "100%": { width: "45vmin", opacity: "0" },
+        },
+      },
+      animation: {
+        rising: "rising 2s ease",
+        floating: "float 25s linear infinite",
+        firework: "firework 2s infinite",
       },
     },
   },

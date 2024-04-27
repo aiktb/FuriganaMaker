@@ -2,7 +2,7 @@ import { LinksContext } from "@/contexts";
 import { Popover, Transition } from "@headlessui/react";
 import { Link } from "@remix-run/react";
 import { detect } from "detect-browser";
-import { Fragment } from "react";
+import { Fragment, useRef } from "react";
 import { useContext, useEffect, useState } from "react";
 
 export default function AddToBrowser() {
@@ -31,19 +31,41 @@ export default function AddToBrowser() {
     }
   }, [links]);
 
+  const dynamicHoverRef = useRef<HTMLDivElement>(null);
+  const onPointerMove = (e: React.PointerEvent<HTMLAnchorElement>) => {
+    const rect = e.currentTarget.getBoundingClientRect();
+    const x = e.clientX - rect.left;
+    const y = e.clientY - rect.top;
+    dynamicHoverRef.current?.style.setProperty("--pointer-x", `${x}px`);
+    dynamicHoverRef.current?.style.setProperty("--pointer-y", `${y}px`);
+  };
+
   return (
-    <div className="relative">
+    <div className="relative select-none">
       <Link
         to={browser.link}
         prefetch="viewport"
-        className="inline-flex items-center justify-center font-bold gap-2 bg-white text-black rounded-full px-4 py-2 w-[17.5rem]"
+        className="group overflow-hidden inline-flex relative items-center justify-center font-bold gap-2 bg-white text-black rounded-full px-4 py-2 w-[17.5rem] hover:bg-[#cbcace]"
+        onPointerMove={onPointerMove}
       >
-        <div className="flex items-center justify-center gap-2">
+        <div
+          ref={dynamicHoverRef}
+          className="absolute inset-0 z-0 opacity-0 transition-opacity duration-150 ease-out group-hover:opacity-100 rounded-full"
+          style={{
+            top: -100,
+            left: -100,
+            width: 200,
+            height: 200,
+            backgroundImage: "radial-gradient(100px, rgb(247, 247, 248), rgba(247, 247, 248, 0))",
+            transform: "translateX(var(--pointer-x)) translateY(var(--pointer-y))",
+          }}
+        />
+        <div className="flex items-center justify-center gap-2 z-10">
           <span className={`${browser.icon}`} />
           Add to {browser.name}
           <div className="size-7 ml-2" />
         </div>
-        <div className="flex items-center absolute top-0 right-0 pr-2 pl-2 py-2 rounded-r-full bg-gray-100">
+        <div className="flex items-center absolute top-0 right-0 pr-2 pl-2 py-2 rounded-r-full bg-gray-200/50 hover:bg-gray-300 transition">
           <div className="size-7 flex items-center">
             <span className="text-black size-5 i-mdi-plus" />
           </div>
@@ -52,9 +74,9 @@ export default function AddToBrowser() {
       {browser.name === "Microsoft Edge" && (
         <Popover>
           <>
-            <Popover.Button className="flex items-center absolute top-0 right-0 pr-2 pl-2 py-2 rounded-r-full bg-gray-100">
+            <Popover.Button className="z-30 flex items-center absolute top-0 right-0 pr-2 pl-2 py-2 rounded-r-full">
               <div className="size-7 flex items-center">
-                <span className="text-black hover:text-primary transition size-5 i-mdi-information-slab-circle-outline" />
+                <span className="text-black hover:text-sky-400 transition size-5 i-mdi-information-slab-circle-outline" />
               </div>
             </Popover.Button>
             <Transition
