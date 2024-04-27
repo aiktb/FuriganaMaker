@@ -78,7 +78,9 @@ export default function Footer() {
         </div>
         <div className="mt-8 text-xs flex items-center justify-center">
           Proudly hosted with <span className="sr-only">Cloudflare Pages.</span>
-          <img src={cloudflare} alt="Cloudflare Logo" className="h-8 w-auto inline-block" />
+          <Link to="https://pages.cloudflare.com/" target="_blank">
+            <img src={cloudflare} alt="Cloudflare Logo" className="h-8 w-auto inline-block" />
+          </Link>
         </div>
         <div>
           <p className="mt-8 text-pretty text-center text-xs leading-5 text-text/90">
