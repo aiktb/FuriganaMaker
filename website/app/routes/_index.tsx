@@ -4,7 +4,7 @@ import { LinksContext } from "@/contexts";
 import { type MetaFunction, json } from "@remix-run/cloudflare";
 import { Link } from "@remix-run/react";
 import { useLoaderData } from "@remix-run/react";
-import { useContext } from "react";
+import { useContext, useEffect } from "react";
 
 interface Repo {
   stargazers_count: number;
@@ -40,14 +40,28 @@ export const meta: MetaFunction = () => {
     },
   ];
 };
-import { useRising } from "@/useRising";
+
 export default function Index() {
   const links = useContext(LinksContext)!;
 
   const data = useLoaderData<typeof loader>();
   const YOUTUBE_VIDEO_ID = "_j954tDLXjw";
 
-  useRising();
+  useEffect(() => {
+    const riseObserver = new IntersectionObserver((entries) => {
+      for (const entry of entries) {
+        if (entry.isIntersecting) {
+          entry.target.classList.add("animate-rising");
+          riseObserver.unobserve(entry.target);
+        }
+      }
+    });
+    for (const el of document.querySelectorAll(".animeRising")) {
+      riseObserver.observe(el);
+    }
+    return () => riseObserver.disconnect();
+  }, []);
+
   return (
     <div className="relative flex flex-col items-center w-full min-h-screen">
       <section className="container pt-24 mt-5 lg:mt-16 lg:pt-36 flex flex-col items-center text-pretty px-10 gap-5 text-center">
