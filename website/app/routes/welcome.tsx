@@ -46,13 +46,13 @@ export default function Welcome() {
         options={{ opacity: 0.5 }}
         className="fixed top-0 left-0 w-full h-full -z-10"
       />
-      <section className="container flex flex-col items-center text-pretty px-10 gap-5 text-center">
-        <h1 className="animeRising text-3xl sm:text-4xl md:text-5xl lg:text-6xl font-bold">
+      <section className="container flex flex-col items-center text-pretty sm:px-10 gap-5 text-center">
+        <h1 className="animeRising text-3xl sm:text-5xl md:text-6xl lg:text-8xl font-bold">
           Welcome to Furigana Maker!🎉
         </h1>
         <p className="animeRising max-w-[42rem] leading-normal sm:text-xl sm:leading-8">
           You have successfully installed the extension, now you can start to add furigana to Kanji,
-          please open the popup screen of the extension and click on the{" "}
+          please open the Popup page of the extension and click on the{" "}
           <span className="text-sky-400">"Add furigana"</span> button and select the Japanese text
           below and watch the change.
         </p>
@@ -67,6 +67,22 @@ export default function Welcome() {
         <p className="indent-10 animeRising font-japanese max-w-[42rem] leading-normal sm:text-xl sm:leading-8">
           ああそのときでした。見えない天の川のずうっと川下に青や橙やもうあらゆる光でちりばめられた十字架がまるで一本の木という風に川の中から立ってかがやきその上には青じろい雲がまるい環になって後光のようにかかっているのでした。汽車の中がまるでざわざわしました。みんなあの北の十字のときのようにまっすぐに立ってお祈りをはじめました。あっちにもこっちにも子供が瓜に飛びついたときのようなよろこびの声や何とも云いようない深いつつましいためいきの音ばかりきこえました。そしてだんだん十字架は窓の正面になりあの苹果の肉のような青じろい環の雲もゆるやかにゆるやかに繞っているのが見えました。
         </p>
+      </section>
+      <section className="pb-20">
+        <div className="uppercase font-bold inline-block rounded-full py-1.5 px-4 mb-4 border border-slate-700 bg-slate-800">
+          Tips
+        </div>
+        <ol className="list-decimal marker:text-sky-400 text-400 list-inside">
+          <li className="animeRising sm:text-xl mt-6">
+            You can set shortcuts for browser extension to access specific features.
+          </li>
+          <li className="animeRising sm:text-xl mt-6">
+            You can Pin the extension on the browser bar for faster access to Popup page.
+          </li>
+          <li className="animeRising sm:text-xl mt-6">
+            You can see the preset rules and edit them on the Options page.
+          </li>
+        </ol>
       </section>
       <Link
         to={links.github}

@@ -84,9 +84,11 @@ export default function Index() {
         <Link
           to={links.github}
           target="_blank"
-          className="select-none font-bold rounded-xl px-4 py-2 border-sky-400 border-solid border-2 transition duration-300 hover:shadow-[hsla(201,80%,66%,.5)_0_0_15px_0,hsla(161,55%,49%,.5)_0_0_30px_0] bg-slate-900"
+          className="gap-2 flex hover:-translate-y-2 items-center select-none font-bold rounded-xl px-4 py-2 border-sky-400 border-solid border-2 transition duration-300 hover:shadow-[hsla(201,80%,66%,.5)_0_0_15px_0,hsla(161,55%,49%,.5)_0_0_30px_0] bg-slate-900"
         >
+          <span className="size-5 i-mdi-github" />
           View on GitHub
+          <span className="i-mdi-arrow-top-right" />
         </Link>
       </div>
       <Features />
@@ -101,7 +103,7 @@ export default function Index() {
           Operation Guide
         </h2>
         <iframe
-          className="w-[90%] lg:w-[65rem] aspect-video rounded-md mt-12 lg:mt-15 xl:mt-20"
+          className="animeRising w-[90%] lg:w-[65rem] aspect-video rounded-md mt-12 lg:mt-15 xl:mt-20"
           src={`https://www.youtube.com/embed/${YOUTUBE_VIDEO_ID}`}
           allowFullScreen
           title="Furigana Maker Demo"
@@ -148,12 +150,7 @@ export default function Index() {
           please consider giving it a Star to motivate me to implement new features and fix bugs for
           it! Any good idea and PR are welcome. Thank you. ❤️
         </p>
-        <a
-          target="_blank"
-          rel="noreferrer"
-          className="animeRising select-none group flex"
-          href={links.github}
-        >
+        <Link target="_blank" className="animeRising select-none group flex mt-4" to={links.github}>
           <div className="group flex size-10 items-center justify-center space-x-2 rounded-md border-2 bg-muted border-sky-400 transition duration-300 group-hover:shadow-[hsla(201,80%,66%,.5)_0_0_15px_0,hsla(161,55%,49%,.5)_0_0_30px_0] bg-slate-900">
             <span className="i-mdi-github text-2xl" />
           </div>
@@ -163,7 +160,7 @@ export default function Index() {
               <span>{data}</span> Stars on GitHub ⭐
             </div>
           </div>
-        </a>
+        </Link>
       </section>
     </div>
   );

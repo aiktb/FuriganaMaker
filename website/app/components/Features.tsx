@@ -3,7 +3,7 @@ export default function Features() {
     {
       title: "Select Kanji Text",
       description:
-        "Furigana Maker allows you to add furigana to any Japanese Kanji of your choice on the page by pressing the “Add furigana” button in the browser context menu or popup, which also supports customized shortcuts for browser extensions, so start enjoying now!",
+        'Furigana Maker allows you to add furigana to any Japanese Kanji of your choice on the page by pressing the "Add furigana" button in the browser context menu or Popup, which also supports customized shortcuts for browser extension, so start enjoying now!',
       icon: "i-mdi-furigana-horizontal",
     },
     {
@@ -15,7 +15,7 @@ export default function Features() {
     {
       title: "Automatic Addition",
       description:
-        "This extension has built-in support for some common Japanese websites, such as Twitter, Asahi, etc. On these websites furigana will be displayed by default without any action on your part, and can be customized (Advanced) using the CSS Selector on the options page of the extension.",
+        "This extension has built-in support for some common Japanese websites, such as Twitter, Asahi, etc. On these websites furigana will be displayed by default without any action on your part, and can be customized using the CSS Selector on the options page of the extension(Advanced).",
       icon: "i-mdi-auto-mode",
     },
   ];
