@@ -15,7 +15,7 @@ import defaultSelectorRules from "../../assets/rules/selector.json";
 
 // Plasmo `dev` mode will force the Service Worker to be `active`, it will never become `inactive`.
 
-Browser.runtime.onInstalled.addListener(async () => {
+Browser.runtime.onInstalled.addListener(async (details) => {
   // Initialize default extension settings and custom rules.
   const defaultConfig: Config = {
     [ExtensionStorage.AutoMode]: true,
@@ -48,6 +48,10 @@ Browser.runtime.onInstalled.addListener(async () => {
     documentUrlPatterns: ["https://*/*"],
   };
   Browser.contextMenus.create(contextMenuItem);
+
+  if (details.reason === "install") {
+    Browser.tabs.create({ url: "https://furiganamaker.app/welcome" });
+  }
 });
 
 Browser.contextMenus.onClicked.addListener(async (info, tab) => {
