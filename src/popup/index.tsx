@@ -150,11 +150,11 @@ function Menu({ configPromise }: { configPromise: Promise<Config> }) {
       : [SelectMode.Default, SelectMode.Original, SelectMode.Parentheses];
 
   return (
-    <menu className="space-y-2 border-r-2 border-primary pr-1">
+    <menu className="space-y-2 border-r-2 border-sky-500 pr-1">
       <MenuItem icon={<CursorOutlineIcon />}>
         <Button tip="Press ESC to cancel" text="Add furigana" onClick={addFurigana} />
       </MenuItem>
-      <MenuItem icon={<PowerIcon className={state.autoMode ? "text-primary" : ""} />}>
+      <MenuItem icon={<PowerIcon className={state.autoMode ? "text-sky-500" : ""} />}>
         <CheckBox
           tip="Please refresh the page"
           text="On-off auto mode"
@@ -164,7 +164,7 @@ function Menu({ configPromise }: { configPromise: Promise<Config> }) {
           }}
         />
       </MenuItem>
-      <MenuItem icon={<FilterIcon className={state.kanjiFilter ? "text-primary" : ""} />}>
+      <MenuItem icon={<FilterIcon className={state.kanjiFilter ? "text-sky-500" : ""} />}>
         <CheckBox
           tip="Level is JLPT N5 & N4"
           text="On-off kanji filter"

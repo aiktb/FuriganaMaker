@@ -1,5 +1,11 @@
 # Changelog
 
+## v1.5.0
+
+## Features
+
+- Open the external welcome page on the first installation.
+
 ## v1.4.0
 
 ### Features
