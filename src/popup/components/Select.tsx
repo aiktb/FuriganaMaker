@@ -47,8 +47,8 @@ export default function Select({ selected, options, tip, onChange }: SelectProps
               <Listbox.Option key={item} value={item} as={Fragment}>
                 {({ active, selected }) => (
                   <li
-                    className={`${active ? "text-primary" : "text-current"}
-                    ${selected ? "text-primary" : ""}
+                    className={`${active ? "text-sky-500" : "text-current"}
+                    ${selected ? "text-sky-500" : ""}
                     box-content flex cursor-pointer items-center justify-between px-[6px] capitalize transition-all hover:bg-gray-200 focus:z-10 focus:bg-gray-200 ui-active:bg-gray-200 dark:hover:bg-slate-700 dark:focus:bg-slate-700 dark:ui-active:bg-slate-700`}
                   >
                     {item}

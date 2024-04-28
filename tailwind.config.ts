@@ -61,10 +61,5 @@ export default {
       sans: ["DM Sans", ...defaultTheme.fontFamily.sans],
       mono: ["JetBrains Mono", ...defaultTheme.fontFamily.mono],
     },
-    extend: {
-      colors: {
-        primary: "#0079ff",
-      },
-    },
   },
 } satisfies Config;

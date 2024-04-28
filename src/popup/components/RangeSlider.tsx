@@ -71,7 +71,7 @@ export default function RangeSlider({ value, min, max, step, label, onChange }: 
         <div ref={trackRef} className="relative h-[3px] w-[90%] rounded-lg bg-current">
           <div
             ref={thumbRef}
-            className="absolute top-1/2 size-[15px] -translate-x-1/2 -translate-y-1/2 rounded-full bg-primary"
+            className="absolute top-1/2 size-[15px] -translate-x-1/2 -translate-y-1/2 rounded-full bg-sky-500"
             style={{ left: `${((value - min) / (max - min)) * 100}%` }}
           />
         </div>
