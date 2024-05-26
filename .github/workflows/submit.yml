@@ -10,13 +10,16 @@ jobs:
     runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@v4
-      - uses: oven-sh/setup-bun@v1
+      - uses: pnpm/action-setup@v2
+      - uses: actions/setup-node@v3
         with:
-          bun-version: latest
-      - run: bun install --frozen-lockfile
+          node-version-file: '.nvmrc'
+          cache: 'pnpm'
+          cache-dependency-path: 'pnpm-lock.yaml'
+      - run: pnpm install --frozen-lockfile
 
       - name: Build the extension
-        run: bun run package && bun run package:firefox
+        run: pnpm run package && pnpm run package:firefox
 
       - name: Browser Platform Publish
         uses: PlasmoHQ/bpp@v3

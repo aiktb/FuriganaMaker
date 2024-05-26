@@ -9,7 +9,7 @@
       // Only used to eliminate `tsc --noEmit` errors.
       "@/*": ["./website/app/*"]
     },
-    "types": ["react/canary", "react-dom/canary", "bun"],
+    "types": ["react/canary", "react-dom/canary"],
     /* Linting */
     "strict": true,
     "allowUnreachableCode": false,

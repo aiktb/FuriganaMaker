@@ -2,18 +2,25 @@ name: Run linter and check types
 on:
   workflow_dispatch:
   pull_request:
+  push:
+    branches:
+      - main
 jobs:
   lint:
     runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@v4
-      - uses: oven-sh/setup-bun@v1
+      - uses: pnpm/action-setup@v2
+      - uses: actions/setup-node@v3
         with:
-          bun-version: latest
-      - run: bun install --frozen-lockfile
+          node-version-file: '.nvmrc'
+          cache: 'pnpm'
+          cache-dependency-path: 'pnpm-lock.yaml'
+      - run: pnpm install --frozen-lockfile
       # This generates the type files necessary for `sendToBackground`.
       # https://github.com/PlasmoHQ/plasmo/issues/528#issuecomment-1510146052
-      - run: bun run build
-      - run: bun run lint
-      - run: bun run type-check
-      - run: bun test
+      - run: pnpm run build
+
+      - run: pnpm run lint
+      - run: pnpm run type-check
+      - run: pnpm run test

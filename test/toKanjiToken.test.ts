@@ -1,5 +1,5 @@
-import { expect, test } from "bun:test";
 import { tokenize } from "kuromojin";
+import { expect, test } from "vitest";
 
 import { type MojiToken, toKanjiToken } from "../src/core/toKanjiToken";
 
