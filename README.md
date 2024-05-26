@@ -1,5 +1,7 @@
 <div align="center">
-    <img src="./assets/icons/DemoLogo.svg" alt="Logo">
+    <a href="https://furiganamaker.app" target="_blank">
+      <img src="./assets/icons/DemoLogo.svg" alt="homepage">
+    </a>
 </div>
 <p align="center">
   <a href="https://chromewebstore.google.com/detail/furigana-maker/heodojceeinbkfjfilnfminlkgbacpfp">
@@ -19,8 +21,6 @@ Add furigana to Japanese text on any page for learning kanji pronunciation. 🤔
 
 Special thanks to **_[plasmo](https://github.com/PlasmoHQ/plasmo)_** for taking the frustration out of browser extension development for me.
 
-![Preview](./assets/social-preview.png)
-
 ## Features
 
 - By default, furigana is automatically added to many [common Japanese websites](https://github.com/aiktb/FuriganaMaker/blob/main/assets/rules/selector.json).
@@ -30,8 +30,26 @@ Special thanks to **_[plasmo](https://github.com/PlasmoHQ/plasmo)_** for taking 
 - The font size and color of furigana can be freely modified, and toggle the display of furigana.
 - Optional support for hover mode, only showing furigana when mouseover kanji.
 
+## Preview
+
+![Preview](./assets/social-preview.png)
+
+
 ## Contribution
 
 Please make sure to read the [Contributing Guide](./.github/CONTRIBUTING.md) before making a pull request.
 
 This includes instructions on how to setup development environment, test extensions, and build the final product.
+
+## Sponsor
+
+If you like this project, please consider supporting me by buying me a coffee.
+
+<a href="https://www.buymeacoffee.com/aiktb" target="_blank">
+  <img src="https://cdn.buymeacoffee.com/buttons/v2/default-yellow.png" alt="Buy Me A Coffee"  width="200" height="55">
+</a>
+
+
+## License
+
+[MIT](./LICENSE) | © 2023 [aiktb](https://aiktb.dev) made with ❤️.
