@@ -1,5 +1,11 @@
 # Changelog
 
+## v1.5.1
+
+### Fix Bugs
+
+- Twitter.com to x.com migration leads to breaking extension.
+
 ## v1.5.0
 
 ## Features
