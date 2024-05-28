@@ -5,6 +5,11 @@
     "active": true
   },
   {
+    "domain": "x.com",
+    "selector": "div[lang='ja'] span",
+    "active": true
+  },
+  {
     "domain": "www.asahi.com",
     "selector": ".nfyQp h1, .nfyQp h2, .nfyQp h3, .nfyQp h4, .nfyQp h5, .nfyQp h6, .nfyQp p",
     "active": true
