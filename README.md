@@ -10,9 +10,6 @@
   <a href="https://addons.mozilla.org/en-US/firefox/addon/furigana-maker/">
   	<img alt="Add-ons for Firefox" src="https://img.shields.io/badge/Add--ons%20for%20Firefox-141e24?style=for-the-badge&logo=firefoxbrowser&logoColor=%23ffffff">
   </a>
-  <a href="https://microsoftedge.microsoft.com/addons/detail/furigana-maker/kohpoklaaeicnkdapjkmljdachedmbbi">
-    <img alt="Microsoft Edge Add-ons" src="https://img.shields.io/badge/Microsoft%20Edge%20Add--ons-141e24?style=for-the-badge&logo=microsoftedge&logoColor=%23ffffff">
-  </a>
 </p>
 
 # Furigana Maker
@@ -20,6 +17,9 @@
 Add furigana to Japanese text on any page for learning kanji pronunciation. 🤔
 
 Special thanks to **_[plasmo](https://github.com/PlasmoHQ/plasmo)_** for taking the frustration out of browser extension development for me.
+
+> [!IMPORTANT]
+> The Edge version of this extension will no longer be maintained due to [Microsoft Partner issue](https://github.com/aiktb/FuriganaMaker/issues/21), please use the latest version from the Chrome Web Store.
 
 ## Features
 
