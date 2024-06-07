@@ -19,10 +19,10 @@ Hi! We're Really excited that you are interested in contributing to Furigana Mak
 
 - It's OK to have multiple small commits as you work on the PR - GitHub can automatically squash them before merging.
 
-- Commit messages must be matched by the following regex:
+- Commit messages must be matched by the following regex, see [Conventional Commits](https://www.conventionalcommits.org/en/v1.0.0/) for more information.
 
 ```txt
-/^(feat|fix|website|style|refactor|perf|test|build|ci|chore|types|workflow)(\(.+\))?: .{1,50}/
+/^(build|chore|ci|website|feat|fix|perf|refactor|revert|style|test)(\(.+\))?: .{1,50}/
 ```
 
 ## Development Setup
