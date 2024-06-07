@@ -53,6 +53,9 @@
   },
   "devDependencies": {
     "@biomejs/biome": "1.7.0",
+    "@commitlint/cli": "^19.3.0",
+    "@commitlint/config-conventional": "^19.2.2",
+    "@commitlint/types": "^19.0.3",
     "@egoist/tailwindcss-icons": "^1.7.4",
     "@headlessui/tailwindcss": "^0.2.0",
     "@iconify/json": "^2.2.197",
