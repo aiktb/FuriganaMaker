@@ -22,5 +22,5 @@ jobs:
       - run: pnpm run build
 
       - run: pnpm run lint
-      - run: pnpm run type-check
+      - run: pnpm run typecheck
       - run: pnpm run test
