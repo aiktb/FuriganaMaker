@@ -16,7 +16,6 @@ export default function SharedCard() {
     chrome:
       "https://chromewebstore.google.com/detail/furigana-maker/heodojceeinbkfjfilnfminlkgbacpfp",
     firefox: "https://addons.mozilla.org/en-US/firefox/addon/furigana-maker/",
-    edge: "https://microsoftedge.microsoft.com/addons/detail/furigana-maker/kohpoklaaeicnkdapjkmljdachedmbbi",
   };
 
   const browser = detect();
@@ -24,9 +23,6 @@ export default function SharedCard() {
   switch (browser?.name) {
     case "firefox":
       shareUrl = socialLinks.firefox;
-      break;
-    case "edge":
-      shareUrl = socialLinks.edge;
       break;
     default:
       shareUrl = socialLinks.chrome;
