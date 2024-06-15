@@ -20,6 +20,11 @@ export const toStorageKey = (event: StorageChangeEvent) => {
   }
 };
 
+/**
+ * Some pages are unable to inject content scripts,
+ * so it is not possible to register a message listener with the page,
+ * such as `chrome://newtab` and `chrome.google.com`, and this error on those sites is a noise.
+ */
 export const sendMessage = async (id: number, event: ExtensionEvent) => {
   try {
     await Browser.tabs.sendMessage(id, event);

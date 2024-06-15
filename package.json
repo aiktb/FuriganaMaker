@@ -4,7 +4,7 @@
   "description": "Add furigana to Japanese text on any page for learning kanji pronunciation.",
   "version": "1.5.1",
   "type": "module",
-  "packageManager": "pnpm@9.1.1",
+  "packageManager": "pnpm@9.3.0+sha512.ee7b93e0c2bd11409c6424f92b866f31d3ea1bef5fbe47d3c7500cdc3c9668833d2e55681ad66df5b640c61fa9dc25d546efa54d76d7f8bf54b13614ac293631",
   "private": true,
   "license": "MIT",
   "author": "aiktb <hey@aiktb.dev>",
@@ -74,7 +74,9 @@
     "web-ext": "^7.11.0"
   },
   "manifest": {
-    "permissions": ["contextMenus"],
+    "permissions": [
+      "contextMenus"
+    ],
     "commands": {
       "addFurigana": {
         "description": "Add furigana on the current page"
@@ -105,7 +107,9 @@
           "@sglkc/kuromoji/dict/unk_map.dat.gz",
           "@sglkc/kuromoji/dict/unk_pos.dat.gz"
         ],
-        "matches": ["https://*/*"]
+        "matches": [
+          "https://*/*"
+        ]
       }
     ]
   }
