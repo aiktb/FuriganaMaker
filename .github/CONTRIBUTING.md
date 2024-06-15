@@ -29,13 +29,13 @@ Hi! We're Really excited that you are interested in contributing to Furigana Mak
 
 > [!IMPORTANT]
 > The exact node version used by this project is located in the `.nvmrc` file.
+> If you are using [nvm](https://github.com/nvm-sh/nvm), you can run `nvm use` to switch to the correct version.
 
 You will need [pnpm](https://pnpm.io):
 
 ```bash
 corepack enable pnpm
-# Or
-npm install -g pnpm
+corepack install
 ```
 
 After cloning the repo, run:
