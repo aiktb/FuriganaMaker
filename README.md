@@ -38,6 +38,10 @@ Please make sure to read the [Contributing Guide](./.github/CONTRIBUTING.md) bef
 
 This includes instructions on how to setup development environment, test extensions, and build the final product.
 
+## Changelog
+
+Detailed changes for each release are documented in the [CHANGELOG](./CHANGELOG.md).
+
 ## Sponsor
 
 If you like this project, please consider supporting me by buying me a coffee.
