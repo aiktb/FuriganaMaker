@@ -131,7 +131,7 @@ importers:
         version: 2.9.2(react-dom@18.3.1(react@18.3.1))(react@18.3.1)(typescript@5.4.5)
       isbot:
         specifier: ^5.1.5
-        version: 5.1.7
+        version: 5.1.9
     devDependencies:
       '@cloudflare/workers-types':
         specifier: ^4.20240423.0
@@ -4589,8 +4589,8 @@ packages:
     resolution: {integrity: sha512-iHrqe5shvBUcFbmZq9zOQHBoeOhZJu6RQGrDpBgenUm/Am+F3JM2MgQj+rK3Z601fzrL5gLZWtAPH2OBaSVcyw==}
     engines: {node: '>= 8.0.0'}
 
-  isbot@5.1.7:
-    resolution: {integrity: sha512-/U9wtTOhYcP1cnDUFKNalTSQHVD3y4ginXstBBQDRwDKTZ2liBb0IEnRu8X+RpX9VnNN/I3MNNgJvKnKQ5+CnA==}
+  isbot@5.1.9:
+    resolution: {integrity: sha512-NITFjA2Jpcv1qWCpzqZQoW/66H3xXbF+n4yJIXr/gIn/wgaSKOPXTTczswiKMYx+BVymG9lm30ZGPtFWqAD4hA==}
     engines: {node: '>=18'}
 
   isexe@1.1.2:
@@ -11918,7 +11918,7 @@ snapshots:
 
   isbinaryfile@4.0.10: {}
 
-  isbot@5.1.7: {}
+  isbot@5.1.9: {}
 
   isexe@1.1.2: {}
 
