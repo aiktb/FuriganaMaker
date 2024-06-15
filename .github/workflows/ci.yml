@@ -1,4 +1,4 @@
-name: Run linter and check types
+name: Lint & TypeCheck & Test
 on:
   workflow_dispatch:
   pull_request:
