@@ -119,7 +119,7 @@ importers:
     dependencies:
       '@fireworks-js/react':
         specifier: ^2.10.7
-        version: 2.10.7(@types/react@18.3.3)(react@18.3.1)
+        version: 2.10.7(@types/react@18.3.3)(react@18.3.0-canary-c5b937576-20231219)
       '@remix-run/cloudflare':
         specifier: ^2.9.1
         version: 2.9.2(@cloudflare/workers-types@4.20240614.0)(typescript@5.4.5)
@@ -128,10 +128,16 @@ importers:
         version: 2.9.2(@cloudflare/workers-types@4.20240614.0)(typescript@5.4.5)
       '@remix-run/react':
         specifier: ^2.9.1
-        version: 2.9.2(react-dom@18.3.1(react@18.3.1))(react@18.3.1)(typescript@5.4.5)
+        version: 2.9.2(react-dom@18.3.0-canary-c5b937576-20231219(react@18.3.0-canary-c5b937576-20231219))(react@18.3.0-canary-c5b937576-20231219)(typescript@5.4.5)
       isbot:
         specifier: ^5.1.5
         version: 5.1.9
+      react:
+        specifier: 18.3.0-canary-c5b937576-20231219
+        version: 18.3.0-canary-c5b937576-20231219
+      react-dom:
+        specifier: 18.3.0-canary-c5b937576-20231219
+        version: 18.3.0-canary-c5b937576-20231219(react@18.3.0-canary-c5b937576-20231219)
     devDependencies:
       '@cloudflare/workers-types':
         specifier: ^4.20240423.0
@@ -150,7 +156,7 @@ importers:
         version: 2.9.2
       '@remix-run/dev':
         specifier: ^2.9.1
-        version: 2.9.2(@remix-run/react@2.9.2(react-dom@18.3.1(react@18.3.1))(react@18.3.1)(typescript@5.4.5))(@types/node@20.14.2)(less@4.2.0)(lightningcss@1.25.1)(sass@1.77.5)(terser@5.31.1)(typescript@5.4.5)(vite@5.3.1(@types/node@20.14.2)(less@4.2.0)(lightningcss@1.25.1)(sass@1.77.5)(terser@5.31.1))(wrangler@3.60.3(@cloudflare/workers-types@4.20240614.0))
+        version: 2.9.2(@remix-run/react@2.9.2(react-dom@18.3.0-canary-c5b937576-20231219(react@18.3.0-canary-c5b937576-20231219))(react@18.3.0-canary-c5b937576-20231219)(typescript@5.4.5))(@types/node@20.14.2)(less@4.2.0)(lightningcss@1.25.1)(sass@1.77.5)(terser@5.31.1)(typescript@5.4.5)(vite@5.3.1(@types/node@20.14.2)(less@4.2.0)(lightningcss@1.25.1)(sass@1.77.5)(terser@5.31.1))(wrangler@3.60.3(@cloudflare/workers-types@4.20240614.0))
       '@remix-run/node':
         specifier: ^2.9.1
         version: 2.9.2(typescript@5.4.5)
@@ -5741,11 +5747,6 @@ packages:
     peerDependencies:
       react: 18.3.0-canary-c5b937576-20231219
 
-  react-dom@18.3.1:
-    resolution: {integrity: sha512-5m4nQKp+rZRb09LNH59GM4BxTh9251/ylbKIbpe7TpGxfJ+9kv6BLkLBXIjjspbgbnIBNqlI23tRnTWT0snUIw==}
-    peerDependencies:
-      react: ^18.3.1
-
   react-error-overlay@6.0.9:
     resolution: {integrity: sha512-nQTTcUu+ATDbrSD1BZHr5kgSD4oF8OFjxun8uAaL8RwPBacGBNPf/yAuVVdx17N8XNzRDMrZ9XcKZHCjPW+9ew==}
 
@@ -5784,10 +5785,6 @@ packages:
 
   react@18.3.0-canary-c5b937576-20231219:
     resolution: {integrity: sha512-gvMxGf2wlOMq387pdOypG4li5iuLdpu/wDRuyETZsdLFrDcCH4RuJCIcTWcLIlP/oG5uD5yXMi2hePYuB+toyw==}
-    engines: {node: '>=0.10.0'}
-
-  react@18.3.1:
-    resolution: {integrity: sha512-wS+hAgJShR0KhEvPJArfuPVN1+Hz1t0Y6n5jLrGQbkb4urgPE/0Rve+1kMB1v/oWgHgm4WIcV+i7F2pTVj+2iQ==}
     engines: {node: '>=0.10.0'}
 
   read-cache@1.0.0:
@@ -5964,9 +5961,6 @@ packages:
 
   sax@1.4.1:
     resolution: {integrity: sha512-+aWOz7yVScEGoKNd4PA10LZ8sk0A/z5+nXQG5giUO5rprX9jgYsTdov9qCchZiPIZezbZH+jRut8nPodFAX4Jg==}
-
-  scheduler@0.23.2:
-    resolution: {integrity: sha512-UOShsPwz7NrMUqhR6t0hWjFduvOzbtv7toDH1/hIrfRNIDBnnBWd0CwJTGvTpngVlmwGCdP9/Zl/tVrDqcuYzQ==}
 
   scheduler@0.24.0-canary-c5b937576-20231219:
     resolution: {integrity: sha512-eFiLsRse2DGq3davC8B6qmVlbdrikiHDcqeys+Dp7l5YQ+Jw9tPVQ5RZbEA0o7zO2rjyPFzxNOtE6fRMQcWrKQ==}
@@ -7741,11 +7735,11 @@ snapshots:
 
   '@fastify/busboy@2.1.1': {}
 
-  '@fireworks-js/react@2.10.7(@types/react@18.3.3)(react@18.3.1)':
+  '@fireworks-js/react@2.10.7(@types/react@18.3.3)(react@18.3.0-canary-c5b937576-20231219)':
     dependencies:
       '@types/react': 18.3.3
       fireworks-js: 2.10.7
-      react: 18.3.1
+      react: 18.3.0-canary-c5b937576-20231219
 
   '@floating-ui/core@1.6.2':
     dependencies:
@@ -9109,7 +9103,7 @@ snapshots:
 
   '@remix-run/css-bundle@2.9.2': {}
 
-  '@remix-run/dev@2.9.2(@remix-run/react@2.9.2(react-dom@18.3.1(react@18.3.1))(react@18.3.1)(typescript@5.4.5))(@types/node@20.14.2)(less@4.2.0)(lightningcss@1.25.1)(sass@1.77.5)(terser@5.31.1)(typescript@5.4.5)(vite@5.3.1(@types/node@20.14.2)(less@4.2.0)(lightningcss@1.25.1)(sass@1.77.5)(terser@5.31.1))(wrangler@3.60.3(@cloudflare/workers-types@4.20240614.0))':
+  '@remix-run/dev@2.9.2(@remix-run/react@2.9.2(react-dom@18.3.0-canary-c5b937576-20231219(react@18.3.0-canary-c5b937576-20231219))(react@18.3.0-canary-c5b937576-20231219)(typescript@5.4.5))(@types/node@20.14.2)(less@4.2.0)(lightningcss@1.25.1)(sass@1.77.5)(terser@5.31.1)(typescript@5.4.5)(vite@5.3.1(@types/node@20.14.2)(less@4.2.0)(lightningcss@1.25.1)(sass@1.77.5)(terser@5.31.1))(wrangler@3.60.3(@cloudflare/workers-types@4.20240614.0))':
     dependencies:
       '@babel/core': 7.24.6
       '@babel/generator': 7.24.6
@@ -9122,7 +9116,7 @@ snapshots:
       '@mdx-js/mdx': 2.3.0
       '@npmcli/package-json': 4.0.1
       '@remix-run/node': 2.9.2(typescript@5.4.5)
-      '@remix-run/react': 2.9.2(react-dom@18.3.1(react@18.3.1))(react@18.3.1)(typescript@5.4.5)
+      '@remix-run/react': 2.9.2(react-dom@18.3.0-canary-c5b937576-20231219(react@18.3.0-canary-c5b937576-20231219))(react@18.3.0-canary-c5b937576-20231219)(typescript@5.4.5)
       '@remix-run/router': 1.16.1
       '@remix-run/server-runtime': 2.9.2(typescript@5.4.5)
       '@types/mdx': 2.0.13
@@ -9196,14 +9190,14 @@ snapshots:
     optionalDependencies:
       typescript: 5.4.5
 
-  '@remix-run/react@2.9.2(react-dom@18.3.1(react@18.3.1))(react@18.3.1)(typescript@5.4.5)':
+  '@remix-run/react@2.9.2(react-dom@18.3.0-canary-c5b937576-20231219(react@18.3.0-canary-c5b937576-20231219))(react@18.3.0-canary-c5b937576-20231219)(typescript@5.4.5)':
     dependencies:
       '@remix-run/router': 1.16.1
       '@remix-run/server-runtime': 2.9.2(typescript@5.4.5)
-      react: 18.3.1
-      react-dom: 18.3.1(react@18.3.1)
-      react-router: 6.23.1(react@18.3.1)
-      react-router-dom: 6.23.1(react-dom@18.3.1(react@18.3.1))(react@18.3.1)
+      react: 18.3.0-canary-c5b937576-20231219
+      react-dom: 18.3.0-canary-c5b937576-20231219(react@18.3.0-canary-c5b937576-20231219)
+      react-router: 6.23.1(react@18.3.0-canary-c5b937576-20231219)
+      react-router-dom: 6.23.1(react-dom@18.3.0-canary-c5b937576-20231219(react@18.3.0-canary-c5b937576-20231219))(react@18.3.0-canary-c5b937576-20231219)
       turbo-stream: 2.0.1
     optionalDependencies:
       typescript: 5.4.5
@@ -9611,7 +9605,7 @@ snapshots:
       '@babel/plugin-syntax-typescript': 7.24.6(@babel/core@7.24.6)
       '@vanilla-extract/babel-plugin-debug-ids': 1.0.6
       '@vanilla-extract/css': 1.15.2
-      esbuild: 0.17.6
+      esbuild: 0.18.20
       eval: 0.1.8
       find-up: 5.0.0
       javascript-stringify: 2.1.0
@@ -13175,12 +13169,6 @@ snapshots:
       react: 18.3.0-canary-c5b937576-20231219
       scheduler: 0.24.0-canary-c5b937576-20231219
 
-  react-dom@18.3.1(react@18.3.1):
-    dependencies:
-      loose-envify: 1.4.0
-      react: 18.3.1
-      scheduler: 0.23.2
-
   react-error-overlay@6.0.9: {}
 
   react-is@18.3.1: {}
@@ -13191,17 +13179,17 @@ snapshots:
 
   react-refresh@0.9.0: {}
 
-  react-router-dom@6.23.1(react-dom@18.3.1(react@18.3.1))(react@18.3.1):
+  react-router-dom@6.23.1(react-dom@18.3.0-canary-c5b937576-20231219(react@18.3.0-canary-c5b937576-20231219))(react@18.3.0-canary-c5b937576-20231219):
     dependencies:
       '@remix-run/router': 1.16.1
-      react: 18.3.1
-      react-dom: 18.3.1(react@18.3.1)
-      react-router: 6.23.1(react@18.3.1)
+      react: 18.3.0-canary-c5b937576-20231219
+      react-dom: 18.3.0-canary-c5b937576-20231219(react@18.3.0-canary-c5b937576-20231219)
+      react-router: 6.23.1(react@18.3.0-canary-c5b937576-20231219)
 
-  react-router@6.23.1(react@18.3.1):
+  react-router@6.23.1(react@18.3.0-canary-c5b937576-20231219):
     dependencies:
       '@remix-run/router': 1.16.1
-      react: 18.3.1
+      react: 18.3.0-canary-c5b937576-20231219
 
   react-share@5.1.0(react@18.3.0-canary-c5b937576-20231219):
     dependencies:
@@ -13212,10 +13200,6 @@ snapshots:
       - supports-color
 
   react@18.3.0-canary-c5b937576-20231219:
-    dependencies:
-      loose-envify: 1.4.0
-
-  react@18.3.1:
     dependencies:
       loose-envify: 1.4.0
 
@@ -13424,10 +13408,6 @@ snapshots:
       source-map-js: 1.2.0
 
   sax@1.4.1: {}
-
-  scheduler@0.23.2:
-    dependencies:
-      loose-envify: 1.4.0
 
   scheduler@0.24.0-canary-c5b937576-20231219:
     dependencies:
