@@ -35,7 +35,6 @@ You will need [pnpm](https://pnpm.io):
 
 ```bash
 corepack enable pnpm
-corepack install
 ```
 
 After cloning the repo, run:
