@@ -22,7 +22,7 @@ importers:
         version: 0.6.2(react@18.3.0-canary-c5b937576-20231219)
       '@plasmohq/storage':
         specifier: ^1.10.0
-        version: 1.10.0(react@18.3.0-canary-c5b937576-20231219)
+        version: 1.11.0(react@18.3.0-canary-c5b937576-20231219)
       '@sglkc/kuromoji':
         specifier: ^1.1.0
         version: 1.1.0
@@ -2054,8 +2054,8 @@ packages:
     resolution: {integrity: sha512-/3oVbajt+DRqtbM0RkKFtfyZR8DVjcsYpj1jHqPParGVBiXwgP0D/8Bj5p5/5Iqihs08gzasTcjKcwQKKdj0og==}
     engines: {parcel: '>= 2.7.0'}
 
-  '@plasmohq/storage@1.10.0':
-    resolution: {integrity: sha512-qvxD7M/k5BNcluyFHyabm21500tRJs1itUkO4bFad0SeaSFtSmAFtNzYCpQ9ormqJAk2j9xkd5DfWHcuCSQmog==}
+  '@plasmohq/storage@1.11.0':
+    resolution: {integrity: sha512-JLu8cCjn+yzbaIK2Gw+NDuDJgiTle3nj1HbMC/irnnUTc7lnJSiCEN/EsUcWcwNtv9BJM2r8DAk1stsQ8dCKug==}
     peerDependencies:
       react: ^16.8.6 || ^17 || ^18
     peerDependenciesMeta:
@@ -9028,7 +9028,7 @@ snapshots:
       - walrus
       - whiskers
 
-  '@plasmohq/storage@1.10.0(react@18.3.0-canary-c5b937576-20231219)':
+  '@plasmohq/storage@1.11.0(react@18.3.0-canary-c5b937576-20231219)':
     dependencies:
       pify: 6.1.0
     optionalDependencies:
