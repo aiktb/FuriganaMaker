@@ -33,8 +33,8 @@ importers:
         specifier: ^2.0.5
         version: 2.0.5
       plasmo:
-        specifier: ^0.87.2
-        version: 0.87.2(@swc/core@1.6.0(@swc/helpers@0.5.11))(@swc/helpers@0.5.11)(lodash@4.17.21)(mustache@4.2.0)(postcss@8.4.38)(react-dom@18.3.0-canary-c5b937576-20231219(react@18.3.0-canary-c5b937576-20231219))(react@18.3.0-canary-c5b937576-20231219)(terser@5.31.1)
+        specifier: ^0.88.0
+        version: 0.88.0(@swc/core@1.6.0(@swc/helpers@0.5.11))(@swc/helpers@0.5.11)(lodash@4.17.21)(mustache@4.2.0)(postcss@8.4.38)(react-dom@18.3.0-canary-c5b937576-20231219(react@18.3.0-canary-c5b937576-20231219))(react@18.3.0-canary-c5b937576-20231219)(terser@5.31.1)
       react:
         specifier: 18.3.0-canary-c5b937576-20231219
         version: 18.3.0-canary-c5b937576-20231219
@@ -1999,8 +1999,8 @@ packages:
     resolution: {integrity: sha512-UxljXY+cUVO0ZdszoQRfQjbRjyWYIhGKCjFD48yOcnbSkOZmS5MPPhKrT79x+PMGSK5T6fUXaDjzqbnMb45MZw==}
     engines: {parcel: '>= 2.8.0'}
 
-  '@plasmohq/parcel-config@0.40.11':
-    resolution: {integrity: sha512-QmdIrbC3xqusPKD0wNvozejhO01YvQ6qEKLZIxmEDjCUFF7xv1DwkqwmoCyd0BAwgflOZbZQ9f0aBTtLKnvkag==}
+  '@plasmohq/parcel-config@0.41.0':
+    resolution: {integrity: sha512-MHtuEyjSCqVT0J584KF4ZrnNF1KTGz3+0+wEBgYiiWEW+WW91/Hv/5pboBrPH4tu/knxSQjzE9zlY5Rq2xh9Rg==}
 
   '@plasmohq/parcel-core@0.1.8':
     resolution: {integrity: sha512-kMWuazvf925ZAn2yHzzrb4Zsje1titFmvi/C5cXrI0TH58eT7n6GUiRXiOYP4JgGDHs/pEygx3WPuyWVTNF2HQ==}
@@ -2030,8 +2030,8 @@ packages:
     resolution: {integrity: sha512-OPGFiv2SxDEJl9sNPKfjkQ3QaqKOzSDx8E85Bq9FCOKCj+EWTPfoeUOAuMkHY/ArcvDBhWAo3Zu66f2U7iPEGQ==}
     engines: {parcel: '>= 2.7.0'}
 
-  '@plasmohq/parcel-runtime@0.24.2':
-    resolution: {integrity: sha512-Y20s9vFkpkFIheeSfoeLkY41lPTGYnJ+nST9v40HkoSUk0hf/dsUYiK/DXWbhsZKNVOSsnCNjlIjYj8yTJ+rlQ==}
+  '@plasmohq/parcel-runtime@0.25.0':
+    resolution: {integrity: sha512-jtb77WDCYhKDPi/jRweSNX9GEe/REQUQU50d18YkDpQDyo/enVTyWVeYqfo3Q21iGLX8x9E5nF2rXtIVtoOAmw==}
     engines: {parcel: '>= 2.7.0'}
 
   '@plasmohq/parcel-transformer-inject-env@0.2.11':
@@ -5525,8 +5525,8 @@ packages:
   pkg-types@1.1.1:
     resolution: {integrity: sha512-ko14TjmDuQJ14zsotODv7dBlwxKhUKQEhuhmbqo1uCi9BB0Z2alo/wAXg6q1dTR5TyuqYyWhjtfe/Tsh+X28jQ==}
 
-  plasmo@0.87.2:
-    resolution: {integrity: sha512-a+8OIhuU13Zg+iyBkPPqk88uai+Ji4aiE4d75cww7h1aar9PL5IHH666V3NhX9x+F1tbOwdioBY59pv+CRHzJQ==}
+  plasmo@0.88.0:
+    resolution: {integrity: sha512-pL0xA9Y4zZuqQTyOwt0rQ8cahFMZI9toGMCa3aosB3dtzRztSe2rm3LA8hS52UdvnAUXm2A4ecmTlweaGN69Uw==}
     hasBin: true
 
   possible-typed-array-names@1.0.0:
@@ -8123,7 +8123,7 @@ snapshots:
       json5: 2.2.3
       msgpackr: 1.10.2
       nullthrows: 1.1.1
-      semver: 7.5.4
+      semver: 7.6.2
 
   '@parcel/diagnostic@2.8.3':
     dependencies:
@@ -8209,7 +8209,7 @@ snapshots:
       '@parcel/fs': 2.9.3(@parcel/core@2.9.3)
       '@parcel/utils': 2.9.3
       nullthrows: 1.1.1
-      semver: 7.5.4
+      semver: 7.6.2
     transitivePeerDependencies:
       - '@parcel/core'
 
@@ -8302,7 +8302,7 @@ snapshots:
       '@parcel/types': 2.9.3(@parcel/core@2.9.3)
       '@parcel/utils': 2.9.3
       '@parcel/workers': 2.9.3(@parcel/core@2.9.3)
-      semver: 7.5.4
+      semver: 7.6.2
 
   '@parcel/packager-css@2.9.3(@parcel/core@2.9.3)':
     dependencies:
@@ -8443,7 +8443,7 @@ snapshots:
       browserslist: 4.23.1
       json5: 2.2.3
       nullthrows: 1.1.1
-      semver: 7.5.4
+      semver: 7.6.2
     transitivePeerDependencies:
       - '@parcel/core'
 
@@ -8476,7 +8476,7 @@ snapshots:
       posthtml: 0.16.6
       posthtml-parser: 0.10.2
       posthtml-render: 3.0.0
-      semver: 7.5.4
+      semver: 7.6.2
       srcset: 4.0.0
     transitivePeerDependencies:
       - '@parcel/core'
@@ -8507,7 +8507,7 @@ snapshots:
       browserslist: 4.23.1
       nullthrows: 1.1.1
       regenerator-runtime: 0.13.11
-      semver: 7.5.4
+      semver: 7.6.2
 
   '@parcel/transformer-json@2.9.3(@parcel/core@2.9.3)':
     dependencies:
@@ -8533,7 +8533,7 @@ snapshots:
       clone: 2.1.2
       nullthrows: 1.1.1
       postcss-value-parser: 4.2.0
-      semver: 7.5.4
+      semver: 7.6.2
     transitivePeerDependencies:
       - '@parcel/core'
 
@@ -8545,7 +8545,7 @@ snapshots:
       posthtml: 0.16.6
       posthtml-parser: 0.10.2
       posthtml-render: 3.0.0
-      semver: 7.5.4
+      semver: 7.6.2
     transitivePeerDependencies:
       - '@parcel/core'
 
@@ -8590,7 +8590,7 @@ snapshots:
       posthtml: 0.16.6
       posthtml-parser: 0.10.2
       posthtml-render: 3.0.0
-      semver: 7.5.4
+      semver: 7.6.2
     transitivePeerDependencies:
       - '@parcel/core'
 
@@ -8749,7 +8749,7 @@ snapshots:
     transitivePeerDependencies:
       - '@parcel/core'
 
-  '@plasmohq/parcel-config@0.40.11(@swc/core@1.6.0(@swc/helpers@0.5.11))(@swc/helpers@0.5.11)(lodash@4.17.21)(mustache@4.2.0)(postcss@8.4.38)(react-dom@18.3.0-canary-c5b937576-20231219(react@18.3.0-canary-c5b937576-20231219))(react@18.3.0-canary-c5b937576-20231219)(terser@5.31.1)(typescript@5.2.2)':
+  '@plasmohq/parcel-config@0.41.0(@swc/core@1.6.0(@swc/helpers@0.5.11))(@swc/helpers@0.5.11)(lodash@4.17.21)(mustache@4.2.0)(postcss@8.4.38)(react-dom@18.3.0-canary-c5b937576-20231219(react@18.3.0-canary-c5b937576-20231219))(react@18.3.0-canary-c5b937576-20231219)(terser@5.31.1)(typescript@5.2.2)':
     dependencies:
       '@parcel/compressor-raw': 2.9.3(@parcel/core@2.9.3)
       '@parcel/config-default': 2.9.3(@parcel/core@2.9.3)(@swc/helpers@0.5.11)(postcss@8.4.38)(terser@5.31.1)(typescript@5.2.2)
@@ -8780,7 +8780,7 @@ snapshots:
       '@plasmohq/parcel-packager': 0.6.14
       '@plasmohq/parcel-resolver': 0.14.0
       '@plasmohq/parcel-resolver-post': 0.4.4(@swc/core@1.6.0(@swc/helpers@0.5.11))(postcss@8.4.38)
-      '@plasmohq/parcel-runtime': 0.24.2
+      '@plasmohq/parcel-runtime': 0.25.0
       '@plasmohq/parcel-transformer-inject-env': 0.2.11
       '@plasmohq/parcel-transformer-inline-css': 0.3.11
       '@plasmohq/parcel-transformer-manifest': 0.19.0
@@ -8924,7 +8924,7 @@ snapshots:
       fs-extra: 11.1.1
       got: 13.0.0
 
-  '@plasmohq/parcel-runtime@0.24.2':
+  '@plasmohq/parcel-runtime@0.25.0':
     dependencies:
       '@parcel/core': 2.9.3
       '@parcel/plugin': 2.9.3(@parcel/core@2.9.3)
@@ -11274,7 +11274,7 @@ snapshots:
       array-union: 2.1.0
       dir-glob: 3.0.1
       fast-glob: 3.3.2
-      ignore: 5.2.4
+      ignore: 5.3.1
       merge2: 1.4.1
       slash: 3.0.0
 
@@ -12539,7 +12539,7 @@ snapshots:
 
   node-abi@3.65.0:
     dependencies:
-      semver: 7.5.4
+      semver: 7.6.2
 
   node-addon-api@4.3.0: {}
 
@@ -12729,7 +12729,7 @@ snapshots:
       got: 12.6.1
       registry-auth-token: 5.0.2
       registry-url: 6.0.1
-      semver: 7.5.4
+      semver: 7.6.2
 
   pako@0.2.9: {}
 
@@ -12863,7 +12863,7 @@ snapshots:
       mlly: 1.7.0
       pathe: 1.1.2
 
-  plasmo@0.87.2(@swc/core@1.6.0(@swc/helpers@0.5.11))(@swc/helpers@0.5.11)(lodash@4.17.21)(mustache@4.2.0)(postcss@8.4.38)(react-dom@18.3.0-canary-c5b937576-20231219(react@18.3.0-canary-c5b937576-20231219))(react@18.3.0-canary-c5b937576-20231219)(terser@5.31.1):
+  plasmo@0.88.0(@swc/core@1.6.0(@swc/helpers@0.5.11))(@swc/helpers@0.5.11)(lodash@4.17.21)(mustache@4.2.0)(postcss@8.4.38)(react-dom@18.3.0-canary-c5b937576-20231219(react@18.3.0-canary-c5b937576-20231219))(react@18.3.0-canary-c5b937576-20231219)(terser@5.31.1):
     dependencies:
       '@expo/spawn-async': 1.7.2
       '@parcel/core': 2.9.3
@@ -12871,7 +12871,7 @@ snapshots:
       '@parcel/package-manager': 2.9.3(@parcel/core@2.9.3)
       '@parcel/watcher': 2.2.0
       '@plasmohq/init': 0.7.0
-      '@plasmohq/parcel-config': 0.40.11(@swc/core@1.6.0(@swc/helpers@0.5.11))(@swc/helpers@0.5.11)(lodash@4.17.21)(mustache@4.2.0)(postcss@8.4.38)(react-dom@18.3.0-canary-c5b937576-20231219(react@18.3.0-canary-c5b937576-20231219))(react@18.3.0-canary-c5b937576-20231219)(terser@5.31.1)(typescript@5.2.2)
+      '@plasmohq/parcel-config': 0.41.0(@swc/core@1.6.0(@swc/helpers@0.5.11))(@swc/helpers@0.5.11)(lodash@4.17.21)(mustache@4.2.0)(postcss@8.4.38)(react-dom@18.3.0-canary-c5b937576-20231219(react@18.3.0-canary-c5b937576-20231219))(react@18.3.0-canary-c5b937576-20231219)(terser@5.31.1)(typescript@5.2.2)
       '@plasmohq/parcel-core': 0.1.8
       buffer: 6.0.3
       chalk: 5.3.0
@@ -13485,7 +13485,7 @@ snapshots:
       detect-libc: 2.0.3
       node-addon-api: 6.1.0
       prebuild-install: 7.1.2
-      semver: 7.5.4
+      semver: 7.6.2
       simple-get: 4.0.1
       tar-fs: 3.0.6
       tunnel-agent: 0.6.0
