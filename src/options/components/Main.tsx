@@ -1,4 +1,4 @@
-import { Dialog, Transition } from "@headlessui/react";
+import { Dialog, DialogPanel, DialogTitle, Transition } from "@headlessui/react";
 import { saveAs } from "file-saver";
 import { use, useEffect, useState } from "react";
 import { z } from "zod";
@@ -161,6 +161,7 @@ export default function Main({ rulesPromise }: { rulesPromise: Promise<SelectorR
                 return (
                   <Transition
                     appear
+                    as="div"
                     show={true}
                     key={rule.domain}
                     enter="transition-opacity duration-300"
@@ -201,9 +202,9 @@ export default function Main({ rulesPromise }: { rulesPromise: Promise<SelectorR
             setCreateRuleDialogIsOpen(false);
           }}
         >
-          <Dialog.Panel className="w-full min-w-[28rem] max-w-md transform overflow-hidden rounded-2xl bg-white p-6 text-left align-middle shadow-xl transition-all dark:bg-slate-900">
+          <DialogPanel className="w-full min-w-[28rem] max-w-md transform overflow-hidden rounded-2xl bg-white p-6 text-left align-middle shadow-xl transition-all dark:bg-slate-900">
             <RuleEditor mode="create" onChange={createNewRule} />
-          </Dialog.Panel>
+          </DialogPanel>
         </Dialog>
       </PopupTransition>
 
@@ -215,13 +216,13 @@ export default function Main({ rulesPromise }: { rulesPromise: Promise<SelectorR
             setImportDialogIsOpen(false);
           }}
         >
-          <Dialog.Panel className="w-full max-w-md transform overflow-hidden rounded-2xl bg-white p-6 text-left align-middle shadow-xl transition-all dark:bg-slate-900">
-            <Dialog.Title
+          <DialogPanel className="w-full max-w-md transform overflow-hidden rounded-2xl bg-white p-6 text-left align-middle shadow-xl transition-all dark:bg-slate-900">
+            <DialogTitle
               as="h3"
               className="text-lg font-medium leading-6 text-gray-900 dark:text-white"
             >
               Warning!
-            </Dialog.Title>
+            </DialogTitle>
             <div className="mt-2">
               <p className="text-sm text-gray-500 dark:text-gray-400">
                 This will overwrite the existing configuration file and this action is not undoable,
@@ -247,7 +248,7 @@ export default function Main({ rulesPromise }: { rulesPromise: Promise<SelectorR
                 Cancel
               </button>
             </div>
-          </Dialog.Panel>
+          </DialogPanel>
         </Dialog>
       </PopupTransition>
 
@@ -259,13 +260,13 @@ export default function Main({ rulesPromise }: { rulesPromise: Promise<SelectorR
             setImportFailedDialogIsOpen(false);
           }}
         >
-          <Dialog.Panel className="w-full min-w-[20rem] max-w-md transform overflow-hidden rounded-2xl bg-white p-6 text-left align-middle shadow-xl transition-all dark:bg-slate-900">
-            <Dialog.Title
+          <DialogPanel className="w-full min-w-[20rem] max-w-md transform overflow-hidden rounded-2xl bg-white p-6 text-left align-middle shadow-xl transition-all dark:bg-slate-900">
+            <DialogTitle
               as="h3"
               className="text-lg font-medium leading-6 text-gray-900 dark:text-white"
             >
               Invalid JSON format!
-            </Dialog.Title>
+            </DialogTitle>
             <div className="mt-2">
               <p className="whitespace-pre-wrap text-sm text-gray-500 dark:text-gray-400">
                 {importFailedMessage}
@@ -281,7 +282,7 @@ export default function Main({ rulesPromise }: { rulesPromise: Promise<SelectorR
                 I Got It!
               </button>
             </div>
-          </Dialog.Panel>
+          </DialogPanel>
         </Dialog>
       </PopupTransition>
     </>

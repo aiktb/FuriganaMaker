@@ -1,6 +1,6 @@
 import { TinyColor } from "@ctrl/tinycolor";
-import { Popover, Transition } from "@headlessui/react";
-import { Fragment, useState } from "react";
+import { Popover, PopoverButton, PopoverPanel, Transition } from "@headlessui/react";
+import { useState } from "react";
 
 interface ColorPickerProps {
   color: string;
@@ -12,17 +12,16 @@ export default function ColorPicker({ color, onChange }: ColorPickerProps) {
     <Popover className="flex grow">
       {({ open }) => (
         <>
-          <Popover.Button className="group flex flex-1 items-center justify-between rounded px-2 capitalize transition-all hover:bg-gray-200 focus-visible:bg-gray-200 dark:hover:bg-slate-700 dark:focus-visible:bg-slate-700">
+          <PopoverButton className="group flex flex-1 items-center justify-between rounded px-2 capitalize transition-all hover:bg-gray-200 focus-visible:bg-gray-200 dark:hover:bg-slate-700 dark:focus-visible:bg-slate-700">
             Select color
             <div
               className="hidden size-3 rounded-full group-hover:block group-focus-visible:block"
               style={{ backgroundColor: color }}
             />
-          </Popover.Button>
+          </PopoverButton>
           <Transition
             appear
             show={open}
-            as={Fragment}
             enter="transition ease-out duration-300"
             enterFrom="opacity-0 scale-95"
             enterTo="opacity-100 scale-100"
@@ -30,14 +29,14 @@ export default function ColorPicker({ color, onChange }: ColorPickerProps) {
             leaveFrom="opacity-100 scale-100"
             leaveTo="opacity-0 scale-95"
           >
-            <Popover.Panel focus className="absolute inset-0 z-50 bg-white dark:bg-slate-900">
+            <PopoverPanel focus className="absolute inset-0 z-50 bg-white dark:bg-slate-900">
               <ColorPickerPanel color={color} onChange={onChange}>
-                <Popover.Button className="flex items-center justify-center gap-2 rounded border-none px-1.5 font-sans shadow-sm outline-none ring-1 ring-gray-300 transition-all hover:text-sky-500 focus-visible:text-sky-500 focus-visible:ring-2 focus-visible:ring-sky-500 dark:ring-slate-700 dark:focus-visible:ring-sky-500">
+                <PopoverButton className="flex items-center justify-center gap-2 rounded border-none px-1.5 font-sans shadow-sm outline-none ring-1 ring-gray-300 transition-all hover:text-sky-500 focus-visible:text-sky-500 focus-visible:ring-2 focus-visible:ring-sky-500 dark:ring-slate-700 dark:focus-visible:ring-sky-500">
                   Close Picker Panel
                   <span className="size-4 i-[material-symbols--close-rounded]" aria-hidden="true" />
-                </Popover.Button>
+                </PopoverButton>
               </ColorPickerPanel>
-            </Popover.Panel>
+            </PopoverPanel>
           </Transition>
         </>
       )}
