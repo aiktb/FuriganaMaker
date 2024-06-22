@@ -1,4 +1,4 @@
-import { Disclosure } from "@headlessui/react";
+import { Disclosure, DisclosureButton, DisclosurePanel } from "@headlessui/react";
 import { useState } from "react";
 
 import type { SelectorRule } from "~core/constants";
@@ -32,7 +32,7 @@ export default function RuleEditor({ rule, mode, onChange }: RuleEditorProps) {
       <Disclosure>
         {({ open }) => (
           <>
-            <Disclosure.Button className="flex w-full items-center justify-between rounded-lg bg-sky-100 px-4 py-2 text-left text-sm font-medium text-sky-900 hover:bg-sky-200 focus:outline-none focus-visible:ring focus-visible:ring-sky-500/75 dark:bg-sky-900 dark:text-sky-300 dark:hover:bg-sky-700">
+            <DisclosureButton className="flex w-full items-center justify-between rounded-lg bg-sky-100 px-4 py-2 text-left text-sm font-medium text-sky-900 hover:bg-sky-200 focus:outline-none focus-visible:ring focus-visible:ring-sky-500/75 dark:bg-sky-900 dark:text-sky-300 dark:hover:bg-sky-700">
               <span>What is selector field?</span>
               <span
                 className={`${
@@ -40,8 +40,8 @@ export default function RuleEditor({ rule, mode, onChange }: RuleEditorProps) {
                 } size-4 text-sky-500 -rotate-90 i-[material-symbols--arrow-back-ios-new-rounded]`}
                 aria-hidden="true"
               />
-            </Disclosure.Button>
-            <Disclosure.Panel className="px-4 pb-2 pt-4 text-sm">
+            </DisclosureButton>
+            <DisclosurePanel className="px-4 pb-2 pt-4 text-sm">
               <section>
                 <ul className="list-disc marker:text-black dark:marker:text-white">
                   <li className="my-2">
@@ -82,7 +82,7 @@ export default function RuleEditor({ rule, mode, onChange }: RuleEditorProps) {
                   </li>
                 </ul>
               </section>
-            </Disclosure.Panel>
+            </DisclosurePanel>
           </>
         )}
       </Disclosure>

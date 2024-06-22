@@ -1,4 +1,4 @@
-import { Dialog } from "@headlessui/react";
+import { Dialog, DialogPanel, DialogTitle } from "@headlessui/react";
 import { useState } from "react";
 
 import type { SelectorRule } from "~core/constants";
@@ -94,7 +94,7 @@ export default function RuleItem({ rule, onChange, onDelete }: RuleItemProps) {
             setEditorIsOpen(false);
           }}
         >
-          <Dialog.Panel className="w-full min-w-[28rem] max-w-md transform overflow-hidden rounded-2xl bg-white p-6 text-left align-middle shadow-xl transition-all dark:bg-slate-900">
+          <DialogPanel className="w-full min-w-[28rem] max-w-md transform overflow-hidden rounded-2xl bg-white p-6 text-left align-middle shadow-xl transition-all dark:bg-slate-900">
             <RuleEditor
               rule={rule}
               mode="update"
@@ -103,7 +103,7 @@ export default function RuleItem({ rule, onChange, onDelete }: RuleItemProps) {
                 setEditorIsOpen(false);
               }}
             />
-          </Dialog.Panel>
+          </DialogPanel>
         </Dialog>
       </PopupTransition>
 
@@ -115,13 +115,13 @@ export default function RuleItem({ rule, onChange, onDelete }: RuleItemProps) {
             setDeleteDialogIsOpen(false);
           }}
         >
-          <Dialog.Panel className="w-full max-w-md transform overflow-hidden rounded-2xl bg-white p-6 text-left align-middle shadow-xl transition-all dark:bg-slate-900">
-            <Dialog.Title
+          <DialogPanel className="w-full max-w-md transform overflow-hidden rounded-2xl bg-white p-6 text-left align-middle shadow-xl transition-all dark:bg-slate-900">
+            <DialogTitle
               as="h3"
               className="text-lg font-medium leading-6 text-gray-900 dark:text-white"
             >
               Warning!
-            </Dialog.Title>
+            </DialogTitle>
             <div className="mt-2">
               <p className="text-sm text-gray-500 dark:text-gray-400">
                 The deletion rule is not undoable, sure about this?
@@ -146,7 +146,7 @@ export default function RuleItem({ rule, onChange, onDelete }: RuleItemProps) {
                 Cancel
               </button>
             </div>
-          </Dialog.Panel>
+          </DialogPanel>
         </Dialog>
       </PopupTransition>
     </>

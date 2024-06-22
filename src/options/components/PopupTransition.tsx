@@ -1,5 +1,4 @@
-import { Transition } from "@headlessui/react";
-import { Fragment } from "react";
+import { Transition, TransitionChild } from "@headlessui/react";
 
 interface PopupTransitionProps {
   show: boolean;
@@ -8,12 +7,11 @@ interface PopupTransitionProps {
 
 export default function PopupTransition({ show, children }: PopupTransitionProps) {
   return (
-    <Transition appear show={show} as={Fragment}>
+    <Transition appear show={show}>
       <div className="relative z-10">
         {/* Background overlay */}
         <div className="fixed inset-0 backdrop-blur backdrop-filter" />
-        <Transition.Child
-          as={Fragment}
+        <TransitionChild
           enter="duration-300 ease-out"
           enterFrom="opacity-0"
           enterTo="opacity-100"
@@ -22,12 +20,11 @@ export default function PopupTransition({ show, children }: PopupTransitionProps
           leaveTo="opacity-0"
         >
           <div className="fixed inset-0 bg-black/25" />
-        </Transition.Child>
+        </TransitionChild>
 
         <div className="fixed inset-0 overflow-y-auto">
           <div className="flex min-h-full items-center justify-center p-4 text-center">
-            <Transition.Child
-              as={Fragment}
+            <TransitionChild
               enter="duration-300 ease-out"
               enterFrom="opacity-0 scale-95"
               enterTo="opacity-100 scale-100"
@@ -36,7 +33,7 @@ export default function PopupTransition({ show, children }: PopupTransitionProps
               leaveTo="opacity-0 scale-95"
             >
               {children}
-            </Transition.Child>
+            </TransitionChild>
           </div>
         </div>
       </div>

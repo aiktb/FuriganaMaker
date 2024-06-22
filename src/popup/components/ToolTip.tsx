@@ -10,7 +10,7 @@ import {
   useRole,
 } from "@floating-ui/react";
 import { Transition } from "@headlessui/react";
-import { Fragment, useRef, useState } from "react";
+import { useRef, useState } from "react";
 
 interface ToolTipProps {
   tip: string;
@@ -58,7 +58,6 @@ export default function ToolTip({ tip, children }: ToolTipProps) {
       </div>
       <Transition
         show={isOpen}
-        as={Fragment}
         enter="transition-opacity ease-out duration-300"
         enterFrom="opacity-0"
         enterTo="opacity-100"

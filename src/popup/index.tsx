@@ -65,6 +65,7 @@ export default function Popup() {
   return (
     <Suspense fallback={<Logo width="192" height="192" />}>
       <Transition
+        as="div"
         appear
         show={true}
         enter="transition-opacity duration-300"
