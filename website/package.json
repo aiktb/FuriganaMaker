@@ -12,23 +12,23 @@
   },
   "dependencies": {
     "@fireworks-js/react": "^2.10.7",
-    "@remix-run/cloudflare": "^2.9.1",
-    "@remix-run/cloudflare-pages": "^2.9.1",
-    "@remix-run/react": "^2.9.1",
-    "isbot": "^5.1.5",
-    "react": "18.3.0-canary-c5b937576-20231219",
-    "react-dom": "18.3.0-canary-c5b937576-20231219"
+    "@remix-run/cloudflare": "^2.9.2",
+    "@remix-run/cloudflare-pages": "^2.9.2",
+    "@remix-run/react": "^2.9.2",
+    "isbot": "^5.1.9",
+    "react": "18.3.1",
+    "react-dom": "18.3.1"
   },
   "devDependencies": {
-    "@cloudflare/workers-types": "^4.20240423.0",
+    "@cloudflare/workers-types": "^4.20240620.0",
     "@fontsource/dm-sans": "^5.0.21",
     "@fontsource/lobster": "^5.0.20",
     "@fontsource/m-plus-rounded-1c": "^5.0.13",
-    "@remix-run/css-bundle": "^2.9.1",
-    "@remix-run/dev": "^2.9.1",
-    "@remix-run/node": "^2.9.1",
-    "vite": "^5.1.0",
-    "vite-tsconfig-paths": "^4.2.1",
-    "wrangler": "^3.52.0"
+    "@remix-run/css-bundle": "^2.9.2",
+    "@remix-run/dev": "^2.9.2",
+    "@remix-run/node": "^2.9.2",
+    "vite": "^5.3.1",
+    "vite-tsconfig-paths": "^4.3.2",
+    "wrangler": "^3.61.0"
   }
 }
