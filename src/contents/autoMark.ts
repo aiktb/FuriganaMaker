@@ -70,7 +70,13 @@ async function mark() {
     warning.appendChild(text);
     document.body.appendChild(warning);
     setTimeout(() => {
-      warning.remove();
+      if (warning.matches(":hover")) {
+        warning.addEventListener("mouseleave", () => {
+          warning.remove();
+        });
+      } else {
+        warning.remove();
+      }
     }, 3000);
     return;
   }
