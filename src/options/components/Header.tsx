@@ -1,4 +1,5 @@
 import { useState } from "react";
+import { useTranslation } from "react-i18next";
 
 export default function Header() {
   const [theme, setTheme] = useState<"light" | "dark">(localStorage.theme ?? "light");
@@ -15,6 +16,8 @@ export default function Header() {
     }
   };
 
+  const { t } = useTranslation("options");
+
   return (
     <header className="sticky top-0 z-10 h-[72px]">
       <div className="max-w-8xl mx-auto xl:px-8">
@@ -24,11 +27,11 @@ export default function Header() {
               className="mr-1 size-6 text-sky-500 i-[material-symbols--rule-rounded]"
               aria-hidden="true"
             />
-            <span className="font-bold text-black dark:text-white">User Rules Editor</span>
+            <span className="font-bold text-black dark:text-white">{t("titleEditor")}</span>
           </div>
           <div className="flex gap-x-6">
             <button onClick={toggleTheme}>
-              <span className="sr-only">Toggle Theme Mode</span>
+              <span className="sr-only">{t("srToggleTheme")}</span>
               {theme === "light" ? (
                 <span className="size-6 text-sky-500 i-[tabler--sun]" aria-hidden="true" />
               ) : (
@@ -39,7 +42,7 @@ export default function Header() {
               className="transition hover:text-black dark:hover:text-white"
               href="https://github.com/aiktb/FuriganaMaker"
             >
-              <span className="sr-only">GitHub repository</span>
+              <span className="sr-only">{t("srGithub")}</span>
               <span className="size-6 i-[fa6-brands--github]" />
             </a>
           </div>

@@ -1,7 +1,7 @@
 {
   "name": "furigana-maker",
   "displayName": "Furigana Maker",
-  "description": "Add furigana to Japanese text on any page for learning kanji pronunciation.",
+  "description": "__MSG_extDescription__",
   "version": "1.5.1",
   "type": "module",
   "packageManager": "pnpm@9.4.0",
@@ -43,9 +43,11 @@
     "@sglkc/kuromoji": "^1.1.0",
     "detect-browser": "^5.3.0",
     "file-saver": "^2.0.5",
+    "i18next": "^23.11.5",
     "plasmo": "^0.88.0",
     "react": "18.3.0-canary-c5b937576-20231219",
     "react-dom": "18.3.0-canary-c5b937576-20231219",
+    "react-i18next": "^14.1.2",
     "react-share": "^5.1.0",
     "wanakana": "^5.3.1",
     "webextension-polyfill": "^0.12.0",
@@ -75,6 +77,7 @@
   },
   "manifest": {
     "permissions": ["contextMenus"],
+    "default_locale": "en",
     "commands": {
       "addFurigana": {
         "description": "Add furigana on the current page"

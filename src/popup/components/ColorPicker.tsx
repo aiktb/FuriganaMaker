@@ -1,6 +1,7 @@
 import { TinyColor } from "@ctrl/tinycolor";
 import { Popover, PopoverButton, PopoverPanel, Transition } from "@headlessui/react";
 import { useState } from "react";
+import { useTranslation } from "react-i18next";
 
 interface ColorPickerProps {
   color: string;
@@ -8,12 +9,14 @@ interface ColorPickerProps {
 }
 
 export default function ColorPicker({ color, onChange }: ColorPickerProps) {
+  const { t } = useTranslation("popup");
+
   return (
     <Popover className="flex grow">
       {({ open }) => (
         <>
           <PopoverButton className="group flex flex-1 items-center justify-between rounded px-2 capitalize transition-all hover:bg-gray-200 focus-visible:bg-gray-200 dark:hover:bg-slate-700 dark:focus-visible:bg-slate-700">
-            Select color
+            {t("btnSelectColor")}
             <div
               className="hidden size-3 rounded-full group-hover:block group-focus-visible:block"
               style={{ backgroundColor: color }}
@@ -32,7 +35,7 @@ export default function ColorPicker({ color, onChange }: ColorPickerProps) {
             <PopoverPanel focus className="absolute inset-0 z-50 bg-white dark:bg-slate-900">
               <ColorPickerPanel color={color} onChange={onChange}>
                 <PopoverButton className="flex items-center justify-center gap-2 rounded border-none px-1.5 font-sans shadow-sm outline-none ring-1 ring-gray-300 transition-all hover:text-sky-500 focus-visible:text-sky-500 focus-visible:ring-2 focus-visible:ring-sky-500 dark:ring-slate-700 dark:focus-visible:ring-sky-500">
-                  Close Picker Panel
+                  {t("btnClosePanel")}
                   <span className="size-4 i-[material-symbols--close-rounded]" aria-hidden="true" />
                 </PopoverButton>
               </ColorPickerPanel>
@@ -57,6 +60,8 @@ function ColorPickerPanel({ color, children, onChange }: ColorPickerPanelProps) 
     color === "currentColor" ? { s: 1, v: 1 } : { s: hsv.s, v: hsv.v },
   );
   const [input, setInput] = useState(new TinyColor(color).toHexString());
+
+  const { t } = useTranslation("popup");
 
   return (
     <div className="flex size-full flex-col justify-between px-2.5 py-3">
@@ -119,7 +124,7 @@ function ColorPickerPanel({ color, children, onChange }: ColorPickerPanelProps) 
             />
           </label>
           <button
-            className="flex h-6 items-center justify-center gap-0.5 rounded border-none px-1.5 font-sans shadow-sm outline-none ring-1 ring-gray-300 transition-all hover:text-sky-500 focus-visible:text-sky-500 focus-visible:ring-2 focus-visible:ring-sky-500 dark:bg-slate-950 dark:ring-slate-700 dark:focus-visible:ring-sky-500"
+            className="flex h-6 max-w-[7ch] items-center justify-center gap-0.5 rounded border-none px-1.5 font-sans shadow-sm outline-none ring-1 ring-gray-300 transition-all hover:text-sky-500 focus-visible:text-sky-500 focus-visible:ring-2 focus-visible:ring-sky-500 dark:bg-slate-950 dark:ring-slate-700 dark:focus-visible:ring-sky-500"
             onClick={() => {
               setHue(0);
               setSaturationAndValue({ s: 1, v: 1 });
@@ -127,8 +132,11 @@ function ColorPickerPanel({ color, children, onChange }: ColorPickerPanelProps) 
               onChange("currentColor");
             }}
           >
-            Reset
-            <span className="text-lg i-[material-symbols--refresh-rounded]" aria-hidden="true" />
+            <span className="">{t("btnReset")}</span>
+            <span
+              className="text-lg min-w-0 i-[material-symbols--refresh-rounded]"
+              aria-hidden="true"
+            />
           </button>
         </div>
       </div>

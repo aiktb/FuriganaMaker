@@ -7,6 +7,7 @@ import { Storage } from "@plasmohq/storage";
 
 import { ExtensionStorage, type SelectorRule } from "~core/constants";
 
+import { useTranslation } from "react-i18next";
 import NotFoundRule from "./NotFoundRule";
 import PopupTransition from "./PopupTransition";
 import RuleEditor from "./RuleEditor";
@@ -103,6 +104,8 @@ export default function Main({ rulesPromise }: { rulesPromise: Promise<SelectorR
     }
   }
 
+  const { t } = useTranslation("options");
+
   return (
     <>
       <main className="flex grow flex-col justify-start">
@@ -117,7 +120,7 @@ export default function Main({ rulesPromise }: { rulesPromise: Promise<SelectorR
               className="size-5 i-[material-symbols--add-to-photos-outline-rounded]"
               aria-hidden="true"
             />
-            Add New Rule
+            {t("btnAddRule")}
           </button>
           <div className="flex gap-x-1.5">
             <button
@@ -127,7 +130,7 @@ export default function Main({ rulesPromise }: { rulesPromise: Promise<SelectorR
               onClick={exportConfig}
             >
               <span className="size-5 i-[pajamas--export]" aria-hidden="true" />
-              Export Config
+              {t("btnExportConfig")}
             </button>
             <button
               className="flex cursor-pointer items-center gap-x-1.5 rounded-md border border-gray-200 px-1.5 py-0.5 shadow-md transition-[background-color] hover:bg-transparent/10 dark:border-slate-800 dark:hover:bg-transparent/20"
@@ -136,7 +139,7 @@ export default function Main({ rulesPromise }: { rulesPromise: Promise<SelectorR
               }}
             >
               <span className="size-5 i-[pajamas--import]" aria-hidden="true" />
-              Import Config
+              {t("btnImportConfig")}
             </button>
           </div>
         </div>
@@ -209,13 +212,10 @@ export default function Main({ rulesPromise }: { rulesPromise: Promise<SelectorR
               as="h3"
               className="text-lg font-medium leading-6 text-gray-900 dark:text-white"
             >
-              Warning!
+              {t("titleWarning")}
             </DialogTitle>
             <div className="mt-2">
-              <p className="text-sm text-gray-500 dark:text-gray-400">
-                This will overwrite the existing configuration file and this action is not undoable,
-                sure about this?
-              </p>
+              <p className="text-sm text-gray-500 dark:text-gray-400">{t("msgImportConfig")}</p>
             </div>
             <div className="mt-4 flex gap-2.5">
               <button
@@ -225,7 +225,7 @@ export default function Main({ rulesPromise }: { rulesPromise: Promise<SelectorR
                   setImportDialogIsOpen(false);
                 }}
               >
-                Import
+                {t("btnConfirmConfig")}
               </button>
               <button
                 className="inline-flex justify-center rounded-md border border-transparent bg-blue-100 px-4 py-2 text-sm font-medium text-blue-900 transition hover:bg-blue-200 focus:outline-none focus-visible:ring-2 focus-visible:ring-blue-500 focus-visible:ring-offset-2 dark:bg-slate-700 dark:text-slate-200 dark:hover:bg-slate-800"
@@ -233,7 +233,7 @@ export default function Main({ rulesPromise }: { rulesPromise: Promise<SelectorR
                   setImportDialogIsOpen(false);
                 }}
               >
-                Cancel
+                {t("btnCancel")}
               </button>
             </div>
           </DialogPanel>
@@ -253,7 +253,7 @@ export default function Main({ rulesPromise }: { rulesPromise: Promise<SelectorR
               as="h3"
               className="text-lg font-medium leading-6 text-gray-900 dark:text-white"
             >
-              Invalid JSON format!
+              {t("warningInvalid")}
             </DialogTitle>
             <div className="mt-2">
               <p className="whitespace-pre-wrap text-sm text-gray-500 dark:text-gray-400">
@@ -267,7 +267,7 @@ export default function Main({ rulesPromise }: { rulesPromise: Promise<SelectorR
                   setImportFailedDialogIsOpen(false);
                 }}
               >
-                I Got It!
+                {t("iGotIt")}
               </button>
             </div>
           </DialogPanel>

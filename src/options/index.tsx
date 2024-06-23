@@ -1,4 +1,5 @@
-import "~/assets/style.css";
+import "assets/style.css";
+import "~core/i18n";
 
 import { Suspense } from "react";
 

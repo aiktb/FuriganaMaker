@@ -7,7 +7,8 @@
     "paths": {
       "~*": ["./src/*"],
       // Only used to eliminate `tsc --noEmit` errors.
-      "@/*": ["./website/app/*"]
+      "@/*": ["./website/app/*"],
+      "assets/*": ["./assets/*"]
     },
     "types": ["react/canary", "react-dom/canary"],
     /* Linting */

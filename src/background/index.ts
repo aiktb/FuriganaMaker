@@ -1,7 +1,7 @@
 import Browser from "webextension-polyfill";
 
 import { Storage } from "@plasmohq/storage";
-
+import defaultSelectorRules from "assets/rules/selector.json";
 import {
   type Config,
   DisplayMode,
@@ -11,7 +11,8 @@ import {
   SelectMode,
 } from "~core/constants";
 import { sendMessage } from "~core/utils";
-import defaultSelectorRules from "../../assets/rules/selector.json";
+
+import i18n from "~core/i18n";
 
 // Plasmo `dev` mode will force the Service Worker to be `active`, it will never become `inactive`.
 
@@ -96,8 +97,10 @@ Browser.commands.onCommand.addListener(async (command, tab) => {
 });
 
 Browser.runtime.onMessage.addListener((event, sender) => {
+  const { t } = i18n;
+
   if (event === ExtensionEvent.MarkActiveTab) {
-    const activeTabTitle = `${Browser.runtime.getManifest().name} (Custom Rule Active)`;
+    const activeTabTitle = `${Browser.runtime.getManifest().name} (${t("extTitleSuffix", { ns: "background" })})`;
     Browser.action.setTitle({ title: activeTabTitle, tabId: sender.tab!.id! });
 
     const SIZE = 32;
@@ -109,7 +112,7 @@ Browser.runtime.onMessage.addListener((event, sender) => {
         const canvas = new OffscreenCanvas(SIZE, SIZE);
         const context = canvas.getContext("2d")!;
         context.drawImage(imageBitmap, 0, 0);
-        context.fillStyle = "lime";
+        context.fillStyle = "aqua";
         context.beginPath();
         const RADIUS = 5;
         context.arc(SIZE - RADIUS, SIZE - RADIUS, RADIUS, 0, 2 * Math.PI);
