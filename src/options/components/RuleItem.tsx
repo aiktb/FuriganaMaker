@@ -23,10 +23,7 @@ export default function RuleItem({ rule, onChange, onDelete }: RuleItemProps) {
     <>
       <div className="flex flex-col justify-between gap-x-6 py-5 sm:flex-row">
         <div className="flex min-w-0 gap-x-4">
-          <span
-            className="size-12 flex-none text-sky-500 i-[solar--layers-minimalistic-outline]"
-            aria-hidden="true"
-          />
+          <i className="size-12 flex-none text-sky-500 i-tabler-layers-intersect" />
           <div className="flex-auto">
             <a
               className="truncate text-sm font-semibold leading-6 text-sky-500 transition hover:text-sky-700"
@@ -72,7 +69,7 @@ export default function RuleItem({ rule, onChange, onDelete }: RuleItemProps) {
                   setEditorIsOpen(true);
                 }}
               >
-                <span className="size-4 i-[tabler--edit]" aria-hidden="true" />
+                <i className="size-4 i-tabler-edit" />
                 {t("btnEdit")}
               </button>
               <button
@@ -81,7 +78,7 @@ export default function RuleItem({ rule, onChange, onDelete }: RuleItemProps) {
                   setDeleteDialogIsOpen(true);
                 }}
               >
-                <span className="size-4 i-[tabler--trash]" aria-hidden="true" />
+                <i className="size-4 i-tabler-trash" />
                 {t("btnDelete")}
               </button>
             </div>

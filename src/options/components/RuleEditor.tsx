@@ -37,11 +37,10 @@ export default function RuleEditor({ rule, mode, onChange }: RuleEditorProps) {
           <>
             <DisclosureButton className="flex w-full items-center justify-between rounded-lg bg-sky-100 px-4 py-2 text-left text-sm font-medium text-sky-900 hover:bg-sky-200 focus:outline-none focus-visible:ring focus-visible:ring-sky-500/75 dark:bg-sky-900 dark:text-sky-300 dark:hover:bg-sky-700">
               <h1>{t("disclosureSelector")}</h1>
-              <span
+              <i
                 className={`${
                   open ? "rotate-180 transform" : ""
-                } size-4 text-sky-500 -rotate-90 i-[material-symbols--arrow-back-ios-new-rounded]`}
-                aria-hidden="true"
+                } size-4 text-sky-500 -rotate-90 i-tabler-chevron-left`}
               />
             </DisclosureButton>
             <DisclosurePanel className="px-4 pb-2 pt-4 text-sm">

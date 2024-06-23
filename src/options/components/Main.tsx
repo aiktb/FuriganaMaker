@@ -116,10 +116,7 @@ export default function Main({ rulesPromise }: { rulesPromise: Promise<SelectorR
               setCreateRuleDialogIsOpen(true);
             }}
           >
-            <span
-              className="size-5 i-[material-symbols--add-to-photos-outline-rounded]"
-              aria-hidden="true"
-            />
+            <i className="size-5 i-tabler-code-plus" />
             {t("btnAddRule")}
           </button>
           <div className="flex gap-x-1.5">
@@ -129,7 +126,7 @@ export default function Main({ rulesPromise }: { rulesPromise: Promise<SelectorR
               } flex items-center gap-x-1.5 rounded-md border border-gray-200 px-1.5 py-0.5 shadow-md transition-[background-color] hover:bg-transparent/10 dark:border-slate-800 dark:hover:bg-transparent/20`}
               onClick={exportConfig}
             >
-              <span className="size-5 i-[pajamas--export]" aria-hidden="true" />
+              <i className="size-5 i-tabler-file-export" />
               {t("btnExportConfig")}
             </button>
             <button
@@ -138,7 +135,7 @@ export default function Main({ rulesPromise }: { rulesPromise: Promise<SelectorR
                 setImportDialogIsOpen(true);
               }}
             >
-              <span className="size-5 i-[pajamas--import]" aria-hidden="true" />
+              <i className="size-5 i-tabler-file-import" />
               {t("btnImportConfig")}
             </button>
           </div>

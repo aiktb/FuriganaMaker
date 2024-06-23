@@ -57,7 +57,7 @@ export default function AddToBrowser() {
         </div>
         <div className="flex items-center absolute top-0 right-0 pr-2 pl-2 py-2 rounded-r-full bg-gray-200/50 hover:bg-gray-300 transition">
           <div className="size-7 flex items-center">
-            <span className="text-black size-5 i-mdi-plus" />
+            <i className="text-black size-5 i-mdi-plus" />
           </div>
         </div>
       </Link>

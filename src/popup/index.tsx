@@ -131,9 +131,7 @@ interface MenuItemProps {
 function MenuItem({ children, icon }: MenuItemProps) {
   return (
     <li className="flex items-center gap-x-1">
-      <div className="text-2xl" aria-hidden="true">
-        {icon}
-      </div>
+      <div className="text-2xl">{icon}</div>
       {children}
     </li>
   );

@@ -36,7 +36,7 @@ export default function ColorPicker({ color, onChange }: ColorPickerProps) {
               <ColorPickerPanel color={color} onChange={onChange}>
                 <PopoverButton className="flex items-center justify-center gap-2 rounded border-none px-1.5 font-sans shadow-sm outline-none ring-1 ring-gray-300 transition-all hover:text-sky-500 focus-visible:text-sky-500 focus-visible:ring-2 focus-visible:ring-sky-500 dark:ring-slate-700 dark:focus-visible:ring-sky-500">
                   {t("btnClosePanel")}
-                  <span className="size-4 i-[material-symbols--close-rounded]" aria-hidden="true" />
+                  <i className="size-4 i-tabler-x" />
                 </PopoverButton>
               </ColorPickerPanel>
             </PopoverPanel>
@@ -133,10 +133,7 @@ function ColorPickerPanel({ color, children, onChange }: ColorPickerPanelProps) 
             }}
           >
             <span className="">{t("btnReset")}</span>
-            <span
-              className="text-lg min-w-0 i-[material-symbols--refresh-rounded]"
-              aria-hidden="true"
-            />
+            <i className="text-lg min-w-0 i-tabler-reload" />
           </button>
         </div>
       </div>

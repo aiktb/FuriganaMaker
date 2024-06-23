@@ -20,10 +20,7 @@ export default function Select({ selected, options, tip, onChange }: SelectProps
     return (
       <ListboxButton className="group peer flex w-full items-center justify-between rounded px-2 capitalize transition-all hover:bg-gray-200 focus-visible:bg-gray-200 ui-open:bg-gray-200 dark:hover:bg-slate-700 dark:focus-visible:bg-slate-700 dark:ui-open:bg-slate-700">
         {options.find((option) => option.value === selected)?.label}
-        <span
-          className="hidden group-hover:flex group-focus-visible:flex ui-open:flex -rotate-90 i-[material-symbols--arrow-back-ios-new-rounded]"
-          aria-hidden="true"
-        />
+        <i className="hidden group-hover:flex group-focus-visible:flex ui-open:flex  i-tabler-chevron-down" />
       </ListboxButton>
     );
   }
@@ -59,7 +56,7 @@ export default function Select({ selected, options, tip, onChange }: SelectProps
                     box-content flex cursor-pointer items-center justify-between px-[6px] capitalize transition-all hover:bg-gray-200 focus:z-10 focus:bg-gray-200 ui-active:bg-gray-200 dark:hover:bg-slate-700 dark:focus:bg-slate-700 dark:ui-active:bg-slate-700`}
                   >
                     {item.label}
-                    {selected && <span className="ep-select" aria-hidden="true" />}
+                    {selected && <i className="i-tabler-check" />}
                   </li>
                 )}
               </ListboxOption>
