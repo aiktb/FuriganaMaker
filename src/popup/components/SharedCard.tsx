@@ -33,17 +33,17 @@ export default function SharedCard() {
     {
       ShareButton: TwitterShareButton,
       media: "Twitter",
-      Icon: <span className="text-xl i-[fa6-brands--square-x-twitter]" />,
+      Icon: <i className="text-xl i-fa6-brands-square-x-twitter" />,
     },
     {
       ShareButton: FacebookShareButton,
       media: "Facebook",
-      Icon: <span className="text-xl i-[fa6-brands--square-facebook]" />,
+      Icon: <i className="text-xl i-fa6-brands-square-facebook" />,
     },
     {
       ShareButton: WhatsappShareButton,
       media: "WhatsAPP",
-      Icon: <span className="text-xl i-[fa6-brands--square-whatsapp]" />,
+      Icon: <i className="text-xl i-fa6-brands-square-whatsapp" />,
     },
     {
       ShareButton: TelegramShareButton,
@@ -53,7 +53,7 @@ export default function SharedCard() {
     {
       ShareButton: RedditShareButton,
       media: "Reddit",
-      Icon: <span className="text-xl i-[fa6-brands--square-reddit]" />,
+      Icon: <i className="text-xl i-fa6-brands-square-reddit" />,
     },
   ];
 

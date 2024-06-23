@@ -89,9 +89,9 @@ export default function Welcome() {
         target="_blank"
         className="gap-2 mb-12 lg:mb-15 xl:mb-20 flex hover:-translate-y-2 items-center select-none font-bold rounded-xl px-4 py-2 border-sky-400 border-solid border-2 transition duration-300 hover:shadow-[hsla(201,80%,66%,.5)_0_0_15px_0,hsla(161,55%,49%,.5)_0_0_30px_0] bg-slate-900"
       >
-        <span className="size-5 i-mdi-github" />
+        <i className="size-5 i-mdi-github" />
         View on GitHub
-        <span className="i-mdi-arrow-top-right" />
+        <i className="i-mdi-arrow-top-right" />
       </Link>
     </div>
   );

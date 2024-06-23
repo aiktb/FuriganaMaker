@@ -1,17 +1,19 @@
-import { dynamicIconsPlugin, iconsPlugin } from "@egoist/tailwindcss-icons";
+import { getIconCollections, iconsPlugin } from "@egoist/tailwindcss-icons";
 import headlessui from "@headlessui/tailwindcss";
 import forms from "@tailwindcss/forms";
 import type { Config } from "tailwindcss";
 import defaultTheme from "tailwindcss/defaultTheme";
 import plugin from "tailwindcss/plugin";
+
 export default {
   content: ["./src/**/*.{tsx,html}"],
   darkMode: "selector",
   plugins: [
     forms,
     headlessui({ prefix: "ui" }).handler,
-    iconsPlugin().handler,
-    dynamicIconsPlugin().handler,
+    iconsPlugin({
+      collections: getIconCollections(["tabler", "fa6-brands"]),
+    }).handler,
     plugin(({ addBase }) => {
       addBase({
         ":focus-visible": {

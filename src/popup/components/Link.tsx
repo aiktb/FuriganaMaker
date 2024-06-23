@@ -16,7 +16,7 @@ export default function Link({ href, text, tip }: LinkProps) {
         className="flex flex-1 items-center gap-x-1 rounded px-2 capitalize transition duration-300 hover:bg-gray-200 hover:text-sky-500 focus-visible:bg-gray-200 focus-visible:text-sky-500 dark:hover:bg-slate-700 dark:focus-visible:bg-slate-700"
       >
         {text}
-        <span className="-rotate-45 i-[material-symbols--link-rounded]" aria-hidden="true" />
+        <i className="i-tabler-link" />
       </a>
     );
   }

@@ -48,7 +48,7 @@ export default function Footer() {
         onClick={toTop}
       >
         <span className="sr-only">Back to top</span>
-        <span className="i-mdi-chevron-up size-10" />
+        <i className="i-mdi-chevron-up size-10" />
       </button>
       <div className="mx-auto max-w-7xl overflow-hidden px-6 py-20 sm:py-24 lg:px-8">
         <nav className="flex items-center justify-center space-x-4 sm:space-x-12 ">

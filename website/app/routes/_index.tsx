@@ -86,9 +86,9 @@ export default function Index() {
           target="_blank"
           className="gap-2 flex hover:-translate-y-2 items-center select-none font-bold rounded-xl px-4 py-2 border-sky-400 border-solid border-2 transition duration-300 hover:shadow-[hsla(201,80%,66%,.5)_0_0_15px_0,hsla(161,55%,49%,.5)_0_0_30px_0] bg-slate-900"
         >
-          <span className="size-5 i-mdi-github" />
+          <i className="size-5 i-mdi-github" />
           View on GitHub
-          <span className="i-mdi-arrow-top-right" />
+          <i className="i-mdi-arrow-top-right" />
         </Link>
       </div>
       <Features />
@@ -152,7 +152,7 @@ export default function Index() {
         </p>
         <Link target="_blank" className="animeRising select-none group flex mt-4" to={links.github}>
           <div className="group flex size-10 items-center justify-center space-x-2 rounded-md border-2 bg-muted border-sky-400 transition duration-300 group-hover:shadow-[hsla(201,80%,66%,.5)_0_0_15px_0,hsla(161,55%,49%,.5)_0_0_30px_0] bg-slate-900">
-            <span className="i-mdi-github text-2xl" />
+            <i className="i-mdi-github text-2xl" />
           </div>
           <div className="flex items-center">
             <div className="size-4 border-y-8 border-l-0 border-r-8 border-solid border-y-transparent border-sky-400" />

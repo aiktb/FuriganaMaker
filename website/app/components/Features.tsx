@@ -54,7 +54,7 @@ function FeatureItem({ title, description, icon }: FeatureItemProps) {
         <div className="bg-sky-400 size-10 flex justify-center items-center rounded">
           <div className={`${icon} size-7`} />
         </div>
-        <span className="text-green-400 size-6 i-mdi-checkbox-marked-circle-outline" />
+        <i className="text-green-400 size-6 i-mdi-checkbox-marked-circle-outline" />
       </div>
       <h3 className="font-bold text-xl text-white">{title}</h3>
       <p className="text-white">{description}</p>

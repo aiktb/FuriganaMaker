@@ -5,7 +5,7 @@ export default function NotFoundRule() {
 
   return (
     <div className="flex flex-col items-center px-6 pb-24 pt-16 text-center">
-      <span className="size-20 text-sky-500 i-[fluent--location-not-found-24-regular]" />
+      <i className="size-20 text-sky-500 i-fluent-location-not-found-24-regular" />
       <h1 className="space-x-[2px] pt-3 text-xl font-bold leading-5 text-sky-500">
         {t("titleNotFound")}
       </h1>

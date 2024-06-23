@@ -23,19 +23,16 @@ export default function Header() {
       <div className="max-w-8xl mx-auto xl:px-8">
         <div className="mx-auto flex max-w-3xl items-center justify-between border-b border-gray-200 px-4 py-5 backdrop-blur backdrop-filter dark:border-slate-800 sm:px-6 lg:max-w-7xl lg:px-8">
           <div className="flex items-center text-base">
-            <span
-              className="mr-1 size-6 text-sky-500 i-[material-symbols--rule-rounded]"
-              aria-hidden="true"
-            />
+            <i className="mr-1 size-6 text-sky-500 i-tabler-list-details" />
             <span className="font-bold text-black dark:text-white">{t("titleEditor")}</span>
           </div>
           <div className="flex gap-x-6">
             <button onClick={toggleTheme}>
               <span className="sr-only">{t("srToggleTheme")}</span>
               {theme === "light" ? (
-                <span className="size-6 text-sky-500 i-[tabler--sun]" aria-hidden="true" />
+                <i className="size-6 text-sky-500 i-tabler-sun" />
               ) : (
-                <span className="size-6 text-sky-500 i-[tabler--moon-stars]" aria-hidden="true" />
+                <i className="size-6 text-sky-500 i-tabler-moon-stars" />
               )}
             </button>
             <a
@@ -43,7 +40,7 @@ export default function Header() {
               href="https://github.com/aiktb/FuriganaMaker"
             >
               <span className="sr-only">{t("srGithub")}</span>
-              <span className="size-6 i-[fa6-brands--github]" />
+              <i className="size-6 i-fa6-brands-github" />
             </a>
           </div>
         </div>
