@@ -91,3 +91,37 @@ pnpm run package
 ```bash
 pnpm run package:firefox
 ```
+
+### Internalization
+
+The i18n messages owned by this extension are located in the `~/assets/locales` directory with the following structure:
+
+```txt
+├── en
+│   ├── messages.json
+│   └── translations.json
+└── zh_CN # https://developer.chrome.com/docs/extensions/reference/api/i18n#locales
+    ├── messages.json
+    └── translations.json
+...
+```
+
+- `messages.json` contains only the description field from the `manifest.json`.
+- `translations.json` contains all the messages actually displayed by this extension.
+
+The above files are simple KV structure, if you want to fix the wrong translation, just modify the Value in the corresponding language JSON file.
+
+If you want to submit a new translation, please create two JSON files for the corresponding language and translate all the values corresponding to the keys.
+
+In addition to this, the `~/src/core/i18n.ts` file needs to be modified like this:
+
+```ts
+import zhCN from "assets/locales/zh_CN/translations.json";
+
+i18n.use(initReactI18next).init({
+  resources: {
+    en,
+    "zh-CN": zhCN,
+  }
+});
+```
