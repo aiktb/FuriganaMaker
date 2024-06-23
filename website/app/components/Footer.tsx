@@ -23,7 +23,6 @@ export default function Footer() {
   const iconLinkItems = [
     { title: "chrome web store", to: links.chrome, icon: "i-fa6-brands-chrome" },
     { title: "firefox add-ons", to: links.firefox, icon: "i-fa6-brands-firefox-browser" },
-    { title: "microsoft edge addons", to: links.edge, icon: "i-fa6-brands-edge" },
     { title: "github", to: links.github, icon: "i-fa6-brands-github" },
   ];
 

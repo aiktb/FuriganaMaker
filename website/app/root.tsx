@@ -21,7 +21,6 @@ export function Layout({ children }: { children: React.ReactNode }) {
     chrome:
       "https://chromewebstore.google.com/detail/furigana-maker/heodojceeinbkfjfilnfminlkgbacpfp",
     firefox: "https://addons.mozilla.org/en-US/firefox/addon/furigana-maker/",
-    edge: "https://microsoftedge.microsoft.com/addons/detail/furigana-maker/kohpoklaaeicnkdapjkmljdachedmbbi",
     github: "https://github.com/aiktb/FuriganaMaker",
   };
 
