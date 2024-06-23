@@ -3,6 +3,7 @@ import { useState } from "react";
 
 import type { SelectorRule } from "~core/constants";
 
+import { useTranslation } from "react-i18next";
 import PopupTransition from "./PopupTransition";
 import RuleEditor from "./RuleEditor";
 
@@ -15,6 +16,8 @@ interface RuleItemProps {
 export default function RuleItem({ rule, onChange, onDelete }: RuleItemProps) {
   const [editorDialogIsOpen, setEditorIsOpen] = useState(false);
   const [deleteDialogIsOpen, setDeleteDialogIsOpen] = useState(false);
+
+  const { t } = useTranslation("options");
 
   return (
     <>
@@ -47,7 +50,7 @@ export default function RuleItem({ rule, onChange, onDelete }: RuleItemProps) {
               }}
             >
               <p className="text-sm leading-5 transition hover:text-slate-950 dark:hover:text-white">
-                {rule.active ? "Active" : "Inactive"}
+                {rule.active ? t("markActive") : t("markInactive")}
               </p>
               <span className="relative flex size-2">
                 <span
@@ -70,7 +73,7 @@ export default function RuleItem({ rule, onChange, onDelete }: RuleItemProps) {
                 }}
               >
                 <span className="size-4 i-[tabler--edit]" aria-hidden="true" />
-                Edit
+                {t("btnEdit")}
               </button>
               <button
                 className="flex items-center gap-x-1 rounded-md border border-gray-200 px-1 py-0.5 text-sm font-bold text-sky-500 shadow transition-[background-color] hover:bg-transparent/10 dark:border-slate-800 dark:hover:bg-transparent/20"
@@ -79,7 +82,7 @@ export default function RuleItem({ rule, onChange, onDelete }: RuleItemProps) {
                 }}
               >
                 <span className="size-4 i-[tabler--trash]" aria-hidden="true" />
-                Delete
+                {t("btnDelete")}
               </button>
             </div>
           </div>
@@ -120,12 +123,10 @@ export default function RuleItem({ rule, onChange, onDelete }: RuleItemProps) {
               as="h3"
               className="text-lg font-medium leading-6 text-gray-900 dark:text-white"
             >
-              Warning!
+              {t("titleWarning")}
             </DialogTitle>
             <div className="mt-2">
-              <p className="text-sm text-gray-500 dark:text-gray-400">
-                The deletion rule is not undoable, sure about this?
-              </p>
+              <p className="text-sm text-gray-500 dark:text-gray-400">{t("msgDeleteRule")}</p>
             </div>
             <div className="mt-4 flex gap-2.5">
               <button
@@ -135,7 +136,7 @@ export default function RuleItem({ rule, onChange, onDelete }: RuleItemProps) {
                   setDeleteDialogIsOpen(false);
                 }}
               >
-                Delete
+                {t("btnDelete")}
               </button>
               <button
                 className="inline-flex justify-center rounded-md border border-transparent bg-blue-100 px-4 py-2 text-sm font-medium text-blue-900 transition hover:bg-blue-200 focus:outline-none focus-visible:ring-2 focus-visible:ring-blue-500 focus-visible:ring-offset-2 dark:bg-slate-700 dark:text-slate-200 dark:hover:bg-slate-800"
@@ -143,7 +144,7 @@ export default function RuleItem({ rule, onChange, onDelete }: RuleItemProps) {
                   setDeleteDialogIsOpen(false);
                 }}
               >
-                Cancel
+                {t("btnCancel")}
               </button>
             </div>
           </DialogPanel>

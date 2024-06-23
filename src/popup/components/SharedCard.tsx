@@ -1,4 +1,7 @@
+import TelegramSquareIcon from "react:assets/icons/TelegramSquare.svg";
+
 import { detect } from "detect-browser";
+import { useTranslation } from "react-i18next";
 import {
   FacebookShareButton,
   RedditShareButton,
@@ -6,8 +9,6 @@ import {
   TwitterShareButton,
   WhatsappShareButton,
 } from "react-share";
-
-import TelegramSquareIcon from "react:~/assets/icons/TelegramSquare.svg";
 
 import ToolTip from "./ToolTip";
 
@@ -56,10 +57,12 @@ export default function SharedCard() {
     },
   ];
 
+  const { t } = useTranslation("popup");
+
   return (
     <div className="flex flex-1 items-center gap-1.5 px-2">
       {shareItems.map(({ ShareButton, media, Icon }) => (
-        <ToolTip key={media} tip={`Share on ${media}`}>
+        <ToolTip key={media} tip={t("tipShareOn", { media })}>
           <ShareButton
             resetButtonStyle={false}
             className="flex size-5 items-center justify-center transition hover:text-sky-500 focus-visible:text-sky-500"

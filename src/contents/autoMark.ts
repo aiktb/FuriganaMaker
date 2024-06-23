@@ -8,6 +8,8 @@ import Browser from "webextension-polyfill";
 import { addFurigana } from "~core/addFurigana";
 import { ExtensionEvent, ExtensionStorage } from "~core/constants";
 
+import i18n from "~core/i18n";
+
 export const config: PlasmoCSConfig = {
   matches: ["https://*/*"],
   // This script will run when the `window.load` event fires,
@@ -64,8 +66,8 @@ async function mark() {
     const icon = document.createElement("div");
     icon.textContent = "⚠";
     const text = document.createElement("span");
-    // biome-ignore format: next-line
-    text.textContent = `Warning(Furigana Maker): This page is too large(${htmlSize.toFixed(2)}KB), auto mode is disabled.`;
+    const { t } = i18n;
+    text.textContent = t("warning", { ns: "contents", htmlSize: htmlSize.toFixed(2) });
     warning.appendChild(icon);
     warning.appendChild(text);
     document.body.appendChild(warning);

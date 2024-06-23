@@ -3,6 +3,7 @@
     "biomejs.biome",
     "antfu.iconify",
     "bradlc.vscode-tailwindcss",
-    "naumovs.color-highlight"
+    "naumovs.color-highlight",
+    "lokalise.i18n-ally"
   ]
 }

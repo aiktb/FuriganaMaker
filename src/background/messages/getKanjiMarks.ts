@@ -1,9 +1,9 @@
 import kuromoji from "@sglkc/kuromoji";
 
 import type { PlasmoMessaging } from "@plasmohq/messaging";
-import { type KanjiToken, type MojiToken, toKanjiToken } from "~core/toKanjiToken";
 // `filter.json` exceeded Browser.storage.local` maximum limit.
-import filterList from "../../../assets/rules/filter.json";
+import filterList from "assets/rules/filter.json";
+import { type KanjiToken, type MojiToken, toKanjiToken } from "~core/toKanjiToken";
 
 interface Tokenizer {
   tokenize: (text: string) => MojiToken[];

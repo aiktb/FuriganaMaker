@@ -1,11 +1,12 @@
-import "~/assets/style.css";
+import "assets/style.css";
+import "~core/i18n";
 
 import { Transition } from "@headlessui/react";
+import { Storage } from "@plasmohq/storage";
 import { detect } from "detect-browser";
 import { Suspense, use, useReducer } from "react";
+import { useTranslation } from "react-i18next";
 import Browser from "webextension-polyfill";
-
-import { Storage } from "@plasmohq/storage";
 
 import {
   type Config,
@@ -15,21 +16,21 @@ import {
   FuriganaType,
   SelectMode,
 } from "~core/constants";
-
-import ColorPickerIcon from "react:~/assets/icons/ColorPicker.svg";
-import CursorOutlineIcon from "react:~/assets/icons/CursorDefault.svg";
-import CursorTextIcon from "react:~/assets/icons/CursorText.svg";
-import EyeIcon from "react:~/assets/icons/Eye.svg";
-import FilterIcon from "react:~/assets/icons/Filter.svg";
-import FontSizeIcon from "react:~/assets/icons/FontSize.svg";
-import GithubIcon from "react:~/assets/icons/Github.svg";
-import HeartIcon from "react:~/assets/icons/Heart.svg";
-import HiraganaIcon from "react:~/assets/icons/Hiragana.svg";
-import Logo from "react:~/assets/icons/Logo.svg";
-import PowerIcon from "react:~/assets/icons/Power.svg";
-import SettingIcon from "react:~/assets/icons/Setting.svg";
-import ShareIcon from "react:~/assets/icons/Share.svg";
 import { sendMessage, toStorageKey } from "~core/utils";
+
+import ColorPickerIcon from "react:assets/icons/ColorPicker.svg";
+import CursorOutlineIcon from "react:assets/icons/CursorDefault.svg";
+import CursorTextIcon from "react:assets/icons/CursorText.svg";
+import EyeIcon from "react:assets/icons/Eye.svg";
+import FilterIcon from "react:assets/icons/Filter.svg";
+import FontSizeIcon from "react:assets/icons/FontSize.svg";
+import GithubIcon from "react:assets/icons/Github.svg";
+import HeartIcon from "react:assets/icons/Heart.svg";
+import HiraganaIcon from "react:assets/icons/Hiragana.svg";
+import Logo from "react:assets/icons/Logo.svg";
+import PowerIcon from "react:assets/icons/Power.svg";
+import SettingIcon from "react:assets/icons/Setting.svg";
+import ShareIcon from "react:assets/icons/Share.svg";
 
 import Button from "./components/Button";
 import CheckBox from "./components/CheckBox";
@@ -140,25 +141,39 @@ function MenuItem({ children, icon }: MenuItemProps) {
 
 function Menu({ configPromise }: { configPromise: Promise<Config> }) {
   const [state, dispatch] = useReducer(reducer, use(configPromise));
-  // biome-ignore format: next-line
-  const displayModeOptions = [DisplayMode.Always, DisplayMode.Never, DisplayMode.Hover, DisplayMode.HoverNoGap];
-  const furiganaTypeOptions = [FuriganaType.Hiragana, FuriganaType.Katakana, FuriganaType.Romaji];
-  const browser = detect();
+  const { t } = useTranslation("popup");
+
+  //DisplayMode.Always, DisplayMode.Never, DisplayMode.Hover, DisplayMode.HoverNoGap
+  const displayModeOptions = [
+    { label: t("optionAlwaysShow"), value: DisplayMode.Always },
+    { label: t("optionNeverShow"), value: DisplayMode.Never },
+    { label: t("optionHoverGap"), value: DisplayMode.Hover },
+    { label: t("optionHoverNoGap"), value: DisplayMode.HoverNoGap },
+  ];
+  const furiganaTypeOptions = [
+    { label: t("optionHiragana"), value: FuriganaType.Hiragana },
+    { label: t("optionKatakana"), value: FuriganaType.Katakana },
+    { label: t("optionRomaji"), value: FuriganaType.Romaji },
+  ];
+  const selectModeOptions = [
+    { label: t("optionDefault"), value: SelectMode.Default },
+    { label: t("optionOriginal"), value: SelectMode.Original },
+  ];
   // `SelectMode.Parentheses` is not compatible with firefox.
-  const selectModeOptions =
-    browser?.name === "firefox"
-      ? [SelectMode.Default, SelectMode.Original]
-      : [SelectMode.Default, SelectMode.Original, SelectMode.Parentheses];
+  const browser = detect();
+  if (browser?.name !== "firefox") {
+    selectModeOptions.push({ label: t("optionParentheses"), value: SelectMode.Parentheses });
+  }
 
   return (
     <menu className="space-y-2 border-r-2 border-sky-500 pr-1">
       <MenuItem icon={<CursorOutlineIcon />}>
-        <Button tip="Press ESC to cancel" text="Add furigana" onClick={addFurigana} />
+        <Button tip={t("tipEscShortcut")} text={t("btnAddFurigana")} onClick={addFurigana} />
       </MenuItem>
       <MenuItem icon={<PowerIcon className={state.autoMode ? "text-sky-500" : ""} />}>
         <CheckBox
-          tip="Please refresh the page"
-          text="On-off auto mode"
+          tip={t("tipRefreshPage")}
+          text={t("toggleAutoMode")}
           checked={state.autoMode}
           onChange={(checked) => {
             dispatch({ type: ExtensionEvent.ToggleAutoMode, payload: checked });
@@ -167,8 +182,8 @@ function Menu({ configPromise }: { configPromise: Promise<Config> }) {
       </MenuItem>
       <MenuItem icon={<FilterIcon className={state.kanjiFilter ? "text-sky-500" : ""} />}>
         <CheckBox
-          tip="Level is JLPT N5 & N4"
-          text="On-off kanji filter"
+          tip={t("tipFilterLevel")}
+          text={t("toggleKanjiFilter")}
           checked={state.kanjiFilter}
           onChange={(checked) => {
             dispatch({ type: ExtensionEvent.ToggleKanjiFilter, payload: checked });
@@ -201,7 +216,7 @@ function Menu({ configPromise }: { configPromise: Promise<Config> }) {
       </MenuItem>
       <MenuItem icon={<CursorTextIcon />}>
         <Select
-          tip="Try copy Japanese text"
+          tip={t("tipCopyText")}
           selected={state.selectMode}
           options={selectModeOptions}
           onChange={(selected) => {
@@ -218,7 +233,7 @@ function Menu({ configPromise }: { configPromise: Promise<Config> }) {
           min={50}
           max={100}
           step={1}
-          label="Adjust furigana font size"
+          label={t("labelAdjustFont")}
           onChange={(value) => {
             dispatch({ type: ExtensionEvent.AdjustFontSize, payload: value });
           }}
@@ -233,17 +248,21 @@ function Menu({ configPromise }: { configPromise: Promise<Config> }) {
         />
       </MenuItem>
       <MenuItem icon={<SettingIcon />}>
-        <Link tip="Open the options page" href="options.html" text="Edit rules" />
+        <Link tip={t("tipOpenOptions")} href="options.html" text={t("linkEditRules")} />
       </MenuItem>
       <MenuItem icon={<GithubIcon />}>
         <Link
-          tip="Open an issue on GitHub"
+          tip={t("tipOpenIssue")}
           href="https://github.com/aiktb/FuriganaMaker/issues"
-          text="Feedback"
+          text={t("linkFeedback")}
         />
       </MenuItem>
       <MenuItem icon={<HeartIcon />}>
-        <Link tip="Buy me a coffee☕" href="https://www.buymeacoffee.com/aiktb" text="Sponsor" />
+        <Link
+          tip={t("tipBuyMeACoffee")}
+          href="https://www.buymeacoffee.com/aiktb"
+          text={t("linkSponsor")}
+        />
       </MenuItem>
       <MenuItem icon={<ShareIcon />}>
         <SharedCard />
