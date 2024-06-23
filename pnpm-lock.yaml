@@ -64,37 +64,37 @@ importers:
         specifier: 1.8.2
         version: 1.8.2
       '@commitlint/cli':
-        specifier: ^19.3.0
+        specifier: 19.3.0
         version: 19.3.0(@types/node@20.14.8)(typescript@5.5.2)
       '@commitlint/config-conventional':
-        specifier: ^19.2.2
+        specifier: 19.2.2
         version: 19.2.2
       '@commitlint/types':
-        specifier: ^19.0.3
+        specifier: 19.0.3
         version: 19.0.3
       '@egoist/tailwindcss-icons':
-        specifier: ^1.8.1
+        specifier: 1.8.1
         version: 1.8.1(tailwindcss@3.4.4)
       '@headlessui/tailwindcss':
-        specifier: ^0.2.1
+        specifier: 0.2.1
         version: 0.2.1(tailwindcss@3.4.4)
       '@iconify-json/fa6-brands':
-        specifier: ^1.1.19
+        specifier: 1.1.19
         version: 1.1.19
       '@iconify-json/logos':
-        specifier: ^1.1.43
+        specifier: 1.1.43
         version: 1.1.43
       '@iconify-json/mdi':
-        specifier: ^1.1.67
+        specifier: 1.1.67
         version: 1.1.67
       '@iconify-json/tabler':
-        specifier: ^1.1.114
+        specifier: 1.1.114
         version: 1.1.114
       '@tailwindcss/forms':
-        specifier: ^0.5.7
+        specifier: 0.5.7
         version: 0.5.7(tailwindcss@3.4.4)
       '@types/file-saver':
-        specifier: ^2.0.7
+        specifier: 2.0.7
         version: 2.0.7
       '@types/react':
         specifier: ^18.3.3
@@ -103,31 +103,31 @@ importers:
         specifier: ^18.3.0
         version: 18.3.0
       '@types/webextension-polyfill':
-        specifier: ^0.10.7
+        specifier: 0.10.7
         version: 0.10.7
       autoprefixer:
-        specifier: ^10.4.19
+        specifier: 10.4.19
         version: 10.4.19(postcss@8.4.38)
       husky:
-        specifier: ^9.0.11
+        specifier: 9.0.11
         version: 9.0.11
       kuromojin:
-        specifier: ^3.0.0
+        specifier: 3.0.0
         version: 3.0.0
       postcss:
-        specifier: ^8.4.38
+        specifier: 8.4.38
         version: 8.4.38
       tailwindcss:
-        specifier: ^3.4.4
+        specifier: 3.4.4
         version: 3.4.4
       typescript:
-        specifier: ^5.5.2
+        specifier: 5.5.2
         version: 5.5.2
       vitest:
-        specifier: ^1.6.0
+        specifier: 1.6.0
         version: 1.6.0(@types/node@20.14.8)(less@4.2.0)(lightningcss@1.25.1)(sass@1.77.6)(terser@5.31.1)
       web-ext:
-        specifier: ^8.2.0
+        specifier: 8.2.0
         version: 8.2.0(body-parser@1.20.2)(express@4.19.2)
 
   website:
@@ -155,34 +155,34 @@ importers:
         version: 18.3.1(react@18.3.1)
     devDependencies:
       '@cloudflare/workers-types':
-        specifier: ^4.20240620.0
+        specifier: 4.20240620.0
         version: 4.20240620.0
       '@fontsource/dm-sans':
-        specifier: ^5.0.21
+        specifier: 5.0.21
         version: 5.0.21
       '@fontsource/lobster':
-        specifier: ^5.0.20
+        specifier: 5.0.20
         version: 5.0.20
       '@fontsource/m-plus-rounded-1c':
-        specifier: ^5.0.13
+        specifier: 5.0.13
         version: 5.0.13
       '@remix-run/css-bundle':
-        specifier: ^2.9.2
+        specifier: 2.9.2
         version: 2.9.2
       '@remix-run/dev':
-        specifier: ^2.9.2
+        specifier: 2.9.2
         version: 2.9.2(@remix-run/react@2.9.2(react-dom@18.3.1(react@18.3.1))(react@18.3.1)(typescript@5.5.2))(@types/node@20.14.8)(less@4.2.0)(lightningcss@1.25.1)(sass@1.77.6)(terser@5.31.1)(typescript@5.5.2)(vite@5.3.1(@types/node@20.14.8)(less@4.2.0)(lightningcss@1.25.1)(sass@1.77.6)(terser@5.31.1))(wrangler@3.61.0(@cloudflare/workers-types@4.20240620.0))
       '@remix-run/node':
-        specifier: ^2.9.2
+        specifier: 2.9.2
         version: 2.9.2(typescript@5.5.2)
       vite:
-        specifier: ^5.3.1
+        specifier: 5.3.1
         version: 5.3.1(@types/node@20.14.8)(less@4.2.0)(lightningcss@1.25.1)(sass@1.77.6)(terser@5.31.1)
       vite-tsconfig-paths:
-        specifier: ^4.3.2
+        specifier: 4.3.2
         version: 4.3.2(typescript@5.5.2)(vite@5.3.1(@types/node@20.14.8)(less@4.2.0)(lightningcss@1.25.1)(sass@1.77.6)(terser@5.31.1))
       wrangler:
-        specifier: ^3.61.0
+        specifier: 3.61.0
         version: 3.61.0(@cloudflare/workers-types@4.20240620.0)
 
 packages:
@@ -2628,11 +2628,6 @@ packages:
     resolution: {integrity: sha512-MxXdReSRhGO7VlFe1bRG/oI7/mdLV9B9JJT0N8vZOhF7gFRR5l3M8W9G8JxmKV+JC5mGqJ0QvqfSOLsCPa4nUw==}
     engines: {node: '>=0.4.0'}
 
-  acorn@8.11.3:
-    resolution: {integrity: sha512-Y9rRfJG5jcKOE0CLisYbojUjIrIEE7AGMzA/Sm4BslANhbS+cDMpgBdcPT91oJ7OuJ9hYJBx59RjbhxVnrF8Xg==}
-    engines: {node: '>=0.4.0'}
-    hasBin: true
-
   acorn@8.12.0:
     resolution: {integrity: sha512-RTvkC4w+KNXrM39/lWCUaG0IbRkWdCv7W/IOW9oU6SawyxulvkQy5HQPVTKxEjczcUvapcrw3cFx/60VN/NRNw==}
     engines: {node: '>=0.4.0'}
@@ -3262,15 +3257,6 @@ packages:
 
   debug@2.6.9:
     resolution: {integrity: sha512-bC7ElrdJaJnPbAP+1EotYvqZsb3ecl5wi6Bfi6BJTUcNowp6cvspg0jXznRTKDjm/E7AdgFBVeAPVMNcKGsHMA==}
-    peerDependencies:
-      supports-color: '*'
-    peerDependenciesMeta:
-      supports-color:
-        optional: true
-
-  debug@4.3.4:
-    resolution: {integrity: sha512-PRWFHuSU3eDtQJPvnNY7Jcket1j0t5OuOsFzPPzsekD52Zl8qUfFIPEiswXqIvHWGVHOgX+7G/vCNNhehwxfkQ==}
-    engines: {node: '>=6.0'}
     peerDependencies:
       supports-color: '*'
     peerDependenciesMeta:
@@ -4245,9 +4231,6 @@ packages:
     resolution: {integrity: sha512-ZYvCgrefwqoQ6yTyYUbQu64HsITZ3NfKX1lzaEYdkTDcfKzzCI/wthRRYKkdjHKFVgNiXKAKm65Zo1pk2as/QQ==}
     hasBin: true
 
-  is-core-module@2.13.1:
-    resolution: {integrity: sha512-hHrIjvZsftOsvKSn2TRYl63zvxsgE0K+0mYMoH6gD4omR5IWB2KynivBQczo3+wF1cCkjzvptnI9Q0sPU66ilw==}
-
   is-core-module@2.14.0:
     resolution: {integrity: sha512-a5dFJih5ZLYlRtDc0dZWP7RiKr6xIKzmn/oAYCDvdLThadVgyJwlaoQPmRtMSpz+rk0OGAgIu+TcM9HUF0fk1A==}
     engines: {node: '>= 0.4'}
@@ -5048,9 +5031,6 @@ packages:
     resolution: {integrity: sha512-+NsyUUAZDmo6YVHzL/stxSu3t9YS1iljliy3BSDrXJ/dkn1KYdmtZODGGjLcc9XLgVVpH4KshHB8XmZgMhaBXg==}
     engines: {node: '>=10'}
     hasBin: true
-
-  mlly@1.7.0:
-    resolution: {integrity: sha512-U9SDaXGEREBYQgfejV97coK0UL1r+qnF2SyO9A3qcI8MzKnsIFKHNVEkrDyNncQTKQQumsasmeq84eNMdBfsNQ==}
 
   mlly@1.7.1:
     resolution: {integrity: sha512-rrVRZRELyQzrIUAVMHxP97kv+G786pHmOKzuFII8zDYahFBS7qnHh2AlYSl1GAHhaMPCz6/oHjVMcfFYgFYHgA==}
@@ -8096,7 +8076,7 @@ snapshots:
       '@parcel/fs': 2.9.3(@parcel/core@2.9.3)
       '@parcel/utils': 2.9.3
       nullthrows: 1.1.1
-      semver: 7.5.4
+      semver: 7.6.2
     transitivePeerDependencies:
       - '@parcel/core'
 
@@ -8330,7 +8310,7 @@ snapshots:
       browserslist: 4.23.1
       json5: 2.2.3
       nullthrows: 1.1.1
-      semver: 7.5.4
+      semver: 7.6.2
     transitivePeerDependencies:
       - '@parcel/core'
 
@@ -8363,7 +8343,7 @@ snapshots:
       posthtml: 0.16.6
       posthtml-parser: 0.10.2
       posthtml-render: 3.0.0
-      semver: 7.5.4
+      semver: 7.6.2
       srcset: 4.0.0
     transitivePeerDependencies:
       - '@parcel/core'
@@ -8394,7 +8374,7 @@ snapshots:
       browserslist: 4.23.1
       nullthrows: 1.1.1
       regenerator-runtime: 0.13.11
-      semver: 7.5.4
+      semver: 7.6.2
 
   '@parcel/transformer-json@2.9.3(@parcel/core@2.9.3)':
     dependencies:
@@ -8420,7 +8400,7 @@ snapshots:
       clone: 2.1.2
       nullthrows: 1.1.1
       postcss-value-parser: 4.2.0
-      semver: 7.5.4
+      semver: 7.6.2
     transitivePeerDependencies:
       - '@parcel/core'
 
@@ -8432,7 +8412,7 @@ snapshots:
       posthtml: 0.16.6
       posthtml-parser: 0.10.2
       posthtml-render: 3.0.0
-      semver: 7.5.4
+      semver: 7.6.2
     transitivePeerDependencies:
       - '@parcel/core'
 
@@ -8477,7 +8457,7 @@ snapshots:
       posthtml: 0.16.6
       posthtml-parser: 0.10.2
       posthtml-render: 3.0.0
-      semver: 7.5.4
+      semver: 7.6.2
     transitivePeerDependencies:
       - '@parcel/core'
 
@@ -9629,8 +9609,6 @@ snapshots:
     dependencies:
       acorn: 8.12.0
 
-  acorn@8.11.3: {}
-
   acorn@8.12.0: {}
 
   addons-linter@6.31.1(body-parser@1.20.2)(express@4.19.2)(node-fetch@3.3.2):
@@ -10330,10 +10308,6 @@ snapshots:
   debug@2.6.9:
     dependencies:
       ms: 2.0.0
-
-  debug@4.3.4:
-    dependencies:
-      ms: 2.1.2
 
   debug@4.3.5:
     dependencies:
@@ -11161,7 +11135,7 @@ snapshots:
       array-union: 2.1.0
       dir-glob: 3.0.1
       fast-glob: 3.3.2
-      ignore: 5.2.4
+      ignore: 5.3.1
       merge2: 1.4.1
       slash: 3.0.0
 
@@ -11449,10 +11423,6 @@ snapshots:
   is-ci@3.0.1:
     dependencies:
       ci-info: 3.9.0
-
-  is-core-module@2.13.1:
-    dependencies:
-      hasown: 2.0.2
 
   is-core-module@2.14.0:
     dependencies:
@@ -11813,7 +11783,7 @@ snapshots:
 
   local-pkg@0.5.0:
     dependencies:
-      mlly: 1.7.0
+      mlly: 1.7.1
       pkg-types: 1.1.1
 
   locate-character@3.0.0: {}
@@ -12343,13 +12313,6 @@ snapshots:
 
   mkdirp@3.0.1: {}
 
-  mlly@1.7.0:
-    dependencies:
-      acorn: 8.11.3
-      pathe: 1.1.2
-      pkg-types: 1.1.1
-      ufo: 1.5.3
-
   mlly@1.7.1:
     dependencies:
       acorn: 8.12.0
@@ -12442,7 +12405,7 @@ snapshots:
 
   node-abi@3.65.0:
     dependencies:
-      semver: 7.5.4
+      semver: 7.6.2
 
   node-addon-api@4.3.0: {}
 
@@ -12772,7 +12735,7 @@ snapshots:
   pkg-types@1.1.1:
     dependencies:
       confbox: 0.1.7
-      mlly: 1.7.0
+      mlly: 1.7.1
       pathe: 1.1.2
 
   plasmo@0.88.0(@swc/core@1.6.5(@swc/helpers@0.5.11))(@swc/helpers@0.5.11)(lodash@4.17.21)(mustache@4.2.0)(postcss@8.4.38)(react-dom@18.3.0-canary-c5b937576-20231219(react@18.3.0-canary-c5b937576-20231219))(react@18.3.0-canary-c5b937576-20231219)(terser@5.31.1):
@@ -13237,7 +13200,7 @@ snapshots:
 
   resolve@1.22.8:
     dependencies:
-      is-core-module: 2.13.1
+      is-core-module: 2.14.0
       path-parse: 1.0.7
       supports-preserve-symlinks-flag: 1.0.0
 
@@ -14050,7 +14013,7 @@ snapshots:
   vite-node@1.6.0(@types/node@20.14.8)(less@4.2.0)(lightningcss@1.25.1)(sass@1.77.6)(terser@5.31.1):
     dependencies:
       cac: 6.7.14
-      debug: 4.3.4
+      debug: 4.3.5
       pathe: 1.1.2
       picocolors: 1.0.1
       vite: 5.3.1(@types/node@20.14.8)(less@4.2.0)(lightningcss@1.25.1)(sass@1.77.6)(terser@5.31.1)
