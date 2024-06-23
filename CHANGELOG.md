@@ -1,5 +1,12 @@
 # Changelog
 
+## v1.6.0
+
+### Features
+
+- Support i18n(en, ja, zh_CN, zh_TW, ko).
+- UI icon optimization.
+
 ## v1.5.1
 
 ### Fix Bugs

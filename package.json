@@ -2,7 +2,7 @@
   "name": "furigana-maker",
   "displayName": "Furigana Maker",
   "description": "__MSG_extDescription__",
-  "version": "1.5.1",
+  "version": "1.6.0",
   "type": "module",
   "packageManager": "pnpm@9.4.0",
   "private": true,
