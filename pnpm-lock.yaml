@@ -13,16 +13,16 @@ importers:
         version: 4.1.0
       '@floating-ui/react':
         specifier: ^0.26.17
-        version: 0.26.17(react-dom@18.3.1(react@18.3.1))(react@18.3.1)
+        version: 0.26.17(react-dom@18.3.0-canary-c5b937576-20231219(react@18.3.0-canary-c5b937576-20231219))(react@18.3.0-canary-c5b937576-20231219)
       '@headlessui/react':
         specifier: ^2.1.0
-        version: 2.1.0(react-dom@18.3.1(react@18.3.1))(react@18.3.1)
+        version: 2.1.0(react-dom@18.3.0-canary-c5b937576-20231219(react@18.3.0-canary-c5b937576-20231219))(react@18.3.0-canary-c5b937576-20231219)
       '@plasmohq/messaging':
         specifier: ^0.6.2
-        version: 0.6.2(react@18.3.1)
+        version: 0.6.2(react@18.3.0-canary-c5b937576-20231219)
       '@plasmohq/storage':
         specifier: ^1.11.0
-        version: 1.11.0(react@18.3.1)
+        version: 1.11.0(react@18.3.0-canary-c5b937576-20231219)
       '@sglkc/kuromoji':
         specifier: ^1.1.0
         version: 1.1.0
@@ -37,19 +37,19 @@ importers:
         version: 23.11.5
       plasmo:
         specifier: ^0.88.0
-        version: 0.88.0(@swc/core@1.6.5(@swc/helpers@0.5.11))(@swc/helpers@0.5.11)(lodash@4.17.21)(mustache@4.2.0)(postcss@8.4.38)(react-dom@18.3.1(react@18.3.1))(react@18.3.1)(terser@5.31.1)
+        version: 0.88.0(@swc/core@1.6.5(@swc/helpers@0.5.11))(@swc/helpers@0.5.11)(lodash@4.17.21)(mustache@4.2.0)(postcss@8.4.38)(react-dom@18.3.0-canary-c5b937576-20231219(react@18.3.0-canary-c5b937576-20231219))(react@18.3.0-canary-c5b937576-20231219)(terser@5.31.1)
       react:
-        specifier: 18.3.1
-        version: 18.3.1
+        specifier: 18.3.0-canary-c5b937576-20231219
+        version: 18.3.0-canary-c5b937576-20231219
       react-dom:
-        specifier: 18.3.1
-        version: 18.3.1(react@18.3.1)
+        specifier: 18.3.0-canary-c5b937576-20231219
+        version: 18.3.0-canary-c5b937576-20231219(react@18.3.0-canary-c5b937576-20231219)
       react-i18next:
         specifier: ^14.1.2
-        version: 14.1.2(i18next@23.11.5)(react-dom@18.3.1(react@18.3.1))(react@18.3.1)
+        version: 14.1.2(i18next@23.11.5)(react-dom@18.3.0-canary-c5b937576-20231219(react@18.3.0-canary-c5b937576-20231219))(react@18.3.0-canary-c5b937576-20231219)
       react-share:
         specifier: ^5.1.0
-        version: 5.1.0(react@18.3.1)
+        version: 5.1.0(react@18.3.0-canary-c5b937576-20231219)
       wanakana:
         specifier: ^5.3.1
         version: 5.3.1
@@ -5680,6 +5680,11 @@ packages:
     resolution: {integrity: sha512-y3bGgqKj3QBdxLbLkomlohkvsA8gdAiUQlSBJnBhfn+BPxg4bc62d8TcBW15wavDfgexCgccckhcZvywyQYPOw==}
     hasBin: true
 
+  react-dom@18.3.0-canary-c5b937576-20231219:
+    resolution: {integrity: sha512-MahkLDRcM+y8gNEgDHZOvfogjinhvwjjDhgNuTNHyqtC78Xz0iClZ7weD+Gdv9XL2R/AKV/EqYCpUzpey9mDLA==}
+    peerDependencies:
+      react: 18.3.0-canary-c5b937576-20231219
+
   react-dom@18.3.1:
     resolution: {integrity: sha512-5m4nQKp+rZRb09LNH59GM4BxTh9251/ylbKIbpe7TpGxfJ+9kv6BLkLBXIjjspbgbnIBNqlI23tRnTWT0snUIw==}
     peerDependencies:
@@ -5733,6 +5738,10 @@ packages:
     resolution: {integrity: sha512-OvyfMtj/0UzH1wi90OdHhZVJ6WUC/+IeWvBwppeZozwIGyAjQgyR0QXlHOrxVHVECqnGvcpBaFTXVrqouTieaw==}
     peerDependencies:
       react: ^17 || ^18
+
+  react@18.3.0-canary-c5b937576-20231219:
+    resolution: {integrity: sha512-gvMxGf2wlOMq387pdOypG4li5iuLdpu/wDRuyETZsdLFrDcCH4RuJCIcTWcLIlP/oG5uD5yXMi2hePYuB+toyw==}
+    engines: {node: '>=0.10.0'}
 
   react@18.3.1:
     resolution: {integrity: sha512-wS+hAgJShR0KhEvPJArfuPVN1+Hz1t0Y6n5jLrGQbkb4urgPE/0Rve+1kMB1v/oWgHgm4WIcV+i7F2pTVj+2iQ==}
@@ -5915,6 +5924,9 @@ packages:
 
   scheduler@0.23.2:
     resolution: {integrity: sha512-UOShsPwz7NrMUqhR6t0hWjFduvOzbtv7toDH1/hIrfRNIDBnnBWd0CwJTGvTpngVlmwGCdP9/Zl/tVrDqcuYzQ==}
+
+  scheduler@0.24.0-canary-c5b937576-20231219:
+    resolution: {integrity: sha512-eFiLsRse2DGq3davC8B6qmVlbdrikiHDcqeys+Dp7l5YQ+Jw9tPVQ5RZbEA0o7zO2rjyPFzxNOtE6fRMQcWrKQ==}
 
   selfsigned@2.4.1:
     resolution: {integrity: sha512-th5B4L2U+eGLq1TVh7zNRGBapioSORUeymIydxgFpwww9d2qyKvtuPU2jJuHvYAwwqi2Y596QBL3eEqcPEYL8Q==}
@@ -7594,18 +7606,18 @@ snapshots:
       '@floating-ui/core': 1.6.2
       '@floating-ui/utils': 0.2.2
 
-  '@floating-ui/react-dom@2.1.0(react-dom@18.3.1(react@18.3.1))(react@18.3.1)':
+  '@floating-ui/react-dom@2.1.0(react-dom@18.3.0-canary-c5b937576-20231219(react@18.3.0-canary-c5b937576-20231219))(react@18.3.0-canary-c5b937576-20231219)':
     dependencies:
       '@floating-ui/dom': 1.6.5
-      react: 18.3.1
-      react-dom: 18.3.1(react@18.3.1)
+      react: 18.3.0-canary-c5b937576-20231219
+      react-dom: 18.3.0-canary-c5b937576-20231219(react@18.3.0-canary-c5b937576-20231219)
 
-  '@floating-ui/react@0.26.17(react-dom@18.3.1(react@18.3.1))(react@18.3.1)':
+  '@floating-ui/react@0.26.17(react-dom@18.3.0-canary-c5b937576-20231219(react@18.3.0-canary-c5b937576-20231219))(react@18.3.0-canary-c5b937576-20231219)':
     dependencies:
-      '@floating-ui/react-dom': 2.1.0(react-dom@18.3.1(react@18.3.1))(react@18.3.1)
+      '@floating-ui/react-dom': 2.1.0(react-dom@18.3.0-canary-c5b937576-20231219(react@18.3.0-canary-c5b937576-20231219))(react@18.3.0-canary-c5b937576-20231219)
       '@floating-ui/utils': 0.2.2
-      react: 18.3.1
-      react-dom: 18.3.1(react@18.3.1)
+      react: 18.3.0-canary-c5b937576-20231219
+      react-dom: 18.3.0-canary-c5b937576-20231219(react@18.3.0-canary-c5b937576-20231219)
       tabbable: 6.2.0
 
   '@floating-ui/utils@0.2.2': {}
@@ -7618,14 +7630,14 @@ snapshots:
 
   '@fontsource/m-plus-rounded-1c@5.0.13': {}
 
-  '@headlessui/react@2.1.0(react-dom@18.3.1(react@18.3.1))(react@18.3.1)':
+  '@headlessui/react@2.1.0(react-dom@18.3.0-canary-c5b937576-20231219(react@18.3.0-canary-c5b937576-20231219))(react@18.3.0-canary-c5b937576-20231219)':
     dependencies:
-      '@floating-ui/react': 0.26.17(react-dom@18.3.1(react@18.3.1))(react@18.3.1)
-      '@react-aria/focus': 3.17.1(react@18.3.1)
-      '@react-aria/interactions': 3.21.3(react@18.3.1)
-      '@tanstack/react-virtual': 3.5.0(react-dom@18.3.1(react@18.3.1))(react@18.3.1)
-      react: 18.3.1
-      react-dom: 18.3.1(react@18.3.1)
+      '@floating-ui/react': 0.26.17(react-dom@18.3.0-canary-c5b937576-20231219(react@18.3.0-canary-c5b937576-20231219))(react@18.3.0-canary-c5b937576-20231219)
+      '@react-aria/focus': 3.17.1(react@18.3.0-canary-c5b937576-20231219)
+      '@react-aria/interactions': 3.21.3(react@18.3.0-canary-c5b937576-20231219)
+      '@tanstack/react-virtual': 3.5.0(react-dom@18.3.0-canary-c5b937576-20231219(react@18.3.0-canary-c5b937576-20231219))(react@18.3.0-canary-c5b937576-20231219)
+      react: 18.3.0-canary-c5b937576-20231219
+      react-dom: 18.3.0-canary-c5b937576-20231219(react@18.3.0-canary-c5b937576-20231219)
 
   '@headlessui/tailwindcss@0.2.1(tailwindcss@3.4.4)':
     dependencies:
@@ -8571,22 +8583,22 @@ snapshots:
   '@pkgjs/parseargs@0.11.0':
     optional: true
 
-  '@plasmohq/consolidate@0.17.0(lodash@4.17.21)(mustache@4.2.0)(react-dom@18.3.1(react@18.3.1))(react@18.3.1)':
+  '@plasmohq/consolidate@0.17.0(lodash@4.17.21)(mustache@4.2.0)(react-dom@18.3.0-canary-c5b937576-20231219(react@18.3.0-canary-c5b937576-20231219))(react@18.3.0-canary-c5b937576-20231219)':
     dependencies:
       bluebird: 3.7.2
     optionalDependencies:
       lodash: 4.17.21
       mustache: 4.2.0
-      react: 18.3.1
-      react-dom: 18.3.1(react@18.3.1)
+      react: 18.3.0-canary-c5b937576-20231219
+      react-dom: 18.3.0-canary-c5b937576-20231219(react@18.3.0-canary-c5b937576-20231219)
 
   '@plasmohq/init@0.7.0': {}
 
-  '@plasmohq/messaging@0.6.2(react@18.3.1)':
+  '@plasmohq/messaging@0.6.2(react@18.3.0-canary-c5b937576-20231219)':
     dependencies:
       nanoid: 5.0.3
     optionalDependencies:
-      react: 18.3.1
+      react: 18.3.0-canary-c5b937576-20231219
 
   '@plasmohq/parcel-bundler@0.5.5':
     dependencies:
@@ -8604,7 +8616,7 @@ snapshots:
     transitivePeerDependencies:
       - '@parcel/core'
 
-  '@plasmohq/parcel-config@0.41.0(@swc/core@1.6.5(@swc/helpers@0.5.11))(@swc/helpers@0.5.11)(lodash@4.17.21)(mustache@4.2.0)(postcss@8.4.38)(react-dom@18.3.1(react@18.3.1))(react@18.3.1)(terser@5.31.1)(typescript@5.2.2)':
+  '@plasmohq/parcel-config@0.41.0(@swc/core@1.6.5(@swc/helpers@0.5.11))(@swc/helpers@0.5.11)(lodash@4.17.21)(mustache@4.2.0)(postcss@8.4.38)(react-dom@18.3.0-canary-c5b937576-20231219(react@18.3.0-canary-c5b937576-20231219))(react@18.3.0-canary-c5b937576-20231219)(terser@5.31.1)(typescript@5.2.2)':
     dependencies:
       '@parcel/compressor-raw': 2.9.3(@parcel/core@2.9.3)
       '@parcel/config-default': 2.9.3(@parcel/core@2.9.3)(@swc/helpers@0.5.11)(postcss@8.4.38)(terser@5.31.1)(typescript@5.2.2)
@@ -8640,7 +8652,7 @@ snapshots:
       '@plasmohq/parcel-transformer-inline-css': 0.3.11
       '@plasmohq/parcel-transformer-manifest': 0.19.0
       '@plasmohq/parcel-transformer-svelte': 0.6.0
-      '@plasmohq/parcel-transformer-vue': 0.5.0(lodash@4.17.21)(mustache@4.2.0)(react-dom@18.3.1(react@18.3.1))(react@18.3.1)
+      '@plasmohq/parcel-transformer-vue': 0.5.0(lodash@4.17.21)(mustache@4.2.0)(react-dom@18.3.0-canary-c5b937576-20231219(react@18.3.0-canary-c5b937576-20231219))(react@18.3.0-canary-c5b937576-20231219)
     transitivePeerDependencies:
       - '@swc/core'
       - '@swc/helpers'
@@ -8822,7 +8834,7 @@ snapshots:
       '@parcel/utils': 2.9.3
       svelte: 4.2.2
 
-  '@plasmohq/parcel-transformer-vue@0.5.0(lodash@4.17.21)(mustache@4.2.0)(react-dom@18.3.1(react@18.3.1))(react@18.3.1)':
+  '@plasmohq/parcel-transformer-vue@0.5.0(lodash@4.17.21)(mustache@4.2.0)(react-dom@18.3.0-canary-c5b937576-20231219(react@18.3.0-canary-c5b937576-20231219))(react@18.3.0-canary-c5b937576-20231219)':
     dependencies:
       '@parcel/core': 2.9.3
       '@parcel/diagnostic': 2.9.3
@@ -8830,7 +8842,7 @@ snapshots:
       '@parcel/source-map': 2.1.1
       '@parcel/types': 2.9.3(@parcel/core@2.9.3)
       '@parcel/utils': 2.9.3
-      '@plasmohq/consolidate': 0.17.0(lodash@4.17.21)(mustache@4.2.0)(react-dom@18.3.1(react@18.3.1))(react@18.3.1)
+      '@plasmohq/consolidate': 0.17.0(lodash@4.17.21)(mustache@4.2.0)(react-dom@18.3.0-canary-c5b937576-20231219(react@18.3.0-canary-c5b937576-20231219))(react@18.3.0-canary-c5b937576-20231219)
       '@vue/compiler-sfc': 3.3.4
       nullthrows: 1.1.1
       semver: 7.5.4
@@ -8883,11 +8895,11 @@ snapshots:
       - walrus
       - whiskers
 
-  '@plasmohq/storage@1.11.0(react@18.3.1)':
+  '@plasmohq/storage@1.11.0(react@18.3.0-canary-c5b937576-20231219)':
     dependencies:
       pify: 6.1.0
     optionalDependencies:
-      react: 18.3.1
+      react: 18.3.0-canary-c5b937576-20231219
 
   '@pnpm/config.env-replace@1.1.0': {}
 
@@ -8901,45 +8913,45 @@ snapshots:
       '@pnpm/network.ca-file': 1.0.2
       config-chain: 1.1.13
 
-  '@react-aria/focus@3.17.1(react@18.3.1)':
+  '@react-aria/focus@3.17.1(react@18.3.0-canary-c5b937576-20231219)':
     dependencies:
-      '@react-aria/interactions': 3.21.3(react@18.3.1)
-      '@react-aria/utils': 3.24.1(react@18.3.1)
-      '@react-types/shared': 3.23.1(react@18.3.1)
+      '@react-aria/interactions': 3.21.3(react@18.3.0-canary-c5b937576-20231219)
+      '@react-aria/utils': 3.24.1(react@18.3.0-canary-c5b937576-20231219)
+      '@react-types/shared': 3.23.1(react@18.3.0-canary-c5b937576-20231219)
       '@swc/helpers': 0.5.11
       clsx: 2.1.1
-      react: 18.3.1
+      react: 18.3.0-canary-c5b937576-20231219
 
-  '@react-aria/interactions@3.21.3(react@18.3.1)':
+  '@react-aria/interactions@3.21.3(react@18.3.0-canary-c5b937576-20231219)':
     dependencies:
-      '@react-aria/ssr': 3.9.4(react@18.3.1)
-      '@react-aria/utils': 3.24.1(react@18.3.1)
-      '@react-types/shared': 3.23.1(react@18.3.1)
+      '@react-aria/ssr': 3.9.4(react@18.3.0-canary-c5b937576-20231219)
+      '@react-aria/utils': 3.24.1(react@18.3.0-canary-c5b937576-20231219)
+      '@react-types/shared': 3.23.1(react@18.3.0-canary-c5b937576-20231219)
       '@swc/helpers': 0.5.11
-      react: 18.3.1
+      react: 18.3.0-canary-c5b937576-20231219
 
-  '@react-aria/ssr@3.9.4(react@18.3.1)':
+  '@react-aria/ssr@3.9.4(react@18.3.0-canary-c5b937576-20231219)':
     dependencies:
       '@swc/helpers': 0.5.11
-      react: 18.3.1
+      react: 18.3.0-canary-c5b937576-20231219
 
-  '@react-aria/utils@3.24.1(react@18.3.1)':
+  '@react-aria/utils@3.24.1(react@18.3.0-canary-c5b937576-20231219)':
     dependencies:
-      '@react-aria/ssr': 3.9.4(react@18.3.1)
-      '@react-stately/utils': 3.10.1(react@18.3.1)
-      '@react-types/shared': 3.23.1(react@18.3.1)
+      '@react-aria/ssr': 3.9.4(react@18.3.0-canary-c5b937576-20231219)
+      '@react-stately/utils': 3.10.1(react@18.3.0-canary-c5b937576-20231219)
+      '@react-types/shared': 3.23.1(react@18.3.0-canary-c5b937576-20231219)
       '@swc/helpers': 0.5.11
       clsx: 2.1.1
-      react: 18.3.1
+      react: 18.3.0-canary-c5b937576-20231219
 
-  '@react-stately/utils@3.10.1(react@18.3.1)':
+  '@react-stately/utils@3.10.1(react@18.3.0-canary-c5b937576-20231219)':
     dependencies:
       '@swc/helpers': 0.5.11
-      react: 18.3.1
+      react: 18.3.0-canary-c5b937576-20231219
 
-  '@react-types/shared@3.23.1(react@18.3.1)':
+  '@react-types/shared@3.23.1(react@18.3.0-canary-c5b937576-20231219)':
     dependencies:
-      react: 18.3.1
+      react: 18.3.0-canary-c5b937576-20231219
 
   '@remix-run/cloudflare-pages@2.9.2(@cloudflare/workers-types@4.20240620.0)(typescript@5.5.2)':
     dependencies:
@@ -9345,11 +9357,11 @@ snapshots:
       mini-svg-data-uri: 1.4.4
       tailwindcss: 3.4.4
 
-  '@tanstack/react-virtual@3.5.0(react-dom@18.3.1(react@18.3.1))(react@18.3.1)':
+  '@tanstack/react-virtual@3.5.0(react-dom@18.3.0-canary-c5b937576-20231219(react@18.3.0-canary-c5b937576-20231219))(react@18.3.0-canary-c5b937576-20231219)':
     dependencies:
       '@tanstack/virtual-core': 3.5.0
-      react: 18.3.1
-      react-dom: 18.3.1(react@18.3.1)
+      react: 18.3.0-canary-c5b937576-20231219
+      react-dom: 18.3.0-canary-c5b937576-20231219(react@18.3.0-canary-c5b937576-20231219)
 
   '@tanstack/virtual-core@3.5.0': {}
 
@@ -12726,7 +12738,7 @@ snapshots:
       mlly: 1.7.1
       pathe: 1.1.2
 
-  plasmo@0.88.0(@swc/core@1.6.5(@swc/helpers@0.5.11))(@swc/helpers@0.5.11)(lodash@4.17.21)(mustache@4.2.0)(postcss@8.4.38)(react-dom@18.3.1(react@18.3.1))(react@18.3.1)(terser@5.31.1):
+  plasmo@0.88.0(@swc/core@1.6.5(@swc/helpers@0.5.11))(@swc/helpers@0.5.11)(lodash@4.17.21)(mustache@4.2.0)(postcss@8.4.38)(react-dom@18.3.0-canary-c5b937576-20231219(react@18.3.0-canary-c5b937576-20231219))(react@18.3.0-canary-c5b937576-20231219)(terser@5.31.1):
     dependencies:
       '@expo/spawn-async': 1.7.2
       '@parcel/core': 2.9.3
@@ -12734,7 +12746,7 @@ snapshots:
       '@parcel/package-manager': 2.9.3(@parcel/core@2.9.3)
       '@parcel/watcher': 2.2.0
       '@plasmohq/init': 0.7.0
-      '@plasmohq/parcel-config': 0.41.0(@swc/core@1.6.5(@swc/helpers@0.5.11))(@swc/helpers@0.5.11)(lodash@4.17.21)(mustache@4.2.0)(postcss@8.4.38)(react-dom@18.3.1(react@18.3.1))(react@18.3.1)(terser@5.31.1)(typescript@5.2.2)
+      '@plasmohq/parcel-config': 0.41.0(@swc/core@1.6.5(@swc/helpers@0.5.11))(@swc/helpers@0.5.11)(lodash@4.17.21)(mustache@4.2.0)(postcss@8.4.38)(react-dom@18.3.0-canary-c5b937576-20231219(react@18.3.0-canary-c5b937576-20231219))(react@18.3.0-canary-c5b937576-20231219)(terser@5.31.1)(typescript@5.2.2)
       '@plasmohq/parcel-core': 0.1.8
       buffer: 6.0.3
       chalk: 5.3.0
@@ -13026,6 +13038,12 @@ snapshots:
       minimist: 1.2.8
       strip-json-comments: 2.0.1
 
+  react-dom@18.3.0-canary-c5b937576-20231219(react@18.3.0-canary-c5b937576-20231219):
+    dependencies:
+      loose-envify: 1.4.0
+      react: 18.3.0-canary-c5b937576-20231219
+      scheduler: 0.24.0-canary-c5b937576-20231219
+
   react-dom@18.3.1(react@18.3.1):
     dependencies:
       loose-envify: 1.4.0
@@ -13034,14 +13052,14 @@ snapshots:
 
   react-error-overlay@6.0.9: {}
 
-  react-i18next@14.1.2(i18next@23.11.5)(react-dom@18.3.1(react@18.3.1))(react@18.3.1):
+  react-i18next@14.1.2(i18next@23.11.5)(react-dom@18.3.0-canary-c5b937576-20231219(react@18.3.0-canary-c5b937576-20231219))(react@18.3.0-canary-c5b937576-20231219):
     dependencies:
       '@babel/runtime': 7.24.7
       html-parse-stringify: 3.0.1
       i18next: 23.11.5
-      react: 18.3.1
+      react: 18.3.0-canary-c5b937576-20231219
     optionalDependencies:
-      react-dom: 18.3.1(react@18.3.1)
+      react-dom: 18.3.0-canary-c5b937576-20231219(react@18.3.0-canary-c5b937576-20231219)
 
   react-is@18.3.1: {}
 
@@ -13063,13 +13081,17 @@ snapshots:
       '@remix-run/router': 1.16.1
       react: 18.3.1
 
-  react-share@5.1.0(react@18.3.1):
+  react-share@5.1.0(react@18.3.0-canary-c5b937576-20231219):
     dependencies:
       classnames: 2.5.1
       jsonp: 0.2.1
-      react: 18.3.1
+      react: 18.3.0-canary-c5b937576-20231219
     transitivePeerDependencies:
       - supports-color
+
+  react@18.3.0-canary-c5b937576-20231219:
+    dependencies:
+      loose-envify: 1.4.0
 
   react@18.3.1:
     dependencies:
@@ -13282,6 +13304,10 @@ snapshots:
   sax@1.4.1: {}
 
   scheduler@0.23.2:
+    dependencies:
+      loose-envify: 1.4.0
+
+  scheduler@0.24.0-canary-c5b937576-20231219:
     dependencies:
       loose-envify: 1.4.0
 
