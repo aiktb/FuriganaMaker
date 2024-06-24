@@ -9,6 +9,7 @@ import {
   ExtensionStorage,
   FuriganaType,
   SelectMode,
+  type SelectorRule,
 } from "~core/constants";
 import { sendMessage } from "~core/utils";
 
@@ -19,6 +20,18 @@ import i18n from "~core/i18n";
 Browser.runtime.onInstalled.addListener(async (details) => {
   if (details.reason === "install") {
     Browser.tabs.create({ url: "https://furiganamaker.app/welcome" });
+  }
+
+  // Interim solutions
+  if (details.reason === "update") {
+    const storage = new Storage({ area: "local" });
+    const rules = (await storage.get(ExtensionStorage.SelectorRules)) as SelectorRule[];
+    if (!rules.find((rule) => rule.selector === "x.com")) {
+      await storage.set(ExtensionStorage.SelectorRules, [
+        { domain: "x.com", selector: "div[lang='ja'] span", active: true },
+        ...rules,
+      ]);
+    }
   }
 
   // Initialize default extension settings and custom rules.
@@ -100,7 +113,9 @@ Browser.runtime.onMessage.addListener((event, sender) => {
   const { t } = i18n;
 
   if (event === ExtensionEvent.MarkActiveTab) {
-    const activeTabTitle = `${Browser.runtime.getManifest().name} (${t("extTitleSuffix", { ns: "background" })})`;
+    const activeTabTitle = `${Browser.runtime.getManifest().name} (${t("extTitleSuffix", {
+      ns: "background",
+    })})`;
     Browser.action.setTitle({ title: activeTabTitle, tabId: sender.tab!.id! });
 
     const SIZE = 32;

@@ -1,5 +1,11 @@
 # Changelog
 
+## v1.6.1
+
+### Fix Bugs
+
+- x.com has no valid rules.
+
 ## v1.6.0
 
 ### Features
