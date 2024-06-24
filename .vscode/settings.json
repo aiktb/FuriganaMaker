@@ -6,6 +6,6 @@
     "quickfix.biome": "explicit",
     "source.organizeImports.biome": "explicit"
   },
-  "i18n-ally.localesPaths": ["assets/locales", "src/background/messages"],
+  "i18n-ally.localesPaths": ["assets/locales"],
   "i18n-ally.keystyle": "nested"
 }
