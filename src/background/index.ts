@@ -28,7 +28,7 @@ Browser.runtime.onInstalled.addListener(async (details) => {
     const rules = (await storage.get(ExtensionStorage.SelectorRules)) as SelectorRule[];
     if (!rules.find((rule) => rule.selector === "x.com")) {
       await storage.set(ExtensionStorage.SelectorRules, [
-        { domain: "x.com", selector: "[lang='ja'] span", active: true },
+        { domain: "x.com", selector: "div[lang='ja'] span", active: true },
         ...rules,
       ]);
     }
