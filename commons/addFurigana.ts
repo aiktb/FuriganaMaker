@@ -14,8 +14,10 @@ import { ExtStorage, FURIGANA_CLASS, FuriganaType } from "./constants";
 export async function addFurigana(...elements: Element[]) {
   const japaneseTexts = [...elements.flatMap(collectTexts)];
 
-  const furiganaType = (await storage.getItem(`local:${ExtStorage.FuriganaType}`)) as FuriganaType;
-
+  const furiganaType = await storage.getItem<FuriganaType>(`local:${ExtStorage.FuriganaType}`);
+  if (!furiganaType) {
+    return;
+  }
   for (const text of japaneseTexts) {
     const tokens: KanjiMark[] = await tokenize(text.textContent!);
     // reverse() prevents the range from being invalidated

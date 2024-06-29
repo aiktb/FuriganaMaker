@@ -3,11 +3,11 @@ import { onMessage } from "webext-bridge/background";
 
 export const registerOnGetSelector = () => {
   onMessage("getSelector", async ({ data }) => {
-    const allRules = (await storage.getItem(`local:${ExtStorage.SelectorRules}`)) as SelectorRule[];
+    const allRules = await storage.getItem<SelectorRule[]>(`local:${ExtStorage.SelectorRules}`);
 
     const selector =
       allRules
-        .filter((rule) => rule.domain === data.domain && rule.active)
+        ?.filter((rule) => rule.domain === data.domain && rule.active)
         .map((rule) => rule.selector)
         .join(", ") || "";
 

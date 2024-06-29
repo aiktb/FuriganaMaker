@@ -59,73 +59,66 @@ async function styleHandler(type: StyleEvent) {
     case ExtEvent.SwitchDisplayMode:
       if (value === DisplayMode.Never) {
         css = `
-      ${rtSelector} {
-        display: none;
-      }
-    `;
+          ${rtSelector} {
+            display: none;
+          }`;
       } else if (value === DisplayMode.Hover) {
         css = `
-      ${rtSelector} {
-        opacity: 0;
-      }
+          ${rtSelector} {
+            opacity: 0;
+          }
 
-      ${rtHoverSelector} {
-        opacity: 1;
-      }
-    `;
+          ${rtHoverSelector} {
+            opacity: 1;
+          }`;
       } else if (value === DisplayMode.HoverNoGap) {
         css = `
-      ${rtSelector} {
-        display: none;
-      }
+          ${rtSelector} {
+            display: none;
+          }
 
-      ${rtHoverSelector} {
-        display: revert;
-      }
-    `;
+          ${rtHoverSelector} {
+            display: revert;
+          }`;
       }
       break;
     case ExtEvent.SwitchSelectMode:
       css = `
-    ${rtSelector} {
-      user-select: ${value === SelectMode.Original ? "none" : "text"};
-    }
+        ${rtSelector} {
+          user-select: ${value === SelectMode.Original ? "none" : "text"};
+        }
 
-    ${rpSelector} {
-      display: ${value === SelectMode.Parentheses ? "block" : "none"};
-      position: absolute;
-      width: 1px;
-      height: 1px;
-      padding: 0;
-      margin: -1px;
-      overflow: hidden;
-      clip: rect(0, 0, 0, 0);
-      white-space: nowrap;
-      border-width: 0;
-    }
-  `;
+        ${rpSelector} {
+          display: ${value === SelectMode.Parentheses ? "block" : "none"};
+          position: absolute;
+          width: 1px;
+          height: 1px;
+          padding: 0;
+          margin: -1px;
+          overflow: hidden;
+          clip: rect(0, 0, 0, 0);
+          white-space: nowrap;
+          border-width: 0;
+        }`;
       break;
     case ExtEvent.AdjustFontSize:
       css = `
-    ${rtSelector} {
-      font-size: ${value}%;
-    }
-  `;
+        ${rtSelector} {
+          font-size: ${value}%;
+        }`;
       break;
     case ExtEvent.AdjustFontColor:
       css = `
-    ${rtSelector} {
-      color: ${value};
-    }
-  `;
+        ${rtSelector} {
+          color: ${value};
+        }`;
       break;
     case ExtEvent.ToggleKanjiFilter:
       if (value) {
         css = `
-      ${filteredRtSelector} {
-        display: none;
-      }
-    `;
+          ${filteredRtSelector} {
+            display: none;
+          }`;
       }
       break;
   }
