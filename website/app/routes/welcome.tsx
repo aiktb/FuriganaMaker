@@ -2,11 +2,11 @@ import "@fontsource/m-plus-rounded-1c/400.css";
 import "@fontsource/m-plus-rounded-1c/700.css";
 import type { MetaFunction } from "@remix-run/cloudflare";
 
-import { LinksContext } from "@/contexts";
 import { Fireworks, type FireworksHandlers } from "@fireworks-js/react";
 import { Link } from "@remix-run/react";
 import { useEffect, useRef } from "react";
 import { useContext } from "react";
+import { LinksContext } from "../contexts";
 
 export const meta: MetaFunction = () => {
   return [

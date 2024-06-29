@@ -1,7 +1,7 @@
-import Logo from "@/assets/Logo.svg";
-import { LinksContext } from "@/contexts";
 import { Link, useLocation } from "@remix-run/react";
 import { useContext } from "react";
+import Logo from "../assets/Logo.svg";
+import { LinksContext } from "../contexts";
 
 export default function Header() {
   const links = useContext(LinksContext)!;

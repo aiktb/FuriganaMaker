@@ -6,7 +6,7 @@ import defaultTheme from "tailwindcss/defaultTheme";
 import plugin from "tailwindcss/plugin";
 
 export default {
-  content: ["./src/**/*.{tsx,html}"],
+  content: ["./**/*.{tsx,html}"],
   darkMode: "selector",
   plugins: [
     forms,

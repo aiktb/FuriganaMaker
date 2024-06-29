@@ -1,8 +1,6 @@
 {
   "name": "furigana-maker",
-  "displayName": "Furigana Maker",
-  "description": "__MSG_extDescription__",
-  "version": "1.6.1",
+  "description": "Add furigana to Japanese text on any page for learning kanji pronunciation.",
   "type": "module",
   "packageManager": "pnpm@9.4.0",
   "private": true,
@@ -17,40 +15,33 @@
     "url": "https://github.com/aiktb/FuriganaMaker/issues"
   },
   "scripts": {
-    "dev": "plasmo dev",
-    "dev:firefox": "plasmo dev --target=firefox-mv2",
-    "debug": "plasmo dev --verbose",
-    "debug:firefox": "plasmo dev --target=firefox-mv2 --verbose",
-    "build": "plasmo build",
-    "build:firefox": "plasmo build --target=firefox-mv2",
-    "start": "web-ext run --source-dir ./build/chrome-mv3-dev -t chromium --start-url chrome://newtab",
-    "start:firefox": "web-ext run --source-dir ./build/firefox-mv2-dev",
-    "package": "pnpm run build --zip",
-    "package:firefox": "pnpm run build:firefox --zip",
-    "prepare": "husky",
+    "dev": "wxt",
+    "dev:firefox": "wxt -b firefox",
+    "build": "wxt build",
+    "build:firefox": "wxt build -b firefox",
+    "zip": "wxt zip",
+    "zip:firefox": "wxt zip -b firefox",
+    "postinstall": "wxt prepare",
     "format": "biome format --write .",
     "lint": "biome check .",
     "lint:fix": "biome check --write .",
-    "typecheck": "tsc",
+    "prepare": "husky",
+    "typecheck": "tsc --noEmit",
     "test": "vitest"
   },
   "dependencies": {
     "@ctrl/tinycolor": "^4.1.0",
     "@floating-ui/react": "^0.26.17",
     "@headlessui/react": "^2.1.0",
-    "@plasmohq/messaging": "^0.6.2",
-    "@plasmohq/storage": "^1.11.0",
     "@sglkc/kuromoji": "^1.1.0",
-    "detect-browser": "^5.3.0",
     "file-saver": "^2.0.5",
     "i18next": "^23.11.5",
-    "plasmo": "^0.88.0",
     "react": "18.3.0-canary-c5b937576-20231219",
     "react-dom": "18.3.0-canary-c5b937576-20231219",
     "react-i18next": "^14.1.2",
     "react-share": "^5.1.0",
     "wanakana": "^5.3.1",
-    "webextension-polyfill": "^0.12.0",
+    "webext-bridge": "^6.0.1",
     "zod": "^3.23.8"
   },
   "devDependencies": {
@@ -66,53 +57,17 @@
     "@iconify-json/tabler": "1.1.114",
     "@tailwindcss/forms": "0.5.7",
     "@types/file-saver": "2.0.7",
+    "@types/node": "^20.14.9",
     "@types/react": "18.3.3",
     "@types/react-dom": "18.3.0",
-    "@types/webextension-polyfill": "0.10.7",
+    "@wxt-dev/module-react": "^1.0.0",
     "autoprefixer": "10.4.19",
     "husky": "9.0.11",
     "kuromojin": "3.0.0",
-    "postcss": "8.4.38",
     "tailwindcss": "3.4.4",
     "typescript": "5.5.2",
+    "vite-plugin-svgr": "^4.2.0",
     "vitest": "1.6.0",
-    "web-ext": "8.2.0"
-  },
-  "manifest": {
-    "permissions": ["contextMenus"],
-    "default_locale": "en",
-    "commands": {
-      "addFurigana": {
-        "description": "Add furigana on the current page"
-      },
-      "toggleAutoMode": {
-        "description": "Toggle auto mode on all pages"
-      },
-      "toggleKanjiFilter": {
-        "description": "Toggle kanji filter on all pages"
-      },
-      "toggleFuriganaDisplay": {
-        "description": "Toggle furigana display mode on all pages"
-      }
-    },
-    "web_accessible_resources": [
-      {
-        "resources": [
-          "@sglkc/kuromoji/dict/base.dat.gz",
-          "@sglkc/kuromoji/dict/cc.dat.gz",
-          "@sglkc/kuromoji/dict/check.dat.gz",
-          "@sglkc/kuromoji/dict/tid.dat.gz",
-          "@sglkc/kuromoji/dict/tid_map.dat.gz",
-          "@sglkc/kuromoji/dict/tid_pos.dat.gz",
-          "@sglkc/kuromoji/dict/unk_char.dat.gz",
-          "@sglkc/kuromoji/dict/unk_compat.dat.gz",
-          "@sglkc/kuromoji/dict/unk.dat.gz",
-          "@sglkc/kuromoji/dict/unk_invoke.dat.gz",
-          "@sglkc/kuromoji/dict/unk_map.dat.gz",
-          "@sglkc/kuromoji/dict/unk_pos.dat.gz"
-        ],
-        "matches": ["https://*/*"]
-      }
-    ]
+    "wxt": "^0.18.6"
   }
 }

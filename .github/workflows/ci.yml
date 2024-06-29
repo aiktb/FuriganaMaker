@@ -17,8 +17,6 @@ jobs:
           cache: 'pnpm'
           cache-dependency-path: 'pnpm-lock.yaml'
       - run: pnpm install --frozen-lockfile
-      # This generates the type files necessary for `sendToBackground`.
-      # https://github.com/PlasmoHQ/plasmo/issues/528#issuecomment-1510146052
       - run: pnpm run build
 
       - run: pnpm run lint

@@ -1,18 +1,10 @@
 {
-  "extends": "plasmo/templates/tsconfig.base",
-  "exclude": ["node_modules"],
-  "include": [".plasmo/index.d.ts", "./**/*.ts", "./**/*.tsx"],
+  "extends": "./.wxt/tsconfig.json",
   "compilerOptions": {
-    "baseUrl": ".",
-    "paths": {
-      "~*": ["./src/*"],
-      // Only used to eliminate `tsc --noEmit` errors.
-      "@/*": ["./website/app/*"],
-      "assets/*": ["./assets/*"]
-    },
-    "types": ["react/canary", "react-dom/canary"],
+    "allowImportingTsExtensions": true,
+    "jsx": "react-jsx",
+    "types": ["react/canary", "react-dom/canary", "vite-plugin-svgr/client"],
     /* Linting */
-    "strict": true,
     "allowUnreachableCode": false,
     "allowUnusedLabels": false,
     "exactOptionalPropertyTypes": true,
