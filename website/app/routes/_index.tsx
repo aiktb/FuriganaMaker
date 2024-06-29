@@ -1,10 +1,10 @@
-import AddToBrowser from "@/components/AddToBrowser";
-import Features from "@/components/Features";
-import { LinksContext } from "@/contexts";
 import { type MetaFunction, json } from "@remix-run/cloudflare";
 import { Link } from "@remix-run/react";
 import { useLoaderData } from "@remix-run/react";
 import { useContext, useEffect } from "react";
+import AddToBrowser from "../components/AddToBrowser";
+import Features from "../components/Features";
+import { LinksContext } from "../contexts";
 
 interface Repo {
   stargazers_count: number;
@@ -136,11 +136,11 @@ export default function Index() {
           </Link>{" "}
           (core feature), and{" "}
           <Link
-            to="https://github.com/PlasmoHQ/plasmo"
+            to="https://github.com/wxt-dev/wxt"
             target="_blank"
             className="underline-offset-2 decoration-sky-400 hover:decoration-2 hover:text-sky-400/90 transition underline"
           >
-            Plasmo
+            WXT
           </Link>{" "}
           (build tools), without these great open source software, the development of this extension
           would not have been possible!

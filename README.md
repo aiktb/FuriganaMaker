@@ -8,7 +8,7 @@
 
 Add furigana to Japanese text on any page for learning kanji pronunciation. 🤔
 
-Special thanks to **_[plasmo](https://github.com/PlasmoHQ/plasmo)_** for taking the frustration out of browser extension development for me.
+Special thanks to **_[wxt](https://wxt.dev/)_** for taking the frustration out of browser extension development for me, it's amazing!
 
 ## Download
 
@@ -29,14 +29,14 @@ Special thanks to **_[plasmo](https://github.com/PlasmoHQ/plasmo)_** for taking 
 
 ## Preview
 
-![Preview](./assets/social-preview.png)
+![Preview](./.github/social-preview.png)
 
 
 ## Contribution
 
 Please make sure to read the [Contributing Guide](./.github/CONTRIBUTING.md) before making a pull request.
 
-This includes instructions on how to setup development environment, test extensions, internalization, and build the final product.
+This includes instructions on how to setup development environment, test extensions, and build the final product.
 
 ## Changelog
 

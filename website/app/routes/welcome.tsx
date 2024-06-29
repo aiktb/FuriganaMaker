@@ -2,11 +2,11 @@ import "@fontsource/m-plus-rounded-1c/400.css";
 import "@fontsource/m-plus-rounded-1c/700.css";
 import type { MetaFunction } from "@remix-run/cloudflare";
 
-import { LinksContext } from "@/contexts";
 import { Fireworks, type FireworksHandlers } from "@fireworks-js/react";
 import { Link } from "@remix-run/react";
 import { useEffect, useRef } from "react";
 import { useContext } from "react";
+import { LinksContext } from "../contexts";
 
 export const meta: MetaFunction = () => {
   return [
@@ -61,10 +61,13 @@ export default function Welcome() {
         <div className="uppercase font-bold inline-block rounded-full py-1.5 px-4 mb-4 border border-slate-700 bg-slate-800">
           Example
         </div>
-        <h2 className="animeRising font-japanese font-bold text-xl sm:text-2xl mb-2">
+        <h2 lang="ja" className="animeRising font-japanese font-bold text-xl sm:text-2xl mb-2">
           銀河鉄道の夜 - <span>宮沢賢治</span>
         </h2>
-        <p className="indent-10 animeRising font-japanese max-w-[42rem] leading-normal sm:text-xl sm:leading-8">
+        <p
+          lang="ja"
+          className="indent-10 animeRising font-japanese max-w-[42rem] leading-normal sm:text-xl sm:leading-8"
+        >
           ああそのときでした。見えない天の川のずうっと川下に青や橙やもうあらゆる光でちりばめられた十字架がまるで一本の木という風に川の中から立ってかがやきその上には青じろい雲がまるい環になって後光のようにかかっているのでした。汽車の中がまるでざわざわしました。みんなあの北の十字のときのようにまっすぐに立ってお祈りをはじめました。あっちにもこっちにも子供が瓜に飛びついたときのようなよろこびの声や何とも云いようない深いつつましいためいきの音ばかりきこえました。そしてだんだん十字架は窓の正面になりあの苹果の肉のような青じろい環の雲もゆるやかにゆるやかに繞っているのが見えました。
         </p>
       </section>

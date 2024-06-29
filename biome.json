@@ -1,7 +1,7 @@
 {
   "$schema": "https://biomejs.dev/schemas/1.6.4/schema.json",
   "files": {
-    "ignore": ["build", ".plasmo", ".wrangler"]
+    "ignore": [".wxt", ".output", ".wrangler"]
   },
   "organizeImports": {
     "enabled": true

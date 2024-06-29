@@ -1,7 +1,7 @@
-import cloudflare from "@/assets/cloudflare.svg";
-import { LinksContext } from "@/contexts";
 import { Link } from "@remix-run/react";
 import { useContext, useEffect, useState } from "react";
+import cloudflare from "../assets/cloudflare.svg";
+import { LinksContext } from "../contexts";
 
 const getCopiedYear = () => {
   const currentYear = new Date().getFullYear();

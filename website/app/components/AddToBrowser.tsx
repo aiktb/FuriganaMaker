@@ -1,8 +1,8 @@
-import { LinksContext } from "@/contexts";
 import { Link } from "@remix-run/react";
 import { detect } from "detect-browser";
 import { useRef } from "react";
 import { useContext, useEffect, useState } from "react";
+import { LinksContext } from "../contexts";
 
 export default function AddToBrowser() {
   const links = useContext(LinksContext)!;
