@@ -15,7 +15,7 @@ import { toStorageKey } from "@/commons/utils";
 
 export default defineContentScript({
   matches: ["https://*/*"],
-  runAt: "document_idle",
+  runAt: "document_start",
   async main() {
     // styleHandler uses storage and is called immediately,
     // so it needs to be initialized immediately.
