@@ -12,8 +12,11 @@ export default defineBackground({
     registerOnCtxMenuClick();
 
     // chrome.runtime.onMessage.addListener(...)
-    registerOnMarkActiveMessage();
     registerOnGetKanjiMarksMessage();
     registerOnGetSelector();
+
+    if (import.meta.env.MANIFEST_VERSION === 3) {
+      registerOnMarkActiveMessage();
+    }
   },
 });
