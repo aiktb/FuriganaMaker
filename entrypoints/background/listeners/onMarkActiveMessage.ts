@@ -1,16 +1,13 @@
 import type { Action } from "wxt/browser";
 
 import { ExtEvent } from "@/commons/constants";
-import i18n from "@/commons/i18n";
+import { initI18n } from "@/commons/i18n";
 
 export const registerOnMarkActiveMessage = () => {
-  browser.runtime.onMessage.addListener((event, sender) => {
-    const { t } = i18n;
-
+  browser.runtime.onMessage.addListener(async (event, sender) => {
     if (event === ExtEvent.MarkActiveTab) {
-      const activeTabTitle = `${browser.runtime.getManifest().name} (${t("extTitleSuffix", {
-        ns: "background",
-      })})`;
+      const { t } = await initI18n("background");
+      const activeTabTitle = `${browser.runtime.getManifest().name} (${t("markActive")})`;
       browser.action.setTitle({
         title: activeTabTitle,
         tabId: sender.tab!.id!,

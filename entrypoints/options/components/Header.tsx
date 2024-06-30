@@ -16,7 +16,7 @@ export default function Header() {
     }
   };
 
-  const { t } = useTranslation("options");
+  const { t } = useTranslation();
 
   return (
     <header className="sticky top-0 z-10 h-[72px]">

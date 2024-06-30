@@ -9,7 +9,7 @@ interface ColorPickerProps {
 }
 
 export default function ColorPicker({ color, onChange }: ColorPickerProps) {
-  const { t } = useTranslation("popup");
+  const { t } = useTranslation();
 
   return (
     <Popover className="flex grow">
@@ -61,7 +61,7 @@ function ColorPickerPanel({ color, children, onChange }: ColorPickerPanelProps) 
   );
   const [input, setInput] = useState(new TinyColor(color).toHexString());
 
-  const { t } = useTranslation("popup");
+  const { t } = useTranslation();
 
   return (
     <div className="flex size-full flex-col justify-between px-2.5 py-3">

@@ -47,7 +47,7 @@ export default function SharedCard() {
     },
   ];
 
-  const { t } = useTranslation("popup");
+  const { t } = useTranslation();
 
   return (
     <div className="flex flex-1 items-center gap-1.5 px-2">

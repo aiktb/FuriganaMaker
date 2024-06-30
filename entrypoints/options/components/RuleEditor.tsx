@@ -28,7 +28,7 @@ export default function RuleEditor({ rule, mode, onChange }: RuleEditorProps) {
     onChange({ active, domain, selector });
   }
 
-  const { t } = useTranslation("options");
+  const { t } = useTranslation();
 
   return (
     <div className="mx-auto w-full max-w-md rounded-2xl p-2">
@@ -49,7 +49,6 @@ export default function RuleEditor({ rule, mode, onChange }: RuleEditorProps) {
                   <li className="my-2">
                     <Trans
                       i18nKey="msgCssSelector"
-                      ns="options"
                       components={{
                         code: (
                           <code className="font-mono text-sm font-bold text-slate-900 before:content-['`'] after:content-['`'] dark:text-slate-200">
@@ -71,7 +70,6 @@ export default function RuleEditor({ rule, mode, onChange }: RuleEditorProps) {
                   <li className="my-2">
                     <Trans
                       i18nKey="msgBodySelector"
-                      ns="options"
                       components={{
                         code: (
                           <code className="font-mono text-sm font-bold text-slate-900 before:content-['`'] after:content-['`'] dark:text-slate-200">
@@ -84,7 +82,6 @@ export default function RuleEditor({ rule, mode, onChange }: RuleEditorProps) {
                   <li className="my-2">
                     <Trans
                       i18nKey="msgSelectorMerge"
-                      ns="options"
                       components={{
                         codeSelector: (
                           <code className="font-mono text-sm font-bold text-slate-900 before:content-['`'] after:content-['`'] dark:text-slate-200">

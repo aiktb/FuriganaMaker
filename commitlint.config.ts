@@ -20,7 +20,7 @@ const config: UserConfig = {
         "test",
       ],
     ],
-    "header-max-length": [RuleConfigSeverity.Error, "always", 60],
+    "header-max-length": [RuleConfigSeverity.Error, "always", 70],
   },
 };
 

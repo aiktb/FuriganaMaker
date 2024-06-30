@@ -8,18 +8,18 @@ import { resolve } from "node:path";
 
 const commands = {
   addFurigana: {
-    description: "Add furigana on the current page",
+    description: "__MSG_shortcutAddFurigana__",
   },
   toggleAutoMode: {
-    description: "Toggle auto mode on all pages",
+    description: "__MSG_shortcutToggleAutoMode__",
   },
   toggleKanjiFilter: {
-    description: "Toggle kanji filter on all pages",
+    description: "__MSG_shortcutToggleKanjiFilter__",
   },
   toggleFuriganaDisplay: {
-    description: "Toggle furigana display mode on all pages",
+    description: "__MSG_shortcutToggleFuriganaDisplay__",
   },
-} as const;
+};
 
 export type Command = keyof typeof commands;
 
@@ -27,7 +27,7 @@ export type Command = keyof typeof commands;
 export default defineConfig({
   manifest: {
     version: "1.6.1",
-    name: "Furigana Maker",
+    name: "__MSG_extName__",
     description: "__MSG_extDescription__",
     permissions: ["contextMenus", "storage"],
     default_locale: "en",
@@ -40,6 +40,10 @@ export default defineConfig({
       postcss: {
         plugins: [tailwind, autoprefixer],
       },
+    },
+    build: {
+      // Default target not support dynamic import.
+      target: "ESNext",
     },
   }),
   hooks: {

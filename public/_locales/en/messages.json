@@ -1,5 +1,20 @@
 {
+  "extName": {
+    "message": "Furigana Maker"
+  },
   "extDescription": {
     "message": "Add furigana to Japanese text on any page for learning kanji pronunciation."
+  },
+  "shortcutAddFurigana": {
+    "message": "Add furigana on the current page"
+  },
+  "shortcutToggleAutoMode": {
+    "message": "Toggle auto mode on all pages"
+  },
+  "shortcutToggleKanjiFilter": {
+    "message": "Toggle kanji filter on all pages"
+  },
+  "shortcutToggleFuriganaDisplay": {
+    "message": "Toggle furigana display mode on all pages"
   }
 }

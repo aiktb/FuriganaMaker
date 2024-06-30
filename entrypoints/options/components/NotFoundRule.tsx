@@ -1,7 +1,7 @@
 import { useTranslation } from "react-i18next";
 
 export default function NotFoundRule() {
-  const { t } = useTranslation("options");
+  const { t } = useTranslation();
 
   return (
     <div className="flex flex-col items-center px-6 pb-24 pt-16 text-center">
