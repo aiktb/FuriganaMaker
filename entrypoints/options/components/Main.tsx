@@ -100,7 +100,7 @@ export default function Main({ rulesPromise }: { rulesPromise: Promise<SelectorR
     }
   }
 
-  const { t } = useTranslation("options");
+  const { t } = useTranslation();
 
   return (
     <>

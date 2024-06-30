@@ -27,7 +27,7 @@ export default function Footer() {
     </a>
   );
 
-  const { t } = useTranslation("options");
+  const { t } = useTranslation();
 
   return (
     <footer>
@@ -36,13 +36,12 @@ export default function Footer() {
           <span className="block whitespace-nowrap sm:inline">
             <Trans
               i18nKey="footerCopyright"
-              ns="options"
               values={{ yearsRange: generateYear() }}
               components={{ author }}
             />
           </span>
           <span className="block sm:inline">
-            <Trans i18nKey="footerLicense" ns="options" components={{ license }} />
+            <Trans i18nKey="footerLicense" components={{ license }} />
           </span>
         </p>
         <a

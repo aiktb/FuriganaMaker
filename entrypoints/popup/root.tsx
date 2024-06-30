@@ -131,7 +131,7 @@ function MenuItem({ children, icon }: MenuItemProps) {
 
 function Menu({ configPromise }: { configPromise: Promise<Config> }) {
   const [state, dispatch] = useReducer(reducer, use(configPromise));
-  const { t } = useTranslation("popup");
+  const { t } = useTranslation();
 
   //DisplayMode.Always, DisplayMode.Never, DisplayMode.Hover, DisplayMode.HoverNoGap
   const displayModeOptions = [

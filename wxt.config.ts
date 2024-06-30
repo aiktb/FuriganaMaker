@@ -41,6 +41,10 @@ export default defineConfig({
         plugins: [tailwind, autoprefixer],
       },
     },
+    build: {
+      // Default target not support dynamic import.
+      target: "ESNext",
+    },
   }),
   hooks: {
     "build:done": ({ config, logger }) => {

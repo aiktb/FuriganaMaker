@@ -17,7 +17,7 @@ export default function RuleItem({ rule, onChange, onDelete }: RuleItemProps) {
   const [editorDialogIsOpen, setEditorIsOpen] = useState(false);
   const [deleteDialogIsOpen, setDeleteDialogIsOpen] = useState(false);
 
-  const { t } = useTranslation("options");
+  const { t } = useTranslation();
 
   return (
     <>

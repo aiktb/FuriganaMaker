@@ -3,10 +3,9 @@ import headlessui from "@headlessui/tailwindcss";
 import forms from "@tailwindcss/forms";
 import type { Config } from "tailwindcss";
 import defaultTheme from "tailwindcss/defaultTheme";
-import plugin from "tailwindcss/plugin";
 
 export default {
-  content: ["./**/*.{tsx,html}"],
+  content: ["./entrypoints/**/*.{tsx,html}"],
   darkMode: "selector",
   plugins: [
     forms,
@@ -14,49 +13,6 @@ export default {
     iconsPlugin({
       collections: getIconCollections(["tabler", "fa6-brands"]),
     }).handler,
-    plugin(({ addBase }) => {
-      addBase({
-        ":focus-visible": {
-          borderRadius: "0.25rem",
-        },
-      });
-      addBase({
-        "@font-face": {
-          fontDisplay: "swap",
-          fontFamily: "DM Sans",
-          fontStyle: "normal",
-          fontWeight: "normal",
-          src: "url('./fonts/dm-sans-regular.woff2') format('woff2')",
-        },
-      });
-      addBase({
-        "@font-face": {
-          fontDisplay: "swap",
-          fontFamily: "DM Sans",
-          fontStyle: "normal",
-          fontWeight: "bold",
-          src: "url('./fonts/dm-sans-bold.woff2') format('woff2')",
-        },
-      });
-      addBase({
-        "@font-face": {
-          fontDisplay: "swap",
-          fontFamily: "JetBrains Mono",
-          fontStyle: "normal",
-          fontWeight: "normal",
-          src: "url('./fonts/jetbrains-mono-regular.woff2') format('woff2')",
-        },
-      });
-      addBase({
-        "@font-face": {
-          fontDisplay: "swap",
-          fontFamily: "JetBrains Mono",
-          fontStyle: "normal",
-          fontWeight: "bold",
-          src: "url('./fonts/jetbrains-mono-bold.woff2') format('woff2')",
-        },
-      });
-    }),
   ],
   theme: {
     fontFamily: {

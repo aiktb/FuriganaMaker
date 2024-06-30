@@ -4,6 +4,7 @@ import { registerOnGetKanjiMarksMessage } from "./listeners/onGetKanjiMarksMessa
 import { registerOnGetSelector } from "./listeners/onGetSelectorMessage";
 import { registerOnInstalled } from "./listeners/onInstalled";
 import { registerOnMarkActiveMessage } from "./listeners/onMarkActiveMessage";
+
 export default defineBackground({
   type: "module",
   main() {
