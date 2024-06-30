@@ -1,5 +1,20 @@
 {
+  "extName": {
+    "message": "후리가나 메이커"
+  },
   "extDescription": {
-    "message": "웹 페이지의 일본어 텍스트에 음성 가나를 추가하여 한자 발음법을 배울 수 있습니다."
+    "message": "모든 웹 페이지의 일본어 텍스트에 후리가나를 추가하여 한자 발음을 학습하세요."
+  },
+  "shortcutAddFurigana": {
+    "message": "현재 페이지에 후리가나 추가"
+  },
+  "shortcutToggleAutoMode": {
+    "message": "모든 페이지에서 자동 모드 전환"
+  },
+  "shortcutToggleKanjiFilter": {
+    "message": "모든 페이지에서 한자 필터 전환"
+  },
+  "shortcutToggleFuriganaDisplay": {
+    "message": "모든 페이지에서 후리가나 표시 모드 전환"
   }
 }

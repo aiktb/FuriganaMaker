@@ -1,5 +1,20 @@
 {
+  "extName": {
+    "message": "振り仮名メーカー"
+  },
   "extDescription": {
     "message": "任意のウェブページ上の日本語テキストに振り仮名を追加して、漢字の発音を学びましょう。"
+  },
+  "shortcutAddFurigana": {
+    "message": "現在のページに振り仮名を追加"
+  },
+  "shortcutToggleAutoMode": {
+    "message": "すべてのページで自動モードを切り替え"
+  },
+  "shortcutToggleKanjiFilter": {
+    "message": "すべてのページで漢字フィルターを切り替え"
+  },
+  "shortcutToggleFuriganaDisplay": {
+    "message": "すべてのページで振り仮名表示モードを切り替え"
   }
 }

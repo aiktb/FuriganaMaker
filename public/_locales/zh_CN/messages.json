@@ -1,5 +1,20 @@
 {
+  "extName": {
+    "message": "注音假名生成器"
+  },
   "extDescription": {
     "message": "给任何网页上的日语文本添加注音假名，以便学习汉字发音。"
+  },
+  "shortcutAddFurigana": {
+    "message": "在当前页面添加注音假名"
+  },
+  "shortcutToggleAutoMode": {
+    "message": "切换所有页面的自动模式开关"
+  },
+  "shortcutToggleKanjiFilter": {
+    "message": "切换所有页面的汉字过滤器开关"
+  },
+  "shortcutToggleFuriganaDisplay": {
+    "message": "切换所有页面的注音假名显示模式"
   }
 }

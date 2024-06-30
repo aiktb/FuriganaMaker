@@ -5,10 +5,9 @@ import { initI18n } from "@/commons/i18n";
 
 export const registerOnMarkActiveMessage = () => {
   browser.runtime.onMessage.addListener(async (event, sender) => {
-    const { t } = await initI18n("background");
-
     if (event === ExtEvent.MarkActiveTab) {
-      const activeTabTitle = `${browser.runtime.getManifest().name} (${t("extTitleSuffix")})`;
+      const { t } = await initI18n("background");
+      const activeTabTitle = `${browser.runtime.getManifest().name} (${t("markActive")})`;
       browser.action.setTitle({
         title: activeTabTitle,
         tabId: sender.tab!.id!,

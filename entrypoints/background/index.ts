@@ -7,6 +7,7 @@ import { registerOnMarkActiveMessage } from "./listeners/onMarkActiveMessage";
 
 export default defineBackground({
   type: "module",
+  // Service worker must synchronous, not support async function.
   main() {
     registerOnInstalled();
     registerOnCommand();
