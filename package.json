@@ -55,7 +55,7 @@
     "@commitlint/types": "19.0.3",
     "@egoist/tailwindcss-icons": "1.8.1",
     "@headlessui/tailwindcss": "0.2.1",
-    "@iconify-json/fa6-brands": "1.1.19",
+    "@iconify-json/fa6-brands": "1.1.20",
     "@iconify-json/logos": "1.1.43",
     "@iconify-json/mdi": "1.1.67",
     "@iconify-json/tabler": "1.1.115",

@@ -67,8 +67,8 @@ importers:
         specifier: 0.2.1
         version: 0.2.1(tailwindcss@3.4.4)
       '@iconify-json/fa6-brands':
-        specifier: 1.1.19
-        version: 1.1.19
+        specifier: 1.1.20
+        version: 1.1.20
       '@iconify-json/logos':
         specifier: 1.1.43
         version: 1.1.43
@@ -1306,8 +1306,8 @@ packages:
     peerDependencies:
       tailwindcss: ^3.0
 
-  '@iconify-json/fa6-brands@1.1.19':
-    resolution: {integrity: sha512-3Dl0D1gtFwIj7/GT2xJbkM9D/LjuozsgfLrqRWP6B5xuajtsyEvR1wD0Z06y3iaNtASpgWPWyYbml+AHQ3Hw0g==}
+  '@iconify-json/fa6-brands@1.1.20':
+    resolution: {integrity: sha512-YwEyaLDkOVLcZO/gI8uf3IIqy2s7abHHgljjCMpdWDyfZr98tQ6GbdHxeBk7Pq9OoWJ3KJU0wDHmgrEGYt3Z1Q==}
 
   '@iconify-json/logos@1.1.43':
     resolution: {integrity: sha512-UtvL1yDHUr9dl1Tqihh6K9m5dmbYKOYyLf3i9aKhymSW76QjOCGjpgQc0PQ4GJCAdU1cAMu+WO61TgPxdonrlg==}
@@ -6323,7 +6323,7 @@ snapshots:
     dependencies:
       tailwindcss: 3.4.4
 
-  '@iconify-json/fa6-brands@1.1.19':
+  '@iconify-json/fa6-brands@1.1.20':
     dependencies:
       '@iconify/types': 2.0.0
 
