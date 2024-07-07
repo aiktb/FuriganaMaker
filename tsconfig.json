@@ -1,5 +1,6 @@
 {
   "extends": "./.wxt/tsconfig.json",
+  "exclude": ["__TESTS__"],
   "compilerOptions": {
     "allowImportingTsExtensions": true,
     "jsx": "react-jsx",
