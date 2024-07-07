@@ -1,6 +1,7 @@
 import { getIconCollections, iconsPlugin } from "@egoist/tailwindcss-icons";
 import headlessui from "@headlessui/tailwindcss";
 import forms from "@tailwindcss/forms";
+import typography from "@tailwindcss/typography";
 import type { Config } from "tailwindcss";
 import defaultTheme from "tailwindcss/defaultTheme";
 
@@ -9,6 +10,7 @@ export default {
   darkMode: "selector",
   plugins: [
     forms,
+    typography,
     headlessui({ prefix: "ui" }).handler,
     iconsPlugin({
       collections: getIconCollections(["tabler", "fa6-brands"]),

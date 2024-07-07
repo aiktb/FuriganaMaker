@@ -31,5 +31,11 @@
   "btnDelete": "Delete",
   "msgDeleteRule": "The deletion rule is not undoable, sure about this?",
   "markActive": "Active",
-  "markInactive": "Inactive"
+  "markInactive": "Inactive",
+  "navSettings": "Settings",
+  "navEditRules": "Rules Editor",
+  "navChangelog": "Changelog",
+  "navAbout": "About",
+  "navOfficialSite": "Official Site",
+  "navManageShortcuts": "Manage Shortcuts"
 }

@@ -1,4 +1,4 @@
-import { Trans, useTranslation } from "react-i18next";
+import { Trans } from "react-i18next";
 
 const generateYear = () => {
   const year = new Date().getFullYear();
@@ -27,12 +27,10 @@ export default function Footer() {
     </a>
   );
 
-  const { t } = useTranslation();
-
   return (
-    <footer>
-      <div className="mx-auto flex max-w-3xl items-center justify-between border-t border-gray-200 px-4 dark:border-slate-800 sm:px-6 lg:max-w-7xl lg:px-8">
-        <p className="flex py-8 text-sm text-left flex-col sm:flex-row flex-wrap gap-1.5">
+    <footer className="border-gray-200 border-t dark:border-slate-800">
+      <div className="mx-auto flex items-center justify-between px-4 lg:px-8 sm:px-6">
+        <p className="flex flex-col flex-wrap gap-1.5 py-8 text-left text-sm sm:flex-row">
           <span className="block whitespace-nowrap sm:inline">
             <Trans
               i18nKey="footerCopyright"
@@ -43,16 +41,8 @@ export default function Footer() {
           <span className="block sm:inline">
             <Trans i18nKey="footerLicense" components={{ license }} />
           </span>
+          <span className="block sm:inline">Build with WXT.</span>
         </p>
-        <a
-          className="transition hover:text-black dark:hover:text-white"
-          href="https://github.com/aiktb/FuriganaMaker"
-          target="_blank"
-          rel="noreferrer noopener"
-        >
-          <span className="sr-only">{t("srGithub")}</span>
-          <i className="size-6 i-fa6-brands-github" />
-        </a>
       </div>
     </footer>
   );

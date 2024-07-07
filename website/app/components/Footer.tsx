@@ -39,23 +39,23 @@ export default function Footer() {
   }, []);
 
   return (
-    <footer className="bg-slate-800 border-t border-stroke border-slate-600 w-full">
+    <footer className="w-full border-slate-600 border-stroke border-t bg-slate-800">
       <button
-        className={`fixed bottom-6 right-6 transition-all duration-500 bg-sky-400 size-10 rounded-full ${
-          isAtBottom ? "" : "opacity-0 pointer-events-none"
+        className={`fixed right-6 bottom-6 size-10 rounded-full bg-sky-400 transition-all duration-500 ${
+          isAtBottom ? "" : "pointer-events-none opacity-0"
         }`}
         onClick={toTop}
       >
         <span className="sr-only">Back to top</span>
         <i className="i-mdi-chevron-up size-10" />
       </button>
-      <div className="mx-auto max-w-7xl overflow-hidden px-6 py-20 sm:py-24 lg:px-8">
+      <div className="mx-auto max-w-7xl overflow-hidden px-6 py-20 lg:px-8 sm:py-24">
         <nav className="flex items-center justify-center space-x-4 sm:space-x-12 ">
           {navItems.map((item) => (
             <Link
               target="_blank"
               key={item.text}
-              className="text-sm leading-6 text-[#BFBFBF] hover:text-sky-400"
+              className="text-[#BFBFBF] text-sm leading-6 hover:text-sky-400"
               to={item.to}
             >
               {item.text}
@@ -66,7 +66,7 @@ export default function Footer() {
           {iconLinkItems.map((item) => (
             <Link
               key={item.icon}
-              className="text-[#BFBFBF] hover:text-sky-400 size-6"
+              className="size-6 text-[#BFBFBF] hover:text-sky-400"
               to={item.to}
               target="_blank"
             >
@@ -75,14 +75,14 @@ export default function Footer() {
             </Link>
           ))}
         </div>
-        <div className="mt-8 text-xs flex items-center justify-center">
+        <div className="mt-8 flex items-center justify-center text-xs">
           Proudly hosted with <span className="sr-only">Cloudflare Pages.</span>
           <Link to="https://pages.cloudflare.com/" target="_blank">
-            <img src={cloudflare} alt="Cloudflare Logo" className="h-8 w-auto inline-block" />
+            <img src={cloudflare} alt="Cloudflare Logo" className="inline-block h-8 w-auto" />
           </Link>
         </div>
         <div>
-          <p className="mt-8 text-pretty text-center text-xs leading-5 text-text/90">
+          <p className="mt-8 text-pretty text-center text-text/90 text-xs leading-5">
             © {getCopiedYear()} Furigana Maker. All rights reserved.
           </p>
         </div>

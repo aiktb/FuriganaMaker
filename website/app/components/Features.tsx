@@ -24,15 +24,15 @@ export default function Features() {
     <div className="flex flex-col items-center py-20 lg:py-25 xl:py-30">
       <div
         id="features"
-        className="uppercase font-bold inline-block rounded-full py-1.5 px-4 mb-4 border border-slate-700 bg-slate-800"
+        className="mb-4 inline-block rounded-full border border-slate-700 bg-slate-800 px-4 py-1.5 font-bold uppercase"
       >
         Features
       </div>
-      <h2 className="animeRising font-bold text-3xl md:text-4xl xl:text-5xl text-center text-white mx-auto">
+      <h2 className="animeRising mx-auto text-center font-bold text-3xl text-white md:text-4xl xl:text-5xl">
         Core Features of Furigana Maker
       </h2>
       {/* grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3  */}
-      <div className="flex flex-wrap justify-center gap-7 xl:gap-12 mt-12 lg:mt-15 xl:mt-20 mx-auto max-w-[80rem] px-4 md:px-8 xl:px-0">
+      <div className="mx-auto mt-12 flex max-w-[80rem] flex-wrap justify-center gap-7 px-4 lg:mt-15 xl:mt-20 xl:gap-12 md:px-8 xl:px-0">
         {features.map((feature) => (
           <FeatureItem key={feature.title} {...feature} />
         ))}
@@ -49,14 +49,14 @@ interface FeatureItemProps {
 
 function FeatureItem({ title, description, icon }: FeatureItemProps) {
   return (
-    <div className="animeRising hover:-translate-y-2 hover:bg-slate-700 duration-300 transition flex flex-col w-full md:w-96 gap-4 border border-slate-700 bg-slate-800 animeRising rounded-lg p-7 xl:p-12">
-      <div className="flex justify-between items-center">
-        <div className="bg-sky-400 size-10 flex justify-center items-center rounded">
+    <div className="animeRising hover:-translate-y-2 animeRising flex w-full flex-col gap-4 rounded-lg border border-slate-700 bg-slate-800 p-7 transition duration-300 md:w-96 hover:bg-slate-700 xl:p-12">
+      <div className="flex items-center justify-between">
+        <div className="flex size-10 items-center justify-center rounded bg-sky-400">
           <div className={`${icon} size-7`} />
         </div>
-        <i className="text-green-400 size-6 i-mdi-checkbox-marked-circle-outline" />
+        <i className="i-mdi-checkbox-marked-circle-outline size-6 text-green-400" />
       </div>
-      <h3 className="font-bold text-xl text-white">{title}</h3>
+      <h3 className="font-bold text-white text-xl">{title}</h3>
       <p className="text-white">{description}</p>
     </div>
   );
