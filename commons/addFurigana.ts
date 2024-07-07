@@ -1,5 +1,5 @@
+import { sendMessage } from "@/commons/message";
 import { toHiragana, toRomaji } from "wanakana";
-import { sendMessage } from "webext-bridge/content-script";
 
 import type { KanjiMark } from "@/entrypoints/background/listeners/onGetKanjiMarksMessage";
 
@@ -52,7 +52,7 @@ const tokenize = async (text: string) => {
   if (!hasKanji) {
     return [];
   }
-  const { tokens } = await sendMessage("getKanjiMarks", { text }, "background");
+  const { tokens } = await sendMessage("getKanjiMarks", { text });
   return tokens;
 };
 

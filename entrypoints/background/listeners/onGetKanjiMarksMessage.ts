@@ -1,5 +1,5 @@
+import { onMessage } from "@/commons/message";
 import kuromoji from "@sglkc/kuromoji";
-import { onMessage } from "webext-bridge/background";
 
 import { type KanjiToken, type MojiToken, toKanjiToken } from "@/commons/toKanjiToken";
 

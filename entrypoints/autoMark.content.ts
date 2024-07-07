@@ -1,5 +1,5 @@
+import { sendMessage } from "@/commons/message";
 import type { CSSProperties } from "react";
-import { sendMessage } from "webext-bridge/content-script";
 
 import { addFurigana } from "@/commons/addFurigana";
 import { ExtEvent, ExtStorage } from "@/commons/constants";
@@ -18,11 +18,7 @@ export default defineContentScript({
       return;
     }
 
-    const { selector } = await sendMessage(
-      "getSelector",
-      { domain: location.hostname },
-      "background",
-    );
+    const { selector } = await sendMessage("getSelector", { domain: location.hostname });
 
     if (!selector) {
       return;

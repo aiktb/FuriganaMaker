@@ -1,5 +1,5 @@
 import { ExtStorage, type SelectorRule } from "@/commons/constants";
-import { onMessage } from "webext-bridge/background";
+import { onMessage } from "@/commons/message";
 
 export const registerOnGetSelector = () => {
   onMessage("getSelector", async ({ data }) => {

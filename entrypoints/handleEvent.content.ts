@@ -16,6 +16,7 @@ import { toStorageKey } from "@/commons/utils";
 export default defineContentScript({
   matches: ["https://*/*"],
   runAt: "document_start",
+
   async main() {
     // styleHandler uses storage and is called immediately,
     // so it needs to be initialized immediately.
@@ -138,7 +139,7 @@ async function styleHandler(type: StyleEvent) {
 async function switchFuriganaHandler() {
   const rtSelector = `ruby.${FURIGANA_CLASS} > rt`;
   const nodes = document.querySelectorAll(rtSelector);
-  const value = (await storage.getItem(`local:${ExtStorage.FuriganaType}`)) as FuriganaType;
+  const value = await storage.getItem<FuriganaType>(`local:${ExtStorage.FuriganaType}`);
   switch (value) {
     case FuriganaType.Hiragana:
       for (const node of nodes) {
