@@ -4,8 +4,6 @@ import { sendMessage } from "webext-bridge/content-script";
 import { addFurigana } from "@/commons/addFurigana";
 import { ExtEvent, ExtStorage } from "@/commons/constants";
 
-import { initI18n } from "@/commons/i18n";
-
 export default defineContentScript({
   matches: ["https://*/*"],
   runAt: "document_idle",
@@ -60,10 +58,7 @@ export default defineContentScript({
       icon.textContent = "⚠";
       const text = document.createElement("span");
 
-      const { t } = await initI18n("background");
-      text.textContent = t("warning", {
-        htmlSize: htmlSize.toFixed(2),
-      });
+      text.textContent = chrome.i18n.getMessage("contentScriptWarning", htmlSize.toFixed(2));
       warning.appendChild(icon);
       warning.appendChild(text);
       document.body.appendChild(warning);

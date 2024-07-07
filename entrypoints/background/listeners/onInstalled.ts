@@ -1,5 +1,3 @@
-import type { Menus } from "wxt/browser";
-
 import {
   type Config,
   DisplayMode,
@@ -8,7 +6,6 @@ import {
   FuriganaType,
   SelectMode,
 } from "@/commons/constants";
-import { initI18n } from "@/commons/i18n";
 
 import defaultSelectorRules from "@/assets/rules/selector.json";
 
@@ -17,12 +14,11 @@ export const registerOnInstalled = () => {
     if (details.reason === "install") {
       chrome.tabs.create({ url: "https://furiganamaker.app/welcome" });
 
-      const { t } = await initI18n("background");
       // Setting the contextMenu must not be outside of `runtime.onInstalled`,
       // otherwise it will report an error for creating the contextMenu multiple times.
-      const contextMenuItem: Menus.CreateCreatePropertiesType = {
+      const contextMenuItem: chrome.contextMenus.CreateProperties = {
         id: ExtEvent.AddFurigana,
-        title: t("ctxMenuTitle"),
+        title: chrome.i18n.getMessage("shortcutAddFurigana"),
         contexts: ["page"],
         documentUrlPatterns: ["https://*/*"],
       };

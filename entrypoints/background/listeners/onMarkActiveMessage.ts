@@ -1,13 +1,11 @@
 import type { Action } from "wxt/browser";
 
 import { ExtEvent } from "@/commons/constants";
-import { initI18n } from "@/commons/i18n";
 
 export const registerOnMarkActiveMessage = () => {
   chrome.runtime.onMessage.addListener(async (event, sender) => {
     if (event === ExtEvent.MarkActiveTab) {
-      const { t } = await initI18n("background");
-      const activeTabTitle = `${chrome.runtime.getManifest().name} (${t("markActive")})`;
+      const activeTabTitle = `${chrome.runtime.getManifest().name} (${chrome.i18n.getMessage("markActive")})`;
       chrome.action.setTitle({
         title: activeTabTitle,
         tabId: sender.tab!.id!,

@@ -16,5 +16,16 @@
   },
   "shortcutToggleFuriganaDisplay": {
     "message": "すべてのページで振り仮名表示モードを切り替え"
+  },
+  "extTitleSuffix": {
+    "message": "カスタムルールがアクティブ"
+  },
+  "contentScriptWarning": {
+    "message": "警告（Furigana Maker）：このページは大きすぎます（$htmlSize$KB）、自動モードは無効です。",
+    "placeholders": {
+      "htmlSize": {
+        "content": "$1"
+      }
+    }
   }
 }

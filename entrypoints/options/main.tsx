@@ -1,9 +1,15 @@
 import "@/assets/style.css";
-import { initI18n } from "@/commons/i18n";
 
-await initI18n("options");
+import en from "@/assets/_locales/en/options.json";
+import ja from "@/assets/_locales/ja/options.json";
+import ko from "@/assets/_locales/ko/options.json";
+import zh_CN from "@/assets/_locales/zh_CN/options.json";
+import zh_TW from "@/assets/_locales/zh_TW/options.json";
+
+import i18n from "i18next";
 import { StrictMode } from "react";
 import { createRoot } from "react-dom/client";
+import { initReactI18next } from "react-i18next";
 import { RouterProvider, createHashRouter } from "react-router-dom";
 
 import ErrorPage from "./components/ErrorPage";
@@ -11,6 +17,22 @@ import Root from "./root";
 import Changelog from "./routes/Changelog";
 import RuleEditor from "./routes/RuleEditor";
 import Settings from "./routes/Settings";
+
+i18n.use(initReactI18next).init({
+  resources: {
+    en,
+    "zh-CN": zh_CN,
+    "zh-TW": zh_TW,
+    ja: ja,
+    ko: ko,
+  },
+  lng: chrome.i18n.getUILanguage(),
+  fallbackLng: "en",
+  interpolation: {
+    // react already safes from xss
+    escapeValue: false,
+  },
+});
 
 const router = createHashRouter([
   {
