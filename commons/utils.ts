@@ -26,7 +26,7 @@ export const toStorageKey = (event: StorageChangeEvent) => {
  */
 export const sendMessage = async (id: number, event: ExtEvent) => {
   try {
-    await browser.tabs.sendMessage(id, event);
+    await chrome.tabs.sendMessage(id, event);
   } catch (error) {
     if (
       !(error instanceof Error) ||

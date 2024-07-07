@@ -48,7 +48,7 @@ export const initI18n = async (i18nArea: I18NArea) => {
 
   i18n.use(initReactI18next).init({
     resources,
-    lng: browser.i18n.getUILanguage(),
+    lng: chrome.i18n.getUILanguage(),
     fallbackLng: "en",
     interpolation: {
       // react already safes from xss

@@ -31,7 +31,7 @@ export default defineContentScript({
     }
 
     // Add an active flag (little green dot) to the image.
-    browser.runtime.sendMessage(ExtEvent.MarkActiveTab);
+    chrome.runtime.sendMessage(ExtEvent.MarkActiveTab);
 
     // Reflow on a huge page causes severe page freezes and even the browser becomes unresponsive. (issue#16)
     const encoder = new TextEncoder();

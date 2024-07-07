@@ -3,7 +3,7 @@ import { onMessage } from "webext-bridge/background";
 
 import { type KanjiToken, type MojiToken, toKanjiToken } from "@/commons/toKanjiToken";
 
-// `filter.json` exceeded browser.storage.local` maximum limit.
+// `filter.json` exceeded chrome.storage.local` maximum limit.
 import filterList from "@/assets/rules/filter.json";
 
 interface Tokenizer {

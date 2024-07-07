@@ -13,9 +13,9 @@ import { initI18n } from "@/commons/i18n";
 import defaultSelectorRules from "@/assets/rules/selector.json";
 
 export const registerOnInstalled = () => {
-  browser.runtime.onInstalled.addListener(async (details) => {
+  chrome.runtime.onInstalled.addListener(async (details) => {
     if (details.reason === "install") {
-      browser.tabs.create({ url: "https://furiganamaker.app/welcome" });
+      chrome.tabs.create({ url: "https://furiganamaker.app/welcome" });
 
       const { t } = await initI18n("background");
       // Setting the contextMenu must not be outside of `runtime.onInstalled`,
@@ -26,7 +26,7 @@ export const registerOnInstalled = () => {
         contexts: ["page"],
         documentUrlPatterns: ["https://*/*"],
       };
-      browser.contextMenus.create(contextMenuItem);
+      chrome.contextMenus.create(contextMenuItem);
     }
 
     // Initialize default extension settings and custom rules.

@@ -77,7 +77,7 @@ export default function Popup() {
 
 async function addFurigana() {
   // `chrome.tabs.query` is not compatible with firefox.
-  const [tab] = await browser.tabs.query({ active: true, currentWindow: true });
+  const [tab] = await chrome.tabs.query({ active: true, currentWindow: true });
   await sendMessage(tab!.id!, ExtEvent.AddFurigana);
 }
 
@@ -91,7 +91,7 @@ type ACTIONTYPE =
   | { type: ExtEvent.AdjustFontColor; payload: string };
 
 function reducer(state: Config, action: ACTIONTYPE) {
-  browser.tabs.query({ active: true, currentWindow: true }).then(async (tabs) => {
+  chrome.tabs.query({ active: true, currentWindow: true }).then(async (tabs) => {
     await storage.setItem(`local:${toStorageKey(action.type)}`, action.payload);
     const tabId = tabs[0]!.id!;
     await sendMessage(tabId, action.type);
