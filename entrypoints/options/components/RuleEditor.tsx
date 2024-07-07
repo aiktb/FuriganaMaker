@@ -1,5 +1,4 @@
 import { Disclosure, DisclosureButton, DisclosurePanel } from "@headlessui/react";
-import { useState } from "react";
 import { Trans, useTranslation } from "react-i18next";
 
 import type { SelectorRule } from "@/commons/constants";

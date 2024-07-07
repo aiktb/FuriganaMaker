@@ -1,6 +1,5 @@
 import { TinyColor } from "@ctrl/tinycolor";
 import { Popover, PopoverButton, PopoverPanel, Transition } from "@headlessui/react";
-import { useState } from "react";
 import { useTranslation } from "react-i18next";
 
 interface ColorPickerProps {

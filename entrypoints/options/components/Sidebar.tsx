@@ -1,7 +1,7 @@
 import Logo from "@/assets/icons/Logo.svg?react";
 
 import { useTranslation } from "react-i18next";
-import { Link, type LinkProps, NavLink } from "react-router-dom";
+import type { LinkProps } from "react-router-dom";
 
 type CustomLink = LinkProps & { label: string; icon: string };
 
@@ -50,14 +50,14 @@ export default function Sidebar() {
                 key={item.label}
                 target={item.target}
                 className={({ isActive }) =>
-                  `flex w-64 items-center justify-between rounded-md p-2 hover:bg-slate-100 dark:hover:bg-gray-800 dark:hover:text-white hover:text-black ${isActive ? "dark:bg-gray-800 bg-slate-100 dark:text-white text-black" : ""}`
+                  `group flex w-64 items-center justify-between rounded-md p-2 hover:bg-slate-100 dark:hover:bg-gray-800 dark:hover:text-white hover:text-black ${isActive ? "dark:bg-gray-800 bg-slate-100 dark:text-white text-black" : ""}`
                 }
               >
                 {({ isActive }) => (
                   <>
                     <div className="flex items-center gap-4">
                       <i
-                        className={`${item.icon} size-6 text-gray-400 ${isActive ? "text-sky-500" : ""}`}
+                        className={`${item.icon} size-6 group-hover:dark:text-white group-hover:text-black ${isActive ? "dark:text-white text-black" : "dark:text-slate-300 text-slate-600"}`}
                       />
                       {item.label}
                     </div>

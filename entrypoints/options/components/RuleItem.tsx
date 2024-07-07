@@ -1,5 +1,4 @@
 import { Dialog, DialogPanel, DialogTitle } from "@headlessui/react";
-import { useState } from "react";
 
 import type { SelectorRule } from "@/commons/constants";
 

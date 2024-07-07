@@ -34,6 +34,9 @@ export default defineConfig({
     commands,
   },
   modules: ["@wxt-dev/module-react"],
+  imports: {
+    presets: ["react", "react-router-dom"],
+  },
   vite: () => ({
     plugins: [svgr()],
     css: {

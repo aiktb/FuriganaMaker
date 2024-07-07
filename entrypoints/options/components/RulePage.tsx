@@ -1,6 +1,6 @@
 import { Dialog, DialogPanel, DialogTitle, Transition } from "@headlessui/react";
 import { saveAs } from "file-saver";
-import { use, useEffect, useState } from "react";
+import { use } from "react";
 import { z } from "zod";
 
 import { ExtStorage, type SelectorRule } from "@/commons/constants";
