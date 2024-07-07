@@ -15,11 +15,11 @@ import Root from "./root";
 
 i18n.use(initReactI18next).init({
   resources: {
-    en,
-    "zh-CN": zh_CN,
-    "zh-TW": zh_TW,
-    ja: ja,
-    ko: ko,
+    en: { translation: en },
+    "zh-CN": { translation: zh_CN },
+    "zh-TW": { translation: zh_TW },
+    ja: { translation: ja },
+    ko: { translation: ko },
   },
   lng: chrome.i18n.getUILanguage(),
   fallbackLng: "en",
