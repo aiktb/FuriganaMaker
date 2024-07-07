@@ -5,6 +5,7 @@
   "btnImportConfig": "Import Config",
   "footerCopyright": "Copyright © {{yearsRange}} <author/>.",
   "footerLicense": "Released under the <license/> license.",
+  "footerBuiltWith": "Built with <tool/>.",
   "srGithub": "GitHub repository",
   "srToggleTheme": "Toggle Theme Mode",
   "titleWarning": "Warning!",
