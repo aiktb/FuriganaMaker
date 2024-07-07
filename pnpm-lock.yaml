@@ -157,9 +157,9 @@ importers:
       '@fontsource/lobster':
         specifier: 5.0.20
         version: 5.0.20
-      '@fontsource/m-plus-rounded-1c':
-        specifier: 5.0.13
-        version: 5.0.13
+      '@fontsource/noto-sans-jp':
+        specifier: ^5.0.19
+        version: 5.0.19
       '@remix-run/css-bundle':
         specifier: 2.9.2
         version: 2.9.2
@@ -1290,8 +1290,8 @@ packages:
   '@fontsource/lobster@5.0.20':
     resolution: {integrity: sha512-Dr543aD3FpUfFYIMD83xXZJpgxVg9Ig4q9iX+A9ZXY5SplbxHBie4xIo/fCFGBYXul2A9FGKF20QnZGjJ8QtdQ==}
 
-  '@fontsource/m-plus-rounded-1c@5.0.13':
-    resolution: {integrity: sha512-SOSYbcnSDWKf/Fvom5H+/xqluLB7N508XhaUffg0QUR6cjnEVYwqL6yZGQ7d0AgdvmCxHEstq3Wm4GcaMrcH+w==}
+  '@fontsource/noto-sans-jp@5.0.19':
+    resolution: {integrity: sha512-N0KUmSqX6tlAlnqFQnDywj9e+4RithtLgFGlcRt/85EI8rmDYJFYQCZVhc+xTIk5Kgr1gLtNToHZzK61BTsWqw==}
 
   '@headlessui/react@2.1.1':
     resolution: {integrity: sha512-808gVNUbRDbDR3GMNPHy+ON0uvR8b9H7IA+Q2UbhOsNCIjgwuwb2Iuv8VPT/1AW0UzLX8g10tN6LhF15GaUJCQ==}
@@ -6308,7 +6308,7 @@ snapshots:
 
   '@fontsource/lobster@5.0.20': {}
 
-  '@fontsource/m-plus-rounded-1c@5.0.13': {}
+  '@fontsource/noto-sans-jp@5.0.19': {}
 
   '@headlessui/react@2.1.1(react-dom@18.3.0-canary-c5b937576-20231219(react@18.3.0-canary-c5b937576-20231219))(react@18.3.0-canary-c5b937576-20231219)':
     dependencies:

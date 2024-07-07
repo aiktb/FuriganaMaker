@@ -24,7 +24,7 @@
     "@cloudflare/workers-types": "4.20240620.0",
     "@fontsource/dm-sans": "5.0.21",
     "@fontsource/lobster": "5.0.20",
-    "@fontsource/m-plus-rounded-1c": "5.0.13",
+    "@fontsource/noto-sans-jp": "^5.0.19",
     "@remix-run/css-bundle": "2.9.2",
     "@remix-run/dev": "2.9.2",
     "@remix-run/node": "2.9.2",

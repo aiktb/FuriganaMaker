@@ -1,5 +1,3 @@
-import "@fontsource/m-plus-rounded-1c/400.css";
-import "@fontsource/m-plus-rounded-1c/700.css";
 import type { MetaFunction } from "@remix-run/cloudflare";
 
 import { Fireworks, type FireworksHandlers } from "@fireworks-js/react";

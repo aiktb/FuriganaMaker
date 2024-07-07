@@ -68,7 +68,7 @@ export default function Index() {
         <h1 className="animeRising text-3xl sm:text-5xl md:text-6xl lg:text-8xl font-bold">
           Add{" "}
           <span>
-            <ruby>
+            <ruby lang="ja" className="font-japanese">
               振り仮名<rt>furigana</rt>
             </ruby>
           </span>{" "}

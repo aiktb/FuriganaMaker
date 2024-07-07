@@ -14,7 +14,7 @@ export default {
     fontFamily: {
       display: ["Lobster", ...defaultTheme.fontFamily.sans],
       sans: ["DM Sans", ...defaultTheme.fontFamily.sans],
-      japanese: ["'M Plus Rounded 1C'", ...defaultTheme.fontFamily.sans],
+      japanese: ["Noto Sans JP", ...defaultTheme.fontFamily.sans],
     },
     extend: {
       keyframes: {
