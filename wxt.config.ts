@@ -3,8 +3,8 @@ import tailwind from "tailwindcss";
 import svgr from "vite-plugin-svgr";
 import { defineConfig } from "wxt";
 
-import { copyFileSync, mkdirSync, readdirSync } from "node:fs";
-import { resolve } from "node:path";
+import fs from "node:fs";
+import path from "node:path";
 
 const commands = {
   addFurigana: {
@@ -48,14 +48,14 @@ export default defineConfig({
   hooks: {
     "build:done": ({ config, logger }) => {
       const srcDir = "./node_modules/@sglkc/kuromoji/dict";
-      const filenames = readdirSync(srcDir);
-      const destDir = resolve(config.outDir, "dict");
-      mkdirSync(destDir);
+      const filenames = fs.readdirSync(srcDir);
+      const destDir = path.resolve(config.outDir, "dict");
+      fs.mkdirSync(destDir);
       for (const filename of filenames) {
-        const src = resolve(srcDir, filename);
-        const dest = resolve(destDir, filename);
-        copyFileSync(src, dest);
-        logger.info(`Copied ${filename} to ${destDir}`);
+        const src = path.resolve(srcDir, filename);
+        const dest = path.resolve(destDir, filename);
+        fs.copyFileSync(src, dest);
+        logger.info(`Copied ${filename} to build target`);
       }
     },
   },
