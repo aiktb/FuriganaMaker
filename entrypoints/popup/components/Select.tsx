@@ -52,7 +52,7 @@ export default function Select({ selected, options, tip, onChange }: SelectProps
               <ListboxOption key={item.value} value={item.value}>
                 {({ focus, selected }) => (
                   <li
-                    className={`${focus ? "text-sky-500" : "text-current"}${selected ? "text-sky-500" : ""}box-content flex cursor-pointer items-center justify-between px-[6px] capitalize transition-all focus:z-10 dark:focus:bg-slate-700 dark:hover:bg-slate-700 dark:ui-active:bg-slate-700 focus:bg-gray-200 hover:bg-gray-200 ui-active:bg-gray-200`}
+                    className={`${focus || selected ? "text-sky-500" : "text-current"} box-content flex cursor-pointer items-center justify-between px-[6px] capitalize transition-all focus:z-10 dark:focus:bg-slate-700 dark:hover:bg-slate-700 dark:ui-active:bg-slate-700 focus:bg-gray-200 hover:bg-gray-200 ui-active:bg-gray-200`}
                   >
                     {item.label}
                     {selected && <i className="i-tabler-check" />}
