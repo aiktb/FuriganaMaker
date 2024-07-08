@@ -10,7 +10,7 @@ export default (<Environment>{
     // Puppeteer only supports chrome, so you can hard-code this path to any chromium output
     const pathToExtension = path.resolve(".output/chrome-mv3");
     const browser = await puppeteer.launch({
-      headless: false,
+      headless: true,
       ...(options ?? {}),
       args: [
         `--disable-extensions-except=${pathToExtension}`,
