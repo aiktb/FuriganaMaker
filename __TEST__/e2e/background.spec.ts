@@ -11,7 +11,7 @@ describe("Extension background script", () => {
     context,
     page,
   }) => {
-    await page.waitForTimeout(500);
+    await page.waitForTimeout(1000);
     const pages = context.pages();
     const pageURLs = pages.map((page) => page.url());
     expect(pageURLs).toContain("https://furiganamaker.app/welcome");
