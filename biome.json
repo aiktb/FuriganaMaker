@@ -1,7 +1,10 @@
 {
   "$schema": "https://biomejs.dev/schemas/1.6.4/schema.json",
-  "files": {
-    "ignore": [".wxt", ".output", ".wrangler"]
+  "vcs": {
+    "enabled": true,
+    "clientKind": "git",
+    "useIgnoreFile": true,
+    "defaultBranch": "main"
   },
   "organizeImports": {
     "enabled": true
