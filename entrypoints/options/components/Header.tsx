@@ -33,7 +33,7 @@ export default function Header({ icon, title }: HeaderProps) {
 
   const { t } = useTranslation();
   return (
-    <header className="sticky top-0 border-gray-200 border-b dark:border-slate-800">
+    <header className="sticky z-10 top-0 border-gray-200 border-b dark:border-slate-800">
       <div className="px-4 lg:px-8 sm:px-6">
         <div className="flex items-center justify-between py-5 backdrop-blur backdrop-filter">
           <div className="flex items-center text-base">

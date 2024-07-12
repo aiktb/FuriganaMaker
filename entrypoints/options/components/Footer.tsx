@@ -13,7 +13,7 @@ interface FooterLinkProps {
 function FooterLink({ href, content }: FooterLinkProps) {
   return (
     <a
-      className="text-black font-mono font-bold dark:text-white underline decoration-solid  transition hover:text-sky-500"
+      className="text-black font-semibold dark:text-white underline decoration-solid  transition hover:text-sky-500"
       href={href}
       target="_blank"
       rel="noreferrer noopener"
@@ -29,7 +29,7 @@ export default function Footer() {
   return (
     <footer className="border-gray-200 border-t dark:border-slate-800">
       <div className="mx-auto flex items-center justify-between px-4 lg:px-8 sm:px-6">
-        <p className="flex flex-col flex-wrap gap-1.5 py-8 text-left text-sm sm:flex-row">
+        <p className="flex flex-col flex-wrap gap-1.5 text-center py-8 text-sm sm:flex-row">
           <span className="block whitespace-nowrap sm:inline">
             <Trans
               i18nKey="footerCopyright"
