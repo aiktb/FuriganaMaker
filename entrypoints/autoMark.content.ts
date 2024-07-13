@@ -2,7 +2,7 @@ import { sendMessage } from "@/commons/message";
 import type { CSSProperties } from "react";
 
 import { addFurigana } from "@/commons/addFurigana";
-import { ExtEvent, ExtStorage } from "@/commons/constants";
+import { ExtStorage } from "@/commons/constants";
 import { getGeneralSettings } from "@/commons/utils";
 
 export default defineContentScript({
@@ -19,14 +19,8 @@ export default defineContentScript({
       return;
     }
 
-    const { selector } = await sendMessage("getSelector", { domain: location.hostname });
-
-    if (!selector) {
-      return;
-    }
-
-    // Add an active flag (little aqua dot) to the image.
-    chrome.runtime.sendMessage(ExtEvent.MarkActiveTab);
+    const customRule = await sendMessage("getSelector", { domain: location.hostname });
+    const selector = customRule.selector || "[lang='ja'], [lang='ja-JP']";
 
     // Reflow on a huge page causes severe page freezes and even the browser becomes unresponsive. (issue#16)
     const encoder = new TextEncoder();

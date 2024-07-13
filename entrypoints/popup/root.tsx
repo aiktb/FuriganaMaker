@@ -45,7 +45,7 @@ export default function Popup() {
   }
 
   return (
-    <Suspense fallback={<Logo width="192" height="192" />}>
+    <Suspense fallback={<Logo className="size-48" />}>
       <Transition
         as="div"
         appear

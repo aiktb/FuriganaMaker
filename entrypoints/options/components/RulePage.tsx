@@ -106,7 +106,7 @@ export default function RulePage({ rulesPromise }: { rulesPromise: Promise<Selec
   return (
     <>
       <div className="flex grow flex-col justify-start">
-        <div className="mx-auto my-2 flex max-w-5xl flex-col items-center justify-between gap-1.5 px-5 font-bold text-base text-black lg:max-w-7xl md:flex-row md:justify-between lg:px-8 sm:px-6 dark:text-white">
+        <div className="mx-auto my-2 flex max-w-5xl flex-col items-center justify-between gap-1.5 px-5 font-bold text-base text-slate-700 lg:max-w-7xl md:flex-row md:justify-between lg:px-8 sm:px-6 dark:text-slate-300">
           <button
             className="flex items-center gap-x-1.5 rounded-md border border-gray-200 px-1.5 py-0.5 shadow-md transition-[background-color] dark:border-slate-700 dark:hover:bg-transparent/20 hover:bg-transparent/10"
             onClick={() => {

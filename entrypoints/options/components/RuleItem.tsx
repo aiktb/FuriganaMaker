@@ -25,12 +25,13 @@ export default function RuleItem({ rule, onChange, onDelete }: RuleItemProps) {
           <i className="i-tabler-layers-intersect size-12 flex-none text-sky-500" />
           <div className="flex-auto">
             <a
-              className="truncate font-semibold text-sky-500 text-sm leading-6 transition hover:text-sky-700"
+              className="flex-inline items-center w-auto truncate font-semibold text-sm leading-6 transition text-black dark:text-white underline decoration-solid"
               href={encodeURI(`https://${rule.domain}`)}
               target="_blank"
               rel="noopener noreferrer"
             >
               {rule.domain}
+              <i className="i-tabler-arrow-up-right" />
             </a>
             <p className="w-72 truncate text-xs leading-5 lg:w-[36rem] md:w-[30rem] sm:w-96">
               {rule.selector}
@@ -63,7 +64,7 @@ export default function RuleItem({ rule, onChange, onDelete }: RuleItemProps) {
             </button>
             <div className="mt-1 flex gap-x-1.5">
               <button
-                className="flex items-center gap-x-1 rounded-md border border-gray-200 px-1 py-0.5 font-bold text-black text-sm shadow transition-[background-color] dark:border-slate-700 dark:hover:bg-transparent/20 hover:bg-transparent/10 dark:text-white"
+                className="flex items-center gap-x-1 rounded-md border border-gray-200 px-1 py-0.5 font-bold text-slate-700 text-sm shadow transition-[background-color] dark:border-slate-700 dark:hover:bg-transparent/20 hover:bg-transparent/10 dark:text-slate-300"
                 onClick={() => {
                   setEditorIsOpen(true);
                 }}
@@ -72,12 +73,12 @@ export default function RuleItem({ rule, onChange, onDelete }: RuleItemProps) {
                 {t("btnEdit")}
               </button>
               <button
-                className="flex items-center gap-x-1 rounded-md border border-gray-200 px-1 py-0.5 font-bold text-black text-sm shadow transition-[background-color] dark:border-slate-700 dark:hover:bg-transparent/20 hover:bg-transparent/10 dark:text-white"
+                className="flex items-center gap-x-1 rounded-md border border-gray-200 px-1 py-0.5 font-bold text-slate-700 text-sm shadow transition-[background-color] dark:border-slate-700 dark:hover:bg-transparent/20 hover:bg-transparent/10 dark:text-slate-300"
                 onClick={() => {
                   setDeleteDialogIsOpen(true);
                 }}
               >
-                <i className="i-tabler-trash size-4 text-red-500" />
+                <i className="i-tabler-trash size-4 text-sky-500" />
                 {t("btnDelete")}
               </button>
             </div>
