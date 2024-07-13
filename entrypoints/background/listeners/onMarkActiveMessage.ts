@@ -13,6 +13,7 @@ export const registerOnMarkActiveMessage = () => {
 
       const SIZE = 32;
       const iconPath = `/${chrome.runtime.getManifest().icons![SIZE]!}`;
+
       fetch(iconPath)
         .then((response) => response.blob())
         .then((blob) => createImageBitmap(blob))

@@ -3,9 +3,6 @@ import tailwind from "tailwindcss";
 import svgr from "vite-plugin-svgr";
 import { defineConfig } from "wxt";
 
-import fs from "node:fs";
-import path from "node:path";
-
 const commands = {
   addFurigana: {
     description: "__MSG_shortcutAddFurigana__",
@@ -31,6 +28,12 @@ export default defineConfig({
     description: "__MSG_extDescription__",
     permissions: ["contextMenus", "storage"],
     default_locale: "en",
+    icons: {
+      "16": "icons/16.png",
+      "32": "icons/32.png",
+      "48": "icons/48.png",
+      "128": "icons/128.png",
+    },
     commands,
   },
   modules: ["@wxt-dev/module-react"],
@@ -45,18 +48,4 @@ export default defineConfig({
       },
     },
   }),
-  hooks: {
-    "build:done": ({ config, logger }) => {
-      const srcDir = "./node_modules/@sglkc/kuromoji/dict";
-      const filenames = fs.readdirSync(srcDir);
-      const destDir = path.resolve(config.outDir, "dict");
-      fs.mkdirSync(destDir);
-      for (const filename of filenames) {
-        const src = path.resolve(srcDir, filename);
-        const dest = path.resolve(destDir, filename);
-        fs.copyFileSync(src, dest);
-        logger.info(`Copied ${filename} to build target`);
-      }
-    },
-  },
 });
