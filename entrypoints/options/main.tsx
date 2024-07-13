@@ -16,7 +16,6 @@ import ErrorPage from "./components/ErrorPage";
 import Root from "./root";
 import Changelog from "./routes/Changelog";
 import RuleEditor from "./routes/RuleEditor";
-import Settings from "./routes/Settings";
 
 i18n.use(initReactI18next).init({
   resources: {
@@ -40,8 +39,7 @@ const router = createHashRouter([
     element: <Root />,
     errorElement: <ErrorPage />,
     children: [
-      { path: "/", element: <Settings /> },
-      { path: "/rules", element: <RuleEditor /> },
+      { path: "/", element: <RuleEditor /> },
       { path: "/changelog", element: <Changelog /> },
     ],
   },
