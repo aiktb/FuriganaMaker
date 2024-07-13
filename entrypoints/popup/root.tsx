@@ -7,7 +7,7 @@ import {
   ExtEvent,
   ExtStorage,
   FuriganaType,
-  type GeneralConfig,
+  type GeneralSettings,
   SelectMode,
 } from "@/commons/constants";
 import { generalSettings, sendMessage, setGeneralSettings, toStorageKey } from "@/commons/utils";
@@ -78,7 +78,7 @@ type ACTIONTYPE =
   | { type: ExtEvent.AdjustFontSize; payload: number }
   | { type: ExtEvent.AdjustFontColor; payload: string };
 
-function reducer(state: GeneralConfig, action: ACTIONTYPE) {
+function reducer(state: GeneralSettings, action: ACTIONTYPE) {
   chrome.tabs.query({ active: true, currentWindow: true }).then(async (tabs) => {
     await setGeneralSettings(toStorageKey(action.type), action.payload);
     const tabId = tabs[0]!.id!;
@@ -117,7 +117,7 @@ function MenuItem({ children, icon }: MenuItemProps) {
   );
 }
 
-function Menu({ configPromise }: { configPromise: Promise<GeneralConfig> }) {
+function Menu({ configPromise }: { configPromise: Promise<GeneralSettings> }) {
   const [state, dispatch] = useReducer(reducer, use(configPromise));
   const { t } = useTranslation();
 

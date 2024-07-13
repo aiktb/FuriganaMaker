@@ -7,31 +7,30 @@ describe("Extension background script", () => {
     await page.goto(`chrome-extension://${extensionId}/popup.html`);
   });
 
-  test("When the installation is complete, open the official website", async ({
-    context,
-    page,
-  }) => {
-    await page.waitForTimeout(1000);
-    const pages = context.pages();
-    const pageURLs = pages.map((page) => page.url());
-    expect(pageURLs).toContain("https://furiganamaker.app/welcome");
+  test("Icons have been generated", async ({ page }) => {
+    const manifest: chrome.runtime.Manifest = await page.evaluate("chrome.runtime.getManifest()");
+    const expectedIcons = {
+      16: "icons/16.png",
+      32: "icons/32.png",
+      48: "icons/48.png",
+      128: "icons/128.png",
+    };
+    expect(manifest.icons).toEqual(expectedIcons);
+    for (const path of Object.values(expectedIcons)) {
+      await page.evaluate(`fetch(chrome.runtime.getURL("${path}"))`);
+    }
   });
 
-  // test("Setting default extension storage", async ({ page }) => {
-  //   const defaultConfig = {
-  //     [ExtStorage.AutoMode]: true,
-  //     [ExtStorage.KanjiFilter]: false,
-  //     [ExtStorage.DisplayMode]: DisplayMode.Always,
-  //     [ExtStorage.FuriganaType]: FuriganaType.Hiragana,
-  //     [ExtStorage.SelectMode]: SelectMode.Original,
-  //     [ExtStorage.FontSize]: 75, // ${fontsize}% relative to the parent font.
-  //     [ExtStorage.FontColor]: "currentColor",
-  //     // [ExtStorage.SelectorRules]: defaultSelectorRules,
-  //   };
-
-  //   for (const key of Object.keys(defaultConfig)) {
-  //     const storage = await page.evaluate(`chrome.storage.local.get("${key}")`);
-  //     expect(storage[key]).toBe(defaultConfig[key]);
-  //   }
-  // });
+  test("Shortcuts have been registered", async ({ page }) => {
+    const shortcuts: chrome.commands.Command[] = await page.evaluate("chrome.commands.getAll()");
+    const shortcutNames = shortcuts.map((shortcut) => shortcut.name);
+    const expectedShortcuts = [
+      "_execute_action",
+      "addFurigana",
+      "toggleAutoMode",
+      "toggleKanjiFilter",
+      "toggleFuriganaDisplay",
+    ];
+    expect(shortcutNames.sort()).toEqual(expectedShortcuts.sort());
+  });
 });

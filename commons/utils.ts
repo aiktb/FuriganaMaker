@@ -4,7 +4,7 @@ import {
   ExtEvent,
   ExtStorage,
   FuriganaType,
-  type GeneralConfig,
+  type GeneralSettings,
   SelectMode,
   type SelectorRule,
   type StorageChangeEvent,
@@ -47,7 +47,7 @@ export const sendMessage = async (id: number, event: ExtEvent) => {
   }
 };
 
-export const generalSettings = storage.defineItem<GeneralConfig>("local:generalSettings", {
+export const generalSettings = storage.defineItem<GeneralSettings>("local:generalSettings", {
   version: 1,
   defaultValue: {
     [ExtStorage.AutoMode]: true,
@@ -60,14 +60,14 @@ export const generalSettings = storage.defineItem<GeneralConfig>("local:generalS
   },
 });
 
-export async function setGeneralSettings<K extends keyof GeneralConfig>(
+export async function setGeneralSettings<K extends keyof GeneralSettings>(
   key: K,
-  value: GeneralConfig[K],
+  value: GeneralSettings[K],
 ) {
   return generalSettings.setValue({ ...(await generalSettings.getValue()), [key]: value });
 }
 
-export async function getGeneralSettings<K extends keyof GeneralConfig>(key: K) {
+export async function getGeneralSettings<K extends keyof GeneralSettings>(key: K) {
   return (await generalSettings.getValue())[key];
 }
 
