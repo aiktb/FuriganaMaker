@@ -3,14 +3,14 @@ import { Suspense, use, useReducer } from "react";
 import { useTranslation } from "react-i18next";
 
 import {
-  type Config,
   DisplayMode,
   ExtEvent,
   ExtStorage,
   FuriganaType,
+  type GeneralConfig,
   SelectMode,
 } from "@/commons/constants";
-import { sendMessage, toStorageKey } from "@/commons/utils";
+import { generalSettings, sendMessage, setGeneralSettings, toStorageKey } from "@/commons/utils";
 
 import ColorPickerIcon from "@/assets/icons/ColorPicker.svg?react";
 import CursorOutlineIcon from "@/assets/icons/CursorDefault.svg?react";
@@ -33,18 +33,6 @@ import Link from "./components/Link";
 import RangeSlider from "./components/RangeSlider";
 import Select from "./components/Select";
 import SharedCard from "./components/SharedCard";
-
-const initializeConfig = async () => {
-  return {
-    [ExtStorage.AutoMode]: await storage.getItem(`local:${ExtStorage.AutoMode}`),
-    [ExtStorage.KanjiFilter]: await storage.getItem(`local:${ExtStorage.KanjiFilter}`),
-    [ExtStorage.DisplayMode]: await storage.getItem(`local:${ExtStorage.DisplayMode}`),
-    [ExtStorage.FuriganaType]: await storage.getItem(`local:${ExtStorage.FuriganaType}`),
-    [ExtStorage.SelectMode]: await storage.getItem(`local:${ExtStorage.SelectMode}`),
-    [ExtStorage.FontSize]: await storage.getItem(`local:${ExtStorage.FontSize}`),
-    [ExtStorage.FontColor]: await storage.getItem(`local:${ExtStorage.FontColor}`),
-  } as Config;
-};
 
 export default function Popup() {
   if (
@@ -69,7 +57,7 @@ export default function Popup() {
         leaveFrom="opacity-100"
         leaveTo="opacity-0"
       >
-        <Menu configPromise={initializeConfig()} />
+        <Menu configPromise={generalSettings.getValue()} />
       </Transition>
     </Suspense>
   );
@@ -90,9 +78,9 @@ type ACTIONTYPE =
   | { type: ExtEvent.AdjustFontSize; payload: number }
   | { type: ExtEvent.AdjustFontColor; payload: string };
 
-function reducer(state: Config, action: ACTIONTYPE) {
+function reducer(state: GeneralConfig, action: ACTIONTYPE) {
   chrome.tabs.query({ active: true, currentWindow: true }).then(async (tabs) => {
-    await storage.setItem(`local:${toStorageKey(action.type)}`, action.payload);
+    await setGeneralSettings(toStorageKey(action.type), action.payload);
     const tabId = tabs[0]!.id!;
     await sendMessage(tabId, action.type);
   });
@@ -129,7 +117,7 @@ function MenuItem({ children, icon }: MenuItemProps) {
   );
 }
 
-function Menu({ configPromise }: { configPromise: Promise<Config> }) {
+function Menu({ configPromise }: { configPromise: Promise<GeneralConfig> }) {
   const [state, dispatch] = useReducer(reducer, use(configPromise));
   const { t } = useTranslation();
 

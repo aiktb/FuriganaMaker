@@ -3,8 +3,9 @@ import { saveAs } from "file-saver";
 import { use } from "react";
 import { z } from "zod";
 
-import { ExtStorage, type SelectorRule } from "@/commons/constants";
+import type { SelectorRule } from "@/commons/constants";
 
+import { customRules } from "@/commons/utils";
 import { useTranslation } from "react-i18next";
 import NotFoundRule from "./NotFoundRule";
 import PopupTransition from "./PopupTransition";
@@ -19,7 +20,7 @@ export default function RulePage({ rulesPromise }: { rulesPromise: Promise<Selec
   const [importFailedMessage, setImportFailedMessage] = useState("");
 
   useEffect(() => {
-    storage.setItem(`local:${ExtStorage.SelectorRules}`, rules);
+    customRules.setValue(rules);
   }, [rules]);
 
   function createNewRule(rule: SelectorRule) {
@@ -66,7 +67,7 @@ export default function RulePage({ rulesPromise }: { rulesPromise: Promise<Selec
         const importedRules = JSON.parse(reader.result as string) as SelectorRule[];
         const mergedRules = mergeSameDomainRules(importedRules);
 
-        await storage.setItem(`local:${ExtStorage.SelectorRules}`, mergedRules);
+        await customRules.setValue(mergedRules);
         setRules(mergedRules);
       };
       reader.readAsText(file);

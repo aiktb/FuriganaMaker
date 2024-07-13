@@ -3,13 +3,14 @@ import type { CSSProperties } from "react";
 
 import { addFurigana } from "@/commons/addFurigana";
 import { ExtEvent, ExtStorage } from "@/commons/constants";
+import { getGeneralSettings } from "@/commons/utils";
 
 export default defineContentScript({
   matches: ["https://*/*"],
   runAt: "document_idle",
 
   async main() {
-    const autoModeIsEnabled = await storage.getItem(`local:${ExtStorage.AutoMode}`);
+    const autoModeIsEnabled = await getGeneralSettings(ExtStorage.AutoMode);
     if (!autoModeIsEnabled) {
       /**
        * If the user does not enable the extension, the extension will not attempt to add furigana to the page.
@@ -24,7 +25,7 @@ export default defineContentScript({
       return;
     }
 
-    // Add an active flag (little green dot) to the image.
+    // Add an active flag (little aqua dot) to the image.
     chrome.runtime.sendMessage(ExtEvent.MarkActiveTab);
 
     // Reflow on a huge page causes severe page freezes and even the browser becomes unresponsive. (issue#16)

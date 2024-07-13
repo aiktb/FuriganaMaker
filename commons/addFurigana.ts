@@ -4,6 +4,7 @@ import { toHiragana, toRomaji } from "wanakana";
 import type { KanjiMark } from "@/entrypoints/background/listeners/onGetKanjiMarksMessage";
 
 import { ExtStorage, FURIGANA_CLASS, FuriganaType } from "./constants";
+import { getGeneralSettings } from "./utils";
 /**
  * Append ruby tag to all text nodes of a batch of elements.
  * @remarks
@@ -14,7 +15,7 @@ import { ExtStorage, FURIGANA_CLASS, FuriganaType } from "./constants";
 export async function addFurigana(...elements: Element[]) {
   const japaneseTexts = [...elements.flatMap(collectTexts)];
 
-  const furiganaType = await storage.getItem<FuriganaType>(`local:${ExtStorage.FuriganaType}`);
+  const furiganaType = await getGeneralSettings(ExtStorage.FuriganaType);
   if (!furiganaType) {
     return;
   }
