@@ -5,6 +5,7 @@
   "btnImportConfig": "導入配置",
   "footerCopyright": "版權所有 © {{yearsRange}} <author/>。",
   "footerLicense": "根據 <license/> 許可證發布。",
+  "footerBuiltWith": "使用 <tool/> 構建❤️。",
   "srGithub": "GitHub 倉庫",
   "srToggleTheme": "切換主題模式",
   "titleWarning": "警告！",
@@ -31,5 +32,17 @@
   "btnDelete": "刪除",
   "msgDeleteRule": "刪除規則不可撤銷，確定要這樣做嗎？",
   "markActive": "已激活",
-  "markInactive": "未激活"
+  "markInactive": "未激活",
+  "navEditRules": "規則編輯器",
+  "navChangelog": "更新日誌",
+  "navAbout": "關於",
+  "navOfficialSite": "官方網站",
+  "navManageShortcuts": "管理快捷鍵",
+  "sidebarSponsor": "贊助開發者",
+  "sidebarFirefoxSupport": "Firefox 支持",
+  "yourTips": "你的提示",
+  "manageShortcuts": "管理快捷鍵",
+  "errorPageTitle": "哎呀！",
+  "errorPageGoBack": "返回主頁",
+  "errorPageTip": "抱歉，發生了意外錯誤。"
 }

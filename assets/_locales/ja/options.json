@@ -5,6 +5,7 @@
   "btnImportConfig": "設定をインポート",
   "footerCopyright": "著作権 © {{yearsRange}} <author/>。",
   "footerLicense": "<license/> ライセンスで公開されています。",
+  "footerBuiltWith": "<tool/> で構築されました❤️。",
   "srGithub": "GitHub リポジトリ",
   "srToggleTheme": "テーマモードの切り替え",
   "titleWarning": "警告！",
@@ -31,5 +32,17 @@
   "btnDelete": "削除",
   "msgDeleteRule": "削除ルールは元に戻せません。よろしいですか？",
   "markActive": "アクティブ",
-  "markInactive": "非アクティブ"
+  "markInactive": "非アクティブ",
+  "navEditRules": "ルールエディタ",
+  "navChangelog": "変更履歴",
+  "navAbout": "概要",
+  "navOfficialSite": "公式サイト",
+  "navManageShortcuts": "ショートカットの管理",
+  "sidebarSponsor": "開発者を支援",
+  "sidebarFirefoxSupport": "Firefoxサポート",
+  "yourTips": "ヒント",
+  "manageShortcuts": "ショートカットの管理",
+  "errorPageTitle": "おっと！",
+  "errorPageGoBack": "ホームページに戻る",
+  "errorPageTip": "申し訳ありませんが、予期しないエラーが発生しました。"
 }

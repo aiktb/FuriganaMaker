@@ -13,7 +13,7 @@ interface FooterLinkProps {
 function FooterLink({ href, content }: FooterLinkProps) {
   return (
     <a
-      className="text-black font-semibold dark:text-white underline decoration-solid  transition hover:text-sky-500"
+      className="text-black font-semibold dark:text-white underline decoration-solid transition hover:text-sky-500"
       href={href}
       target="_blank"
       rel="noreferrer noopener"

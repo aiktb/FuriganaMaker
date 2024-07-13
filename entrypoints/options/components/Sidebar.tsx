@@ -94,23 +94,23 @@ export default function Sidebar() {
                 ))}
               </div>
               <div>
-                <div>Your tips</div>
+                <div>{t("yourTips")}</div>
                 <div className="mt-2 flex items-center justify-between">
                   <div className="flex gap-4">
                     <div className="flex size-6 items-center justify-center rounded-lg border-2 border-slate-300 dark:border-slate-700 border-solid dark:bg-gray-800">
                       <i className="i-tabler-command size-4 text-gray-400" />
                     </div>
-                    Manage shortcuts
+                    {t("manageShortcuts")}
                   </div>
                   <i className="-rotate-45 i-tabler-arrow-back size-4 dark:text-gray-300 text-slate-800" />
                 </div>
                 {import.meta.env.FIREFOX ? (
                   <Link
-                    className="mt-2 text-sm"
+                    className="mt-2 text-sm text-black dark:text-white underline decoration-solid"
                     to="https://support.mozilla.org/en-US/kb/manage-extension-shortcuts-firefox"
                     target="_blank"
                   >
-                    Firefox Support
+                    {t("sidebarFirefoxSupport")}
                   </Link>
                 ) : (
                   <p className="mt-2 select-all text-sm">chrome://extensions/shortcuts</p>
@@ -123,7 +123,7 @@ export default function Sidebar() {
               className="flex items-center justify-center gap-2 rounded-lg border border-slate-300 border-solid bg-slate-50 p-2 text-zinc-800 dark:border-neutral-700 dark:hover:border-neutral-600 dark:bg-gray-800 dark:hover:bg-gray-700 hover:bg-gray-100 dark:text-slate-300"
             >
               <i className="i-tabler-heart size-6 text-pink-500" />
-              Sponsor developer
+              {t("sidebarSponsor")}
             </Link>
           </div>
         </nav>
