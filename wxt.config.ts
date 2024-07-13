@@ -23,7 +23,7 @@ export type Command = keyof typeof commands;
 // See https://wxt.dev/api/config.html
 export default defineConfig({
   manifest: {
-    version: "1.6.1",
+    version: "2.0.0",
     name: "__MSG_extName__",
     description: "__MSG_extDescription__",
     permissions: ["contextMenus", "storage"],
