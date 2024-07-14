@@ -15,7 +15,6 @@
     "@remix-run/cloudflare": "^2.9.2",
     "@remix-run/cloudflare-pages": "^2.9.2",
     "@remix-run/react": "^2.9.2",
-    "detect-browser": "^5.3.0",
     "isbot": "^5.1.9",
     "react": "18.3.1",
     "react-dom": "18.3.1"

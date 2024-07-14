@@ -104,17 +104,7 @@ export default function Sidebar() {
                   </div>
                   <i className="-rotate-45 i-tabler-arrow-back size-4 dark:text-gray-300 text-slate-800" />
                 </div>
-                {import.meta.env.FIREFOX ? (
-                  <Link
-                    className="flex justify-center mt-2 text-sm text-black dark:text-white underline decoration-solid"
-                    to="https://support.mozilla.org/en-US/kb/manage-extension-shortcuts-firefox"
-                    target="_blank"
-                  >
-                    {t("sidebarFirefoxSupport")}
-                  </Link>
-                ) : (
-                  <p className="mt-2 select-all text-sm">chrome://extensions/shortcuts</p>
-                )}
+                <p className="mt-2 select-all text-sm">chrome://extensions/shortcuts</p>
               </div>
             </div>
             <Link
