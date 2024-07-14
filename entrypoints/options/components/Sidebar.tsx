@@ -106,7 +106,7 @@ export default function Sidebar() {
                 </div>
                 {import.meta.env.FIREFOX ? (
                   <Link
-                    className="mt-2 text-sm text-black dark:text-white underline decoration-solid"
+                    className="flex justify-center mt-2 text-sm text-black dark:text-white underline decoration-solid"
                     to="https://support.mozilla.org/en-US/kb/manage-extension-shortcuts-firefox"
                     target="_blank"
                   >
