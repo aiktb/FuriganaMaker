@@ -52,9 +52,6 @@ export enum FuriganaType {
 export enum SelectMode {
   Default = "default",
   Original = "original",
-  /* Since Firefox and Chromium have different rendering strategies for ruby tags,
-   this mode cannot be implemented in Firefox using only CSS,
-   so this mode is limited to Chrome/Edge. */
   Parentheses = "parentheses",
 }
 
