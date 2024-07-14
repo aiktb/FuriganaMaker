@@ -1,4 +1,14 @@
-import { ExtEvent, ExtStorage, type StorageChangeEvent } from "./constants";
+import defaultSelectorRules from "@/assets/rules/selector.json";
+import {
+  DisplayMode,
+  ExtEvent,
+  ExtStorage,
+  FuriganaType,
+  type GeneralSettings,
+  SelectMode,
+  type SelectorRule,
+  type StorageChangeEvent,
+} from "./constants";
 
 export const toStorageKey = (event: StorageChangeEvent) => {
   switch (event) {
@@ -26,7 +36,7 @@ export const toStorageKey = (event: StorageChangeEvent) => {
  */
 export const sendMessage = async (id: number, event: ExtEvent) => {
   try {
-    await browser.tabs.sendMessage(id, event);
+    await chrome.tabs.sendMessage(id, event);
   } catch (error) {
     if (
       !(error instanceof Error) ||
@@ -36,3 +46,32 @@ export const sendMessage = async (id: number, event: ExtEvent) => {
     }
   }
 };
+
+export const generalSettings = storage.defineItem<GeneralSettings>("local:generalSettings", {
+  version: 1,
+  defaultValue: {
+    [ExtStorage.AutoMode]: true,
+    [ExtStorage.KanjiFilter]: false,
+    [ExtStorage.DisplayMode]: DisplayMode.Always,
+    [ExtStorage.FuriganaType]: FuriganaType.Hiragana,
+    [ExtStorage.SelectMode]: SelectMode.Default,
+    [ExtStorage.FontSize]: 75,
+    [ExtStorage.FontColor]: "currentColor",
+  },
+});
+
+export async function setGeneralSettings<K extends keyof GeneralSettings>(
+  key: K,
+  value: GeneralSettings[K],
+) {
+  return generalSettings.setValue({ ...(await generalSettings.getValue()), [key]: value });
+}
+
+export async function getGeneralSettings<K extends keyof GeneralSettings>(key: K) {
+  return (await generalSettings.getValue())[key];
+}
+
+export const customRules = storage.defineItem<SelectorRule[]>("local:customRules", {
+  version: 1,
+  defaultValue: defaultSelectorRules,
+});

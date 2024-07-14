@@ -58,7 +58,7 @@ export enum SelectMode {
   Parentheses = "parentheses",
 }
 
-export interface Config {
+export interface GeneralSettings {
   [key: string]: string | number | boolean;
   [ExtStorage.AutoMode]: boolean;
   [ExtStorage.KanjiFilter]: boolean;

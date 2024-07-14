@@ -1,5 +1,4 @@
 import { Dialog, DialogPanel, DialogTitle } from "@headlessui/react";
-import { useState } from "react";
 
 import type { SelectorRule } from "@/commons/constants";
 
@@ -23,17 +22,18 @@ export default function RuleItem({ rule, onChange, onDelete }: RuleItemProps) {
     <>
       <div className="flex flex-col justify-between gap-x-6 py-5 sm:flex-row">
         <div className="flex min-w-0 gap-x-4">
-          <i className="size-12 flex-none text-sky-500 i-tabler-layers-intersect" />
+          <i className="i-tabler-layers-intersect size-12 flex-none text-sky-500" />
           <div className="flex-auto">
             <a
-              className="truncate text-sm font-semibold leading-6 text-sky-500 transition hover:text-sky-700"
+              className="flex-inline items-center w-auto truncate font-semibold text-sm leading-6 transition text-black dark:text-white underline decoration-solid"
               href={encodeURI(`https://${rule.domain}`)}
               target="_blank"
               rel="noopener noreferrer"
             >
               {rule.domain}
+              <i className="i-tabler-arrow-up-right" />
             </a>
-            <p className="w-72 truncate text-xs leading-5 sm:w-96 md:w-[30rem] lg:w-[36rem]">
+            <p className="w-72 truncate text-xs leading-5 lg:w-[36rem] md:w-[30rem] sm:w-96">
               {rule.selector}
             </p>
           </div>
@@ -46,9 +46,9 @@ export default function RuleItem({ rule, onChange, onDelete }: RuleItemProps) {
                 onChange({ ...rule, active: !rule.active });
               }}
             >
-              <p className="text-sm leading-5 transition hover:text-slate-950 dark:hover:text-white">
+              <div className="text-sm leading-5 transition dark:hover:text-white hover:text-slate-950">
                 {rule.active ? t("markActive") : t("markInactive")}
-              </p>
+              </div>
               <span className="relative flex size-2">
                 <span
                   className={`absolute inline-flex h-full w-full animate-ping rounded-full opacity-75 ${
@@ -64,21 +64,21 @@ export default function RuleItem({ rule, onChange, onDelete }: RuleItemProps) {
             </button>
             <div className="mt-1 flex gap-x-1.5">
               <button
-                className="flex items-center gap-x-1 rounded-md border border-gray-200 px-1 py-0.5 text-sm font-bold text-sky-500 shadow transition-[background-color] hover:bg-transparent/10 dark:border-slate-800 dark:hover:bg-transparent/20"
+                className="flex items-center gap-x-1 rounded-md border border-gray-200 px-1 py-0.5 font-bold text-slate-700 text-sm shadow transition-[background-color] dark:border-slate-700 dark:hover:bg-transparent/20 hover:bg-transparent/10 dark:text-slate-300"
                 onClick={() => {
                   setEditorIsOpen(true);
                 }}
               >
-                <i className="size-4 i-tabler-edit" />
+                <i className="i-tabler-edit size-4 text-sky-500" />
                 {t("btnEdit")}
               </button>
               <button
-                className="flex items-center gap-x-1 rounded-md border border-gray-200 px-1 py-0.5 text-sm font-bold text-sky-500 shadow transition-[background-color] hover:bg-transparent/10 dark:border-slate-800 dark:hover:bg-transparent/20"
+                className="flex items-center gap-x-1 rounded-md border border-gray-200 px-1 py-0.5 font-bold text-slate-700 text-sm shadow transition-[background-color] dark:border-slate-700 dark:hover:bg-transparent/20 hover:bg-transparent/10 dark:text-slate-300"
                 onClick={() => {
                   setDeleteDialogIsOpen(true);
                 }}
               >
-                <i className="size-4 i-tabler-trash" />
+                <i className="i-tabler-trash size-4 text-sky-500" />
                 {t("btnDelete")}
               </button>
             </div>
@@ -89,7 +89,7 @@ export default function RuleItem({ rule, onChange, onDelete }: RuleItemProps) {
       <PopupTransition show={editorDialogIsOpen}>
         <Dialog
           as="div"
-          className="fixed left-1/2 top-1/2 z-20 -translate-x-1/2 -translate-y-1/2"
+          className="-translate-x-1/2 -translate-y-1/2 fixed top-1/2 left-1/2 z-20"
           onClose={() => {
             setEditorIsOpen(false);
           }}
@@ -110,7 +110,7 @@ export default function RuleItem({ rule, onChange, onDelete }: RuleItemProps) {
       <PopupTransition show={deleteDialogIsOpen}>
         <Dialog
           as="div"
-          className="fixed left-1/2 top-1/2 z-20 -translate-x-1/2 -translate-y-1/2"
+          className="-translate-x-1/2 -translate-y-1/2 fixed top-1/2 left-1/2 z-20"
           onClose={() => {
             setDeleteDialogIsOpen(false);
           }}
@@ -118,16 +118,16 @@ export default function RuleItem({ rule, onChange, onDelete }: RuleItemProps) {
           <DialogPanel className="w-full max-w-md transform overflow-hidden rounded-2xl bg-white p-6 text-left align-middle shadow-xl transition-all dark:bg-slate-900">
             <DialogTitle
               as="h3"
-              className="text-lg font-medium leading-6 text-gray-900 dark:text-white"
+              className="font-medium text-gray-900 text-lg leading-6 dark:text-white"
             >
               {t("titleWarning")}
             </DialogTitle>
             <div className="mt-2">
-              <p className="text-sm text-gray-500 dark:text-gray-400">{t("msgDeleteRule")}</p>
+              <p className="text-gray-500 text-sm dark:text-gray-400">{t("msgDeleteRule")}</p>
             </div>
             <div className="mt-4 flex gap-2.5">
               <button
-                className="inline-flex justify-center rounded-md border border-transparent bg-red-100 px-4 py-2 text-sm font-medium text-slate-900 transition hover:bg-red-200 focus:outline-none focus-visible:ring-2 focus-visible:ring-red-500 focus-visible:ring-offset-2 dark:bg-red-800 dark:text-slate-200 dark:hover:bg-red-900"
+                className="inline-flex justify-center rounded-md border border-transparent bg-red-100 px-4 py-2 font-medium text-slate-900 text-sm transition dark:bg-red-800 dark:hover:bg-red-900 hover:bg-red-200 dark:text-slate-200 focus:outline-none focus-visible:ring-2 focus-visible:ring-red-500 focus-visible:ring-offset-2"
                 onClick={() => {
                   onDelete(rule);
                   setDeleteDialogIsOpen(false);
@@ -136,7 +136,7 @@ export default function RuleItem({ rule, onChange, onDelete }: RuleItemProps) {
                 {t("btnDelete")}
               </button>
               <button
-                className="inline-flex justify-center rounded-md border border-transparent bg-blue-100 px-4 py-2 text-sm font-medium text-blue-900 transition hover:bg-blue-200 focus:outline-none focus-visible:ring-2 focus-visible:ring-blue-500 focus-visible:ring-offset-2 dark:bg-slate-700 dark:text-slate-200 dark:hover:bg-slate-800"
+                className="inline-flex justify-center rounded-md border border-transparent bg-blue-100 px-4 py-2 font-medium text-blue-900 text-sm transition dark:bg-slate-700 dark:hover:bg-slate-800 hover:bg-blue-200 dark:text-slate-200 focus:outline-none focus-visible:ring-2 focus-visible:ring-blue-500 focus-visible:ring-offset-2"
                 onClick={() => {
                   setDeleteDialogIsOpen(false);
                 }}

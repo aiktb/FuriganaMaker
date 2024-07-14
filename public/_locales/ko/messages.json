@@ -16,5 +16,16 @@
   },
   "shortcutToggleFuriganaDisplay": {
     "message": "모든 페이지에서 후리가나 표시 모드 전환"
+  },
+  "extTitleSuffix": {
+    "message": "사용자 규칙 활성화"
+  },
+  "contentScriptWarning": {
+    "message": "경고(Furigana Maker): 이 페이지는 너무 큽니다($htmlSize$KB), 자동 모드가 비활성화됩니다.",
+    "placeholders": {
+      "htmlSize": {
+        "content": "$1"
+      }
+    }
   }
 }

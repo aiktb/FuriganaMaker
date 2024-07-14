@@ -52,16 +52,16 @@ export function Layout({ children }: { children: React.ReactNode }) {
         <Meta />
         <Links />
       </head>
-      <body className="font-sans text-base min-h-screen text-white flex flex-col">
+      <body className="flex min-h-screen flex-col font-sans text-base text-white">
         <div className="flex flex-col justify-between">
           <LinksContext.Provider value={links}>
             <Header />
-            <main className="flex-1 relative overflow-hidden">
-              <div className="absolute inset-0 -z-10" aria-hidden="true">
+            <main className="relative flex-1 overflow-hidden">
+              <div className="-z-10 absolute inset-0" aria-hidden="true">
                 {backgroundAnimeGroup.map((className) => (
                   <div
                     key={className}
-                    className={`${className} absolute block size-5 bg-white/20 animate-floating -bottom-40`}
+                    className={`${className} -bottom-40 absolute block size-5 animate-floating bg-white/20`}
                   />
                 ))}
               </div>

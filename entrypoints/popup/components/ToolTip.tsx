@@ -10,7 +10,6 @@ import {
   useRole,
 } from "@floating-ui/react";
 import { Transition } from "@headlessui/react";
-import { useRef, useState } from "react";
 
 interface ToolTipProps {
   tip: string;
@@ -69,7 +68,7 @@ export default function ToolTip({ tip, children }: ToolTipProps) {
           ref={refs.setFloating}
           style={floatingStyles}
           {...getFloatingProps()}
-          className="text-slate-20 z-50 inline-flex rounded bg-slate-900 px-2 text-white dark:bg-slate-200  dark:text-slate-800"
+          className="z-50 inline-flex rounded bg-slate-900 px-2 text-slate-20 text-white dark:bg-slate-200 dark:text-slate-800"
         >
           <FloatingArrow
             ref={arrowRef}

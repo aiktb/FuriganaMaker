@@ -3,14 +3,14 @@ import { Suspense, use, useReducer } from "react";
 import { useTranslation } from "react-i18next";
 
 import {
-  type Config,
   DisplayMode,
   ExtEvent,
   ExtStorage,
   FuriganaType,
+  type GeneralSettings,
   SelectMode,
 } from "@/commons/constants";
-import { sendMessage, toStorageKey } from "@/commons/utils";
+import { generalSettings, sendMessage, setGeneralSettings, toStorageKey } from "@/commons/utils";
 
 import ColorPickerIcon from "@/assets/icons/ColorPicker.svg?react";
 import CursorOutlineIcon from "@/assets/icons/CursorDefault.svg?react";
@@ -34,18 +34,6 @@ import RangeSlider from "./components/RangeSlider";
 import Select from "./components/Select";
 import SharedCard from "./components/SharedCard";
 
-const initializeConfig = async () => {
-  return {
-    [ExtStorage.AutoMode]: await storage.getItem(`local:${ExtStorage.AutoMode}`),
-    [ExtStorage.KanjiFilter]: await storage.getItem(`local:${ExtStorage.KanjiFilter}`),
-    [ExtStorage.DisplayMode]: await storage.getItem(`local:${ExtStorage.DisplayMode}`),
-    [ExtStorage.FuriganaType]: await storage.getItem(`local:${ExtStorage.FuriganaType}`),
-    [ExtStorage.SelectMode]: await storage.getItem(`local:${ExtStorage.SelectMode}`),
-    [ExtStorage.FontSize]: await storage.getItem(`local:${ExtStorage.FontSize}`),
-    [ExtStorage.FontColor]: await storage.getItem(`local:${ExtStorage.FontColor}`),
-  } as Config;
-};
-
 export default function Popup() {
   if (
     localStorage.theme === "dark" ||
@@ -57,7 +45,7 @@ export default function Popup() {
   }
 
   return (
-    <Suspense fallback={<Logo width="192" height="192" />}>
+    <Suspense fallback={<Logo className="size-48" />}>
       <Transition
         as="div"
         appear
@@ -69,7 +57,7 @@ export default function Popup() {
         leaveFrom="opacity-100"
         leaveTo="opacity-0"
       >
-        <Menu configPromise={initializeConfig()} />
+        <Menu configPromise={generalSettings.getValue()} />
       </Transition>
     </Suspense>
   );
@@ -77,7 +65,7 @@ export default function Popup() {
 
 async function addFurigana() {
   // `chrome.tabs.query` is not compatible with firefox.
-  const [tab] = await browser.tabs.query({ active: true, currentWindow: true });
+  const [tab] = await chrome.tabs.query({ active: true, currentWindow: true });
   await sendMessage(tab!.id!, ExtEvent.AddFurigana);
 }
 
@@ -90,9 +78,9 @@ type ACTIONTYPE =
   | { type: ExtEvent.AdjustFontSize; payload: number }
   | { type: ExtEvent.AdjustFontColor; payload: string };
 
-function reducer(state: Config, action: ACTIONTYPE) {
-  browser.tabs.query({ active: true, currentWindow: true }).then(async (tabs) => {
-    await storage.setItem(`local:${toStorageKey(action.type)}`, action.payload);
+function reducer(state: GeneralSettings, action: ACTIONTYPE) {
+  chrome.tabs.query({ active: true, currentWindow: true }).then(async (tabs) => {
+    await setGeneralSettings(toStorageKey(action.type), action.payload);
     const tabId = tabs[0]!.id!;
     await sendMessage(tabId, action.type);
   });
@@ -129,7 +117,7 @@ function MenuItem({ children, icon }: MenuItemProps) {
   );
 }
 
-function Menu({ configPromise }: { configPromise: Promise<Config> }) {
+function Menu({ configPromise }: { configPromise: Promise<GeneralSettings> }) {
   const [state, dispatch] = useReducer(reducer, use(configPromise));
   const { t } = useTranslation();
 
@@ -158,7 +146,7 @@ function Menu({ configPromise }: { configPromise: Promise<Config> }) {
   }
 
   return (
-    <menu className="space-y-2 border-r-2 border-sky-500 pr-1">
+    <menu className="space-y-2 border-sky-500 border-r-2 pr-1">
       <MenuItem icon={<CursorOutlineIcon />}>
         <Button tip={t("tipEscShortcut")} text={t("btnAddFurigana")} onClick={addFurigana} />
       </MenuItem>

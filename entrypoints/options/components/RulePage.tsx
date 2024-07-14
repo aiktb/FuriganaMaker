@@ -1,17 +1,18 @@
 import { Dialog, DialogPanel, DialogTitle, Transition } from "@headlessui/react";
 import { saveAs } from "file-saver";
-import { use, useEffect, useState } from "react";
+import { use } from "react";
 import { z } from "zod";
 
-import { ExtStorage, type SelectorRule } from "@/commons/constants";
+import type { SelectorRule } from "@/commons/constants";
 
+import { customRules } from "@/commons/utils";
 import { useTranslation } from "react-i18next";
 import NotFoundRule from "./NotFoundRule";
 import PopupTransition from "./PopupTransition";
 import RuleEditor from "./RuleEditor";
 import RuleItem from "./RuleItem";
 
-export default function Main({ rulesPromise }: { rulesPromise: Promise<SelectorRule[]> }) {
+export default function RulePage({ rulesPromise }: { rulesPromise: Promise<SelectorRule[]> }) {
   const [rules, setRules] = useState(use(rulesPromise));
   const [createRuleDialogIsOpen, setCreateRuleDialogIsOpen] = useState(false);
   const [importDialogIsOpen, setImportDialogIsOpen] = useState(false);
@@ -19,7 +20,7 @@ export default function Main({ rulesPromise }: { rulesPromise: Promise<SelectorR
   const [importFailedMessage, setImportFailedMessage] = useState("");
 
   useEffect(() => {
-    storage.setItem(`local:${ExtStorage.SelectorRules}`, rules);
+    customRules.setValue(rules);
   }, [rules]);
 
   function createNewRule(rule: SelectorRule) {
@@ -66,7 +67,7 @@ export default function Main({ rulesPromise }: { rulesPromise: Promise<SelectorR
         const importedRules = JSON.parse(reader.result as string) as SelectorRule[];
         const mergedRules = mergeSameDomainRules(importedRules);
 
-        await storage.setItem(`local:${ExtStorage.SelectorRules}`, mergedRules);
+        await customRules.setValue(mergedRules);
         setRules(mergedRules);
       };
       reader.readAsText(file);
@@ -104,39 +105,40 @@ export default function Main({ rulesPromise }: { rulesPromise: Promise<SelectorR
 
   return (
     <>
-      <main className="flex grow flex-col justify-start">
-        <div className="mx-auto my-2 flex max-w-5xl flex-col items-center justify-between gap-1.5 px-5 text-base font-bold text-sky-500 sm:px-6 md:flex-row md:justify-between lg:max-w-7xl lg:px-8">
+      <div className="flex grow flex-col justify-start">
+        <div className="mx-auto my-2 flex max-w-5xl flex-col items-center justify-between gap-1.5 px-5 font-bold text-base text-slate-700 lg:max-w-7xl md:flex-row md:justify-between lg:px-8 sm:px-6 dark:text-slate-300">
           <button
-            className="flex items-center gap-x-1.5 rounded-md border border-gray-200 px-1.5 py-0.5 shadow-md transition-[background-color] hover:bg-transparent/10 dark:border-slate-800 dark:hover:bg-transparent/20"
+            className="flex items-center gap-x-1.5 rounded-md border border-gray-200 px-1.5 py-0.5 shadow-md transition-[background-color] dark:border-slate-700 dark:hover:bg-transparent/20 hover:bg-transparent/10"
             onClick={() => {
               setCreateRuleDialogIsOpen(true);
             }}
           >
-            <i className="size-5 i-tabler-code-plus" />
+            <i className="i-tabler-code-plus size-5 text-sky-500" />
             {t("btnAddRule")}
           </button>
           <div className="flex gap-x-1.5">
             <button
               className={`${
                 rules.length === 0 ? "cursor-not-allowed" : ""
-              } flex items-center gap-x-1.5 rounded-md border border-gray-200 px-1.5 py-0.5 shadow-md transition-[background-color] hover:bg-transparent/10 dark:border-slate-800 dark:hover:bg-transparent/20`}
+              } flex items-center gap-x-1.5 rounded-md border border-gray-200 px-1.5 py-0.5 shadow-md transition-[background-color] dark:border-slate-700 dark:hover:bg-transparent/20 hover:bg-transparent/10`}
               onClick={exportConfig}
+              disabled={rules.length === 0}
             >
-              <i className="size-5 i-tabler-file-export" />
+              <i className="i-tabler-file-export size-5 text-sky-500" />
               {t("btnExportConfig")}
             </button>
             <button
-              className="flex cursor-pointer items-center gap-x-1.5 rounded-md border border-gray-200 px-1.5 py-0.5 shadow-md transition-[background-color] hover:bg-transparent/10 dark:border-slate-800 dark:hover:bg-transparent/20"
+              className="flex cursor-pointer items-center gap-x-1.5 rounded-md border border-gray-200 px-1.5 py-0.5 shadow-md transition-[background-color] dark:border-slate-700 dark:hover:bg-transparent/20 hover:bg-transparent/10"
               onClick={() => {
                 setImportDialogIsOpen(true);
               }}
             >
-              <i className="size-5 i-tabler-file-import" />
+              <i className="i-tabler-file-import size-5 text-sky-500" />
               {t("btnImportConfig")}
             </button>
           </div>
         </div>
-        <div className="mx-auto flex max-w-3xl items-center justify-between px-4 sm:px-6 lg:max-w-7xl lg:px-8">
+        <div className="mx-auto flex max-w-3xl items-center justify-between px-4 lg:max-w-7xl lg:px-8 sm:px-6">
           {rules.length === 0 ? (
             <NotFoundRule />
           ) : (
@@ -176,12 +178,12 @@ export default function Main({ rulesPromise }: { rulesPromise: Promise<SelectorR
             </ul>
           )}
         </div>
-      </main>
+      </div>
 
       <PopupTransition show={createRuleDialogIsOpen}>
         <Dialog
           as="div"
-          className="fixed left-1/2 top-1/2 z-20 -translate-x-1/2 -translate-y-1/2"
+          className="-translate-x-1/2 -translate-y-1/2 fixed top-1/2 left-1/2 z-20"
           onClose={() => {
             setCreateRuleDialogIsOpen(false);
           }}
@@ -195,7 +197,7 @@ export default function Main({ rulesPromise }: { rulesPromise: Promise<SelectorR
       <PopupTransition show={importDialogIsOpen}>
         <Dialog
           as="div"
-          className="fixed left-1/2 top-1/2 z-20 -translate-x-1/2 -translate-y-1/2"
+          className="-translate-x-1/2 -translate-y-1/2 fixed top-1/2 left-1/2 z-20"
           onClose={() => {
             setImportDialogIsOpen(false);
           }}
@@ -203,16 +205,16 @@ export default function Main({ rulesPromise }: { rulesPromise: Promise<SelectorR
           <DialogPanel className="w-full max-w-md transform overflow-hidden rounded-2xl bg-white p-6 text-left align-middle shadow-xl transition-all dark:bg-slate-900">
             <DialogTitle
               as="h3"
-              className="text-lg font-medium leading-6 text-gray-900 dark:text-white"
+              className="font-medium text-gray-900 text-lg leading-6 dark:text-white"
             >
               {t("titleWarning")}
             </DialogTitle>
             <div className="mt-2">
-              <p className="text-sm text-gray-500 dark:text-gray-400">{t("msgImportConfig")}</p>
+              <p className="text-gray-500 text-sm dark:text-gray-400">{t("msgImportConfig")}</p>
             </div>
             <div className="mt-4 flex gap-2.5">
               <button
-                className="inline-flex justify-center rounded-md border border-transparent bg-red-100 px-4 py-2 text-sm font-medium text-slate-900 transition hover:bg-red-200 focus:outline-none focus-visible:ring-2 focus-visible:ring-red-500 focus-visible:ring-offset-2 dark:bg-red-800 dark:text-slate-200 dark:hover:bg-red-900"
+                className="inline-flex justify-center rounded-md border border-transparent bg-red-100 px-4 py-2 font-medium text-slate-900 text-sm transition dark:bg-red-800 dark:hover:bg-red-900 hover:bg-red-200 dark:text-slate-200 focus:outline-none focus-visible:ring-2 focus-visible:ring-red-500 focus-visible:ring-offset-2"
                 onClick={() => {
                   importConfig();
                   setImportDialogIsOpen(false);
@@ -221,7 +223,7 @@ export default function Main({ rulesPromise }: { rulesPromise: Promise<SelectorR
                 {t("btnConfirmConfig")}
               </button>
               <button
-                className="inline-flex justify-center rounded-md border border-transparent bg-blue-100 px-4 py-2 text-sm font-medium text-blue-900 transition hover:bg-blue-200 focus:outline-none focus-visible:ring-2 focus-visible:ring-blue-500 focus-visible:ring-offset-2 dark:bg-slate-700 dark:text-slate-200 dark:hover:bg-slate-800"
+                className="inline-flex justify-center rounded-md border border-transparent bg-blue-100 px-4 py-2 font-medium text-blue-900 text-sm transition dark:bg-slate-700 dark:hover:bg-slate-800 hover:bg-blue-200 dark:text-slate-200 focus:outline-none focus-visible:ring-2 focus-visible:ring-blue-500 focus-visible:ring-offset-2"
                 onClick={() => {
                   setImportDialogIsOpen(false);
                 }}
@@ -236,7 +238,7 @@ export default function Main({ rulesPromise }: { rulesPromise: Promise<SelectorR
       <PopupTransition show={importFailedDialogIsOpen}>
         <Dialog
           as="div"
-          className="fixed left-1/2 top-1/2 z-20 min-w-80 -translate-x-1/2 -translate-y-1/2"
+          className="-translate-x-1/2 -translate-y-1/2 fixed top-1/2 left-1/2 z-20 min-w-80"
           onClose={() => {
             setImportFailedDialogIsOpen(false);
           }}
@@ -244,18 +246,18 @@ export default function Main({ rulesPromise }: { rulesPromise: Promise<SelectorR
           <DialogPanel className="w-full min-w-[20rem] max-w-md transform overflow-hidden rounded-2xl bg-white p-6 text-left align-middle shadow-xl transition-all dark:bg-slate-900">
             <DialogTitle
               as="h3"
-              className="text-lg font-medium leading-6 text-gray-900 dark:text-white"
+              className="font-medium text-gray-900 text-lg leading-6 dark:text-white"
             >
               {t("warningInvalid")}
             </DialogTitle>
             <div className="mt-2">
-              <p className="whitespace-pre-wrap text-sm text-gray-500 dark:text-gray-400">
+              <p className="whitespace-pre-wrap text-gray-500 text-sm dark:text-gray-400">
                 {importFailedMessage}
               </p>
             </div>
             <div className="mt-4">
               <button
-                className="inline-flex justify-center rounded-md border border-transparent bg-blue-100 px-4 py-2 text-sm font-medium text-blue-900 transition hover:bg-blue-200 focus:outline-none focus-visible:ring-2 focus-visible:ring-blue-500 focus-visible:ring-offset-2 dark:bg-slate-700 dark:text-slate-200 dark:hover:bg-slate-800"
+                className="inline-flex justify-center rounded-md border border-transparent bg-blue-100 px-4 py-2 font-medium text-blue-900 text-sm transition dark:bg-slate-700 dark:hover:bg-slate-800 hover:bg-blue-200 dark:text-slate-200 focus:outline-none focus-visible:ring-2 focus-visible:ring-blue-500 focus-visible:ring-offset-2"
                 onClick={() => {
                   setImportFailedDialogIsOpen(false);
                 }}

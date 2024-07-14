@@ -5,6 +5,7 @@
   "btnImportConfig": "설정 가져오기",
   "footerCopyright": "저작권 © {{yearsRange}} <author/>.",
   "footerLicense": "<license/> 라이센스에 따라 배포됨.",
+  "footerBuiltWith": "<tool/> 으로 제작되었습니다❤️.",
   "srGithub": "GitHub 저장소",
   "srToggleTheme": "테마 모드 전환",
   "titleWarning": "경고!",
@@ -31,5 +32,17 @@
   "btnDelete": "삭제",
   "msgDeleteRule": "삭제된 규칙은 복구할 수 없습니다. 계속 하시겠습니까?",
   "markActive": "활성화됨",
-  "markInactive": "비활성화됨"
+  "markInactive": "비활성화됨",
+  "navEditRules": "규칙 편집기",
+  "navChangelog": "변경 로그",
+  "navAbout": "정보",
+  "navOfficialSite": "공식 사이트",
+  "navManageShortcuts": "단축키 관리",
+  "sidebarSponsor": "개발자 후원",
+  "sidebarFirefoxSupport": "Firefox 지원",
+  "yourTips": "당신의 팁",
+  "manageShortcuts": "단축키 관리",
+  "errorPageTitle": "이런!",
+  "errorPageGoBack": "홈페이지로 돌아가기",
+  "errorPageTip": "죄송합니다, 예기치 않은 오류가 발생했습니다."
 }

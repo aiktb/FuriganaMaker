@@ -18,9 +18,9 @@ interface SelectProps {
 export default function Select({ selected, options, tip, onChange }: SelectProps) {
   function ListBoxButton() {
     return (
-      <ListboxButton className="group peer flex w-full items-center justify-between rounded px-2 capitalize transition-all hover:bg-gray-200 focus-visible:bg-gray-200 ui-open:bg-gray-200 dark:hover:bg-slate-700 dark:focus-visible:bg-slate-700 dark:ui-open:bg-slate-700">
+      <ListboxButton className="group peer flex w-full items-center justify-between rounded px-2 capitalize transition-all dark:focus-visible:bg-slate-700 dark:hover:bg-slate-700 dark:ui-open:bg-slate-700 focus-visible:bg-gray-200 hover:bg-gray-200 ui-open:bg-gray-200">
         {options.find((option) => option.value === selected)?.label}
-        <i className="hidden group-hover:flex group-focus-visible:flex ui-open:flex  i-tabler-chevron-down" />
+        <i className="i-tabler-chevron-down hidden group-focus-visible:flex group-hover:flex ui-open:flex" />
       </ListboxButton>
     );
   }
@@ -46,15 +46,13 @@ export default function Select({ selected, options, tip, onChange }: SelectProps
           <ListboxOptions
             as="div"
             anchor="bottom"
-            className="w-[var(--button-width)] z-40 mt-1 flex flex-col rounded-md border-2 border-gray-300 bg-white py-1 shadow dark:border-slate-700 dark:bg-slate-900"
+            className="z-40 mt-1 flex w-[var(--button-width)] flex-col rounded-md border-2 border-gray-300 bg-white py-1 shadow dark:border-slate-700 dark:bg-slate-900"
           >
             {options.map((item) => (
               <ListboxOption key={item.value} value={item.value}>
                 {({ focus, selected }) => (
                   <li
-                    className={`${focus ? "text-sky-500" : "text-current"}
-                    ${selected ? "text-sky-500" : ""}
-                    box-content flex cursor-pointer items-center justify-between px-[6px] capitalize transition-all hover:bg-gray-200 focus:z-10 focus:bg-gray-200 ui-active:bg-gray-200 dark:hover:bg-slate-700 dark:focus:bg-slate-700 dark:ui-active:bg-slate-700`}
+                    className={`${focus || selected ? "text-sky-500" : "text-current"} box-content flex cursor-pointer items-center justify-between px-[6px] capitalize transition-all focus:z-10 dark:focus:bg-slate-700 dark:hover:bg-slate-700 dark:ui-active:bg-slate-700 focus:bg-gray-200 hover:bg-gray-200 ui-active:bg-gray-200`}
                   >
                     {item.label}
                     {selected && <i className="i-tabler-check" />}

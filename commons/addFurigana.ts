@@ -1,9 +1,10 @@
+import { sendMessage } from "@/commons/message";
 import { toHiragana, toRomaji } from "wanakana";
-import { sendMessage } from "webext-bridge/content-script";
 
 import type { KanjiMark } from "@/entrypoints/background/listeners/onGetKanjiMarksMessage";
 
-import { ExtStorage, FURIGANA_CLASS, FuriganaType } from "./constants";
+import { ExtEvent, ExtStorage, FURIGANA_CLASS, FuriganaType } from "./constants";
+import { getGeneralSettings } from "./utils";
 /**
  * Append ruby tag to all text nodes of a batch of elements.
  * @remarks
@@ -12,9 +13,12 @@ import { ExtStorage, FURIGANA_CLASS, FuriganaType } from "./constants";
  * Ruby tag is "\<ruby>original\<rp>(\</rp>\<rt>reading\</rt>\<rp>)\</rp>\</ruby>".
  **/
 export async function addFurigana(...elements: Element[]) {
+  // Add an active flag (little aqua dot) to the image.
+  chrome.runtime.sendMessage(ExtEvent.MarkActiveTab);
+
   const japaneseTexts = [...elements.flatMap(collectTexts)];
 
-  const furiganaType = await storage.getItem<FuriganaType>(`local:${ExtStorage.FuriganaType}`);
+  const furiganaType = await getGeneralSettings(ExtStorage.FuriganaType);
   if (!furiganaType) {
     return;
   }
@@ -52,7 +56,7 @@ const tokenize = async (text: string) => {
   if (!hasKanji) {
     return [];
   }
-  const { tokens } = await sendMessage("getKanjiMarks", { text }, "background");
+  const { tokens } = await sendMessage("getKanjiMarks", { text });
   return tokens;
 };
 

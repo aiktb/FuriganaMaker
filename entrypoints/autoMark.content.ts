@@ -1,17 +1,16 @@
+import { sendMessage } from "@/commons/message";
 import type { CSSProperties } from "react";
-import { sendMessage } from "webext-bridge/content-script";
 
 import { addFurigana } from "@/commons/addFurigana";
-import { ExtEvent, ExtStorage } from "@/commons/constants";
-
-import { initI18n } from "@/commons/i18n";
+import { ExtStorage } from "@/commons/constants";
+import { getGeneralSettings } from "@/commons/utils";
 
 export default defineContentScript({
   matches: ["https://*/*"],
   runAt: "document_idle",
 
   async main() {
-    const autoModeIsEnabled = await storage.getItem(`local:${ExtStorage.AutoMode}`);
+    const autoModeIsEnabled = await getGeneralSettings(ExtStorage.AutoMode);
     if (!autoModeIsEnabled) {
       /**
        * If the user does not enable the extension, the extension will not attempt to add furigana to the page.
@@ -20,18 +19,8 @@ export default defineContentScript({
       return;
     }
 
-    const { selector } = await sendMessage(
-      "getSelector",
-      { domain: location.hostname },
-      "background",
-    );
-
-    if (!selector) {
-      return;
-    }
-
-    // Add an active flag (little green dot) to the image.
-    browser.runtime.sendMessage(ExtEvent.MarkActiveTab);
+    const customRule = await sendMessage("getSelector", { domain: location.hostname });
+    const selector = customRule.selector || "[lang='ja'], [lang='ja-JP']";
 
     // Reflow on a huge page causes severe page freezes and even the browser becomes unresponsive. (issue#16)
     const encoder = new TextEncoder();
@@ -60,10 +49,7 @@ export default defineContentScript({
       icon.textContent = "⚠";
       const text = document.createElement("span");
 
-      const { t } = await initI18n("background");
-      text.textContent = t("warning", {
-        htmlSize: htmlSize.toFixed(2),
-      });
+      text.textContent = chrome.i18n.getMessage("contentScriptWarning", htmlSize.toFixed(2));
       warning.appendChild(icon);
       warning.appendChild(text);
       document.body.appendChild(warning);

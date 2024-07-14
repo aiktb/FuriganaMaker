@@ -4,13 +4,13 @@ export default function NotFoundRule() {
   const { t } = useTranslation();
 
   return (
-    <div className="flex flex-col items-center px-6 pb-24 pt-16 text-center">
-      <i className="size-20 text-sky-500 i-fluent-location-not-found-24-regular" />
-      <h1 className="space-x-[2px] pt-3 text-xl font-bold leading-5 text-sky-500">
+    <div className="flex flex-col items-center px-6 pt-16 pb-24 text-center">
+      <i className="i-tabler-mist-off size-20 text-sky-500" />
+      <h1 className="space-x-[2px] pt-3 font-bold text-sky-500 text-xl leading-5">
         {t("titleNotFound")}
       </h1>
-      <div className="mx-auto mb-[18px] mt-6 h-[1px] w-16 bg-sky-500" />
-      <p className="mx-auto my-0 max-w-[256px] text-base font-[500]">{t("msgNotFound")}</p>
+      <div className="mx-auto mt-6 mb-[18px] h-[1px] w-16 bg-sky-500" />
+      <p className="mx-auto my-0 max-w-[256px] font-[500] text-base">{t("msgNotFound")}</p>
     </div>
   );
 }

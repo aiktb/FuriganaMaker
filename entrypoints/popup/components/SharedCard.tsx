@@ -23,17 +23,17 @@ export default function SharedCard() {
     {
       ShareButton: TwitterShareButton,
       media: "Twitter",
-      Icon: <i className="text-xl i-fa6-brands-square-x-twitter" />,
+      Icon: <i className="i-fa6-brands-square-x-twitter text-xl" />,
     },
     {
       ShareButton: FacebookShareButton,
       media: "Facebook",
-      Icon: <i className="text-xl i-fa6-brands-square-facebook" />,
+      Icon: <i className="i-fa6-brands-square-facebook text-xl" />,
     },
     {
       ShareButton: WhatsappShareButton,
       media: "WhatsAPP",
-      Icon: <i className="text-xl i-fa6-brands-square-whatsapp" />,
+      Icon: <i className="i-fa6-brands-square-whatsapp text-xl" />,
     },
     {
       ShareButton: TelegramShareButton,
@@ -43,7 +43,7 @@ export default function SharedCard() {
     {
       ShareButton: RedditShareButton,
       media: "Reddit",
-      Icon: <i className="text-xl i-fa6-brands-square-reddit" />,
+      Icon: <i className="i-fa6-brands-square-reddit text-xl" />,
     },
   ];
 
@@ -55,7 +55,7 @@ export default function SharedCard() {
         <ToolTip key={media} tip={t("tipShareOn", { media })}>
           <ShareButton
             resetButtonStyle={false}
-            className="flex size-5 items-center justify-center transition hover:text-sky-500 focus-visible:text-sky-500"
+            className="flex size-5 items-center justify-center transition focus-visible:text-sky-500 hover:text-sky-500"
             url={shareUrl}
           >
             {Icon}

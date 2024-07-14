@@ -18,13 +18,13 @@ export default function Header() {
   };
 
   return (
-    <header className="transition duration-300 w-full select-none">
-      <div className="fixed top-6 left-1/2 transform -translate-x-1/2 z-50">
-        <nav className="flex sm:gap-x-2 lg:gap-x-8 gap-2 backdrop-blur-3xl rounded-full p-2.5 transition ease-in-out backdrop-brightness-75">
+    <header className="w-full select-none transition duration-300">
+      <div className="-translate-x-1/2 fixed top-6 left-1/2 z-50 transform">
+        <nav className="flex gap-2 rounded-full p-2.5 backdrop-blur-3xl backdrop-brightness-75 transition ease-in-out lg:gap-x-8 sm:gap-x-2">
           {navItems.map((item) => (
             <Link
               key={item.text}
-              className={`block px-3.5 sm:px-6 py-1 sm:py-1.5 font-medium rounded-full hover:bg-white/10 text-gray-300 hover:text-gray-100 transition ease-in-out ${
+              className={`block rounded-full px-3.5 py-1 font-medium text-gray-300 transition ease-in-out hover:bg-white/10 sm:px-6 sm:py-1.5 hover:text-gray-100 ${
                 isActive(item.to) ? "bg-white/10" : ""
               }`}
               prefetch="render"
@@ -35,8 +35,8 @@ export default function Header() {
           ))}
         </nav>
       </div>
-      <div className="container fixed mx-auto px-8 pt-8 z-40 -translate-x-1/2 left-1/2">
-        <div className="lg:flex items-center justify-between hidden h-9">
+      <div className="-translate-x-1/2 container fixed left-1/2 z-40 mx-auto px-8 pt-8">
+        <div className="hidden h-9 items-center justify-between lg:flex">
           <Link to="/">
             <img src={Logo} alt="Furigana Maker" className="size-8" />
           </Link>

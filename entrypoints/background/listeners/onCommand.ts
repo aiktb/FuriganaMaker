@@ -1,10 +1,10 @@
 import { DisplayMode, ExtEvent, ExtStorage } from "@/commons/constants";
-import { sendMessage } from "@/commons/utils";
+import { getGeneralSettings, sendMessage, setGeneralSettings } from "@/commons/utils";
 import type { Command } from "@/wxt.config";
 
 export const registerOnCommand = () => {
   // Please see `wxt.config.ts` for a list of shortcut keys.
-  browser.commands.onCommand.addListener(async (command, tab) => {
+  chrome.commands.onCommand.addListener(async (command, tab) => {
     const tabId = tab!.id!;
 
     switch (command as Command) {
@@ -13,26 +13,23 @@ export const registerOnCommand = () => {
         break;
       }
       case "toggleAutoMode": {
-        const key = `local:${ExtStorage.AutoMode}`;
-        const autoMode = await storage.getItem<boolean>(key);
-        await storage.setItem(key, !autoMode);
+        const autoMode = await getGeneralSettings(ExtStorage.AutoMode);
+        await setGeneralSettings(ExtStorage.AutoMode, !autoMode);
         break;
       }
       case "toggleKanjiFilter": {
-        const key = `local:${ExtStorage.KanjiFilter}`;
-        const kanjiFilter = await storage.getItem<boolean>(key);
-        await storage.setItem(key, !kanjiFilter);
+        const kanjiFilter = await getGeneralSettings(ExtStorage.KanjiFilter);
+        await setGeneralSettings(ExtStorage.KanjiFilter, !kanjiFilter);
         await sendMessage(tabId, ExtEvent.ToggleKanjiFilter);
         break;
       }
       case "toggleFuriganaDisplay": {
-        const key = `local:${ExtStorage.DisplayMode}`;
-        const displayMode = await storage.getItem<DisplayMode>(key);
+        const displayMode = await getGeneralSettings(ExtStorage.DisplayMode);
         if (displayMode === DisplayMode.Always) {
-          await storage.setItem(key, DisplayMode.Never);
+          await setGeneralSettings(ExtStorage.DisplayMode, DisplayMode.Never);
           await sendMessage(tabId, ExtEvent.SwitchDisplayMode);
         } else {
-          await storage.setItem(key, DisplayMode.Always);
+          await setGeneralSettings(ExtStorage.DisplayMode, DisplayMode.Always);
           await sendMessage(tabId, ExtEvent.SwitchDisplayMode);
         }
         break;

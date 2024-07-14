@@ -1,46 +1,28 @@
-import { useState } from "react";
 import { useTranslation } from "react-i18next";
+import ThemeSwitch from "./ThemeSwitch";
 
-export default function Header() {
-  const [theme, setTheme] = useState<"light" | "dark">(localStorage.theme ?? "light");
-
-  const toggleTheme = () => {
-    if (document.documentElement.classList.contains("dark")) {
-      document.documentElement.classList.remove("dark");
-      localStorage.theme = "light";
-      setTheme("light");
-    } else {
-      document.documentElement.classList.add("dark");
-      localStorage.theme = "dark";
-      setTheme("dark");
-    }
-  };
-
+interface HeaderProps {
+  icon: string;
+  title: string;
+}
+export default function Header({ icon, title }: HeaderProps) {
   const { t } = useTranslation();
-
   return (
-    <header className="sticky top-0 z-10 h-[72px]">
-      <div className="max-w-8xl mx-auto xl:px-8">
-        <div className="mx-auto flex max-w-3xl items-center justify-between border-b border-gray-200 px-4 py-5 backdrop-blur backdrop-filter dark:border-slate-800 sm:px-6 lg:max-w-7xl lg:px-8">
+    <header className="sticky z-10 top-0 border-gray-200 border-b dark:border-slate-800">
+      <div className="px-4 lg:px-8 sm:px-6">
+        <div className="flex items-center justify-between py-5 backdrop-blur backdrop-filter">
           <div className="flex items-center text-base">
-            <i className="mr-1 size-6 text-sky-500 i-tabler-list-details" />
-            <span className="font-bold text-black dark:text-white">{t("titleEditor")}</span>
+            <i className={`mr-3 size-6 text-sky-500 ${icon}`} />
+            <span className="font-bold text-black dark:text-white">{title}</span>
           </div>
-          <div className="flex gap-x-6">
-            <button onClick={toggleTheme}>
-              <span className="sr-only">{t("srToggleTheme")}</span>
-              {theme === "light" ? (
-                <i className="size-6 text-sky-500 i-tabler-sun" />
-              ) : (
-                <i className="size-6 text-sky-500 i-tabler-moon-stars" />
-              )}
-            </button>
+          <div className="flex gap-x-3">
+            <ThemeSwitch />
             <a
-              className="transition hover:text-black dark:hover:text-white"
+              className="dark:hover:text-white flex justify-center items-center rounded-md size-9 hover:bg-gray-100 dark:hover:bg-slate-800 dark:text-white text-black"
               href="https://github.com/aiktb/FuriganaMaker"
             >
               <span className="sr-only">{t("srGithub")}</span>
-              <i className="size-6 i-fa6-brands-github" />
+              <i className="i-fa6-brands-github size-5" />
             </a>
           </div>
         </div>

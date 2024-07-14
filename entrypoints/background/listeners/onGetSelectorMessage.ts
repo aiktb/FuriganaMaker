@@ -1,9 +1,9 @@
-import { ExtStorage, type SelectorRule } from "@/commons/constants";
-import { onMessage } from "webext-bridge/background";
+import { onMessage } from "@/commons/message";
+import { customRules } from "@/commons/utils";
 
 export const registerOnGetSelector = () => {
   onMessage("getSelector", async ({ data }) => {
-    const allRules = await storage.getItem<SelectorRule[]>(`local:${ExtStorage.SelectorRules}`);
+    const allRules = await customRules.getValue();
 
     const selector =
       allRules

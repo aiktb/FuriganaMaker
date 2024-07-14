@@ -1,9 +1,10 @@
 {
   "extends": "./.wxt/tsconfig.json",
+  "exclude": ["__TESTS__"],
   "compilerOptions": {
     "allowImportingTsExtensions": true,
     "jsx": "react-jsx",
-    "types": ["react/canary", "react-dom/canary", "vite-plugin-svgr/client"],
+    "types": ["react/canary", "react-dom/canary", "vite-plugin-svgr/client", "chrome"],
     /* Linting */
     "allowUnreachableCode": false,
     "allowUnusedLabels": false,

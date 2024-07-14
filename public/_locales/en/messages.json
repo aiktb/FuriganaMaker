@@ -16,5 +16,16 @@
   },
   "shortcutToggleFuriganaDisplay": {
     "message": "Toggle furigana display mode on all pages"
+  },
+  "extTitleSuffix": {
+    "message": "Custom Rule Active"
+  },
+  "contentScriptWarning": {
+    "message": "Warning(Furigana Maker): This page is too large($htmlSize$KB), auto mode is disabled.",
+    "placeholders": {
+      "htmlSize": {
+        "content": "$1"
+      }
+    }
   }
 }

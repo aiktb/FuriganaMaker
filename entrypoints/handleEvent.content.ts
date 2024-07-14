@@ -11,11 +11,12 @@ import {
 } from "@/commons/constants";
 
 import { Selector } from "@/commons/selectElement";
-import { toStorageKey } from "@/commons/utils";
+import { getGeneralSettings, toStorageKey } from "@/commons/utils";
 
 export default defineContentScript({
   matches: ["https://*/*"],
   runAt: "document_start",
+
   async main() {
     // styleHandler uses storage and is called immediately,
     // so it needs to be initialized immediately.
@@ -28,7 +29,7 @@ export default defineContentScript({
     ];
     await Promise.all(styleEvents.map((item) => styleHandler(item)));
 
-    browser.runtime.onMessage.addListener((event: ExtEvent) => {
+    chrome.runtime.onMessage.addListener((event: ExtEvent) => {
       switch (event) {
         case ExtEvent.SwitchFuriganaType:
           switchFuriganaHandler();
@@ -53,7 +54,7 @@ async function styleHandler(type: StyleEvent) {
   const rpSelector = `${rubySelector} > rp`;
   const filteredRtSelector = `${rubySelector}.isFiltered > rt`;
 
-  const value = await storage.getItem(`local:${toStorageKey(type)}`);
+  const value = await getGeneralSettings(toStorageKey(type));
   let css = "";
   switch (type) {
     case ExtEvent.SwitchDisplayMode:
@@ -138,7 +139,7 @@ async function styleHandler(type: StyleEvent) {
 async function switchFuriganaHandler() {
   const rtSelector = `ruby.${FURIGANA_CLASS} > rt`;
   const nodes = document.querySelectorAll(rtSelector);
-  const value = (await storage.getItem(`local:${ExtStorage.FuriganaType}`)) as FuriganaType;
+  const value = await getGeneralSettings(ExtStorage.FuriganaType);
   switch (value) {
     case FuriganaType.Hiragana:
       for (const node of nodes) {

@@ -5,6 +5,7 @@
   "btnImportConfig": "导入配置",
   "footerCopyright": "版权所有 © {{yearsRange}} <author/>。",
   "footerLicense": "根据 <license/> 许可证发布。",
+  "footerBuiltWith": "使用 <tool/> 构建❤️。",
   "srGithub": "GitHub 仓库",
   "srToggleTheme": "切换主题模式",
   "titleWarning": "警告！",
@@ -31,5 +32,17 @@
   "btnDelete": "删除",
   "msgDeleteRule": "删除规则不可撤销，确定要这样做吗？",
   "markActive": "已激活",
-  "markInactive": "未激活"
+  "markInactive": "未激活",
+  "navEditRules": "规则编辑器",
+  "navChangelog": "更新日志",
+  "navAbout": "关于",
+  "navOfficialSite": "官方网站",
+  "navManageShortcuts": "管理快捷键",
+  "sidebarSponsor": "赞助开发者",
+  "sidebarFirefoxSupport": "Firefox 支持",
+  "yourTips": "你的提示",
+  "manageShortcuts": "管理快捷键",
+  "errorPageTitle": "哎呀！",
+  "errorPageGoBack": "返回主页",
+  "errorPageTip": "抱歉，发生了意外错误。"
 }

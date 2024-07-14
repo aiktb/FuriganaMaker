@@ -5,6 +5,7 @@
   "btnImportConfig": "Import Config",
   "footerCopyright": "Copyright © {{yearsRange}} <author/>.",
   "footerLicense": "Released under the <license/> license.",
+  "footerBuiltWith": "Built with <tool/>❤️.",
   "srGithub": "GitHub repository",
   "srToggleTheme": "Toggle Theme Mode",
   "titleWarning": "Warning!",
@@ -31,5 +32,17 @@
   "btnDelete": "Delete",
   "msgDeleteRule": "The deletion rule is not undoable, sure about this?",
   "markActive": "Active",
-  "markInactive": "Inactive"
+  "markInactive": "Inactive",
+  "navEditRules": "Rules editor",
+  "navChangelog": "Changelog",
+  "navAbout": "About",
+  "navOfficialSite": "Official site",
+  "navManageShortcuts": "Manage shortcuts",
+  "sidebarSponsor": "Sponsor developer",
+  "sidebarFirefoxSupport": "Firefox support",
+  "yourTips": "Your tips",
+  "manageShortcuts": "Manage shortcuts",
+  "errorPageTitle": "Oops!",
+  "errorPageGoBack": "Go back to the Home Page",
+  "errorPageTip": "Sorry, an unexpected error has occurred."
 }
