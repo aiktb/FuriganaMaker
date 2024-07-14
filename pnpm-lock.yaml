@@ -104,7 +104,7 @@ importers:
         version: 18.3.0
       '@wxt-dev/module-react':
         specifier: 1.1.0
-        version: 1.1.0(vite@5.3.2(@types/node@20.14.10)(less@4.2.0)(lightningcss@1.25.1)(sass@1.77.6)(terser@5.31.1))(wxt@0.18.10(@types/node@20.14.10)(less@4.2.0)(lightningcss@1.25.1)(rollup@4.18.0)(sass@1.77.6)(terser@5.31.1))
+        version: 1.1.0(vite@5.3.2(@types/node@20.14.10)(less@4.2.0)(lightningcss@1.25.1)(sass@1.77.6)(terser@5.31.1))(wxt@0.18.14(@types/node@20.14.10)(less@4.2.0)(lightningcss@1.25.1)(rollup@4.18.0)(sass@1.77.6)(terser@5.31.1))
       autoprefixer:
         specifier: 10.4.19
         version: 10.4.19(postcss@8.4.38)
@@ -130,8 +130,8 @@ importers:
         specifier: 1.6.0
         version: 1.6.0(@types/node@20.14.10)(less@4.2.0)(lightningcss@1.25.1)(sass@1.77.6)(terser@5.31.1)
       wxt:
-        specifier: 0.18.10
-        version: 0.18.10(@types/node@20.14.10)(less@4.2.0)(lightningcss@1.25.1)(rollup@4.18.0)(sass@1.77.6)(terser@5.31.1)
+        specifier: 0.18.14
+        version: 0.18.14(@types/node@20.14.10)(less@4.2.0)(lightningcss@1.25.1)(rollup@4.18.0)(sass@1.77.6)(terser@5.31.1)
 
   website:
     dependencies:
@@ -371,10 +371,6 @@ packages:
     engines: {node: '>=6.9.0'}
     peerDependencies:
       '@babel/core': ^7.0.0-0
-
-  '@babel/runtime@7.23.9':
-    resolution: {integrity: sha512-0CX6F+BI2s9dkUqr08KFrAIZgNFj75rdBU/DjCyYLIaV/quFjkk6T+EJ2LkZHyZTbEV4L5p97mNkUsHl2wLFAw==}
-    engines: {node: '>=6.9.0'}
 
   '@babel/runtime@7.24.7':
     resolution: {integrity: sha512-UwgBRMjJP+xv857DCngvqXI3Iq6J4v0wXmwc6sapg+zyhbwmQX67LUEFrkK5tbyJ30jGuG3ZvWpBiB9LCy1kWw==}
@@ -2965,8 +2961,8 @@ packages:
     resolution: {integrity: sha512-YyZM99iHrqLKjmt4LJDj58KI+fYyufRLBSYcqycxf//KpBk9FoewoGX0450m9nB44qrZnovzC2oeP5hUibxc/g==}
     engines: {node: '>=18'}
 
-  firefox-profile@4.5.0:
-    resolution: {integrity: sha512-goE2XxbmYVSafvCjcy64/AK3xOr14HCUCD4+TpYWEIMy4nrJfNAacLGzwqKwZhCW0hHI2TYMGH+G/YBvOE8L6g==}
+  firefox-profile@4.6.0:
+    resolution: {integrity: sha512-I9rAm1w8U3CdhgO4EzTJsCvgcbvynZn9lOySkZf78wUdUIQH2w9QOKf3pAX+THt2XMSSR3kJSuM8P7bYux9j8g==}
     hasBin: true
 
   fireworks-js@2.10.7:
@@ -3024,9 +3020,6 @@ packages:
   fs-minipass@3.0.3:
     resolution: {integrity: sha512-XUBA9XClHbnJWSfBzjkm6RvPsyg3sryZt06BEQoXcF7EK/xpGaQYJgQKDJSUH5SGZ76Y7pFx1QBnXz09rU5Fbw==}
     engines: {node: ^14.17.0 || ^16.13.0 || >=18.0.0}
-
-  fs.realpath@1.0.0:
-    resolution: {integrity: sha512-OO0pH2lK6a0hZnAdau5ItzHPI6pUlvI7jMVnxUQRtw4owF2wk8lOSabtGDCTP4Ggrg2MbGnWO9X8K1t4+fGMDw==}
 
   fsevents@2.3.2:
     resolution: {integrity: sha512-xiqMQR4xAeHTuB9uWm+fFRcIOgKBMiOBP+eXiyT7jsgVCq1bkVygt00oASowB7EdtpOHaaPgKt812P9ab+DDKA==}
@@ -3117,10 +3110,6 @@ packages:
 
   glob@6.0.4:
     resolution: {integrity: sha512-MKZeRNyYZAVVVG1oZeLaWie1uweH40m9AZwIwxyPbTSX4hHrVYSzLg0Ro5Z5R7XKkIX+Cc6oD1rqeDJnwsB8/A==}
-    deprecated: Glob versions prior to v9 are no longer supported
-
-  glob@7.2.3:
-    resolution: {integrity: sha512-nFR0zLpU2YCaRxwoCJvL6UvCH2JFyFVIvwTLsIf21AuHlMskA1hhTdk+LlYJtOlYt9v6dvszD2BGRqBL+iQK9Q==}
     deprecated: Glob versions prior to v9 are no longer supported
 
   global-directory@4.0.1:
@@ -4123,6 +4112,10 @@ packages:
     resolution: {integrity: sha512-KqWh+VchfxcMNRAJjj2tnsSJdNbHsVgnkBhTNrW7AjVo6OvLtxw8zfT9oLw1JSohlFzJ8jCoTgaoXvJ+kHt6fw==}
     engines: {node: '>=16 || 14 >=14.17'}
 
+  minimatch@9.0.5:
+    resolution: {integrity: sha512-G6T0ZX48xgozx7587koeX9Ys2NYy6Gmv//P89sEte9V9whIapMNF4idKxnW2QtCcLiTWlb/wfCabAtAFWhhBow==}
+    engines: {node: '>=16 || 14 >=14.17'}
+
   minimist@1.2.8:
     resolution: {integrity: sha512-2yyAR8qBkN3YuheJanUpWC5U3bb5osDywNB8RzDVlDwDHbocAJveqqj1u8+SVD7jkWT4yvsHCpWqqWqAxb0zCA==}
 
@@ -4163,6 +4156,11 @@ packages:
 
   mkdirp@1.0.4:
     resolution: {integrity: sha512-vVqVZQyf3WLx2Shd0qJ9xuvqgAyKPLAiqITEtqW0oIUjzo3PePDd6fW9iFz30ef7Ysp/oiWqbhszeGWW2T6Gzw==}
+    engines: {node: '>=10'}
+    hasBin: true
+
+  mkdirp@3.0.1:
+    resolution: {integrity: sha512-+NsyUUAZDmo6YVHzL/stxSu3t9YS1iljliy3BSDrXJ/dkn1KYdmtZODGGjLcc9XLgVVpH4KshHB8XmZgMhaBXg==}
     engines: {node: '>=10'}
     hasBin: true
 
@@ -4896,11 +4894,6 @@ packages:
     deprecated: Rimraf versions prior to v4 are no longer supported
     hasBin: true
 
-  rimraf@3.0.2:
-    resolution: {integrity: sha512-JZkJMZkAGFFPP2YqXZXPbMlMBgsxzE8ILs4lMIX/2o0L9UBw9O/Y3o6wFw/i9YLapcUJWwqbi3kdxIPdC62TIA==}
-    deprecated: Rimraf versions prior to v4 are no longer supported
-    hasBin: true
-
   rollup-plugin-inject@3.0.2:
     resolution: {integrity: sha512-ptg9PQwzs3orn4jkgXJ74bfs5vYz1NCZlSQMBUA0wKcGp5i5pA1AO3fOUEte8enhGUC+iapTCzEWw2jEFFUO/w==}
     deprecated: This package has been deprecated and is no longer maintained. Please use @rollup/plugin-inject.
@@ -5279,9 +5272,9 @@ packages:
     resolution: {integrity: sha512-KxVu8EYHDPBdUYdKZdKtU2aj2XfEx9AfjXxE/Aj0vT06w2icA09Vus1rh6eSu1y01akYg6BjIK/hxyLJINoMLQ==}
     engines: {node: '>=12'}
 
-  tmp@0.2.1:
-    resolution: {integrity: sha512-76SUhtfqR2Ijn+xllcI5P1oyannHNHByD80W1q447gU3mp9G9PSpGdWmjUOHRDPiHYacIk66W7ubDTuPF3BEtQ==}
-    engines: {node: '>=8.17.0'}
+  tmp@0.2.3:
+    resolution: {integrity: sha512-nZD7m9iCPC5g0pYmcaxogYKggSfLsdxl8of3Q/oIbqCqLLIO9IAF0GWjX1z9NZRHPiXv8Wex4yDCaZsgEw0Y8w==}
+    engines: {node: '>=14.14'}
 
   to-fast-properties@2.0.0:
     resolution: {integrity: sha512-/OaKK0xYrs3DmxRYqL/yDc+FxFUVYhDlXMhRmv3z915w2HF1tnN1omB354j8VUGO/hbRzyD6Y3sA7v7GS/ceog==}
@@ -5599,8 +5592,8 @@ packages:
     resolution: {integrity: sha512-OSDqupzTlzl2LGyqTdhcXcl6ezMiFhcUwLBP8YKaBIbMYW1wAwDvupw2T9G9oVaKT9RmaSpyTXjxddFPUcFFIw==}
     engines: {node: '>=12'}
 
-  watchpack@2.4.0:
-    resolution: {integrity: sha512-Lcvm7MGST/4fup+ifyKi2hjyIAwcdI4HRgtvTpIUxBRhB+RFtUh8XtDOxUfctVCnhVi+QQj49i91OyvzkJl6cg==}
+  watchpack@2.4.1:
+    resolution: {integrity: sha512-8wrBCMtVhqcXP2Sup1ctSkga6uc2Bx0IIvKyT7yTFier5AXHooSI+QyQQAtTb7+E0IUCCKyTFmXqdqgum2XWGg==}
     engines: {node: '>=10.13.0'}
 
   wcwidth@1.0.1:
@@ -5609,8 +5602,8 @@ packages:
   web-encoding@1.1.5:
     resolution: {integrity: sha512-HYLeVCdJ0+lBYV2FvNZmv3HJ2Nt0QYXqZojk3d9FJOLkwnuhzM9tmamh8d7HPM8QqjKH8DeHkFTx+CFlWpZZDA==}
 
-  web-ext-run@0.2.0:
-    resolution: {integrity: sha512-lAm05ELMr2WDPniyaHmyuPK0rb9tsftC8f/Ui5AQvlU6F3LqoBDfyzOaaUVQrLxtm4F5oax8AHPWswf/XjZzAg==}
+  web-ext-run@0.2.1:
+    resolution: {integrity: sha512-5D11VcjdGkA1/xax5UWL0YeAbDySKHzWFe6EpsoPNUMw5Uk9tKk9p6GUOfcaI5N7sINKfBMZYNsTBiu5dzJB9A==}
     engines: {node: '>=18.0.0', npm: '>=8.0.0'}
 
   web-streams-polyfill@3.3.3:
@@ -5705,18 +5698,6 @@ packages:
       utf-8-validate:
         optional: true
 
-  ws@8.16.0:
-    resolution: {integrity: sha512-HS0c//TP7Ina87TfiPUz1rQzMhHrl/SG2guqRcTOIUYD2q8uhUdNHZYJUaQ8aTGPzCh+c6oawMKW35nFl1dxyQ==}
-    engines: {node: '>=10.0.0'}
-    peerDependencies:
-      bufferutil: ^4.0.1
-      utf-8-validate: '>=5.0.2'
-    peerDependenciesMeta:
-      bufferutil:
-        optional: true
-      utf-8-validate:
-        optional: true
-
   ws@8.17.1:
     resolution: {integrity: sha512-6XQFvXTkbfUOZOKKILFG1PDK2NDQs4azKQl26T0YS5CxqWLgXajbPZ+h4gZekJyRqFU8pvnbAbbs/3TgRPy+GQ==}
     engines: {node: '>=10.0.0'}
@@ -5729,8 +5710,20 @@ packages:
       utf-8-validate:
         optional: true
 
-  wxt@0.18.10:
-    resolution: {integrity: sha512-SwJkb6TBOhkjCNm8kOPM16SdrLQrHJN7IoEWnk/wQSEf2Gf4Krt1Hjvg4FIbCiKGX8dx1Gbbp2yWo65lYlLcYQ==}
+  ws@8.18.0:
+    resolution: {integrity: sha512-8VbfWfHLbbwu3+N6OKsOMpBdT4kXPDDB9cJk2bJ6mh9ucxdlnNvH1e+roYkKmN9Nxw2yjz7VzeO9oOz2zJ04Pw==}
+    engines: {node: '>=10.0.0'}
+    peerDependencies:
+      bufferutil: ^4.0.1
+      utf-8-validate: '>=5.0.2'
+    peerDependenciesMeta:
+      bufferutil:
+        optional: true
+      utf-8-validate:
+        optional: true
+
+  wxt@0.18.14:
+    resolution: {integrity: sha512-Oij2yaJAd34V+jCh/B2CGjnfR5LFod1HOmtT4ctsn7JmCmd0YTNQpIBFvxooWhWKV5V+zK+gK+r18M62iweVSQ==}
     hasBin: true
 
   xdg-basedir@5.1.0:
@@ -6042,10 +6035,6 @@ snapshots:
       '@babel/plugin-transform-typescript': 7.24.7(@babel/core@7.24.7)
     transitivePeerDependencies:
       - supports-color
-
-  '@babel/runtime@7.23.9':
-    dependencies:
-      regenerator-runtime: 0.14.1
 
   '@babel/runtime@7.24.7':
     dependencies:
@@ -7497,10 +7486,10 @@ snapshots:
       serialize-error: 11.0.3
       webextension-polyfill: 0.10.0
 
-  '@wxt-dev/module-react@1.1.0(vite@5.3.2(@types/node@20.14.10)(less@4.2.0)(lightningcss@1.25.1)(sass@1.77.6)(terser@5.31.1))(wxt@0.18.10(@types/node@20.14.10)(less@4.2.0)(lightningcss@1.25.1)(rollup@4.18.0)(sass@1.77.6)(terser@5.31.1))':
+  '@wxt-dev/module-react@1.1.0(vite@5.3.2(@types/node@20.14.10)(less@4.2.0)(lightningcss@1.25.1)(sass@1.77.6)(terser@5.31.1))(wxt@0.18.14(@types/node@20.14.10)(less@4.2.0)(lightningcss@1.25.1)(rollup@4.18.0)(sass@1.77.6)(terser@5.31.1))':
     dependencies:
       '@vitejs/plugin-react': 4.3.1(vite@5.3.2(@types/node@20.14.10)(less@4.2.0)(lightningcss@1.25.1)(sass@1.77.6)(terser@5.31.1))
-      wxt: 0.18.10(@types/node@20.14.10)(less@4.2.0)(lightningcss@1.25.1)(rollup@4.18.0)(sass@1.77.6)(terser@5.31.1)
+      wxt: 0.18.14(@types/node@20.14.10)(less@4.2.0)(lightningcss@1.25.1)(rollup@4.18.0)(sass@1.77.6)(terser@5.31.1)
     transitivePeerDependencies:
       - supports-color
       - vite
@@ -7522,9 +7511,9 @@ snapshots:
       mime-types: 2.1.35
       negotiator: 0.6.3
 
-  acorn-jsx@5.3.2(acorn@8.12.0):
+  acorn-jsx@5.3.2(acorn@8.12.1):
     dependencies:
-      acorn: 8.12.0
+      acorn: 8.12.1
 
   acorn-walk@8.3.3:
     dependencies:
@@ -7532,8 +7521,7 @@ snapshots:
 
   acorn@8.12.0: {}
 
-  acorn@8.12.1:
-    optional: true
+  acorn@8.12.1: {}
 
   adm-zip@0.5.14: {}
 
@@ -8608,7 +8596,7 @@ snapshots:
       path-exists: 5.0.0
       unicorn-magic: 0.1.0
 
-  firefox-profile@4.5.0:
+  firefox-profile@4.6.0:
     dependencies:
       adm-zip: 0.5.14
       fs-extra: 9.0.1
@@ -8667,8 +8655,6 @@ snapshots:
   fs-minipass@3.0.3:
     dependencies:
       minipass: 7.1.2
-
-  fs.realpath@1.0.0: {}
 
   fsevents@2.3.2:
     optional: true
@@ -8768,15 +8754,6 @@ snapshots:
       once: 1.4.0
       path-is-absolute: 1.0.1
     optional: true
-
-  glob@7.2.3:
-    dependencies:
-      fs.realpath: 1.0.0
-      inflight: 1.0.6
-      inherits: 2.0.4
-      minimatch: 3.1.2
-      once: 1.4.0
-      path-is-absolute: 1.0.1
 
   global-directory@4.0.1:
     dependencies:
@@ -8983,6 +8960,7 @@ snapshots:
     dependencies:
       once: 1.4.0
       wrappy: 1.0.2
+    optional: true
 
   inherits@2.0.4: {}
 
@@ -9723,8 +9701,8 @@ snapshots:
 
   micromark-extension-mdxjs@1.0.1:
     dependencies:
-      acorn: 8.12.0
-      acorn-jsx: 5.3.2(acorn@8.12.0)
+      acorn: 8.12.1
+      acorn-jsx: 5.3.2(acorn@8.12.1)
       micromark-extension-mdx-expression: 1.0.8
       micromark-extension-mdx-jsx: 1.0.5
       micromark-extension-mdx-md: 1.0.1
@@ -10036,6 +10014,10 @@ snapshots:
     dependencies:
       brace-expansion: 2.0.1
 
+  minimatch@9.0.5:
+    dependencies:
+      brace-expansion: 2.0.1
+
   minimist@1.2.8: {}
 
   minipass-collect@1.0.2:
@@ -10071,6 +10053,8 @@ snapshots:
     optional: true
 
   mkdirp@1.0.4: {}
+
+  mkdirp@3.0.1: {}
 
   mlly@1.7.1:
     dependencies:
@@ -10386,7 +10370,8 @@ snapshots:
 
   path-exists@5.0.0: {}
 
-  path-is-absolute@1.0.1: {}
+  path-is-absolute@1.0.1:
+    optional: true
 
   path-key@3.1.1: {}
 
@@ -10864,10 +10849,6 @@ snapshots:
       glob: 6.0.4
     optional: true
 
-  rimraf@3.0.2:
-    dependencies:
-      glob: 7.2.3
-
   rollup-plugin-inject@3.0.2:
     dependencies:
       estree-walker: 0.6.1
@@ -11327,9 +11308,7 @@ snapshots:
 
   titleize@3.0.0: {}
 
-  tmp@0.2.1:
-    dependencies:
-      rimraf: 3.0.2
+  tmp@0.2.3: {}
 
   to-fast-properties@2.0.0: {}
 
@@ -11428,7 +11407,7 @@ snapshots:
   unimport@3.7.2(rollup@4.18.0):
     dependencies:
       '@rollup/pluginutils': 5.1.0(rollup@4.18.0)
-      acorn: 8.12.0
+      acorn: 8.12.1
       escape-string-regexp: 5.0.0
       estree-walker: 3.0.3
       fast-glob: 3.3.2
@@ -11525,7 +11504,7 @@ snapshots:
 
   unplugin@1.10.2:
     dependencies:
-      acorn: 8.12.0
+      acorn: 8.12.1
       chokidar: 3.6.0
       webpack-sources: 3.2.3
       webpack-virtual-modules: 0.6.2
@@ -11701,7 +11680,7 @@ snapshots:
 
   wanakana@5.3.1: {}
 
-  watchpack@2.4.0:
+  watchpack@2.4.1:
     dependencies:
       glob-to-regexp: 0.4.1
       graceful-fs: 4.2.11
@@ -11716,18 +11695,18 @@ snapshots:
     optionalDependencies:
       '@zxing/text-encoding': 0.9.0
 
-  web-ext-run@0.2.0:
+  web-ext-run@0.2.1:
     dependencies:
-      '@babel/runtime': 7.23.9
+      '@babel/runtime': 7.24.7
       '@devicefarmer/adbkit': 3.2.6
       bunyan: 1.8.15
       chrome-launcher: 1.1.0
       debounce: 1.2.1
       es6-error: 4.1.1
-      firefox-profile: 4.5.0
+      firefox-profile: 4.6.0
       fs-extra: 11.2.0
       fx-runner: 1.4.0
-      mkdirp: 1.0.4
+      mkdirp: 3.0.1
       multimatch: 6.0.0
       mz: 2.7.0
       node-notifier: 10.0.1
@@ -11737,10 +11716,10 @@ snapshots:
       source-map-support: 0.5.21
       strip-bom: 5.0.0
       strip-json-comments: 5.0.1
-      tmp: 0.2.1
+      tmp: 0.2.3
       update-notifier: 6.0.2
-      watchpack: 2.4.0
-      ws: 8.16.0
+      watchpack: 2.4.1
+      ws: 8.18.0
       zip-dir: 2.0.0
     transitivePeerDependencies:
       - bufferutil
@@ -11851,11 +11830,11 @@ snapshots:
 
   ws@7.5.10: {}
 
-  ws@8.16.0: {}
-
   ws@8.17.1: {}
 
-  wxt@0.18.10(@types/node@20.14.10)(less@4.2.0)(lightningcss@1.25.1)(rollup@4.18.0)(sass@1.77.6)(terser@5.31.1):
+  ws@8.18.0: {}
+
+  wxt@0.18.14(@types/node@20.14.10)(less@4.2.0)(lightningcss@1.25.1)(rollup@4.18.0)(sass@1.77.6)(terser@5.31.1):
     dependencies:
       '@aklinker1/rollup-plugin-visualizer': 5.12.0(rollup@4.18.0)
       '@types/webextension-polyfill': 0.10.7
@@ -11882,7 +11861,7 @@ snapshots:
       jszip: 3.10.1
       linkedom: 0.18.4
       magicast: 0.3.4
-      minimatch: 9.0.4
+      minimatch: 9.0.5
       natural-compare: 1.4.0
       normalize-path: 3.0.0
       nypm: 0.3.9
@@ -11895,7 +11874,7 @@ snapshots:
       unimport: 3.7.2(rollup@4.18.0)
       vite: 5.3.2(@types/node@20.14.10)(less@4.2.0)(lightningcss@1.25.1)(sass@1.77.6)(terser@5.31.1)
       vite-node: 1.6.0(@types/node@20.14.10)(less@4.2.0)(lightningcss@1.25.1)(sass@1.77.6)(terser@5.31.1)
-      web-ext-run: 0.2.0
+      web-ext-run: 0.2.1
       webextension-polyfill: 0.10.0
     transitivePeerDependencies:
       - '@types/node'
