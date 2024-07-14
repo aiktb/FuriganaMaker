@@ -49,6 +49,7 @@ export default function Sidebar() {
         className="flex items-center justify-center fixed top-24 left-4 lg:hidden p-2 -mx-2 z-20 bg-white dark:bg-slate-900 border-2 border-solid rounded dark:border-slate-700 border-gray-300"
         onClick={() => setSidebarIsOpen(!sidebarIsOpen)}
       >
+        <span className="sr-only">{t("toggleSidebar")}</span>
         <div
           className={`${sidebarIsOpen ? "!flex" : "hidden"} fixed inset-0 bg-transparent/40 backdrop-blur backdrop-filter`}
         />
