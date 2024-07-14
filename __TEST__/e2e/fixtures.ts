@@ -30,5 +30,18 @@ export const test = base.extend<{
     const extensionId = background.url().split("/")[2];
     await use(extensionId!);
   },
+  page: async ({ page }, use) => {
+    const logs: string[] = [];
+    page.on("console", (msg) => {
+      if (msg.type() === "error") {
+        logs.push(`[${msg.type()}] ${msg.text()}`);
+      }
+    });
+    page.on("pageerror", (error) => {
+      logs.push(`[${error.name}] ${error.message}`);
+    });
+    await use(page);
+    expect(logs).toStrictEqual([]);
+  },
 });
 export const { expect, describe } = test;
