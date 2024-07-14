@@ -1,10 +1,8 @@
-import {} from "@/commons/constants";
-
 import { describe, expect, test } from "./fixtures";
 
 describe("Extension background script", () => {
   test.beforeEach(async ({ page, extensionId }) => {
-    await page.goto(`chrome-extension://${extensionId}/popup.html`);
+    await page.goto(`chrome-extension://${extensionId}/background.js`);
   });
 
   test("Icons have been generated", async ({ page }) => {
