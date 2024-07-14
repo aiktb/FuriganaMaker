@@ -24,6 +24,7 @@
     "@fontsource/dm-sans": "5.0.21",
     "@fontsource/lobster": "5.0.20",
     "@fontsource/noto-sans-jp": "^5.0.19",
+    "@iconify-json/mdi": "^1.1.67",
     "@remix-run/css-bundle": "2.9.2",
     "@remix-run/dev": "2.9.2",
     "@remix-run/node": "2.9.2",
