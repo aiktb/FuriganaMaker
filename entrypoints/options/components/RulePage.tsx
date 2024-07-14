@@ -183,7 +183,7 @@ export default function RulePage({ rulesPromise }: { rulesPromise: Promise<Selec
       <PopupTransition show={createRuleDialogIsOpen}>
         <Dialog
           as="div"
-          className="-translate-x-1/2 -translate-y-1/2 fixed top-1/2 left-1/2 z-20"
+          className="-translate-x-1/2 -translate-y-1/2 fixed top-1/2 left-1/2 z-40"
           onClose={() => {
             setCreateRuleDialogIsOpen(false);
           }}
@@ -197,7 +197,7 @@ export default function RulePage({ rulesPromise }: { rulesPromise: Promise<Selec
       <PopupTransition show={importDialogIsOpen}>
         <Dialog
           as="div"
-          className="-translate-x-1/2 -translate-y-1/2 fixed top-1/2 left-1/2 z-20"
+          className="-translate-x-1/2 -translate-y-1/2 fixed top-1/2 left-1/2 z-40"
           onClose={() => {
             setImportDialogIsOpen(false);
           }}
