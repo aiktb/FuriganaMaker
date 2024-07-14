@@ -1,4 +1,6 @@
 {
   "$schema": "https://docs.renovatebot.com/renovate-schema.json",
-  "extends": ["config:recommended", ":semanticCommitTypeAll(chore)", ":pinDevDependencies"]
+  "extends": ["config:recommended", ":semanticCommitTypeAll(chore)", ":pinDevDependencies"],
+  "ignorePaths": ["**/node_modules/**", "**/bower_components/**", "website/**"],
+  "ignoreDeps": ["@iconify-json/fa6-brands", "@iconify-json/tabler"]
 }

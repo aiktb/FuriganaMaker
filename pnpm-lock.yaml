@@ -75,17 +75,11 @@ importers:
       '@iconify-json/fa6-brands':
         specifier: 1.1.19
         version: 1.1.19
-      '@iconify-json/logos':
-        specifier: 1.1.43
-        version: 1.1.43
-      '@iconify-json/mdi':
-        specifier: 1.1.67
-        version: 1.1.67
       '@iconify-json/tabler':
         specifier: 1.1.115
         version: 1.1.115
       '@playwright/test':
-        specifier: ^1.45.1
+        specifier: 1.45.1
         version: 1.45.1
       '@tailwindcss/forms':
         specifier: 0.5.7
@@ -175,6 +169,9 @@ importers:
       '@fontsource/noto-sans-jp':
         specifier: ^5.0.19
         version: 5.0.19
+      '@iconify-json/mdi':
+        specifier: ^1.1.67
+        version: 1.1.67
       '@remix-run/css-bundle':
         specifier: 2.9.2
         version: 2.9.2
@@ -1326,9 +1323,6 @@ packages:
 
   '@iconify-json/fa6-brands@1.1.19':
     resolution: {integrity: sha512-3Dl0D1gtFwIj7/GT2xJbkM9D/LjuozsgfLrqRWP6B5xuajtsyEvR1wD0Z06y3iaNtASpgWPWyYbml+AHQ3Hw0g==}
-
-  '@iconify-json/logos@1.1.43':
-    resolution: {integrity: sha512-UtvL1yDHUr9dl1Tqihh6K9m5dmbYKOYyLf3i9aKhymSW76QjOCGjpgQc0PQ4GJCAdU1cAMu+WO61TgPxdonrlg==}
 
   '@iconify-json/mdi@1.1.67':
     resolution: {integrity: sha512-00nllHES8hyACwIfgySlQgAE6MKgpr2wsKfpifMiZWZ9aXC5l4Jb0lR3lJSWwXgOW6kzAOdzC3T+2VOfBBZ13A==}
@@ -6685,10 +6679,6 @@ snapshots:
       tailwindcss: 3.4.4
 
   '@iconify-json/fa6-brands@1.1.19':
-    dependencies:
-      '@iconify/types': 2.0.0
-
-  '@iconify-json/logos@1.1.43':
     dependencies:
       '@iconify/types': 2.0.0
 
