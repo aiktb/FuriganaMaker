@@ -8,7 +8,7 @@ interface PopupTransitionProps {
 export default function PopupTransition({ show, children }: PopupTransitionProps) {
   return (
     <Transition appear show={show}>
-      <div className="relative z-10">
+      <div className="relative z-30">
         {/* Background overlay */}
         <div className="fixed inset-0 backdrop-blur backdrop-filter" />
         <TransitionChild
