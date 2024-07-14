@@ -13,7 +13,7 @@ importers:
         version: 4.1.0
       '@floating-ui/react':
         specifier: ^0.26.17
-        version: 0.26.18(react-dom@18.3.0-canary-c5b937576-20231219(react@18.3.0-canary-c5b937576-20231219))(react@18.3.0-canary-c5b937576-20231219)
+        version: 0.26.19(react-dom@18.3.0-canary-c5b937576-20231219(react@18.3.0-canary-c5b937576-20231219))(react@18.3.0-canary-c5b937576-20231219)
       '@headlessui/react':
         specifier: ^2.1.0
         version: 2.1.1(react-dom@18.3.0-canary-c5b937576-20231219(react@18.3.0-canary-c5b937576-20231219))(react@18.3.0-canary-c5b937576-20231219)
@@ -1278,11 +1278,11 @@ packages:
       '@types/react': '>=16.8.0'
       react: '>=16.8.0'
 
-  '@floating-ui/core@1.6.3':
-    resolution: {integrity: sha512-1ZpCvYf788/ZXOhRQGFxnYQOVgeU+pi0i+d0Ow34La7qjIXETi6RNswGVKkA6KcDO8/+Ysu2E/CeUmmeEBDvTg==}
+  '@floating-ui/core@1.6.4':
+    resolution: {integrity: sha512-a4IowK4QkXl4SCWTGUR0INAfEOX3wtsYw3rKK5InQEHMGObkR8Xk44qYQD9P4r6HHw0iIfK6GUKECmY8sTkqRA==}
 
-  '@floating-ui/dom@1.6.6':
-    resolution: {integrity: sha512-qiTYajAnh3P+38kECeffMSQgbvXty2VB6rS+42iWR4FPIlZjLK84E9qtLnMTLIpPz2znD/TaFqaiavMUrS+Hcw==}
+  '@floating-ui/dom@1.6.7':
+    resolution: {integrity: sha512-wmVfPG5o2xnKDU4jx/m4w5qva9FWHcnZ8BvzEe90D/RpwsJaTAVYPEPdQ8sbr/N8zZTAHlZUTQdqg8ZUbzHmng==}
 
   '@floating-ui/react-dom@2.1.1':
     resolution: {integrity: sha512-4h84MJt3CHrtG18mGsXuLCHMrug49d7DFkU0RMIyshRveBeyV2hmV/pDaF2Uxtu8kgq5r46llp5E5FQiR0K2Yg==}
@@ -1290,14 +1290,14 @@ packages:
       react: '>=16.8.0'
       react-dom: '>=16.8.0'
 
-  '@floating-ui/react@0.26.18':
-    resolution: {integrity: sha512-enDDX09Jpi3kmhcXXpvs+fvRXOfBj1jUV2KF6uDMf5HjS+SOZJzNTFUW71lKbFcxz0BkmQqwbvqdmHIxMq/fyQ==}
+  '@floating-ui/react@0.26.19':
+    resolution: {integrity: sha512-Jk6zITdjjIvjO/VdQFvpRaD3qPwOHH6AoDHxjhpy+oK4KFgaSP871HYWUAPdnLmx1gQ+w/pB312co3tVml+BXA==}
     peerDependencies:
       react: '>=16.8.0'
       react-dom: '>=16.8.0'
 
-  '@floating-ui/utils@0.2.3':
-    resolution: {integrity: sha512-XGndio0l5/Gvd6CLIABvsav9HHezgDFFhDfHk1bvLfr9ni8dojqLSvBbotJEjmIwNHL7vK4QzBJTdBRoB+c1ww==}
+  '@floating-ui/utils@0.2.4':
+    resolution: {integrity: sha512-dWO2pw8hhi+WrXq1YJy2yCuWoL20PddgGaqTgVe4cOS9Q6qklXCiA1tJEqX6BEwRNSCP84/afac9hd4MS+zEUA==}
 
   '@fontsource/dm-sans@5.0.21':
     resolution: {integrity: sha512-ydUs1ZAf6fqZfvmEb4EdT7RehZvFBLEOVz6Mn9kmoaVsYR1Ql3kkQvaAGEyMrcCuoBklwPaCqnq6PkHyYzIx6Q==}
@@ -6634,30 +6634,30 @@ snapshots:
       fireworks-js: 2.10.7
       react: 18.3.1
 
-  '@floating-ui/core@1.6.3':
+  '@floating-ui/core@1.6.4':
     dependencies:
-      '@floating-ui/utils': 0.2.3
+      '@floating-ui/utils': 0.2.4
 
-  '@floating-ui/dom@1.6.6':
+  '@floating-ui/dom@1.6.7':
     dependencies:
-      '@floating-ui/core': 1.6.3
-      '@floating-ui/utils': 0.2.3
+      '@floating-ui/core': 1.6.4
+      '@floating-ui/utils': 0.2.4
 
   '@floating-ui/react-dom@2.1.1(react-dom@18.3.0-canary-c5b937576-20231219(react@18.3.0-canary-c5b937576-20231219))(react@18.3.0-canary-c5b937576-20231219)':
     dependencies:
-      '@floating-ui/dom': 1.6.6
+      '@floating-ui/dom': 1.6.7
       react: 18.3.0-canary-c5b937576-20231219
       react-dom: 18.3.0-canary-c5b937576-20231219(react@18.3.0-canary-c5b937576-20231219)
 
-  '@floating-ui/react@0.26.18(react-dom@18.3.0-canary-c5b937576-20231219(react@18.3.0-canary-c5b937576-20231219))(react@18.3.0-canary-c5b937576-20231219)':
+  '@floating-ui/react@0.26.19(react-dom@18.3.0-canary-c5b937576-20231219(react@18.3.0-canary-c5b937576-20231219))(react@18.3.0-canary-c5b937576-20231219)':
     dependencies:
       '@floating-ui/react-dom': 2.1.1(react-dom@18.3.0-canary-c5b937576-20231219(react@18.3.0-canary-c5b937576-20231219))(react@18.3.0-canary-c5b937576-20231219)
-      '@floating-ui/utils': 0.2.3
+      '@floating-ui/utils': 0.2.4
       react: 18.3.0-canary-c5b937576-20231219
       react-dom: 18.3.0-canary-c5b937576-20231219(react@18.3.0-canary-c5b937576-20231219)
       tabbable: 6.2.0
 
-  '@floating-ui/utils@0.2.3': {}
+  '@floating-ui/utils@0.2.4': {}
 
   '@fontsource/dm-sans@5.0.21': {}
 
@@ -6667,7 +6667,7 @@ snapshots:
 
   '@headlessui/react@2.1.1(react-dom@18.3.0-canary-c5b937576-20231219(react@18.3.0-canary-c5b937576-20231219))(react@18.3.0-canary-c5b937576-20231219)':
     dependencies:
-      '@floating-ui/react': 0.26.18(react-dom@18.3.0-canary-c5b937576-20231219(react@18.3.0-canary-c5b937576-20231219))(react@18.3.0-canary-c5b937576-20231219)
+      '@floating-ui/react': 0.26.19(react-dom@18.3.0-canary-c5b937576-20231219(react@18.3.0-canary-c5b937576-20231219))(react@18.3.0-canary-c5b937576-20231219)
       '@react-aria/focus': 3.17.1(react@18.3.0-canary-c5b937576-20231219)
       '@react-aria/interactions': 3.21.3(react@18.3.0-canary-c5b937576-20231219)
       '@tanstack/react-virtual': 3.5.0(react-dom@18.3.0-canary-c5b937576-20231219(react@18.3.0-canary-c5b937576-20231219))(react@18.3.0-canary-c5b937576-20231219)
