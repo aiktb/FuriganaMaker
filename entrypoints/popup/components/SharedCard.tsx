@@ -12,13 +12,8 @@ import {
 import ToolTip from "./ToolTip";
 
 export default function SharedCard() {
-  const socialLinks = {
-    chrome:
-      "https://chromewebstore.google.com/detail/furigana-maker/heodojceeinbkfjfilnfminlkgbacpfp",
-    firefox: "https://addons.mozilla.org/en-US/firefox/addon/furigana-maker/",
-  };
-
-  const shareUrl = import.meta.env.FIREFOX ? socialLinks.firefox : socialLinks.chrome;
+  const shareUrl =
+    "https://chromewebstore.google.com/detail/furigana-maker/heodojceeinbkfjfilnfminlkgbacpfp";
   const shareItems = [
     {
       ShareButton: TwitterShareButton,

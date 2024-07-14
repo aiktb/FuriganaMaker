@@ -1,25 +1,10 @@
 import { Link } from "@remix-run/react";
-import { detect } from "detect-browser";
 import { useRef } from "react";
-import { useContext, useEffect, useState } from "react";
+import { useContext } from "react";
 import { LinksContext } from "../contexts";
 
 export default function AddToBrowser() {
   const links = useContext(LinksContext)!;
-  const [browser, setBrowser] = useState({
-    name: "Google Chrome",
-    link: links.chrome,
-    icon: "i-fa6-brands-chrome",
-  });
-  useEffect(() => {
-    if (detect()?.name === "firefox") {
-      setBrowser({
-        name: "Mozilla Firefox",
-        link: links.firefox,
-        icon: "i-fa6-brands-firefox-browser",
-      });
-    }
-  }, [links]);
 
   const dynamicHoverRef = useRef<HTMLDivElement>(null);
   const onPointerMove = (e: React.PointerEvent<HTMLAnchorElement>) => {
@@ -33,7 +18,7 @@ export default function AddToBrowser() {
   return (
     <div className="relative select-none">
       <Link
-        to={browser.link}
+        to={links.chrome}
         prefetch="viewport"
         className="group relative inline-flex w-[17.5rem] items-center justify-center gap-2 overflow-hidden rounded-full bg-white px-4 py-2 font-bold text-black hover:bg-[#cbcace]"
         onPointerMove={onPointerMove}
@@ -51,8 +36,8 @@ export default function AddToBrowser() {
           }}
         />
         <div className="z-10 flex items-center justify-center gap-2">
-          <span className={`${browser.icon}`} />
-          Add to {browser.name}
+          <span className="i-fa6-brands-chrome" />
+          Add to Google Chrome
           <div className="ml-2 size-7" />
         </div>
         <div className="absolute top-0 right-0 flex items-center rounded-r-full bg-gray-200/50 py-2 pr-2 pl-2 transition hover:bg-gray-300">

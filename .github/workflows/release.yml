@@ -25,4 +25,3 @@ jobs:
             Please refer to [CHANGELOG.md](https://github.com/${{ github.repository }}/blob/main/CHANGELOG.md) for details.
             ## Download
             - [Chrome](https://chromewebstore.google.com/detail/furigana-maker/heodojceeinbkfjfilnfminlkgbacpfp)
-            - [Firefox](https://addons.mozilla.org/firefox/addon/furigana-maker/)

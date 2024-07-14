@@ -29,7 +29,7 @@ jobs:
         run: pnpm run test:unit
 
       - name: Install Playwright Browsers
-        run: pnpm dlx playwright install --with-deps
+        run: pnpm exec playwright install --with-deps chromium
 
       - name: Run Playwright tests
         run: pnpm run test:e2e

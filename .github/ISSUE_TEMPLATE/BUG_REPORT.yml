@@ -37,7 +37,6 @@ body:
       description: Select the browser you are using.
       options:
         - Chrome
-        - Firefox
         - Edge
     validations:
       required: true

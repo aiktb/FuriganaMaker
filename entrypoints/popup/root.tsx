@@ -64,7 +64,6 @@ export default function Popup() {
 }
 
 async function addFurigana() {
-  // `chrome.tabs.query` is not compatible with firefox.
   const [tab] = await chrome.tabs.query({ active: true, currentWindow: true });
   await sendMessage(tab!.id!, ExtEvent.AddFurigana);
 }
@@ -136,14 +135,8 @@ function Menu({ configPromise }: { configPromise: Promise<GeneralSettings> }) {
   const selectModeOptions = [
     { label: t("optionDefault"), value: SelectMode.Default },
     { label: t("optionOriginal"), value: SelectMode.Original },
+    { label: t("optionParentheses"), value: SelectMode.Parentheses },
   ];
-  // `SelectMode.Parentheses` is not compatible with firefox.
-  if (!import.meta.env.FIREFOX) {
-    selectModeOptions.push({
-      label: t("optionParentheses"),
-      value: SelectMode.Parentheses,
-    });
-  }
 
   return (
     <menu className="space-y-2 border-sky-500 border-r-2 pr-1">
