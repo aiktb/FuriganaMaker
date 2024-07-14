@@ -21,6 +21,7 @@
     "dev": "wxt",
     "build": "wxt build",
     "zip": "wxt zip",
+    "debug": "wxt --debug",
     "postinstall": "wxt prepare",
     "format": "biome format --write .",
     "lint": "biome check .",
