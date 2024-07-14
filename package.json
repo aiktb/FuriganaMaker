@@ -73,6 +73,6 @@
     "typescript": "5.5.3",
     "vite-plugin-svgr": "4.2.0",
     "vitest": "1.6.0",
-    "wxt": "0.18.10"
+    "wxt": "0.18.14"
   }
 }
