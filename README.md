@@ -1,14 +1,21 @@
 <div align="center">
     <a href="https://furiganamaker.app" target="_blank">
-      <img src="./assets/icons/DemoLogo.svg" alt="homepage">
+      <img src="./assets/icons/Logo.svg" alt="homepage" width="100" height="100">
     </a>
+    <h1>Furigana Maker</h1>
+    <p>
+      <a href=https://www.youtube.com/watch?v=_j954tDLXjw>
+        Youtube Demo Video
+      </a>
+    </p>
 </div>
 
-# Furigana Maker
+
+## Introduction
 
 Add furigana to Japanese text on any page for learning kanji pronunciation. 🤔
 
-Special thanks to **_[wxt](https://wxt.dev/)_** for taking the frustration out of browser extension development for me, it's amazing!
+Special thanks to **_[WXT](https://wxt.dev/)_** for taking the frustration out of browser extension development for me, it's amazing!
 
 ## Download
 
