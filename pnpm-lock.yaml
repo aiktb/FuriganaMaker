@@ -43,7 +43,7 @@ importers:
         version: 9.0.1(@types/react@18.3.3)(react@18.3.0-canary-c5b937576-20231219)
       react-router-dom:
         specifier: ^6.24.1
-        version: 6.24.1(react-dom@18.3.0-canary-c5b937576-20231219(react@18.3.0-canary-c5b937576-20231219))(react@18.3.0-canary-c5b937576-20231219)
+        version: 6.25.0(react-dom@18.3.0-canary-c5b937576-20231219(react@18.3.0-canary-c5b937576-20231219))(react@18.3.0-canary-c5b937576-20231219)
       react-share:
         specifier: ^5.1.0
         version: 5.1.0(react@18.3.0-canary-c5b937576-20231219)
@@ -1631,8 +1631,8 @@ packages:
     resolution: {integrity: sha512-es2g3dq6Nb07iFxGk5GuHN20RwBZOsuDQN7izWIisUcv9r+d2C5jQxqmgkdebXgReWfiyUabcki6Fg77mSNrig==}
     engines: {node: '>=14.0.0'}
 
-  '@remix-run/router@1.17.1':
-    resolution: {integrity: sha512-mCOMec4BKd6BRGBZeSnGiIgwsbLGp3yhVqAD8H+PxiRNEHgDpZb8J1TnrSDlg97t0ySKMQJTHCWBCmBpSmkF6Q==}
+  '@remix-run/router@1.18.0':
+    resolution: {integrity: sha512-L3jkqmqoSVBVKHfpGZmLrex0lxR5SucGA0sUfFzGctehw+S/ggL9L/0NnC5mw6P8HUWpFZ3nQw3cRApjjWx9Sw==}
     engines: {node: '>=14.0.0'}
 
   '@remix-run/server-runtime@2.9.2':
@@ -4741,8 +4741,8 @@ packages:
       react: '>=16.8'
       react-dom: '>=16.8'
 
-  react-router-dom@6.24.1:
-    resolution: {integrity: sha512-U19KtXqooqw967Vw0Qcn5cOvrX5Ejo9ORmOtJMzYWtCT4/WOfFLIZGGsVLxcd9UkBO0mSTZtXqhZBsWlHr7+Sg==}
+  react-router-dom@6.25.0:
+    resolution: {integrity: sha512-BhcczgDWWgvGZxjDDGuGHrA8HrsSudilqTaRSBYLWDayvo1ClchNIDVt5rldqp6e7Dro5dEFx9Mzc+r292lN0w==}
     engines: {node: '>=14.0.0'}
     peerDependencies:
       react: '>=16.8'
@@ -4754,8 +4754,8 @@ packages:
     peerDependencies:
       react: '>=16.8'
 
-  react-router@6.24.1:
-    resolution: {integrity: sha512-PTXFXGK2pyXpHzVo3rR9H7ip4lSPZZc0bHG5CARmj65fTT6qG7sTngmb6lcYu1gf3y/8KxORoy9yn59pGpCnpg==}
+  react-router@6.25.0:
+    resolution: {integrity: sha512-bziKjCcDbcxgWS9WlWFcQIVZ2vJHnCP6DGpQDT0l+0PFDasfJKgzf9CM22eTyhFsZkjk8ApCdKjJwKtzqH80jQ==}
     engines: {node: '>=14.0.0'}
     peerDependencies:
       react: '>=16.8'
@@ -7049,7 +7049,7 @@ snapshots:
 
   '@remix-run/router@1.16.1': {}
 
-  '@remix-run/router@1.17.1': {}
+  '@remix-run/router@1.18.0': {}
 
   '@remix-run/server-runtime@2.9.2(typescript@5.5.3)':
     dependencies:
@@ -10653,21 +10653,21 @@ snapshots:
       react-dom: 18.3.1(react@18.3.1)
       react-router: 6.23.1(react@18.3.1)
 
-  react-router-dom@6.24.1(react-dom@18.3.0-canary-c5b937576-20231219(react@18.3.0-canary-c5b937576-20231219))(react@18.3.0-canary-c5b937576-20231219):
+  react-router-dom@6.25.0(react-dom@18.3.0-canary-c5b937576-20231219(react@18.3.0-canary-c5b937576-20231219))(react@18.3.0-canary-c5b937576-20231219):
     dependencies:
-      '@remix-run/router': 1.17.1
+      '@remix-run/router': 1.18.0
       react: 18.3.0-canary-c5b937576-20231219
       react-dom: 18.3.0-canary-c5b937576-20231219(react@18.3.0-canary-c5b937576-20231219)
-      react-router: 6.24.1(react@18.3.0-canary-c5b937576-20231219)
+      react-router: 6.25.0(react@18.3.0-canary-c5b937576-20231219)
 
   react-router@6.23.1(react@18.3.1):
     dependencies:
       '@remix-run/router': 1.16.1
       react: 18.3.1
 
-  react-router@6.24.1(react@18.3.0-canary-c5b937576-20231219):
+  react-router@6.25.0(react@18.3.0-canary-c5b937576-20231219):
     dependencies:
-      '@remix-run/router': 1.17.1
+      '@remix-run/router': 1.18.0
       react: 18.3.0-canary-c5b937576-20231219
 
   react-share@5.1.0(react@18.3.0-canary-c5b937576-20231219):
