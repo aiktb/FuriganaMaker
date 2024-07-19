@@ -40,7 +40,7 @@
     "i18next": "^23.11.5",
     "react": "18.3.0-canary-c5b937576-20231219",
     "react-dom": "18.3.0-canary-c5b937576-20231219",
-    "react-i18next": "^14.1.2",
+    "react-i18next": "^15.0.0",
     "react-markdown": "^9.0.1",
     "react-router-dom": "^6.24.1",
     "react-share": "^5.1.0",
