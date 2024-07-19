@@ -1,4 +1,5 @@
 import { Suspense } from "react";
+import { useTranslation } from "react-i18next";
 
 import { customRules } from "@/commons/utils";
 
@@ -7,8 +8,10 @@ import { Page } from "../components/Page";
 import RulePage from "../components/RulePage";
 
 export default function RuleEditor() {
+  const { t } = useTranslation();
+
   return (
-    <Page title="Rule editor" icon="i-tabler-list-details">
+    <Page title={t("navEditRules")} icon="i-tabler-list-details">
       <Suspense>
         <Transition
           as="div"
