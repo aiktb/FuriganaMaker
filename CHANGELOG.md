@@ -1,5 +1,18 @@
 # Changelog
 
+## v2.0.0
+
+### Features
+
+- Automatically adds furigana to Japanese sites (requires the source site to be correctly labeled with the language).
+- Add changelog to the Options page.
+- Adjust the options page UI to a left side navigation, right side content layout.
+
+### Fix Bugs
+
+- Shortcut keys missing i18n.
+- Theme toggle buttons don't work on the first click.
+
 ## v1.6.1
 
 ### Fix Bugs
