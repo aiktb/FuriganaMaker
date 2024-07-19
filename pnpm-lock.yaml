@@ -28,7 +28,7 @@ importers:
         version: 2.0.5
       i18next:
         specifier: ^23.11.5
-        version: 23.12.1
+        version: 23.12.2
       react:
         specifier: 18.3.0-canary-c5b937576-20231219
         version: 18.3.0-canary-c5b937576-20231219
@@ -37,7 +37,7 @@ importers:
         version: 18.3.0-canary-c5b937576-20231219(react@18.3.0-canary-c5b937576-20231219)
       react-i18next:
         specifier: ^14.1.2
-        version: 14.1.3(i18next@23.12.1)(react-dom@18.3.0-canary-c5b937576-20231219(react@18.3.0-canary-c5b937576-20231219))(react@18.3.0-canary-c5b937576-20231219)
+        version: 14.1.3(i18next@23.12.2)(react-dom@18.3.0-canary-c5b937576-20231219(react@18.3.0-canary-c5b937576-20231219))(react@18.3.0-canary-c5b937576-20231219)
       react-markdown:
         specifier: ^9.0.1
         version: 9.0.1(@types/react@18.3.3)(react@18.3.0-canary-c5b937576-20231219)
@@ -3237,8 +3237,8 @@ packages:
     engines: {node: '>=18'}
     hasBin: true
 
-  i18next@23.12.1:
-    resolution: {integrity: sha512-l4y291ZGRgUhKuqVSiqyuU2DDzxKStlIWSaoNBR4grYmh0X+pRYbFpTMs3CnJ5ECKbOI8sQcJ3PbTUfLgPRaMA==}
+  i18next@23.12.2:
+    resolution: {integrity: sha512-XIeh5V+bi8SJSWGL3jqbTEBW5oD6rbP5L+E7dVQh1MNTxxYef0x15rhJVcRb7oiuq4jLtgy2SD8eFlf6P2cmqg==}
 
   iconv-lite@0.4.24:
     resolution: {integrity: sha512-v3MXnZAcvnywkTUEZomIActle7RXXeedOR31wwl7VlyoXO4Qi9arvSenNQWne1TcRwhCL1HwLI21bEqdpj8/rA==}
@@ -8900,7 +8900,7 @@ snapshots:
 
   husky@9.1.1: {}
 
-  i18next@23.12.1:
+  i18next@23.12.2:
     dependencies:
       '@babel/runtime': 7.24.8
 
@@ -10621,11 +10621,11 @@ snapshots:
       react: 18.3.1
       scheduler: 0.23.2
 
-  react-i18next@14.1.3(i18next@23.12.1)(react-dom@18.3.0-canary-c5b937576-20231219(react@18.3.0-canary-c5b937576-20231219))(react@18.3.0-canary-c5b937576-20231219):
+  react-i18next@14.1.3(i18next@23.12.2)(react-dom@18.3.0-canary-c5b937576-20231219(react@18.3.0-canary-c5b937576-20231219))(react@18.3.0-canary-c5b937576-20231219):
     dependencies:
       '@babel/runtime': 7.24.8
       html-parse-stringify: 3.0.1
-      i18next: 23.12.1
+      i18next: 23.12.2
       react: 18.3.0-canary-c5b937576-20231219
     optionalDependencies:
       react-dom: 18.3.0-canary-c5b937576-20231219(react@18.3.0-canary-c5b937576-20231219)
