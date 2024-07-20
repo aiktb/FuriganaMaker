@@ -34,6 +34,7 @@
     "@ctrl/tinycolor": "^4.1.0",
     "@floating-ui/react": "^0.26.17",
     "@headlessui/react": "^2.1.0",
+    "@js-temporal/polyfill": "^0.4.4",
     "@sglkc/kuromoji": "^1.1.0",
     "@webext-core/messaging": "^1.4.0",
     "file-saver": "^2.0.5",

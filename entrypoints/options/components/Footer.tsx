@@ -1,7 +1,8 @@
+import { Temporal } from "@js-temporal/polyfill";
 import { Trans, useTranslation } from "react-i18next";
 
 const generateYear = () => {
-  const year = new Date().getFullYear();
+  const year = Temporal.Now.plainDateISO().year;
   return year === 2023 ? year : `2023-${year}`;
 };
 

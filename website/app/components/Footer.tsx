@@ -1,10 +1,12 @@
+import { Temporal } from "@js-temporal/polyfill";
 import { Link } from "@remix-run/react";
 import { useContext, useEffect, useState } from "react";
+
 import cloudflare from "../assets/cloudflare.svg";
 import { LinksContext } from "../contexts";
 
 const getCopiedYear = () => {
-  const currentYear = new Date().getFullYear();
+  const currentYear = Temporal.Now.plainDateISO().year;
   return currentYear === 2023 ? "2023" : `2023-${currentYear}`;
 };
 
