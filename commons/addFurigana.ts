@@ -3,7 +3,7 @@ import { toHiragana, toRomaji } from "wanakana";
 
 import type { KanjiMark } from "@/entrypoints/background/listeners/onGetKanjiMarksMessage";
 
-import { ExtEvent, ExtStorage, FURIGANA_CLASS, FuriganaType } from "./constants";
+import { ExtStorage, FURIGANA_CLASS, FuriganaType } from "./constants";
 import { getGeneralSettings } from "./utils";
 /**
  * Append ruby tag to all text nodes of a batch of elements.
@@ -13,9 +13,6 @@ import { getGeneralSettings } from "./utils";
  * Ruby tag is "\<ruby>original\<rp>(\</rp>\<rt>reading\</rt>\<rp>)\</rp>\</ruby>".
  **/
 export async function addFurigana(...elements: Element[]) {
-  // Add an active flag (little aqua dot) to the image.
-  chrome.runtime.sendMessage(ExtEvent.MarkActiveTab);
-
   const japaneseTexts = [...elements.flatMap(collectTexts)];
 
   const furiganaType = await getGeneralSettings(ExtStorage.FuriganaType);
