@@ -2,7 +2,7 @@ import { sendMessage } from "@/commons/message";
 import type { CSSProperties } from "react";
 
 import { addFurigana } from "@/commons/addFurigana";
-import { ExtStorage } from "@/commons/constants";
+import { ExtEvent, ExtStorage } from "@/commons/constants";
 import { getGeneralSettings } from "@/commons/utils";
 
 export default defineContentScript({
@@ -69,6 +69,8 @@ export default defineContentScript({
     // so it needs to execute `addFurigana` once immediately.
     const elements = Array.from(document.querySelectorAll(selector));
     addFurigana(...elements);
+    // Add an active flag (little aqua dot) to the image.
+    chrome.runtime.sendMessage(ExtEvent.MarkActiveTab);
 
     const observer = new MutationObserver((records) => {
       const japaneseElements = records
@@ -76,7 +78,10 @@ export default defineContentScript({
         .filter((node) => node.nodeType === Node.ELEMENT_NODE)
         .flatMap((node) => Array.from((node as Element).querySelectorAll(selector)));
 
-      addFurigana(...japaneseElements);
+      if (japaneseElements.length) {
+        addFurigana(...japaneseElements);
+        chrome.runtime.sendMessage(ExtEvent.MarkActiveTab);
+      }
     });
 
     observer.observe(document.body, { childList: true, subtree: true });
