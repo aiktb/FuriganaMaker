@@ -1,11 +1,13 @@
 # Changelog
 
-## v2.0.0
+## v2.0.1
 
 ### Fix Bugs
 
 - Web page oversize warnings appear too often.
 - Action active flag is displayed on pages without Japanese text.
+
+## v2.0.0
 
 ### Features
 
