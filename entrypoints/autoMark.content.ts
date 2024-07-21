@@ -21,53 +21,16 @@ export default defineContentScript({
 
     const customRule = await sendMessage("getSelector", { domain: location.hostname });
     const selector = customRule.selector || "[lang='ja'], [lang='ja-JP']";
-
+    const elements = Array.from(document.querySelectorAll(selector));
     // Reflow on a huge page causes severe page freezes and even the browser becomes unresponsive. (issue#16)
-    const encoder = new TextEncoder();
-    const utf8Bytes = encoder.encode(document.documentElement.outerHTML);
-    const htmlSize = utf8Bytes.length / 1024; // KB
-    if (htmlSize > 500) {
-      const warningAttrs: CSSProperties = {
-        position: "fixed",
-        display: "flex",
-        gap: "10px",
-        top: "20px",
-        left: "50%",
-        transform: "translateX(-50%)",
-        zIndex: 9999,
-        fontWeight: "bold",
-        color: "rgb(154,52,18)",
-        backgroundColor: "rgb(255, 247, 237)",
-        padding: "15px",
-        borderRadius: "10px",
-        border: "2px solid rgb(255, 237, 213)",
-      };
-
-      const warning = document.createElement("div");
-      Object.assign(warning.style, warningAttrs);
-      const icon = document.createElement("div");
-      icon.textContent = "⚠";
-      const text = document.createElement("span");
-
-      text.textContent = chrome.i18n.getMessage("contentScriptWarning", htmlSize.toFixed(2));
-      warning.appendChild(icon);
-      warning.appendChild(text);
-      document.body.appendChild(warning);
-      setTimeout(() => {
-        if (warning.matches(":hover")) {
-          warning.addEventListener("mouseleave", () => {
-            warning.remove();
-          });
-        } else {
-          warning.remove();
-        }
-      }, 3000);
+    const htmlSize = getHtmlSize();
+    if (htmlSize > 500 && elements.length > 0) {
+      showWarning(htmlSize);
       return;
     }
 
     // Observer will not observe the element that is loaded for the first time on the page,
     // so it needs to execute `addFurigana` once immediately.
-    const elements = Array.from(document.querySelectorAll(selector));
     addFurigana(...elements);
     // Add an active flag (little aqua dot) to the image.
     chrome.runtime.sendMessage(ExtEvent.MarkActiveTab);
@@ -87,3 +50,48 @@ export default defineContentScript({
     observer.observe(document.body, { childList: true, subtree: true });
   },
 });
+
+function getHtmlSize() {
+  const encoder = new TextEncoder();
+  const utf8Bytes = encoder.encode(document.documentElement.outerHTML);
+  const htmlSize = utf8Bytes.length / 1024; // KB
+  return htmlSize;
+}
+
+function showWarning(htmlSize: number) {
+  const warningAttrs: CSSProperties = {
+    position: "fixed",
+    display: "flex",
+    gap: "10px",
+    top: "20px",
+    left: "50%",
+    transform: "translateX(-50%)",
+    zIndex: 9999,
+    fontWeight: "bold",
+    color: "rgb(154,52,18)",
+    backgroundColor: "rgb(255, 247, 237)",
+    padding: "15px",
+    borderRadius: "10px",
+    border: "2px solid rgb(255, 237, 213)",
+  };
+
+  const warning = document.createElement("div");
+  Object.assign(warning.style, warningAttrs);
+  const icon = document.createElement("div");
+  icon.textContent = "⚠";
+  const text = document.createElement("span");
+
+  text.textContent = chrome.i18n.getMessage("contentScriptWarning", htmlSize.toFixed(2));
+  warning.appendChild(icon);
+  warning.appendChild(text);
+  document.body.appendChild(warning);
+  setTimeout(() => {
+    if (warning.matches(":hover")) {
+      warning.addEventListener("mouseleave", () => {
+        warning.remove();
+      });
+    } else {
+      warning.remove();
+    }
+  }, 3000);
+}
