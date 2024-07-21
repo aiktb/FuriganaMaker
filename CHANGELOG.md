@@ -2,6 +2,11 @@
 
 ## v2.0.0
 
+### Fix Bugs
+
+- Web page oversize warnings appear too often.
+- Action active flag is displayed on pages without Japanese text.
+
 ### Features
 
 - Automatically adds furigana to Japanese sites (requires the source site to be correctly labeled with the language).
