@@ -16,9 +16,6 @@ export default defineBackground({
     // chrome.runtime.onMessage.addListener(...)
     registerOnGetKanjiMarksMessage();
     registerOnGetSelector();
-
-    if (import.meta.env.MANIFEST_VERSION === 3) {
-      registerOnMarkActiveMessage();
-    }
+    registerOnMarkActiveMessage();
   },
 });
