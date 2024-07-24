@@ -30,7 +30,7 @@ export const toKanjiToken = (tokens: MojiToken[]): KanjiToken[] => {
 };
 
 const isPhonetic = (token: MojiToken): boolean => {
-  const hasKanji = token.surface_form.match(/\p{sc=Han}/u);
+  const hasKanji = token.surface_form.match(/\p{sc=Han}/v);
   return !!(token.reading && token.reading !== "*" && hasKanji);
 };
 
@@ -75,7 +75,7 @@ type MarkTokenArray = MarkToken[] & { hybridLength: number };
 const smashToken = (token: SimplifiedToken): KanjiToken[] => {
   const { original, reading, start, end } = token;
   // Both \p{sc=Hira} and \p{sc=Kana} don’t contain 'ー々', which is bad.
-  const kanaRegex = /(\p{sc=Hira}|\p{sc=Kana}|ー)+/gu;
+  const kanaRegex = /(\p{sc=Hira}|\p{sc=Kana}|ー)+/gv;
   const kanas: MarkTokenArray = [...original.matchAll(kanaRegex)].map((match) => ({
     original: toKatakana(match[0]),
     start: match.index!,
@@ -85,7 +85,7 @@ const smashToken = (token: SimplifiedToken): KanjiToken[] => {
 
   const hybridRegex = buildRegex(kanas);
 
-  const kanjisRegex = /\p{sc=Han}+/gu;
+  const kanjisRegex = /\p{sc=Han}+/gv;
   const kanjis: KanjiToken[] = [...original.matchAll(kanjisRegex)].map((match) => ({
     original: match[0],
     start: start + match.index!,
@@ -111,7 +111,7 @@ const smashToken = (token: SimplifiedToken): KanjiToken[] => {
 const buildRegex = (kanas: MarkTokenArray): RegExp => {
   // Match empty string, actual sub-capturing group is 0.
   if (!kanas.length) {
-    return /^$/u;
+    return /^$/v;
   }
   // "作り方" => "^(.+)リ(.+)$", "り方" => "^リ(.+)$", "作り" => "^(.+)リ$".
   const firstKana = kanas.at(0)!;
@@ -131,5 +131,5 @@ const buildRegex = (kanas: MarkTokenArray): RegExp => {
     regex += placeholder;
   }
   regex += "$";
-  return new RegExp(regex, "u");
+  return new RegExp(regex, "v");
 };
