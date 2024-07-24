@@ -71,7 +71,7 @@
     "kuromojin": "3.0.0",
     "sharp": "0.33.4",
     "tailwindcss": "3.4.6",
-    "typescript": "5.5.3",
+    "typescript": "5.5.4",
     "vite-plugin-svgr": "4.2.0",
     "vitest": "2.0.4",
     "wxt": "0.18.15"
