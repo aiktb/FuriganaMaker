@@ -31,9 +31,10 @@ export default defineContentScript({
 
     // Observer will not observe the element that is loaded for the first time on the page,
     // so it needs to execute `addFurigana` once immediately.
-    addFurigana(...elements);
-    // Add an active flag (little aqua dot) to the image.
-    chrome.runtime.sendMessage(ExtEvent.MarkActiveTab);
+    if (elements.length) {
+      chrome.runtime.sendMessage(ExtEvent.MarkActiveTab);
+      addFurigana(...elements);
+    }
 
     const observer = new MutationObserver((records) => {
       const japaneseElements = records
@@ -42,8 +43,8 @@ export default defineContentScript({
         .flatMap((node) => Array.from((node as Element).querySelectorAll(selector)));
 
       if (japaneseElements.length) {
-        addFurigana(...japaneseElements);
         chrome.runtime.sendMessage(ExtEvent.MarkActiveTab);
+        addFurigana(...japaneseElements);
       }
     });
 
