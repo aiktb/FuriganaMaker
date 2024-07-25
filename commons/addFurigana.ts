@@ -49,7 +49,7 @@ const collectTexts = (element: Element): Text[] => {
 
 const tokenize = async (text: string) => {
   // Performance Optimization: This will reduce the number of Service Worker requests by more than 50%.
-  const hasKanji = text.match(/\p{sc=Han}/v);
+  const hasKanji = /\p{sc=Han}/v.test(text);
   if (!hasKanji) {
     return [];
   }
