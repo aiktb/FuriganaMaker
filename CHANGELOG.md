@@ -105,7 +105,7 @@
 - Support N5 kanji filter.
 - Support diverse display modes (always/never/hover gap/hover no-gap).
 - Support SelectMode.Parentheses in Chrome/Edge, which can automatically add brackets to the copied furigana text.
-- Support more shortcut keys. (See [this](https://github.com/aiktb/FuriganaMaker/blob/main/package.json))
+- Support more shortcut keys. (See [this](https://github.com/aiktb/FuriganaMaker/blob/main/wxt.config.ts#L6))
 
 ### Fix Bugs
 
