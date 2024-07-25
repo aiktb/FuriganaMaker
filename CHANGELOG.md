@@ -2,7 +2,10 @@
 
 ## v2.0.2
 
+### Fix Bugs
+
 - Action active flag is displayed on pages without Japanese text.
+- There's no need to open Changelog every time you update.
 
 ## v2.0.1
 
