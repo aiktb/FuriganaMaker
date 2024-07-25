@@ -17,7 +17,16 @@ export const registerOnInstalled = () => {
         break;
       }
       case chrome.runtime.OnInstalledReason.UPDATE: {
-        chrome.tabs.create({ url: chrome.runtime.getURL("options.html#/changelog") });
+        // V1.2.3 -> major.minor.patch
+        // Only open the Changelog page to prompt the user when a new feature is available.
+        const [majorPrevVersion, minorPrevVersion] = details.previousVersion!.split(".");
+        const [majorCurrVersion, minorCurrVersion] = chrome.runtime
+          .getManifest()
+          .version.split(".");
+
+        if (majorPrevVersion !== majorCurrVersion || minorPrevVersion !== minorCurrVersion) {
+          chrome.tabs.create({ url: chrome.runtime.getURL("options.html#/changelog") });
+        }
         break;
       }
     }
