@@ -30,8 +30,8 @@ export const toKanjiToken = (tokens: MojiToken[]): KanjiToken[] => {
 };
 
 const isPhonetic = (token: MojiToken): boolean => {
-  const hasKanji = token.surface_form.match(/\p{sc=Han}/v);
-  return !!(token.reading && token.reading !== "*" && hasKanji);
+  const hasKanji = /\p{sc=Han}/v.test(token.surface_form);
+  return Boolean(token.reading && token.reading !== "*" && hasKanji);
 };
 
 interface SimplifiedToken {
