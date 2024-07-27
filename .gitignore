@@ -37,3 +37,4 @@ yarn-error.log*
 *.sw?
 test-results
 playwright-report
+build
