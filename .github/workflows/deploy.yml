@@ -1,0 +1,42 @@
+name: Deploy to Cloudflare Pages
+
+on:
+  push:
+    paths:
+      - 'website/**'
+  pull_request:
+    paths:
+      - 'website/**'
+  workflow_dispatch:
+
+jobs:
+  deploy:
+    runs-on: ubuntu-latest
+    environment: ${{ github.ref == 'refs/heads/main' && 'production' || 'development' }}
+    permissions:
+      contents: read
+      deployments: write
+    name: Publish to Cloudflare Pages
+    steps:
+      - uses: actions/checkout@v4
+      - uses: pnpm/action-setup@v4
+      - uses: actions/setup-node@v4
+        with:
+            node-version-file: '.nvmrc'
+            cache: 'pnpm'
+            cache-dependency-path: 'pnpm-lock.yaml'
+
+      - name: Install dependencies
+        run: pnpm install --frozen-lockfile
+
+      - name: Build Website
+        run: cd website && pnpm run build
+
+      # Run a action to publish docs
+      - name: Publish to Cloudflare Pages
+        uses: cloudflare/wrangler-action@v3
+        with:
+          apiToken: ${{ secrets.CLOUDFLARE_API_TOKEN }}
+          accountId: ${{ secrets.CLOUDFLARE_ACCOUNT_ID }}
+          workingDirectory: website
+          command: pages deploy build/client --project-name=furiganamaker
