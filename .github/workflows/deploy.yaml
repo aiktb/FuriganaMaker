@@ -38,4 +38,4 @@ jobs:
           apiToken: ${{ secrets.CLOUDFLARE_API_TOKEN }}
           accountId: ${{ secrets.CLOUDFLARE_ACCOUNT_ID }}
           workingDirectory: website
-          command: pages deplooy build/client --project-name=furiganamaker
+          command: pages deploy build/client --project-name=furiganamaker
