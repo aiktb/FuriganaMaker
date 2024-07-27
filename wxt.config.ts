@@ -42,6 +42,9 @@ export default defineConfig({
   },
   vite: () => ({
     plugins: [svgr()],
+    build: {
+      target: "esnext",
+    },
     css: {
       postcss: {
         plugins: [tailwind, autoprefixer],
