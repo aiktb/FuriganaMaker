@@ -1,0 +1,19 @@
+name: Check for dead links
+
+on:
+  workflow_dispatch:
+  schedule:
+    # Run every Sunday at 00:00
+    - cron: '0 0 * * SUN'
+
+jobs:
+  linkChecker:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v3
+
+      - name: Link Checker
+        id: lychee
+        uses: lycheeverse/lychee-action@v1.8.0
+        with:
+          args: --verbose --no-progress './**/*.md' './**/*.tsc' './**/*.ts' --accept=200,204,206,403 --scheme https
