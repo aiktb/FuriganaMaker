@@ -12,5 +12,8 @@ export default defineConfig({
       plugins: [tailwind, autoprefixer],
     },
   },
+  build: {
+    target: "esnext",
+  },
   plugins: [remixCloudflareDevProxy(), remix(), tsconfigPaths()],
 });
