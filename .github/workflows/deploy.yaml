@@ -1,4 +1,4 @@
-name: Publish Docs
+name: Deploy to Cloudflare Pages
 
 on:
   push:
