@@ -1,4 +1,4 @@
-name: Publish Docs
+name: Deploy to Cloudflare Pages
 
 on:
   push:
@@ -17,18 +17,13 @@ jobs:
       deployments: write
     name: Publish to Cloudflare Pages
     steps:
-      - name: Checkout
-        uses: actions/checkout@v4
-
-      # Run a build step here
-      - name: Setup Node.js environment
-        uses: actions/setup-node@v4
+      - uses: actions/checkout@v4
+      - uses: pnpm/action-setup@v4
+      - uses: actions/setup-node@v4
         with:
             node-version-file: '.nvmrc'
             cache: 'pnpm'
             cache-dependency-path: 'pnpm-lock.yaml'
-
-      - uses: pnpm/action-setup@v4
 
       - name: Install dependencies
         run: pnpm install --frozen-lockfile
@@ -43,4 +38,4 @@ jobs:
           apiToken: ${{ secrets.CLOUDFLARE_API_TOKEN }}
           accountId: ${{ secrets.CLOUDFLARE_ACCOUNT_ID }}
           workingDirectory: website
-          command: pages deplooy build/client --project-name=furiganamaker
+          command: pages deploy build/client --project-name=furiganamaker
