@@ -9,7 +9,7 @@ import tsconfigPaths from "vite-tsconfig-paths";
 export default defineConfig({
   css: {
     postcss: {
-      plugins: [tailwind(), autoprefixer()],
+      plugins: [tailwind, autoprefixer],
     },
   },
   plugins: [remixCloudflareDevProxy(), remix(), tsconfigPaths()],
