@@ -107,7 +107,7 @@ importers:
         version: 18.3.0
       '@wxt-dev/module-react':
         specifier: ^1.1.0
-        version: 1.1.0(vite@5.3.5(@types/node@20.14.12))(wxt@0.19.1(@types/chrome@0.0.269)(@types/node@20.14.12)(rollup@4.19.1))
+        version: 1.1.0(vite@5.3.5(@types/node@20.14.12))(wxt@0.19.2(@types/chrome@0.0.269)(@types/node@20.14.12)(rollup@4.19.1))
       autoprefixer:
         specifier: ^10.4.19
         version: 10.4.19(postcss@8.4.40)
@@ -134,7 +134,7 @@ importers:
         version: 2.0.4(@types/node@20.14.12)
       wxt:
         specifier: ^0.19.1-alpha1
-        version: 0.19.1(@types/chrome@0.0.269)(@types/node@20.14.12)(rollup@4.19.1)
+        version: 0.19.2(@types/chrome@0.0.269)(@types/node@20.14.12)(rollup@4.19.1)
 
   website:
     dependencies:
@@ -5472,8 +5472,8 @@ packages:
       utf-8-validate:
         optional: true
 
-  wxt@0.19.1:
-    resolution: {integrity: sha512-TcTswRPuZUa7D36SdpiXLD3BcVelp5593nHYQ8esSVT3naDA1UMkP0e39bUJXHYO1ys/aUWlbyezb3bBvoDUfg==}
+  wxt@0.19.2:
+    resolution: {integrity: sha512-pkBTSZfdEFUnm3N7f/7JPWrUHt/l5/aBgm9bp/uxwBREvbAmMJAp9QEkd0PAxHJqP6KBKiLzY1kzXVQpzniMpA==}
     hasBin: true
     peerDependencies:
       '@types/chrome': '*'
@@ -7169,10 +7169,10 @@ snapshots:
       serialize-error: 11.0.3
       webextension-polyfill: 0.10.0
 
-  '@wxt-dev/module-react@1.1.0(vite@5.3.5(@types/node@20.14.12))(wxt@0.19.1(@types/chrome@0.0.269)(@types/node@20.14.12)(rollup@4.19.1))':
+  '@wxt-dev/module-react@1.1.0(vite@5.3.5(@types/node@20.14.12))(wxt@0.19.2(@types/chrome@0.0.269)(@types/node@20.14.12)(rollup@4.19.1))':
     dependencies:
       '@vitejs/plugin-react': 4.3.1(vite@5.3.5(@types/node@20.14.12))
-      wxt: 0.19.1(@types/chrome@0.0.269)(@types/node@20.14.12)(rollup@4.19.1)
+      wxt: 0.19.2(@types/chrome@0.0.269)(@types/node@20.14.12)(rollup@4.19.1)
     transitivePeerDependencies:
       - supports-color
       - vite
@@ -11365,7 +11365,7 @@ snapshots:
 
   ws@8.18.0: {}
 
-  wxt@0.19.1(@types/chrome@0.0.269)(@types/node@20.14.12)(rollup@4.19.1):
+  wxt@0.19.2(@types/chrome@0.0.269)(@types/node@20.14.12)(rollup@4.19.1):
     dependencies:
       '@aklinker1/rollup-plugin-visualizer': 5.12.0(rollup@4.19.1)
       '@types/webextension-polyfill': 0.10.7
