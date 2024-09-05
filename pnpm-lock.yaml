@@ -89,7 +89,7 @@ importers:
         version: 0.5.7(tailwindcss@3.4.7)
       '@tailwindcss/typography':
         specifier: ^0.5.13
-        version: 0.5.13(tailwindcss@3.4.7)
+        version: 0.5.15(tailwindcss@3.4.7)
       '@types/chrome':
         specifier: ^0.0.269
         version: 0.0.269
@@ -1768,10 +1768,10 @@ packages:
     peerDependencies:
       tailwindcss: '>=3.0.0 || >= 3.0.0-alpha.1'
 
-  '@tailwindcss/typography@0.5.13':
-    resolution: {integrity: sha512-ADGcJ8dX21dVVHIwTRgzrcunY6YY9uSlAHHGVKvkA+vLc5qLwEszvKts40lx7z0qc4clpjclwLeK5rVCV2P/uw==}
+  '@tailwindcss/typography@0.5.15':
+    resolution: {integrity: sha512-AqhlCXl+8grUz8uqExv5OTtgpjuVIwFTSXTrh8y9/pw6q2ek7fJ+Y8ZEVw7EB2DCcuCOtEjf9w3+J3rzts01uA==}
     peerDependencies:
-      tailwindcss: '>=3.0.0 || insiders'
+      tailwindcss: '>=3.0.0 || insiders || >=4.0.0-alpha.20'
 
   '@tanstack/react-virtual@3.8.3':
     resolution: {integrity: sha512-9ICwbDUUzN99CJIGc373i8NLoj6zFTKI2Hlcmo0+lCSAhPQ5mxq4dGOMKmLYoEFyHcGQ64Bd6ZVbnPpM6lNK5w==}
@@ -4494,6 +4494,10 @@ packages:
     resolution: {integrity: sha512-b4dlw/9V8A71rLIDsSwVmak9z2DuBUB7CA1/wSdelNEzqsjoSPeADTWNO09lpH49Diy3/JIZ2bSPB1dI3LJCHg==}
     engines: {node: '>=4'}
 
+  postcss-selector-parser@6.1.2:
+    resolution: {integrity: sha512-Q8qQfPiZ+THO/3ZrOrO0cJJKfpYCagtMUkXbnEfmgUjwXg6z/WBeOyS9APBBPCTSiDV+s4SwQGu8yFsiMRIudg==}
+    engines: {node: '>=4'}
+
   postcss-value-parser@4.2.0:
     resolution: {integrity: sha512-1NNCs6uurfkVbeXG4S8JFT9t19m45ICnif8zWLd5oPSZ50QnwMfK+H3jv408d4jw/7Bttv5axS5IiHoLaVNHeQ==}
 
@@ -7134,7 +7138,7 @@ snapshots:
       mini-svg-data-uri: 1.4.4
       tailwindcss: 3.4.7
 
-  '@tailwindcss/typography@0.5.13(tailwindcss@3.4.7)':
+  '@tailwindcss/typography@0.5.15(tailwindcss@3.4.7)':
     dependencies:
       lodash.castarray: 4.4.0
       lodash.isplainobject: 4.0.6
@@ -10302,13 +10306,13 @@ snapshots:
     dependencies:
       icss-utils: 5.1.0(postcss@8.4.40)
       postcss: 8.4.40
-      postcss-selector-parser: 6.1.1
+      postcss-selector-parser: 6.1.2
       postcss-value-parser: 4.2.0
 
   postcss-modules-scope@3.2.0(postcss@8.4.40):
     dependencies:
       postcss: 8.4.40
-      postcss-selector-parser: 6.1.1
+      postcss-selector-parser: 6.1.2
 
   postcss-modules-values@4.0.0(postcss@8.4.40):
     dependencies:
@@ -10338,6 +10342,11 @@ snapshots:
       util-deprecate: 1.0.2
 
   postcss-selector-parser@6.1.1:
+    dependencies:
+      cssesc: 3.0.0
+      util-deprecate: 1.0.2
+
+  postcss-selector-parser@6.1.2:
     dependencies:
       cssesc: 3.0.0
       util-deprecate: 1.0.2
