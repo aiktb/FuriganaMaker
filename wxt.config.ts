@@ -43,15 +43,15 @@ export default defineConfig({
     plugins: [svgr()],
   }),
   hooks: {
-    "build:done": ({ config }) => {
+    "build:publicAssets": ({ config }, publicFiles) => {
       const srcDir = path.resolve(__dirname, "./node_modules/@sglkc/kuromoji/dict");
       const filenames = fs.readdirSync(srcDir);
       const destDir = path.resolve(config.outDir, "dict");
       fs.mkdirSync(destDir);
       for (const filename of filenames) {
-        const src = path.resolve(srcDir, filename);
-        const dest = path.resolve(destDir, filename);
-        fs.copyFileSync(src, dest);
+        const absoluteSrc = path.resolve(srcDir, filename);
+        const relativeDest = path.resolve(destDir, filename);
+        publicFiles.push({ absoluteSrc, relativeDest });
       }
     },
   },
