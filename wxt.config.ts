@@ -1,3 +1,6 @@
+import fs from "node:fs";
+import path from "node:path";
+
 import svgr from "vite-plugin-svgr";
 import { defineConfig } from "wxt";
 
@@ -27,19 +30,29 @@ export default defineConfig({
     description: "__MSG_extDescription__",
     permissions: ["contextMenus", "storage"],
     default_locale: "en",
-    icons: {
-      "16": "icons/16.png",
-      "32": "icons/32.png",
-      "48": "icons/48.png",
-      "128": "icons/128.png",
-    },
     commands,
   },
-  modules: ["@wxt-dev/module-react"],
+  modules: ["@wxt-dev/module-react", "@wxt-dev/auto-icons"],
+  autoIcons: {
+    baseIconPath: "assets/icons/Logo.svg",
+  },
   imports: {
     presets: ["react", "react-router-dom"],
   },
   vite: () => ({
     plugins: [svgr()],
   }),
+  hooks: {
+    "build:publicAssets": ({ config }, publicFiles) => {
+      const srcDir = path.resolve(__dirname, "./node_modules/@sglkc/kuromoji/dict");
+      const filenames = fs.readdirSync(srcDir);
+      const destDir = path.resolve(config.outDir, "dict");
+      fs.mkdirSync(destDir);
+      for (const filename of filenames) {
+        const absoluteSrc = path.resolve(srcDir, filename);
+        const relativeDest = path.resolve(destDir, filename);
+        publicFiles.push({ absoluteSrc, relativeDest });
+      }
+    },
+  },
 });

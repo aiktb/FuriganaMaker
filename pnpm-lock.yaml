@@ -105,6 +105,9 @@ importers:
       '@types/react-dom':
         specifier: ^18.3.0
         version: 18.3.0
+      '@wxt-dev/auto-icons':
+        specifier: ^1.0.2
+        version: 1.0.2(wxt@0.19.9(@types/node@22.5.3)(rollup@4.21.2)(webpack-sources@3.2.3))
       '@wxt-dev/module-react':
         specifier: ^1.1.1
         version: 1.1.1(vite@5.4.3(@types/node@22.5.3))(wxt@0.19.9(@types/node@22.5.3)(rollup@4.21.2)(webpack-sources@3.2.3))
@@ -117,9 +120,6 @@ importers:
       kuromojin:
         specifier: ^3.0.0
         version: 3.0.0
-      sharp:
-        specifier: ^0.33.4
-        version: 0.33.4
       tailwindcss:
         specifier: ^3.4.7
         version: 3.4.7
@@ -1931,6 +1931,11 @@ packages:
 
   '@webext-core/messaging@1.4.0':
     resolution: {integrity: sha512-gzXQ13HfKR3Yrn9TnrvTC/5seA7uPFvaqxqNFBsFOOdSZa5LyXt58Rhym8BYXarkWUGp+fh8f6AYM3RYuNbS+A==}
+
+  '@wxt-dev/auto-icons@1.0.2':
+    resolution: {integrity: sha512-Wp1pZnRysvDvxkkkys6ZPXL9O2Q9RDjooAZeV19vBg4NXPyE21qO2fu3QmIcug3fPzKzpcFa6dm1Y1dX8qhfEg==}
+    peerDependencies:
+      wxt: '>=0.19.0'
 
   '@wxt-dev/module-react@1.1.1':
     resolution: {integrity: sha512-bRTHMogtT0AeyKkrHCHhfuPc8hZnbHMPAi9ynm9eRN+uH4IxSZ3rETI7qPz4dbJQua+2ci84/XyQXzw14X/1iA==}
@@ -6205,7 +6210,7 @@ snapshots:
 
   '@emnapi/runtime@1.2.0':
     dependencies:
-      tslib: 2.6.3
+      tslib: 2.7.0
     optional: true
 
   '@emotion/hash@0.9.2': {}
@@ -7290,7 +7295,7 @@ snapshots:
       '@babel/plugin-syntax-typescript': 7.24.7(@babel/core@7.24.9)
       '@vanilla-extract/babel-plugin-debug-ids': 1.0.6
       '@vanilla-extract/css': 1.15.3
-      esbuild: 0.17.6
+      esbuild: 0.17.19
       eval: 0.1.8
       find-up: 5.0.0
       javascript-stringify: 2.1.0
@@ -7373,6 +7378,13 @@ snapshots:
     dependencies:
       serialize-error: 11.0.3
       webextension-polyfill: 0.10.0
+
+  '@wxt-dev/auto-icons@1.0.2(wxt@0.19.9(@types/node@22.5.3)(rollup@4.21.2)(webpack-sources@3.2.3))':
+    dependencies:
+      defu: 6.1.4
+      fs-extra: 11.2.0
+      sharp: 0.33.4
+      wxt: 0.19.9(@types/node@22.5.3)(rollup@4.21.2)(webpack-sources@3.2.3)
 
   '@wxt-dev/module-react@1.1.1(vite@5.4.3(@types/node@22.5.3))(wxt@0.19.9(@types/node@22.5.3)(rollup@4.21.2)(webpack-sources@3.2.3))':
     dependencies:
