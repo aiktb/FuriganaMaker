@@ -33,7 +33,7 @@ export default function RuleItem({ rule, onChange, onDelete }: RuleItemProps) {
               {rule.domain}
               <i className="i-tabler-arrow-up-right" />
             </a>
-            <p className="max-w-72 truncate text-xs leading-5 lg:max-w-[36rem] md:max-w-[30rem] sm:max-w-96">
+            <p className="truncate text-xs leading-5 w-72 xl:w-[32rem] sm:w-96 2xl:w-[40rem]">
               {rule.selector}
             </p>
           </div>
@@ -64,21 +64,21 @@ export default function RuleItem({ rule, onChange, onDelete }: RuleItemProps) {
             </button>
             <div className="mt-1 flex gap-x-1.5">
               <button
-                className="flex items-center gap-x-1 rounded-md border border-gray-200 px-1 py-0.5 font-bold text-slate-700 text-sm shadow transition-[background-color] dark:border-slate-700 dark:hover:bg-transparent/20 hover:bg-transparent/10 dark:text-slate-300"
+                className="flex items-center gap-x-1 rounded-md underline underline-offset-2 hover:text-black dark:hover:text-white decoration-current text-sky-500 px-1 py-0.5 font-bold text-sm shadow transition dark:hover:bg-transparent/20 hover:bg-transparent/10s"
                 onClick={() => {
                   setEditorIsOpen(true);
                 }}
               >
-                <i className="i-tabler-edit size-4 text-sky-500" />
+                <i className="i-tabler-edit size-4" />
                 {t("btnEdit")}
               </button>
               <button
-                className="flex items-center gap-x-1 rounded-md border border-gray-200 px-1 py-0.5 font-bold text-slate-700 text-sm shadow transition-[background-color] dark:border-slate-700 dark:hover:bg-transparent/20 hover:bg-transparent/10 dark:text-slate-300"
+                className="flex items-center gap-x-1 rounded-md hover:underline underline-offset-2 hover:text-black dark:hover:text-white decoration-current px-1 py-0.5 font-bold text-sm shadow transition dark:hover:bg-transparent/20 hover:bg-transparent/10"
                 onClick={() => {
                   setDeleteDialogIsOpen(true);
                 }}
               >
-                <i className="i-tabler-trash size-4 text-sky-500" />
+                <i className="i-tabler-trash size-4" />
                 {t("btnDelete")}
               </button>
             </div>
