@@ -1,5 +1,3 @@
-import autoprefixer from "autoprefixer";
-import tailwind from "tailwindcss";
 import svgr from "vite-plugin-svgr";
 import { defineConfig } from "wxt";
 
@@ -22,6 +20,7 @@ export type Command = keyof typeof commands;
 
 // See https://wxt.dev/api/config.html
 export default defineConfig({
+  extensionApi: "chrome",
   manifest: {
     version: "2.0.2",
     name: "__MSG_extName__",
@@ -42,10 +41,5 @@ export default defineConfig({
   },
   vite: () => ({
     plugins: [svgr()],
-    css: {
-      postcss: {
-        plugins: [tailwind, autoprefixer],
-      },
-    },
   }),
 });

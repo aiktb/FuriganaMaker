@@ -21,7 +21,7 @@ export enum ExtStorage {
   SelectMode = "selectMode",
   FontSize = "fontSize",
   FontColor = "fontColor",
-  // The following two items exceed the `chrome.stage.sync` quota,
+  // The following two items exceed the `chrome.storage.sync` quota,
   // so this extension doesn't consider synchronizing user settings.
   SelectorRules = "selectorRules",
   FilterRules = "filterRules",

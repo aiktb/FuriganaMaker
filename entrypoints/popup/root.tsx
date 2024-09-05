@@ -64,7 +64,7 @@ export default function Popup() {
 }
 
 async function addFurigana() {
-  const [tab] = await chrome.tabs.query({ active: true, currentWindow: true });
+  const [tab] = await browser.tabs.query({ active: true, currentWindow: true });
   await sendMessage(tab!.id!, ExtEvent.AddFurigana);
 }
 
@@ -78,7 +78,7 @@ type ACTIONTYPE =
   | { type: ExtEvent.AdjustFontColor; payload: string };
 
 function reducer(state: GeneralSettings, action: ACTIONTYPE) {
-  chrome.tabs.query({ active: true, currentWindow: true }).then(async (tabs) => {
+  browser.tabs.query({ active: true, currentWindow: true }).then(async (tabs) => {
     await setGeneralSettings(toStorageKey(action.type), action.payload);
     const tabId = tabs[0]!.id!;
     await sendMessage(tabId, action.type);

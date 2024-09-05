@@ -33,7 +33,7 @@ export default function RuleItem({ rule, onChange, onDelete }: RuleItemProps) {
               {rule.domain}
               <i className="i-tabler-arrow-up-right" />
             </a>
-            <p className="w-72 truncate text-xs leading-5 lg:w-[36rem] md:w-[30rem] sm:w-96">
+            <p className="max-w-72 truncate text-xs leading-5 lg:max-w-[36rem] md:max-w-[30rem] sm:max-w-96">
               {rule.selector}
             </p>
           </div>
