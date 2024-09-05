@@ -21,7 +21,7 @@ i18n.use(initReactI18next).init({
     ja: { translation: ja },
     ko: { translation: ko },
   },
-  lng: chrome.i18n.getUILanguage(),
+  lng: browser.i18n.getUILanguage(),
   fallbackLng: "en",
   interpolation: {
     // react already safes from xss

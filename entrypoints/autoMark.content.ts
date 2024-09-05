@@ -32,7 +32,7 @@ export default defineContentScript({
     // Observer will not observe the element that is loaded for the first time on the page,
     // so it needs to execute `addFurigana` once immediately.
     if (elements.length) {
-      chrome.runtime.sendMessage(ExtEvent.MarkActiveTab);
+      browser.runtime.sendMessage(ExtEvent.MarkActiveTab);
       addFurigana(...elements);
     }
 
@@ -43,7 +43,7 @@ export default defineContentScript({
         .flatMap((node) => Array.from((node as Element).querySelectorAll(selector)));
 
       if (japaneseElements.length) {
-        chrome.runtime.sendMessage(ExtEvent.MarkActiveTab);
+        browser.runtime.sendMessage(ExtEvent.MarkActiveTab);
         addFurigana(...japaneseElements);
       }
     });
@@ -82,7 +82,7 @@ function showWarning(htmlSize: number) {
   icon.textContent = "⚠";
   const text = document.createElement("span");
 
-  text.textContent = chrome.i18n.getMessage("contentScriptWarning", htmlSize.toFixed(2));
+  text.textContent = browser.i18n.getMessage("contentScriptWarning", htmlSize.toFixed(2));
   warning.appendChild(icon);
   warning.appendChild(text);
   document.body.appendChild(warning);

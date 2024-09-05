@@ -29,7 +29,7 @@ export default defineContentScript({
     ];
     await Promise.all(styleEvents.map((item) => styleHandler(item)));
 
-    chrome.runtime.onMessage.addListener((event: ExtEvent) => {
+    browser.runtime.onMessage.addListener((event: ExtEvent) => {
       switch (event) {
         case ExtEvent.SwitchFuriganaType:
           switchFuriganaHandler();

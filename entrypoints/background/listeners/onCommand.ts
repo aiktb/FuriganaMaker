@@ -4,7 +4,7 @@ import type { Command } from "@/wxt.config";
 
 export const registerOnCommand = () => {
   // Please see `wxt.config.ts` for a list of shortcut keys.
-  chrome.commands.onCommand.addListener(async (command, tab) => {
+  browser.commands.onCommand.addListener(async (command, tab) => {
     const tabId = tab!.id!;
 
     switch (command as Command) {
