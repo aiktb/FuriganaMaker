@@ -34,7 +34,7 @@ export default defineConfig({
   },
   modules: ["@wxt-dev/module-react", "@wxt-dev/auto-icons"],
   autoIcons: {
-    baseIconPath: "assets/icons/icon.svg",
+    baseIconPath: "assets/icons/Logo.svg",
   },
   imports: {
     presets: ["react", "react-router-dom"],
