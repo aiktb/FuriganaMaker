@@ -27,15 +27,12 @@ export default defineConfig({
     description: "__MSG_extDescription__",
     permissions: ["contextMenus", "storage"],
     default_locale: "en",
-    icons: {
-      "16": "icons/16.png",
-      "32": "icons/32.png",
-      "48": "icons/48.png",
-      "128": "icons/128.png",
-    },
     commands,
   },
-  modules: ["@wxt-dev/module-react"],
+  modules: ["@wxt-dev/module-react", "@wxt-dev/auto-icons"],
+  autoIcons: {
+    baseIconPath: "assets/icons/icon.svg",
+  },
   imports: {
     presets: ["react", "react-router-dom"],
   },
