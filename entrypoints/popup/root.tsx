@@ -120,7 +120,6 @@ function Menu({ configPromise }: { configPromise: Promise<GeneralSettings> }) {
   const [state, dispatch] = useReducer(reducer, use(configPromise));
   const { t } = useTranslation();
 
-  //DisplayMode.Always, DisplayMode.Never, DisplayMode.Hover, DisplayMode.HoverNoGap
   const displayModeOptions = [
     { label: t("optionAlwaysShow"), value: DisplayMode.Always },
     { label: t("optionNeverShow"), value: DisplayMode.Never },
