@@ -16,6 +16,7 @@ import ErrorPage from "./components/ErrorPage";
 import Root from "./root";
 import Changelog from "./routes/Changelog";
 import RuleEditor from "./routes/RuleEditor";
+import Settings from "./routes/Settings";
 
 i18n.use(initReactI18next).init({
   resources: {
@@ -25,12 +26,13 @@ i18n.use(initReactI18next).init({
     ja: { translation: ja },
     ko: { translation: ko },
   },
-  lng: browser.i18n.getUILanguage(),
+  lng: "en",
   fallbackLng: "en",
   interpolation: {
     // react already safes from xss
     escapeValue: false,
   },
+  supportedLngs: ["en", "zh-CN", "zh-TW", "ja", "ko"],
 });
 
 const router = createHashRouter([
@@ -40,6 +42,7 @@ const router = createHashRouter([
     errorElement: <ErrorPage />,
     children: [
       { path: "/", element: <RuleEditor /> },
+      { path: "/settings", element: <Settings /> },
       { path: "/changelog", element: <Changelog /> },
     ],
   },

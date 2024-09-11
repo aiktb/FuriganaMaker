@@ -4,7 +4,7 @@ import { useTranslation } from "react-i18next";
 import { customRules } from "@/commons/utils";
 
 import { Transition } from "@headlessui/react";
-import { Page } from "../components/Page";
+import Page from "../components/Page";
 import RulePage from "../components/RulePage";
 
 export default function RuleEditor() {
