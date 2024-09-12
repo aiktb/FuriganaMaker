@@ -36,13 +36,12 @@ export default function Settings() {
 function MoreSettingsMenu({ settingsPromise }: { settingsPromise: Promise<MoreSettings> }) {
   const [settings, setSettings] = useState(use(settingsPromise));
   const { i18n, t } = useTranslation();
-
-  function handleLanguageChange(language: string) {
+  async function handleLanguageChange(language: string) {
     if (settings[ExtStorage.Language] === language) {
       return;
     }
+    await setMoreSettings(ExtStorage.Language, language);
     setSettings({ ...settings, [ExtStorage.Language]: language });
-    setMoreSettings(ExtStorage.Language, language);
     i18n.changeLanguage(language);
     document.documentElement.lang = language;
   }
