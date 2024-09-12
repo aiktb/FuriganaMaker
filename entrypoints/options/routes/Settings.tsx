@@ -4,6 +4,7 @@ import { moreSettings, setMoreSettings } from "@/commons/utils";
 import { Suspense, use } from "react";
 import { useTranslation } from "react-i18next";
 
+import { Switch } from "@headlessui/react";
 import { Transition } from "@headlessui/react";
 
 import LanguageSwitcher from "../components/LanguageSwitcher";
@@ -46,9 +47,16 @@ function MoreSettingsMenu({ settingsPromise }: { settingsPromise: Promise<MoreSe
     document.documentElement.lang = language;
   }
 
+  async function handleDisableWarningChange(enabled: boolean) {
+    if (settings[ExtStorage.DisableWarning] === enabled) {
+      return;
+    }
+    await setMoreSettings(ExtStorage.DisableWarning, enabled);
+    setSettings({ ...settings, [ExtStorage.DisableWarning]: enabled });
+  }
   return (
-    <menu className="xl:w-[800px] text-pretty flex justify-between">
-      <li className="flex gap-4 items-center">
+    <menu className="xl:w-[800px] text-pretty flex justify-between items-center flex-col space-y-10">
+      <li className="flex gap-4 items-center w-full justify-between">
         <div>
           <div className="text-slate-800 dark:text-slate-200 text-lg font-bold">
             {t("settingsLanguage")}
@@ -60,6 +68,36 @@ function MoreSettingsMenu({ settingsPromise }: { settingsPromise: Promise<MoreSe
           onChange={handleLanguageChange}
         />
       </li>
+      <li className="flex gap-4 items-center w-full justify-between">
+        <div>
+          <div className="text-slate-800 dark:text-slate-200 text-lg font-bold">
+            {"Disable warning"}
+          </div>
+          <div>{'No longer show "Page is too large" warnings on web pages.'}</div>
+        </div>
+        <SettingSwitch
+          enabled={settings[ExtStorage.DisableWarning]}
+          onChange={handleDisableWarningChange}
+        />
+      </li>
     </menu>
+  );
+}
+
+function SettingSwitch({
+  enabled,
+  onChange,
+}: { enabled: boolean; onChange: (enabled: boolean) => void }) {
+  return (
+    <Switch
+      checked={enabled}
+      onChange={onChange}
+      className="group relative flex h-7 w-14 cursor-pointer rounded-full bg-white/10 p-1 transition-colors duration-200 ease-in-out focus:outline-none data-[focus]:outline-1 data-[focus]:outline-white data-[checked]:bg-white/10"
+    >
+      <span
+        aria-hidden="true"
+        className="pointer-events-none inline-block size-5 translate-x-0 rounded-full bg-white ring-0 shadow-lg transition duration-200 ease-in-out group-data-[checked]:translate-x-7"
+      />
+    </Switch>
   );
 }
