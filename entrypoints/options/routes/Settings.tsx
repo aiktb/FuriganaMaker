@@ -38,6 +38,9 @@ function MoreSettingsMenu({ settingsPromise }: { settingsPromise: Promise<MoreSe
   const { i18n } = useTranslation();
 
   function handleLanguageChange(language: string) {
+    if (settings[ExtStorage.Language] === language) {
+      return;
+    }
     setSettings({ ...settings, [ExtStorage.Language]: language });
     setMoreSettings(ExtStorage.Language, language);
     i18n.changeLanguage(language);
