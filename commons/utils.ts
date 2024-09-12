@@ -76,6 +76,7 @@ export const moreSettings = storage.defineItem<MoreSettings>("local:moreSettings
   version: 1,
   defaultValue: {
     [ExtStorage.Language]: undefined,
+    [ExtStorage.DisableWarning]: false,
   },
 });
 

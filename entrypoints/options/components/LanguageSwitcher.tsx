@@ -19,7 +19,7 @@ export default function LanguageSwitcher({ language, onChange }: LanguageSwitche
       <ListboxOptions
         anchor="bottom"
         transition
-        className="w-[var(--button-width)] rounded-xl border dark:border-white/5 dark:bg-white/5 border-black/5 bg-black/5 p-1 [--anchor-gap:4px] focus:outline-none transition duration-100 ease-in data-[leave]:data-[closed]:opacity-0"
+        className="w-[var(--button-width)] rounded-xl border dark:border-white/5 dark:bg-slate-800 border-black/5 bg-black/5 p-1 [--anchor-gap:4px] focus:outline-none transition duration-100 ease-in data-[leave]:data-[closed]:opacity-0"
       >
         {supportedLngs.map((language) => (
           <ListboxOption

@@ -3,7 +3,7 @@ import type { CSSProperties } from "react";
 
 import { addFurigana } from "@/commons/addFurigana";
 import { ExtEvent, ExtStorage } from "@/commons/constants";
-import { getGeneralSettings } from "@/commons/utils";
+import { getGeneralSettings, getMoreSettings } from "@/commons/utils";
 
 export default defineContentScript({
   matches: ["https://*/*"],
@@ -24,7 +24,8 @@ export default defineContentScript({
     const elements = Array.from(document.querySelectorAll(selector));
     // Reflow on a huge page causes severe page freezes and even the browser becomes unresponsive. (issue#16)
     const htmlSize = getHtmlSize();
-    if (htmlSize > 500 && elements.length > 0) {
+    const warningDisabled = await getMoreSettings(ExtStorage.DisableWarning);
+    if (!warningDisabled && htmlSize > 500 && elements.length > 0) {
       showWarning(htmlSize);
       return;
     }

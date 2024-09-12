@@ -26,6 +26,7 @@ export enum ExtStorage {
   SelectorRules = "selectorRules",
   FilterRules = "filterRules",
   Language = "language",
+  DisableWarning = "disableWarning",
 }
 
 export type StyleEvent =
@@ -77,6 +78,7 @@ export interface MoreSettings {
    * If null, the detected system language is used.
    */
   [ExtStorage.Language]: string | undefined;
+  [ExtStorage.DisableWarning]: boolean;
 }
 
 export interface SelectorRule {
