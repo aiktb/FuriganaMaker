@@ -27,6 +27,7 @@ export enum ExtStorage {
   FilterRules = "filterRules",
   Language = "language",
   DisableWarning = "disableWarning",
+  ColoringKanji = "coloringKanji",
 }
 
 export type StyleEvent =
@@ -79,6 +80,7 @@ export interface MoreSettings {
    */
   [ExtStorage.Language]: string | undefined;
   [ExtStorage.DisableWarning]: boolean;
+  [ExtStorage.ColoringKanji]: boolean;
 }
 
 export interface SelectorRule {

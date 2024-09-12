@@ -11,7 +11,7 @@ import {
 } from "@/commons/constants";
 
 import { Selector } from "@/commons/selectElement";
-import { getGeneralSettings, toStorageKey } from "@/commons/utils";
+import { getGeneralSettings, getMoreSettings, toStorageKey } from "@/commons/utils";
 
 export default defineContentScript({
   matches: ["*://*/*"],
@@ -47,6 +47,7 @@ export default defineContentScript({
   },
 });
 
+// biome-ignore lint/complexity/noExcessiveCognitiveComplexity: This doesn't look complicated.
 async function styleHandler(type: StyleEvent) {
   const rubySelector = `ruby.${FURIGANA_CLASS}`;
   const rtSelector = `${rubySelector} > rt`;
@@ -108,12 +109,14 @@ async function styleHandler(type: StyleEvent) {
           font-size: ${value}%;
         }`;
       break;
-    case ExtEvent.AdjustFontColor:
+    case ExtEvent.AdjustFontColor: {
+      const coloringKanji = await getMoreSettings(ExtStorage.ColoringKanji);
       css = `
-        ${rtSelector} {
+        ${coloringKanji ? rubySelector : rtSelector} {
           color: ${value};
         }`;
       break;
+    }
     case ExtEvent.ToggleKanjiFilter:
       if (value) {
         css = `

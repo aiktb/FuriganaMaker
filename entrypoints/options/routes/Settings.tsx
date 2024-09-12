@@ -54,6 +54,14 @@ function MoreSettingsMenu({ settingsPromise }: { settingsPromise: Promise<MoreSe
     await setMoreSettings(ExtStorage.DisableWarning, enabled);
     setSettings({ ...settings, [ExtStorage.DisableWarning]: enabled });
   }
+
+  async function handleColoringKanjiChange(enabled: boolean) {
+    if (settings[ExtStorage.ColoringKanji] === enabled) {
+      return;
+    }
+    await setMoreSettings(ExtStorage.ColoringKanji, enabled);
+    setSettings({ ...settings, [ExtStorage.ColoringKanji]: enabled });
+  }
   return (
     <menu className="xl:w-[800px] text-pretty flex justify-between items-center flex-col space-y-10">
       <li className="flex gap-4 items-center w-full justify-between">
@@ -78,6 +86,18 @@ function MoreSettingsMenu({ settingsPromise }: { settingsPromise: Promise<MoreSe
         <SettingSwitch
           enabled={settings[ExtStorage.DisableWarning]}
           onChange={handleDisableWarningChange}
+        />
+      </li>
+      <li className="flex gap-4 items-center w-full justify-between">
+        <div>
+          <div className="text-slate-800 dark:text-slate-200 text-lg font-bold">
+            {"Coloring Kanji"}
+          </div>
+          <div>{"The kanji on the page will be colored along with the furigana."}</div>
+        </div>
+        <SettingSwitch
+          enabled={settings[ExtStorage.ColoringKanji]}
+          onChange={handleColoringKanjiChange}
         />
       </li>
     </menu>
