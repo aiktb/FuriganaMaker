@@ -14,7 +14,7 @@ import { Selector } from "@/commons/selectElement";
 import { getGeneralSettings, toStorageKey } from "@/commons/utils";
 
 export default defineContentScript({
-  matches: ["https://*/*"],
+  matches: ["*://*/*"],
   runAt: "document_start",
 
   async main() {

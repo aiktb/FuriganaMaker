@@ -6,7 +6,7 @@ import { ExtEvent, ExtStorage } from "@/commons/constants";
 import { getGeneralSettings, getMoreSettings } from "@/commons/utils";
 
 export default defineContentScript({
-  matches: ["https://*/*"],
+  matches: ["*://*/*"],
   runAt: "document_idle",
 
   async main() {
