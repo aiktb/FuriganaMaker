@@ -35,7 +35,7 @@ export default function Settings() {
 
 function MoreSettingsMenu({ settingsPromise }: { settingsPromise: Promise<MoreSettings> }) {
   const [settings, setSettings] = useState(use(settingsPromise));
-  const { i18n } = useTranslation();
+  const { i18n, t } = useTranslation();
 
   function handleLanguageChange(language: string) {
     if (settings[ExtStorage.Language] === language) {
@@ -46,16 +46,13 @@ function MoreSettingsMenu({ settingsPromise }: { settingsPromise: Promise<MoreSe
     i18n.changeLanguage(language);
   }
   return (
-    <menu className="xl:mx-20">
-      <li className="flex gap-4 items-center text-pretty">
+    <menu className="xl:w-[800px] text-pretty flex justify-between">
+      <li className="flex gap-4 items-center">
         <div>
           <div className="text-slate-800 dark:text-slate-200 text-lg font-bold">
-            Interface language
+            {t("settingsLanguage")}
           </div>
-          <div>
-            This setting only affects the display language of Popup and Options pages. The rest of
-            the text will only take effect after changing the browser language.
-          </div>
+          <div>{t("settingsLanguageDesc")}</div>
         </div>
         <LanguageSwitcher
           language={settings[ExtStorage.Language] ?? i18n.language}

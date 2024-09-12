@@ -30,3 +30,5 @@ const language = await getMoreSettings(ExtStorage.Language);
 if (language) {
   i18n.changeLanguage(language);
 }
+
+document.documentElement.lang = i18n.language;

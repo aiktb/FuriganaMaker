@@ -1,4 +1,5 @@
 {
+  "extName": "注音假名生成器",
   "btnAddFurigana": "添加注音假名",
   "tipEscShortcut": "按下 ESC 键取消添加",
   "toggleAutoMode": "開/關自動模式",
@@ -63,7 +64,10 @@
   "markInactive": "未激活",
   "navEditRules": "規則編輯器",
   "navChangelog": "更新日誌",
-  "navAbout": "關於",
+  "navSettings": "設置",
+  "navPopup": "彈出窗口",
+  "settingsLanguage": "界面語言",
+  "settingsLanguageDesc": "此設置僅影響彈出窗口和選項頁面的顯示語言。其餘文本只有在更改瀏覽器語言後才會生效。",
   "navOfficialSite": "官方網站",
   "navManageShortcuts": "管理快捷鍵",
   "sidebarSponsor": "贊助開發者",

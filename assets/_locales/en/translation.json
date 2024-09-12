@@ -1,4 +1,5 @@
 {
+  "extName": "Furigana Maker",
   "btnAddFurigana": "Add Furigana",
   "tipEscShortcut": "Press ESC to cancel",
   "toggleAutoMode": "On-Off Auto Mode",
@@ -64,6 +65,9 @@
   "navEditRules": "Rules editor",
   "navChangelog": "Changelog",
   "navSettings": "Settings",
+  "navPopup": "Popup",
+  "settingsLanguage": "Interface language",
+  "settingsLanguageDesc": "This setting only affects the display language of Popup and Options pages. The rest of the text will only take effect after changing the browser language.",
   "navOfficialSite": "Official site",
   "navManageShortcuts": "Manage shortcuts",
   "sidebarSponsor": "Sponsor developer",

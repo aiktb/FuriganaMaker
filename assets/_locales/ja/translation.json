@@ -1,4 +1,5 @@
 {
+  "extName": "振り仮名メーカー",
   "btnAddFurigana": "振り仮名を追加",
   "tipEscShortcut": "ESCを押して追加をキャンセル",
   "toggleAutoMode": "自動モード切替",
@@ -63,7 +64,10 @@
   "markInactive": "非アクティブ",
   "navEditRules": "ルールエディタ",
   "navChangelog": "変更履歴",
-  "navAbout": "概要",
+  "navSettings": "設定",
+  "navPopup": "ポップアップ",
+  "settingsLanguage": "インターフェース言語",
+  "settingsLanguageDesc": "この設定は、ポップアップとオプションページの表示言語にのみ影響します。その他のテキストは、ブラウザの言語を変更した後にのみ有効になります。",
   "navOfficialSite": "公式サイト",
   "navManageShortcuts": "ショートカットの管理",
   "sidebarSponsor": "開発者を支援",
