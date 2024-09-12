@@ -1,7 +1,10 @@
 import { ExtStorage, type MoreSettings } from "@/commons/constants";
 import { moreSettings, setMoreSettings } from "@/commons/utils";
+
 import { Suspense, use } from "react";
 import { useTranslation } from "react-i18next";
+
+import { Transition } from "@headlessui/react";
 
 import LanguageSwitcher from "../components/LanguageSwitcher";
 import Page from "../components/Page";
@@ -12,7 +15,19 @@ export default function Settings() {
   return (
     <Page title={t("navSettings")} icon="i-tabler-settings">
       <Suspense>
-        <MoreSettingsMenu settingsPromise={moreSettings.getValue()} />
+        <Transition
+          as="div"
+          appear
+          show={true}
+          enter="transition-opacity duration-300"
+          enterFrom="opacity-0"
+          enterTo="opacity-100"
+          leave="transition-opacity duration-300"
+          leaveFrom="opacity-100"
+          leaveTo="opacity-0"
+        >
+          <MoreSettingsMenu settingsPromise={moreSettings.getValue()} />
+        </Transition>
       </Suspense>
     </Page>
   );
