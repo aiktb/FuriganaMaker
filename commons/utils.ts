@@ -5,6 +5,7 @@ import {
   ExtStorage,
   FuriganaType,
   type GeneralSettings,
+  type MoreSettings,
   SelectMode,
   type SelectorRule,
   type StorageChangeEvent,
@@ -69,6 +70,24 @@ export async function setGeneralSettings<K extends keyof GeneralSettings>(
 
 export async function getGeneralSettings<K extends keyof GeneralSettings>(key: K) {
   return (await generalSettings.getValue())[key];
+}
+
+export const moreSettings = storage.defineItem<MoreSettings>("local:moreSettings", {
+  version: 1,
+  defaultValue: {
+    [ExtStorage.Language]: undefined,
+  },
+});
+
+export async function setMoreSettings<K extends keyof MoreSettings>(
+  key: K,
+  value: MoreSettings[K],
+) {
+  return moreSettings.setValue({ ...(await moreSettings.getValue()), [key]: value });
+}
+
+export async function getMoreSettings<K extends keyof MoreSettings>(key: K) {
+  return (await moreSettings.getValue())[key];
 }
 
 export const customRules = storage.defineItem<SelectorRule[]>("local:customRules", {

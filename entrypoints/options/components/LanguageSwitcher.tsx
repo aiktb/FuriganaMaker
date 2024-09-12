@@ -1,17 +1,14 @@
 import { Listbox, ListboxButton, ListboxOption, ListboxOptions } from "@headlessui/react";
-import { useTranslation } from "react-i18next";
 
 const supportedLngs = ["en", "zh-CN", "zh-TW", "ja", "ko"];
 
-export default function LanguageSwitcher() {
-  const { i18n } = useTranslation();
-  const [language, setLanguage] = useState(i18n.language);
-  const displayNameIntl = new Intl.DisplayNames(i18n.language, { type: "language" });
+interface LanguageSwitcherProps {
+  language: string;
+  onChange: (language: string) => void;
+}
 
-  function onChange(language: string) {
-    setLanguage(language);
-    i18n.changeLanguage(language);
-  }
+export default function LanguageSwitcher({ language, onChange }: LanguageSwitcherProps) {
+  const displayNameIntl = new Intl.DisplayNames(language, { type: "language" });
 
   return (
     <Listbox value={language} onChange={onChange}>

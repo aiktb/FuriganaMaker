@@ -25,6 +25,7 @@ export enum ExtStorage {
   // so this extension doesn't consider synchronizing user settings.
   SelectorRules = "selectorRules",
   FilterRules = "filterRules",
+  Language = "language",
 }
 
 export type StyleEvent =
@@ -55,6 +56,9 @@ export enum SelectMode {
   Parentheses = "parentheses",
 }
 
+/**
+ * Only used in Popup pages.
+ */
 export interface GeneralSettings {
   [ExtStorage.AutoMode]: boolean;
   [ExtStorage.KanjiFilter]: boolean;
@@ -63,6 +67,16 @@ export interface GeneralSettings {
   [ExtStorage.SelectMode]: SelectMode;
   [ExtStorage.FontSize]: number;
   [ExtStorage.FontColor]: string;
+}
+
+/**
+ * Only used in Options pages.
+ */
+export interface MoreSettings {
+  /**
+   * If null, the detected system language is used.
+   */
+  [ExtStorage.Language]: string | undefined;
 }
 
 export interface SelectorRule {

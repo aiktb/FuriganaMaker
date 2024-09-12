@@ -1,3 +1,6 @@
+import { ExtStorage, type MoreSettings } from "@/commons/constants";
+import { moreSettings, setMoreSettings } from "@/commons/utils";
+import { Suspense, use } from "react";
 import { useTranslation } from "react-i18next";
 
 import LanguageSwitcher from "../components/LanguageSwitcher";
@@ -8,17 +11,39 @@ export default function Settings() {
 
   return (
     <Page title={t("navSettings")} icon="i-tabler-settings">
-      <menu>
-        <li className="flex gap-4 items-center text-pretty">
-          <div className="">
-            <div className="text-slate-800 dark:text-slate-200 text-lg font-bold">
-              Interface language
-            </div>
-            <div>此设置只影响Popup和Options页面的显示语言，其余文案只在更改浏览器语言后生效</div>
-          </div>
-          <LanguageSwitcher />
-        </li>
-      </menu>
+      <Suspense>
+        <MoreSettingsMenu settingsPromise={moreSettings.getValue()} />
+      </Suspense>
     </Page>
+  );
+}
+
+function MoreSettingsMenu({ settingsPromise }: { settingsPromise: Promise<MoreSettings> }) {
+  const [settings, setSettings] = useState(use(settingsPromise));
+  const { i18n } = useTranslation();
+
+  function handleLanguageChange(language: string) {
+    setSettings({ ...settings, [ExtStorage.Language]: language });
+    setMoreSettings(ExtStorage.Language, language);
+    i18n.changeLanguage(language);
+  }
+  return (
+    <menu className="xl:mx-20">
+      <li className="flex gap-4 items-center text-pretty">
+        <div>
+          <div className="text-slate-800 dark:text-slate-200 text-lg font-bold">
+            Interface language
+          </div>
+          <div>
+            This setting only affects the display language of Popup and Options pages. The rest of
+            the text will only take effect after changing the browser language.
+          </div>
+        </div>
+        <LanguageSwitcher
+          language={settings[ExtStorage.Language] ?? i18n.language}
+          onChange={handleLanguageChange}
+        />
+      </li>
+    </menu>
   );
 }
