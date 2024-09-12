@@ -33,7 +33,7 @@
   "dependencies": {
     "@ctrl/tinycolor": "^4.1.0",
     "@floating-ui/react": "^0.26.20",
-    "@headlessui/react": "^2.1.2",
+    "@headlessui/react": "^2.1.7",
     "@js-temporal/polyfill": "^0.4.4",
     "@sglkc/kuromoji": "^1.1.0",
     "@webext-core/messaging": "^1.4.0",
@@ -65,8 +65,8 @@
     "@types/node": "^22.5.3",
     "@types/react": "^18.3.3",
     "@types/react-dom": "^18.3.0",
-    "@wxt-dev/module-react": "^1.1.1",
     "@wxt-dev/auto-icons": "^1.0.2",
+    "@wxt-dev/module-react": "^1.1.1",
     "autoprefixer": "^10.4.19",
     "husky": "^9.1.3",
     "kuromojin": "^3.0.0",

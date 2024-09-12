@@ -65,7 +65,7 @@ export async function setGeneralSettings<K extends keyof GeneralSettings>(
   key: K,
   value: GeneralSettings[K],
 ) {
-  generalSettings.setValue({ ...(await generalSettings.getValue()), [key]: value });
+  await generalSettings.setValue({ ...(await generalSettings.getValue()), [key]: value });
 }
 
 export async function getGeneralSettings<K extends keyof GeneralSettings>(key: K) {
@@ -83,7 +83,7 @@ export async function setMoreSettings<K extends keyof MoreSettings>(
   key: K,
   value: MoreSettings[K],
 ) {
-  moreSettings.setValue({ ...(await moreSettings.getValue()), [key]: value });
+  await moreSettings.setValue({ ...(await moreSettings.getValue()), [key]: value });
 }
 
 export async function getMoreSettings<K extends keyof MoreSettings>(key: K) {
