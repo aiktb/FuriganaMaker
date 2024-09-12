@@ -41,6 +41,9 @@ export default defineConfig({
   },
   vite: () => ({
     plugins: [svgr()],
+    build: {
+      target: "esnext",
+    },
   }),
   hooks: {
     "build:publicAssets": ({ config }, publicFiles) => {

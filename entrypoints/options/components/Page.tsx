@@ -6,7 +6,7 @@ interface PageProps {
   icon: string;
   children: ReactNode;
 }
-export function Page({ title, children, icon }: PageProps) {
+export default function Page({ title, children, icon }: PageProps) {
   return (
     <>
       <Header title={title} icon={icon} />

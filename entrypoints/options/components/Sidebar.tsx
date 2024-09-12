@@ -11,11 +11,12 @@ export default function Sidebar() {
 
   const navItems: CustomLink[] = [
     { to: "/", target: "_self", label: t("navEditRules"), icon: "i-tabler-list-details" },
+    { to: "/settings", target: "_self", label: t("navSettings"), icon: "i-tabler-settings" },
     { to: "/changelog", target: "_self", label: t("navChangelog"), icon: "i-tabler-history" },
     {
       to: browser.runtime.getURL("/popup.html"),
       target: "_blank",
-      label: "Popup",
+      label: t("navPopup"),
       icon: "i-tabler-puzzle",
     },
     {
@@ -62,8 +63,8 @@ export default function Sidebar() {
           <div className="flex items-center gap-2">
             <Logo className="size-8" />
             <div className="flex items-center justify-center gap-2 px-1.5 text-black dark:text-white">
-              <span className="font-bold text-lg">{browser.runtime.getManifest().name}</span>
-              <span className="font-normal text-slate-700 text-sm dark:text-slate-200">{`v${browser.runtime.getManifest().version}`}</span>
+              <span className="font-bold text-lg">{t("extName")}</span>
+              <span className="absolute right-4 font-normal text-slate-700 text-sm dark:text-slate-200">{`v${browser.runtime.getManifest().version}`}</span>
             </div>
           </div>
           <div className="flex flex-1 flex-col justify-between gap-2">
