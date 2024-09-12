@@ -56,7 +56,6 @@ export enum SelectMode {
 }
 
 export interface GeneralSettings {
-  [key: string]: string | number | boolean;
   [ExtStorage.AutoMode]: boolean;
   [ExtStorage.KanjiFilter]: boolean;
   [ExtStorage.DisplayMode]: DisplayMode;
