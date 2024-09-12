@@ -44,7 +44,9 @@ function MoreSettingsMenu({ settingsPromise }: { settingsPromise: Promise<MoreSe
     setSettings({ ...settings, [ExtStorage.Language]: language });
     setMoreSettings(ExtStorage.Language, language);
     i18n.changeLanguage(language);
+    document.documentElement.lang = language;
   }
+
   return (
     <menu className="xl:w-[800px] text-pretty flex justify-between">
       <li className="flex gap-4 items-center">
