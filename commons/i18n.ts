@@ -1,11 +1,11 @@
 import i18n from "i18next";
 import { initReactI18next } from "react-i18next";
 
-import en from "@/assets/_locales/en/options.json";
-import ja from "@/assets/_locales/ja/options.json";
-import ko from "@/assets/_locales/ko/options.json";
-import zh_CN from "@/assets/_locales/zh_CN/options.json";
-import zh_TW from "@/assets/_locales/zh_TW/options.json";
+import en from "@/assets/_locales/en/translation.json";
+import ja from "@/assets/_locales/ja/translation.json";
+import ko from "@/assets/_locales/ko/translation.json";
+import zh_CN from "@/assets/_locales/zh_CN/translation.json";
+import zh_TW from "@/assets/_locales/zh_TW/translation.json";
 
 import { ExtStorage } from "./constants";
 import { getMoreSettings } from "./utils";
