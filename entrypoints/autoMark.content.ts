@@ -11,7 +11,9 @@ export default defineContentScript({
 
   async main() {
     const autoModeIsEnabled = await getGeneralSettings(ExtStorage.AutoMode);
-    if (!autoModeIsEnabled) {
+    const exclusionSet = new Set(await getMoreSettings(ExtStorage.ExcludeSites));
+    const isExcluded = exclusionSet.has(location.hostname);
+    if (!autoModeIsEnabled || isExcluded) {
       /**
        * If the user does not enable the extension, the extension will not attempt to add furigana to the page.
        * The page must be refreshed after switching the extension to the enabled state.

@@ -54,6 +54,7 @@ export default function RangeSlider({ value, min, max, step, label, onChange }: 
   return (
     <div
       tabIndex={0}
+      // biome-ignore lint/a11y/useSemanticElements: There is no need to use input="range".
       role="slider"
       aria-valuemin={min}
       aria-valuemax={max}
