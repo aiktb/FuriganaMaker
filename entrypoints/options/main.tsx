@@ -18,8 +18,8 @@ const router = createHashRouter([
     element: <Root />,
     errorElement: <ErrorPage />,
     children: [
-      { path: "/", element: <RuleEditor /> },
-      { path: "/settings", element: <Settings /> },
+      { path: "/", element: <Settings /> },
+      { path: "/rule-editor", element: <RuleEditor /> },
       { path: "/changelog", element: <Changelog /> },
     ],
   },
