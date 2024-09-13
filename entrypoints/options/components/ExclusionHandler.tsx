@@ -1,4 +1,6 @@
 import { Dialog, DialogPanel, DialogTitle, Field, Input } from "@headlessui/react";
+import { t } from "i18next";
+import { useTranslation } from "react-i18next";
 import PopupTransition from "./PopupTransition";
 
 interface ExclusionHandlerProps {
@@ -8,16 +10,16 @@ interface ExclusionHandlerProps {
 export default function ExclusionHandler({ sites, onChange }: ExclusionHandlerProps) {
   const [dialogIsOpen, setDialogIsOpen] = useState(false);
   const [input, setInput] = useState("");
+  const { t } = useTranslation();
+
   return (
     <li className="gap-4 items-center w-full justify-between">
       <div className="flex items-center justify-between mb-4">
         <div>
           <div className="text-slate-800 dark:text-slate-200 text-lg font-bold">
-            {"Never add furigana the following sites"}
+            {t("settingsExclusionList")}
           </div>
-          <div>
-            {"This setting takes precedence over custom rules (edited via the Rule editor)."}
-          </div>
+          <div>{t("settingsExclusionListDesc")}</div>
         </div>
         <div className="flex gap-2 flex-col sm:flex-row">
           <button
@@ -26,7 +28,7 @@ export default function ExclusionHandler({ sites, onChange }: ExclusionHandlerPr
               setDialogIsOpen(true);
             }}
           >
-            Add
+            {t("btnAdd")}
           </button>
           <PopupTransition show={dialogIsOpen}>
             <Dialog
@@ -41,7 +43,7 @@ export default function ExclusionHandler({ sites, onChange }: ExclusionHandlerPr
                   as="h3"
                   className="font-medium text-gray-900 text-lg leading-6 dark:text-white"
                 >
-                  Exclude a domain
+                  {t("dialogExcludeTitle")}
                 </DialogTitle>
                 <Field>
                   <Input
@@ -69,7 +71,7 @@ export default function ExclusionHandler({ sites, onChange }: ExclusionHandlerPr
                       setDialogIsOpen(false);
                     }}
                   >
-                    Cancel
+                    {t("btnCancel")}
                   </button>
                   <button
                     className="rounded-md bg-white/5 py-2 px-4 text-white disabled:opacity-50 disabled:cursor-not-allowed"
@@ -80,7 +82,7 @@ export default function ExclusionHandler({ sites, onChange }: ExclusionHandlerPr
                       setDialogIsOpen(false);
                     }}
                   >
-                    OK
+                    {t("btnOK")}
                   </button>
                 </div>
               </DialogPanel>
@@ -90,7 +92,7 @@ export default function ExclusionHandler({ sites, onChange }: ExclusionHandlerPr
             className="rounded-md bg-white/5 py-2 px-4 text-white text-nowrap"
             onClick={() => onChange([])}
           >
-            Clear all
+            {t("btnClearAll")}
           </button>
         </div>
       </div>
@@ -103,9 +105,7 @@ function SiteList({ sites, onChange }: ExclusionHandlerProps) {
   return (
     <div className="bg-white/5 rounded-lg p-4 text-slate-200 space-y-2">
       {sites.length === 0 ? (
-        <div className="flex items-center justify-center">
-          The list is empty, please add it first.
-        </div>
+        <div className="flex items-center justify-center">{t("messageEmptyList")}</div>
       ) : (
         sites.map((site) => (
           <div key={site} className="flex justify-between">
@@ -116,7 +116,7 @@ function SiteList({ sites, onChange }: ExclusionHandlerProps) {
                 onChange(sites.filter((s) => s !== site));
               }}
             >
-              <span className="sr-only">Delete</span>
+              <span className="sr-only">{t("btnDelete")}</span>
               <i className="size-5 i-tabler-x" />
             </button>
           </div>
