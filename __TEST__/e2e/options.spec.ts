@@ -6,7 +6,7 @@ describe("Extension options page", () => {
   });
 
   test("Hash routes are able to navigate correctly", async ({ page, extensionId }) => {
-    const rulesEditorLink = page.getByRole("link", { name: "Rules editor" });
+    const rulesEditorLink = page.getByRole("link", { name: "Settings" });
     expect(rulesEditorLink).toBeVisible();
     expect(rulesEditorLink).toHaveAttribute("href", "#/");
     expect(rulesEditorLink).toHaveAttribute("aria-current", "page");
