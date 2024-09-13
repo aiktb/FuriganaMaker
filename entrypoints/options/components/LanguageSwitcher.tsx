@@ -1,6 +1,5 @@
 import { Listbox, ListboxButton, ListboxOption, ListboxOptions } from "@headlessui/react";
-
-const supportedLngs = ["en", "zh-CN", "zh-TW", "ja", "ko"];
+import { useTranslation } from "react-i18next";
 
 interface LanguageSwitcherProps {
   language: string;
@@ -9,7 +8,7 @@ interface LanguageSwitcherProps {
 
 export default function LanguageSwitcher({ language, onChange }: LanguageSwitcherProps) {
   const displayNameIntl = new Intl.DisplayNames(language, { type: "language" });
-
+  const { i18n } = useTranslation();
   return (
     <Listbox value={language} onChange={onChange}>
       <ListboxButton className="relative block min-w-40 h-12 rounded-lg text-nowrap bg-black/5 dark:bg-white/5 py-1.5 pr-8 pl-3 text-left text-sm/6 dark:text-white text-slate-900 focus:outline-none data-[focus]:outline-2 data-[focus]:-outline-offset-2 dark:data-[focus]:outline-white/25 data-[focus]:outline-black/25">
@@ -21,7 +20,7 @@ export default function LanguageSwitcher({ language, onChange }: LanguageSwitche
         transition
         className="w-[var(--button-width)] rounded-xl border dark:border-white/5 dark:bg-slate-800 border-black/5 bg-black/5 p-1 [--anchor-gap:4px] focus:outline-none transition duration-100 ease-in data-[leave]:data-[closed]:opacity-0"
       >
-        {supportedLngs.map((language) => (
+        {Object.keys(i18n.options.resources!).map((language) => (
           <ListboxOption
             key={language}
             value={language}

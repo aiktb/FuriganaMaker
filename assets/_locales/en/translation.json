@@ -76,5 +76,16 @@
   "manageShortcuts": "Manage shortcuts",
   "errorPageTitle": "Oops!",
   "errorPageGoBack": "Go back to the Home Page",
-  "errorPageTip": "Sorry, an unexpected error has occurred."
+  "errorPageTip": "Sorry, an unexpected error has occurred.",
+  "settingsDisableWarning": "Disable warning",
+  "settingsDisableWarningDesc": "No longer show \"Page is too large\" warnings on web pages.",
+  "settingsColoringKanji": "Coloring Kanji",
+  "settingsColoringKanjiDesc": "The kanji on the page will be colored along with the furigana.",
+  "btnOK": "OK",
+  "btnAdd": "Add",
+  "btnClearAll": "Clear All",
+  "dialogExcludeTitle": "Exclude a domain",
+  "settingsExclusionList": "The following sites never add furigana",
+  "settingsExclusionListDesc": "This setting takes precedence over custom rules (edited via the Rule editor).",
+  "messageEmptyList": " The list is empty, please add it first."
 }

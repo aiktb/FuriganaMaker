@@ -87,9 +87,9 @@ function MoreSettingsMenu({ settingsPromise }: { settingsPromise: Promise<MoreSe
       <li className="flex gap-4 items-center w-full justify-between">
         <div>
           <div className="text-slate-800 dark:text-slate-200 text-lg font-bold">
-            {"Disable warning"}
+            {t("settingsDisableWarning")}
           </div>
-          <div>{'No longer show "Page is too large" warnings on web pages.'}</div>
+          <div>{t("settingsDisableWarningDesc")}</div>
         </div>
         <SettingSwitch
           enabled={settings[ExtStorage.DisableWarning]}
@@ -99,9 +99,9 @@ function MoreSettingsMenu({ settingsPromise }: { settingsPromise: Promise<MoreSe
       <li className="flex gap-4 items-center w-full justify-between">
         <div>
           <div className="text-slate-800 dark:text-slate-200 text-lg font-bold">
-            {"Coloring Kanji"}
+            {t("settingsColoringKanji")}
           </div>
-          <div>{"The kanji on the page will be colored along with the furigana."}</div>
+          <div>{t("settingsColoringKanjiDesc")}</div>
         </div>
         <SettingSwitch
           enabled={settings[ExtStorage.ColoringKanji]}

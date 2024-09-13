@@ -76,5 +76,16 @@
   "manageShortcuts": "ショートカットの管理",
   "errorPageTitle": "おっと！",
   "errorPageGoBack": "ホームページに戻る",
-  "errorPageTip": "申し訳ありませんが、予期しないエラーが発生しました。"
+  "errorPageTip": "申し訳ありませんが、予期しないエラーが発生しました。",
+  "btnAdd": "追加",
+  "btnClearAll": "すべてクリア",
+  "btnOK": "わかりました",
+  "dialogExcludeTitle": "ドメインを除外する",
+  "messageEmptyList": "リストは空です。最初に追加してください。",
+  "settingsColoringKanji": "漢字のぬりえ",
+  "settingsColoringKanjiDesc": "ページ上の漢字にはふりがなとともに色がつきます。",
+  "settingsDisableWarning": "警告を無効にする",
+  "settingsDisableWarningDesc": "Web ページに「ページが大きすぎます」という警告が表示されなくなりました。",
+  "settingsExclusionListDesc": "この設定は、カスタム ルール (ルール エディターで編集) より優先されます。",
+  "settingsExclusionList": "以下のサイトは決してふりがなを付けません"
 }

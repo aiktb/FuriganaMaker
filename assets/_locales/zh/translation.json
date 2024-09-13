@@ -76,5 +76,16 @@
   "manageShortcuts": "管理快捷键",
   "errorPageTitle": "哎呀！",
   "errorPageGoBack": "返回主页",
-  "errorPageTip": "抱歉，发生了意外错误。"
+  "errorPageTip": "抱歉，发生了意外错误。",
+  "settingsExclusionListDesc": "此设置优先于自定义规则（通过规则编辑器编辑）。",
+  "btnAdd": "添加",
+  "btnClearAll": "全部清除",
+  "btnOK": "好的",
+  "dialogExcludeTitle": "排除域",
+  "settingsColoringKanji": "着色汉字",
+  "settingsColoringKanjiDesc": "页面上的汉字将与注音假名一起着色。",
+  "settingsDisableWarning": "禁用警告",
+  "settingsDisableWarningDesc": "网页上不再显示“页面太大”警告。",
+  "messageEmptyList": "列表为空，请先添加。",
+  "settingsExclusionList": "以下网站从不添加注音假名"
 }
