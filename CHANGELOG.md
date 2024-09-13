@@ -1,5 +1,21 @@
 # Changelog
 
+## v2.1.0
+
+### Features
+
+- Add language switcher to the Options page.
+- Allows turning off the "Page is too large" warning.
+- Allows use of this extension on http sites.
+- Allows kanji and furigana on the page to be colored together.
+- Allow sites to be excluded from auto mode.
+- Set settings page as homepage.
+
+### Fix Bugs
+
+- Complete the missing i18n translation of the page.
+- 1024px width screen, a scroll bar appears on the x-axis.
+
 ## v2.0.2
 
 ### Fix Bugs
