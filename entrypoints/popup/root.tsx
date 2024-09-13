@@ -223,7 +223,7 @@ function Menu({ configPromise }: { configPromise: Promise<GeneralSettings> }) {
         />
       </MenuItem>
       <MenuItem icon={<SettingIcon />}>
-        <Link tip={t("tipOpenOptions")} href="options.html" text={t("linkEditRules")} />
+        <Link tip={t("tipOpenOptions")} href="options.html" text={t("linkSettings")} />
       </MenuItem>
       <MenuItem icon={<GithubIcon />}>
         <Link
