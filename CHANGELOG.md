@@ -1,5 +1,11 @@
 # Changelog
 
+## v2.1.1
+
+### Fix Bugs
+
+- Chrome context menu missing "add furigana" item.
+
 ## v2.1.0
 
 ### Features
@@ -8,7 +14,7 @@
 - Allows turning off the "Page is too large" warning.
 - Allows use of this extension on http sites.
 - Allows kanji and furigana on the page to be colored together.
-- Allow sites to be excluded from auto mode.
+- Allows sites to be excluded from auto mode.
 - Set settings page as homepage.
 
 ### Fix Bugs
