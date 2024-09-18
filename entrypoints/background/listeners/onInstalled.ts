@@ -5,6 +5,7 @@ export const registerOnInstalled = () => {
     switch (details.reason) {
       case chrome.runtime.OnInstalledReason.INSTALL: {
         createContentMenu();
+        browser.tabs.create({ url: "https://furiganamaker.app/welcome" });
         break;
       }
       case chrome.runtime.OnInstalledReason.UPDATE: {
@@ -39,5 +40,4 @@ function createContentMenu() {
     documentUrlPatterns: ["https://*/*"],
   };
   browser.contextMenus.create(contextMenuItem);
-  browser.tabs.create({ url: "https://furiganamaker.app/welcome" });
 }

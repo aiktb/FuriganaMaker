@@ -1,5 +1,11 @@
 # Changelog
 
+## v2.1.2
+
+### Fix Bugs
+
+- Accidentally opened the official website.
+
 ## v2.1.1
 
 ### Fix Bugs
