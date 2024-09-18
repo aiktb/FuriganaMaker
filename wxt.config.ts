@@ -25,7 +25,7 @@ export type Command = keyof typeof commands;
 export default defineConfig({
   extensionApi: "chrome",
   manifest: {
-    version: "2.1.1",
+    version: "2.1.2",
     name: "__MSG_extName__",
     description: "__MSG_extDescription__",
     permissions: ["contextMenus", "storage"],
