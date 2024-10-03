@@ -16,7 +16,7 @@ importers:
         version: 0.26.20(react-dom@18.3.0-canary-c5b937576-20231219(react@18.3.0-canary-c5b937576-20231219))(react@18.3.0-canary-c5b937576-20231219)
       '@headlessui/react':
         specifier: ^2.1.7
-        version: 2.1.7(react-dom@18.3.0-canary-c5b937576-20231219(react@18.3.0-canary-c5b937576-20231219))(react@18.3.0-canary-c5b937576-20231219)
+        version: 2.1.8(react-dom@18.3.0-canary-c5b937576-20231219(react@18.3.0-canary-c5b937576-20231219))(react@18.3.0-canary-c5b937576-20231219)
       '@js-temporal/polyfill':
         specifier: ^0.4.4
         version: 0.4.4
@@ -143,7 +143,7 @@ importers:
         version: 2.10.8(@types/react@18.3.3)(react@18.3.0-canary-c5b937576-20231219)
       '@headlessui/react':
         specifier: ^2.1.2
-        version: 2.1.2(react-dom@18.3.0-canary-c5b937576-20231219(react@18.3.0-canary-c5b937576-20231219))(react@18.3.0-canary-c5b937576-20231219)
+        version: 2.1.8(react-dom@18.3.0-canary-c5b937576-20231219(react@18.3.0-canary-c5b937576-20231219))(react@18.3.0-canary-c5b937576-20231219)
       '@js-temporal/polyfill':
         specifier: ^0.4.4
         version: 0.4.4
@@ -1211,8 +1211,17 @@ packages:
       react: '>=16.8.0'
       react-dom: '>=16.8.0'
 
+  '@floating-ui/react@0.26.23':
+    resolution: {integrity: sha512-9u3i62fV0CFF3nIegiWiRDwOs7OW/KhSUJDNx2MkQM3LbE5zQOY01sL3nelcVBXvX7Ovvo3A49I8ql+20Wg/Hw==}
+    peerDependencies:
+      react: '>=16.8.0'
+      react-dom: '>=16.8.0'
+
   '@floating-ui/utils@0.2.5':
     resolution: {integrity: sha512-sTcG+QZ6fdEUObICavU+aB3Mp8HY4n14wYHdxK4fXjPmv3PXZZeY5RaguJmGyeH/CJQhX3fqKUtS4qc1LoHwhQ==}
+
+  '@floating-ui/utils@0.2.7':
+    resolution: {integrity: sha512-X8R8Oj771YRl/w+c1HqAC1szL8zWQRwFvgDwT129k9ACdBoud/+/rX9V0qiMl6LWUdP9voC2nDVZYPMQQsb6eA==}
 
   '@fontsource/dm-sans@5.0.21':
     resolution: {integrity: sha512-ydUs1ZAf6fqZfvmEb4EdT7RehZvFBLEOVz6Mn9kmoaVsYR1Ql3kkQvaAGEyMrcCuoBklwPaCqnq6PkHyYzIx6Q==}
@@ -1223,15 +1232,8 @@ packages:
   '@fontsource/noto-sans-jp@5.0.19':
     resolution: {integrity: sha512-N0KUmSqX6tlAlnqFQnDywj9e+4RithtLgFGlcRt/85EI8rmDYJFYQCZVhc+xTIk5Kgr1gLtNToHZzK61BTsWqw==}
 
-  '@headlessui/react@2.1.2':
-    resolution: {integrity: sha512-Kb3hgk9gRNRcTZktBrKdHhF3xFhYkca1Rk6e1/im2ENf83dgN54orMW0uSKTXFnUpZOUFZ+wcY05LlipwgZIFQ==}
-    engines: {node: '>=10'}
-    peerDependencies:
-      react: ^18
-      react-dom: ^18
-
-  '@headlessui/react@2.1.7':
-    resolution: {integrity: sha512-3mZkkpFK2lK0Xvl9LcdgyN+mQQQ/bZU7lLhy63isqZ+OaYug7DQGTSPQd/TM0nUayvk+8pHSiaYuSRw/mTHUTg==}
+  '@headlessui/react@2.1.8':
+    resolution: {integrity: sha512-uajqVkAcVG/wHwG9Fh5PFMcFpf2VxM4vNRNKxRjuK009kePVur8LkuuygHfIE+2uZ7z7GnlTtYsyUe6glPpTLg==}
     engines: {node: '>=10'}
     peerDependencies:
       react: ^18
@@ -1455,18 +1457,8 @@ packages:
     resolution: {integrity: sha512-c83qWb22rNRuB0UaVCI0uRPNRr8Z0FWnEIvT47jiHAmOIUHbBOg5XvV7pM5x+rKn9HRpjxquDbXYSXr3fAKFcw==}
     engines: {node: '>=12'}
 
-  '@react-aria/focus@3.18.1':
-    resolution: {integrity: sha512-N0Cy61WCIv+57mbqC7hiZAsB+3rF5n4JKabxUmg/2RTJL6lq7hJ5N4gx75ymKxkN8GnVDwt4pKZah48Wopa5jw==}
-    peerDependencies:
-      react: ^16.8.0 || ^17.0.0-rc.1 || ^18.0.0 || ^19.0.0
-
   '@react-aria/focus@3.18.2':
     resolution: {integrity: sha512-Jc/IY+StjA3uqN73o6txKQ527RFU7gnG5crEl5Xy3V+gbYp2O5L3ezAo/E0Ipi2cyMbG6T5Iit1IDs7hcGu8aw==}
-    peerDependencies:
-      react: ^16.8.0 || ^17.0.0-rc.1 || ^18.0.0 || ^19.0.0
-
-  '@react-aria/interactions@3.22.1':
-    resolution: {integrity: sha512-5TLzQaDAQQ5C70yG8GInbO4wIylKY67RfTIIwQPGR/4n5OIjbUD8BOj3NuSsuZ/frUPaBXo1VEBBmSO23fxkjw==}
     peerDependencies:
       react: ^16.8.0 || ^17.0.0-rc.1 || ^18.0.0 || ^19.0.0
 
@@ -1481,18 +1473,8 @@ packages:
     peerDependencies:
       react: ^16.8.0 || ^17.0.0-rc.1 || ^18.0.0 || ^19.0.0
 
-  '@react-aria/utils@3.25.1':
-    resolution: {integrity: sha512-5Uj864e7T5+yj78ZfLnfHqmypLiqW2mN+nsdslog2z5ssunTqjolVeM15ootXskjISlZ7MojLpq97kIC4nlnAw==}
-    peerDependencies:
-      react: ^16.8.0 || ^17.0.0-rc.1 || ^18.0.0 || ^19.0.0
-
   '@react-aria/utils@3.25.2':
     resolution: {integrity: sha512-GdIvG8GBJJZygB4L2QJP1Gabyn2mjFsha73I2wSe+o4DYeGWoJiMZRM06PyTIxLH4S7Sn7eVDtsSBfkc2VY/NA==}
-    peerDependencies:
-      react: ^16.8.0 || ^17.0.0-rc.1 || ^18.0.0 || ^19.0.0
-
-  '@react-stately/utils@3.10.2':
-    resolution: {integrity: sha512-fh6OTQtbeQC0ywp6LJuuKs6tKIgFvt/DlIZEcIpGho6/oZG229UnIk6TUekwxnDbumuYyan6D9EgUtEMmT8UIg==}
     peerDependencies:
       react: ^16.8.0 || ^17.0.0-rc.1 || ^18.0.0 || ^19.0.0
 
@@ -1783,9 +1765,6 @@ packages:
     peerDependencies:
       '@svgr/core': '*'
 
-  '@swc/helpers@0.5.12':
-    resolution: {integrity: sha512-KMZNXiGibsW9kvZAO1Pam2JPTDBm+KSHMMHWdsyI/1DbIZjT2A6Gy3hblVXUMEDvUAKq+e0vL0X0o54owWji7g==}
-
   '@swc/helpers@0.5.13':
     resolution: {integrity: sha512-UoKGxQ3r5kYI9dALKJapMmuK+1zWM/H17Z1+iwnNmzcJRnfFuevZs375TA5rW31pu4BS4NoSy1fRsexDXfWn5w==}
 
@@ -1809,17 +1788,8 @@ packages:
       react: ^16.8.0 || ^17.0.0 || ^18.0.0
       react-dom: ^16.8.0 || ^17.0.0 || ^18.0.0
 
-  '@tanstack/react-virtual@3.8.3':
-    resolution: {integrity: sha512-9ICwbDUUzN99CJIGc373i8NLoj6zFTKI2Hlcmo0+lCSAhPQ5mxq4dGOMKmLYoEFyHcGQ64Bd6ZVbnPpM6lNK5w==}
-    peerDependencies:
-      react: ^16.8.0 || ^17.0.0 || ^18.0.0
-      react-dom: ^16.8.0 || ^17.0.0 || ^18.0.0
-
   '@tanstack/virtual-core@3.10.7':
     resolution: {integrity: sha512-ND5dfsU0n9F4gROzwNNDJmg6y8n9pI8YWxtgbfJ5UcNn7Hx+MxEXtXcQ189tS7sh8pmCObgz2qSiyRKTZxT4dg==}
-
-  '@tanstack/virtual-core@3.8.3':
-    resolution: {integrity: sha512-vd2A2TnM5lbnWZnHi9B+L2gPtkSeOtJOAw358JqokIH1+v2J7vUAzFVPwB/wrye12RFOurffXu33plm4uQ+JBQ==}
 
   '@types/acorn@4.0.6':
     resolution: {integrity: sha512-veQTnWP+1D/xbxVrPC3zHnCZRjSrKfhbMUlEA43iMZLu7EsnTtkJklIuwrCPbOi8YkvDQAiW05VQQFvvz9oieQ==}
@@ -6571,7 +6541,17 @@ snapshots:
       react-dom: 18.3.0-canary-c5b937576-20231219(react@18.3.0-canary-c5b937576-20231219)
       tabbable: 6.2.0
 
+  '@floating-ui/react@0.26.23(react-dom@18.3.0-canary-c5b937576-20231219(react@18.3.0-canary-c5b937576-20231219))(react@18.3.0-canary-c5b937576-20231219)':
+    dependencies:
+      '@floating-ui/react-dom': 2.1.1(react-dom@18.3.0-canary-c5b937576-20231219(react@18.3.0-canary-c5b937576-20231219))(react@18.3.0-canary-c5b937576-20231219)
+      '@floating-ui/utils': 0.2.7
+      react: 18.3.0-canary-c5b937576-20231219
+      react-dom: 18.3.0-canary-c5b937576-20231219(react@18.3.0-canary-c5b937576-20231219)
+      tabbable: 6.2.0
+
   '@floating-ui/utils@0.2.5': {}
+
+  '@floating-ui/utils@0.2.7': {}
 
   '@fontsource/dm-sans@5.0.21': {}
 
@@ -6579,18 +6559,9 @@ snapshots:
 
   '@fontsource/noto-sans-jp@5.0.19': {}
 
-  '@headlessui/react@2.1.2(react-dom@18.3.0-canary-c5b937576-20231219(react@18.3.0-canary-c5b937576-20231219))(react@18.3.0-canary-c5b937576-20231219)':
+  '@headlessui/react@2.1.8(react-dom@18.3.0-canary-c5b937576-20231219(react@18.3.0-canary-c5b937576-20231219))(react@18.3.0-canary-c5b937576-20231219)':
     dependencies:
-      '@floating-ui/react': 0.26.20(react-dom@18.3.0-canary-c5b937576-20231219(react@18.3.0-canary-c5b937576-20231219))(react@18.3.0-canary-c5b937576-20231219)
-      '@react-aria/focus': 3.18.1(react@18.3.0-canary-c5b937576-20231219)
-      '@react-aria/interactions': 3.22.1(react@18.3.0-canary-c5b937576-20231219)
-      '@tanstack/react-virtual': 3.8.3(react-dom@18.3.0-canary-c5b937576-20231219(react@18.3.0-canary-c5b937576-20231219))(react@18.3.0-canary-c5b937576-20231219)
-      react: 18.3.0-canary-c5b937576-20231219
-      react-dom: 18.3.0-canary-c5b937576-20231219(react@18.3.0-canary-c5b937576-20231219)
-
-  '@headlessui/react@2.1.7(react-dom@18.3.0-canary-c5b937576-20231219(react@18.3.0-canary-c5b937576-20231219))(react@18.3.0-canary-c5b937576-20231219)':
-    dependencies:
-      '@floating-ui/react': 0.26.20(react-dom@18.3.0-canary-c5b937576-20231219(react@18.3.0-canary-c5b937576-20231219))(react@18.3.0-canary-c5b937576-20231219)
+      '@floating-ui/react': 0.26.23(react-dom@18.3.0-canary-c5b937576-20231219(react@18.3.0-canary-c5b937576-20231219))(react@18.3.0-canary-c5b937576-20231219)
       '@react-aria/focus': 3.18.2(react@18.3.0-canary-c5b937576-20231219)
       '@react-aria/interactions': 3.22.2(react@18.3.0-canary-c5b937576-20231219)
       '@tanstack/react-virtual': 3.10.7(react-dom@18.3.0-canary-c5b937576-20231219(react@18.3.0-canary-c5b937576-20231219))(react@18.3.0-canary-c5b937576-20231219)
@@ -6826,15 +6797,6 @@ snapshots:
       '@pnpm/network.ca-file': 1.0.2
       config-chain: 1.1.13
 
-  '@react-aria/focus@3.18.1(react@18.3.0-canary-c5b937576-20231219)':
-    dependencies:
-      '@react-aria/interactions': 3.22.1(react@18.3.0-canary-c5b937576-20231219)
-      '@react-aria/utils': 3.25.1(react@18.3.0-canary-c5b937576-20231219)
-      '@react-types/shared': 3.24.1(react@18.3.0-canary-c5b937576-20231219)
-      '@swc/helpers': 0.5.12
-      clsx: 2.1.1
-      react: 18.3.0-canary-c5b937576-20231219
-
   '@react-aria/focus@3.18.2(react@18.3.0-canary-c5b937576-20231219)':
     dependencies:
       '@react-aria/interactions': 3.22.2(react@18.3.0-canary-c5b937576-20231219)
@@ -6842,14 +6804,6 @@ snapshots:
       '@react-types/shared': 3.24.1(react@18.3.0-canary-c5b937576-20231219)
       '@swc/helpers': 0.5.13
       clsx: 2.1.1
-      react: 18.3.0-canary-c5b937576-20231219
-
-  '@react-aria/interactions@3.22.1(react@18.3.0-canary-c5b937576-20231219)':
-    dependencies:
-      '@react-aria/ssr': 3.9.5(react@18.3.0-canary-c5b937576-20231219)
-      '@react-aria/utils': 3.25.1(react@18.3.0-canary-c5b937576-20231219)
-      '@react-types/shared': 3.24.1(react@18.3.0-canary-c5b937576-20231219)
-      '@swc/helpers': 0.5.12
       react: 18.3.0-canary-c5b937576-20231219
 
   '@react-aria/interactions@3.22.2(react@18.3.0-canary-c5b937576-20231219)':
@@ -6862,16 +6816,7 @@ snapshots:
 
   '@react-aria/ssr@3.9.5(react@18.3.0-canary-c5b937576-20231219)':
     dependencies:
-      '@swc/helpers': 0.5.12
-      react: 18.3.0-canary-c5b937576-20231219
-
-  '@react-aria/utils@3.25.1(react@18.3.0-canary-c5b937576-20231219)':
-    dependencies:
-      '@react-aria/ssr': 3.9.5(react@18.3.0-canary-c5b937576-20231219)
-      '@react-stately/utils': 3.10.2(react@18.3.0-canary-c5b937576-20231219)
-      '@react-types/shared': 3.24.1(react@18.3.0-canary-c5b937576-20231219)
-      '@swc/helpers': 0.5.12
-      clsx: 2.1.1
+      '@swc/helpers': 0.5.13
       react: 18.3.0-canary-c5b937576-20231219
 
   '@react-aria/utils@3.25.2(react@18.3.0-canary-c5b937576-20231219)':
@@ -6881,11 +6826,6 @@ snapshots:
       '@react-types/shared': 3.24.1(react@18.3.0-canary-c5b937576-20231219)
       '@swc/helpers': 0.5.13
       clsx: 2.1.1
-      react: 18.3.0-canary-c5b937576-20231219
-
-  '@react-stately/utils@3.10.2(react@18.3.0-canary-c5b937576-20231219)':
-    dependencies:
-      '@swc/helpers': 0.5.12
       react: 18.3.0-canary-c5b937576-20231219
 
   '@react-stately/utils@3.10.3(react@18.3.0-canary-c5b937576-20231219)':
@@ -7208,10 +7148,6 @@ snapshots:
     transitivePeerDependencies:
       - supports-color
 
-  '@swc/helpers@0.5.12':
-    dependencies:
-      tslib: 2.6.3
-
   '@swc/helpers@0.5.13':
     dependencies:
       tslib: 2.7.0
@@ -7239,15 +7175,7 @@ snapshots:
       react: 18.3.0-canary-c5b937576-20231219
       react-dom: 18.3.0-canary-c5b937576-20231219(react@18.3.0-canary-c5b937576-20231219)
 
-  '@tanstack/react-virtual@3.8.3(react-dom@18.3.0-canary-c5b937576-20231219(react@18.3.0-canary-c5b937576-20231219))(react@18.3.0-canary-c5b937576-20231219)':
-    dependencies:
-      '@tanstack/virtual-core': 3.8.3
-      react: 18.3.0-canary-c5b937576-20231219
-      react-dom: 18.3.0-canary-c5b937576-20231219(react@18.3.0-canary-c5b937576-20231219)
-
   '@tanstack/virtual-core@3.10.7': {}
-
-  '@tanstack/virtual-core@3.8.3': {}
 
   '@types/acorn@4.0.6':
     dependencies:
