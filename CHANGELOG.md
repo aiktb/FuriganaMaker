@@ -1,5 +1,11 @@
 # Changelog
 
+## v2.1.3
+
+### Fix Bugs
+
+- Remove extra space on the right side of the language switcher.
+
 ## v2.1.2
 
 ### Fix Bugs
