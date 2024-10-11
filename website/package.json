@@ -30,11 +30,9 @@
     "@headlessui/tailwindcss": "^0.2.1",
     "@iconify-json/fa6-brands": "^1.1.19",
     "@iconify-json/mdi": "^1.1.67",
-    "@remix-run/css-bundle": "^2.9.2",
     "@remix-run/dev": "^2.9.2",
     "@remix-run/node": "^2.9.2",
     "vite": "^5.4.3",
-    "vite-tsconfig-paths": "^4.3.2",
     "wrangler": "^3.61.0"
   }
 }
