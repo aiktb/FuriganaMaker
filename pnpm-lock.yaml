@@ -110,7 +110,7 @@ importers:
         version: 1.0.2(wxt@0.19.9(@types/node@22.5.4)(rollup@4.21.2)(webpack-sources@3.2.3))
       '@wxt-dev/module-react':
         specifier: ^1.1.1
-        version: 1.1.1(vite@5.4.3(@types/node@22.5.4))(wxt@0.19.9(@types/node@22.5.4)(rollup@4.21.2)(webpack-sources@3.2.3))
+        version: 1.1.1(vite@5.4.6(@types/node@22.5.4))(wxt@0.19.9(@types/node@22.5.4)(rollup@4.21.2)(webpack-sources@3.2.3))
       autoprefixer:
         specifier: ^10.4.19
         version: 10.4.19(postcss@8.4.45)
@@ -128,7 +128,7 @@ importers:
         version: 5.5.4
       vite-plugin-svgr:
         specifier: ^4.2.0
-        version: 4.2.0(rollup@4.21.2)(typescript@5.5.4)(vite@5.4.3(@types/node@22.5.4))
+        version: 4.2.0(rollup@4.21.2)(typescript@5.5.4)(vite@5.4.6(@types/node@22.5.4))
       vitest:
         specifier: ^2.0.4
         version: 2.0.4(@types/node@22.5.4)
@@ -192,13 +192,13 @@ importers:
         version: 1.1.67
       '@remix-run/dev':
         specifier: ^2.9.2
-        version: 2.9.2(@remix-run/react@2.10.3(react-dom@18.3.0-canary-c5b937576-20231219(react@18.3.0-canary-c5b937576-20231219))(react@18.3.0-canary-c5b937576-20231219)(typescript@5.5.4))(@types/node@22.5.4)(typescript@5.5.4)(vite@5.4.3(@types/node@22.5.4))(wrangler@3.61.0(@cloudflare/workers-types@4.20240620.0))
+        version: 2.9.2(@remix-run/react@2.10.3(react-dom@18.3.0-canary-c5b937576-20231219(react@18.3.0-canary-c5b937576-20231219))(react@18.3.0-canary-c5b937576-20231219)(typescript@5.5.4))(@types/node@22.5.4)(typescript@5.5.4)(vite@5.4.6(@types/node@22.5.4))(wrangler@3.61.0(@cloudflare/workers-types@4.20240620.0))
       '@remix-run/node':
         specifier: ^2.9.2
         version: 2.9.2(typescript@5.5.4)
       vite:
-        specifier: ^5.4.3
-        version: 5.4.3(@types/node@22.5.4)
+        specifier: ^5.4.6
+        version: 5.4.6(@types/node@22.5.4)
       wrangler:
         specifier: ^3.61.0
         version: 3.61.0(@cloudflare/workers-types@4.20240620.0)
@@ -5425,8 +5425,8 @@ packages:
     peerDependencies:
       vite: ^2.6.0 || 3 || 4 || 5
 
-  vite@5.4.3:
-    resolution: {integrity: sha512-IH+nl64eq9lJjFqU+/yrRnrHPVTlgy42/+IzbOdaFDVlyLgI/wDlf+FCobXLX1cT0X5+7LMyH1mIy2xJdLfo8Q==}
+  vite@5.4.6:
+    resolution: {integrity: sha512-IeL5f8OO5nylsgzd9tq4qD2QqI0k2CQLGrWD0rCN0EQJZpBK5vJAx0I+GDkMOXxQX/OfFHMuLIx6ddAxGX/k+Q==}
     engines: {node: ^18.0.0 || >=20.0.0}
     hasBin: true
     peerDependencies:
@@ -5722,7 +5722,7 @@ snapshots:
   '@babel/code-frame@7.24.7':
     dependencies:
       '@babel/highlight': 7.24.7
-      picocolors: 1.0.1
+      picocolors: 1.1.0
 
   '@babel/compat-data@7.25.0': {}
 
@@ -5899,7 +5899,7 @@ snapshots:
       '@babel/helper-validator-identifier': 7.24.7
       chalk: 2.4.2
       js-tokens: 4.0.0
-      picocolors: 1.0.1
+      picocolors: 1.1.0
 
   '@babel/parser@7.25.0':
     dependencies:
@@ -6877,7 +6877,7 @@ snapshots:
     optionalDependencies:
       typescript: 5.5.4
 
-  '@remix-run/dev@2.9.2(@remix-run/react@2.10.3(react-dom@18.3.0-canary-c5b937576-20231219(react@18.3.0-canary-c5b937576-20231219))(react@18.3.0-canary-c5b937576-20231219)(typescript@5.5.4))(@types/node@22.5.4)(typescript@5.5.4)(vite@5.4.3(@types/node@22.5.4))(wrangler@3.61.0(@cloudflare/workers-types@4.20240620.0))':
+  '@remix-run/dev@2.9.2(@remix-run/react@2.10.3(react-dom@18.3.0-canary-c5b937576-20231219(react@18.3.0-canary-c5b937576-20231219))(react@18.3.0-canary-c5b937576-20231219)(typescript@5.5.4))(@types/node@22.5.4)(typescript@5.5.4)(vite@5.4.6(@types/node@22.5.4))(wrangler@3.61.0(@cloudflare/workers-types@4.20240620.0))':
     dependencies:
       '@babel/core': 7.24.9
       '@babel/generator': 7.25.0
@@ -6935,7 +6935,7 @@ snapshots:
       ws: 7.5.10
     optionalDependencies:
       typescript: 5.5.4
-      vite: 5.4.3(@types/node@22.5.4)
+      vite: 5.4.6(@types/node@22.5.4)
       wrangler: 3.61.0(@cloudflare/workers-types@4.20240620.0)
     transitivePeerDependencies:
       - '@types/node'
@@ -7347,7 +7347,7 @@ snapshots:
       deepmerge: 4.3.1
       media-query-parser: 2.0.2
       modern-ahocorasick: 1.0.1
-      picocolors: 1.0.1
+      picocolors: 1.1.0
     transitivePeerDependencies:
       - babel-plugin-macros
 
@@ -7364,7 +7364,7 @@ snapshots:
       lodash: 4.17.21
       mlly: 1.7.1
       outdent: 0.8.0
-      vite: 5.4.3(@types/node@22.5.4)
+      vite: 5.4.6(@types/node@22.5.4)
       vite-node: 1.6.0(@types/node@22.5.4)
     transitivePeerDependencies:
       - '@types/node'
@@ -7380,14 +7380,14 @@ snapshots:
 
   '@vanilla-extract/private@1.0.5': {}
 
-  '@vitejs/plugin-react@4.3.1(vite@5.4.3(@types/node@22.5.4))':
+  '@vitejs/plugin-react@4.3.1(vite@5.4.6(@types/node@22.5.4))':
     dependencies:
       '@babel/core': 7.25.2
       '@babel/plugin-transform-react-jsx-self': 7.24.7(@babel/core@7.25.2)
       '@babel/plugin-transform-react-jsx-source': 7.24.7(@babel/core@7.25.2)
       '@types/babel__core': 7.20.5
       react-refresh: 0.14.2
-      vite: 5.4.3(@types/node@22.5.4)
+      vite: 5.4.6(@types/node@22.5.4)
     transitivePeerDependencies:
       - supports-color
 
@@ -7448,9 +7448,9 @@ snapshots:
       sharp: 0.33.4
       wxt: 0.19.9(@types/node@22.5.4)(rollup@4.21.2)(webpack-sources@3.2.3)
 
-  '@wxt-dev/module-react@1.1.1(vite@5.4.3(@types/node@22.5.4))(wxt@0.19.9(@types/node@22.5.4)(rollup@4.21.2)(webpack-sources@3.2.3))':
+  '@wxt-dev/module-react@1.1.1(vite@5.4.6(@types/node@22.5.4))(wxt@0.19.9(@types/node@22.5.4)(rollup@4.21.2)(webpack-sources@3.2.3))':
     dependencies:
-      '@vitejs/plugin-react': 4.3.1(vite@5.4.3(@types/node@22.5.4))
+      '@vitejs/plugin-react': 4.3.1(vite@5.4.6(@types/node@22.5.4))
       wxt: 0.19.9(@types/node@22.5.4)(rollup@4.21.2)(webpack-sources@3.2.3)
     transitivePeerDependencies:
       - supports-color
@@ -11388,13 +11388,13 @@ snapshots:
     dependencies:
       browserslist: 4.23.2
       escalade: 3.1.2
-      picocolors: 1.0.1
+      picocolors: 1.1.0
 
   update-browserslist-db@1.1.0(browserslist@4.23.3):
     dependencies:
       browserslist: 4.23.3
       escalade: 3.1.2
-      picocolors: 1.0.1
+      picocolors: 1.1.0
 
   update-notifier@6.0.2:
     dependencies:
@@ -11471,8 +11471,8 @@ snapshots:
       cac: 6.7.14
       debug: 4.3.6
       pathe: 1.1.2
-      picocolors: 1.0.1
-      vite: 5.4.3(@types/node@22.5.4)
+      picocolors: 1.1.0
+      vite: 5.4.6(@types/node@22.5.4)
     transitivePeerDependencies:
       - '@types/node'
       - less
@@ -11490,7 +11490,7 @@ snapshots:
       debug: 4.3.6
       pathe: 1.1.2
       tinyrainbow: 1.2.0
-      vite: 5.4.3(@types/node@22.5.4)
+      vite: 5.4.6(@types/node@22.5.4)
     transitivePeerDependencies:
       - '@types/node'
       - less
@@ -11508,7 +11508,7 @@ snapshots:
       debug: 4.3.6
       pathe: 1.1.2
       tinyrainbow: 1.2.0
-      vite: 5.4.3(@types/node@22.5.4)
+      vite: 5.4.6(@types/node@22.5.4)
     transitivePeerDependencies:
       - '@types/node'
       - less
@@ -11520,18 +11520,18 @@ snapshots:
       - supports-color
       - terser
 
-  vite-plugin-svgr@4.2.0(rollup@4.21.2)(typescript@5.5.4)(vite@5.4.3(@types/node@22.5.4)):
+  vite-plugin-svgr@4.2.0(rollup@4.21.2)(typescript@5.5.4)(vite@5.4.6(@types/node@22.5.4)):
     dependencies:
       '@rollup/pluginutils': 5.1.0(rollup@4.21.2)
       '@svgr/core': 8.1.0(typescript@5.5.4)
       '@svgr/plugin-jsx': 8.1.0(@svgr/core@8.1.0(typescript@5.5.4))
-      vite: 5.4.3(@types/node@22.5.4)
+      vite: 5.4.6(@types/node@22.5.4)
     transitivePeerDependencies:
       - rollup
       - supports-color
       - typescript
 
-  vite@5.4.3(@types/node@22.5.4):
+  vite@5.4.6(@types/node@22.5.4):
     dependencies:
       esbuild: 0.21.5
       postcss: 8.4.45
@@ -11558,7 +11558,7 @@ snapshots:
       tinybench: 2.8.0
       tinypool: 1.0.0
       tinyrainbow: 1.2.0
-      vite: 5.4.3(@types/node@22.5.4)
+      vite: 5.4.6(@types/node@22.5.4)
       vite-node: 2.0.4(@types/node@22.5.4)
       why-is-node-running: 2.3.0
     optionalDependencies:
@@ -11774,7 +11774,7 @@ snapshots:
       publish-browser-extension: 2.2.1
       scule: 1.3.0
       unimport: 3.11.1(rollup@4.21.2)(webpack-sources@3.2.3)
-      vite: 5.4.3(@types/node@22.5.4)
+      vite: 5.4.6(@types/node@22.5.4)
       vite-node: 2.0.5(@types/node@22.5.4)
       web-ext-run: 0.2.1
       webextension-polyfill: 0.12.0
