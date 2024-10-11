@@ -4,19 +4,13 @@ import "@fontsource/lobster/400.css";
 import "@fontsource/noto-sans-jp/400.css";
 import "@fontsource/noto-sans-jp/700.css";
 
-import type { LinksFunction } from "@remix-run/cloudflare";
-import { cssBundleHref } from "@remix-run/css-bundle";
+import "./assets/style.css";
+
 import { Links, Meta, Outlet, Scripts, ScrollRestoration } from "@remix-run/react";
 import favicon from "./assets/favicon.ico";
-import tailwindcss from "./assets/style.css?url";
 import Footer from "./components/Footer";
 import Header from "./components/Header";
 import { LinksContext } from "./contexts";
-
-export const links: LinksFunction = () => [
-  { rel: "stylesheet", href: tailwindcss },
-  ...(cssBundleHref ? [{ rel: "stylesheet", href: cssBundleHref }] : []),
-];
 
 export function Layout({ children }: { children: React.ReactNode }) {
   const links = {
