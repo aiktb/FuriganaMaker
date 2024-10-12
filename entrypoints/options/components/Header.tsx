@@ -8,8 +8,8 @@ interface HeaderProps {
 export default function Header({ icon, title }: HeaderProps) {
   const { t } = useTranslation();
   return (
-    <header className="sticky z-10 top-0 border-gray-200 border-b dark:border-slate-800">
-      <div className="px-4 lg:px-8 sm:px-6">
+    <header className="sticky top-0 z-10 border-gray-200 border-b dark:border-slate-800">
+      <div className="px-4 sm:px-6 lg:px-8">
         <div className="flex items-center justify-between py-5 backdrop-blur backdrop-filter">
           <div className="flex items-center text-base">
             <i className={`mr-3 size-6 text-sky-500 ${icon}`} />
@@ -18,7 +18,7 @@ export default function Header({ icon, title }: HeaderProps) {
           <div className="flex gap-x-3">
             <ThemeSwitch />
             <a
-              className="dark:hover:text-white flex justify-center items-center rounded-md size-9 hover:bg-gray-100 dark:hover:bg-slate-800 dark:text-white text-black"
+              className="flex size-9 items-center justify-center rounded-md text-black hover:bg-gray-100 dark:text-white dark:hover:bg-slate-800 dark:hover:text-white"
               href="https://github.com/aiktb/FuriganaMaker"
             >
               <span className="sr-only">{t("srGithub")}</span>

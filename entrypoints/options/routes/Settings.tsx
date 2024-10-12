@@ -71,10 +71,10 @@ function MoreSettingsMenu({ settingsPromise }: { settingsPromise: Promise<MoreSe
     setSettings({ ...settings, [ExtStorage.ExcludeSites]: unrepeatedSites });
   }
   return (
-    <menu className="xl:w-[800px] text-pretty flex justify-between items-center flex-col space-y-10">
-      <li className="flex gap-4 items-center w-full justify-between">
+    <menu className="flex flex-col items-center justify-between space-y-10 text-pretty xl:w-[800px]">
+      <li className="flex w-full items-center justify-between gap-4">
         <div>
-          <div className="text-slate-800 dark:text-slate-200 text-lg font-bold">
+          <div className="font-bold text-lg text-slate-800 dark:text-slate-200">
             {t("settingsLanguage")}
           </div>
           <div>{t("settingsLanguageDesc")}</div>
@@ -84,9 +84,9 @@ function MoreSettingsMenu({ settingsPromise }: { settingsPromise: Promise<MoreSe
           onChange={handleLanguageChange}
         />
       </li>
-      <li className="flex gap-4 items-center w-full justify-between">
+      <li className="flex w-full items-center justify-between gap-4">
         <div>
-          <div className="text-slate-800 dark:text-slate-200 text-lg font-bold">
+          <div className="font-bold text-lg text-slate-800 dark:text-slate-200">
             {t("settingsDisableWarning")}
           </div>
           <div>{t("settingsDisableWarningDesc")}</div>
@@ -96,9 +96,9 @@ function MoreSettingsMenu({ settingsPromise }: { settingsPromise: Promise<MoreSe
           onChange={handleDisableWarningChange}
         />
       </li>
-      <li className="flex gap-4 items-center w-full justify-between">
+      <li className="flex w-full items-center justify-between gap-4">
         <div>
-          <div className="text-slate-800 dark:text-slate-200 text-lg font-bold">
+          <div className="font-bold text-lg text-slate-800 dark:text-slate-200">
             {t("settingsColoringKanji")}
           </div>
           <div>{t("settingsColoringKanjiDesc")}</div>
@@ -125,11 +125,11 @@ function SettingSwitch({
       <Switch
         checked={enabled}
         onChange={onChange}
-        className="group relative flex h-7 w-14 cursor-pointer rounded-full bg-slate-900/10 dark:bg-white/10 p-1 transition-colors duration-200 ease-in-out focus:outline-none data-[focus]:outline-1 data-[focus]:outline-white dark:data-[checked]:bg-white/10 data-[checked]:bg-black/10"
+        className="group relative flex h-7 w-14 cursor-pointer rounded-full bg-slate-900/10 p-1 transition-colors duration-200 ease-in-out focus:outline-none data-[checked]:bg-black/10 data-[focus]:outline-1 data-[focus]:outline-white dark:bg-white/10 dark:data-[checked]:bg-white/10"
       >
         <span
           aria-hidden="true"
-          className="pointer-events-none inline-block size-5 translate-x-0 rounded-full bg-slate-900 dark:bg-white ring-0 shadow-lg transition duration-200 ease-in-out group-data-[checked]:translate-x-7"
+          className="pointer-events-none inline-block size-5 translate-x-0 rounded-full bg-slate-900 shadow-lg ring-0 transition duration-200 ease-in-out group-data-[checked]:translate-x-7 dark:bg-white"
         />
       </Switch>
     </div>

@@ -20,11 +20,11 @@ export default function Header() {
   return (
     <header className="w-full select-none transition duration-300">
       <div className="-translate-x-1/2 fixed top-6 left-1/2 z-50 transform">
-        <nav className="flex gap-2 rounded-full p-2.5 backdrop-blur-3xl backdrop-brightness-75 transition ease-in-out lg:gap-x-8 sm:gap-x-2">
+        <nav className="flex gap-2 rounded-full p-2.5 backdrop-blur-3xl backdrop-brightness-75 transition ease-in-out sm:gap-x-2 lg:gap-x-8">
           {navItems.map((item) => (
             <Link
               key={item.text}
-              className={`block rounded-full px-3.5 py-1 font-medium text-gray-300 transition ease-in-out hover:bg-white/10 sm:px-6 sm:py-1.5 hover:text-gray-100 ${
+              className={`block rounded-full px-3.5 py-1 font-medium text-gray-300 transition ease-in-out hover:bg-white/10 hover:text-gray-100 sm:px-6 sm:py-1.5 ${
                 isActive(item.to) ? "bg-white/10" : ""
               }`}
               prefetch="render"

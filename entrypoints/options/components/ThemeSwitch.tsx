@@ -32,11 +32,11 @@ export default function ThemeSwitch() {
   return (
     <button
       onClick={toggleTheme}
-      className="flex justify-center items-center rounded-md size-9 hover:bg-gray-100 dark:hover:bg-slate-800 dark:text-white text-black"
+      className="flex size-9 items-center justify-center rounded-md text-black hover:bg-gray-100 dark:text-white dark:hover:bg-slate-800"
     >
       <span className="sr-only">{t("srToggleTheme")}</span>
       <i
-        className={`size-5 ${theme.color === "light" ? "i-tabler-sun-filled" : "i-tabler-moon-filled"} ${theme.isSystem ? "" : "text-sky-500"}`}
+        className={`size-5 ${theme.color === "light" ? "i-tabler-sun-filled" : "i-tabler-moon-filled"}${theme.isSystem ? "" : "text-sky-500"}`}
       />
     </button>
   );

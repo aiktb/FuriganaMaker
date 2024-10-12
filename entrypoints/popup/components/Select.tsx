@@ -18,9 +18,9 @@ interface SelectProps {
 export default function Select({ selected, options, tip, onChange }: SelectProps) {
   function ListBoxButton() {
     return (
-      <ListboxButton className="group peer flex w-full items-center justify-between rounded px-2 capitalize transition-all dark:focus-visible:bg-slate-700 dark:hover:bg-slate-700 dark:ui-open:bg-slate-700 focus-visible:bg-gray-200 hover:bg-gray-200 ui-open:bg-gray-200">
+      <ListboxButton className="group peer flex w-full items-center justify-between rounded ui-open:bg-gray-200 px-2 capitalize transition-all hover:bg-gray-200 focus-visible:bg-gray-200 dark:ui-open:bg-slate-700 dark:focus-visible:bg-slate-700 dark:hover:bg-slate-700">
         {options.find((option) => option.value === selected)?.label}
-        <i className="i-tabler-chevron-down hidden group-focus-visible:flex group-hover:flex ui-open:flex" />
+        <i className="i-tabler-chevron-down ui-open:flex hidden group-hover:flex group-focus-visible:flex" />
       </ListboxButton>
     );
   }
@@ -52,7 +52,7 @@ export default function Select({ selected, options, tip, onChange }: SelectProps
               <ListboxOption key={item.value} value={item.value}>
                 {({ focus, selected }) => (
                   <li
-                    className={`${focus || selected ? "text-sky-500" : "text-current"} box-content flex cursor-pointer items-center justify-between px-[6px] capitalize transition-all focus:z-10 dark:focus:bg-slate-700 dark:hover:bg-slate-700 dark:ui-active:bg-slate-700 focus:bg-gray-200 hover:bg-gray-200 ui-active:bg-gray-200`}
+                    className={`${focus || selected ? "text-sky-500" : "text-current"} box-content flex cursor-pointer items-center justify-between ui-active:bg-gray-200 px-[6px] capitalize transition-all hover:bg-gray-200 focus:z-10 focus:bg-gray-200 dark:ui-active:bg-slate-700 dark:focus:bg-slate-700 dark:hover:bg-slate-700`}
                   >
                     {item.label}
                     {selected && <i className="i-tabler-check" />}

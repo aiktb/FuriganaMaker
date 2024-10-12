@@ -10,7 +10,7 @@ export default function Page({ title, children, icon }: PageProps) {
   return (
     <>
       <Header title={title} icon={icon} />
-      <main className="flex flex-col items-center px-4 py-6 text-base lg:px-8 sm:px-6">
+      <main className="flex flex-col items-center px-4 py-6 text-base sm:px-6 lg:px-8">
         {children}
       </main>
     </>
