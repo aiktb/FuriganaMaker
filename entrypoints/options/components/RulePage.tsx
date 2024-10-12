@@ -106,9 +106,9 @@ export default function RulePage({ rulesPromise }: { rulesPromise: Promise<Selec
   return (
     <>
       <div className="flex grow flex-col justify-start">
-        <div className="mx-auto my-2 flex max-w-5xl flex-col items-center justify-between gap-1.5 px-5 font-bold text-base text-slate-700 lg:max-w-7xl md:flex-row md:justify-between lg:px-8 sm:px-6 dark:text-slate-300">
+        <div className="mx-auto my-2 flex max-w-5xl flex-col items-center justify-between gap-1.5 px-5 font-bold text-base text-slate-700 sm:px-6 md:flex-row md:justify-between lg:max-w-7xl lg:px-8 dark:text-slate-300">
           <button
-            className="flex items-center gap-x-1.5 rounded-md border border-gray-200 px-1.5 py-0.5 shadow-md transition-[background-color] dark:border-slate-700 dark:hover:bg-transparent/20 hover:bg-transparent/10"
+            className="flex items-center gap-x-1.5 rounded-md border border-gray-200 px-1.5 py-0.5 shadow-md transition-[background-color] hover:bg-transparent/10 dark:border-slate-700 dark:hover:bg-transparent/20"
             onClick={() => {
               setCreateRuleDialogIsOpen(true);
             }}
@@ -120,7 +120,7 @@ export default function RulePage({ rulesPromise }: { rulesPromise: Promise<Selec
             <button
               className={`${
                 rules.length === 0 ? "cursor-not-allowed" : ""
-              } flex items-center gap-x-1.5 rounded-md border border-gray-200 px-1.5 py-0.5 shadow-md transition-[background-color] dark:border-slate-700 dark:hover:bg-transparent/20 hover:bg-transparent/10`}
+              } flex items-center gap-x-1.5 rounded-md border border-gray-200 px-1.5 py-0.5 shadow-md transition-[background-color] hover:bg-transparent/10 dark:border-slate-700 dark:hover:bg-transparent/20`}
               onClick={exportConfig}
               disabled={rules.length === 0}
             >
@@ -128,7 +128,7 @@ export default function RulePage({ rulesPromise }: { rulesPromise: Promise<Selec
               {t("btnExportConfig")}
             </button>
             <button
-              className="flex cursor-pointer items-center gap-x-1.5 rounded-md border border-gray-200 px-1.5 py-0.5 shadow-md transition-[background-color] dark:border-slate-700 dark:hover:bg-transparent/20 hover:bg-transparent/10"
+              className="flex cursor-pointer items-center gap-x-1.5 rounded-md border border-gray-200 px-1.5 py-0.5 shadow-md transition-[background-color] hover:bg-transparent/10 dark:border-slate-700 dark:hover:bg-transparent/20"
               onClick={() => {
                 setImportDialogIsOpen(true);
               }}
@@ -138,7 +138,7 @@ export default function RulePage({ rulesPromise }: { rulesPromise: Promise<Selec
             </button>
           </div>
         </div>
-        <div className="mx-auto flex max-w-3xl items-center justify-between px-4 lg:max-w-7xl lg:px-8 sm:px-6">
+        <div className="mx-auto flex max-w-3xl items-center justify-between px-4 sm:px-6 lg:max-w-7xl lg:px-8">
           {rules.length === 0 ? (
             <NotFoundRule />
           ) : (
@@ -214,7 +214,7 @@ export default function RulePage({ rulesPromise }: { rulesPromise: Promise<Selec
             </div>
             <div className="mt-4 flex gap-2.5">
               <button
-                className="inline-flex justify-center rounded-md border border-transparent bg-red-100 px-4 py-2 font-medium text-slate-900 text-sm transition dark:bg-red-800 dark:hover:bg-red-900 hover:bg-red-200 dark:text-slate-200 focus:outline-none focus-visible:ring-2 focus-visible:ring-red-500 focus-visible:ring-offset-2"
+                className="inline-flex justify-center rounded-md border border-transparent bg-red-100 px-4 py-2 font-medium text-slate-900 text-sm transition hover:bg-red-200 focus:outline-none focus-visible:ring-2 focus-visible:ring-red-500 focus-visible:ring-offset-2 dark:bg-red-800 dark:text-slate-200 dark:hover:bg-red-900"
                 onClick={() => {
                   importConfig();
                   setImportDialogIsOpen(false);
@@ -223,7 +223,7 @@ export default function RulePage({ rulesPromise }: { rulesPromise: Promise<Selec
                 {t("btnConfirmConfig")}
               </button>
               <button
-                className="inline-flex justify-center rounded-md border border-transparent bg-blue-100 px-4 py-2 font-medium text-blue-900 text-sm transition dark:bg-slate-700 dark:hover:bg-slate-800 hover:bg-blue-200 dark:text-slate-200 focus:outline-none focus-visible:ring-2 focus-visible:ring-blue-500 focus-visible:ring-offset-2"
+                className="inline-flex justify-center rounded-md border border-transparent bg-blue-100 px-4 py-2 font-medium text-blue-900 text-sm transition hover:bg-blue-200 focus:outline-none focus-visible:ring-2 focus-visible:ring-blue-500 focus-visible:ring-offset-2 dark:bg-slate-700 dark:text-slate-200 dark:hover:bg-slate-800"
                 onClick={() => {
                   setImportDialogIsOpen(false);
                 }}
@@ -257,7 +257,7 @@ export default function RulePage({ rulesPromise }: { rulesPromise: Promise<Selec
             </div>
             <div className="mt-4">
               <button
-                className="inline-flex justify-center rounded-md border border-transparent bg-blue-100 px-4 py-2 font-medium text-blue-900 text-sm transition dark:bg-slate-700 dark:hover:bg-slate-800 hover:bg-blue-200 dark:text-slate-200 focus:outline-none focus-visible:ring-2 focus-visible:ring-blue-500 focus-visible:ring-offset-2"
+                className="inline-flex justify-center rounded-md border border-transparent bg-blue-100 px-4 py-2 font-medium text-blue-900 text-sm transition hover:bg-blue-200 focus:outline-none focus-visible:ring-2 focus-visible:ring-blue-500 focus-visible:ring-offset-2 dark:bg-slate-700 dark:text-slate-200 dark:hover:bg-slate-800"
                 onClick={() => {
                   setImportFailedDialogIsOpen(false);
                 }}

@@ -45,7 +45,7 @@ export default function Welcome() {
         className="-z-10 fixed top-0 left-0 h-full w-full"
       />
       <section className="container flex flex-col items-center gap-5 text-pretty text-center sm:px-10">
-        <h1 className="animeRising font-bold text-3xl lg:text-8xl md:text-6xl sm:text-5xl">
+        <h1 className="animeRising font-bold text-3xl sm:text-5xl md:text-6xl lg:text-8xl">
           Welcome to Furigana Maker!🎉
         </h1>
         <p className="animeRising max-w-[42rem] leading-normal sm:text-xl sm:leading-8">
@@ -88,7 +88,7 @@ export default function Welcome() {
       <Link
         to={links.github}
         target="_blank"
-        className="hover:-translate-y-2 mb-12 flex select-none items-center gap-2 rounded-xl border-2 border-sky-400 border-solid bg-slate-900 px-4 py-2 font-bold transition duration-300 lg:mb-15 xl:mb-20 hover:shadow-[hsla(201,80%,66%,.5)_0_0_15px_0,hsla(161,55%,49%,.5)_0_0_30px_0]"
+        className="hover:-translate-y-2 mb-12 flex select-none items-center gap-2 rounded-xl border-2 border-sky-400 border-solid bg-slate-900 px-4 py-2 font-bold transition duration-300 hover:shadow-[hsla(201,80%,66%,.5)_0_0_15px_0,hsla(161,55%,49%,.5)_0_0_30px_0] lg:mb-15 xl:mb-20"
       >
         <i className="i-mdi-github size-5" />
         View on GitHub

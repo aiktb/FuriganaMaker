@@ -14,7 +14,7 @@ interface FooterLinkProps {
 function FooterLink({ href, content }: FooterLinkProps) {
   return (
     <a
-      className="text-black font-semibold dark:text-white underline decoration-solid transition hover:text-sky-500"
+      className="font-semibold text-black underline decoration-solid transition hover:text-sky-500 dark:text-white"
       href={href}
       target="_blank"
       rel="noreferrer noopener"
@@ -29,8 +29,8 @@ export default function Footer() {
 
   return (
     <footer className="border-gray-200 border-t dark:border-slate-800">
-      <div className="mx-auto flex items-center justify-between px-4 lg:px-8 sm:px-6">
-        <p className="flex flex-col flex-wrap gap-1.5 text-center py-8 text-sm sm:flex-row">
+      <div className="mx-auto flex items-center justify-between px-4 sm:px-6 lg:px-8">
+        <p className="flex flex-col flex-wrap gap-1.5 py-8 text-center text-sm sm:flex-row">
           <span className="block whitespace-nowrap sm:inline">
             <Trans
               i18nKey="footerCopyright"
@@ -63,7 +63,7 @@ export default function Footer() {
           </span>
         </p>
         <a
-          className="dark:hover:text-white flex justify-center items-center rounded-md size-9 hover:bg-gray-100 dark:hover:bg-slate-800 dark:text-white text-black"
+          className="flex size-9 items-center justify-center rounded-md text-black hover:bg-gray-100 dark:text-white dark:hover:bg-slate-800 dark:hover:text-white"
           href="https://github.com/aiktb/FuriganaMaker"
         >
           <span className="sr-only">{t("srGithub")}</span>

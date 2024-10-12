@@ -32,7 +32,7 @@ export default function Features() {
         Core Features of Furigana Maker
       </h2>
       {/* grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3  */}
-      <div className="mx-auto mt-12 flex max-w-[80rem] flex-wrap justify-center gap-7 px-4 lg:mt-15 xl:mt-20 xl:gap-12 md:px-8 xl:px-0">
+      <div className="mx-auto mt-12 flex max-w-[80rem] flex-wrap justify-center gap-7 px-4 md:px-8 lg:mt-15 xl:mt-20 xl:gap-12 xl:px-0">
         {features.map((feature) => (
           <FeatureItem key={feature.title} {...feature} />
         ))}
@@ -49,7 +49,7 @@ interface FeatureItemProps {
 
 function FeatureItem({ title, description, icon }: FeatureItemProps) {
   return (
-    <div className="animeRising hover:-translate-y-2 animeRising flex w-full flex-col gap-4 rounded-lg border border-slate-700 bg-slate-800 p-7 transition duration-300 md:w-96 hover:bg-slate-700 xl:p-12">
+    <div className="animeRising hover:-translate-y-2 animeRising flex w-full flex-col gap-4 rounded-lg border border-slate-700 bg-slate-800 p-7 transition duration-300 hover:bg-slate-700 md:w-96 xl:p-12">
       <div className="flex items-center justify-between">
         <div className="flex size-10 items-center justify-center rounded bg-sky-400">
           <div className={`${icon} size-7`} />

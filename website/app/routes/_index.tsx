@@ -65,7 +65,7 @@ export default function Index() {
   return (
     <div className="relative flex min-h-screen w-full flex-col items-center">
       <section className="container mt-5 flex flex-col items-center gap-5 text-pretty px-10 pt-24 text-center lg:mt-16 lg:pt-36">
-        <h1 className="animeRising font-bold text-3xl lg:text-8xl md:text-6xl sm:text-5xl">
+        <h1 className="animeRising font-bold text-3xl sm:text-5xl md:text-6xl lg:text-8xl">
           Add{" "}
           <span>
             <ruby lang="ja" className="font-japanese">
@@ -103,7 +103,7 @@ export default function Index() {
           Operation Guide
         </h2>
         <iframe
-          className="animeRising mt-12 aspect-video w-[90%] rounded-md lg:mt-15 xl:mt-20 lg:w-[65rem]"
+          className="animeRising mt-12 aspect-video w-[90%] rounded-md lg:mt-15 lg:w-[65rem] xl:mt-20"
           src={`https://www.youtube.com/embed/${YOUTUBE_VIDEO_ID}`}
           allowFullScreen
           title="Furigana Maker Demo"

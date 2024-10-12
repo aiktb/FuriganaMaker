@@ -25,7 +25,7 @@ export default function RuleItem({ rule, onChange, onDelete }: RuleItemProps) {
           <i className="i-tabler-layers-intersect size-12 flex-none text-sky-500" />
           <div className="flex-auto">
             <a
-              className="flex-inline items-center w-auto truncate font-semibold text-sm leading-6 transition text-black dark:text-white underline decoration-solid"
+              className="w-auto flex-inline items-center truncate font-semibold text-black text-sm leading-6 underline decoration-solid transition dark:text-white"
               href={encodeURI(`https://${rule.domain}`)}
               target="_blank"
               rel="noopener noreferrer"
@@ -33,7 +33,7 @@ export default function RuleItem({ rule, onChange, onDelete }: RuleItemProps) {
               {rule.domain}
               <i className="i-tabler-arrow-up-right" />
             </a>
-            <p className="truncate text-xs leading-5 w-72 xl:w-[32rem] sm:w-96 2xl:w-[40rem]">
+            <p className="w-72 truncate text-xs leading-5 sm:w-96 xl:w-[32rem] 2xl:w-[40rem]">
               {rule.selector}
             </p>
           </div>
@@ -46,7 +46,7 @@ export default function RuleItem({ rule, onChange, onDelete }: RuleItemProps) {
                 onChange({ ...rule, active: !rule.active });
               }}
             >
-              <div className="text-sm leading-5 transition dark:hover:text-white hover:text-slate-950">
+              <div className="text-sm leading-5 transition hover:text-slate-950 dark:hover:text-white">
                 {rule.active ? t("markActive") : t("markInactive")}
               </div>
               <span className="relative flex size-2">
@@ -64,7 +64,7 @@ export default function RuleItem({ rule, onChange, onDelete }: RuleItemProps) {
             </button>
             <div className="mt-1 flex gap-x-1.5">
               <button
-                className="flex items-center gap-x-1 rounded-md underline underline-offset-2 hover:text-black dark:hover:text-white decoration-current text-sky-500 px-1 py-0.5 font-bold text-sm shadow transition dark:hover:bg-transparent/20 hover:bg-transparent/10s"
+                className="flex items-center gap-x-1 rounded-md px-1 py-0.5 font-bold text-sky-500 text-sm underline decoration-current underline-offset-2 shadow transition hover:bg-transparent/10s hover:text-black dark:hover:bg-transparent/20 dark:hover:text-white"
                 onClick={() => {
                   setEditorIsOpen(true);
                 }}
@@ -73,7 +73,7 @@ export default function RuleItem({ rule, onChange, onDelete }: RuleItemProps) {
                 {t("btnEdit")}
               </button>
               <button
-                className="flex items-center gap-x-1 rounded-md hover:underline underline-offset-2 hover:text-black dark:hover:text-white decoration-current px-1 py-0.5 font-bold text-sm shadow transition dark:hover:bg-transparent/20 hover:bg-transparent/10"
+                className="flex items-center gap-x-1 rounded-md px-1 py-0.5 font-bold text-sm decoration-current underline-offset-2 shadow transition hover:bg-transparent/10 hover:text-black hover:underline dark:hover:bg-transparent/20 dark:hover:text-white"
                 onClick={() => {
                   setDeleteDialogIsOpen(true);
                 }}
@@ -127,7 +127,7 @@ export default function RuleItem({ rule, onChange, onDelete }: RuleItemProps) {
             </div>
             <div className="mt-4 flex gap-2.5">
               <button
-                className="inline-flex justify-center rounded-md border border-transparent bg-red-100 px-4 py-2 font-medium text-slate-900 text-sm transition dark:bg-red-800 dark:hover:bg-red-900 hover:bg-red-200 dark:text-slate-200 focus:outline-none focus-visible:ring-2 focus-visible:ring-red-500 focus-visible:ring-offset-2"
+                className="inline-flex justify-center rounded-md border border-transparent bg-red-100 px-4 py-2 font-medium text-slate-900 text-sm transition hover:bg-red-200 focus:outline-none focus-visible:ring-2 focus-visible:ring-red-500 focus-visible:ring-offset-2 dark:bg-red-800 dark:text-slate-200 dark:hover:bg-red-900"
                 onClick={() => {
                   onDelete(rule);
                   setDeleteDialogIsOpen(false);
@@ -136,7 +136,7 @@ export default function RuleItem({ rule, onChange, onDelete }: RuleItemProps) {
                 {t("btnDelete")}
               </button>
               <button
-                className="inline-flex justify-center rounded-md border border-transparent bg-blue-100 px-4 py-2 font-medium text-blue-900 text-sm transition dark:bg-slate-700 dark:hover:bg-slate-800 hover:bg-blue-200 dark:text-slate-200 focus:outline-none focus-visible:ring-2 focus-visible:ring-blue-500 focus-visible:ring-offset-2"
+                className="inline-flex justify-center rounded-md border border-transparent bg-blue-100 px-4 py-2 font-medium text-blue-900 text-sm transition hover:bg-blue-200 focus:outline-none focus-visible:ring-2 focus-visible:ring-blue-500 focus-visible:ring-offset-2 dark:bg-slate-700 dark:text-slate-200 dark:hover:bg-slate-800"
                 onClick={() => {
                   setDeleteDialogIsOpen(false);
                 }}
