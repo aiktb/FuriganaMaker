@@ -51,6 +51,12 @@
         "noConsoleLog": "error",
         "noEmptyBlockStatements": "error",
         "useAwait": "error"
+      },
+      "nursery": {
+        "useSortedClasses": {
+          "level": "error",
+          "fix": "unsafe"
+        }
       }
     }
   }
