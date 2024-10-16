@@ -30,7 +30,7 @@ export const registerOnInstalled = () => {
 
 function createContentMenu() {
   // Remove the contextMenu before creating it to avoid creating multiple contextMenus.
-  browser.contextMenus.remove(ExtEvent.AddFurigana);
+  browser.contextMenus.removeAll();
   // Setting the contextMenu must not be outside of `runtime.onInstalled`,
   // otherwise it will report an error for creating the contextMenu multiple times.
   const contextMenuItem: chrome.contextMenus.CreateProperties = {
