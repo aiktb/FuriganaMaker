@@ -1,5 +1,10 @@
 # Changelog
 
+## v2.1.4
+
+- Incorrect selector field description.
+- Report error "not found content menu id".
+
 ## v2.1.3
 
 ### Fix Bugs
