@@ -2,6 +2,8 @@
 
 ## v2.1.4
 
+### Fix Bugs
+
 - Incorrect selector field description.
 - Report error "not found content menu id".
 
