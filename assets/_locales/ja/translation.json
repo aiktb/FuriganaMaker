@@ -48,7 +48,6 @@
   "disclosureSelector": "選択フィールドとは？",
   "msgCssSelector": "<code/> フィールドは、ページ上の要素を指定するために <link/> 構文を使用します。",
   "msgDoNotModify": "CSSセレクタ構文に慣れていない場合、このフィールドを変更しないでください。拡張機能が無効になる可能性があります。",
-  "msgBodySelector": "ほとんどのサイトではこのフィールドを <code/> と指定でき、ほとんどのページの日本語テキストにふりがなを追加します。",
   "msgSelectorMerge": "<codeSelector/> フィールドはカンマで区切られており、同じ <codeDomain/> に対応するセレクタが直接マージされます。",
   "cssSelector": "CSSセレクタ",
   "fieldSelector": "セレクタ",

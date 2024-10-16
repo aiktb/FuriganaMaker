@@ -48,7 +48,6 @@
   "disclosureSelector": "What is selector field?",
   "msgCssSelector": "The <code/> field uses the <link/> syntax to specify the element to be tagged on the page.",
   "msgDoNotModify": "If you are not familiar with the CSS selector syntax, please do not modify this field, as this may invalidate the extension.",
-  "msgBodySelector": "Most sites can specify this field as <code/>, which adds furigana to Japanese text on most pages.",
   "msgSelectorMerge": "The <codeSelector/> fields are separated by comma, and selectors corresponding to the same <codeDomain/> will be merged directly.",
   "cssSelector": "CSS Selector",
   "fieldSelector": "selector",

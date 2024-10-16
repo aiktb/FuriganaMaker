@@ -48,7 +48,6 @@
   "disclosureSelector": "什么是选择器字段？",
   "msgCssSelector": "<code/> 字段使用 <link/> 语法来指定页面上的标记元素。",
   "msgDoNotModify": "如果您不熟悉 CSS 选择器语法，请不要修改此字段，因为这可能会使扩展失效。",
-  "msgBodySelector": "大多数网站可以将此字段指定为 <code/>, 这会将假名添加到大多数页面上的日文文本。",
   "msgSelectorMerge": "<codeSelector/> 字段用逗号分隔，对应同一 <codeDomain/> 的选择器将直接合并。",
   "cssSelector": "CSS 选择器",
   "fieldSelector": "选择器",
