@@ -35,7 +35,6 @@
   "markActive": "積極的",
   "markInactive": "不活躍",
   "messageEmptyList": "列表為空，請先新增。",
-  "msgBodySelector": "大多數網站可以將此欄位指定為 <code/>，這會將注音假名新增至大多數頁面上的日文文字。",
   "msgCssSelector": "<code/> 欄位使用 <link/> 語法來指定要在頁面上標記的元素。",
   "msgDeleteRule": "刪除規則不可撤銷，確定嗎？",
   "msgDoNotModify": "如果您不熟悉 CSS 選擇器語法，請不要修改此字段，因為這可能會使擴充功能無效。",

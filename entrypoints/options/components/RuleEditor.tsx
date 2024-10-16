@@ -68,18 +68,6 @@ export default function RuleEditor({ rule, mode, onChange }: RuleEditorProps) {
                   <li className="my-2">{t("msgDoNotModify")}</li>
                   <li className="my-2">
                     <Trans
-                      i18nKey="msgBodySelector"
-                      components={{
-                        code: (
-                          <code className="font-bold font-mono text-slate-900 text-sm before:content-['`'] after:content-['`'] dark:text-slate-200">
-                            body
-                          </code>
-                        ),
-                      }}
-                    />
-                  </li>
-                  <li className="my-2">
-                    <Trans
                       i18nKey="msgSelectorMerge"
                       components={{
                         codeSelector: (
