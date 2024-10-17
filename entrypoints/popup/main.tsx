@@ -1,13 +1,16 @@
+import { ThemeProvider } from "next-themes";
+import { StrictMode } from "react";
+import { createRoot } from "react-dom/client";
+
 import "@/assets/style.css";
-import React from "react";
-import ReactDOM from "react-dom/client";
+import "@/commons/i18n";
 
 import Root from "./root";
 
-import "@/commons/i18n";
-
-ReactDOM.createRoot(document.getElementById("root")!).render(
-  <React.StrictMode>
-    <Root />
-  </React.StrictMode>,
+createRoot(document.getElementById("root")!).render(
+  <StrictMode>
+    <ThemeProvider attribute="class" disableTransitionOnChange>
+      <Root />
+    </ThemeProvider>
+  </StrictMode>,
 );

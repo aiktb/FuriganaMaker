@@ -35,15 +35,6 @@ import Select from "./components/Select";
 import SharedCard from "./components/SharedCard";
 
 export default function Popup() {
-  if (
-    localStorage.theme === "dark" ||
-    (!("theme" in localStorage) && window.matchMedia("(prefers-color-scheme: dark)").matches)
-  ) {
-    document.documentElement.classList.add("dark");
-  } else {
-    document.documentElement.classList.remove("dark");
-  }
-
   return (
     <Suspense fallback={<Logo className="size-48" />}>
       <Transition

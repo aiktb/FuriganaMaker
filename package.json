@@ -39,6 +39,7 @@
     "@webext-core/messaging": "^1.4.0",
     "file-saver": "^2.0.5",
     "i18next": "^23.12.2",
+    "next-themes": "^0.3.0",
     "react": "19.0.0-rc-09111202-20241011",
     "react-dom": "19.0.0-rc-09111202-20241011",
     "react-i18next": "^15.0.0",
