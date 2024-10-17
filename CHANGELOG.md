@@ -1,5 +1,11 @@
 # Changelog
 
+## v2.1.5
+
+### Fix Bugs
+
+- Theme switcher icon disappeared.
+
 ## v2.1.4
 
 ### Fix Bugs
