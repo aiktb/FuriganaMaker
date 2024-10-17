@@ -2,6 +2,7 @@ import "@/assets/style.css";
 
 import "@/commons/i18n";
 
+import { ThemeProvider } from "next-themes";
 import { StrictMode } from "react";
 import { createRoot } from "react-dom/client";
 import { RouterProvider, createHashRouter } from "react-router-dom";
@@ -27,6 +28,8 @@ const router = createHashRouter([
 
 createRoot(document.getElementById("root")!).render(
   <StrictMode>
-    <RouterProvider router={router} />
+    <ThemeProvider attribute="class" disableTransitionOnChange>
+      <RouterProvider router={router} />
+    </ThemeProvider>
   </StrictMode>,
 );
