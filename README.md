@@ -58,3 +58,8 @@ If you like this project, please consider supporting me by buying me a coffee.
 ## License
 
 [MIT](./LICENSE) | © 2023 [aiktb](https://aiktb.dev) made with ❤️.
+
+## Thanks
+
+- Inspired by [mirigana](https://github.com/mirigana/mirigana) and [AdGuard](https://github.com/AdguardTeam/AdguardBrowserExtension).
+- Core features are based on [kuromoji](https://github.com/sglkc/kuromoji.js).

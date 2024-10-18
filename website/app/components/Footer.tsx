@@ -17,7 +17,7 @@ const toTop = () => {
 export default function Footer() {
   const navItems = [
     { text: "About the author", to: "https://aiktb.dev" },
-    { text: "Contact us", to: "mailto:hey@aiktb.dev" },
+    { text: "Contact us", to: "mailto:ai.ourship@gmail.com" },
     { text: "Support us", to: "https://buymeacoffee.com/aiktb" },
   ];
 
