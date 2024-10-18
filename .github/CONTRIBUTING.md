@@ -74,3 +74,13 @@ In order to test browser extensions, playwright needs to use the `headless=new` 
 ```bash
 pnpm test:e2e
 ```
+
+### Lint
+
+```bash
+pnpm run lint:fix
+```
+
+You may see a message saying "These CSS classes should be sorted", please ignore it.
+
+This project integrates biome (linter and formatter) in git hook, which will trigger automatic fix of this error when committing, then you need to use `git commit ---amead`.

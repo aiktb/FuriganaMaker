@@ -8,7 +8,10 @@
   },
   "private": true,
   "license": "MIT",
-  "author": "aiktb <hey@aiktb.dev>",
+  "author": {
+    "name": "Jaguar Zhou",
+    "email": "ai.ourship@gmail.com"
+  },
   "homepage": "https://furiganamaker.app",
   "repository": {
     "type": "git",
