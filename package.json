@@ -45,7 +45,7 @@
     "next-themes": "^0.3.0",
     "react": "19.0.0-rc-09111202-20241011",
     "react-dom": "19.0.0-rc-09111202-20241011",
-    "react-i18next": "^15.0.0",
+    "react-i18next": "^15.1.0",
     "react-markdown": "^9.0.1",
     "react-router-dom": "^6.25.1",
     "react-share": "^5.1.0",

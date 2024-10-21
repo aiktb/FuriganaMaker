@@ -42,8 +42,8 @@ importers:
         specifier: 19.0.0-rc-09111202-20241011
         version: 19.0.0-rc-09111202-20241011(react@19.0.0-rc-09111202-20241011)
       react-i18next:
-        specifier: ^15.0.0
-        version: 15.0.0(i18next@23.12.2)(react-dom@19.0.0-rc-09111202-20241011(react@19.0.0-rc-09111202-20241011))(react@19.0.0-rc-09111202-20241011)
+        specifier: ^15.1.0
+        version: 15.1.0(i18next@23.12.2)(react-dom@19.0.0-rc-09111202-20241011(react@19.0.0-rc-09111202-20241011))(react@19.0.0-rc-09111202-20241011)
       react-markdown:
         specifier: ^9.0.1
         version: 9.0.1(@types/react@18.3.3)(react@19.0.0-rc-09111202-20241011)
@@ -4639,8 +4639,8 @@ packages:
     peerDependencies:
       react: 19.0.0-rc-09111202-20241011
 
-  react-i18next@15.0.0:
-    resolution: {integrity: sha512-2O3IgF4zivg57Q6p6i+ChDgJ371IDcEWbuWC6gvoh5NbkDMs0Q+O7RPr4v61+Se32E0V+LmtwePAeqWZW0bi6g==}
+  react-i18next@15.1.0:
+    resolution: {integrity: sha512-zj3nJynMnZsy2gPZiOTC7XctCY5eQGqT3tcKMmfJWC9FMvgd+960w/adq61j8iPzpwmsXejqID9qC3Mqu1Xu2Q==}
     peerDependencies:
       i18next: '>= 23.2.3'
       react: '>= 16.8.0'
@@ -10548,7 +10548,7 @@ snapshots:
       react: 19.0.0-rc-09111202-20241011
       scheduler: 0.25.0-rc-09111202-20241011
 
-  react-i18next@15.0.0(i18next@23.12.2)(react-dom@19.0.0-rc-09111202-20241011(react@19.0.0-rc-09111202-20241011))(react@19.0.0-rc-09111202-20241011):
+  react-i18next@15.1.0(i18next@23.12.2)(react-dom@19.0.0-rc-09111202-20241011(react@19.0.0-rc-09111202-20241011))(react@19.0.0-rc-09111202-20241011):
     dependencies:
       '@babel/runtime': 7.25.0
       html-parse-stringify: 3.0.1
