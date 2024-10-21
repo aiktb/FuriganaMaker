@@ -1,5 +1,11 @@
 # Changelog
 
+## v2.1.6
+
+### Fix Bugs
+
+- Console warning 'Each child in a list should have a unique "key" prop'.
+
 ## v2.1.5
 
 ### Fix Bugs
