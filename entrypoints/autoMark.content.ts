@@ -39,11 +39,13 @@ export default defineContentScript({
       addFurigana(...elements);
     }
 
+    const isElement = (node: Node): node is Element => node.nodeType === Node.ELEMENT_NODE;
+
     const observer = new MutationObserver((records) => {
       const japaneseElements = records
         .flatMap((record) => Array.from(record.addedNodes))
-        .filter((node) => node.nodeType === Node.ELEMENT_NODE)
-        .flatMap((node) => Array.from((node as Element).querySelectorAll(selector)));
+        .filter(isElement)
+        .flatMap((element) => Array.from(element.querySelectorAll(selector)));
 
       if (japaneseElements.length) {
         browser.runtime.sendMessage(ExtEvent.MarkActiveTab);
