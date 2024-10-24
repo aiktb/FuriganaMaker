@@ -13,7 +13,7 @@ import { getGeneralSettings } from "./utils";
  * Ruby tag is "\<ruby>original\<rp>(\</rp>\<rt>reading\</rt>\<rp>)\</rp>\</ruby>".
  **/
 export async function addFurigana(...elements: Element[]) {
-  const japaneseTexts = [...elements.flatMap(collectTexts)];
+  const japaneseTexts = elements.flatMap(collectTexts);
 
   const furiganaType = await getGeneralSettings(ExtStorage.FuriganaType);
   if (!furiganaType) {
