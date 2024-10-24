@@ -13,12 +13,12 @@ import { getGeneralSettings } from "./utils";
  * Ruby tag is "\<ruby>original\<rp>(\</rp>\<rt>reading\</rt>\<rp>)\</rp>\</ruby>".
  **/
 export async function addFurigana(...elements: Element[]) {
-  const japaneseTexts = [...elements.flatMap(collectTexts)];
-
   const furiganaType = await getGeneralSettings(ExtStorage.FuriganaType);
   if (!furiganaType) {
     return;
   }
+
+  const japaneseTexts = elements.flatMap(collectTexts);
   for (const text of japaneseTexts) {
     const tokens: KanjiMark[] = await tokenize(text.textContent!);
     // reverse() prevents the range from being invalidated
