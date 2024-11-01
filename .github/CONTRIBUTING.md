@@ -22,7 +22,7 @@ Hi! We're Really excited that you are interested in contributing to Furigana Mak
 - Commit messages must be matched by the following regex, see [Conventional Commits](https://www.conventionalcommits.org/en/v1.0.0/) for more information.
 
 ```txt
-/^(build|chore|ci|website|feat|fix|perf|refactor|revert|style|test)(\(.+\))?: .{1,70}/
+/^(build|chore|ci|website|feat|fix|perf|refactor|revert|style|test)(\(.+\))?: .{1,100}/
 ```
 
 ## Development Setup
@@ -83,4 +83,4 @@ pnpm run lint:fix
 
 You may see a message saying "These CSS classes should be sorted", please ignore it.
 
-This project integrates biome (linter and formatter) in git hook, which will trigger automatic fix of this error when committing, then you need to use `git commit ---amead`.
+This project integrates biome (linter and formatter) in git hook, which will trigger automatic fix of this error when committing, then you need to use `git commit --amend`.
