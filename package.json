@@ -39,7 +39,7 @@
     "@headlessui/react": "^2.1.7",
     "@js-temporal/polyfill": "^0.4.4",
     "@sglkc/kuromoji": "^1.1.0",
-    "@webext-core/messaging": "^1.4.0",
+    "@webext-core/messaging": "^2.0.0",
     "file-saver": "^2.0.5",
     "i18next": "^23.12.2",
     "next-themes": "^0.3.0",
