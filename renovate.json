@@ -1,6 +1,6 @@
 {
   "$schema": "https://docs.renovatebot.com/renovate-schema.json",
-  "extends": ["config:recommended", ":semanticCommitTypeAll(chore)"],
+  "extends": ["config:recommended", ":semanticCommitTypeAll(chore)", "group:allNonMajor"],
   "ignorePaths": ["**/node_modules/**", "website/**"],
   "ignoreDeps": ["@iconify-json/fa6-brands", "@iconify-json/tabler"]
 }
