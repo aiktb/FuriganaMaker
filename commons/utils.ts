@@ -74,7 +74,7 @@ export async function getGeneralSettings<K extends keyof GeneralSettings>(key: K
 
 export const moreSettings = storage.defineItem<MoreSettings>("local:moreSettings", {
   version: 1,
-  defaultValue: {
+  fallback: {
     [ExtStorage.Language]: undefined,
     [ExtStorage.DisableWarning]: false,
     [ExtStorage.ColoringKanji]: false,
@@ -95,5 +95,5 @@ export async function getMoreSettings<K extends keyof MoreSettings>(key: K) {
 
 export const customRules = storage.defineItem<SelectorRule[]>("local:customRules", {
   version: 1,
-  defaultValue: defaultSelectorRules,
+  fallback: defaultSelectorRules,
 });
