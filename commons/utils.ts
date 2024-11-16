@@ -50,7 +50,7 @@ export const sendMessage = async (id: number, event: ExtEvent) => {
 
 export const generalSettings = storage.defineItem<GeneralSettings>("local:generalSettings", {
   version: 1,
-  defaultValue: {
+  fallback: {
     [ExtStorage.AutoMode]: true,
     [ExtStorage.KanjiFilter]: false,
     [ExtStorage.DisplayMode]: DisplayMode.Always,
