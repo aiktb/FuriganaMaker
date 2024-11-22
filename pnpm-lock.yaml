@@ -48,8 +48,8 @@ importers:
         specifier: ^9.0.1
         version: 9.0.1(@types/react@18.3.12)(react@19.0.0-rc-fb9a90fa48-20240614)
       react-router-dom:
-        specifier: ^6.25.1
-        version: 6.28.0(react-dom@19.0.0-rc-fb9a90fa48-20240614(react@19.0.0-rc-fb9a90fa48-20240614))(react@19.0.0-rc-fb9a90fa48-20240614)
+        specifier: ^7.0.0
+        version: 7.0.0(react-dom@19.0.0-rc-fb9a90fa48-20240614(react@19.0.0-rc-fb9a90fa48-20240614))(react@19.0.0-rc-fb9a90fa48-20240614)
       react-share:
         specifier: ^5.1.0
         version: 5.1.1(react@19.0.0-rc-fb9a90fa48-20240614)
@@ -1435,10 +1435,6 @@ packages:
     resolution: {integrity: sha512-L3jkqmqoSVBVKHfpGZmLrex0lxR5SucGA0sUfFzGctehw+S/ggL9L/0NnC5mw6P8HUWpFZ3nQw3cRApjjWx9Sw==}
     engines: {node: '>=14.0.0'}
 
-  '@remix-run/router@1.21.0':
-    resolution: {integrity: sha512-xfSkCAchbdG5PnbrKqFWwia4Bi61nH+wm8wLEqfHDyp7Y3dZzgqS2itV8i4gAq9pC2HsTpwyBC6Ds8VHZ96JlA==}
-    engines: {node: '>=14.0.0'}
-
   '@remix-run/server-runtime@2.10.3':
     resolution: {integrity: sha512-vUl5jONUI6Lj0ICg9FSRFhoPzQdZ/7dpT1m7ID13DF5BEeF3t/9uCJS61XXWgQ/JEu7YRiwvZiwSRTrgM7zeWw==}
     engines: {node: '>=18.0.0'}
@@ -2421,6 +2417,10 @@ packages:
   cookie@0.6.0:
     resolution: {integrity: sha512-U71cyTamuh1CRNCfpGY6to28lxvNwPG4Guz/EVjgf3Jmzv0vlDp1atT9eS5dDjMYHucpHbWns6Lwf3BKz6svdw==}
     engines: {node: '>= 0.6'}
+
+  cookie@1.0.2:
+    resolution: {integrity: sha512-9Kr/j4O16ISv8zBBhJoi4bXOYNTkFLOqSL3UDB0njXxCXNezjeyVrJyGOWtgfs/q2km1gwBcfH8q1yEGoMYunA==}
+    engines: {node: '>=18'}
 
   core-util-is@1.0.3:
     resolution: {integrity: sha512-ZQBvi1DcpJ4GDqanjucZ2Hj3wEO5pZDS89BWbkcrvdxksJorwUDDZamX9ldFkp9aw2lmBDLgkObEA4DWNJ9FYQ==}
@@ -4619,12 +4619,12 @@ packages:
       react: '>=16.8'
       react-dom: '>=16.8'
 
-  react-router-dom@6.28.0:
-    resolution: {integrity: sha512-kQ7Unsl5YdyOltsPGl31zOjLrDv+m2VcIEcIHqYYD3Lp0UppLjrzcfJqDJwXxFw3TH/yvapbnUvPlAj7Kx5nbg==}
-    engines: {node: '>=14.0.0'}
+  react-router-dom@7.0.0:
+    resolution: {integrity: sha512-2QAxXpwgQuh423C64oZiV2cCKPCNUgZxcvZaS8O0PAHPZ/z8kTq7YbGD4KTNZm6Yj66d+HAfGkWPp8MCpdtD+Q==}
+    engines: {node: '>=20.0.0'}
     peerDependencies:
-      react: '>=16.8'
-      react-dom: '>=16.8'
+      react: '>=18'
+      react-dom: '>=18'
 
   react-router@6.25.0:
     resolution: {integrity: sha512-bziKjCcDbcxgWS9WlWFcQIVZ2vJHnCP6DGpQDT0l+0PFDasfJKgzf9CM22eTyhFsZkjk8ApCdKjJwKtzqH80jQ==}
@@ -4632,11 +4632,15 @@ packages:
     peerDependencies:
       react: '>=16.8'
 
-  react-router@6.28.0:
-    resolution: {integrity: sha512-HrYdIFqdrnhDw0PqG/AKjAqEqM7AvxCz0DQ4h2W8k6nqmc5uRBYDag0SBxx9iYz5G8gnuNVLzUe13wl9eAsXXg==}
-    engines: {node: '>=14.0.0'}
+  react-router@7.0.0:
+    resolution: {integrity: sha512-1xf+yMVhUjAzZGY90ZnYJ9KVe1R8FggpugzRBkh+p6vl4cC1sHDe3nO+r5rxWTAgCMf8uN5hfoV2M7rLVTWPUA==}
+    engines: {node: '>=20.0.0'}
     peerDependencies:
-      react: '>=16.8'
+      react: '>=18'
+      react-dom: '>=18'
+    peerDependenciesMeta:
+      react-dom:
+        optional: true
 
   react-share@5.1.1:
     resolution: {integrity: sha512-9rX6X4FiLwKi/eygTx6TWEKv0EuL15AdP6vnFMw5sA4UwTja0mgV4N3gAbkE9+5n3ry7BsBBeOnhaXbJ+jn9kQ==}
@@ -5180,6 +5184,9 @@ packages:
 
   turbo-stream@2.2.0:
     resolution: {integrity: sha512-FKFg7A0To1VU4CH9YmSMON5QphK0BXjSoiC7D9yMh+mEEbXLUP9qJ4hEt1qcjKtzncs1OpcnjZO8NgrlVbZH+g==}
+
+  turbo-stream@2.4.0:
+    resolution: {integrity: sha512-FHncC10WpBd2eOmGwpmQsWLDoK4cqsA/UT/GqNoaKOQnT8uzhtCbg3EoUDMvqpOSAI0S26mr0rkjzbOO6S3v1g==}
 
   type-fest@1.4.0:
     resolution: {integrity: sha512-yGSza74xk0UG8k+pLh5oeoYirvIiWo5t0/o3zHHAO2tRDiZcxWP7fywNlXhqb6/r6sWvwi+RsyQMWhVLe4BVuA==}
@@ -6951,8 +6958,6 @@ snapshots:
 
   '@remix-run/router@1.18.0': {}
 
-  '@remix-run/router@1.21.0': {}
-
   '@remix-run/server-runtime@2.10.3(typescript@5.6.3)':
     dependencies:
       '@remix-run/router': 1.18.0
@@ -7375,7 +7380,7 @@ snapshots:
       '@babel/plugin-syntax-typescript': 7.24.7(@babel/core@7.24.9)
       '@vanilla-extract/babel-plugin-debug-ids': 1.0.6
       '@vanilla-extract/css': 1.15.3
-      esbuild: 0.17.6
+      esbuild: 0.17.19
       eval: 0.1.8
       find-up: 5.0.0
       javascript-stringify: 2.1.0
@@ -8002,6 +8007,8 @@ snapshots:
   cookie@0.5.0: {}
 
   cookie@0.6.0: {}
+
+  cookie@1.0.2: {}
 
   core-util-is@1.0.3: {}
 
@@ -10571,22 +10578,26 @@ snapshots:
       react-dom: 19.0.0-rc-09111202-20241011(react@19.0.0-rc-09111202-20241011)
       react-router: 6.25.0(react@19.0.0-rc-09111202-20241011)
 
-  react-router-dom@6.28.0(react-dom@19.0.0-rc-fb9a90fa48-20240614(react@19.0.0-rc-fb9a90fa48-20240614))(react@19.0.0-rc-fb9a90fa48-20240614):
+  react-router-dom@7.0.0(react-dom@19.0.0-rc-fb9a90fa48-20240614(react@19.0.0-rc-fb9a90fa48-20240614))(react@19.0.0-rc-fb9a90fa48-20240614):
     dependencies:
-      '@remix-run/router': 1.21.0
       react: 19.0.0-rc-fb9a90fa48-20240614
       react-dom: 19.0.0-rc-fb9a90fa48-20240614(react@19.0.0-rc-fb9a90fa48-20240614)
-      react-router: 6.28.0(react@19.0.0-rc-fb9a90fa48-20240614)
+      react-router: 7.0.0(react-dom@19.0.0-rc-fb9a90fa48-20240614(react@19.0.0-rc-fb9a90fa48-20240614))(react@19.0.0-rc-fb9a90fa48-20240614)
 
   react-router@6.25.0(react@19.0.0-rc-09111202-20241011):
     dependencies:
       '@remix-run/router': 1.18.0
       react: 19.0.0-rc-09111202-20241011
 
-  react-router@6.28.0(react@19.0.0-rc-fb9a90fa48-20240614):
+  react-router@7.0.0(react-dom@19.0.0-rc-fb9a90fa48-20240614(react@19.0.0-rc-fb9a90fa48-20240614))(react@19.0.0-rc-fb9a90fa48-20240614):
     dependencies:
-      '@remix-run/router': 1.21.0
+      '@types/cookie': 0.6.0
+      cookie: 1.0.2
       react: 19.0.0-rc-fb9a90fa48-20240614
+      set-cookie-parser: 2.6.0
+      turbo-stream: 2.4.0
+    optionalDependencies:
+      react-dom: 19.0.0-rc-fb9a90fa48-20240614(react@19.0.0-rc-fb9a90fa48-20240614)
 
   react-share@5.1.1(react@19.0.0-rc-fb9a90fa48-20240614):
     dependencies:
@@ -11229,6 +11240,8 @@ snapshots:
   tslib@2.8.1: {}
 
   turbo-stream@2.2.0: {}
+
+  turbo-stream@2.4.0: {}
 
   type-fest@1.4.0: {}
 
