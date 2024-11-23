@@ -1,9 +1,8 @@
-import {
-  vitePlugin as remix,
-  cloudflareDevProxyVitePlugin as remixCloudflareDevProxy,
-} from "@remix-run/dev";
+import { cloudflareDevProxy } from "@react-router/dev/vite/cloudflare";
 import { defineConfig } from "vite";
 
+import { reactRouter } from "@react-router/dev/vite";
+
 export default defineConfig({
-  plugins: [remixCloudflareDevProxy(), remix()],
+  plugins: [cloudflareDevProxy(), reactRouter()],
 });

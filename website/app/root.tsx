@@ -6,7 +6,7 @@ import "@fontsource/noto-sans-jp/700.css";
 
 import "./assets/style.css";
 
-import { Links, Meta, Outlet, Scripts, ScrollRestoration } from "@remix-run/react";
+import { Links, Meta, Outlet, Scripts, ScrollRestoration } from "react-router";
 import favicon from "./assets/favicon.ico";
 import Footer from "./components/Footer";
 import Header from "./components/Header";
