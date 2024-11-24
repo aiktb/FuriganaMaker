@@ -1,6 +1,6 @@
 import { Temporal } from "@js-temporal/polyfill";
-import { Link } from "@remix-run/react";
 import { useContext, useEffect, useState } from "react";
+import { Link } from "react-router";
 
 import cloudflare from "../assets/cloudflare.svg";
 import { LinksContext } from "../contexts";

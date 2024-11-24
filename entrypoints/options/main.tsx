@@ -5,7 +5,7 @@ import "@/commons/i18n";
 import { ThemeProvider } from "next-themes";
 import { StrictMode } from "react";
 import { createRoot } from "react-dom/client";
-import { RouterProvider, createHashRouter } from "react-router-dom";
+import { RouterProvider, createHashRouter } from "react-router";
 
 import ErrorPage from "./components/ErrorPage";
 import Root from "./root";

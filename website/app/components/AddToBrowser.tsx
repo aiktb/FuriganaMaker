@@ -1,6 +1,6 @@
-import { Link } from "@remix-run/react";
 import { useRef } from "react";
 import { useContext } from "react";
+import { Link } from "react-router";
 import { LinksContext } from "../contexts";
 
 export default function AddToBrowser() {

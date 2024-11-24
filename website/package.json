@@ -4,9 +4,10 @@
   "sideEffects": false,
   "type": "module",
   "scripts": {
-    "build": "remix vite:build",
+    "dev": "react-router dev",
+    "build": "react-router build",
+    "typecheck": "react-router typegen && tsc",
     "deploy": "wrangler pages deploy ./build/client",
-    "dev": "remix vite:dev",
     "start": "wrangler pages dev ./build/client",
     "typegen": "wrangler types"
   },
@@ -14,12 +15,13 @@
     "@fireworks-js/react": "^2.10.7",
     "@headlessui/react": "^2.1.2",
     "@js-temporal/polyfill": "^0.4.4",
-    "@remix-run/cloudflare": "^2.9.2",
-    "@remix-run/cloudflare-pages": "^2.9.2",
-    "@remix-run/react": "^2.9.2",
+    "@react-router/dev": "^7.0.1",
+    "@react-router/fs-routes": "^7.0.1",
+    "@react-router/cloudflare": "^7.0.1",
     "isbot": "^5.1.9",
     "react": "19.0.0-rc-09111202-20241011",
-    "react-dom": "19.0.0-rc-09111202-20241011"
+    "react-dom": "19.0.0-rc-09111202-20241011",
+    "react-router": "^7.0.1"
   },
   "devDependencies": {
     "@cloudflare/workers-types": "^4.20240620.0",
@@ -30,7 +32,6 @@
     "@headlessui/tailwindcss": "^0.2.1",
     "@iconify-json/fa6-brands": "^1.1.19",
     "@iconify-json/mdi": "^1.1.67",
-    "@remix-run/dev": "^2.9.2",
     "vite": "^5.4.6",
     "wrangler": "^3.61.0"
   }

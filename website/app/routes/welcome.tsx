@@ -1,9 +1,7 @@
-import type { MetaFunction } from "@remix-run/cloudflare";
-
 import { Fireworks, type FireworksHandlers } from "@fireworks-js/react";
-import { Link } from "@remix-run/react";
 import { useEffect, useRef } from "react";
 import { useContext } from "react";
+import { Link, type MetaFunction } from "react-router";
 import { LinksContext } from "../contexts";
 
 export const meta: MetaFunction = () => {

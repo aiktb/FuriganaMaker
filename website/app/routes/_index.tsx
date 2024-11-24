@@ -1,7 +1,6 @@
-import { type MetaFunction, json } from "@remix-run/cloudflare";
-import { Link } from "@remix-run/react";
-import { useLoaderData } from "@remix-run/react";
 import { useContext, useEffect } from "react";
+import { Link, type MetaFunction, useLoaderData } from "react-router";
+
 import AddToBrowser from "../components/AddToBrowser";
 import Features from "../components/Features";
 import { LinksContext } from "../contexts";
@@ -24,7 +23,8 @@ export const loader = async () => {
     console.error(e);
   }
   const AN_HOUR = 60 * 60;
-  return json(data, {
+  return new Response(JSON.stringify(data), {
+    status: 200,
     headers: { "Cache-Control": `public, max-age=${AN_HOUR}` },
   });
 };
@@ -44,7 +44,7 @@ export const meta: MetaFunction = () => {
 export default function Index() {
   const links = useContext(LinksContext)!;
 
-  const data = useLoaderData<typeof loader>();
+  const data = useLoaderData();
   const YOUTUBE_VIDEO_ID = "_j954tDLXjw";
 
   useEffect(() => {
