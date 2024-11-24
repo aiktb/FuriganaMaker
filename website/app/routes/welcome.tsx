@@ -2,6 +2,7 @@ import { Fireworks, type FireworksHandlers } from "@fireworks-js/react";
 import { useEffect, useRef } from "react";
 import { useContext } from "react";
 import { Link, type MetaFunction } from "react-router";
+import pinExtensionImage from "../assets/pin-extension.png";
 import { LinksContext } from "../contexts";
 
 export const meta: MetaFunction = () => {
@@ -32,8 +33,61 @@ export default function Welcome() {
     for (const el of document.querySelectorAll(".animeRising")) {
       riseObserver.observe(el);
     }
+
+    CSS.registerProperty({
+      name: "--welcome-x",
+      syntax: "<number>",
+      initialValue: "0.5",
+      inherits: false,
+    });
+
+    CSS.registerProperty({
+      name: "--welcome-y",
+      syntax: "<number>",
+      initialValue: "0.5",
+      inherits: false,
+    });
+
+    CSS.registerProperty({
+      name: "--welcome-deg",
+      syntax: "<number>",
+      initialValue: "0",
+      inherits: false,
+    });
+
+    CSS.registerProperty({
+      name: "--welcome-radius",
+      syntax: "<number>",
+      initialValue: "0",
+      inherits: false,
+    });
     return () => ref.current?.stop() && riseObserver.disconnect();
   }, []);
+
+  function handlePointerMoveAnimation(event: React.PointerEvent<HTMLDivElement>) {
+    const target = event.currentTarget;
+    const { clientX, clientY } = event;
+    const { top, left, width, height } = target.getBoundingClientRect();
+    const x = (clientX - left) / width;
+    const y = (clientY - top) / height;
+    const deg = Math.round(Math.atan2(y - 0.5, x - 0.5) * (180 / Math.PI) + 90);
+    const radius = Math.sqrt((x - 0.5) ** 2 + (y - 0.5) ** 2);
+
+    target.style.setProperty("--welcome-x", `${x.toString()}`);
+    target.style.setProperty("--welcome-y", `${y.toString()}`);
+    target.style.setProperty("--welcome-deg", `${deg.toString()}`);
+    target.style.setProperty("--welcome-radius", `${radius.toString()}`);
+    target.addEventListener(
+      "pointerleave",
+      () => {
+        target.style.setProperty("--welcome-x", "0.5");
+        target.style.setProperty("--welcome-y", "0.5");
+        target.style.setProperty("--welcome-deg", "0");
+        target.style.setProperty("--welcome-radius", "0");
+      },
+      { once: true },
+    );
+  }
 
   return (
     <div className="relative mt-5 flex min-h-screen flex-col items-center gap-5 text-pretty px-10 py-8 pt-24 text-center lg:mt-16 lg:pt-36">
@@ -46,12 +100,44 @@ export default function Welcome() {
         <h1 className="animeRising font-bold text-3xl sm:text-5xl md:text-6xl lg:text-8xl">
           Welcome to Furigana Maker!🎉
         </h1>
-        <p className="animeRising max-w-[42rem] leading-normal sm:text-xl sm:leading-8">
-          You have successfully installed the extension, now you can start to add furigana to Kanji,
-          please open the Popup page of the extension and click on the{" "}
-          <span className="text-sky-400">"Add furigana"</span> button and select the Japanese text
-          below and watch the change.
-        </p>
+        <div className="mt-10 flex flex-col-reverse items-center justify-center gap-10 sm:flex-row">
+          <div
+            className="relative overflow-hidden rounded-3xl transition duration-[400ms] ease-[cubic-bezier(0.03,0.98,0.52,0.99)] will-change-transform hover:shadow-[hsla(201,80%,66%,.5)_0_0_15px_0,hsla(161,55%,49%,.5)_0_0_30px_0]"
+            style={{
+              transform:
+                "perspective(1000px) rotateX(calc((var(--welcome-y) - 0.5) * -32deg)) rotateY(calc((var(--welcome-x) - 0.5) * -32deg)) scale3d(1, 1, 1)",
+            }}
+            onPointerMove={handlePointerMoveAnimation}
+          >
+            <img
+              src={pinExtensionImage}
+              alt="Step of pin extension "
+              width={(477 * 3) / 4}
+              height={(324 * 3) / 4}
+            />
+            <div className="absolute inset-0 overflow-hidden ">
+              <div
+                className="absolute top-1/2 left-1/2 size-[500] origin-[0%_0%] bg-[linear-gradient(0deg,rgba(255,255,255,0)_0%,rgb(255,255,255)_100%)] opacity-0 transition-opacity duration-[400ms] ease-[cubic-bezier(0.03,0.98,0.52,0.99)]"
+                onPointerMove={handlePointerMoveAnimation}
+                style={{
+                  transform: "translate(-50%, -50%)",
+                  opacity: "calc(var(--welcome-radius) * 0.3)",
+                }}
+              />
+            </div>
+          </div>
+          <div>
+            <div className="mb-4 inline-block rounded-full border border-slate-700 bg-slate-800 px-4 py-1.5 font-bold uppercase">
+              Introduction
+            </div>
+            <p className="animeRising max-w-[30rem] leading-normal sm:text-xl sm:leading-8">
+              You have successfully installed the extension, now you can start to add furigana to
+              Kanji, please open the Popup page of the extension and click on the{" "}
+              <span className="text-sky-400">"Add furigana"</span> button and select the Japanese
+              text below and watch the change.
+            </p>
+          </div>
+        </div>
       </section>
       <section className="py-20">
         <div className="mb-4 inline-block rounded-full border border-slate-700 bg-slate-800 px-4 py-1.5 font-bold uppercase">
@@ -72,7 +158,7 @@ export default function Welcome() {
           Tips
         </div>
         <ol className="list-inside list-decimal text-400 marker:text-sky-400">
-          <li className="animeRising mt-6 sm:text-xl">
+          <li className="animeRising sm:text-xl">
             You can set shortcuts for browser extension to access specific features.
           </li>
           <li className="animeRising mt-6 sm:text-xl">
