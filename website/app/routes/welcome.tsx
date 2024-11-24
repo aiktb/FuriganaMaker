@@ -1,9 +1,22 @@
 import { Fireworks, type FireworksHandlers } from "@fireworks-js/react";
-import { useEffect, useRef } from "react";
+import { useEffect, useRef, useSyncExternalStore } from "react";
 import { useContext } from "react";
 import { Link, type MetaFunction } from "react-router";
 import pinExtensionImage from "../assets/pin-extension.png";
 import { LinksContext } from "../contexts";
+
+function subscribe() {
+  // biome-ignore lint/suspicious/noEmptyBlockStatements: Mock function
+  return () => {};
+}
+
+export function useHydrated() {
+  return useSyncExternalStore(
+    subscribe,
+    () => true,
+    () => false,
+  );
+}
 
 export const meta: MetaFunction = () => {
   return [
@@ -16,6 +29,7 @@ export default function Welcome() {
   const links = useContext(LinksContext)!;
   const ref = useRef<FireworksHandlers>(null);
 
+  const hydrated = useHydrated();
   useEffect(() => {
     ref.current?.start();
     setTimeout(() => {
@@ -33,36 +47,37 @@ export default function Welcome() {
     for (const el of document.querySelectorAll(".animeRising")) {
       riseObserver.observe(el);
     }
+    if (!hydrated) {
+      CSS.registerProperty({
+        name: "--welcome-x",
+        syntax: "<number>",
+        initialValue: "0.5",
+        inherits: false,
+      });
 
-    CSS.registerProperty({
-      name: "--welcome-x",
-      syntax: "<number>",
-      initialValue: "0.5",
-      inherits: false,
-    });
+      CSS.registerProperty({
+        name: "--welcome-y",
+        syntax: "<number>",
+        initialValue: "0.5",
+        inherits: false,
+      });
 
-    CSS.registerProperty({
-      name: "--welcome-y",
-      syntax: "<number>",
-      initialValue: "0.5",
-      inherits: false,
-    });
+      CSS.registerProperty({
+        name: "--welcome-deg",
+        syntax: "<number>",
+        initialValue: "0",
+        inherits: false,
+      });
 
-    CSS.registerProperty({
-      name: "--welcome-deg",
-      syntax: "<number>",
-      initialValue: "0",
-      inherits: false,
-    });
-
-    CSS.registerProperty({
-      name: "--welcome-radius",
-      syntax: "<number>",
-      initialValue: "0",
-      inherits: false,
-    });
+      CSS.registerProperty({
+        name: "--welcome-radius",
+        syntax: "<number>",
+        initialValue: "0",
+        inherits: false,
+      });
+    }
     return () => ref.current?.stop() && riseObserver.disconnect();
-  }, []);
+  }, [hydrated]);
 
   function handlePointerMoveAnimation(event: React.PointerEvent<HTMLDivElement>) {
     const target = event.currentTarget;
@@ -100,7 +115,7 @@ export default function Welcome() {
         <h1 className="animeRising font-bold text-3xl sm:text-5xl md:text-6xl lg:text-8xl">
           Welcome to Furigana Maker!🎉
         </h1>
-        <div className="mt-10 flex flex-col-reverse items-center justify-center gap-10 sm:flex-row">
+        <div className="animeRising mt-10 flex flex-col-reverse items-center justify-center gap-10 sm:flex-row">
           <div
             className="relative overflow-hidden rounded-3xl transition duration-[400ms] ease-[cubic-bezier(0.03,0.98,0.52,0.99)] will-change-transform hover:shadow-[hsla(201,80%,66%,.5)_0_0_15px_0,hsla(161,55%,49%,.5)_0_0_30px_0]"
             style={{
