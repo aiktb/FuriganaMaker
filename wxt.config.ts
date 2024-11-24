@@ -4,6 +4,8 @@ import path from "node:path";
 import svgr from "vite-plugin-svgr";
 import { defineConfig } from "wxt";
 
+import { homepage } from "./package.json";
+
 const commands = {
   addFurigana: {
     description: "__MSG_shortcutAddFurigana__",
@@ -30,6 +32,7 @@ export default defineConfig({
     description: "__MSG_extDescription__",
     permissions: ["contextMenus", "storage"],
     default_locale: "en",
+    homepage_url: homepage,
     commands,
   },
   modules: ["@wxt-dev/module-react", "@wxt-dev/auto-icons"],
