@@ -2,7 +2,7 @@ import Logo from "@/assets/icons/Logo.svg?react";
 import { Transition } from "@headlessui/react";
 
 import { useTranslation } from "react-i18next";
-import type { LinkProps } from "react-router-dom";
+import { Link, type LinkProps, NavLink } from "react-router";
 
 type CustomLink = LinkProps & { label: string; icon: string };
 

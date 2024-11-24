@@ -40,7 +40,7 @@ export default defineConfig({
     baseIconPath: "assets/icons/Logo.svg",
   },
   imports: {
-    presets: ["react", "react-router-dom"],
+    presets: ["react"],
   },
   vite: () => ({
     plugins: [svgr()],
