@@ -57,7 +57,7 @@ If you like this project, please consider supporting me by buying me a coffee.
 
 ## License
 
-[MIT](./LICENSE) | © 2023 [aiktb](https://aiktb.dev) made with ❤️.
+[MIT](./LICENSE) | © 2023 aiktb made with ❤️.
 
 ## Thanks
 
