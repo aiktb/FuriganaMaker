@@ -1,22 +1,9 @@
 import { Fireworks, type FireworksHandlers } from "@fireworks-js/react";
-import { useEffect, useRef, useSyncExternalStore } from "react";
+import { useEffect, useRef } from "react";
 import { useContext } from "react";
 import { Link, type MetaFunction } from "react-router";
 import pinExtensionImage from "../assets/pin-extension.png";
 import { LinksContext } from "../contexts";
-
-function subscribe() {
-  // biome-ignore lint/suspicious/noEmptyBlockStatements: Mock function
-  return () => {};
-}
-
-export function useHydrated() {
-  return useSyncExternalStore(
-    subscribe,
-    () => true,
-    () => false,
-  );
-}
 
 export const meta: MetaFunction = () => {
   return [
@@ -29,7 +16,6 @@ export default function Welcome() {
   const links = useContext(LinksContext)!;
   const ref = useRef<FireworksHandlers>(null);
 
-  const hydrated = useHydrated();
   useEffect(() => {
     ref.current?.start();
     setTimeout(() => {
@@ -47,37 +33,8 @@ export default function Welcome() {
     for (const el of document.querySelectorAll(".animeRising")) {
       riseObserver.observe(el);
     }
-    if (!hydrated) {
-      CSS.registerProperty({
-        name: "--welcome-x",
-        syntax: "<number>",
-        initialValue: "0.5",
-        inherits: false,
-      });
-
-      CSS.registerProperty({
-        name: "--welcome-y",
-        syntax: "<number>",
-        initialValue: "0.5",
-        inherits: false,
-      });
-
-      CSS.registerProperty({
-        name: "--welcome-deg",
-        syntax: "<number>",
-        initialValue: "0",
-        inherits: false,
-      });
-
-      CSS.registerProperty({
-        name: "--welcome-radius",
-        syntax: "<number>",
-        initialValue: "0",
-        inherits: false,
-      });
-    }
     return () => ref.current?.stop() && riseObserver.disconnect();
-  }, [hydrated]);
+  }, []);
 
   function handlePointerMoveAnimation(event: React.PointerEvent<HTMLDivElement>) {
     const target = event.currentTarget;
