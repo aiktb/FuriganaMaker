@@ -56,7 +56,7 @@ export default function Footer() {
             <Link
               target="_blank"
               key={item.text}
-              className="text-[#BFBFBF] text-sm leading-6 hover:text-sky-400"
+              className="text-sm text-zinc-300 leading-6 hover:text-sky-400"
               to={item.to}
             >
               {item.text}
@@ -67,7 +67,7 @@ export default function Footer() {
           {iconLinkItems.map((item) => (
             <Link
               key={item.icon}
-              className="size-6 text-[#BFBFBF] hover:text-sky-400"
+              className="size-6 text-zinc-300 hover:text-sky-400"
               to={item.to}
               target="_blank"
             >
