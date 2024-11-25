@@ -86,5 +86,8 @@
   "dialogExcludeTitle": "Exclude a domain",
   "settingsExclusionList": "The following sites never add furigana",
   "settingsExclusionListDesc": "This setting takes precedence over custom rules (edited via the Rule editor).",
-  "messageEmptyList": " The list is empty, please add it first."
+  "messageEmptyList": " The list is empty, please add it first.",
+  "btnResetConfig": "Reset Config",
+  "resetWarning": "Are you sure you want to reset the rule list to its initial state?",
+  "undoneDesc": "This action cannot be undone."
 }
