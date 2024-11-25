@@ -12,16 +12,23 @@ import PopupTransition from "./PopupTransition";
 import RuleEditor from "./RuleEditor";
 import RuleItem from "./RuleItem";
 
+import defaultSelectorRules from "@/assets/rules/selector.json";
+
 export default function RulePage({ rulesPromise }: { rulesPromise: Promise<SelectorRule[]> }) {
   const [rules, setRules] = useState(use(rulesPromise));
   const [createRuleDialogIsOpen, setCreateRuleDialogIsOpen] = useState(false);
   const [importDialogIsOpen, setImportDialogIsOpen] = useState(false);
   const [importFailedDialogIsOpen, setImportFailedDialogIsOpen] = useState(false);
+  const [resetRuleDialogIsOpen, setResetRuleDialogIsOpen] = useState(false);
   const [importFailedMessage, setImportFailedMessage] = useState("");
 
   useEffect(() => {
     customRules.setValue(rules);
   }, [rules]);
+
+  function resetConfig() {
+    setRules(defaultSelectorRules);
+  }
 
   function createNewRule(rule: SelectorRule) {
     const sameDomainRule = rules.find((r) => r.domain === rule.domain);
@@ -106,37 +113,52 @@ export default function RulePage({ rulesPromise }: { rulesPromise: Promise<Selec
   return (
     <>
       <div className="flex grow flex-col items-center justify-start">
-        <div className="my-2 flex max-w-5xl flex-col items-center justify-between gap-1.5 font-bold text-base text-slate-700 md:flex-row md:justify-between lg:max-w-7xl lg:px-8 dark:text-slate-300">
+        <div className="my-2 flex max-w-80 flex-wrap items-center justify-between gap-1.5 font-bold text-base text-slate-700 md:flex-row md:justify-between lg:max-w-5xl lg:max-w-7xl lg:px-8 dark:text-slate-300">
           <button
-            className="flex items-center gap-1 rounded-md bg-slate-950/5 px-3 py-2 text-slate-800 transition hover:text-sky-500 dark:bg-white/5 dark:text-white"
+            className="flex max-w-40 grow items-center justify-center gap-1 overflow-hidden overflow-ellipsis whitespace-nowrap rounded-md bg-slate-950/5 px-1.5 py-2 text-slate-800 transition hover:text-sky-500 sm:px-3 dark:bg-white/5 dark:text-white"
             onClick={() => {
               setCreateRuleDialogIsOpen(true);
             }}
           >
             <i className="i-tabler-code-plus size-5" />
-            {t("btnAddRule")}
+            <span className="max-w-32 overflow-hidden overflow-ellipsis whitespace-nowrap">
+              {t("btnAddRule")}
+            </span>
           </button>
-          <div className="flex gap-x-1.5">
-            <button
-              className={`${
-                rules.length === 0 ? "cursor-not-allowed" : ""
-              } flex items-center gap-1 rounded-md bg-slate-950/5 px-3 py-2 text-slate-800 transition hover:text-sky-500 dark:bg-white/5 dark:text-white`}
-              onClick={exportConfig}
-              disabled={rules.length === 0}
-            >
-              <i className="i-tabler-file-export size-5" />
+          <button
+            className="flex max-w-40 grow items-center justify-center gap-1 rounded-md bg-slate-950/5 px-1.5 py-2 text-slate-800 transition hover:text-sky-500 sm:px-3 dark:bg-white/5 dark:text-white"
+            onClick={() => {
+              setResetRuleDialogIsOpen(true);
+            }}
+          >
+            <i className="i-tabler-restore size-5" />
+            <span className="max-w-32 overflow-hidden overflow-ellipsis whitespace-nowrap">
+              {t("btnResetConfig")}
+            </span>
+          </button>
+          <button
+            className={`${
+              rules.length === 0 ? "cursor-not-allowed" : ""
+            } flex max-w-40 grow items-center justify-center gap-1 overflow-hidden overflow-ellipsis whitespace-nowrap rounded-md bg-slate-950/5 px-1.5 py-2 text-slate-800 transition hover:text-sky-500 sm:px-3 dark:bg-white/5 dark:text-white`}
+            onClick={exportConfig}
+            disabled={rules.length === 0}
+          >
+            <i className="i-tabler-file-export size-5" />
+            <span className="max-w-32 overflow-hidden overflow-ellipsis whitespace-nowrap">
               {t("btnExportConfig")}
-            </button>
-            <button
-              className="flex items-center gap-1 rounded-md bg-slate-950/5 px-3 py-2 text-slate-800 transition hover:text-sky-500 dark:bg-white/5 dark:text-white"
-              onClick={() => {
-                setImportDialogIsOpen(true);
-              }}
-            >
-              <i className="i-tabler-file-import size-5" />
+            </span>
+          </button>
+          <button
+            className="flex max-w-40 grow items-center justify-center gap-1 overflow-hidden overflow-ellipsis whitespace-nowrap rounded-md bg-slate-950/5 px-1.5 py-2 text-slate-800 transition hover:text-sky-500 sm:px-3 dark:bg-white/5 dark:text-white"
+            onClick={() => {
+              setImportDialogIsOpen(true);
+            }}
+          >
+            <i className="i-tabler-file-import size-5" />
+            <span className="max-w-32 overflow-hidden overflow-ellipsis whitespace-nowrap">
               {t("btnImportConfig")}
-            </button>
-          </div>
+            </span>
+          </button>
         </div>
         <div className="flex max-w-3xl items-center justify-between lg:max-w-7xl">
           {rules.length === 0 ? (
@@ -195,6 +217,49 @@ export default function RulePage({ rulesPromise }: { rulesPromise: Promise<Selec
         </Dialog>
       </PopupTransition>
 
+      <PopupTransition show={resetRuleDialogIsOpen}>
+        <Dialog
+          as="div"
+          className="-translate-x-1/2 -translate-y-1/2 fixed top-1/2 left-1/2 z-40 min-w-80"
+          onClose={() => {
+            setResetRuleDialogIsOpen(false);
+          }}
+        >
+          <DialogPanel className="w-full min-w-[20rem] max-w-md transform overflow-hidden rounded-2xl bg-white p-6 text-left align-middle shadow-xl transition-all dark:bg-slate-900">
+            <DialogTitle
+              as="h3"
+              className="font-medium text-gray-900 text-lg leading-6 dark:text-white"
+            >
+              {t("resetWarning")}
+            </DialogTitle>
+            <div className="mt-2">
+              <p className="whitespace-pre-wrap text-gray-500 text-sm dark:text-gray-400">
+                {t("undoneDesc")}
+              </p>
+            </div>
+            <div className="mt-4 flex gap-2.5">
+              <button
+                className="inline-flex justify-center rounded-md border border-transparent bg-red-100 px-4 py-2 font-medium text-slate-900 text-sm transition hover:bg-red-200 focus:outline-none focus-visible:ring-2 focus-visible:ring-red-500 focus-visible:ring-offset-2 dark:bg-red-800 dark:text-slate-200 dark:hover:bg-red-900"
+                onClick={() => {
+                  resetConfig();
+                  setResetRuleDialogIsOpen(false);
+                }}
+              >
+                {t("btnReset")}
+              </button>
+              <button
+                className="inline-flex justify-center rounded-md border border-transparent bg-blue-100 px-4 py-2 font-medium text-blue-900 text-sm transition hover:bg-blue-200 focus:outline-none focus-visible:ring-2 focus-visible:ring-blue-500 focus-visible:ring-offset-2 dark:bg-slate-700 dark:text-slate-200 dark:hover:bg-slate-800"
+                onClick={() => {
+                  setResetRuleDialogIsOpen(false);
+                }}
+              >
+                {t("btnCancel")}
+              </button>
+            </div>
+          </DialogPanel>
+        </Dialog>
+      </PopupTransition>
+
       <PopupTransition show={importDialogIsOpen}>
         <Dialog
           as="div"
@@ -239,7 +304,7 @@ export default function RulePage({ rulesPromise }: { rulesPromise: Promise<Selec
       <PopupTransition show={importFailedDialogIsOpen}>
         <Dialog
           as="div"
-          className="-translate-x-1/2 -translate-y-1/2 fixed top-1/2 left-1/2 z-20 min-w-80"
+          className="-translate-x-1/2 -translate-y-1/2 fixed top-1/2 left-1/2 z-40 min-w-80"
           onClose={() => {
             setImportFailedDialogIsOpen(false);
           }}

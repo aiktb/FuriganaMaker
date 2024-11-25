@@ -8,5 +8,25 @@
     "domain": "www.youtube.com",
     "selector": "ytd-comment-view-model",
     "active": false
+  },
+  {
+    "domain": "x.com",
+    "selector": "div[lang='ja'] span",
+    "active": false
+  },
+  {
+    "domain": "ncode.syosetu.com",
+    "selector": "#container #novel_color",
+    "active": false
+  },
+  {
+    "domain": "5ch.net",
+    "selector": ".thread-content, .thread_title",
+    "active": false
+  },
+  {
+    "domain": "news.goo.ne.jp",
+    "selector": ".topics-title, .topics-text",
+    "active": false
   }
 ]
