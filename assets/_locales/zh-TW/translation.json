@@ -86,5 +86,8 @@
   "toggleKanjiFilter": "開關漢字過濾器",
   "update": "更新",
   "warningInvalid": "JSON 格式無效",
-  "yourTips": "您的建議"
+  "yourTips": "您的建議",
+  "btnResetConfig": "重置配置",
+  "resetWarning": "您確定要將規則清單重設為其初始狀態嗎？",
+  "undoneDesc": "此操作無法撤銷。"
 }

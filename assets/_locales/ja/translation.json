@@ -86,5 +86,8 @@
   "settingsDisableWarning": "警告を無効にする",
   "settingsDisableWarningDesc": "Web ページに「ページが大きすぎます」という警告が表示されなくなりました。",
   "settingsExclusionListDesc": "この設定は、カスタム ルール (ルール エディターで編集) より優先されます。",
-  "settingsExclusionList": "以下のサイトは決してふりがなを付けません"
+  "settingsExclusionList": "以下のサイトは決してふりがなを付けません",
+  "btnResetConfig": "設定をリセット",
+  "resetWarning": "ルールリストを初期状態にリセットしてもよろしいですか?",
+  "undoneDesc": "この操作は元に戻すことができません。"
 }
