@@ -1,5 +1,28 @@
 # Changelog
 
+## [2.2.0](https://github.com/aiktb/FuriganaMaker/compare/v2.1.6...v2.2.0) (2024-11-25)
+
+
+### Features
+
+* add translation ([#297](https://github.com/aiktb/FuriganaMaker/issues/297)) ([c2df927](https://github.com/aiktb/FuriganaMaker/commit/c2df92787a5e08b40fa26399cc504bf7a77d72e0))
+* allow reset config to initial state ([#296](https://github.com/aiktb/FuriganaMaker/issues/296)) ([bca1c73](https://github.com/aiktb/FuriganaMaker/commit/bca1c736b78543b78a53a044cc8b4fcc83ce9b67))
+* remove redundant custom rules and add rules reported by users ([#295](https://github.com/aiktb/FuriganaMaker/issues/295)) ([37a4e62](https://github.com/aiktb/FuriganaMaker/commit/37a4e627bfef0b5d36510e16f87b71124a030930))
+* unify and beautify the options page style ([#294](https://github.com/aiktb/FuriganaMaker/issues/294)) ([1afb2dc](https://github.com/aiktb/FuriganaMaker/commit/1afb2dc74caa36ea8f0da0fcb49c3221f35c06a5))
+
+
+### Bug Fixes
+
+* `property registered` error will be reported if repeatedly navigate to welcome page ([#290](https://github.com/aiktb/FuriganaMaker/issues/290)) ([ceeb03f](https://github.com/aiktb/FuriganaMaker/commit/ceeb03ffbeff578f6565a52169c80b79556e658f))
+* **style:** buttons are not aligned ([#300](https://github.com/aiktb/FuriganaMaker/issues/300)) ([47ecd70](https://github.com/aiktb/FuriganaMaker/commit/47ecd7043d03a20ca5a3fa7cc7e6efcefb7b406d))
+* **website:** card lacks reflective effect ([#291](https://github.com/aiktb/FuriganaMaker/issues/291)) ([a41307b](https://github.com/aiktb/FuriganaMaker/commit/a41307bf61b51a0ea9e70c62de67ab7f277498a5))
+* **website:** card opacity is 1 when the first screen is loaded ([#292](https://github.com/aiktb/FuriganaMaker/issues/292)) ([3acf556](https://github.com/aiktb/FuriganaMaker/commit/3acf556a757e4c7ccd71b60903ca603637183c19))
+
+
+### Miscellaneous Chores
+
+* release 2.2.0 ([40faa7f](https://github.com/aiktb/FuriganaMaker/commit/40faa7fec09215352283cb678b5eae683a265022))
+
 ## v2.2.0
 
 ### Features
