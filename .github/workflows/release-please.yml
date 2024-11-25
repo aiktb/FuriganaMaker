@@ -12,6 +12,10 @@ name: release-please
 jobs:
   release-please:
     runs-on: ubuntu-latest
+    outputs:
+      tag_name: ${{ steps.release.outputs.tag_name }}
+      release_created: ${{ steps.release.outputs.release_created }}
+
     steps:
       - uses: googleapis/release-please-action@v4
         id: release
@@ -19,6 +23,11 @@ jobs:
           token: ${{ secrets.PERSONAL_ACCESS_TOKEN }}
           release-type: node
 
+  submit:
+    runs-on: ubuntu-latest
+    if: needs.release-please.outputs.release_created
+    needs: release-please
+    steps:
       - uses: actions/checkout@v4
       - uses: pnpm/action-setup@v4
       - uses: actions/setup-node@v4
@@ -32,13 +41,11 @@ jobs:
         run: pnpm run zip
 
       - name: Upload Release Artifact
-        if: ${{ steps.release.outputs.release_created }}
         env:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
-        run: gh release upload ${{ steps.release.outputs.tag_name }} ./.output/*.zip
+        run: gh release upload ${{ needs.release-please.outputs.tag_name }} ./.output/*.zip
 
       - name: Submit to stores
-        if: ${{ steps.release.outputs.release_created }}
         run: |
           pnpm wxt submit \
             --chrome-zip .output/*-chrome.zip \
