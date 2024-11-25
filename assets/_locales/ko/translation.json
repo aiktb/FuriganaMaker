@@ -86,5 +86,8 @@
   "settingsDisableWarning": "경고 비활성화",
   "settingsDisableWarningDesc": "더 이상 웹페이지에 \"페이지가 너무 큽니다\"라는 경고가 표시되지 않습니다.",
   "settingsExclusionListDesc": "이 설정은 사용자 정의 규칙(규칙 편집기를 통해 편집됨)보다 우선합니다.",
-  "settingsExclusionList": "다음 사이트에서는 후리가나를 절대 추가하지 않습니다."
+  "settingsExclusionList": "다음 사이트에서는 후리가나를 절대 추가하지 않습니다.",
+  "btnResetConfig": "구성 재설정",
+  "resetWarning": "규칙 목록을 초기 상태로 재설정하시겠습니까?",
+  "undoneDesc": "이 작업은 취소할 수 없습니다."
 }

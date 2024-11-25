@@ -86,5 +86,8 @@
   "settingsDisableWarning": "禁用警告",
   "settingsDisableWarningDesc": "网页上不再显示“页面太大”警告。",
   "messageEmptyList": "列表为空，请先添加。",
-  "settingsExclusionList": "以下网站从不添加注音假名"
+  "settingsExclusionList": "以下网站从不添加注音假名",
+  "btnResetConfig": "重置配置",
+  "resetWarning": "您确定要将规则列表重置为其初始状态吗？",
+  "undoneDesc": "此操作无法撤消。"
 }
