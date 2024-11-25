@@ -78,7 +78,7 @@ export const moreSettings = storage.defineItem<MoreSettings>("local:moreSettings
     [ExtStorage.Language]: undefined,
     [ExtStorage.DisableWarning]: false,
     [ExtStorage.ColoringKanji]: false,
-    [ExtStorage.ExcludeSites]: ["example.com"],
+    [ExtStorage.ExcludeSites]: ["www.twitch.tv"],
   },
 });
 

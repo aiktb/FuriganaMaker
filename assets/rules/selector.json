@@ -1,82 +1,12 @@
 [
   {
-    "domain": "twitter.com",
-    "selector": "div[lang='ja'] span",
+    "domain": "discord.com",
+    "selector": ".markup_f8f345",
     "active": false
   },
   {
-    "domain": "x.com",
-    "selector": "div[lang='ja'] span",
-    "active": false
-  },
-  {
-    "domain": "www.asahi.com",
-    "selector": ".nfyQp h1, .nfyQp h2, .nfyQp h3, .nfyQp h4, .nfyQp h5, .nfyQp h6, .nfyQp p",
-    "active": false
-  },
-  {
-    "domain": "ja.wikipedia.org",
-    "selector": "main > #bodyContent",
-    "active": false
-  },
-  {
-    "domain": "www3.nhk.or.jp",
-    "selector": "main section.content--detail-main, main article header h1.content--title",
-    "active": false
-  },
-  {
-    "domain": "news.yahoo.co.jp",
-    "selector": "main article .article_body, main article header h1 ",
-    "active": false
-  },
-  {
-    "domain": "finders.me",
-    "selector": "article",
-    "active": false
-  },
-  {
-    "domain": "news.livedoor.com",
-    "selector": "#main article header h1, #main article .articleBody",
-    "active": false
-  },
-  {
-    "domain": "ncode.syosetu.com",
-    "selector": "#container #novel_color",
-    "active": false
-  },
-  {
-    "domain": "topics.smt.docomo.ne.jp",
-    "selector": ".newsTopics-title-area h1, .newsTopics-title-area h2, .newsTopics-text, .newsArticle-title-area h1, .newsArticle-title-area h2, .newsArticle-text",
-    "active": false
-  },
-  {
-    "domain": "5ch.net",
-    "selector": ".thread-content, .thread_title",
-    "active": false
-  },
-  {
-    "domain": "www.itmedia.co.jp",
-    "selector": ".title__maintext, #cmsBody",
-    "active": false
-  },
-  {
-    "domain": "news.goo.ne.jp",
-    "selector": ".topics-title, .topics-text",
-    "active": false
-  },
-  {
-    "domain": "ameblo.jp",
-    "selector": "h1.skin-entryTitle, #app #entryBody",
-    "active": false
-  },
-  {
-    "domain": "tenki.jp",
-    "selector": "#main-column section .forecaster-article-h2, #main-column section .forecaster-article-text",
-    "active": false
-  },
-  {
-    "domain": "www.nikkei.com",
-    "selector": "main header h1, main section",
+    "domain": "www.youtube.com",
+    "selector": "ytd-comment-view-model",
     "active": false
   }
 ]
