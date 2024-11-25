@@ -4,7 +4,7 @@ import path from "node:path";
 import svgr from "vite-plugin-svgr";
 import { defineConfig } from "wxt";
 
-import { homepage } from "./package.json";
+import { homepage, version } from "./package.json";
 
 const commands = {
   addFurigana: {
@@ -27,7 +27,7 @@ export type Command = keyof typeof commands;
 export default defineConfig({
   extensionApi: "chrome",
   manifest: {
-    version: "2.1.6",
+    version,
     name: "__MSG_extName__",
     description: "__MSG_extDescription__",
     permissions: ["contextMenus", "storage"],

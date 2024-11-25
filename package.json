@@ -1,6 +1,7 @@
 {
   "name": "furigana-maker",
   "description": "Add furigana to Japanese text on any page for learning kanji pronunciation.",
+  "version": "2.2.0",
   "type": "module",
   "packageManager": "pnpm@9.14.2",
   "engines": {
