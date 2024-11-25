@@ -39,7 +39,7 @@ export default function RuleItem({ rule, onChange, onDelete, index }: RuleItemPr
               {rule.domain}
               <i className="i-tabler-arrow-up-right" />
             </a>
-            <p className="w-72 truncate text-xs leading-5 sm:w-96 xl:w-[32rem] 2xl:w-[40rem]">
+            <p className="w-64 truncate text-xs leading-5 sm:w-96 xl:w-[32rem] 2xl:w-[40rem]">
               {rule.selector}
             </p>
           </div>
