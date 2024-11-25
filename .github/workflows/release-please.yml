@@ -43,8 +43,13 @@ jobs:
       - name: Upload Release Artifact
         env:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
-        run: gh release upload ${{ needs.release-please.outputs.tag_name }} ./.output/*.zip
-
+          RELEASE_NOTES: |
+            Please refer to [CHANGELOG.md](https://github.com/${{ github.repository }}/blob/main/CHANGELOG.md) for details.
+            ## Download
+            - [Chrome](https://chromewebstore.google.com/detail/furigana-maker/heodojceeinbkfjfilnfminlkgbacpfp)
+        run: |
+         gh release upload ${{ needs.release-please.outputs.tag_name }} ./.output/*.zip
+         gh release edit ${{ needs.release-please.outputs.tag_name }} --notes "$RELEASE_NOTES"
       - name: Submit to stores
         run: |
           pnpm wxt submit \
