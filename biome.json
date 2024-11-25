@@ -43,7 +43,6 @@
         "useConsistentArrayType": "error",
         "useForOf": "error",
         "useFragmentSyntax": "error",
-        "useFilenamingConvention": "error",
         "useShorthandAssign": "error",
         "useShorthandArrayType": "error"
       },

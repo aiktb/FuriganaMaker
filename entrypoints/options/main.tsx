@@ -10,7 +10,7 @@ import { RouterProvider, createHashRouter } from "react-router";
 import ErrorPage from "./components/ErrorPage";
 import Root from "./root";
 import Changelog from "./routes/Changelog";
-import RuleEditor from "./routes/RuleEditor";
+import RulesEditor from "./routes/RulesEditor";
 import Settings from "./routes/Settings";
 
 const router = createHashRouter([
@@ -20,7 +20,7 @@ const router = createHashRouter([
     errorElement: <ErrorPage />,
     children: [
       { path: "/", element: <Settings /> },
-      { path: "/rule-editor", element: <RuleEditor /> },
+      { path: "/rule-editor", element: <RulesEditor /> },
       { path: "/changelog", element: <Changelog /> },
     ],
   },

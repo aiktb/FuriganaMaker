@@ -8,11 +8,12 @@ import RuleEditor from "./RuleEditor";
 
 interface RuleItemProps {
   rule: SelectorRule;
+  index: number;
   onChange: (rule: SelectorRule) => void;
   onDelete: (rule: SelectorRule) => void;
 }
 
-export default function RuleItem({ rule, onChange, onDelete }: RuleItemProps) {
+export default function RuleItem({ rule, onChange, onDelete, index }: RuleItemProps) {
   const [editorDialogIsOpen, setEditorIsOpen] = useState(false);
   const [deleteDialogIsOpen, setDeleteDialogIsOpen] = useState(false);
 
@@ -22,7 +23,12 @@ export default function RuleItem({ rule, onChange, onDelete }: RuleItemProps) {
     <>
       <div className="flex flex-col justify-between gap-x-6 py-5 sm:flex-row">
         <div className="flex min-w-0 gap-x-4">
-          <i className="i-tabler-layers-intersect size-12 flex-none text-sky-500" />
+          <div className="relative size-12">
+            <i className="i-tabler-layers-intersect absolute size-12 flex-none bg-slate-950/5 dark:bg-white/5" />
+            <div className="flex size-12 items-center justify-center font-bold text-slate-900 italic dark:text-white">
+              {index + 1}
+            </div>
+          </div>
           <div className="flex-auto">
             <a
               className="w-auto flex-inline items-center truncate font-semibold text-black text-sm leading-6 underline decoration-solid transition dark:text-white"
@@ -33,7 +39,7 @@ export default function RuleItem({ rule, onChange, onDelete }: RuleItemProps) {
               {rule.domain}
               <i className="i-tabler-arrow-up-right" />
             </a>
-            <p className="w-72 truncate text-xs leading-5 sm:w-96 xl:w-[32rem] 2xl:w-[40rem]">
+            <p className="w-64 truncate text-xs leading-5 sm:w-96 xl:w-[32rem] 2xl:w-[40rem]">
               {rule.selector}
             </p>
           </div>
@@ -41,7 +47,7 @@ export default function RuleItem({ rule, onChange, onDelete }: RuleItemProps) {
         <div className="flex shrink-0 flex-col items-end">
           <div className="flex w-full items-center justify-between gap-x-1.5 sm:flex-col sm:items-end sm:justify-evenly">
             <button
-              className="mr-1 flex flex-row-reverse items-center gap-x-1.5 sm:flex-row"
+              className="flex items-center gap-1 rounded-md px-1.5 py-0.5"
               onClick={() => {
                 onChange({ ...rule, active: !rule.active });
               }}
@@ -64,7 +70,7 @@ export default function RuleItem({ rule, onChange, onDelete }: RuleItemProps) {
             </button>
             <div className="mt-1 flex gap-x-1.5">
               <button
-                className="flex items-center gap-x-1 rounded-md px-1 py-0.5 font-bold text-sky-500 text-sm underline decoration-current underline-offset-2 shadow transition hover:bg-transparent/10s hover:text-black dark:hover:bg-transparent/20 dark:hover:text-white"
+                className="flex items-center gap-1 rounded-md bg-slate-950/5 px-2 py-1 text-slate-800 transition hover:text-sky-500 dark:bg-white/5 dark:text-white"
                 onClick={() => {
                   setEditorIsOpen(true);
                 }}
@@ -73,7 +79,7 @@ export default function RuleItem({ rule, onChange, onDelete }: RuleItemProps) {
                 {t("btnEdit")}
               </button>
               <button
-                className="flex items-center gap-x-1 rounded-md px-1 py-0.5 font-bold text-sm decoration-current underline-offset-2 shadow transition hover:bg-transparent/10 hover:text-black hover:underline dark:hover:bg-transparent/20 dark:hover:text-white"
+                className="flex items-center gap-1 rounded-md bg-slate-950/5 px-2 py-1 text-slate-800 transition hover:text-sky-500 dark:bg-white/5 dark:text-white"
                 onClick={() => {
                   setDeleteDialogIsOpen(true);
                 }}

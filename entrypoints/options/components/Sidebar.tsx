@@ -4,6 +4,8 @@ import { Transition } from "@headlessui/react";
 import { useTranslation } from "react-i18next";
 import { Link, type LinkProps, NavLink } from "react-router";
 
+import { homepage } from "@/package.json";
+
 type CustomLink = LinkProps & { label: string; icon: string };
 
 export default function Sidebar() {
@@ -24,12 +26,6 @@ export default function Sidebar() {
       target: "_blank",
       label: "GitHub",
       icon: "i-tabler-brand-github",
-    },
-    {
-      to: "https://furiganamaker.app",
-      target: "_blank",
-      label: t("navOfficialSite"),
-      icon: "i-tabler-world",
     },
   ];
 
@@ -60,13 +56,13 @@ export default function Sidebar() {
         <nav
           className={`${sidebarIsOpen ? "!flex" : ""} data-[enter]:data-[closed]:-translate-x-full data-[leave]:data-[closed]:-translate-x-full fixed top-0 z-30 min-h-screen w-72 flex-col gap-6 border-gray-200 border-r border-solid bg-white px-6 py-5 font-semibold text-base transition ease-in-out data-[closed]:opacity-0 data-[enter]:duration-100 data-[leave]:duration-300 lg:flex dark:border-slate-800 dark:bg-slate-900`}
         >
-          <div className="flex items-center gap-2">
+          <Link to={homepage} target="_blank" className="flex items-center gap-2">
             <Logo className="size-8" />
             <div className="flex items-center justify-center gap-2 px-1.5 text-black dark:text-white">
               <span className="font-bold text-lg">{t("extName")}</span>
               <span className="absolute right-4 font-normal text-slate-700 text-sm dark:text-slate-200">{`v${browser.runtime.getManifest().version}`}</span>
             </div>
-          </div>
+          </Link>
           <div className="flex flex-1 flex-col justify-between gap-2">
             <div className="flex flex-col gap-7">
               <div className="-mx-2 flex flex-col gap-2">
