@@ -1,5 +1,13 @@
 # Changelog
 
+## v2.2.0
+
+### Features
+
+- Unify and beautify the options page style.
+- Remove redundant custom rules and add rules reported by users.
+- Allow reset config to initial state.
+
 ## v2.1.6
 
 ### Fix Bugs
