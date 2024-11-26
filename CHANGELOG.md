@@ -19,21 +19,21 @@
 ## 2.1.6 (2024-11-21)
 
 
-### Fix Bugs
+### Bug Fixes
 
 - Console warning 'Each child in a list should have a unique "key" prop'.
 
 ## 2.1.5 (2024-10-17)
 
 
-### Fix Bugs
+### Bug Fixes
 
 - Theme switcher icon disappeared.
 
 ## 2.1.4 (2024-10-16)
 
 
-### Fix Bugs
+### Bug Fixes
 
 - Incorrect selector field description.
 - Report error "not found content menu id".
@@ -41,21 +41,21 @@
 ## 2.1.3 (2024-10-09)
 
 
-### Fix Bugs
+### Bug Fixes
 
 - Remove extra space on the right side of the language switcher.
 
 ## 2.1.2 (2024-09-18)
 
 
-### Fix Bugs
+### Bug Fixes
 
 - Accidentally opened the official website.
 
 ## 2.1.1 (2024-09-18)
 
 
-### Fix Bugs
+### Bug Fixes
 
 - Chrome context menu missing "add furigana" item.
 
@@ -71,7 +71,7 @@
 - Allows sites to be excluded from auto mode.
 - Set settings page as homepage.
 
-### Fix Bugs
+### Bug Fixes
 
 - Complete the missing i18n translation of the page.
 - 1024px width screen, a scroll bar appears on the x-axis.
@@ -79,7 +79,7 @@
 ## 2.0.2 (2024-07-25)
 
 
-### Fix Bugs
+### Bug Fixes
 
 - Action active flag is displayed on pages without Japanese text.
 - There's no need to open Changelog every time you update.
@@ -87,7 +87,7 @@
 ## 2.0.1 (2024-07-21)
 
 
-### Fix Bugs
+### Bug Fixes
 
 - Web page oversize warnings appear too often.
 
@@ -100,7 +100,7 @@
 - Add changelog to the Options page.
 - Adjust the options page UI to a left side navigation, right side content layout.
 
-### Fix Bugs
+### Bug Fixes
 
 - Shortcut keys missing i18n.
 - Theme toggle buttons don't work on the first click.
@@ -108,7 +108,7 @@
 ## 1.6.1 (2024-06-24)
 
 
-### Fix Bugs
+### Bug Fixes
 
 - x.com has no valid rules.
 
@@ -123,7 +123,7 @@
 ## 1.5.1 (2024-05-28)
 
 
-### Fix Bugs
+### Bug Fixes
 
 - Twitter.com to x.com migration leads to breaking extension.
 
@@ -152,14 +152,14 @@
 ## 1.3.2 (2024-04-05)
 
 
-### Fix Bugs
+### Bug Fixes
 
 - The `ColorPicker` component does not represent the HSV/HSL color space correctly. (Closed [#19](https://github.com/aiktb/FuriganaMaker/issues/19))
 
 ## 1.3.1 (2024-03-16)
 
 
-### Fix Bugs
+### Bug Fixes
 
 - Unable to submit to Edge: "error: The uploaded package consists of a compressed file." (Closed [#21](https://github.com/aiktb/FuriganaMaker/issues/21))
 
@@ -173,7 +173,7 @@
 - More user-friendly shortcut keys.
 - Add Github Discussions tip to options page.
 
-### Fix Bugs
+### Bug Fixes
 
 - Causes the browser to become unresponsive on pages containing a large number of kanji. (Closed [#16](https://github.com/aiktb/FuriganaMaker/issues/16))
 
@@ -192,7 +192,7 @@
 - Support SelectMode.Parentheses in Chrome/Edge, which can automatically add brackets to the copied furigana text.
 - Support more shortcut keys. (See [this](https://github.com/aiktb/FuriganaMaker/blob/main/wxt.config.ts#L6))
 
-### Fix Bugs
+### Bug Fixes
 
 - Corrected the semantics of "On-off extension" to "On-off Auto Mode".
 
@@ -203,7 +203,7 @@
 
 - User-defined rule editor completely controlled by the GUI.
 
-### Fix Bugs
+### Bug Fixes
 
 - Invalid JSON format anyway. (Closed [#10](https://github.com/aiktb/FuriganaMaker/issues/10))
 - Browser shortcuts don't work. (Closed [#11](https://github.com/aiktb/FuriganaMaker/issues/11))
