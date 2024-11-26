@@ -163,7 +163,7 @@
 
 - Unable to submit to Edge: "error: The uploaded package consists of a compressed file." (Closed [#21](https://github.com/aiktb/FuriganaMaker/issues/21))
 
-## 1.3.0
+## 1.3.0 (2024-03-14)
 
 
 ### Features
@@ -177,12 +177,8 @@
 
 - Causes the browser to become unresponsive on pages containing a large number of kanji. (Closed [#16](https://github.com/aiktb/FuriganaMaker/issues/16))
 
-## 1.2.0
+## 1.2.0 (2024-01-07)
 
-
-### BREAKING CHANGE
-
-- Migrate from Vue to React.
 
 ### Features
 
@@ -196,7 +192,7 @@
 
 - Corrected the semantics of "On-off extension" to "On-off Auto Mode".
 
-## 1.1.0
+## 1.1.0 (2023-11-26)
 
 
 ### Features
@@ -208,7 +204,7 @@
 - Invalid JSON format anyway. (Closed [#10](https://github.com/aiktb/FuriganaMaker/issues/10))
 - Browser shortcuts don't work. (Closed [#11](https://github.com/aiktb/FuriganaMaker/issues/11))
 
-## 1.0.0
+## 1.0.0 (2023-11-02)
 
 
 ### Features
