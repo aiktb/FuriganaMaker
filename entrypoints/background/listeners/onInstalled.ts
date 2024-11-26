@@ -37,7 +37,7 @@ function createContentMenu() {
     id: ExtEvent.AddFurigana,
     title: browser.i18n.getMessage("shortcutAddFurigana"),
     contexts: ["page"],
-    documentUrlPatterns: ["https://*/*"],
+    documentUrlPatterns: ["http://*/*", "https://*/*"],
   };
   browser.contextMenus.create(contextMenuItem);
 }
