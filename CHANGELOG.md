@@ -1,5 +1,12 @@
 # Changelog
 
+## [2.2.1](https://github.com/aiktb/FuriganaMaker/compare/v2.2.0...v2.2.1) (2024-11-26)
+
+
+### Bug Fixes
+
+* context menu item not showing on http pages ([#306](https://github.com/aiktb/FuriganaMaker/issues/306)) ([1c2af5b](https://github.com/aiktb/FuriganaMaker/commit/1c2af5ba33122edd1bd2f3c809210befce7cde38))
+
 ## v2.2.0
 
 ### Features
