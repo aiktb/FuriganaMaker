@@ -4,8 +4,14 @@
     </a>
     <h1>Furigana Maker</h1>
     <p>
-      <a href=https://www.youtube.com/watch?v=_j954tDLXjw>
-        Youtube Demo Video
+      <a href="https://www.youtube.com/watch?v=_j954tDLXjw" target="_blank">
+        <img alt="YouTube Video Views" src="https://img.shields.io/youtube/views/_j954tDLXjw?style=social&label=Demo%20Video">
+      </a>
+      <a href="https://chromewebstore.google.com/detail/furigana-maker/heodojceeinbkfjfilnfminlkgbacpfp" target="_blank">
+        <img alt="Chrome Web Store Stars" src="https://img.shields.io/chrome-web-store/rating/heodojceeinbkfjfilnfminlkgbacpfp?style=social&logo=googlechrome&logoColor=FCC420">
+      </a>
+      <a href="https://chromewebstore.google.com/detail/furigana-maker/heodojceeinbkfjfilnfminlkgbacpfp" target="_blank">
+        <img alt="Chrome Web Store Users" src="https://img.shields.io/chrome-web-store/users/heodojceeinbkfjfilnfminlkgbacpfp?style=social&logo=googlechrome&logoColor=FCC420">
       </a>
     </p>
 </div>
@@ -51,15 +57,9 @@ Detailed changes for each release are documented in the [CHANGELOG](./CHANGELOG.
 If you like this project, please consider supporting me by buying me a coffee.
 
 <a href="https://www.buymeacoffee.com/aiktb" target="_blank">
-  <img src="https://cdn.buymeacoffee.com/buttons/v2/default-yellow.png" alt="Buy Me A Coffee"  width="200" height="55">
+  <img src="https://cdn.buymeacoffee.com/buttons/v2/default-yellow.png" alt="Buy Me A Coffee" width="200" height="55">
 </a>
-
 
 ## License
 
 [MIT](./LICENSE) | © 2023 aiktb made with ❤️.
-
-## Thanks
-
-- Inspired by [mirigana](https://github.com/mirigana/mirigana) and [AdGuard](https://github.com/AdguardTeam/AdguardBrowserExtension).
-- Core features are based on [kuromoji](https://github.com/sglkc/kuromoji.js).
