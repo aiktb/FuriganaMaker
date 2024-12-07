@@ -3,9 +3,9 @@
   "description": "Add furigana to Japanese text on any page for learning kanji pronunciation.",
   "version": "2.2.1",
   "type": "module",
-  "packageManager": "pnpm@9.14.2",
+  "packageManager": "pnpm@9.15.0",
   "engines": {
-    "node": ">=22.8.0"
+    "node": ">=22.11.0"
   },
   "private": true,
   "license": "MIT",
@@ -44,8 +44,8 @@
     "file-saver": "^2.0.5",
     "i18next": "^24.0.0",
     "next-themes": "^0.4.0",
-    "react": "19.0.0-rc-fb9a90fa48-20240614",
-    "react-dom": "19.0.0-rc-fb9a90fa48-20240614",
+    "react": "19.0.0",
+    "react-dom": "19.0.0",
     "react-i18next": "^15.1.0",
     "react-markdown": "^9.0.1",
     "react-router": "^7.0.1",
@@ -68,7 +68,7 @@
     "@types/chrome": "^0.0.283",
     "@types/file-saver": "^2.0.7",
     "@types/node": "^22.5.3",
-    "@types/react": "^18.3.3",
+    "@types/react": "^19.0.0",
     "@types/react-dom": "^18.3.0",
     "@wxt-dev/auto-icons": "^1.0.2",
     "@wxt-dev/module-react": "^1.1.1",
