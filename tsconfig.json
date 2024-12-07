@@ -3,7 +3,7 @@
   "compilerOptions": {
     "allowImportingTsExtensions": true,
     "jsx": "react-jsx",
-    "types": ["react/canary", "react-dom/canary", "vite-plugin-svgr/client", "chrome"],
+    "types": ["vite-plugin-svgr/client"],
     /* Linting */
     "allowUnreachableCode": false,
     "allowUnusedLabels": false,
