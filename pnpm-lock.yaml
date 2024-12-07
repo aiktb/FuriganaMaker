@@ -106,8 +106,8 @@ importers:
         specifier: ^19.0.0
         version: 19.0.1
       '@types/react-dom':
-        specifier: ^18.3.0
-        version: 18.3.1
+        specifier: ^19.0.0
+        version: 19.0.1
       '@wxt-dev/auto-icons':
         specifier: ^1.0.2
         version: 1.0.2(wxt@0.19.16(@types/node@22.9.3)(rollup@4.27.2))
@@ -1749,8 +1749,8 @@ packages:
   '@types/node@22.9.3':
     resolution: {integrity: sha512-F3u1fs/fce3FFk+DAxbxc78DF8x0cY09RRL8GnXLmkJ1jvx3TtPdWoTT5/NiYfI5ASqXBmfqJi9dZ3gxMx4lzw==}
 
-  '@types/react-dom@18.3.1':
-    resolution: {integrity: sha512-qW1Mfv8taImTthu4KoXgDfLuk4bydU6Q/TkADnDWWHwi4NX4BR+LWfTp2sVmTqRrsHvyDDTelgelxJ+SsejKKQ==}
+  '@types/react-dom@19.0.1':
+    resolution: {integrity: sha512-hljHij7MpWPKF6u5vojuyfV0YA4YURsQG7KT6SzV0Zs2BXAtgdTxG6A229Ub/xiWV4w/7JL8fi6aAyjshH4meA==}
 
   '@types/react@19.0.1':
     resolution: {integrity: sha512-YW6614BDhqbpR5KtUYzTA+zlA7nayzJRA9ljz9CQoxthR0sDisYZLuvSMsil36t4EH/uAt8T52Xb4sVw17G+SQ==}
@@ -6278,7 +6278,7 @@ snapshots:
     dependencies:
       undici-types: 6.19.8
 
-  '@types/react-dom@18.3.1':
+  '@types/react-dom@19.0.1':
     dependencies:
       '@types/react': 19.0.1
 
