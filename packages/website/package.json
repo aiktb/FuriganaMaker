@@ -1,0 +1,41 @@
+{
+  "name": "website",
+  "private": true,
+  "type": "module",
+  "scripts": {
+    "dev": "react-router dev",
+    "build": "react-router build",
+    "typecheck": "react-router typegen && tsc",
+    "deploy": "wrangler pages deploy ./build/client",
+    "start": "wrangler pages dev ./build/client"
+  },
+  "dependencies": {
+    "@fireworks-js/react": "^2.10.8",
+    "@headlessui/react": "^2.2.0",
+    "@js-temporal/polyfill": "^0.4.4",
+    "@react-router/cloudflare": "^7.0.2",
+    "@react-router/dev": "^7.1.0-pre.0",
+    "@react-router/fs-routes": "^7.0.2",
+    "isbot": "^5.1.18",
+    "react": "19.0.0",
+    "react-dom": "19.0.0",
+    "react-router": "^7.0.2"
+  },
+  "devDependencies": {
+    "@cloudflare/workers-types": "^4.20241218.0",
+    "@egoist/tailwindcss-icons": "^1.8.2",
+    "@fontsource/dm-sans": "^5.1.0",
+    "@fontsource/lobster": "^5.1.0",
+    "@fontsource/noto-sans-jp": "^5.1.0",
+    "@headlessui/tailwindcss": "^0.2.1",
+    "@iconify-json/fa6-brands": "^1.2.5",
+    "@iconify-json/mdi": "^1.2.2",
+    "@tailwindcss/forms": "^0.5.9",
+    "@types/react": "^19.0.1",
+    "@types/react-dom": "^19.0.2",
+    "autoprefixer": "^10.4.20",
+    "tailwindcss": "^3.4.17",
+    "vite": "^6.0.3",
+    "wrangler": "^3.96.0"
+  }
+}
