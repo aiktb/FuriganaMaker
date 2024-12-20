@@ -36,6 +36,6 @@
     "autoprefixer": "catalog:",
     "tailwindcss": "catalog:",
     "vite": "^6.0.4",
-    "wrangler": "^3.96.0"
+    "wrangler": "^3.99.0"
   }
 }
