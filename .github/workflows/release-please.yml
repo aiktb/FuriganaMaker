@@ -22,6 +22,7 @@ jobs:
         with:
           token: ${{ secrets.PERSONAL_ACCESS_TOKEN }}
           release-type: node
+          path: "./packages/extension"
 
   submit:
     runs-on: ubuntu-latest
