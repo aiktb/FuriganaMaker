@@ -1,8 +1,6 @@
-import { sendMessage } from "@/commons/message";
-import type { CSSProperties } from "react";
-
 import { addFurigana } from "@/commons/addFurigana";
 import { ExtEvent, ExtStorage } from "@/commons/constants";
+import { sendMessage } from "@/commons/message";
 import { getGeneralSettings, getMoreSettings } from "@/commons/utils";
 
 export default defineContentScript({
@@ -65,14 +63,14 @@ function getHtmlSize() {
 }
 
 function showWarning(htmlSize: number) {
-  const warningAttrs: CSSProperties = {
+  const warningAttrs: Partial<CSSStyleDeclaration> = {
     position: "fixed",
     display: "flex",
     gap: "10px",
     top: "20px",
     left: "50%",
     transform: "translateX(-50%)",
-    zIndex: 9999,
+    zIndex: "9999",
     fontWeight: "bold",
     color: "rgb(154,52,18)",
     backgroundColor: "rgb(255, 247, 237)",
