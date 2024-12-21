@@ -1,0 +1,4 @@
+{
+  "$schema": "https://raw.githubusercontent.com/googleapis/release-please/main/schemas/manifest.json",
+  "packages/extension": "2.2.1"
+}
