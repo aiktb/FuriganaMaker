@@ -38,7 +38,7 @@ jobs:
       - run: pnpm install --frozen-lockfile
 
       - name: Build the extension
-        run: pnpm run zip
+        run: pnpm --filter extension run zip
 
       - name: Upload Release Artifact
         env:
@@ -52,7 +52,7 @@ jobs:
          gh release edit ${{ needs.release-please.outputs.tag_name }} --notes "$RELEASE_NOTES"
       - name: Submit to stores
         run: |
-          pnpm wxt submit \
+          pnpm --filter extension wxt submit \
             --chrome-zip .output/*-chrome.zip \
         env:
           CHROME_EXTENSION_ID: ${{ secrets.CHROME_EXTENSION_ID }}

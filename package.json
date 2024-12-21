@@ -1,7 +1,6 @@
 {
   "name": "furigana-maker",
   "description": "Add furigana to Japanese text on any page for learning kanji pronunciation.",
-  "version": "2.2.1",
   "type": "module",
   "packageManager": "pnpm@9.15.1",
   "engines": {
@@ -25,6 +24,9 @@
     "format": "biome format --write .",
     "lint": "biome check .",
     "lint:fix": "biome check --write --unsafe .",
+    "typecheck": "pnpm --recursive --sequential run typecheck",
+    "test:unit": "pnpm --recursive --sequential run test:unit",
+    "test:e2e": "pnpm --recursive --sequential run test:e2e",
     "prepare": "husky"
   },
   "devDependencies": {
@@ -34,7 +36,11 @@
     "@commitlint/types": "^19.5.0",
     "@types/node": "^22.10.2",
     "husky": "^9.1.7",
-    "typescript": "^5.7.2",
-    "vitest": "^2.1.8"
+    "typescript": "^5.7.2"
+  },
+  "pnpm": {
+    "overrides": {
+      "vite": "catalog:"
+    }
   }
 }

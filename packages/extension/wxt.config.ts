@@ -7,8 +7,6 @@ import tailwind from "tailwindcss";
 import svgr from "vite-plugin-svgr";
 import { defineConfig } from "wxt";
 
-import { homepage, version } from "./package.json";
-
 const commands = {
   addFurigana: {
     description: "__MSG_shortcutAddFurigana__",
@@ -30,20 +28,16 @@ export type Command = keyof typeof commands;
 export default defineConfig({
   extensionApi: "chrome",
   manifest: {
-    version,
     name: "__MSG_extName__",
     description: "__MSG_extDescription__",
     permissions: ["contextMenus", "storage"],
     default_locale: "en",
-    homepage_url: homepage,
+    homepage_url: "https://furiganamaker.app",
     commands,
   },
   modules: ["@wxt-dev/module-react", "@wxt-dev/auto-icons"],
   autoIcons: {
     baseIconPath: "assets/icons/Logo.svg",
-  },
-  imports: {
-    presets: ["react"],
   },
   vite: () => ({
     plugins: [svgr()],

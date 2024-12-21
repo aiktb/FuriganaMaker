@@ -9,11 +9,11 @@ Preview in development environment(Assuming you are in the project root):
 ```bash
 pnpm install
 cd packages/website
-pnpm dev
+pnpm run dev
 ```
 
 This website is deployed using [Cloudflare Pages](https://pages.cloudflare.com/). To confirm that the website displays normally in the Cloudflare Workers runtime, use:
 
 ```bash
-pnpm start
+pnpm run start
 ```

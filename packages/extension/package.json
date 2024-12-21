@@ -2,11 +2,13 @@
   "name": "extension",
   "type": "module",
   "private": true,
+  "version": "2.2.1",
   "scripts": {
     "dev": "wxt",
     "build": "wxt build",
     "zip": "wxt zip",
     "postinstall": "wxt prepare",
+    "typecheck": "tsc --noEmit",
     "test:unit": "vitest -r __TEST__/unit",
     "test:e2e": "playwright test"
   },
@@ -32,7 +34,7 @@
   "devDependencies": {
     "@egoist/tailwindcss-icons": "catalog:",
     "@headlessui/tailwindcss": "catalog:",
-    "@iconify-json/fa6-brands": "^1.2.5",
+    "@iconify-json/fa6-brands": "catalog:",
     "@iconify-json/tabler": "^1.2.13",
     "@playwright/test": "^1.49.1",
     "@tailwindcss/forms": "catalog:",
@@ -47,6 +49,7 @@
     "kuromojin": "^3.0.0",
     "tailwindcss": "catalog:",
     "vite-plugin-svgr": "^4.3.0",
+    "vitest": "^2.1.8",
     "wxt": "^0.19.22"
   }
 }

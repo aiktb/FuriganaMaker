@@ -7,8 +7,9 @@ on:
       - '.github/**'
       - 'LICENSE'
       - 'renovate.json'
-      - 'CHANGELOG.md'
-      - 'README.md'
+      - "CHANGELOG.md"
+      - '**/README.md'
+      - .gitignore
   push:
     branches:
       - main
@@ -24,7 +25,6 @@ jobs:
           cache: 'pnpm'
           cache-dependency-path: 'pnpm-lock.yaml'
       - run: pnpm install --frozen-lockfile
-      - run: pnpm run build
 
       - name: Lint
         run: pnpm run lint
@@ -35,8 +35,11 @@ jobs:
       - name: Unit Test
         run: pnpm run test:unit
 
+      - name: Build the extension
+        run: pnpm --filter extension run build
+
       - name: Install Playwright Browsers
-        run: pnpm exec playwright install --with-deps chromium
+        run: pnpm --filter extension exec playwright install --with-deps chromium
 
       - name: Run Playwright tests
         run: pnpm run test:e2e
