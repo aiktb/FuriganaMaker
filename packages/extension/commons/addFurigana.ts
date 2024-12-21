@@ -33,7 +33,7 @@ export async function addFurigana(...elements: Element[]) {
   }
 }
 
-const exclusionParentTagSet = new Set(["SCRIPT", "STYLE", "NOSCRIPT"]);
+const exclusionParentTagSet = new Set(["SCRIPT", "STYLE", "NOSCRIPT", "RUBY", "RT"]);
 const collectTexts = (element: Element): Text[] => {
   const walker = document.createTreeWalker(element, NodeFilter.SHOW_TEXT);
   const texts: Text[] = [];
