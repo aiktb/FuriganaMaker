@@ -1,0 +1,41 @@
+{
+  "name": "website",
+  "private": true,
+  "type": "module",
+  "scripts": {
+    "dev": "react-router dev",
+    "build": "react-router build",
+    "deploy": "wrangler pages deploy ./build/client",
+    "start": "wrangler pages dev ./build/client",
+    "typecheck": "react-router typegen && tsc --noEmit"
+  },
+  "dependencies": {
+    "@fireworks-js/react": "^2.10.8",
+    "@headlessui/react": "catalog:",
+    "@js-temporal/polyfill": "catalog:",
+    "@react-router/cloudflare": "catalog:",
+    "@react-router/dev": "catalog:",
+    "@react-router/fs-routes": "catalog:",
+    "isbot": "^5.1.18",
+    "react": "catalog:",
+    "react-dom": "catalog:",
+    "react-router": "catalog:"
+  },
+  "devDependencies": {
+    "@cloudflare/workers-types": "^4.20241218.0",
+    "@egoist/tailwindcss-icons": "catalog:",
+    "@fontsource/dm-sans": "^5.1.0",
+    "@fontsource/lobster": "^5.1.0",
+    "@fontsource/noto-sans-jp": "^5.1.0",
+    "@headlessui/tailwindcss": "catalog:",
+    "@iconify-json/fa6-brands": "catalog:",
+    "@iconify-json/mdi": "^1.2.2",
+    "@tailwindcss/forms": "catalog:",
+    "@types/react": "catalog:",
+    "@types/react-dom": "catalog:",
+    "autoprefixer": "catalog:",
+    "tailwindcss": "catalog:",
+    "vite": "catalog:",
+    "wrangler": "^3.99.0"
+  }
+}
