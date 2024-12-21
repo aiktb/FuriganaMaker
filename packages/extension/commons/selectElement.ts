@@ -29,7 +29,7 @@ class Renderer {
   readonly #top = document.createElement("div");
   readonly #bottom = document.createElement("div");
   readonly #getTagPath = (element: HTMLElement) => {
-    const parent = element.parentNode as HTMLElement | null;
+    const parent = element.parentElement;
     const parentTagName = parent?.tagName.toLowerCase() ?? "";
     return `${parentTagName} ${element.tagName.toLowerCase()}`;
   };

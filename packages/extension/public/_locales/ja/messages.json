@@ -21,9 +21,9 @@
     "message": "カスタムルールがアクティブ"
   },
   "contentScriptWarning": {
-    "message": "警告（Furigana Maker）：このページは大きすぎます（$htmlSize$KB）、自動モードは無効です。",
+    "message": "警告（Furigana Maker）：このページは大きすぎます（$textLength$文字）、自動モードは無効です。",
     "placeholders": {
-      "htmlSize": {
+      "textLength": {
         "content": "$1"
       }
     }
