@@ -17,8 +17,11 @@
   "shortcutToggleFuriganaDisplay": {
     "message": "Toggle furigana display mode on all pages"
   },
-  "extTitleSuffix": {
-    "message": "Custom Rule Active"
+  "extTitleActivated": {
+    "message": "Auto mode is activated"
+  },
+  "extTitleDisabled": {
+    "message": "Auto mode is disabled"
   },
   "contentScriptWarning": {
     "message": "Warning(Furigana Maker): This page is too large($textLength$ characters), auto mode is disabled.",

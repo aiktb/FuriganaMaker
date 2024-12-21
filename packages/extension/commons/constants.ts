@@ -10,6 +10,7 @@ export enum ExtEvent {
   AdjustFontSize = "adjustFontSize",
   AdjustFontColor = "adjustFontColor",
   MarkActiveTab = "markActiveTab",
+  MarkDisabledTab = "markDisabledTab",
 }
 
 // Please see `background/index.ts` for the default value.

@@ -27,6 +27,7 @@ export default defineContentScript({
     const warningDisabled = await getMoreSettings(ExtStorage.DisableWarning);
     if (!warningDisabled && textLength > 30000 && elements.length > 0) {
       showWarning(textLength);
+      browser.runtime.sendMessage(ExtEvent.MarkDisabledTab);
       return;
     }
 

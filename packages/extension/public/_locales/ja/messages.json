@@ -17,8 +17,11 @@
   "shortcutToggleFuriganaDisplay": {
     "message": "すべてのページで振り仮名表示モードを切り替え"
   },
-  "extTitleSuffix": {
-    "message": "カスタムルールがアクティブ"
+  "extTitleActivated": {
+    "message": "自動モードは有効です"
+  },
+  "extTitleDisabled": {
+    "message": "自動モードは無効です"
   },
   "contentScriptWarning": {
     "message": "警告（Furigana Maker）：このページは大きすぎます（$textLength$文字）、自動モードは無効です。",

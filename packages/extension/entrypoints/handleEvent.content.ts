@@ -39,6 +39,8 @@ export default defineContentScript({
           break;
         case ExtEvent.MarkActiveTab:
           break;
+        case ExtEvent.MarkDisabledTab:
+          break;
         default:
           styleHandler(event);
           break;
