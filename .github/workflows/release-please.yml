@@ -22,7 +22,8 @@ jobs:
         with:
           token: ${{ secrets.PERSONAL_ACCESS_TOKEN }}
           release-type: node
-          path: "./packages/extension"
+          config-file: ./.github/workflows/release-please-config.json
+          manifest-file: ./.github/workflows/.release-please-manifest.json
 
   submit:
     runs-on: ubuntu-latest
