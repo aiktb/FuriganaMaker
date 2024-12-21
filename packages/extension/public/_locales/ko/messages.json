@@ -21,9 +21,9 @@
     "message": "사용자 규칙 활성화"
   },
   "contentScriptWarning": {
-    "message": "경고(Furigana Maker): 이 페이지는 너무 큽니다($htmlSize$KB), 자동 모드가 비활성화됩니다.",
+    "message": "경고(Furigana Maker): 이 페이지는 너무 큽니다($textLength$자), 자동 모드가 비활성화됩니다.",
     "placeholders": {
-      "htmlSize": {
+      "textLength": {
         "content": "$1"
       }
     }

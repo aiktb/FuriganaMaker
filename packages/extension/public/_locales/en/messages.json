@@ -21,9 +21,9 @@
     "message": "Custom Rule Active"
   },
   "contentScriptWarning": {
-    "message": "Warning(Furigana Maker): This page is too large($htmlSize$KB), auto mode is disabled.",
+    "message": "Warning(Furigana Maker): This page is too large($textLength$ characters), auto mode is disabled.",
     "placeholders": {
-      "htmlSize": {
+      "textLength": {
         "content": "$1"
       }
     }

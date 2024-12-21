@@ -23,10 +23,10 @@ export default defineContentScript({
     const selector = customRule.selector || "[lang='ja'], [lang='ja-JP']";
     const elements = Array.from(document.querySelectorAll(selector));
     // Reflow on a huge page causes severe page freezes and even the browser becomes unresponsive. (issue#16)
-    const htmlSize = getHtmlSize();
+    const textLength = getTextLength();
     const warningDisabled = await getMoreSettings(ExtStorage.DisableWarning);
-    if (!warningDisabled && htmlSize > 500 && elements.length > 0) {
-      showWarning(htmlSize);
+    if (!warningDisabled && textLength > 30000 && elements.length > 0) {
+      showWarning(textLength);
       return;
     }
 
@@ -55,14 +55,18 @@ export default defineContentScript({
   },
 });
 
-function getHtmlSize() {
-  const encoder = new TextEncoder();
-  const utf8Bytes = encoder.encode(document.documentElement.outerHTML);
-  const htmlSize = utf8Bytes.length / 1024; // KB
-  return htmlSize;
+function getTextLength() {
+  const walker = document.createTreeWalker(document.body, NodeFilter.SHOW_TEXT);
+  let textLength = 0;
+  while (walker.nextNode()) {
+    if (!["SCRIPT", "STYLE"].includes(walker.currentNode.parentElement!.tagName)) {
+      textLength += walker.currentNode.textContent!.length;
+    }
+  }
+  return textLength;
 }
 
-function showWarning(htmlSize: number) {
+function showWarning(textLength: number) {
   const warningAttrs: Partial<CSSStyleDeclaration> = {
     position: "fixed",
     display: "flex",
@@ -85,7 +89,7 @@ function showWarning(htmlSize: number) {
   icon.textContent = "⚠";
   const text = document.createElement("span");
 
-  text.textContent = browser.i18n.getMessage("contentScriptWarning", htmlSize.toFixed(2));
+  text.textContent = browser.i18n.getMessage("contentScriptWarning", textLength.toString());
   warning.appendChild(icon);
   warning.appendChild(text);
   document.body.appendChild(warning);

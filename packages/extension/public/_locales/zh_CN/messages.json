@@ -21,9 +21,9 @@
     "message": "自定义规则活跃中"
   },
   "contentScriptWarning": {
-    "message": "警告(Furigana Maker)：此页面过大($htmlSize$KB)，自动模式已禁用。",
+    "message": "警告(Furigana Maker)：此页面过大($textLength$字符)，自动模式已禁用。",
     "placeholders": {
-      "htmlSize": {
+      "textLength": {
         "content": "$1"
       }
     }
