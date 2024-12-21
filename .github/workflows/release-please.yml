@@ -54,7 +54,7 @@ jobs:
       - name: Submit to stores
         run: |
           pnpm --filter extension wxt submit \
-            --chrome-zip .output/*-chrome.zip \
+            --chrome-zip ./packages/extension/.output/*-chrome.zip \
         env:
           CHROME_EXTENSION_ID: ${{ secrets.CHROME_EXTENSION_ID }}
           CHROME_CLIENT_ID: ${{ secrets.CHROME_CLIENT_ID }}
