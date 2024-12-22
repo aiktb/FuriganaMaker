@@ -39,6 +39,9 @@ export default defineConfig({
   autoIcons: {
     baseIconPath: "assets/icons/Logo.svg",
   },
+  zip: {
+    name: "furigana-maker",
+  },
   vite: () => ({
     plugins: [svgr()],
     build: {
