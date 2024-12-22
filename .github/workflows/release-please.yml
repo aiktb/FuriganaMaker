@@ -13,16 +13,16 @@ jobs:
   release-please:
     runs-on: ubuntu-latest
     outputs:
-      tag_name: ${{ steps.release.outputs.tag_name }}
-      release_created: ${{ steps.release.outputs.release_created }}
+      tag_name: ${{ steps.release.outputs['packages/extension--tag_name'] }}
+      release_created: ${{ steps.release.outputs['packages/extension--release_created'] }}
 
     steps:
       - uses: googleapis/release-please-action@v4
         id: release
         with:
           token: ${{ secrets.PERSONAL_ACCESS_TOKEN }}
-          release-type: node
-          path: "./packages/extension"
+          config-file: ".github/release-please-config.json"
+          manifest-file: ".github/.release-please-manifest.json"
 
   submit:
     runs-on: ubuntu-latest
@@ -45,7 +45,7 @@ jobs:
         env:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
           RELEASE_NOTES: |
-            Please refer to [CHANGELOG.md](https://github.com/${{ github.repository }}/blob/main/CHANGELOG.md) for details.
+            Please refer to [CHANGELOG.md](https://github.com/${{ github.repository }}/blob/main/packages/extension/CHANGELOG.md) for details.
             ## Download
             - [Chrome](https://chromewebstore.google.com/detail/furigana-maker/heodojceeinbkfjfilnfminlkgbacpfp)
         run: |
@@ -54,7 +54,7 @@ jobs:
       - name: Submit to stores
         run: |
           pnpm --filter extension wxt submit \
-            --chrome-zip .output/*-chrome.zip \
+            --chrome-zip ./packages/extension/.output/*-chrome.zip \
         env:
           CHROME_EXTENSION_ID: ${{ secrets.CHROME_EXTENSION_ID }}
           CHROME_CLIENT_ID: ${{ secrets.CHROME_CLIENT_ID }}
