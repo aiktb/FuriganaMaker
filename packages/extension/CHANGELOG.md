@@ -1,24 +1,5 @@
 # Changelog
 
-## [2.2.0](https://github.com/aiktb/FuriganaMaker/compare/v2.3.0...v2.2.0) (2024-12-22)
-
-
-### Features
-
-* add a red dot to the popup icon to indicate that auto mode is disabled ([ab21271](https://github.com/aiktb/FuriganaMaker/commit/ab21271d9a1420366e252aa7f9addb3f8bfca8bf))
-
-
-### Bug Fixes
-
-* "page is too large" warnings too frequent ([#317](https://github.com/aiktb/FuriganaMaker/issues/317)) ([5ce2bfc](https://github.com/aiktb/FuriganaMaker/commit/5ce2bfcbbf8c21192108c13a01c4bab0ee9201bb))
-* stylesheets injected using CSS-in-JS are lost ([#315](https://github.com/aiktb/FuriganaMaker/issues/315)) ([832cc0f](https://github.com/aiktb/FuriganaMaker/commit/832cc0f7849676ef017970347282c09805349acd))
-* using the action API does not require any permissions ([#53](https://github.com/aiktb/FuriganaMaker/issues/53)) ([fc36401](https://github.com/aiktb/FuriganaMaker/commit/fc36401974af62d6046d76db6b33db5437d72742))
-
-
-### Miscellaneous Chores
-
-* release 2.2.0 ([40faa7f](https://github.com/aiktb/FuriganaMaker/commit/40faa7fec09215352283cb678b5eae683a265022))
-
 ## 2.3.0 (2024-12-22)
 
 
