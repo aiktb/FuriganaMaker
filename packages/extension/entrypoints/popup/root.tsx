@@ -60,13 +60,13 @@ async function addFurigana() {
 }
 
 type ACTIONTYPE =
-  | { type: ExtEvent.ToggleAutoMode; payload: boolean }
-  | { type: ExtEvent.ToggleKanjiFilter; payload: boolean }
-  | { type: ExtEvent.SwitchDisplayMode; payload: DisplayMode }
-  | { type: ExtEvent.SwitchFuriganaType; payload: FuriganaType }
-  | { type: ExtEvent.SwitchSelectMode; payload: SelectMode }
-  | { type: ExtEvent.AdjustFontSize; payload: number }
-  | { type: ExtEvent.AdjustFontColor; payload: string };
+  | { type: typeof ExtEvent.ToggleAutoMode; payload: boolean }
+  | { type: typeof ExtEvent.ToggleKanjiFilter; payload: boolean }
+  | { type: typeof ExtEvent.SwitchDisplayMode; payload: DisplayMode }
+  | { type: typeof ExtEvent.SwitchFuriganaType; payload: FuriganaType }
+  | { type: typeof ExtEvent.SwitchSelectMode; payload: SelectMode }
+  | { type: typeof ExtEvent.AdjustFontSize; payload: number }
+  | { type: typeof ExtEvent.AdjustFontColor; payload: string };
 
 function reducer(state: GeneralSettings, action: ACTIONTYPE) {
   browser.tabs.query({ active: true, currentWindow: true }).then(async (tabs) => {

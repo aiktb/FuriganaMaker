@@ -1,64 +1,65 @@
 export const FURIGANA_CLASS = "--furigana--";
 
-export enum ExtEvent {
-  AddFurigana = "addFurigana",
-  ToggleAutoMode = "toggleAutoMode",
-  ToggleKanjiFilter = "toggleKanjiFilter",
-  SwitchDisplayMode = "switchDisplayMode",
-  SwitchFuriganaType = "switchFuriganaType",
-  SwitchSelectMode = "switchSelectMode",
-  AdjustFontSize = "adjustFontSize",
-  AdjustFontColor = "adjustFontColor",
-  MarkActiveTab = "markActiveTab",
-  MarkDisabledTab = "markDisabledTab",
-}
+export const ExtEvent = {
+  AddFurigana: "addFurigana",
+  ToggleAutoMode: "toggleAutoMode",
+  ToggleKanjiFilter: "toggleKanjiFilter",
+  SwitchDisplayMode: "switchDisplayMode",
+  SwitchFuriganaType: "switchFuriganaType",
+  SwitchSelectMode: "switchSelectMode",
+  AdjustFontSize: "adjustFontSize",
+  AdjustFontColor: "adjustFontColor",
+  MarkActiveTab: "markActiveTab",
+  MarkDisabledTab: "markDisabledTab",
+} as const;
+export type ExtEvent = (typeof ExtEvent)[keyof typeof ExtEvent];
 
-// Please see `background/index.ts` for the default value.
-export enum ExtStorage {
-  AutoMode = "autoMode",
-  KanjiFilter = "kanjiFilter",
-  DisplayMode = "displayMode",
-  FuriganaType = "furiganaType",
-  SelectMode = "selectMode",
-  FontSize = "fontSize",
-  FontColor = "fontColor",
-  // The following two items exceed the `chrome.storage.sync` quota,
-  // so this extension doesn't consider synchronizing user settings.
-  SelectorRules = "selectorRules",
-  FilterRules = "filterRules",
-  Language = "language",
-  DisableWarning = "disableWarning",
-  ColoringKanji = "coloringKanji",
-  ExcludeSites = "excludeSites",
-}
+export const ExtStorage = {
+  AutoMode: "autoMode",
+  KanjiFilter: "kanjiFilter",
+  DisplayMode: "displayMode",
+  FuriganaType: "furiganaType",
+  SelectMode: "selectMode",
+  FontSize: "fontSize",
+  FontColor: "fontColor",
+  Language: "language",
+  DisableWarning: "disableWarning",
+  ColoringKanji: "coloringKanji",
+  ExcludeSites: "excludeSites",
+  SelectorRules: "selectorRules",
+  FilterRules: "filterRules",
+} as const;
+export type ExtStorage = (typeof ExtStorage)[keyof typeof ExtStorage];
 
 export type StyleEvent =
-  | ExtEvent.ToggleAutoMode
-  | ExtEvent.SwitchDisplayMode
-  | ExtEvent.SwitchSelectMode
-  | ExtEvent.AdjustFontSize
-  | ExtEvent.AdjustFontColor
-  | ExtEvent.ToggleKanjiFilter;
+  | typeof ExtEvent.ToggleAutoMode
+  | typeof ExtEvent.SwitchDisplayMode
+  | typeof ExtEvent.SwitchSelectMode
+  | typeof ExtEvent.AdjustFontSize
+  | typeof ExtEvent.AdjustFontColor
+  | typeof ExtEvent.ToggleKanjiFilter;
 
-export enum DisplayMode {
-  Always = "always show",
-  Never = "never show",
-  Hover = "hover gap",
-  // "Hover No-gap" mode will cause the page layout to shift frequently, but it is more beautiful.
-  HoverNoGap = "hover no-gap",
-}
+export const DisplayMode = {
+  Always: "always show",
+  Never: "never show",
+  Hover: "hover gap",
+  HoverNoGap: "hover no-gap",
+} as const;
+export type DisplayMode = (typeof DisplayMode)[keyof typeof DisplayMode];
 
-export enum FuriganaType {
-  Hiragana = "hiragana",
-  Katakana = "katakana",
-  Romaji = "romaji",
-}
+export const FuriganaType = {
+  Hiragana: "hiragana",
+  Katakana: "katakana",
+  Romaji: "romaji",
+} as const;
+export type FuriganaType = (typeof FuriganaType)[keyof typeof FuriganaType];
 
-export enum SelectMode {
-  Default = "default",
-  Original = "original",
-  Parentheses = "parentheses",
-}
+export const SelectMode = {
+  Default: "default",
+  Original: "original",
+  Parentheses: "parentheses",
+} as const;
+export type SelectMode = (typeof SelectMode)[keyof typeof SelectMode];
 
 /**
  * Only used in Popup pages.
@@ -98,10 +99,10 @@ export interface FilterRule {
 }
 
 export type StorageChangeEvent =
-  | ExtEvent.ToggleKanjiFilter
-  | ExtEvent.SwitchDisplayMode
-  | ExtEvent.AdjustFontColor
-  | ExtEvent.AdjustFontSize
-  | ExtEvent.SwitchFuriganaType
-  | ExtEvent.SwitchSelectMode
-  | ExtEvent.ToggleAutoMode;
+  | typeof ExtEvent.ToggleKanjiFilter
+  | typeof ExtEvent.SwitchDisplayMode
+  | typeof ExtEvent.AdjustFontColor
+  | typeof ExtEvent.AdjustFontSize
+  | typeof ExtEvent.SwitchFuriganaType
+  | typeof ExtEvent.SwitchSelectMode
+  | typeof ExtEvent.ToggleAutoMode;
