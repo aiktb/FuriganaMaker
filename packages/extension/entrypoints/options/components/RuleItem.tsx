@@ -1,8 +1,9 @@
 import { Dialog, DialogPanel, DialogTitle } from "@headlessui/react";
+import { useState } from "react";
+import { useTranslation } from "react-i18next";
 
 import type { SelectorRule } from "@/commons/constants";
 
-import { useTranslation } from "react-i18next";
 import PopupTransition from "./PopupTransition";
 import RuleEditor from "./RuleEditor";
 

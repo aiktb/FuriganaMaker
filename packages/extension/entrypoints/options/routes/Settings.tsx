@@ -1,11 +1,10 @@
-import { ExtStorage, type MoreSettings } from "@/commons/constants";
-import { moreSettings, setMoreSettings } from "@/commons/utils";
-
+import { Switch, Transition } from "@headlessui/react";
 import { Suspense, use } from "react";
+import { useState } from "react";
 import { useTranslation } from "react-i18next";
 
-import { Switch } from "@headlessui/react";
-import { Transition } from "@headlessui/react";
+import { ExtStorage, type MoreSettings } from "@/commons/constants";
+import { moreSettings, setMoreSettings } from "@/commons/utils";
 
 import ExclusionHandler from "../components/ExclusionHandler";
 import LanguageSwitcher from "../components/LanguageSwitcher";

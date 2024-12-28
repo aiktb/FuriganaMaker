@@ -4,6 +4,7 @@ import path from "node:path";
 import autoprefixer from "autoprefixer";
 import tailwind from "tailwindcss";
 
+import react from "@vitejs/plugin-react-swc";
 import svgr from "vite-plugin-svgr";
 import { defineConfig } from "wxt";
 
@@ -35,7 +36,7 @@ export default defineConfig({
     homepage_url: "https://furiganamaker.app",
     commands,
   },
-  modules: ["@wxt-dev/module-react", "@wxt-dev/auto-icons"],
+  modules: ["@wxt-dev/auto-icons"],
   autoIcons: {
     baseIconPath: "assets/icons/Logo.svg",
   },
@@ -43,7 +44,7 @@ export default defineConfig({
     name: "furigana-maker",
   },
   vite: () => ({
-    plugins: [svgr()],
+    plugins: [react({ devTarget: "esnext" }), svgr()],
     build: {
       target: "esnext",
     },

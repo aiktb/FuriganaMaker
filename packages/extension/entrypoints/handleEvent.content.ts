@@ -1,4 +1,5 @@
 import { toHiragana, toKatakana, toRomaji } from "wanakana";
+import { defineContentScript } from "wxt/sandbox";
 
 import {
   DisplayMode,
@@ -9,7 +10,6 @@ import {
   SelectMode,
   type StyleEvent,
 } from "@/commons/constants";
-
 import { Selector } from "@/commons/selectElement";
 import { getGeneralSettings, getMoreSettings, toStorageKey } from "@/commons/utils";
 
