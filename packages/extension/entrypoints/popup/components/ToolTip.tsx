@@ -10,6 +10,7 @@ import {
   useRole,
 } from "@floating-ui/react";
 import { Transition } from "@headlessui/react";
+import { useRef, useState } from "react";
 
 interface ToolTipProps {
   tip: string;

@@ -1,12 +1,13 @@
 import { Dialog, DialogPanel, DialogTitle, Transition } from "@headlessui/react";
 import { saveAs } from "file-saver";
 import { use } from "react";
+import { useEffect, useState } from "react";
+import { useTranslation } from "react-i18next";
 import { z } from "zod";
 
 import type { SelectorRule } from "@/commons/constants";
-
 import { customRules } from "@/commons/utils";
-import { useTranslation } from "react-i18next";
+
 import NotFoundRule from "./NotFoundRule";
 import PopupTransition from "./PopupTransition";
 import RuleEditor from "./RuleEditor";

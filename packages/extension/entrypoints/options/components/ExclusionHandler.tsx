@@ -1,5 +1,6 @@
 import { Dialog, DialogPanel, DialogTitle, Field, Input } from "@headlessui/react";
 import { t } from "i18next";
+import { useState } from "react";
 import { useTranslation } from "react-i18next";
 import PopupTransition from "./PopupTransition";
 
