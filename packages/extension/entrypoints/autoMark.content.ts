@@ -2,7 +2,6 @@ import { addFurigana } from "@/commons/addFurigana";
 import { ExtEvent, ExtStorage } from "@/commons/constants";
 import { sendMessage } from "@/commons/message";
 import { getGeneralSettings, getMoreSettings } from "@/commons/utils";
-import { defineContentScript } from "wxt/sandbox";
 
 export default defineContentScript({
   matches: ["*://*/*"],

@@ -1,5 +1,4 @@
 import { toHiragana, toKatakana, toRomaji } from "wanakana";
-import { defineContentScript } from "wxt/sandbox";
 
 import {
   DisplayMode,
