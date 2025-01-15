@@ -176,10 +176,10 @@ importers:
         version: 19.0.2(@types/react@19.0.1)
       '@vitejs/plugin-react-swc':
         specifier: ^3.7.2
-        version: 3.7.2(@swc/helpers@0.5.15)(vite@6.0.5(@types/node@22.10.2)(jiti@1.21.7)(yaml@2.6.1))
+        version: 3.7.2(@swc/helpers@0.5.15)(vite@6.0.5(@types/node@22.10.2)(jiti@2.4.2)(yaml@2.6.1))
       '@wxt-dev/auto-icons':
         specifier: ^1.0.2
-        version: 1.0.2(wxt@https://pkg.pr.new/wxt@1085(@types/node@22.10.2)(jiti@1.21.7)(rollup@4.28.1)(yaml@2.6.1))
+        version: 1.0.2(wxt@0.20.0-beta1(@types/node@22.10.2)(jiti@2.4.2)(rollup@4.28.1)(yaml@2.6.1))
       autoprefixer:
         specifier: 'catalog:'
         version: 10.4.20(postcss@8.4.49)
@@ -191,13 +191,13 @@ importers:
         version: 3.4.17
       vite-plugin-svgr:
         specifier: ^4.3.0
-        version: 4.3.0(rollup@4.28.1)(typescript@5.7.2)(vite@6.0.5(@types/node@22.10.2)(jiti@1.21.7)(yaml@2.6.1))
+        version: 4.3.0(rollup@4.28.1)(typescript@5.7.2)(vite@6.0.5(@types/node@22.10.2)(jiti@2.4.2)(yaml@2.6.1))
       vitest:
         specifier: ^2.1.8
-        version: 2.1.8(@types/node@22.10.2)(jiti@1.21.7)(yaml@2.6.1)
+        version: 2.1.8(@types/node@22.10.2)(jiti@2.4.2)(yaml@2.6.1)
       wxt:
-        specifier: https://pkg.pr.new/wxt@1085
-        version: https://pkg.pr.new/wxt@1085(@types/node@22.10.2)(jiti@1.21.7)(rollup@4.28.1)(yaml@2.6.1)
+        specifier: 0.20.0-beta1
+        version: 0.20.0-beta1(@types/node@22.10.2)(jiti@2.4.2)(rollup@4.28.1)(yaml@2.6.1)
 
   packages/website:
     dependencies:
@@ -1968,13 +1968,11 @@ packages:
 
   '@wxt-dev/auto-icons@1.0.2':
     resolution: {integrity: sha512-Wp1pZnRysvDvxkkkys6ZPXL9O2Q9RDjooAZeV19vBg4NXPyE21qO2fu3QmIcug3fPzKzpcFa6dm1Y1dX8qhfEg==}
-    version: 1.0.2
     peerDependencies:
       wxt: '>=0.19.0'
 
-  '@wxt-dev/storage@https://pkg.pr.new/wxt-dev/wxt/@wxt-dev/storage@4e4f99d33fe8836d019baf2274f33b12a3e1f01c':
-    resolution: {tarball: https://pkg.pr.new/wxt-dev/wxt/@wxt-dev/storage@4e4f99d33fe8836d019baf2274f33b12a3e1f01c}
-    version: 1.0.1
+  '@wxt-dev/storage@1.0.1':
+    resolution: {integrity: sha512-05fzQrr4z0WhdJ0rMQGmjCNTWAC7vrCtvlmu6ZWAKbxdc7k0+T9ui5qPIdF+PxcKPRavIY6ebowBy5KV9lRY0w==}
 
   JSONStream@1.3.5:
     resolution: {integrity: sha512-E+iruNOY8VV9s4JEbe1aNEm6MiszPRr/UfcHMz0TQh1BXSxHK+ASV1R6W4HpjBhSeS+54PIsAMCBmwD06LLsqQ==}
@@ -4840,9 +4838,8 @@ packages:
       utf-8-validate:
         optional: true
 
-  wxt@https://pkg.pr.new/wxt@1085:
-    resolution: {tarball: https://pkg.pr.new/wxt@1085}
-    version: 0.19.23
+  wxt@0.20.0-beta1:
+    resolution: {integrity: sha512-of1puJCqfrYRXR4WVhI9FxF1q/zikyYhHEVsj4i8uXAeMvNO9Hkxc0TTf0Uy1I1+i9qddeh2Y8t7Ct8b/KWxgg==}
     hasBin: true
 
   xdg-basedir@5.1.0:
@@ -6346,10 +6343,10 @@ snapshots:
 
   '@ungap/structured-clone@1.2.1': {}
 
-  '@vitejs/plugin-react-swc@3.7.2(@swc/helpers@0.5.15)(vite@6.0.5(@types/node@22.10.2)(jiti@1.21.7)(yaml@2.6.1))':
+  '@vitejs/plugin-react-swc@3.7.2(@swc/helpers@0.5.15)(vite@6.0.5(@types/node@22.10.2)(jiti@2.4.2)(yaml@2.6.1))':
     dependencies:
       '@swc/core': 1.10.3(@swc/helpers@0.5.15)
-      vite: 6.0.5(@types/node@22.10.2)(jiti@1.21.7)(yaml@2.6.1)
+      vite: 6.0.5(@types/node@22.10.2)(jiti@2.4.2)(yaml@2.6.1)
     transitivePeerDependencies:
       - '@swc/helpers'
 
@@ -6360,13 +6357,13 @@ snapshots:
       chai: 5.1.2
       tinyrainbow: 1.2.0
 
-  '@vitest/mocker@2.1.8(vite@6.0.5(@types/node@22.10.2)(jiti@1.21.7)(yaml@2.6.1))':
+  '@vitest/mocker@2.1.8(vite@6.0.5(@types/node@22.10.2)(jiti@2.4.2)(yaml@2.6.1))':
     dependencies:
       '@vitest/spy': 2.1.8
       estree-walker: 3.0.3
       magic-string: 0.30.17
     optionalDependencies:
-      vite: 6.0.5(@types/node@22.10.2)(jiti@1.21.7)(yaml@2.6.1)
+      vite: 6.0.5(@types/node@22.10.2)(jiti@2.4.2)(yaml@2.6.1)
 
   '@vitest/pretty-format@2.1.8':
     dependencies:
@@ -6409,14 +6406,14 @@ snapshots:
       uid: 2.0.2
       webextension-polyfill: 0.10.0
 
-  '@wxt-dev/auto-icons@1.0.2(wxt@https://pkg.pr.new/wxt@1085(@types/node@22.10.2)(jiti@1.21.7)(rollup@4.28.1)(yaml@2.6.1))':
+  '@wxt-dev/auto-icons@1.0.2(wxt@0.20.0-beta1(@types/node@22.10.2)(jiti@2.4.2)(rollup@4.28.1)(yaml@2.6.1))':
     dependencies:
       defu: 6.1.4
       fs-extra: 11.2.0
       sharp: 0.33.5
-      wxt: https://pkg.pr.new/wxt@1085(@types/node@22.10.2)(jiti@1.21.7)(rollup@4.28.1)(yaml@2.6.1)
+      wxt: 0.20.0-beta1(@types/node@22.10.2)(jiti@2.4.2)(rollup@4.28.1)(yaml@2.6.1)
 
-  '@wxt-dev/storage@https://pkg.pr.new/wxt-dev/wxt/@wxt-dev/storage@4e4f99d33fe8836d019baf2274f33b12a3e1f01c':
+  '@wxt-dev/storage@1.0.1':
     dependencies:
       async-mutex: 0.5.0
       dequal: 2.0.3
@@ -9343,13 +9340,13 @@ snapshots:
       '@types/unist': 3.0.3
       vfile-message: 4.0.2
 
-  vite-node@2.1.8(@types/node@22.10.2)(jiti@1.21.7)(yaml@2.6.1):
+  vite-node@2.1.8(@types/node@22.10.2)(jiti@2.4.2)(yaml@2.6.1):
     dependencies:
       cac: 6.7.14
       debug: 4.4.0
       es-module-lexer: 1.5.4
       pathe: 1.1.2
-      vite: 6.0.5(@types/node@22.10.2)(jiti@1.21.7)(yaml@2.6.1)
+      vite: 6.0.5(@types/node@22.10.2)(jiti@2.4.2)(yaml@2.6.1)
     transitivePeerDependencies:
       - '@types/node'
       - jiti
@@ -9385,27 +9382,16 @@ snapshots:
       - tsx
       - yaml
 
-  vite-plugin-svgr@4.3.0(rollup@4.28.1)(typescript@5.7.2)(vite@6.0.5(@types/node@22.10.2)(jiti@1.21.7)(yaml@2.6.1)):
+  vite-plugin-svgr@4.3.0(rollup@4.28.1)(typescript@5.7.2)(vite@6.0.5(@types/node@22.10.2)(jiti@2.4.2)(yaml@2.6.1)):
     dependencies:
       '@rollup/pluginutils': 5.1.4(rollup@4.28.1)
       '@svgr/core': 8.1.0(typescript@5.7.2)
       '@svgr/plugin-jsx': 8.1.0(@svgr/core@8.1.0(typescript@5.7.2))
-      vite: 6.0.5(@types/node@22.10.2)(jiti@1.21.7)(yaml@2.6.1)
+      vite: 6.0.5(@types/node@22.10.2)(jiti@2.4.2)(yaml@2.6.1)
     transitivePeerDependencies:
       - rollup
       - supports-color
       - typescript
-
-  vite@6.0.5(@types/node@22.10.2)(jiti@1.21.7)(yaml@2.6.1):
-    dependencies:
-      esbuild: 0.24.0
-      postcss: 8.4.49
-      rollup: 4.28.1
-    optionalDependencies:
-      '@types/node': 22.10.2
-      fsevents: 2.3.3
-      jiti: 1.21.7
-      yaml: 2.6.1
 
   vite@6.0.5(@types/node@22.10.2)(jiti@2.4.2)(yaml@2.6.1):
     dependencies:
@@ -9418,10 +9404,10 @@ snapshots:
       jiti: 2.4.2
       yaml: 2.6.1
 
-  vitest@2.1.8(@types/node@22.10.2)(jiti@1.21.7)(yaml@2.6.1):
+  vitest@2.1.8(@types/node@22.10.2)(jiti@2.4.2)(yaml@2.6.1):
     dependencies:
       '@vitest/expect': 2.1.8
-      '@vitest/mocker': 2.1.8(vite@6.0.5(@types/node@22.10.2)(jiti@1.21.7)(yaml@2.6.1))
+      '@vitest/mocker': 2.1.8(vite@6.0.5(@types/node@22.10.2)(jiti@2.4.2)(yaml@2.6.1))
       '@vitest/pretty-format': 2.1.8
       '@vitest/runner': 2.1.8
       '@vitest/snapshot': 2.1.8
@@ -9437,8 +9423,8 @@ snapshots:
       tinyexec: 0.3.1
       tinypool: 1.0.2
       tinyrainbow: 1.2.0
-      vite: 6.0.5(@types/node@22.10.2)(jiti@1.21.7)(yaml@2.6.1)
-      vite-node: 2.1.8(@types/node@22.10.2)(jiti@1.21.7)(yaml@2.6.1)
+      vite: 6.0.5(@types/node@22.10.2)(jiti@2.4.2)(yaml@2.6.1)
+      vite-node: 2.1.8(@types/node@22.10.2)(jiti@2.4.2)(yaml@2.6.1)
       why-is-node-running: 2.3.0
     optionalDependencies:
       '@types/node': 22.10.2
@@ -9602,7 +9588,7 @@ snapshots:
 
   ws@8.18.0: {}
 
-  wxt@https://pkg.pr.new/wxt@1085(@types/node@22.10.2)(jiti@1.21.7)(rollup@4.28.1)(yaml@2.6.1):
+  wxt@0.20.0-beta1(@types/node@22.10.2)(jiti@2.4.2)(rollup@4.28.1)(yaml@2.6.1):
     dependencies:
       '@1natsu/wait-element': 4.1.2
       '@aklinker1/rollup-plugin-visualizer': 5.12.0(rollup@4.28.1)
@@ -9610,7 +9596,7 @@ snapshots:
       '@webext-core/fake-browser': 1.3.2
       '@webext-core/isolated-element': 1.1.2
       '@webext-core/match-patterns': 1.0.3
-      '@wxt-dev/storage': https://pkg.pr.new/wxt-dev/wxt/@wxt-dev/storage@4e4f99d33fe8836d019baf2274f33b12a3e1f01c
+      '@wxt-dev/storage': 1.0.1
       async-mutex: 0.5.0
       c12: 2.0.1(magicast@0.3.5)
       cac: 6.7.14
@@ -9644,8 +9630,8 @@ snapshots:
       publish-browser-extension: 2.3.0
       scule: 1.3.0
       unimport: 3.14.5(rollup@4.28.1)
-      vite: 6.0.5(@types/node@22.10.2)(jiti@1.21.7)(yaml@2.6.1)
-      vite-node: 2.1.8(@types/node@22.10.2)(jiti@1.21.7)(yaml@2.6.1)
+      vite: 6.0.5(@types/node@22.10.2)(jiti@2.4.2)(yaml@2.6.1)
+      vite-node: 2.1.8(@types/node@22.10.2)(jiti@2.4.2)(yaml@2.6.1)
       web-ext-run: 0.2.2
     transitivePeerDependencies:
       - '@types/node'
