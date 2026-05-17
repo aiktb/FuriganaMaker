@@ -17,315 +17,315 @@
 
 ### Features
 
-* Add include sites list for flexible site control.
-* Allows users to reset the options page settings to default values.
+* add include sites list for flexible site control
+* allows users to reset the options page settings to default values
 
 ## 3.4.0 (2025-09-13)
 
 
 ### Features
 
-* Support Edge browser again.
-* No international brand name in the extension.
+* support Edge browser again
+* no international brand name in the extension
 
 
 ### Bug Fixes
 
-* Enter emoji in playground or normal pages will cause garbled characters.
-* Remove unnecessary scroll bars in dialog.
-* Sometimes duplicate kanji are inserted into the page.
+* enter emoji in playground or normal pages will cause garbled characters
+* remove unnecessary scroll bars in dialog
+* sometimes duplicate kanji are inserted into the page
 
 ## 3.3.0 (2025-08-30)
 
 
 ### Features
 
-* Allows to modify the opacity of furigana font color.
-* Allows users to enter text and furiganaify it.
+* allows to modify the opacity of furigana font color
+* allows users to enter text and furiganaify it
 
 ## 3.2.0 (2025-08-24)
 
 
 ### Features
 
-* Add suggested follow-up actions for warning banner when Auto Mode detects a large site.
-* Once the settings in the Popup are modified, they will take effect simultaneously on all tabs.
-* Reduce 500KB extension file size.
+* add suggested follow-up actions for warning banner when Auto Mode detects a large site
+* once the settings in the Popup are modified, they will take effect simultaneously on all tabs
+* reduce 500KB extension file size
 
 ### Bug Fixes
 
-* Right click on popup icon and then click options button does not open it.
+* right click on popup icon and then click options button does not open it
 
 ## 3.1.0 (2025-08-18)
 
 
 ### Features
 
-* Domain name matching supports glob.
-* Enhanced validation and error handling for domain and selector inputs.
+* domain name matching supports glob
+* enhanced validation and error handling for domain and selector inputs
 
 
 ### Bug Fixes
 
-* Sometimes "Page is too large" warnings are obscured by the page.
-* The extension modifies the page title.
-* Unable to copy yomikata in kanji filter editor.
+* sometimes "Page is too large" warnings are obscured by the page
+* the extension modifies the page title
+* unable to copy yomikata in kanji filter editor
 
 ## 3.0.1 (2025-08-11)
 
 
 ### Bug Fixes
 
-* Korean still appears in Chrome Web Store language list.
+* korean still appears in Chrome Web Store language list
 
 ## 3.0.0 (2025-08-10)
 
 
 ### ⚠ BREAKING CHANGES
 
-* Translation support for Korean has been discontinued due to unreliable proofreading.
+* translation support for Korean has been discontinued due to unreliable proofreading
 
 ### Features
 
-* Allow users to customize Kanji filter.
-* New furigana display mode, masking the furigana with the background color.
-* Remove the ugly logo and header title on the Options page.
-* Stop features updating notifications.
-* Copywriting optimization.
+* allow users to customize Kanji filter
+* new furigana display mode, masking the furigana with the background color
+* remove the ugly logo and header title on the Options page
+* stop features updating notifications
+* copywriting optimization
 
 ### Bug Fixes
 
-* Display language names in their native locale in language switcher.
+* display language names in their native locale in language switcher
 
 ### Performance Improvements
 
-* Significantly improve the loading speed of Popup and Options pages.
+* significantly improve the loading speed of Popup and Options pages
 
 ## 2.3.0 (2024-12-22)
 
 
 ### Features
 
-* Add a red dot to the popup icon to indicate that auto mode is disabled.
+* add a red dot to the popup icon to indicate that auto mode is disabled
 
 
 ### Bug Fixes
 
-* "Page is too large" warnings too frequent.
-* Stylesheets injected using CSS-in-JS are lost, which caused Twitch and Yahoo News pages to be broken.
+* "page is too large" warnings too frequent
+* stylesheets injected using CSS-in-JS are lost, which caused Twitch and Yahoo News pages to be broken
 
 ## 2.2.1 (2024-11-26)
 
 
 ### Bug Fixes
 
-* Context menu item not showing on http pages.
+* context menu item not showing on http pages
 
 ## 2.2.0 (2024-11-25)
 
 
 ### Features
 
-* Unify and beautify the options page style.
-* Remove redundant custom rules and add rules reported by users.
-* Allow reset config to initial state.
+* unify and beautify the options page style
+* remove redundant custom rules and add rules reported by users
+* allow reset config to initial state
 
 ## 2.1.6 (2024-11-21)
 
 
 ### Bug Fixes
 
-* Console warning 'Each child in a list should have a unique "key" prop'.
+* console warning 'Each child in a list should have a unique "key" prop'
 
 ## 2.1.5 (2024-10-17)
 
 
 ### Bug Fixes
 
-* Theme switcher icon disappeared.
+* theme switcher icon disappeared
 
 ## 2.1.4 (2024-10-16)
 
 
 ### Bug Fixes
 
-* Incorrect selector field description.
-* Report error "not found content menu id".
+* incorrect selector field description
+* report error "not found content menu id"
 
 ## 2.1.3 (2024-10-09)
 
 
 ### Bug Fixes
 
-* Remove extra space on the right side of the language switcher.
+* remove extra space on the right side of the language switcher
 
 ## 2.1.2 (2024-09-18)
 
 
 ### Bug Fixes
 
-* Accidentally opened the official website.
+* accidentally opened the official website
 
 ## 2.1.1 (2024-09-18)
 
 
 ### Bug Fixes
 
-* Chrome context menu missing "add furigana" item.
+* chrome context menu missing "add furigana" item
 
 ## 2.1.0 (2024-09-14)
 
 
 ### Features
 
-* Add language switcher to the Options page.
-* Allows turning off the "Page is too large" warning.
-* Allows use of this extension on http sites.
-* Allows kanji and furigana on the page to be colored together.
-* Allows sites to be excluded from auto mode.
-* Set settings page as homepage.
+* add language switcher to the Options page
+* allows turning off the "Page is too large" warning
+* allows use of this extension on http sites
+* allows kanji and furigana on the page to be colored together
+* allows sites to be excluded from auto mode
+* set settings page as homepage
 
 ### Bug Fixes
 
-* Complete the missing i18n translation of the page.
-* 1024px width screen, a scroll bar appears on the x-axis.
+* complete the missing i18n translation of the page
+* 1024px width screen, a scroll bar appears on the x-axis
 
 ## 2.0.2 (2024-07-25)
 
 
 ### Bug Fixes
 
-* Action active flag is displayed on pages without Japanese text.
-* There's no need to open Changelog every time you update.
+* action active flag is displayed on pages without Japanese text
+* there's no need to open Changelog every time you update
 
 ## 2.0.1 (2024-07-21)
 
 
 ### Bug Fixes
 
-* Web page oversize warnings appear too often.
+* web page oversize warnings appear too often
 
 ## 2.0.0 (2024-07-19)
 
 
 ### Features
 
-* Automatically adds furigana to Japanese sites (requires the source site to be correctly labeled with the language).
-* Add changelog to the Options page.
-* Adjust the options page UI to a left side navigation, right side content layout.
+* automatically adds furigana to Japanese sites (requires the source site to be correctly labeled with the language)
+* add changelog to the Options page
+* adjust the options page UI to a left side navigation, right side content layout
 
 ### Bug Fixes
 
-* Shortcut keys missing i18n.
-* Theme toggle buttons don't work on the first click.
+* shortcut keys missing i18n
+* theme toggle buttons don't work on the first click
 
 ## 1.6.1 (2024-06-24)
 
 
 ### Bug Fixes
 
-* x.com has no valid rules.
+* x.com has no valid rules
 
 ## 1.6.0 (2024-06-24)
 
 
 ### Features
 
-* Support i18n(en, ja, zh_CN, zh_TW, ko).
-* UI icon optimization.
+* support i18n(en, ja, zh_CN, zh_TW, ko)
+* uI icon optimization
 
 ## 1.5.1 (2024-05-28)
 
 
 ### Bug Fixes
 
-* Twitter.com to x.com migration leads to breaking extension.
+* twitter.com to x.com migration leads to breaking extension
 
 ## 1.5.0 (2024-04-29)
 
 
 ### Features
 
-* Open the external welcome page on the first installation.
+* open the external welcome page on the first installation
 
 ## 1.4.0 (2024-04-13)
 
 
 ### Features
 
-* Supports N4 levels of kanji filters.
-* Enable active flag for the icon of the page containing custom rules.
+* supports N4 levels of kanji filters
+* enable active flag for the icon of the page containing custom rules
 
 ## 1.3.3 (2024-04-07)
 
 
 ### Features
 
-* Reduce FOUC(Flash of unstyled content) caused by network-loaded icons.
+* reduce FOUC(Flash of unstyled content) caused by network-loaded icons
 
 ## 1.3.2 (2024-04-05)
 
 
 ### Bug Fixes
 
-* The `ColorPicker` component does not represent the HSV/HSL color space correctly.
+* the `ColorPicker` component does not represent the HSV/HSL color space correctly
 
 ## 1.3.1 (2024-03-16)
 
 
 ### Bug Fixes
 
-* Unable to submit to Edge: "error: The uploaded package consists of a compressed file."
+* unable to submit to Edge: "error: The uploaded package consists of a compressed file"
 
 ## 1.3.0 (2024-03-14)
 
 
 ### Features
 
-* Optimize popup menu, such as color, aspect ratio, a11y, font, animation, tooltip, color-picker, etc.
-* Add sponsor button and share card to popup.
-* More user-friendly shortcut keys.
-* Add Github Discussions tip to options page.
+* optimize popup menu, such as color, aspect ratio, a11y, font, animation, tooltip, color-picker, etc
+* add sponsor button and share card to popup
+* more user-friendly shortcut keys
+* add Github Discussions tip to options page
 
 ### Bug Fixes
 
-* Causes the browser to become unresponsive on pages containing a large number of kanji.
+* causes the browser to become unresponsive on pages containing a large number of kanji
 
 ## 1.2.0 (2024-01-07)
 
 
 ### Features
 
-* Fully optimize the UI.
-* Support N5 kanji filter.
-* Support diverse display modes (always/never/hover gap/hover no-gap).
-* Support SelectMode.Parentheses in Chrome/Edge, which can automatically add brackets to the copied furigana text.
-* Support more shortcut keys.
+* fully optimize the UI
+* support N5 kanji filter
+* support diverse display modes (always/never/hover gap/hover no-gap)
+* support SelectMode.Parentheses in Chrome/Edge, which can automatically add brackets to the copied furigana text
+* support more shortcut keys
 
 ### Bug Fixes
 
-* Corrected the semantics of "On-off extension" to "On-off Auto Mode".
+* corrected the semantics of "On-off extension" to "On-off Auto Mode"
 
 ## 1.1.0 (2023-11-26)
 
 
 ### Features
 
-* User-defined rule editor completely controlled by the GUI.
+* user-defined rule editor completely controlled by the GUI
 
 ### Bug Fixes
 
-* Invalid JSON format anyway.
-* Browser shortcuts don't work.
+* invalid JSON format anyway
+* browser shortcuts don't work
 
 ## 1.0.0 (2023-11-02)
 
 
 ### Features
 
-* Many common Japanese websites are supported by default.
-* Local Japanese kanji parsing engine (no network required).
-* Add furigana to any regions on the page.
-* Freely modify the font size and color of furigana.
-* Optionally show furigana only on hover state.
-* Configurable default pages and regions for adding furigana.
+* many common Japanese websites are supported by default
+* local Japanese kanji parsing engine (no network required)
+* add furigana to any regions on the page
+* freely modify the font size and color of furigana
+* optionally show furigana only on hover state
+* configurable default pages and regions for adding furigana
