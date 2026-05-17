@@ -31,7 +31,7 @@ export const toKanjiToken = (linderaTokens: FormattedToken[], text: string): Kan
 };
 
 const isPhonetic = (linderaToken: FormattedToken) => {
-  const hasKanji = /\p{sc=Han}/v.test(linderaToken.text);
+  const hasKanji = /\p{sc=Han}/v.test(linderaToken.surface);
   const hasReading = Boolean(linderaToken.reading && linderaToken.reading !== "*");
   return hasReading && hasKanji;
 };
@@ -47,7 +47,7 @@ const toSimplifiedToken = (linderaToken: FormattedToken, text: string): Simplifi
   return {
     start: byteIndexToUtf16Index(linderaToken.byteStart, text),
     end: byteIndexToUtf16Index(linderaToken.byteEnd, text),
-    original: linderaToken.text,
+    original: linderaToken.surface,
     reading: linderaToken.reading,
   };
 };
