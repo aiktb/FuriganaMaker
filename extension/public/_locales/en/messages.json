@@ -11,6 +11,9 @@
   "shortcutToggleKanjiFilter": {
     "message": "Toggle kanji filter on all pages"
   },
+  "shortcutToggleFuriganaVisibility": {
+    "message": "Toggle furigana visibility on all pages"
+  },
   "shortcutOpenPlayground": {
     "message": "Open the playground page"
   },

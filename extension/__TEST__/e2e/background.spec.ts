@@ -27,6 +27,7 @@ describe("Extension background script", () => {
       "addFurigana",
       "toggleAutoMode",
       "toggleKanjiFilter",
+      "toggleFuriganaVisibility",
       "openOptionsPage",
       "openPlaygroundPage",
     ];

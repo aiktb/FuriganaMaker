@@ -1,6 +1,6 @@
 import type { Command } from "@@/wxt.config";
 import { match } from "ts-pattern";
-import { ExtEvent, ExtStorage } from "@/commons/constants";
+import { DisplayMode, ExtEvent, ExtStorage } from "@/commons/constants";
 import { getGeneralSettings, sendMessage, setGeneralSettings } from "@/commons/utils";
 
 export const registerOnCommand = () => {
@@ -20,6 +20,13 @@ export const registerOnCommand = () => {
         const kanjiFilter = await getGeneralSettings(ExtStorage.KanjiFilter);
         await setGeneralSettings(ExtStorage.KanjiFilter, !kanjiFilter);
         await sendMessage(tabId, ExtEvent.ToggleKanjiFilter);
+      })
+      .with("toggleFuriganaVisibility", async () => {
+        const displayMode = await getGeneralSettings(ExtStorage.DisplayMode);
+        const nextDisplayMode =
+          displayMode === DisplayMode.Never ? DisplayMode.Always : DisplayMode.Never;
+        await setGeneralSettings(ExtStorage.DisplayMode, nextDisplayMode);
+        await sendMessage(tabId, ExtEvent.SwitchDisplayMode);
       })
       .with("openPlaygroundPage", () => {
         browser.tabs.create({ url: browser.runtime.getURL("/options.html#/playground") });
