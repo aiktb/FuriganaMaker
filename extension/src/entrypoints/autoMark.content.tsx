@@ -191,23 +191,25 @@ const PageTooLargeWarningDialog = ({
 
 const isElement = (node: Node): node is Element => node.nodeType === Node.ELEMENT_NODE;
 
-const getClosestMatchingElement = (node: Node, selector: string) =>
-  node.parentElement?.closest(selector);
+const getElementInMatchingAncestor = (node: Node, selector: string) => {
+  const parent = node.parentElement;
+  return parent?.closest(selector) ? parent : undefined;
+};
 
 function getJapaneseElementsFromMutationRecord(record: MutationRecord, selector: string) {
   if (record.type === "characterData") {
-    const closest = getClosestMatchingElement(record.target, selector);
-    return closest ? [closest] : [];
+    const element = getElementInMatchingAncestor(record.target, selector);
+    return element ? [element] : [];
   }
 
   return Array.from(record.addedNodes).flatMap((node) => {
     if (!isElement(node)) {
-      const closest = getClosestMatchingElement(node, selector);
-      return closest ? [closest] : [];
+      const element = getElementInMatchingAncestor(node, selector);
+      return element ? [element] : [];
     }
 
     const element = node;
-    if (element.matches(selector)) {
+    if (element.matches(selector) || element.parentElement?.closest(selector)) {
       return [element];
     }
 
