@@ -7,4 +7,6 @@ interface ProtocolMap {
   getSelector(data: { domain: string }): { selector: string };
 }
 
-export const { sendMessage, onMessage } = defineExtensionMessaging<ProtocolMap>();
+export const { sendMessage, onMessage } = defineExtensionMessaging<ProtocolMap>({
+  breakError: true,
+});

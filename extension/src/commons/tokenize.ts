@@ -1,68 +1,28 @@
 import _initAsync, {
   type Tokenizer as _Tokenizer,
   TokenizerBuilder as _TokenizerBuilder,
-  type InitInput,
-} from "lindera-wasm-ipadic";
-
-export type LinderaToken = {
-  byteStart: number;
-  byteEnd: number;
-  surface: string;
-  wordId: number;
-  isSystem?: boolean;
-} & IpadicDetailsObject;
-
-export const IPADIC_DETAILS_KEYS = [
-  "partOfSpeech",
-  "partOfSpeechSubcategory1",
-  "partOfSpeechSubcategory2",
-  "partOfSpeechSubcategory3",
-  "conjugationForm",
-  "conjugationType",
-  "baseForm",
-  "reading",
-  "pronunciation",
-] as const;
-
-export type IpadicDetailsKeys = (typeof IPADIC_DETAILS_KEYS)[number];
-
-export type IpadicDetailsObject = {
-  [K in (typeof IPADIC_DETAILS_KEYS)[number]]: string;
-};
+} from "lindera-wasm-ipadic-web";
 
 export type FormattedToken = {
   byteEnd: number;
   byteStart: number;
-  text: string;
-  wordId: {
-    id: number;
-    isSystem: boolean;
-  };
+  surface: string;
   reading: string;
 };
 
 export class Tokenizer {
   #superTokenizer: _Tokenizer;
-  #tokensFormatter(tokens: LinderaToken[]): FormattedToken[] {
-    return tokens.map((token) => {
-      return {
-        byteEnd: token.byteEnd,
-        byteStart: token.byteStart,
-        text: token.surface,
-        wordId: {
-          id: token.wordId,
-          isSystem: token.isSystem ?? false,
-        },
-        reading: token.reading,
-      };
-    });
-  }
   constructor(tokenizer: _Tokenizer) {
     this.#superTokenizer = tokenizer;
   }
   tokenize(inputText: string): FormattedToken[] {
-    const originalTokens = this.#superTokenizer.tokenize(inputText);
-    return this.#tokensFormatter(originalTokens);
+    const tokens = this.#superTokenizer.tokenize(inputText).map((token) => ({
+      byteEnd: token.byte_end,
+      byteStart: token.byte_start,
+      surface: token.surface,
+      reading: token.details[7] ?? "*",
+    }));
+    return tokens;
   }
 }
 export class TokenizerBuilder {
@@ -85,6 +45,6 @@ export class TokenizerBuilder {
   }
 }
 
-export async function initAsync(options?: { moduleOrPath: InitInput }): Promise<void> {
-  await _initAsync(options);
+export async function initAsync(): Promise<void> {
+  await _initAsync();
 }
