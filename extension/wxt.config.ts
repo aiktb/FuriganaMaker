@@ -13,6 +13,9 @@ const commands = {
   toggleKanjiFilter: {
     description: "__MSG_shortcutToggleKanjiFilter__",
   },
+  toggleFuriganaVisibility: {
+    description: "__MSG_shortcutToggleFuriganaVisibility__",
+  },
   openPlaygroundPage: {
     description: "__MSG_shortcutOpenPlayground__",
   },
