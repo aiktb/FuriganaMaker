@@ -88,6 +88,80 @@ describe("Content scripts", () => {
     expect(bodyRubyCount).toBeGreaterThan(0);
   });
 
+  test("Automatically add furigana when a matching element is added dynamically", async ({
+    page,
+  }) => {
+    const url = "https://example.org/test-dynamic-matching-element";
+    const html = `<!doctype html>
+      <html>
+      <head>
+        <meta charset="utf-8" />
+      </head>
+      <body>
+        <main id="root"></main>
+        <script>
+          setTimeout(() => {
+            const p = document.createElement("p");
+            p.id = "target";
+            p.lang = "ja";
+            p.textContent = "漢字テスト";
+            document.querySelector("#root").appendChild(p);
+          }, 50);
+        </script>
+      </body>
+      </html>`;
+
+    await page.route(url, async (route) => {
+      await route.fulfill({
+        status: 200,
+        contentType: "text/html; charset=utf-8",
+        body: html,
+      });
+    });
+
+    await page.goto(url);
+    await page.waitForSelector("#target ruby");
+
+    const htmlWithRuby = await page.$eval("#target", (el) => el.innerHTML);
+    expect(cleanRubyHtml(htmlWithRuby)).toBe("<ruby>漢字<rt>かんじ</rt></ruby>テスト");
+  });
+
+  test("Automatically add furigana when text is added inside an existing Japanese container", async ({
+    page,
+  }) => {
+    const url = "https://example.org/test-dynamic-text";
+    const html = `<!doctype html>
+      <html>
+      <head>
+        <meta charset="utf-8" />
+      </head>
+      <body>
+        <main lang="ja">
+          <p id="target"></p>
+        </main>
+        <script>
+          setTimeout(() => {
+            document.querySelector("#target").textContent = "日本語タイトル";
+          }, 50);
+        </script>
+      </body>
+      </html>`;
+
+    await page.route(url, async (route) => {
+      await route.fulfill({
+        status: 200,
+        contentType: "text/html; charset=utf-8",
+        body: html,
+      });
+    });
+
+    await page.goto(url);
+    await page.waitForSelector("#target ruby");
+
+    const htmlWithRuby = await page.$eval("#target", (el) => el.innerHTML);
+    expect(cleanRubyHtml(htmlWithRuby)).toBe("<ruby>日本語<rt>にほんご</rt></ruby>タイトル");
+  });
+
   test("shouldProcess follows include/exclude settings configured from options page", async ({
     page,
     extensionId,
