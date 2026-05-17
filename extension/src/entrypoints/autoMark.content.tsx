@@ -11,6 +11,7 @@ import { sendMessage } from "@/commons/message";
 import { cn, getGeneralSettings, getMoreSettings, setMoreSettings } from "@/commons/utils";
 
 import "@/tailwind.css";
+import { uniq } from "es-toolkit";
 
 export default defineContentScript({
   matches: ["*://*/*"],
@@ -189,6 +190,33 @@ const PageTooLargeWarningDialog = ({
 };
 
 const isElement = (node: Node): node is Element => node.nodeType === Node.ELEMENT_NODE;
+
+const getElementInMatchingAncestor = (node: Node, selector: string) => {
+  const parent = node.parentElement;
+  return parent?.closest(selector) ? parent : undefined;
+};
+
+function getJapaneseElementsFromMutationRecord(record: MutationRecord, selector: string) {
+  if (record.type === "characterData") {
+    const element = getElementInMatchingAncestor(record.target, selector);
+    return element ? [element] : [];
+  }
+
+  return Array.from(record.addedNodes).flatMap((node) => {
+    if (!isElement(node)) {
+      const element = getElementInMatchingAncestor(node, selector);
+      return element ? [element] : [];
+    }
+
+    const element = node;
+    if (element.matches(selector) || element.parentElement?.closest(selector)) {
+      return [element];
+    }
+
+    return Array.from(element.querySelectorAll(selector));
+  });
+}
+
 function handleAndObserveJapaneseElements(initialElements: Element[], selector: string) {
   // Observer will not observe the element that is loaded for the first time on the page,
   // so it needs to execute `addFurigana` once immediately.
@@ -197,16 +225,16 @@ function handleAndObserveJapaneseElements(initialElements: Element[], selector: 
     addFurigana(...initialElements);
   }
   const observer = new MutationObserver((records) => {
-    const japaneseElements = records
-      .flatMap((record) => Array.from(record.addedNodes))
-      .filter(isElement)
-      .flatMap((element) => Array.from(element.querySelectorAll(selector)));
+    const japaneseElements = records.flatMap((record) =>
+      getJapaneseElementsFromMutationRecord(record, selector),
+    );
+    const uniqJapaneseElements = uniq(japaneseElements);
 
-    if (japaneseElements.length) {
+    if (uniqJapaneseElements.length) {
       browser.runtime.sendMessage(ExtEvent.MarkActiveTab);
-      addFurigana(...japaneseElements);
+      addFurigana(...uniqJapaneseElements);
     }
   });
 
-  observer.observe(document.body, { childList: true, subtree: true });
+  observer.observe(document.body, { childList: true, subtree: true, characterData: true });
 }
