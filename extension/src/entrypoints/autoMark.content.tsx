@@ -11,6 +11,7 @@ import { sendMessage } from "@/commons/message";
 import { cn, getGeneralSettings, getMoreSettings, setMoreSettings } from "@/commons/utils";
 
 import "@/tailwind.css";
+import { uniq } from "es-toolkit";
 
 export default defineContentScript({
   matches: ["*://*/*"],
@@ -197,16 +198,27 @@ function handleAndObserveJapaneseElements(initialElements: Element[], selector: 
     addFurigana(...initialElements);
   }
   const observer = new MutationObserver((records) => {
-    const japaneseElements = records
-      .flatMap((record) => Array.from(record.addedNodes))
-      .filter(isElement)
-      .flatMap((element) => Array.from(element.querySelectorAll(selector)));
+    const japaneseElements = records.flatMap((record) => {
+      if (record.type === "characterData") {
+        const parent = record.target.parentElement;
+        const closest = parent?.closest(selector);
+        if (closest) {
+          return [closest];
+        }
+      } else if (record.type === "childList") {
+        return Array.from(record.addedNodes)
+          .filter(isElement)
+          .flatMap((element) => Array.from(element.querySelectorAll(selector)));
+      }
+      return [];
+    });
+    const uniqJapaneseElements = uniq(japaneseElements);
 
-    if (japaneseElements.length) {
+    if (uniqJapaneseElements.length) {
       browser.runtime.sendMessage(ExtEvent.MarkActiveTab);
-      addFurigana(...japaneseElements);
+      addFurigana(...uniqJapaneseElements);
     }
   });
 
-  observer.observe(document.body, { childList: true, subtree: true });
+  observer.observe(document.body, { childList: true, subtree: true, characterData: true });
 }
