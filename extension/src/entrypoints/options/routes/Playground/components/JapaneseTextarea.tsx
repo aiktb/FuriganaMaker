@@ -19,8 +19,8 @@ export const JapaneseTextarea = ({ onSegmentsChange, furiganaType }: JapaneseTex
     const segments = getFuriganaSegments(tokens, text);
     onSegmentsChange(segments);
   }, 100);
-  const handleTextareaChange = (e: React.ChangeEvent<HTMLTextAreaElement>) => {
-    const el = e.target;
+  const handleTextareaChange = (e: React.InputEvent<HTMLTextAreaElement>) => {
+    const el = e.currentTarget;
     setUserInput(el.value);
     // If auto is not set, the container will not be able to shrink
     el.style.height = "auto";

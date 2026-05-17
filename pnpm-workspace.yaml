@@ -2,29 +2,36 @@ packages:
   - extension
   - website
 
+allowBuilds:
+  esbuild: false
+  lefthook: false
+  sharp: false
+  spawn-sync: false
+  workerd: false
+
 catalog:
-  '@egoist/tailwindcss-icons': ^1.9.0
-  '@headlessui/react': ^2.2.9
+  '@egoist/tailwindcss-icons': ^1.9.2
+  '@headlessui/react': ^2.2.10
   '@headlessui/tailwindcss': ^0.2.2
   '@iconify-json/fa6-brands': ^1.2.6
-  '@react-router/cloudflare': ^7.12.0
-  '@react-router/dev': ^7.12.0
-  '@react-router/fs-routes': ^7.12.0
+  '@react-router/cloudflare': ^7.15.1
+  '@react-router/dev': ^7.15.1
+  '@react-router/fs-routes': ^7.15.1
   '@tailwindcss/forms': ^0.5.11
   '@tailwindcss/typography': ^0.5.19
-  '@tailwindcss/vite': ^4.1.18
+  '@tailwindcss/vite': ^4.3.0
   '@total-typescript/ts-reset': ^0.6.1
-  '@types/react': ^19.2.7
+  '@types/react': ^19.2.14
   '@types/react-dom': ^19.2.3
-  baseline-browser-mapping: ^2.9.12
+  baseline-browser-mapping: ^2.10.30
   clsx: ^2.1.1
-  es-toolkit: ^1.43.0
-  react: ^19.1.4
-  react-dom: ^19.1.4
-  react-router: ^7.12.0
-  react-scan: ^0.4.3
-  tailwind-merge: ^3.4.0
-  tailwindcss: ^4.1.18
+  es-toolkit: ^1.46.1
+  react: ^19.1.7
+  react-dom: ^19.1.7
+  react-router: ^7.15.1
+  react-scan: ^0.5.6
+  tailwind-merge: ^3.6.0
+  tailwindcss: ^4.3.0
   ts-pattern: ^5.9.0
-  vite: ^8.0.1
-  zustand: ^5.0.9
+  vite: ^8.0.13
+  zustand: ^5.0.13
