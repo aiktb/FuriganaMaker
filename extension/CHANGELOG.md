@@ -1,5 +1,17 @@
 # Changelog
 
+## [3.6.0](https://github.com/aiktb/furiganamaker/compare/v3.5.0...v3.6.0) (2026-05-17)
+
+
+### Features
+
+* **extension:** add shortcut to toggle furigana visibility ([#458](https://github.com/aiktb/furiganamaker/issues/458)) ([452cc83](https://github.com/aiktb/furiganamaker/commit/452cc831bebe6be0fe7a70c36604bcbce64139fe))
+
+
+### Bug Fixes
+
+* **content:** handle text updates in auto mark observer ([#455](https://github.com/aiktb/furiganamaker/issues/455)) ([6555243](https://github.com/aiktb/furiganamaker/commit/65552432d6e4b672134cf91f7ec04b4f80f10d03))
+
 ## [3.5.0](https://github.com/aiktb/furiganamaker/compare/v3.4.0...v3.5.0) (2026-03-21)
 
 
