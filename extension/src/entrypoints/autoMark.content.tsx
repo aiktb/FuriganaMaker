@@ -190,6 +190,31 @@ const PageTooLargeWarningDialog = ({
 };
 
 const isElement = (node: Node): node is Element => node.nodeType === Node.ELEMENT_NODE;
+
+const getClosestMatchingElement = (node: Node, selector: string) =>
+  node.parentElement?.closest(selector);
+
+function getJapaneseElementsFromMutationRecord(record: MutationRecord, selector: string) {
+  if (record.type === "characterData") {
+    const closest = getClosestMatchingElement(record.target, selector);
+    return closest ? [closest] : [];
+  }
+
+  return Array.from(record.addedNodes).flatMap((node) => {
+    if (!isElement(node)) {
+      const closest = getClosestMatchingElement(node, selector);
+      return closest ? [closest] : [];
+    }
+
+    const element = node;
+    if (element.matches(selector)) {
+      return [element];
+    }
+
+    return Array.from(element.querySelectorAll(selector));
+  });
+}
+
 function handleAndObserveJapaneseElements(initialElements: Element[], selector: string) {
   // Observer will not observe the element that is loaded for the first time on the page,
   // so it needs to execute `addFurigana` once immediately.
@@ -198,20 +223,9 @@ function handleAndObserveJapaneseElements(initialElements: Element[], selector: 
     addFurigana(...initialElements);
   }
   const observer = new MutationObserver((records) => {
-    const japaneseElements = records.flatMap((record) => {
-      if (record.type === "characterData") {
-        const parent = record.target.parentElement;
-        const closest = parent?.closest(selector);
-        if (closest) {
-          return [closest];
-        }
-      } else if (record.type === "childList") {
-        return Array.from(record.addedNodes)
-          .filter(isElement)
-          .flatMap((element) => Array.from(element.querySelectorAll(selector)));
-      }
-      return [];
-    });
+    const japaneseElements = records.flatMap((record) =>
+      getJapaneseElementsFromMutationRecord(record, selector),
+    );
     const uniqJapaneseElements = uniq(japaneseElements);
 
     if (uniqJapaneseElements.length) {
