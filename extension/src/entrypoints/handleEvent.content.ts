@@ -1,3 +1,4 @@
+import { Mutex } from "async-mutex";
 import { match } from "ts-pattern";
 import { toHiragana, toKatakana, toRomaji } from "wanakana";
 
@@ -7,11 +8,31 @@ import {
   ExtStorage,
   FURIGANA_CLASS,
   FuriganaType,
+  type GeneralSettings,
   SelectMode,
-  type StyleEvent,
 } from "@/commons/constants";
 import { Selector } from "@/commons/selectElement";
-import { getGeneralSettings, getMoreSettings, toStorageKey } from "@/commons/utils";
+import { generalSettings, getMoreSettings } from "@/commons/utils";
+
+const watchedStorageKeys = [
+  ExtStorage.DisplayMode,
+  ExtStorage.SelectMode,
+  ExtStorage.FontSize,
+  ExtStorage.FontColor,
+  ExtStorage.KanjiFilter,
+] as const;
+
+type WatchedStorageKey = (typeof watchedStorageKeys)[number];
+type StyleSettingEntry = {
+  [K in WatchedStorageKey]: {
+    type: K;
+    value: GeneralSettings[K];
+  };
+}[WatchedStorageKey];
+
+const styleElementId = `${FURIGANA_CLASS}styles`;
+const styleEntriesByType = new Map<WatchedStorageKey, StyleSettingEntry>();
+const styleHandlerMutex = new Mutex();
 
 export default defineContentScript({
   matches: ["*://*/*"],
@@ -20,38 +41,76 @@ export default defineContentScript({
   async main() {
     // styleHandler uses storage and is called immediately,
     // so it needs to be initialized immediately.
-    const styleEvents = [
-      ExtEvent.SwitchDisplayMode,
-      ExtEvent.SwitchSelectMode,
-      ExtEvent.AdjustFontSize,
-      ExtEvent.AdjustFontColor,
-      ExtEvent.ToggleKanjiFilter,
-    ] as const satisfies StyleEvent[];
-    await Promise.all(styleEvents.map((item) => styleHandler(item)));
-    const isStyleEvent = (event: ExtEvent): event is StyleEvent => styleEvents.includes(event);
+    const storage = await generalSettings.getValue();
+    await styleHandler(toStyleSettingEntries(storage));
+
+    generalSettings.watch((newSettings, oldSettings) => {
+      const changedStyleEntries = toChangedStyleSettingEntries(newSettings, oldSettings);
+      if (changedStyleEntries.length > 0) {
+        styleHandler(changedStyleEntries);
+      }
+      if (newSettings[ExtStorage.FuriganaType] !== oldSettings[ExtStorage.FuriganaType]) {
+        switchFuriganaHandler(newSettings[ExtStorage.FuriganaType]);
+      }
+    });
+
     browser.runtime.onMessage.addListener((event: ExtEvent) => {
       if (event === ExtEvent.AddFurigana) {
         addFuriganaHandler();
-      } else if (event === ExtEvent.SwitchFuriganaType) {
-        switchFuriganaHandler();
-      } else if (isStyleEvent(event)) {
-        styleHandler(event);
       }
     });
   },
 });
 
-async function styleHandler(type: StyleEvent) {
+function toStyleSettingEntries(settings: GeneralSettings) {
+  return watchedStorageKeys.map((type) => ({
+    type,
+    value: settings[type],
+  })) as StyleSettingEntry[];
+}
+
+function toChangedStyleSettingEntries(newSettings: GeneralSettings, oldSettings: GeneralSettings) {
+  return watchedStorageKeys
+    .filter((key) => newSettings[key] !== oldSettings[key])
+    .map((type) => ({
+      type,
+      value: newSettings[type],
+    })) as StyleSettingEntry[];
+}
+
+async function styleHandler(entries: StyleSettingEntry[]) {
+  await styleHandlerMutex.runExclusive(async () => {
+    for (const entry of entries) {
+      styleEntriesByType.set(entry.type, entry);
+    }
+    const orderedEntries = watchedStorageKeys
+      .map((type) => styleEntriesByType.get(type))
+      .filter((entry) => entry !== undefined);
+    const css = (await Promise.all(orderedEntries.map(buildStyleCss))).join("\n");
+
+    const oldStyle = document.getElementById(styleElementId);
+    if (oldStyle) {
+      oldStyle.textContent = css;
+    } else {
+      const style = document.createElement("style");
+      style.setAttribute("type", "text/css");
+      style.setAttribute("id", styleElementId);
+      style.textContent = css;
+      document.head.appendChild(style);
+    }
+  });
+}
+
+async function buildStyleCss(entry: StyleSettingEntry) {
   const rubySelector = `ruby.${FURIGANA_CLASS}`;
   const rtSelector = `${rubySelector} > rt`;
   const rtHoverSelector = `${rubySelector}:hover > rt`;
   const rpSelector = `${rubySelector} > rp`;
   const filteredRtSelector = `${rubySelector}.isFiltered > rt`;
 
-  const value = await getGeneralSettings(toStorageKey(type));
-  const css = await match(type)
-    .with(ExtEvent.SwitchDisplayMode, () =>
-      match(value as DisplayMode)
+  const css = await match(entry)
+    .with({ type: ExtStorage.DisplayMode }, ({ value }) =>
+      match(value)
         .with(
           DisplayMode.Never,
           () => `
@@ -98,8 +157,8 @@ async function styleHandler(type: StyleEvent) {
         .exhaustive(),
     )
     .with(
-      ExtEvent.SwitchSelectMode,
-      () => `
+      { type: ExtStorage.SelectMode },
+      ({ value }) => `
         ${rtSelector} {
           user-select: ${value === SelectMode.Original ? "none" : "text"};
         }
@@ -118,20 +177,20 @@ async function styleHandler(type: StyleEvent) {
         }`,
     )
     .with(
-      ExtEvent.AdjustFontSize,
-      () => `
+      { type: ExtStorage.FontSize },
+      ({ value }) => `
         ${rtSelector} {
           font-size: ${value}%;
         }`,
     )
-    .with(ExtEvent.AdjustFontColor, async () => {
+    .with({ type: ExtStorage.FontColor }, async ({ value }) => {
       const coloringKanji = await getMoreSettings(ExtStorage.ColoringKanji);
       return `
         ${coloringKanji ? rubySelector : rtSelector} {
           color: ${value};
         }`;
     })
-    .with(ExtEvent.ToggleKanjiFilter, () =>
+    .with({ type: ExtStorage.KanjiFilter }, ({ value }) =>
       value
         ? `
           ${filteredRtSelector} {
@@ -140,23 +199,12 @@ async function styleHandler(type: StyleEvent) {
         : "",
     )
     .exhaustive();
-  const id = `${FURIGANA_CLASS}${type}`;
-  const oldStyle = document.getElementById(id);
-  if (oldStyle) {
-    oldStyle.textContent = css;
-  } else {
-    const style = document.createElement("style");
-    style.setAttribute("type", "text/css");
-    style.setAttribute("id", id);
-    style.textContent = css;
-    document.head.appendChild(style);
-  }
+  return css;
 }
 
-async function switchFuriganaHandler() {
+function switchFuriganaHandler(value: FuriganaType) {
   const rtSelector = `ruby.${FURIGANA_CLASS} > rt`;
   const nodes = document.querySelectorAll(rtSelector);
-  const value = await getGeneralSettings(ExtStorage.FuriganaType);
   const transformer = match(value)
     .with(FuriganaType.Hiragana, () => toHiragana)
     .with(FuriganaType.Katakana, () => toKatakana)

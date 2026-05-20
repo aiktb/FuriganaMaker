@@ -2,13 +2,6 @@ export const FURIGANA_CLASS = "--furigana--";
 
 export const ExtEvent = {
   AddFurigana: "addFurigana",
-  ToggleAutoMode: "toggleAutoMode",
-  ToggleKanjiFilter: "toggleKanjiFilter",
-  SwitchDisplayMode: "switchDisplayMode",
-  SwitchFuriganaType: "switchFuriganaType",
-  SwitchSelectMode: "switchSelectMode",
-  AdjustFontSize: "adjustFontSize",
-  AdjustFontColor: "adjustFontColor",
   MarkActiveTab: "markActiveTab",
   MarkDisabledTab: "markDisabledTab",
   ModifyKanjiFilter: "modifyKanjiFilter",
@@ -34,13 +27,6 @@ export const ExtStorage = {
   AlwaysRunSites: "alwaysRunSites",
 } as const;
 export type ExtStorage = (typeof ExtStorage)[keyof typeof ExtStorage];
-
-export type StyleEvent =
-  | typeof ExtEvent.SwitchDisplayMode
-  | typeof ExtEvent.SwitchSelectMode
-  | typeof ExtEvent.AdjustFontSize
-  | typeof ExtEvent.AdjustFontColor
-  | typeof ExtEvent.ToggleKanjiFilter;
 
 export const DisplayMode = {
   Always: "always show",
@@ -114,12 +100,3 @@ export type FilterRule = {
   kanji: string;
   yomikatas?: string[] | undefined; // If undefined, it matches all yomikatas.
 };
-
-export type StorageChangeEvent =
-  | typeof ExtEvent.ToggleKanjiFilter
-  | typeof ExtEvent.SwitchDisplayMode
-  | typeof ExtEvent.AdjustFontColor
-  | typeof ExtEvent.AdjustFontSize
-  | typeof ExtEvent.SwitchFuriganaType
-  | typeof ExtEvent.SwitchSelectMode
-  | typeof ExtEvent.ToggleAutoMode;

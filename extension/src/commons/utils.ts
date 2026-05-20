@@ -1,14 +1,13 @@
 import { type ClassValue, clsx } from "clsx";
 import { type DBSchema, openDB } from "idb";
 import { twMerge } from "tailwind-merge";
-import { match } from "ts-pattern";
 
 import defaultKanjiFilterRules from "@/assets/rules/filter.json";
 import defaultSelectorRules from "@/assets/rules/selector.json";
 
 import {
   DisplayMode,
-  ExtEvent,
+  type ExtEvent,
   ExtStorage,
   type FilterRule,
   FuriganaType,
@@ -16,19 +15,7 @@ import {
   type MoreSettings,
   SelectMode,
   type SelectorRule,
-  type StorageChangeEvent,
 } from "./constants";
-
-export const toStorageKey = (event: StorageChangeEvent) =>
-  match(event)
-    .with(ExtEvent.ToggleKanjiFilter, () => ExtStorage.KanjiFilter)
-    .with(ExtEvent.SwitchDisplayMode, () => ExtStorage.DisplayMode)
-    .with(ExtEvent.AdjustFontColor, () => ExtStorage.FontColor)
-    .with(ExtEvent.AdjustFontSize, () => ExtStorage.FontSize)
-    .with(ExtEvent.SwitchFuriganaType, () => ExtStorage.FuriganaType)
-    .with(ExtEvent.SwitchSelectMode, () => ExtStorage.SelectMode)
-    .with(ExtEvent.ToggleAutoMode, () => ExtStorage.AutoMode)
-    .exhaustive();
 
 /**
  * Some pages are unable to inject content scripts,

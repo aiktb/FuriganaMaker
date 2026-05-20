@@ -56,3 +56,7 @@ export const useGeneralSettingsStore = create<GeneralSettingsStore>()(
     },
   ),
 );
+
+generalSettings.watch((value) => {
+  useGeneralSettingsStore.setState(value);
+});

@@ -55,3 +55,7 @@ export const useSelectorsStore = create<SelectorsStore>()(
     },
   ),
 );
+
+customSelectors.watch((value) => {
+  useSelectorsStore.setState({ selectors: value });
+});
