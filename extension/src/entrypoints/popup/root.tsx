@@ -1,4 +1,3 @@
-import { debounce } from "es-toolkit";
 import { useTranslation } from "react-i18next";
 import ColorPickerIcon from "@/assets/icons/ColorPicker.svg?react";
 import CursorOutlineIcon from "@/assets/icons/CursorDefault.svg?react";
@@ -57,8 +56,6 @@ export function Root() {
     { label: t("optionParentheses"), value: SelectMode.Parentheses },
   ];
 
-  const DEBOUNCE_WAIT = 100;
-
   return (
     <menu className="space-y-2 border-sky-500 border-r-2 pr-1 font-sans">
       <MenuItem icon={<CursorOutlineIcon />}>
@@ -66,7 +63,7 @@ export function Root() {
           className="playwright-add-furigana-btn"
           tip={t("tipEscShortcut")}
           text={t("btnAddFurigana")}
-          onClick={debounce(addFurigana, DEBOUNCE_WAIT)}
+          onClick={addFurigana}
         />
       </MenuItem>
       <MenuItem icon={<PowerIcon className={cn(autoModeEnabled && "text-sky-500")} />}>
@@ -75,7 +72,7 @@ export function Root() {
           tip={t("tipRefreshPage")}
           text={t("toggleAutoMode")}
           checked={autoModeEnabled}
-          onChange={debounce(toggleAutoMode, DEBOUNCE_WAIT)}
+          onChange={toggleAutoMode}
         />
       </MenuItem>
       <MenuItem icon={<FilterIcon className={cn(kanjiFilterEnabled && "text-sky-500")} />}>
@@ -84,7 +81,7 @@ export function Root() {
           tip={t("tipFilterLevel")}
           text={t("toggleKanjiFilter")}
           checked={kanjiFilterEnabled}
-          onChange={debounce(toggleKanjiFilter, DEBOUNCE_WAIT)}
+          onChange={toggleKanjiFilter}
         />
       </MenuItem>
       <MenuItem icon={<EyeIcon />}>
@@ -92,10 +89,7 @@ export function Root() {
           className="playwright-switch-display-mode"
           selected={selectedDisplayMode}
           options={displayModeOptions}
-          onChange={debounce(
-            (selected: string) => setDisplayMode(selected as DisplayMode),
-            DEBOUNCE_WAIT,
-          )}
+          onChange={(selected: string) => setDisplayMode(selected as DisplayMode)}
         />
       </MenuItem>
       <MenuItem icon={<HiraganaIcon />}>
@@ -103,10 +97,7 @@ export function Root() {
           className="playwright-switch-furigana-type"
           selected={selectedFuriganaType}
           options={furiganaTypeOptions}
-          onChange={debounce(
-            (selected: string) => setFuriganaType(selected as FuriganaType),
-            DEBOUNCE_WAIT,
-          )}
+          onChange={(selected: string) => setFuriganaType(selected as FuriganaType)}
         />
       </MenuItem>
       <MenuItem icon={<CursorTextIcon />}>
@@ -115,10 +106,7 @@ export function Root() {
           tip={t("tipCopyText")}
           selected={selectedSelectMode}
           options={selectModeOptions}
-          onChange={debounce(
-            (selected: string) => setSelectMode(selected as SelectMode),
-            DEBOUNCE_WAIT,
-          )}
+          onChange={(selected: string) => setSelectMode(selected as SelectMode)}
         />
       </MenuItem>
       <MenuItem icon={<FontSizeIcon />}>
@@ -129,14 +117,14 @@ export function Root() {
           max={100}
           step={1}
           label={t("labelAdjustFont")}
-          onChange={debounce((value: number) => setFontSize(value), DEBOUNCE_WAIT)}
+          onChange={setFontSize}
         />
       </MenuItem>
       <MenuItem icon={<ColorPickerIcon />}>
         <ColorPicker
           className="playwright-adjust-font-color-picker"
           color={fontColor}
-          onChange={debounce((color: string) => setFontColor(color), DEBOUNCE_WAIT)}
+          onChange={setFontColor}
         />
       </MenuItem>
       <MenuItem icon={<i className="i-tabler-ballpen" />}>

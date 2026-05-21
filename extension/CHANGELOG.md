@@ -232,7 +232,7 @@
 ### Features
 
 * support i18n(en, ja, zh_CN, zh_TW, ko)
-* uI icon optimization
+* UI icon optimization
 
 ## 1.5.1 (2024-05-28)
 
