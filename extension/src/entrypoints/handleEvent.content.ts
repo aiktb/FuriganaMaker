@@ -22,27 +22,13 @@ const watchedGeneralStorageKeys = [
   ExtStorage.KanjiFilter,
 ] as const;
 const watchedMoreStorageKeys = [ExtStorage.ColoringKanji] as const;
-const watchedStyleStorageKeys = [...watchedGeneralStorageKeys, ...watchedMoreStorageKeys] as const;
 
 type WatchedGeneralStorageKey = (typeof watchedGeneralStorageKeys)[number];
 type WatchedMoreStorageKey = (typeof watchedMoreStorageKeys)[number];
-type WatchedStyleStorageKey = (typeof watchedStyleStorageKeys)[number];
-type StyleSettingEntry =
-  | {
-      [K in WatchedGeneralStorageKey]: {
-        type: K;
-        value: GeneralSettings[K];
-      };
-    }[WatchedGeneralStorageKey]
-  | {
-      [K in WatchedMoreStorageKey]: {
-        type: K;
-        value: MoreSettings[K];
-      };
-    }[WatchedMoreStorageKey];
+type StyleSettings = Pick<GeneralSettings, WatchedGeneralStorageKey> &
+  Pick<MoreSettings, WatchedMoreStorageKey>;
 
 const styleElementId = `${FURIGANA_CLASS}styles`;
-const styleEntriesByType = new Map<WatchedStyleStorageKey, StyleSettingEntry>();
 
 export default defineContentScript({
   matches: ["*://*/*"],
@@ -55,24 +41,19 @@ export default defineContentScript({
       generalSettings.getValue(),
       moreSettings.getValue(),
     ]);
-    styleHandler([
-      ...toGeneralStyleSettingEntries(generalStorage),
-      ...toMoreStyleSettingEntries(moreStorage),
-    ]);
+    styleHandler(toStyleSettings(generalStorage, moreStorage));
 
-    generalSettings.watch((newSettings, oldSettings) => {
-      const changedStyleEntries = toChangedGeneralStyleSettingEntries(newSettings, oldSettings);
-      if (changedStyleEntries.length > 0) {
-        styleHandler(changedStyleEntries);
+    generalSettings.watch(async (newSettings, oldSettings) => {
+      if (hasChanged(watchedGeneralStorageKeys, newSettings, oldSettings)) {
+        styleHandler(toStyleSettings(newSettings, await moreSettings.getValue()));
       }
       if (newSettings[ExtStorage.FuriganaType] !== oldSettings[ExtStorage.FuriganaType]) {
         switchFuriganaHandler(newSettings[ExtStorage.FuriganaType]);
       }
     });
-    moreSettings.watch((newSettings, oldSettings) => {
-      const changedStyleEntries = toChangedMoreStyleSettingEntries(newSettings, oldSettings);
-      if (changedStyleEntries.length > 0) {
-        styleHandler(changedStyleEntries);
+    moreSettings.watch(async (newSettings, oldSettings) => {
+      if (hasChanged(watchedMoreStorageKeys, newSettings, oldSettings)) {
+        styleHandler(toStyleSettings(await generalSettings.getValue(), newSettings));
       }
     });
 
@@ -84,49 +65,39 @@ export default defineContentScript({
   },
 });
 
-function toGeneralStyleSettingEntries(settings: GeneralSettings) {
-  return watchedGeneralStorageKeys.map((type) => ({
-    type,
-    value: settings[type],
-  })) as StyleSettingEntry[];
+function toStyleSettings(general: GeneralSettings, more: MoreSettings): StyleSettings {
+  return {
+    ...toGeneralStyleSettings(general),
+    ...toMoreStyleSettings(more),
+  };
 }
 
-function toMoreStyleSettingEntries(settings: MoreSettings) {
-  return watchedMoreStorageKeys.map((type) => ({
-    type,
-    value: settings[type],
-  })) as StyleSettingEntry[];
+function toGeneralStyleSettings(settings: GeneralSettings) {
+  return {
+    [ExtStorage.DisplayMode]: settings[ExtStorage.DisplayMode],
+    [ExtStorage.SelectMode]: settings[ExtStorage.SelectMode],
+    [ExtStorage.FontSize]: settings[ExtStorage.FontSize],
+    [ExtStorage.FontColor]: settings[ExtStorage.FontColor],
+    [ExtStorage.KanjiFilter]: settings[ExtStorage.KanjiFilter],
+  } satisfies Pick<StyleSettings, WatchedGeneralStorageKey>;
 }
 
-function toChangedGeneralStyleSettingEntries(
-  newSettings: GeneralSettings,
-  oldSettings: GeneralSettings,
+function toMoreStyleSettings(settings: MoreSettings) {
+  return {
+    [ExtStorage.ColoringKanji]: settings[ExtStorage.ColoringKanji],
+  } satisfies Pick<StyleSettings, WatchedMoreStorageKey>;
+}
+
+function hasChanged<T extends Record<K, unknown>, K extends keyof T>(
+  keys: readonly K[],
+  newSettings: T,
+  oldSettings: T,
 ) {
-  return watchedGeneralStorageKeys
-    .filter((key) => newSettings[key] !== oldSettings[key])
-    .map((type) => ({
-      type,
-      value: newSettings[type],
-    })) as StyleSettingEntry[];
+  return keys.some((key) => newSettings[key] !== oldSettings[key]);
 }
 
-function toChangedMoreStyleSettingEntries(newSettings: MoreSettings, oldSettings: MoreSettings) {
-  return watchedMoreStorageKeys
-    .filter((key) => newSettings[key] !== oldSettings[key])
-    .map((type) => ({
-      type,
-      value: newSettings[type],
-    })) as StyleSettingEntry[];
-}
-
-function styleHandler(entries: StyleSettingEntry[]) {
-  for (const entry of entries) {
-    styleEntriesByType.set(entry.type, entry);
-  }
-  const orderedEntries = watchedStyleStorageKeys
-    .map((type) => styleEntriesByType.get(type))
-    .filter((entry) => entry !== undefined);
-  const css = orderedEntries.map(buildStyleCss).join("\n");
+function styleHandler(settings: StyleSettings) {
+  const css = buildStyleCss(settings);
 
   const oldStyle = document.getElementById(styleElementId);
   if (oldStyle) {
@@ -140,26 +111,24 @@ function styleHandler(entries: StyleSettingEntry[]) {
   }
 }
 
-function buildStyleCss(entry: StyleSettingEntry) {
+function buildStyleCss(settings: StyleSettings) {
   const rubySelector = `ruby.${FURIGANA_CLASS}`;
   const rtSelector = `${rubySelector} > rt`;
   const rtHoverSelector = `${rubySelector}:hover > rt`;
   const rpSelector = `${rubySelector} > rp`;
   const filteredRtSelector = `${rubySelector}.isFiltered > rt`;
 
-  const css = match(entry)
-    .with({ type: ExtStorage.DisplayMode }, ({ value }) =>
-      match(value)
-        .with(
-          DisplayMode.Never,
-          () => `
+  const displayModeCss = match(settings[ExtStorage.DisplayMode])
+    .with(
+      DisplayMode.Never,
+      () => `
           ${rtSelector} {
             display: none;
           }`,
-        )
-        .with(
-          DisplayMode.Hover,
-          () => `
+    )
+    .with(
+      DisplayMode.Hover,
+      () => `
           ${rtSelector} {
             opacity: 0;
           }
@@ -167,10 +136,10 @@ function buildStyleCss(entry: StyleSettingEntry) {
           ${rtHoverSelector} {
             opacity: 1;
           }`,
-        )
-        .with(
-          DisplayMode.HoverNoGap,
-          () => `
+    )
+    .with(
+      DisplayMode.HoverNoGap,
+      () => `
           ${rtSelector} {
             display: none;
           }
@@ -178,10 +147,10 @@ function buildStyleCss(entry: StyleSettingEntry) {
           ${rtHoverSelector} {
             display: revert;
           }`,
-        )
-        .with(
-          DisplayMode.HoverMask,
-          () => `
+    )
+    .with(
+      DisplayMode.HoverMask,
+      () => `
           ${rtSelector} {
             background-color: currentColor;
             border-radius: 0.25em;
@@ -191,19 +160,16 @@ function buildStyleCss(entry: StyleSettingEntry) {
             background-color: transparent;
             transition: background-color 0.15s ease-in-out;
           }`,
-        )
-        .with(DisplayMode.Always, () => "")
-        .exhaustive(),
     )
-    .with(
-      { type: ExtStorage.SelectMode },
-      ({ value }) => `
+    .with(DisplayMode.Always, () => "")
+    .exhaustive();
+  const selectModeCss = `
         ${rtSelector} {
-          user-select: ${value === SelectMode.Original ? "none" : "text"};
+          user-select: ${settings[ExtStorage.SelectMode] === SelectMode.Original ? "none" : "text"};
         }
 
         ${rpSelector} {
-          display: ${value === SelectMode.Parentheses ? "block" : "none"};
+          display: ${settings[ExtStorage.SelectMode] === SelectMode.Parentheses ? "block" : "none"};
           position: absolute;
           width: 1px;
           height: 1px;
@@ -213,33 +179,23 @@ function buildStyleCss(entry: StyleSettingEntry) {
           clip: rect(0, 0, 0, 0);
           white-space: nowrap;
           border-width: 0;
-        }`,
-    )
-    .with(
-      { type: ExtStorage.FontSize },
-      ({ value }) => `
-        ${rtSelector} {
-          font-size: ${value}%;
-        }`,
-    )
-    .with({ type: ExtStorage.FontColor }, ({ value }) => {
-      const coloringKanji = styleEntriesByType.get(ExtStorage.ColoringKanji)?.value ?? false;
-      return `
-        ${coloringKanji ? rubySelector : rtSelector} {
-          color: ${value};
         }`;
-    })
-    .with({ type: ExtStorage.ColoringKanji }, () => "")
-    .with({ type: ExtStorage.KanjiFilter }, ({ value }) =>
-      value
-        ? `
+  const fontSizeCss = `
+        ${rtSelector} {
+          font-size: ${settings[ExtStorage.FontSize]}%;
+        }`;
+  const fontColorCss = `
+        ${settings[ExtStorage.ColoringKanji] ? rubySelector : rtSelector} {
+          color: ${settings[ExtStorage.FontColor]};
+        }`;
+  const kanjiFilterCss = settings[ExtStorage.KanjiFilter]
+    ? `
           ${filteredRtSelector} {
             display: none;
           }`
-        : "",
-    )
-    .exhaustive();
-  return css;
+    : "";
+
+  return [displayModeCss, selectModeCss, fontSizeCss, fontColorCss, kanjiFilterCss].join("\n");
 }
 
 function switchFuriganaHandler(value: FuriganaType) {
