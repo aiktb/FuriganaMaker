@@ -1,4 +1,3 @@
-import { Mutex } from "async-mutex";
 import { match } from "ts-pattern";
 import { toHiragana, toKatakana, toRomaji } from "wanakana";
 
@@ -9,30 +8,41 @@ import {
   FURIGANA_CLASS,
   FuriganaType,
   type GeneralSettings,
+  type MoreSettings,
   SelectMode,
 } from "@/commons/constants";
 import { Selector } from "@/commons/selectElement";
-import { generalSettings, getMoreSettings } from "@/commons/utils";
+import { generalSettings, moreSettings } from "@/commons/utils";
 
-const watchedStorageKeys = [
+const watchedGeneralStorageKeys = [
   ExtStorage.DisplayMode,
   ExtStorage.SelectMode,
   ExtStorage.FontSize,
   ExtStorage.FontColor,
   ExtStorage.KanjiFilter,
 ] as const;
+const watchedMoreStorageKeys = [ExtStorage.ColoringKanji] as const;
+const watchedStyleStorageKeys = [...watchedGeneralStorageKeys, ...watchedMoreStorageKeys] as const;
 
-type WatchedStorageKey = (typeof watchedStorageKeys)[number];
-type StyleSettingEntry = {
-  [K in WatchedStorageKey]: {
-    type: K;
-    value: GeneralSettings[K];
-  };
-}[WatchedStorageKey];
+type WatchedGeneralStorageKey = (typeof watchedGeneralStorageKeys)[number];
+type WatchedMoreStorageKey = (typeof watchedMoreStorageKeys)[number];
+type WatchedStyleStorageKey = (typeof watchedStyleStorageKeys)[number];
+type StyleSettingEntry =
+  | {
+      [K in WatchedGeneralStorageKey]: {
+        type: K;
+        value: GeneralSettings[K];
+      };
+    }[WatchedGeneralStorageKey]
+  | {
+      [K in WatchedMoreStorageKey]: {
+        type: K;
+        value: MoreSettings[K];
+      };
+    }[WatchedMoreStorageKey];
 
 const styleElementId = `${FURIGANA_CLASS}styles`;
-const styleEntriesByType = new Map<WatchedStorageKey, StyleSettingEntry>();
-const styleHandlerMutex = new Mutex();
+const styleEntriesByType = new Map<WatchedStyleStorageKey, StyleSettingEntry>();
 
 export default defineContentScript({
   matches: ["*://*/*"],
@@ -41,16 +51,28 @@ export default defineContentScript({
   async main() {
     // styleHandler uses storage and is called immediately,
     // so it needs to be initialized immediately.
-    const storage = await generalSettings.getValue();
-    await styleHandler(toStyleSettingEntries(storage));
+    const [generalStorage, moreStorage] = await Promise.all([
+      generalSettings.getValue(),
+      moreSettings.getValue(),
+    ]);
+    styleHandler([
+      ...toGeneralStyleSettingEntries(generalStorage),
+      ...toMoreStyleSettingEntries(moreStorage),
+    ]);
 
     generalSettings.watch((newSettings, oldSettings) => {
-      const changedStyleEntries = toChangedStyleSettingEntries(newSettings, oldSettings);
+      const changedStyleEntries = toChangedGeneralStyleSettingEntries(newSettings, oldSettings);
       if (changedStyleEntries.length > 0) {
         styleHandler(changedStyleEntries);
       }
       if (newSettings[ExtStorage.FuriganaType] !== oldSettings[ExtStorage.FuriganaType]) {
         switchFuriganaHandler(newSettings[ExtStorage.FuriganaType]);
+      }
+    });
+    moreSettings.watch((newSettings, oldSettings) => {
+      const changedStyleEntries = toChangedMoreStyleSettingEntries(newSettings, oldSettings);
+      if (changedStyleEntries.length > 0) {
+        styleHandler(changedStyleEntries);
       }
     });
 
@@ -62,15 +84,25 @@ export default defineContentScript({
   },
 });
 
-function toStyleSettingEntries(settings: GeneralSettings) {
-  return watchedStorageKeys.map((type) => ({
+function toGeneralStyleSettingEntries(settings: GeneralSettings) {
+  return watchedGeneralStorageKeys.map((type) => ({
     type,
     value: settings[type],
   })) as StyleSettingEntry[];
 }
 
-function toChangedStyleSettingEntries(newSettings: GeneralSettings, oldSettings: GeneralSettings) {
-  return watchedStorageKeys
+function toMoreStyleSettingEntries(settings: MoreSettings) {
+  return watchedMoreStorageKeys.map((type) => ({
+    type,
+    value: settings[type],
+  })) as StyleSettingEntry[];
+}
+
+function toChangedGeneralStyleSettingEntries(
+  newSettings: GeneralSettings,
+  oldSettings: GeneralSettings,
+) {
+  return watchedGeneralStorageKeys
     .filter((key) => newSettings[key] !== oldSettings[key])
     .map((type) => ({
       type,
@@ -78,37 +110,44 @@ function toChangedStyleSettingEntries(newSettings: GeneralSettings, oldSettings:
     })) as StyleSettingEntry[];
 }
 
-async function styleHandler(entries: StyleSettingEntry[]) {
-  await styleHandlerMutex.runExclusive(async () => {
-    for (const entry of entries) {
-      styleEntriesByType.set(entry.type, entry);
-    }
-    const orderedEntries = watchedStorageKeys
-      .map((type) => styleEntriesByType.get(type))
-      .filter((entry) => entry !== undefined);
-    const css = (await Promise.all(orderedEntries.map(buildStyleCss))).join("\n");
-
-    const oldStyle = document.getElementById(styleElementId);
-    if (oldStyle) {
-      oldStyle.textContent = css;
-    } else {
-      const style = document.createElement("style");
-      style.setAttribute("type", "text/css");
-      style.setAttribute("id", styleElementId);
-      style.textContent = css;
-      document.head.appendChild(style);
-    }
-  });
+function toChangedMoreStyleSettingEntries(newSettings: MoreSettings, oldSettings: MoreSettings) {
+  return watchedMoreStorageKeys
+    .filter((key) => newSettings[key] !== oldSettings[key])
+    .map((type) => ({
+      type,
+      value: newSettings[type],
+    })) as StyleSettingEntry[];
 }
 
-async function buildStyleCss(entry: StyleSettingEntry) {
+function styleHandler(entries: StyleSettingEntry[]) {
+  for (const entry of entries) {
+    styleEntriesByType.set(entry.type, entry);
+  }
+  const orderedEntries = watchedStyleStorageKeys
+    .map((type) => styleEntriesByType.get(type))
+    .filter((entry) => entry !== undefined);
+  const css = orderedEntries.map(buildStyleCss).join("\n");
+
+  const oldStyle = document.getElementById(styleElementId);
+  if (oldStyle) {
+    oldStyle.textContent = css;
+  } else {
+    const style = document.createElement("style");
+    style.setAttribute("type", "text/css");
+    style.setAttribute("id", styleElementId);
+    style.textContent = css;
+    document.head.appendChild(style);
+  }
+}
+
+function buildStyleCss(entry: StyleSettingEntry) {
   const rubySelector = `ruby.${FURIGANA_CLASS}`;
   const rtSelector = `${rubySelector} > rt`;
   const rtHoverSelector = `${rubySelector}:hover > rt`;
   const rpSelector = `${rubySelector} > rp`;
   const filteredRtSelector = `${rubySelector}.isFiltered > rt`;
 
-  const css = await match(entry)
+  const css = match(entry)
     .with({ type: ExtStorage.DisplayMode }, ({ value }) =>
       match(value)
         .with(
@@ -183,13 +222,14 @@ async function buildStyleCss(entry: StyleSettingEntry) {
           font-size: ${value}%;
         }`,
     )
-    .with({ type: ExtStorage.FontColor }, async ({ value }) => {
-      const coloringKanji = await getMoreSettings(ExtStorage.ColoringKanji);
+    .with({ type: ExtStorage.FontColor }, ({ value }) => {
+      const coloringKanji = styleEntriesByType.get(ExtStorage.ColoringKanji)?.value ?? false;
       return `
         ${coloringKanji ? rubySelector : rtSelector} {
           color: ${value};
         }`;
     })
+    .with({ type: ExtStorage.ColoringKanji }, () => "")
     .with({ type: ExtStorage.KanjiFilter }, ({ value }) =>
       value
         ? `

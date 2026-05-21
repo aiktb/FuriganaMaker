@@ -18,15 +18,6 @@ catalogs:
     '@iconify-json/fa6-brands':
       specifier: ^1.2.6
       version: 1.2.6
-    '@react-router/cloudflare':
-      specifier: ^7.15.1
-      version: 7.15.1
-    '@react-router/dev':
-      specifier: ^7.15.1
-      version: 7.15.1
-    '@react-router/fs-routes':
-      specifier: ^7.15.1
-      version: 7.15.1
     '@tailwindcss/forms':
       specifier: ^0.5.11
       version: 0.5.11
@@ -75,9 +66,6 @@ catalogs:
     ts-pattern:
       specifier: ^5.9.0
       version: 5.9.0
-    vite:
-      specifier: ^8.0.13
-      version: 8.0.13
     zustand:
       specifier: ^5.0.13
       version: 5.0.13
@@ -122,9 +110,6 @@ importers:
       '@webext-core/messaging':
         specifier: ^2.3.0
         version: 2.3.0
-      async-mutex:
-        specifier: ^0.5.0
-        version: 0.5.0
       clsx:
         specifier: 'catalog:'
         version: 2.1.1
@@ -136,7 +121,7 @@ importers:
         version: 2.0.5
       i18next:
         specifier: ^26.2.0
-        version: 26.2.0(typescript@6.0.3)
+        version: 26.2.0
       idb:
         specifier: ^8.0.3
         version: 8.0.3
@@ -157,7 +142,7 @@ importers:
         version: 19.2.6(react@19.2.6)
       react-i18next:
         specifier: 16.3.3
-        version: 16.3.3(i18next@26.2.0(typescript@6.0.3))(react-dom@19.2.6(react@19.2.6))(react@19.2.6)(typescript@6.0.3)
+        version: 16.3.3(i18next@26.2.0)(react-dom@19.2.6(react@19.2.6))(react@19.2.6)
       react-markdown:
         specifier: ^10.1.0
         version: 10.1.0(@types/react@19.2.14)(react@19.2.6)
@@ -230,22 +215,22 @@ importers:
         version: 6.0.2(vite@8.0.13(@types/node@25.8.0)(esbuild@0.27.7)(jiti@2.7.0))
       '@wxt-dev/auto-icons':
         specifier: ^1.1.1
-        version: 1.1.1(wxt@0.20.26(@types/node@25.8.0)(jiti@2.7.0)(rolldown@1.0.1)(rollup@4.60.4))
+        version: 1.1.1(wxt@0.20.26(@types/node@25.8.0)(jiti@2.7.0)(rolldown@1.0.1))
       baseline-browser-mapping:
         specifier: 'catalog:'
         version: 2.10.30
       react-scan:
         specifier: 'catalog:'
-        version: 0.5.6(esbuild@0.27.7)(react-dom@19.2.6(react@19.2.6))(react@19.2.6)(rollup@4.60.4)
+        version: 0.5.6(esbuild@0.27.7)(react-dom@19.2.6(react@19.2.6))(react@19.2.6)
       tailwindcss:
         specifier: 'catalog:'
         version: 4.3.0
       vite-plugin-svgr:
         specifier: ^5.2.0
-        version: 5.2.0(rollup@4.60.4)(typescript@6.0.3)(vite@8.0.13(@types/node@25.8.0)(esbuild@0.27.7)(jiti@2.7.0))
+        version: 5.2.0(vite@8.0.13(@types/node@25.8.0)(esbuild@0.27.7)(jiti@2.7.0))
       wxt:
         specifier: ^0.20.26
-        version: 0.20.26(@types/node@25.8.0)(jiti@2.7.0)(rolldown@1.0.1)(rollup@4.60.4)
+        version: 0.20.26(@types/node@25.8.0)(jiti@2.7.0)(rolldown@1.0.1)
 
   website:
     dependencies:
@@ -4209,14 +4194,12 @@ snapshots:
       defu: 6.1.7
       many-keys-map: 3.0.3
 
-  '@aklinker1/rollup-plugin-visualizer@5.12.0(rollup@4.60.4)':
+  '@aklinker1/rollup-plugin-visualizer@5.12.0':
     dependencies:
       open: 8.4.2
       picomatch: 2.3.2
       source-map: 0.7.6
       yargs: 17.7.2
-    optionalDependencies:
-      rollup: 4.60.4
 
   '@antfu/install-pkg@1.1.0':
     dependencies:
@@ -5202,13 +5185,11 @@ snapshots:
 
   '@rolldown/pluginutils@1.0.1': {}
 
-  '@rollup/pluginutils@5.3.0(rollup@4.60.4)':
+  '@rollup/pluginutils@5.3.0':
     dependencies:
       '@types/estree': 1.0.9
       estree-walker: 2.0.2
       picomatch: 4.0.4
-    optionalDependencies:
-      rollup: 4.60.4
 
   '@rollup/rollup-android-arm-eabi@4.60.4':
     optional: true
@@ -5339,12 +5320,12 @@ snapshots:
       '@svgr/babel-plugin-transform-react-native-svg': 8.1.0(@babel/core@7.29.0)
       '@svgr/babel-plugin-transform-svg-component': 8.0.0(@babel/core@7.29.0)
 
-  '@svgr/core@8.1.0(typescript@6.0.3)':
+  '@svgr/core@8.1.0':
     dependencies:
       '@babel/core': 7.29.0
       '@svgr/babel-preset': 8.1.0(@babel/core@7.29.0)
       camelcase: 6.3.0
-      cosmiconfig: 8.3.6(typescript@6.0.3)
+      cosmiconfig: 8.3.6
       snake-case: 3.0.4
     transitivePeerDependencies:
       - supports-color
@@ -5355,11 +5336,11 @@ snapshots:
       '@babel/types': 7.29.0
       entities: 4.5.0
 
-  '@svgr/plugin-jsx@8.1.0(@svgr/core@8.1.0(typescript@6.0.3))':
+  '@svgr/plugin-jsx@8.1.0(@svgr/core@8.1.0)':
     dependencies:
       '@babel/core': 7.29.0
       '@svgr/babel-preset': 8.1.0(@babel/core@7.29.0)
-      '@svgr/core': 8.1.0(typescript@6.0.3)
+      '@svgr/core': 8.1.0
       '@svgr/hast-util-to-babel-ast': 8.0.0
       svg-parser: 2.0.4
     transitivePeerDependencies:
@@ -5537,12 +5518,12 @@ snapshots:
       uid: 2.0.2
       webextension-polyfill: 0.10.0
 
-  '@wxt-dev/auto-icons@1.1.1(wxt@0.20.26(@types/node@25.8.0)(jiti@2.7.0)(rolldown@1.0.1)(rollup@4.60.4))':
+  '@wxt-dev/auto-icons@1.1.1(wxt@0.20.26(@types/node@25.8.0)(jiti@2.7.0)(rolldown@1.0.1))':
     dependencies:
       defu: 6.1.7
       fs-extra: 11.3.5
       sharp: 0.34.5
-      wxt: 0.20.26(@types/node@25.8.0)(jiti@2.7.0)(rolldown@1.0.1)(rollup@4.60.4)
+      wxt: 0.20.26(@types/node@25.8.0)(jiti@2.7.0)(rolldown@1.0.1)
 
   '@wxt-dev/browser@0.1.42':
     dependencies:
@@ -5843,14 +5824,12 @@ snapshots:
       jiti: 2.6.1
       typescript: 6.0.3
 
-  cosmiconfig@8.3.6(typescript@6.0.3):
+  cosmiconfig@8.3.6:
     dependencies:
       import-fresh: 3.3.1
       js-yaml: 4.1.1
       parse-json: 5.2.0
       path-type: 4.0.0
-    optionalDependencies:
-      typescript: 6.0.3
 
   cosmiconfig@9.0.1(typescript@6.0.3):
     dependencies:
@@ -6206,9 +6185,7 @@ snapshots:
       domutils: 3.2.2
       entities: 7.0.1
 
-  i18next@26.2.0(typescript@6.0.3):
-    optionalDependencies:
-      typescript: 6.0.3
+  i18next@26.2.0: {}
 
   idb@8.0.3: {}
 
@@ -7127,16 +7104,15 @@ snapshots:
     optionalDependencies:
       react: 19.2.6
 
-  react-i18next@16.3.3(i18next@26.2.0(typescript@6.0.3))(react-dom@19.2.6(react@19.2.6))(react@19.2.6)(typescript@6.0.3):
+  react-i18next@16.3.3(i18next@26.2.0)(react-dom@19.2.6(react@19.2.6))(react@19.2.6):
     dependencies:
       '@babel/runtime': 7.29.2
       html-parse-stringify: 3.0.1
-      i18next: 26.2.0(typescript@6.0.3)
+      i18next: 26.2.0
       react: 19.2.6
       use-sync-external-store: 1.6.0(react@19.2.6)
     optionalDependencies:
       react-dom: 19.2.6(react@19.2.6)
-      typescript: 6.0.3
 
   react-markdown@10.1.0(@types/react@19.2.14)(react@19.2.6):
     dependencies:
@@ -7166,12 +7142,12 @@ snapshots:
     optionalDependencies:
       react-dom: 19.2.6(react@19.2.6)
 
-  react-scan@0.5.6(esbuild@0.27.7)(react-dom@19.2.6(react@19.2.6))(react@19.2.6)(rollup@4.60.4):
+  react-scan@0.5.6(esbuild@0.27.7)(react-dom@19.2.6(react@19.2.6))(react@19.2.6):
     dependencies:
       '@babel/core': 7.29.0
       '@babel/types': 7.29.0
       '@preact/signals': 1.3.4(preact@10.29.1)
-      '@rollup/pluginutils': 5.3.0(rollup@4.60.4)
+      '@rollup/pluginutils': 5.3.0
       bippy: 0.5.40(react@19.2.6)
       commander: 14.0.3
       picocolors: 1.1.1
@@ -7717,11 +7693,11 @@ snapshots:
       uuid: 11.1.1
       vite: 8.0.13(@types/node@25.8.0)(esbuild@0.27.7)(jiti@2.7.0)
 
-  vite-plugin-svgr@5.2.0(rollup@4.60.4)(typescript@6.0.3)(vite@8.0.13(@types/node@25.8.0)(esbuild@0.27.7)(jiti@2.7.0)):
+  vite-plugin-svgr@5.2.0(vite@8.0.13(@types/node@25.8.0)(esbuild@0.27.7)(jiti@2.7.0)):
     dependencies:
-      '@rollup/pluginutils': 5.3.0(rollup@4.60.4)
-      '@svgr/core': 8.1.0(typescript@6.0.3)
-      '@svgr/plugin-jsx': 8.1.0(@svgr/core@8.1.0(typescript@6.0.3))
+      '@rollup/pluginutils': 5.3.0
+      '@svgr/core': 8.1.0
+      '@svgr/plugin-jsx': 8.1.0(@svgr/core@8.1.0)
       vite: 8.0.13(@types/node@25.8.0)(esbuild@0.27.7)(jiti@2.7.0)
     transitivePeerDependencies:
       - rollup
@@ -7862,10 +7838,10 @@ snapshots:
       is-wsl: 3.1.1
       powershell-utils: 0.1.0
 
-  wxt@0.20.26(@types/node@25.8.0)(jiti@2.7.0)(rolldown@1.0.1)(rollup@4.60.4):
+  wxt@0.20.26(@types/node@25.8.0)(jiti@2.7.0)(rolldown@1.0.1):
     dependencies:
       '@1natsu/wait-element': 4.2.0
-      '@aklinker1/rollup-plugin-visualizer': 5.12.0(rollup@4.60.4)
+      '@aklinker1/rollup-plugin-visualizer': 5.12.0
       '@webext-core/fake-browser': 1.3.4
       '@webext-core/isolated-element': 1.1.5
       '@webext-core/match-patterns': 1.0.3
