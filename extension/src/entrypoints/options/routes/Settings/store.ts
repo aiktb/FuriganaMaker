@@ -61,3 +61,7 @@ export const useMoreSettingsStore = create<MoreSettingsStore>()(
     },
   ),
 );
+
+moreSettings.watch((value) => {
+  useMoreSettingsStore.setState(value);
+});

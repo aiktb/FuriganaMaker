@@ -19,14 +19,12 @@ export const registerOnCommand = () => {
       .with("toggleKanjiFilter", async () => {
         const kanjiFilter = await getGeneralSettings(ExtStorage.KanjiFilter);
         await setGeneralSettings(ExtStorage.KanjiFilter, !kanjiFilter);
-        await sendMessage(tabId, ExtEvent.ToggleKanjiFilter);
       })
       .with("toggleFuriganaVisibility", async () => {
         const displayMode = await getGeneralSettings(ExtStorage.DisplayMode);
         const nextDisplayMode =
           displayMode === DisplayMode.Never ? DisplayMode.Always : DisplayMode.Never;
         await setGeneralSettings(ExtStorage.DisplayMode, nextDisplayMode);
-        await sendMessage(tabId, ExtEvent.SwitchDisplayMode);
       })
       .with("openPlaygroundPage", () => {
         browser.tabs.create({ url: browser.runtime.getURL("/options.html#/playground") });

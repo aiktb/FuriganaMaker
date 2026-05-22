@@ -78,14 +78,11 @@ describe("Content scripts", () => {
     // Wait for the body to be loaded & ruby auto added
     await page.waitForSelector("body ruby");
 
-    const headRubyCount = await page.$$eval("head ruby", (els) => els.length);
-    expect(headRubyCount).toBe(0);
+    await expect(page.locator("head ruby")).toHaveCount(0);
 
-    const title = await page.title();
-    expect(title).toBe("日本語タイトル");
+    await expect(page).toHaveTitle("日本語タイトル");
 
-    const bodyRubyCount = await page.$$eval("body ruby", (els) => els.length);
-    expect(bodyRubyCount).toBeGreaterThan(0);
+    await expect(page.locator("body ruby")).not.toHaveCount(0);
   });
 
   test("Automatically add furigana when a matching element is added dynamically", async ({

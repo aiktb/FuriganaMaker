@@ -1,7 +1,17 @@
+import { debounce } from "es-toolkit";
 import { create } from "zustand";
 import { persist } from "zustand/middleware";
 import { ExtStorage, type GeneralSettings } from "@/commons/constants";
 import { generalSettings, generalSettingsFallback } from "@/commons/utils";
+
+const STORAGE_WRITE_DEBOUNCE_WAIT = 100;
+/**
+ * Debounce storage writes to avoid async write order inversions and excessive
+ * calls that can exceed Chrome extension storage API limits.
+ */
+const setGeneralSettingsDebounced = debounce((value: GeneralSettings) => {
+  generalSettings.setValue(value);
+}, STORAGE_WRITE_DEBOUNCE_WAIT);
 
 interface GeneralSettingsStore extends GeneralSettings {
   toggleAutoMode: () => void;
@@ -46,8 +56,8 @@ export const useGeneralSettingsStore = create<GeneralSettingsStore>()(
             state: await generalSettings.getValue(),
           };
         },
-        async setItem(_, value) {
-          await generalSettings.setValue(value.state);
+        setItem(_, value) {
+          setGeneralSettingsDebounced(value.state);
         },
         async removeItem() {
           await generalSettings.removeValue();
@@ -56,3 +66,7 @@ export const useGeneralSettingsStore = create<GeneralSettingsStore>()(
     },
   ),
 );
+
+generalSettings.watch((value) => {
+  useGeneralSettingsStore.setState(value);
+});

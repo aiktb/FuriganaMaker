@@ -1,4 +1,3 @@
-import { debounce, isNotNil } from "es-toolkit";
 import { useTranslation } from "react-i18next";
 import ColorPickerIcon from "@/assets/icons/ColorPicker.svg?react";
 import CursorOutlineIcon from "@/assets/icons/CursorDefault.svg?react";
@@ -57,25 +56,6 @@ export function Root() {
     { label: t("optionParentheses"), value: SelectMode.Parentheses },
   ];
 
-  type ACTIONTYPE =
-    | { type: typeof ExtEvent.ToggleAutoMode; payload: boolean }
-    | { type: typeof ExtEvent.ToggleKanjiFilter; payload: boolean }
-    | { type: typeof ExtEvent.SwitchDisplayMode; payload: DisplayMode }
-    | { type: typeof ExtEvent.SwitchFuriganaType; payload: FuriganaType }
-    | { type: typeof ExtEvent.SwitchSelectMode; payload: SelectMode }
-    | { type: typeof ExtEvent.AdjustFontSize; payload: number }
-    | { type: typeof ExtEvent.AdjustFontColor; payload: string };
-
-  const handleEventHappened = async (action: ACTIONTYPE) => {
-    // Query all tabs
-    const tabs = await browser.tabs.query({});
-    const ids = tabs.map((tab) => tab.id).filter(isNotNil);
-    await Promise.all(ids.map((id) => sendMessage(id, action.type)));
-  };
-
-  // Debounce to prevent exceeding the maximum number of modifications to chrome.storage in a short period of time.
-  const handleEventHappenedWithDebounced = debounce(handleEventHappened, 100);
-
   return (
     <menu className="space-y-2 border-sky-500 border-r-2 pr-1 font-sans">
       <MenuItem icon={<CursorOutlineIcon />}>
@@ -92,10 +72,7 @@ export function Root() {
           tip={t("tipRefreshPage")}
           text={t("toggleAutoMode")}
           checked={autoModeEnabled}
-          onChange={(enabled) => {
-            toggleAutoMode();
-            handleEventHappenedWithDebounced({ type: ExtEvent.ToggleAutoMode, payload: enabled });
-          }}
+          onChange={toggleAutoMode}
         />
       </MenuItem>
       <MenuItem icon={<FilterIcon className={cn(kanjiFilterEnabled && "text-sky-500")} />}>
@@ -104,13 +81,7 @@ export function Root() {
           tip={t("tipFilterLevel")}
           text={t("toggleKanjiFilter")}
           checked={kanjiFilterEnabled}
-          onChange={(enabled) => {
-            toggleKanjiFilter();
-            handleEventHappenedWithDebounced({
-              type: ExtEvent.ToggleKanjiFilter,
-              payload: enabled,
-            });
-          }}
+          onChange={toggleKanjiFilter}
         />
       </MenuItem>
       <MenuItem icon={<EyeIcon />}>
@@ -118,13 +89,7 @@ export function Root() {
           className="playwright-switch-display-mode"
           selected={selectedDisplayMode}
           options={displayModeOptions}
-          onChange={(selected) => {
-            setDisplayMode(selected as DisplayMode);
-            handleEventHappenedWithDebounced({
-              type: ExtEvent.SwitchDisplayMode,
-              payload: selected as DisplayMode,
-            });
-          }}
+          onChange={(selected: string) => setDisplayMode(selected as DisplayMode)}
         />
       </MenuItem>
       <MenuItem icon={<HiraganaIcon />}>
@@ -132,13 +97,7 @@ export function Root() {
           className="playwright-switch-furigana-type"
           selected={selectedFuriganaType}
           options={furiganaTypeOptions}
-          onChange={(selected) => {
-            setFuriganaType(selected as FuriganaType);
-            handleEventHappenedWithDebounced({
-              type: ExtEvent.SwitchFuriganaType,
-              payload: selected as FuriganaType,
-            });
-          }}
+          onChange={(selected: string) => setFuriganaType(selected as FuriganaType)}
         />
       </MenuItem>
       <MenuItem icon={<CursorTextIcon />}>
@@ -147,13 +106,7 @@ export function Root() {
           tip={t("tipCopyText")}
           selected={selectedSelectMode}
           options={selectModeOptions}
-          onChange={(selected) => {
-            setSelectMode(selected as SelectMode);
-            handleEventHappenedWithDebounced({
-              type: ExtEvent.SwitchSelectMode,
-              payload: selected as SelectMode,
-            });
-          }}
+          onChange={(selected: string) => setSelectMode(selected as SelectMode)}
         />
       </MenuItem>
       <MenuItem icon={<FontSizeIcon />}>
@@ -164,20 +117,14 @@ export function Root() {
           max={100}
           step={1}
           label={t("labelAdjustFont")}
-          onChange={(value) => {
-            setFontSize(value);
-            handleEventHappenedWithDebounced({ type: ExtEvent.AdjustFontSize, payload: value });
-          }}
+          onChange={setFontSize}
         />
       </MenuItem>
       <MenuItem icon={<ColorPickerIcon />}>
         <ColorPicker
           className="playwright-adjust-font-color-picker"
           color={fontColor}
-          onChange={(color) => {
-            setFontColor(color);
-            handleEventHappenedWithDebounced({ type: ExtEvent.AdjustFontColor, payload: color });
-          }}
+          onChange={setFontColor}
         />
       </MenuItem>
       <MenuItem icon={<i className="i-tabler-ballpen" />}>

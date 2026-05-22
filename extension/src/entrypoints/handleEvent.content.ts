@@ -7,11 +7,28 @@ import {
   ExtStorage,
   FURIGANA_CLASS,
   FuriganaType,
+  type GeneralSettings,
+  type MoreSettings,
   SelectMode,
-  type StyleEvent,
 } from "@/commons/constants";
 import { Selector } from "@/commons/selectElement";
-import { getGeneralSettings, getMoreSettings, toStorageKey } from "@/commons/utils";
+import { generalSettings, moreSettings } from "@/commons/utils";
+
+const watchedGeneralStorageKeys = [
+  ExtStorage.DisplayMode,
+  ExtStorage.SelectMode,
+  ExtStorage.FontSize,
+  ExtStorage.FontColor,
+  ExtStorage.KanjiFilter,
+] as const;
+const watchedMoreStorageKeys = [ExtStorage.ColoringKanji] as const;
+
+type WatchedGeneralStorageKey = (typeof watchedGeneralStorageKeys)[number];
+type WatchedMoreStorageKey = (typeof watchedMoreStorageKeys)[number];
+type StyleSettings = Pick<GeneralSettings, WatchedGeneralStorageKey> &
+  Pick<MoreSettings, WatchedMoreStorageKey>;
+
+const styleElementId = `${FURIGANA_CLASS}styles`;
 
 export default defineContentScript({
   matches: ["*://*/*"],
@@ -20,48 +37,98 @@ export default defineContentScript({
   async main() {
     // styleHandler uses storage and is called immediately,
     // so it needs to be initialized immediately.
-    const styleEvents = [
-      ExtEvent.SwitchDisplayMode,
-      ExtEvent.SwitchSelectMode,
-      ExtEvent.AdjustFontSize,
-      ExtEvent.AdjustFontColor,
-      ExtEvent.ToggleKanjiFilter,
-    ] as const satisfies StyleEvent[];
-    await Promise.all(styleEvents.map((item) => styleHandler(item)));
-    const isStyleEvent = (event: ExtEvent): event is StyleEvent => styleEvents.includes(event);
+    const [generalStorage, moreStorage] = await Promise.all([
+      generalSettings.getValue(),
+      moreSettings.getValue(),
+    ]);
+    styleHandler(toStyleSettings(generalStorage, moreStorage));
+
+    generalSettings.watch(async (newSettings, oldSettings) => {
+      if (hasChanged(watchedGeneralStorageKeys, newSettings, oldSettings)) {
+        styleHandler(toStyleSettings(newSettings, await moreSettings.getValue()));
+      }
+      if (newSettings[ExtStorage.FuriganaType] !== oldSettings[ExtStorage.FuriganaType]) {
+        switchFuriganaHandler(newSettings[ExtStorage.FuriganaType]);
+      }
+    });
+    moreSettings.watch(async (newSettings, oldSettings) => {
+      if (hasChanged(watchedMoreStorageKeys, newSettings, oldSettings)) {
+        styleHandler(toStyleSettings(await generalSettings.getValue(), newSettings));
+      }
+    });
+
     browser.runtime.onMessage.addListener((event: ExtEvent) => {
       if (event === ExtEvent.AddFurigana) {
         addFuriganaHandler();
-      } else if (event === ExtEvent.SwitchFuriganaType) {
-        switchFuriganaHandler();
-      } else if (isStyleEvent(event)) {
-        styleHandler(event);
       }
     });
   },
 });
 
-async function styleHandler(type: StyleEvent) {
+function toStyleSettings(general: GeneralSettings, more: MoreSettings): StyleSettings {
+  return {
+    ...toGeneralStyleSettings(general),
+    ...toMoreStyleSettings(more),
+  };
+}
+
+function toGeneralStyleSettings(settings: GeneralSettings) {
+  return {
+    [ExtStorage.DisplayMode]: settings[ExtStorage.DisplayMode],
+    [ExtStorage.SelectMode]: settings[ExtStorage.SelectMode],
+    [ExtStorage.FontSize]: settings[ExtStorage.FontSize],
+    [ExtStorage.FontColor]: settings[ExtStorage.FontColor],
+    [ExtStorage.KanjiFilter]: settings[ExtStorage.KanjiFilter],
+  } satisfies Pick<StyleSettings, WatchedGeneralStorageKey>;
+}
+
+function toMoreStyleSettings(settings: MoreSettings) {
+  return {
+    [ExtStorage.ColoringKanji]: settings[ExtStorage.ColoringKanji],
+  } satisfies Pick<StyleSettings, WatchedMoreStorageKey>;
+}
+
+function hasChanged<T extends Record<K, unknown>, K extends keyof T>(
+  keys: readonly K[],
+  newSettings: T,
+  oldSettings: T,
+) {
+  return keys.some((key) => newSettings[key] !== oldSettings[key]);
+}
+
+function styleHandler(settings: StyleSettings) {
+  const css = buildStyleCss(settings);
+
+  const oldStyle = document.getElementById(styleElementId);
+  if (oldStyle) {
+    oldStyle.textContent = css;
+  } else {
+    const style = document.createElement("style");
+    style.setAttribute("type", "text/css");
+    style.setAttribute("id", styleElementId);
+    style.textContent = css;
+    document.head.appendChild(style);
+  }
+}
+
+function buildStyleCss(settings: StyleSettings) {
   const rubySelector = `ruby.${FURIGANA_CLASS}`;
   const rtSelector = `${rubySelector} > rt`;
   const rtHoverSelector = `${rubySelector}:hover > rt`;
   const rpSelector = `${rubySelector} > rp`;
   const filteredRtSelector = `${rubySelector}.isFiltered > rt`;
 
-  const value = await getGeneralSettings(toStorageKey(type));
-  const css = await match(type)
-    .with(ExtEvent.SwitchDisplayMode, () =>
-      match(value as DisplayMode)
-        .with(
-          DisplayMode.Never,
-          () => `
+  const displayModeCss = match(settings[ExtStorage.DisplayMode])
+    .with(
+      DisplayMode.Never,
+      () => `
           ${rtSelector} {
             display: none;
           }`,
-        )
-        .with(
-          DisplayMode.Hover,
-          () => `
+    )
+    .with(
+      DisplayMode.Hover,
+      () => `
           ${rtSelector} {
             opacity: 0;
           }
@@ -69,10 +136,10 @@ async function styleHandler(type: StyleEvent) {
           ${rtHoverSelector} {
             opacity: 1;
           }`,
-        )
-        .with(
-          DisplayMode.HoverNoGap,
-          () => `
+    )
+    .with(
+      DisplayMode.HoverNoGap,
+      () => `
           ${rtSelector} {
             display: none;
           }
@@ -80,10 +147,10 @@ async function styleHandler(type: StyleEvent) {
           ${rtHoverSelector} {
             display: revert;
           }`,
-        )
-        .with(
-          DisplayMode.HoverMask,
-          () => `
+    )
+    .with(
+      DisplayMode.HoverMask,
+      () => `
           ${rtSelector} {
             background-color: currentColor;
             border-radius: 0.25em;
@@ -93,19 +160,16 @@ async function styleHandler(type: StyleEvent) {
             background-color: transparent;
             transition: background-color 0.15s ease-in-out;
           }`,
-        )
-        .with(DisplayMode.Always, () => "")
-        .exhaustive(),
     )
-    .with(
-      ExtEvent.SwitchSelectMode,
-      () => `
+    .with(DisplayMode.Always, () => "")
+    .exhaustive();
+  const selectModeCss = `
         ${rtSelector} {
-          user-select: ${value === SelectMode.Original ? "none" : "text"};
+          user-select: ${settings[ExtStorage.SelectMode] === SelectMode.Original ? "none" : "text"};
         }
 
         ${rpSelector} {
-          display: ${value === SelectMode.Parentheses ? "block" : "none"};
+          display: ${settings[ExtStorage.SelectMode] === SelectMode.Parentheses ? "block" : "none"};
           position: absolute;
           width: 1px;
           height: 1px;
@@ -115,48 +179,28 @@ async function styleHandler(type: StyleEvent) {
           clip: rect(0, 0, 0, 0);
           white-space: nowrap;
           border-width: 0;
-        }`,
-    )
-    .with(
-      ExtEvent.AdjustFontSize,
-      () => `
-        ${rtSelector} {
-          font-size: ${value}%;
-        }`,
-    )
-    .with(ExtEvent.AdjustFontColor, async () => {
-      const coloringKanji = await getMoreSettings(ExtStorage.ColoringKanji);
-      return `
-        ${coloringKanji ? rubySelector : rtSelector} {
-          color: ${value};
         }`;
-    })
-    .with(ExtEvent.ToggleKanjiFilter, () =>
-      value
-        ? `
+  const fontSizeCss = `
+        ${rtSelector} {
+          font-size: ${settings[ExtStorage.FontSize]}%;
+        }`;
+  const fontColorCss = `
+        ${settings[ExtStorage.ColoringKanji] ? rubySelector : rtSelector} {
+          color: ${settings[ExtStorage.FontColor]};
+        }`;
+  const kanjiFilterCss = settings[ExtStorage.KanjiFilter]
+    ? `
           ${filteredRtSelector} {
             display: none;
           }`
-        : "",
-    )
-    .exhaustive();
-  const id = `${FURIGANA_CLASS}${type}`;
-  const oldStyle = document.getElementById(id);
-  if (oldStyle) {
-    oldStyle.textContent = css;
-  } else {
-    const style = document.createElement("style");
-    style.setAttribute("type", "text/css");
-    style.setAttribute("id", id);
-    style.textContent = css;
-    document.head.appendChild(style);
-  }
+    : "";
+
+  return [displayModeCss, selectModeCss, fontSizeCss, fontColorCss, kanjiFilterCss].join("\n");
 }
 
-async function switchFuriganaHandler() {
+function switchFuriganaHandler(value: FuriganaType) {
   const rtSelector = `ruby.${FURIGANA_CLASS} > rt`;
   const nodes = document.querySelectorAll(rtSelector);
-  const value = await getGeneralSettings(ExtStorage.FuriganaType);
   const transformer = match(value)
     .with(FuriganaType.Hiragana, () => toHiragana)
     .with(FuriganaType.Katakana, () => toKatakana)
