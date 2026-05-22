@@ -8,10 +8,18 @@ describe("Extension popup page", () => {
   });
 
   const getGeneralSettings = async (page: Page) => {
-    const storage: { generalSettings: GeneralSettings } = await page.evaluate(
+    const storage: { generalSettings?: GeneralSettings } = await page.evaluate(
       "chrome.storage.local.get('generalSettings')",
     );
     return storage.generalSettings;
+  };
+
+  const expectGeneralSetting = async <K extends keyof GeneralSettings>(
+    page: Page,
+    key: K,
+    value: GeneralSettings[K],
+  ) => {
+    await expect.poll(async () => (await getGeneralSettings(page))?.[key]).toBe(value);
   };
 
   test("Default settings are displayed", async ({ page }) => {
@@ -36,10 +44,10 @@ describe("Extension popup page", () => {
     const autoModeToggle = page.getByRole("switch", { name: "On-Off Auto Mode" });
     await autoModeToggle.click();
     expect(await autoModeToggle.isChecked()).toBe(false);
-    expect((await getGeneralSettings(page))[ExtStorage.AutoMode]).toBeFalsy();
+    await expectGeneralSetting(page, ExtStorage.AutoMode, false);
     await autoModeToggle.click();
     expect(await autoModeToggle.isChecked()).toBe(true);
-    expect((await getGeneralSettings(page))[ExtStorage.AutoMode]).toBeTruthy();
+    await expectGeneralSetting(page, ExtStorage.AutoMode, true);
   });
 
   test("Setting listboxes, and correctly saves the settings to storage", async ({ page }) => {
@@ -48,7 +56,7 @@ describe("Extension popup page", () => {
     expect(listBox).toBeVisible();
     await listBox.getByText("Hover Gap").click();
     expect(page.getByRole("button", { name: "Hover Gap" })).toBeVisible();
-    expect((await getGeneralSettings(page))[ExtStorage.DisplayMode]).toBe("hover gap");
+    await expectGeneralSetting(page, ExtStorage.DisplayMode, "hover gap");
   });
 
   test("Click the slider to setting font size", async ({ page }) => {
@@ -60,23 +68,23 @@ describe("Extension popup page", () => {
     const TOLERANCE = 10;
     await sliderTrack.click({ force: true, position: { x: TOLERANCE, y: 0 } });
     expect(await sliderTrack.getAttribute("aria-valuenow")).toBe("50");
-    expect((await getGeneralSettings(page))[ExtStorage.FontSize]).toBe(50);
+    await expectGeneralSetting(page, ExtStorage.FontSize, 50);
 
     await sliderTrack.click({ force: true, position: { x: sliderOffsetWidth - TOLERANCE, y: 0 } });
     expect(await sliderTrack.getAttribute("aria-valuenow")).toBe("100");
-    expect((await getGeneralSettings(page))[ExtStorage.FontSize]).toBe(100);
+    await expectGeneralSetting(page, ExtStorage.FontSize, 100);
   });
 
   test("Open color picker, and setting font color", async ({ page }) => {
     await page.getByRole("button", { name: "Select Color" }).click();
     await page.getByRole("button", { name: "#000000", exact: true }).click();
-    expect((await getGeneralSettings(page))[ExtStorage.FontColor]).toBe("#000000ff");
+    await expectGeneralSetting(page, ExtStorage.FontColor, "#000000ff");
     await page.getByRole("button", { name: "Reset" }).click();
-    expect((await getGeneralSettings(page))[ExtStorage.FontColor]).toBe("currentColor");
+    await expectGeneralSetting(page, ExtStorage.FontColor, "currentColor");
     const input = page.getByLabel("HEX");
     await input.fill("00ffff");
     await input.press("Enter");
-    expect((await getGeneralSettings(page))[ExtStorage.FontColor]).toBe("#00ffffff");
+    await expectGeneralSetting(page, ExtStorage.FontColor, "#00ffffff");
     const closeBtn = page.locator(".playwright-color-picker-close-btn");
     expect(closeBtn).toBeTruthy();
   });
