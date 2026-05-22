@@ -1,5 +1,12 @@
 # Changelog
 
+## [3.7.0](https://github.com/aiktb/furiganamaker/compare/v3.6.0...v3.7.0) (2026-05-22)
+
+
+### Features
+
+* synchronizes and updates user settings in real time across all third-party pages and extension pages ([#460](https://github.com/aiktb/furiganamaker/issues/460)) ([cea61f4](https://github.com/aiktb/furiganamaker/commit/cea61f4d478689d2c6fd56f59ea06ae9461b248f))
+
 ## [3.6.0](https://github.com/aiktb/furiganamaker/compare/v3.5.0...v3.6.0) (2026-05-17)
 
 
