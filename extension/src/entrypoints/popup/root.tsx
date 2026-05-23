@@ -104,7 +104,7 @@ export function Root() {
           onChange={(selected: string) => setFuriganaType(selected as FuriganaType)}
         />
       </MenuItem>
-      <MenuItem icon={<CursorTextIcon />}>
+      <MenuItem icon={<CursorTextIcon className={cn(import.meta.env.FIREFOX && "opacity-60")} />}>
         <Select
           className="playwright-switch-select-mode"
           tip={import.meta.env.FIREFOX ? t("tipFirefoxUnsupported") : t("tipCopyText")}
