@@ -12,17 +12,27 @@ interface SelectProps {
   selected: string;
   options: { label: string; value: string }[];
   tip?: string;
+  disabled?: boolean;
   onChange: (selected: string) => void;
   className?: string;
 }
 
-export function Select({ selected, options, tip, onChange, className }: SelectProps) {
+export function Select({
+  selected,
+  options,
+  tip,
+  disabled = false,
+  onChange,
+  className,
+}: SelectProps) {
   function ListBoxButton() {
     return (
       <ListboxButton
+        disabled={disabled}
         className={cn(
           "group peer flex w-full cursor-pointer items-center justify-between rounded-sm ui-open:bg-gray-200 px-2 capitalize transition-all hover:bg-gray-200 focus-visible:bg-gray-200 dark:ui-open:bg-slate-700 dark:focus-visible:bg-slate-700 dark:hover:bg-slate-700",
           className,
+          disabled && "cursor-not-allowed opacity-60",
         )}
       >
         {options.find((option) => option.value === selected)?.label}
@@ -32,7 +42,7 @@ export function Select({ selected, options, tip, onChange, className }: SelectPr
   }
 
   return (
-    <Listbox value={selected} onChange={onChange}>
+    <Listbox value={selected} onChange={onChange} disabled={disabled}>
       <div className="relative w-full">
         {tip ? (
           <ToolTip tip={tip}>

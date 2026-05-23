@@ -107,9 +107,10 @@ export function Root() {
       <MenuItem icon={<CursorTextIcon />}>
         <Select
           className="playwright-switch-select-mode"
-          tip={t("tipCopyText")}
+          tip={import.meta.env.FIREFOX ? t("tipFirefoxUnsupported") : t("tipCopyText")}
           selected={selectedSelectMode}
           options={selectModeOptions}
+          disabled={import.meta.env.FIREFOX}
           onChange={(selected: string) => setSelectMode(selected as SelectMode)}
         />
       </MenuItem>
