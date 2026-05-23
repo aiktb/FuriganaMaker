@@ -52,14 +52,14 @@ export function Select({ selected, options, tip, onChange, className }: SelectPr
           <ListboxOptions
             as="div"
             anchor="bottom"
-            className="z-40 mt-1 flex w-[var(--button-width)] flex-col rounded-md border-2 border-gray-300 bg-white py-1 shadow-sm dark:border-slate-700 dark:bg-slate-900"
+            className="z-40 mt-1 flex w-(--button-width) flex-col rounded-md border-2 border-gray-300 bg-white py-1 shadow-sm dark:border-slate-700 dark:bg-slate-900"
           >
             {options.map((item) => (
               <ListboxOption key={item.value} value={item.value}>
                 {({ focus, selected }) => (
                   <li
                     className={cn(
-                      "box-content flex cursor-pointer items-center justify-between ui-active:bg-gray-200 px-[6px] capitalize transition-all hover:bg-gray-200 focus:z-10 focus:bg-gray-200 dark:ui-active:bg-slate-700 dark:focus:bg-slate-700 dark:hover:bg-slate-700",
+                      "box-content flex cursor-pointer items-center justify-between ui-active:bg-gray-200 px-1.5 text-sm capitalize transition-all hover:bg-gray-200 focus:z-10 focus:bg-gray-200 dark:ui-active:bg-slate-700 dark:focus:bg-slate-700 dark:hover:bg-slate-700",
                       focus || selected ? "text-sky-500" : "text-current",
                     )}
                   >
