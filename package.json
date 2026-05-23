@@ -28,8 +28,11 @@
     "test:e2e": "pnpm --recursive --sequential run test:e2e:prod",
     "prepare": "lefthook install",
     "dev": "pnpm --filter extension run dev",
+    "dev:firefox": "pnpm --filter extension run dev:firefox",
     "build": "pnpm --filter extension run build",
-    "zip": "pnpm --filter extension run zip"
+    "build:firefox": "pnpm --filter extension run build:firefox",
+    "zip": "pnpm --filter extension run zip",
+    "zip:firefox": "pnpm --filter extension run zip:firefox"
   },
   "devDependencies": {
     "@biomejs/biome": "2.2.4",
