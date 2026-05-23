@@ -39,7 +39,9 @@ jobs:
       - run: pnpm install --frozen-lockfile
 
       - name: Build the extension
-        run: pnpm --filter extension run zip
+        run: |
+          pnpm --filter extension run zip
+          pnpm --filter extension run zip:firefox
 
       - name: Upload Release Artifact
         working-directory: ./extension
@@ -50,8 +52,10 @@ jobs:
             ## Download
             - [Chrome](https://chromewebstore.google.com/detail/furigana-maker/heodojceeinbkfjfilnfminlkgbacpfp)
             - [Edge](https://microsoftedge.microsoft.com/addons/detail/furigana-maker/kohpoklaaeicnkdapjkmljdachedmbbi)
+            - [Firefox](https://addons.mozilla.org/firefox/addon/furigana-maker/)
         run: |
           gh release upload ${{ needs.release-please.outputs.tag_name }} ./.output/*-chrome.zip
+          gh release upload ${{ needs.release-please.outputs.tag_name }} ./.output/*-firefox.zip
           gh release edit ${{ needs.release-please.outputs.tag_name }} --notes "$RELEASE_NOTES"
 
       - name: Submit to stores
@@ -59,12 +63,16 @@ jobs:
         run: |
           pnpm --filter extension exec wxt submit \
             --chrome-zip ./.output/*-chrome.zip \
+            --firefox-zip ./.output/*-firefox.zip \
             --edge-zip ./.output/*-chrome.zip \
         env:
           CHROME_EXTENSION_ID: ${{ secrets.CHROME_EXTENSION_ID }}
           CHROME_CLIENT_ID: ${{ secrets.CHROME_CLIENT_ID }}
           CHROME_CLIENT_SECRET: ${{ secrets.CHROME_CLIENT_SECRET }}
           CHROME_REFRESH_TOKEN: ${{ secrets.CHROME_REFRESH_TOKEN }}
+          FIREFOX_EXTENSION_ID: ${{ secrets.FIREFOX_EXTENSION_ID }}
+          FIREFOX_JWT_ISSUER: ${{ secrets.FIREFOX_JWT_ISSUER }}
+          FIREFOX_JWT_SECRET: ${{ secrets.FIREFOX_JWT_SECRET }}
           EDGE_PRODUCT_ID: ${{ secrets.EDGE_PRODUCT_ID }}
           EDGE_CLIENT_ID: ${{ secrets.EDGE_CLIENT_ID }}
           EDGE_API_KEY: ${{ secrets.EDGE_API_KEY }}
