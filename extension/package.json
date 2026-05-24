@@ -19,6 +19,7 @@
     "@ctrl/tinycolor": "^4.2.0",
     "@floating-ui/react": "^0.27.19",
     "@headlessui/react": "catalog:",
+    "@tanstack/react-query": "^5.100.13",
     "@webext-core/messaging": "^2.3.0",
     "clsx": "catalog:",
     "es-toolkit": "catalog:",

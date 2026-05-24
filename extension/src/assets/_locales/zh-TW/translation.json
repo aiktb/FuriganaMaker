@@ -77,6 +77,7 @@
   "tipOpenIssue": "在 GitHub 上開啟問題",
   "tipRefreshPage": "請重新整理網頁",
   "tipShareOn": "在 {{media}} 上分享",
+  "tipUnavailableOnThisPage": "此頁面不可用",
   "titleEditor": "使用者規則編輯器",
   "titleEditSelectorDialog": "{{verbs}} 您的自訂規則",
   "titleNotFound": "未找到規則",

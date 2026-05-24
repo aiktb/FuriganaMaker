@@ -1,14 +1,5 @@
 export const FURIGANA_CLASS = "--furigana--";
 
-export const ExtEvent = {
-  AddFurigana: "addFurigana",
-  MarkActiveTab: "markActiveTab",
-  MarkDisabledTab: "markDisabledTab",
-  ModifyKanjiFilter: "modifyKanjiFilter",
-  OpenOptionsPage: "openOptionsPage",
-} as const;
-export type ExtEvent = (typeof ExtEvent)[keyof typeof ExtEvent];
-
 export const ExtStorage = {
   AutoMode: "autoMode",
   KanjiFilter: "kanjiFilter",
