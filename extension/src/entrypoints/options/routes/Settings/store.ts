@@ -1,9 +1,19 @@
+import { debounce } from "es-toolkit";
 import { create } from "zustand";
 import { persist } from "zustand/middleware";
 import { ExtStorage, type MoreSettings } from "@/commons/constants";
 import { moreSettings, moreSettingsFallback } from "@/commons/utils";
 
-interface MoreSettingsStore extends MoreSettings {
+const STORAGE_WRITE_DEBOUNCE_WAIT = 100;
+/**
+ * Debounce storage writes to avoid async write order inversions and excessive
+ * calls that can exceed Chrome extension storage API limits.
+ */
+const setMoreSettingsDebounced = debounce((value: MoreSettings) => {
+  moreSettings.setValue(value);
+}, STORAGE_WRITE_DEBOUNCE_WAIT);
+
+interface MoreSettingsStoreActions {
   setLanguage: (language: string) => void;
   toggleDisableWarning: () => void;
   toggleColoringKanji: () => void;
@@ -12,47 +22,61 @@ interface MoreSettingsStore extends MoreSettings {
   setAlwaysRunSites: (sites: string[]) => void;
   resetMoreSettings: () => void;
 }
+interface MoreSettingsStoreState {
+  data: MoreSettings;
+  actions: MoreSettingsStoreActions;
+}
+type PersistedMoreSettingsStoreState = Pick<MoreSettingsStoreState, "data">;
 
-export const useMoreSettingsStore = create<MoreSettingsStore>()(
+export const useMoreSettingsStore = create<MoreSettingsStoreState>()(
   persist(
     (set, get) => ({
-      ...moreSettingsFallback,
-      setLanguage: (language) => {
-        set({ [ExtStorage.Language]: language });
-      },
-      toggleDisableWarning: () => {
-        set({
-          [ExtStorage.DisableWarning]: !get()[ExtStorage.DisableWarning],
-        });
-      },
-      toggleColoringKanji: () => {
-        set({
-          [ExtStorage.ColoringKanji]: !get()[ExtStorage.ColoringKanji],
-        });
-      },
-      setIncludeSites: (sites) => {
-        set({ [ExtStorage.IncludeSites]: sites });
-      },
-      setExcludeSites: (sites) => {
-        set({ [ExtStorage.ExcludeSites]: sites });
-      },
-      setAlwaysRunSites: (sites) => {
-        set({ [ExtStorage.AlwaysRunSites]: sites });
-      },
-      resetMoreSettings: () => {
-        set({ ...moreSettingsFallback });
+      data: moreSettingsFallback,
+      actions: {
+        setLanguage: (language) => {
+          set(({ data }) => ({ data: { ...data, [ExtStorage.Language]: language } }));
+        },
+        toggleDisableWarning: () => {
+          set(({ data }) => ({
+            data: {
+              ...data,
+              [ExtStorage.DisableWarning]: !get().data[ExtStorage.DisableWarning],
+            },
+          }));
+        },
+        toggleColoringKanji: () => {
+          set(({ data }) => ({
+            data: {
+              ...data,
+              [ExtStorage.ColoringKanji]: !get().data[ExtStorage.ColoringKanji],
+            },
+          }));
+        },
+        setIncludeSites: (sites) => {
+          set(({ data }) => ({ data: { ...data, [ExtStorage.IncludeSites]: sites } }));
+        },
+        setExcludeSites: (sites) => {
+          set(({ data }) => ({ data: { ...data, [ExtStorage.ExcludeSites]: sites } }));
+        },
+        setAlwaysRunSites: (sites) => {
+          set(({ data }) => ({ data: { ...data, [ExtStorage.AlwaysRunSites]: sites } }));
+        },
+        resetMoreSettings: () => {
+          set({ data: moreSettingsFallback });
+        },
       },
     }),
     {
       name: "more-settings-storage",
+      partialize: (state): PersistedMoreSettingsStoreState => ({ data: state.data }),
       storage: {
         async getItem() {
           return {
-            state: await moreSettings.getValue(),
+            state: { data: await moreSettings.getValue() },
           };
         },
-        async setItem(_, value) {
-          await moreSettings.setValue(value.state);
+        setItem(_, value) {
+          setMoreSettingsDebounced(value.state.data);
         },
         async removeItem() {
           await moreSettings.removeValue();
@@ -63,5 +87,5 @@ export const useMoreSettingsStore = create<MoreSettingsStore>()(
 );
 
 moreSettings.watch((value) => {
-  useMoreSettingsStore.setState(value);
+  useMoreSettingsStore.setState({ data: value });
 });

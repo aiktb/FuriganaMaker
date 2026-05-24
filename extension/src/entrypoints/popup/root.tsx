@@ -22,20 +22,24 @@ import { SharedCard } from "./components/SharedCard";
 import { useGeneralSettingsStore } from "./store";
 
 export function Root() {
-  const autoModeEnabled = useGeneralSettingsStore((state) => state[ExtStorage.AutoMode]);
-  const kanjiFilterEnabled = useGeneralSettingsStore((state) => state[ExtStorage.KanjiFilter]);
-  const selectedDisplayMode = useGeneralSettingsStore((state) => state[ExtStorage.DisplayMode]);
-  const selectedFuriganaType = useGeneralSettingsStore((state) => state[ExtStorage.FuriganaType]);
-  const selectedSelectMode = useGeneralSettingsStore((state) => state[ExtStorage.SelectMode]);
-  const fontSize = useGeneralSettingsStore((state) => state[ExtStorage.FontSize]);
-  const fontColor = useGeneralSettingsStore((state) => state[ExtStorage.FontColor]);
-  const toggleAutoMode = useGeneralSettingsStore((state) => state.toggleAutoMode);
-  const toggleKanjiFilter = useGeneralSettingsStore((state) => state.toggleKanjiFilter);
-  const setDisplayMode = useGeneralSettingsStore((state) => state.setDisplayMode);
-  const setFuriganaType = useGeneralSettingsStore((state) => state.setFuriganaType);
-  const setSelectMode = useGeneralSettingsStore((state) => state.setSelectMode);
-  const setFontSize = useGeneralSettingsStore((state) => state.setFontSize);
-  const setFontColor = useGeneralSettingsStore((state) => state.setFontColor);
+  const autoModeEnabled = useGeneralSettingsStore((state) => state.data[ExtStorage.AutoMode]);
+  const kanjiFilterEnabled = useGeneralSettingsStore((state) => state.data[ExtStorage.KanjiFilter]);
+  const selectedDisplayMode = useGeneralSettingsStore(
+    (state) => state.data[ExtStorage.DisplayMode],
+  );
+  const selectedFuriganaType = useGeneralSettingsStore(
+    (state) => state.data[ExtStorage.FuriganaType],
+  );
+  const selectedSelectMode = useGeneralSettingsStore((state) => state.data[ExtStorage.SelectMode]);
+  const fontSize = useGeneralSettingsStore((state) => state.data[ExtStorage.FontSize]);
+  const fontColor = useGeneralSettingsStore((state) => state.data[ExtStorage.FontColor]);
+  const toggleAutoMode = useGeneralSettingsStore((state) => state.actions.toggleAutoMode);
+  const toggleKanjiFilter = useGeneralSettingsStore((state) => state.actions.toggleKanjiFilter);
+  const setDisplayMode = useGeneralSettingsStore((state) => state.actions.setDisplayMode);
+  const setFuriganaType = useGeneralSettingsStore((state) => state.actions.setFuriganaType);
+  const setSelectMode = useGeneralSettingsStore((state) => state.actions.setSelectMode);
+  const setFontSize = useGeneralSettingsStore((state) => state.actions.setFontSize);
+  const setFontColor = useGeneralSettingsStore((state) => state.actions.setFontColor);
   const { t } = useTranslation();
 
   const displayModeOptions = [
@@ -100,12 +104,13 @@ export function Root() {
           onChange={(selected: string) => setFuriganaType(selected as FuriganaType)}
         />
       </MenuItem>
-      <MenuItem icon={<CursorTextIcon />}>
+      <MenuItem icon={<CursorTextIcon className={cn(import.meta.env.FIREFOX && "opacity-60")} />}>
         <Select
           className="playwright-switch-select-mode"
-          tip={t("tipCopyText")}
+          tip={import.meta.env.FIREFOX ? t("tipFirefoxUnsupported") : t("tipCopyText")}
           selected={selectedSelectMode}
           options={selectModeOptions}
+          disabled={import.meta.env.FIREFOX}
           onChange={(selected: string) => setSelectMode(selected as SelectMode)}
         />
       </MenuItem>

@@ -9,19 +9,21 @@ import { LanguageSwitcher } from "./components/LanguageSwitcher";
 import { useMoreSettingsStore } from "./store";
 
 export function Settings() {
-  const language = useMoreSettingsStore((state) => state[ExtStorage.Language]);
-  const warningDisabled = useMoreSettingsStore((state) => state[ExtStorage.DisableWarning]);
-  const coloringKanjiEnabled = useMoreSettingsStore((state) => state[ExtStorage.ColoringKanji]);
-  const includeSites = useMoreSettingsStore((state) => state[ExtStorage.IncludeSites]);
-  const excludedSites = useMoreSettingsStore((state) => state[ExtStorage.ExcludeSites]);
-  const alwaysRunSites = useMoreSettingsStore((state) => state[ExtStorage.AlwaysRunSites]);
-  const setLanguage = useMoreSettingsStore((state) => state.setLanguage);
-  const setIncludeSites = useMoreSettingsStore((state) => state.setIncludeSites);
-  const setExcludeSites = useMoreSettingsStore((state) => state.setExcludeSites);
-  const setAlwaysRunSites = useMoreSettingsStore((state) => state.setAlwaysRunSites);
-  const toggleColoringKanji = useMoreSettingsStore((state) => state.toggleColoringKanji);
-  const toggleDisableWarning = useMoreSettingsStore((state) => state.toggleDisableWarning);
-  const resetMoreSettings = useMoreSettingsStore((state) => state.resetMoreSettings);
+  const language = useMoreSettingsStore((state) => state.data[ExtStorage.Language]);
+  const warningDisabled = useMoreSettingsStore((state) => state.data[ExtStorage.DisableWarning]);
+  const coloringKanjiEnabled = useMoreSettingsStore(
+    (state) => state.data[ExtStorage.ColoringKanji],
+  );
+  const includeSites = useMoreSettingsStore((state) => state.data[ExtStorage.IncludeSites]);
+  const excludedSites = useMoreSettingsStore((state) => state.data[ExtStorage.ExcludeSites]);
+  const alwaysRunSites = useMoreSettingsStore((state) => state.data[ExtStorage.AlwaysRunSites]);
+  const setLanguage = useMoreSettingsStore((state) => state.actions.setLanguage);
+  const setIncludeSites = useMoreSettingsStore((state) => state.actions.setIncludeSites);
+  const setExcludeSites = useMoreSettingsStore((state) => state.actions.setExcludeSites);
+  const setAlwaysRunSites = useMoreSettingsStore((state) => state.actions.setAlwaysRunSites);
+  const toggleColoringKanji = useMoreSettingsStore((state) => state.actions.toggleColoringKanji);
+  const toggleDisableWarning = useMoreSettingsStore((state) => state.actions.toggleDisableWarning);
+  const resetMoreSettings = useMoreSettingsStore((state) => state.actions.resetMoreSettings);
   const { i18n, t } = useTranslation();
   const [isResetDialogOpen, setIsResetDialogOpen] = useState(false);
 

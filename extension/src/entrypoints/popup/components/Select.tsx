@@ -12,17 +12,27 @@ interface SelectProps {
   selected: string;
   options: { label: string; value: string }[];
   tip?: string;
+  disabled?: boolean;
   onChange: (selected: string) => void;
   className?: string;
 }
 
-export function Select({ selected, options, tip, onChange, className }: SelectProps) {
+export function Select({
+  selected,
+  options,
+  tip,
+  disabled = false,
+  onChange,
+  className,
+}: SelectProps) {
   function ListBoxButton() {
     return (
       <ListboxButton
+        disabled={disabled}
         className={cn(
           "group peer flex w-full cursor-pointer items-center justify-between rounded-sm ui-open:bg-gray-200 px-2 capitalize transition-all hover:bg-gray-200 focus-visible:bg-gray-200 dark:ui-open:bg-slate-700 dark:focus-visible:bg-slate-700 dark:hover:bg-slate-700",
           className,
+          disabled && "cursor-not-allowed opacity-60",
         )}
       >
         {options.find((option) => option.value === selected)?.label}
@@ -32,7 +42,7 @@ export function Select({ selected, options, tip, onChange, className }: SelectPr
   }
 
   return (
-    <Listbox value={selected} onChange={onChange}>
+    <Listbox value={selected} onChange={onChange} disabled={disabled}>
       <div className="relative w-full">
         {tip ? (
           <ToolTip tip={tip}>
@@ -52,14 +62,14 @@ export function Select({ selected, options, tip, onChange, className }: SelectPr
           <ListboxOptions
             as="div"
             anchor="bottom"
-            className="z-40 mt-1 flex w-[var(--button-width)] flex-col rounded-md border-2 border-gray-300 bg-white py-1 shadow-sm dark:border-slate-700 dark:bg-slate-900"
+            className="z-40 mt-1 flex w-(--button-width) flex-col rounded-md border-2 border-gray-300 bg-white py-1 shadow-sm dark:border-slate-700 dark:bg-slate-900"
           >
             {options.map((item) => (
               <ListboxOption key={item.value} value={item.value}>
                 {({ focus, selected }) => (
                   <li
                     className={cn(
-                      "box-content flex cursor-pointer items-center justify-between ui-active:bg-gray-200 px-[6px] capitalize transition-all hover:bg-gray-200 focus:z-10 focus:bg-gray-200 dark:ui-active:bg-slate-700 dark:focus:bg-slate-700 dark:hover:bg-slate-700",
+                      "box-content flex cursor-pointer items-center justify-between ui-active:bg-gray-200 px-1.5 text-sm capitalize transition-all hover:bg-gray-200 focus:z-10 focus:bg-gray-200 dark:ui-active:bg-slate-700 dark:focus:bg-slate-700 dark:hover:bg-slate-700",
                       focus || selected ? "text-sky-500" : "text-current",
                     )}
                   >

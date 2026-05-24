@@ -13,7 +13,7 @@ const setGeneralSettingsDebounced = debounce((value: GeneralSettings) => {
   generalSettings.setValue(value);
 }, STORAGE_WRITE_DEBOUNCE_WAIT);
 
-interface GeneralSettingsStore extends GeneralSettings {
+interface GeneralSettingsStoreActions {
   toggleAutoMode: () => void;
   toggleKanjiFilter: () => void;
   setDisplayMode: (mode: GeneralSettings["displayMode"]) => void;
@@ -22,42 +22,55 @@ interface GeneralSettingsStore extends GeneralSettings {
   setFontSize: (size: GeneralSettings["fontSize"]) => void;
   setFontColor: (color: GeneralSettings["fontColor"]) => void;
 }
-export const useGeneralSettingsStore = create<GeneralSettingsStore>()(
+interface GeneralSettingsStoreState {
+  data: GeneralSettings;
+  actions: GeneralSettingsStoreActions;
+}
+type PersistedGeneralSettingsStoreState = Pick<GeneralSettingsStoreState, "data">;
+
+export const useGeneralSettingsStore = create<GeneralSettingsStoreState>()(
   persist(
     (set, get) => ({
-      ...generalSettingsFallback,
-      toggleAutoMode: () => {
-        set({ [ExtStorage.AutoMode]: !get()[ExtStorage.AutoMode] });
-      },
-      toggleKanjiFilter: () => {
-        set({ [ExtStorage.KanjiFilter]: !get()[ExtStorage.KanjiFilter] });
-      },
-      setDisplayMode: (mode) => {
-        set({ [ExtStorage.DisplayMode]: mode });
-      },
-      setFuriganaType: (type) => {
-        set({ [ExtStorage.FuriganaType]: type });
-      },
-      setSelectMode: (mode) => {
-        set({ [ExtStorage.SelectMode]: mode });
-      },
-      setFontSize: (size) => {
-        set({ [ExtStorage.FontSize]: size });
-      },
-      setFontColor: (color) => {
-        set({ [ExtStorage.FontColor]: color });
+      data: generalSettingsFallback,
+      actions: {
+        toggleAutoMode: () => {
+          set(({ data }) => ({
+            data: { ...data, [ExtStorage.AutoMode]: !get().data[ExtStorage.AutoMode] },
+          }));
+        },
+        toggleKanjiFilter: () => {
+          set(({ data }) => ({
+            data: { ...data, [ExtStorage.KanjiFilter]: !get().data[ExtStorage.KanjiFilter] },
+          }));
+        },
+        setDisplayMode: (mode) => {
+          set(({ data }) => ({ data: { ...data, [ExtStorage.DisplayMode]: mode } }));
+        },
+        setFuriganaType: (type) => {
+          set(({ data }) => ({ data: { ...data, [ExtStorage.FuriganaType]: type } }));
+        },
+        setSelectMode: (mode) => {
+          set(({ data }) => ({ data: { ...data, [ExtStorage.SelectMode]: mode } }));
+        },
+        setFontSize: (size) => {
+          set(({ data }) => ({ data: { ...data, [ExtStorage.FontSize]: size } }));
+        },
+        setFontColor: (color) => {
+          set(({ data }) => ({ data: { ...data, [ExtStorage.FontColor]: color } }));
+        },
       },
     }),
     {
-      name: "more-settings-storage",
+      name: "general-settings-storage",
+      partialize: (state): PersistedGeneralSettingsStoreState => ({ data: state.data }),
       storage: {
         async getItem() {
           return {
-            state: await generalSettings.getValue(),
+            state: { data: await generalSettings.getValue() },
           };
         },
         setItem(_, value) {
-          setGeneralSettingsDebounced(value.state);
+          setGeneralSettingsDebounced(value.state.data);
         },
         async removeItem() {
           await generalSettings.removeValue();
@@ -68,5 +81,5 @@ export const useGeneralSettingsStore = create<GeneralSettingsStore>()(
 );
 
 generalSettings.watch((value) => {
-  useGeneralSettingsStore.setState(value);
+  useGeneralSettingsStore.setState({ data: value });
 });
