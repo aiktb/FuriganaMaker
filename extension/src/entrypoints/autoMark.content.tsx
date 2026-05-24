@@ -6,7 +6,7 @@ import picomatch from "picomatch/posix";
 import { StrictMode, useEffect, useRef } from "react";
 import { createRoot } from "react-dom/client";
 import { addFurigana } from "@/commons/addFurigana";
-import { ExtEvent, ExtStorage } from "@/commons/constants";
+import { ExtStorage } from "@/commons/constants";
 import { sendMessage } from "@/commons/message";
 import { cn, getGeneralSettings, getMoreSettings, setMoreSettings } from "@/commons/utils";
 
@@ -69,7 +69,7 @@ export default defineContentScript({
 
     const warningDisabled = await getMoreSettings(ExtStorage.DisableWarning);
     if (warningDisabled && isPageTooLarge && !isAlwaysRunSite) {
-      browser.runtime.sendMessage(ExtEvent.MarkDisabledTab);
+      sendMessage("markDisabledTab");
       return;
     }
 
@@ -92,7 +92,7 @@ export default defineContentScript({
             <PageTooLargeWarningDialog
               onClose={() => {
                 ui.remove();
-                browser.runtime.sendMessage(ExtEvent.MarkDisabledTab);
+                sendMessage("markDisabledTab");
               }}
               onRunOnce={() => {
                 ui.remove();
@@ -166,7 +166,7 @@ const PageTooLargeWarningDialog = ({
           className="cursor-pointer text-sky-500 underline decoration-current transition hover:text-sky-600 dark:text-sky-400 dark:hover:text-sky-500"
           // The browser automatically blocks navigation to URLs with the `chrome-extension://` prefix, so the `<a>` tag cannot be used.
           // Content scripts do not have permission to run `browser.runtime.openOptionsPage`, so the request needs to be forwarded to the background.
-          onClick={() => browser.runtime.sendMessage(ExtEvent.OpenOptionsPage)}
+          onClick={() => sendMessage("openOptionsPage")}
         >
           {browser.i18n.getMessage("contentScriptWarningDesc2")}
         </button>
@@ -221,7 +221,7 @@ function handleAndObserveJapaneseElements(initialElements: Element[], selector: 
   // Observer will not observe the element that is loaded for the first time on the page,
   // so it needs to execute `addFurigana` once immediately.
   if (initialElements.length > 0) {
-    browser.runtime.sendMessage(ExtEvent.MarkActiveTab);
+    sendMessage("markActiveTab");
     addFurigana(...initialElements);
   }
   const observer = new MutationObserver((records) => {
@@ -231,7 +231,7 @@ function handleAndObserveJapaneseElements(initialElements: Element[], selector: 
     const uniqJapaneseElements = uniq(japaneseElements);
 
     if (uniqJapaneseElements.length) {
-      browser.runtime.sendMessage(ExtEvent.MarkActiveTab);
+      sendMessage("markActiveTab");
       addFurigana(...uniqJapaneseElements);
     }
   });

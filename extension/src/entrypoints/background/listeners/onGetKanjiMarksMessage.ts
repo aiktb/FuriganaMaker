@@ -1,6 +1,6 @@
 import { match } from "ts-pattern";
 import { toHiragana, toRomaji } from "wanakana";
-import { ExtEvent, FuriganaType } from "@/commons/constants";
+import { FuriganaType } from "@/commons/constants";
 import { onMessage } from "@/commons/message";
 import { type KanjiToken, toKanjiToken } from "@/commons/toKanjiToken";
 import { initAsync, type Tokenizer, TokenizerBuilder } from "@/commons/tokenize";
@@ -57,10 +57,8 @@ const getKanjiFilterMap = async () => {
 };
 
 export const registerOnGetKanjiMarksMessage = () => {
-  browser.runtime.onMessage.addListener((event) => {
-    if (event === ExtEvent.ModifyKanjiFilter) {
-      kanjiFilterMap = null;
-    }
+  onMessage("modifyKanjiFilter", () => {
+    kanjiFilterMap = null;
   });
   onMessage("getKanjiMarks", async ({ data }) => {
     const tokenizer = await getTokenizer();

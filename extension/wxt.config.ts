@@ -35,6 +35,14 @@ export default defineConfig({
     default_locale: "en",
     homepage_url: "https://furiganamaker.app",
     commands,
+    browser_specific_settings: {
+      gecko: {
+        id: "gecko@furiganamaker.app",
+        data_collection_permissions: {
+          required: ["none"],
+        },
+      },
+    },
   },
   webExt: {
     disabled: true,

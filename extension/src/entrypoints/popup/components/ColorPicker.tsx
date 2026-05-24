@@ -20,7 +20,7 @@ export function ColorPicker({ color, onChange, className }: ColorPickerProps) {
         <>
           <PopoverButton
             className={cn(
-              "group flex flex-1 cursor-pointer items-center justify-between rounded-sm px-2 capitalize transition-all hover:bg-gray-200 focus-visible:bg-gray-200 dark:focus-visible:bg-slate-700 dark:hover:bg-slate-700",
+              "group flex flex-1 cursor-pointer items-center justify-between rounded-sm px-2 py-0.5 capitalize transition-all hover:bg-gray-200 focus-visible:bg-gray-200 dark:focus-visible:bg-slate-700 dark:hover:bg-slate-700",
               className,
             )}
           >
@@ -42,7 +42,7 @@ export function ColorPicker({ color, onChange, className }: ColorPickerProps) {
           >
             <PopoverPanel focus className="absolute inset-0 z-50 bg-white dark:bg-slate-900">
               <ColorPickerPanel color={color} onChange={onChange}>
-                <PopoverButton className="playwright-color-picker-close-btn mt-1 flex cursor-pointer items-center justify-center gap-1 rounded-md bg-slate-950/5 px-2 py-1 text-slate-800 transition hover:text-sky-500 dark:bg-white/5 dark:text-white">
+                <PopoverButton className="playwright-color-picker-close-btn mt-1 flex cursor-pointer items-center justify-center gap-1 rounded-md bg-slate-950/5 px-2 py-0.5 text-slate-800 transition hover:text-sky-500 dark:bg-white/5 dark:text-white">
                   <i className="i-tabler-x size-4" />
                   {t("btnClosePanel")}
                 </PopoverButton>

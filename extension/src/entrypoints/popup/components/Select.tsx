@@ -30,9 +30,11 @@ export function Select({
       <ListboxButton
         disabled={disabled}
         className={cn(
-          "group peer flex w-full cursor-pointer items-center justify-between rounded-sm ui-open:bg-gray-200 px-2 capitalize transition-all hover:bg-gray-200 focus-visible:bg-gray-200 dark:ui-open:bg-slate-700 dark:focus-visible:bg-slate-700 dark:hover:bg-slate-700",
+          "group peer flex w-full cursor-pointer items-center justify-between rounded-sm ui-open:bg-gray-200 px-2 py-0.5 capitalize transition-all dark:ui-open:bg-slate-700",
           className,
-          disabled && "cursor-not-allowed opacity-60",
+          disabled
+            ? "cursor-not-allowed opacity-60"
+            : "hover:bg-gray-200 focus-visible:bg-gray-200 dark:focus-visible:bg-slate-700 dark:hover:bg-slate-700",
         )}
       >
         {options.find((option) => option.value === selected)?.label}

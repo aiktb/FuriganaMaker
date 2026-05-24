@@ -2,7 +2,8 @@ import { union } from "es-toolkit";
 import { create } from "zustand";
 import { persist } from "zustand/middleware";
 import defaultKanjiFilterRules from "@/assets/rules/filter.json";
-import { ExtEvent, type FilterRule } from "@/commons/constants";
+import type { FilterRule } from "@/commons/constants";
+import { sendMessage } from "@/commons/message";
 import { DB, getKanjiFilterDB } from "@/commons/utils";
 
 interface SelectorsStore {
@@ -65,7 +66,7 @@ export const useKanjiFiltersStore = create<SelectorsStore>()(
           await store.clear();
           await Promise.all(value.state.kanjiFilters.map((rule) => store.put(rule)));
           await tx.done;
-          browser.runtime.sendMessage(ExtEvent.ModifyKanjiFilter);
+          await sendMessage("modifyKanjiFilter");
         },
         async removeItem() {
           const db = await getKanjiFilterDB();

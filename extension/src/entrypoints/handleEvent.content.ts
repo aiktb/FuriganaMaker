@@ -3,7 +3,6 @@ import { toHiragana, toKatakana, toRomaji } from "wanakana";
 
 import {
   DisplayMode,
-  ExtEvent,
   ExtStorage,
   FURIGANA_CLASS,
   FuriganaType,
@@ -11,6 +10,7 @@ import {
   type MoreSettings,
   SelectMode,
 } from "@/commons/constants";
+import { onMessage } from "@/commons/message";
 import { Selector } from "@/commons/selectElement";
 import { generalSettings, moreSettings } from "@/commons/utils";
 
@@ -57,10 +57,11 @@ export default defineContentScript({
       }
     });
 
-    browser.runtime.onMessage.addListener((event: ExtEvent) => {
-      if (event === ExtEvent.AddFurigana) {
-        addFuriganaHandler();
-      }
+    onMessage("canAddFurigana", () => {
+      return true;
+    });
+    onMessage("addFurigana", () => {
+      addFuriganaHandler();
     });
   },
 });

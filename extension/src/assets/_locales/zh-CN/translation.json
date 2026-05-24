@@ -1,6 +1,7 @@
 {
   "btnAddFurigana": "添加注音假名",
   "tipEscShortcut": "按下 ESC 键取消添加",
+  "tipUnavailableOnThisPage": "此页面不可用",
   "toggleAutoMode": "开/关自动模式",
   "tipRefreshPage": "切换后请刷新页面",
   "toggleKanjiFilter": "开/关汉字过滤器",

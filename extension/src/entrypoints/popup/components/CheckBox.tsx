@@ -15,7 +15,7 @@ function InlineCheckBox({ text, checked, onChange, className }: CheckBoxProps) {
       checked={checked}
       onChange={onChange}
       className={cn(
-        "flex flex-1 cursor-pointer items-center gap-x-1.5 rounded-sm px-2 capitalize transition-all hover:bg-gray-200 focus-visible:bg-gray-200 dark:focus-visible:bg-slate-700 dark:hover:bg-slate-700",
+        "flex flex-1 cursor-pointer items-center gap-x-1.5 rounded-sm px-2 py-0.5 capitalize transition-all hover:bg-gray-200 focus-visible:bg-gray-200 dark:focus-visible:bg-slate-700 dark:hover:bg-slate-700",
         className,
       )}
     >

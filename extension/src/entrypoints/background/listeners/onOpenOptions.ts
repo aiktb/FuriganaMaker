@@ -1,9 +1,7 @@
-import { ExtEvent } from "@/commons/constants";
+import { onMessage } from "@/commons/message";
 
 export const registerOnOpenOptionsMessage = () => {
-  browser.runtime.onMessage.addListener((message) => {
-    if (message === ExtEvent.OpenOptionsPage) {
-      browser.runtime.openOptionsPage();
-    }
+  onMessage("openOptionsPage", () => {
+    browser.runtime.openOptionsPage();
   });
 };

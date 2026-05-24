@@ -1,7 +1,8 @@
 import type { Command } from "@@/wxt.config";
 import { match } from "ts-pattern";
-import { DisplayMode, ExtEvent, ExtStorage } from "@/commons/constants";
-import { getGeneralSettings, sendMessage, setGeneralSettings } from "@/commons/utils";
+import { DisplayMode, ExtStorage } from "@/commons/constants";
+import { sendMessage } from "@/commons/message";
+import { getGeneralSettings, setGeneralSettings } from "@/commons/utils";
 
 export const registerOnCommand = () => {
   // Please see `wxt.config.ts` for a list of shortcut keys.
@@ -10,7 +11,7 @@ export const registerOnCommand = () => {
 
     await match(command as Command)
       .with("addFurigana", async () => {
-        await sendMessage(tabId, ExtEvent.AddFurigana);
+        await sendMessage("addFurigana", undefined, tabId);
       })
       .with("toggleAutoMode", async () => {
         const autoMode = await getGeneralSettings(ExtStorage.AutoMode);

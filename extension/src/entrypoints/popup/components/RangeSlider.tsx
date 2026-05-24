@@ -68,20 +68,17 @@ export function RangeSlider({
       aria-valuetext={`${value}%`}
       aria-label={label}
       className={cn(
-        "relative flex h-5 grow cursor-pointer items-center justify-start gap-x-1 rounded-sm px-2 leading-5 transition-all hover:bg-gray-200 focus-visible:bg-gray-200 dark:focus-visible:bg-slate-700 dark:hover:bg-slate-700",
+        "relative flex h-5 grow cursor-pointer items-center justify-start gap-x-1 rounded-sm px-2 py-0.5 leading-5 transition-all hover:bg-gray-200 focus-visible:bg-gray-200 dark:focus-visible:bg-slate-700 dark:hover:bg-slate-700",
         className,
       )}
       onPointerDown={handlePointerDown}
       onKeyDown={handleKeyDown}
     >
-      <div
-        className="flex h-[3px] w-full justify-center rounded-full bg-current"
-        aria-hidden="true"
-      >
-        <div ref={trackRef} className="relative h-[3px] w-[90%] rounded-lg bg-current">
+      <div className="flex h-0.75 w-full justify-center rounded-full bg-current" aria-hidden="true">
+        <div ref={trackRef} className="relative h-0.75 w-[90%] rounded-lg bg-current">
           <div
             ref={thumbRef}
-            className="-translate-x-1/2 -translate-y-1/2 absolute top-1/2 size-[15px] rounded-full bg-sky-500"
+            className="-translate-x-1/2 -translate-y-1/2 absolute top-1/2 size-3.75 rounded-full bg-sky-500"
             style={{ left: `${((value - min) / (max - min)) * 100}%` }}
           />
         </div>

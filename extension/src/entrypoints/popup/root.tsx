@@ -1,3 +1,4 @@
+import { useQuery } from "@tanstack/react-query";
 import { useTranslation } from "react-i18next";
 import ColorPickerIcon from "@/assets/icons/ColorPicker.svg?react";
 import CursorOutlineIcon from "@/assets/icons/CursorDefault.svg?react";
@@ -10,8 +11,9 @@ import HiraganaIcon from "@/assets/icons/Hiragana.svg?react";
 import PowerIcon from "@/assets/icons/Power.svg?react";
 import SettingIcon from "@/assets/icons/Setting.svg?react";
 import ShareIcon from "@/assets/icons/Share.svg?react";
-import { DisplayMode, ExtEvent, ExtStorage, FuriganaType, SelectMode } from "@/commons/constants";
-import { cn, sendMessage } from "@/commons/utils";
+import { DisplayMode, ExtStorage, FuriganaType, SelectMode } from "@/commons/constants";
+import { sendMessage } from "@/commons/message";
+import { cn } from "@/commons/utils";
 import { Button } from "./components/Button";
 import { CheckBox } from "./components/CheckBox";
 import { ColorPicker } from "./components/ColorPicker";
@@ -41,6 +43,10 @@ export function Root() {
   const setFontSize = useGeneralSettingsStore((state) => state.actions.setFontSize);
   const setFontColor = useGeneralSettingsStore((state) => state.actions.setFontColor);
   const { t } = useTranslation();
+  const currentTabQuery = useQuery({
+    queryKey: ["current-tab"],
+    queryFn: getCurrentTabState,
+  });
 
   const displayModeOptions = [
     { label: t("optionAlwaysShow"), value: DisplayMode.Always },
@@ -60,14 +66,17 @@ export function Root() {
     { label: t("optionParentheses"), value: SelectMode.Parentheses },
   ];
 
+  const addFuriganaDisabled = currentTabQuery.isPending || !currentTabQuery.data?.canAddFurigana;
+
   return (
     <menu className="space-y-2 border-sky-500 border-r-2 pr-1 font-sans">
-      <MenuItem icon={<CursorOutlineIcon />}>
+      <MenuItem icon={<CursorOutlineIcon className={cn(addFuriganaDisabled && "opacity-60")} />}>
         <Button
           className="playwright-add-furigana-btn"
-          tip={t("tipEscShortcut")}
+          tip={addFuriganaDisabled ? t("tipUnavailableOnThisPage") : t("tipEscShortcut")}
           text={t("btnAddFurigana")}
-          onClick={addFurigana}
+          disabled={addFuriganaDisabled}
+          onClick={() => addFurigana(currentTabQuery.data?.id)}
         />
       </MenuItem>
       <MenuItem icon={<PowerIcon className={cn(autoModeEnabled && "text-sky-500")} />}>
@@ -155,9 +164,32 @@ export function Root() {
   );
 }
 
-async function addFurigana() {
+async function getCurrentTabState() {
   const [tab] = await browser.tabs.query({ active: true, currentWindow: true });
-  await sendMessage(tab!.id!, ExtEvent.AddFurigana);
+  const canAddFurigana = await canCurrentTabAddFurigana(tab?.id);
+  return {
+    id: tab?.id,
+    canAddFurigana,
+  };
+}
+
+async function canCurrentTabAddFurigana(tabId?: number) {
+  if (tabId === undefined) {
+    return false;
+  }
+  try {
+    const response = await sendMessage("canAddFurigana", undefined, tabId);
+    return response;
+  } catch {
+    return false;
+  }
+}
+
+async function addFurigana(tabId?: number) {
+  if (tabId === undefined) {
+    return;
+  }
+  await sendMessage("addFurigana", undefined, tabId);
 }
 
 interface MenuItemProps {
