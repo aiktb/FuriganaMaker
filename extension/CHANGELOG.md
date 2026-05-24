@@ -6,7 +6,7 @@
 ### Features
 
 * disable add furigana on unsupported pages ([#464](https://github.com/aiktb/furiganamaker/issues/464)) ([1d32349](https://github.com/aiktb/furiganamaker/commit/1d32349e822f394b55f8f82cef62bfbbf11c68b5))
-* supports firefox MV3 ([#462](https://github.com/aiktb/furiganamaker/issues/462)) ([62bf96d](https://github.com/aiktb/furiganamaker/commit/62bf96df1ccdcf2427802eea8dbbde49fa062085))
+* supports Firefox MV3 ([#462](https://github.com/aiktb/furiganamaker/issues/462)) ([62bf96d](https://github.com/aiktb/furiganamaker/commit/62bf96df1ccdcf2427802eea8dbbde49fa062085))
 
 ## [3.7.0](https://github.com/aiktb/furiganamaker/compare/v3.6.0...v3.7.0) (2026-05-22)
 
@@ -20,12 +20,12 @@
 
 ### Features
 
-* **extension:** add shortcut to toggle furigana visibility ([#458](https://github.com/aiktb/furiganamaker/issues/458)) ([452cc83](https://github.com/aiktb/furiganamaker/commit/452cc831bebe6be0fe7a70c36604bcbce64139fe))
+* add shortcut to toggle furigana visibility ([#458](https://github.com/aiktb/furiganamaker/issues/458)) ([452cc83](https://github.com/aiktb/furiganamaker/commit/452cc831bebe6be0fe7a70c36604bcbce64139fe))
 
 
 ### Bug Fixes
 
-* **content:** handle text updates in auto mark observer ([#455](https://github.com/aiktb/furiganamaker/issues/455)) ([6555243](https://github.com/aiktb/furiganamaker/commit/65552432d6e4b672134cf91f7ec04b4f80f10d03))
+* handle text updates in auto mark observer ([#455](https://github.com/aiktb/furiganamaker/issues/455)) ([6555243](https://github.com/aiktb/furiganamaker/commit/65552432d6e4b672134cf91f7ec04b4f80f10d03))
 
 ## [3.5.0](https://github.com/aiktb/furiganamaker/compare/v3.4.0...v3.5.0) (2026-03-21)
 
