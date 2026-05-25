@@ -1,5 +1,12 @@
 # Changelog
 
+## [3.8.1](https://github.com/aiktb/furiganamaker/compare/v3.8.0...v3.8.1) (2026-05-25)
+
+
+### Bug Fixes
+
+* an incorrect gecko ID caused Firefox to fail to submit ([#465](https://github.com/aiktb/furiganamaker/issues/465)) ([f15acc8](https://github.com/aiktb/furiganamaker/commit/f15acc8001c6f0788ffbabd61f61e8d697d795bf))
+
 ## [3.8.0](https://github.com/aiktb/furiganamaker/compare/v3.7.0...v3.8.0) (2026-05-24)
 
 
