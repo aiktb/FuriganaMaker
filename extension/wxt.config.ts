@@ -37,7 +37,7 @@ export default defineConfig({
     commands,
     browser_specific_settings: {
       gecko: {
-        id: "gecko@furiganamaker.app",
+        id: "{f610e21f-3434-46e8-8db2-a811f4dbfd5f}",
         data_collection_permissions: {
           required: ["none"],
         },
