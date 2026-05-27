@@ -264,6 +264,9 @@ importers:
       '@react-router/fs-routes':
         specifier: 'catalog:'
         version: 7.15.1(@react-router/dev@7.15.1(@types/node@25.8.0)(jiti@2.7.0)(lightningcss@1.32.0)(react-router@7.15.1(react-dom@19.2.6(react@19.2.6))(react@19.2.6))(typescript@6.0.3)(vite@8.0.13(@types/node@25.8.0)(esbuild@0.27.7)(jiti@2.7.0))(wrangler@4.92.0(@cloudflare/workers-types@4.20260517.1)))(typescript@6.0.3)
+      detect-browser:
+        specifier: ^5.3.0
+        version: 5.3.0
       isbot:
         specifier: ^5.1.40
         version: 5.1.40
@@ -276,6 +279,9 @@ importers:
       react-router:
         specifier: 'catalog:'
         version: 7.15.1(react-dom@19.2.6(react@19.2.6))(react@19.2.6)
+      ts-pattern:
+        specifier: 'catalog:'
+        version: 5.9.0
     devDependencies:
       '@cloudflare/workers-types':
         specifier: ^4.20260517.1
@@ -2363,6 +2369,9 @@ packages:
 
   destr@2.0.5:
     resolution: {integrity: sha512-ugFTXCtDZunbzasqBxrK93Ik/DRYsO6S/fedkWEMKqt04xZ4csmnmwGDBAb07QWNaGMAmnTIemsYZCksjATwsA==}
+
+  detect-browser@5.3.0:
+    resolution: {integrity: sha512-53rsFbGdwMwlF7qvCt0ypLM5V5/Mbl0szB7GPN8y9NCcbknYOeVVXdrXEq+90IwAfrrzt6Hd+u2E2ntakICU8w==}
 
   detect-libc@2.1.2:
     resolution: {integrity: sha512-Btj2BOOO83o3WyH59e8MgXsxEQVcarkUOpEYrubB0urwnN10yQ364rsiByU11nZlqWYZm05i/of7io4mzihBtQ==}
@@ -5930,6 +5939,8 @@ snapshots:
   dequal@2.0.3: {}
 
   destr@2.0.5: {}
+
+  detect-browser@5.3.0: {}
 
   detect-libc@2.1.2: {}
 

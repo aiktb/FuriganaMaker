@@ -24,6 +24,7 @@ Special thanks to **_[WXT](https://wxt.dev/)_** for taking the frustration out o
 
 - [Chrome Web Store](https://chromewebstore.google.com/detail/furigana-maker/heodojceeinbkfjfilnfminlkgbacpfp)
 - [Microsoft Edge Add-ons](https://microsoftedge.microsoft.com/addons/detail/furigana-maker/kohpoklaaeicnkdapjkmljdachedmbbi)
+- [Firefox Add-ons](https://addons.mozilla.org/en-US/firefox/addon/furigana-maker/)
 
 ## Features
 

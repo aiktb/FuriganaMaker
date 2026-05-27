@@ -15,10 +15,12 @@
     "@react-router/cloudflare": "catalog:",
     "@react-router/dev": "catalog:",
     "@react-router/fs-routes": "catalog:",
+    "detect-browser": "^5.3.0",
     "isbot": "^5.1.40",
     "react": "catalog:",
     "react-dom": "catalog:",
-    "react-router": "catalog:"
+    "react-router": "catalog:",
+    "ts-pattern": "catalog:"
   },
   "devDependencies": {
     "@cloudflare/workers-types": "^4.20260517.1",

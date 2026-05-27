@@ -1,9 +1,36 @@
-import { useContext, useRef } from "react";
+import { detect } from "detect-browser";
+import { useContext, useEffect, useRef, useState } from "react";
 import { Link } from "react-router";
+import { match } from "ts-pattern";
 import { LinksContext } from "../contexts";
 
 export default function AddToBrowser() {
   const links = useContext(LinksContext)!;
+
+  const [button, setButton] = useState({
+    to: links.chrome,
+    icon: "i-fa6-brands-chrome",
+    label: "Add to Google Chrome",
+  });
+
+  useEffect(() => {
+    const detected = detect()?.name;
+    const next = match(detected)
+      .with("edge-chromium", () => ({
+        to: links.edge,
+        icon: "i-fa6-brands-edge",
+        label: "Add to Microsoft Edge",
+      }))
+      .with("firefox", () => ({
+        to: links.firefox,
+        icon: "i-fa6-brands-firefox-browser",
+        label: "Add to Firefox",
+      }))
+      .otherwise(() => null);
+    if (next) {
+      setButton(next);
+    }
+  }, [links]);
 
   const dynamicHoverRef = useRef<HTMLDivElement>(null);
   const onPointerMove = (e: React.PointerEvent<HTMLAnchorElement>) => {
@@ -17,9 +44,9 @@ export default function AddToBrowser() {
   return (
     <div className="relative select-none">
       <Link
-        to={links.chrome}
+        to={button.to}
         prefetch="viewport"
-        className="group relative inline-flex w-[17.5rem] items-center justify-center gap-2 overflow-hidden rounded-full bg-white px-4 py-2 font-bold text-black hover:bg-[#cbcace]"
+        className="group relative inline-flex w-70 items-center justify-center gap-2 overflow-hidden rounded-full bg-white px-4 py-2 font-bold text-black hover:bg-[#cbcace]"
         onPointerMove={onPointerMove}
       >
         <div
@@ -35,8 +62,8 @@ export default function AddToBrowser() {
           }}
         />
         <div className="z-10 flex items-center justify-center gap-2">
-          <span className="i-fa6-brands-chrome" />
-          Add to Google Chrome
+          <span className={button.icon} />
+          {button.label}
           <div className="ml-2 size-7" />
         </div>
         <div className="absolute top-0 right-0 flex items-center rounded-r-full bg-gray-200/50 py-2 pr-2 pl-2 transition hover:bg-gray-300">
