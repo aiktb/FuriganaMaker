@@ -3,7 +3,7 @@ import { defineConfig } from "vitest/config";
 
 // Unit tests cover `src/core`, the layer that depends on nothing but npm packages.
 // Anything touching the DOM, storage or the extension APIs is covered by the
-// Playwright suite in `__TEST__/e2e`.
+// Playwright suite in `__tests__/e2e`.
 export default defineConfig({
   resolve: {
     alias: {
@@ -11,6 +11,6 @@ export default defineConfig({
     },
   },
   test: {
-    include: ["__TEST__/unit/**/*.test.ts"],
+    include: ["__tests__/unit/**/*.test.ts"],
   },
 });

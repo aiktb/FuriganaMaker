@@ -2,8 +2,8 @@ import { defineConfig, devices } from "@playwright/test";
 
 export default defineConfig({
   // Scoped to `e2e` so that Playwright's default `testMatch` does not also pick up
-  // the Vitest unit tests in `__TEST__/unit`.
-  testDir: "__TEST__/e2e",
+  // the Vitest unit tests in `__tests__/unit`.
+  testDir: "__tests__/e2e",
 
   // Fail the build on CI if you accidentally left test.only in the source code.
   forbidOnly: !!process.env.CI,
