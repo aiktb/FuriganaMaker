@@ -156,6 +156,35 @@ describe("toKanjiToken", () => {
       expectOffsetsToMatchOriginal(results, ...pairs);
     });
 
+    test("account for a run of surrogate pairs", () => {
+      // A single emoji is not enough to pin the 4-byte arithmetic: mistaking it for a
+      // 3-byte character shifts the table by one byte, and the following 3-byte kanji
+      // is wide enough to absorb that. Three in a row shift it by a whole character.
+      const pairs: [string, string][] = [
+        ["😊", "*"],
+        ["😊", "*"],
+        ["😊", "*"],
+        ["漢字", "カンジ"],
+      ];
+      const results = run(...pairs);
+      expect(results).toEqual([{ original: "漢字", reading: "カンジ", start: 6, end: 8 }]);
+      expectOffsetsToMatchOriginal(results, ...pairs);
+    });
+
+    test("account for a surrogate pair between two annotated tokens", () => {
+      const pairs: [string, string][] = [
+        ["漢字", "カンジ"],
+        ["😊", "*"],
+        ["変わる", "カワル"],
+      ];
+      const results = run(...pairs);
+      expect(results).toEqual([
+        { original: "漢字", reading: "カンジ", start: 0, end: 2 },
+        { original: "変", reading: "カ", start: 4, end: 5 },
+      ]);
+      expectOffsetsToMatchOriginal(results, ...pairs);
+    });
+
     test("stay correct for split tokens in the middle of a sentence", () => {
       const pairs: [string, string][] = [
         ["ことで", "コトデ"],
