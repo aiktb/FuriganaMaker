@@ -25,6 +25,7 @@
     "lint": "biome check .",
     "lint:fix": "biome check --write --unsafe .",
     "typecheck": "pnpm --recursive --sequential run typecheck",
+    "test:unit": "pnpm --recursive --sequential run test:unit",
     "test:e2e": "pnpm --recursive --sequential run test:e2e:prod",
     "prepare": "lefthook install",
     "dev": "pnpm --filter extension run dev",

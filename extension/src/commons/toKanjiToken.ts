@@ -38,7 +38,7 @@ const isPhonetic = (linderaToken: FormattedToken) => {
 
 interface SimplifiedToken {
   original: string;
-  reading: string; // Convert Katakana to Hiragana
+  reading: string; // Katakana, as lindera reports it. Converted downstream, not here.
   start: number; // Indexes start from 0
   end: number;
 }
