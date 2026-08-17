@@ -4,7 +4,7 @@ import { StrictMode } from "react";
 import { createRoot } from "react-dom/client";
 
 import "@/tailwind.css";
-import "@/commons/i18n";
+import "@/i18n";
 
 import { Root } from "./root";
 

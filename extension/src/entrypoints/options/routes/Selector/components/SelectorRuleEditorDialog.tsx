@@ -12,8 +12,8 @@ import {
 import { trimStart } from "es-toolkit";
 import { useState } from "react";
 import { Trans, useTranslation } from "react-i18next";
-import type { SelectorRule } from "@/commons/constants";
-import { cn } from "@/commons/utils";
+import { cn } from "@/cn";
+import type { SelectorRule } from "@/constants";
 import { DomainFieldDesc } from "@/entrypoints/options/components/DomainFieldDesc";
 import { PopupTransition } from "@/entrypoints/options/components/PopupTransition";
 import { useSelectorsStore } from "../store";

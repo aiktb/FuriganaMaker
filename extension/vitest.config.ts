@@ -1,8 +1,9 @@
 import { fileURLToPath } from "node:url";
 import { defineConfig } from "vitest/config";
 
-// Unit tests cover the pure logic under `src/commons` only. Anything that touches the
-// DOM or the extension APIs is covered by the Playwright suite in `__TEST__/e2e`.
+// Unit tests cover `src/core`, the layer that depends on nothing but npm packages.
+// Anything touching the DOM, storage or the extension APIs is covered by the
+// Playwright suite in `__TEST__/e2e`.
 export default defineConfig({
   resolve: {
     alias: {

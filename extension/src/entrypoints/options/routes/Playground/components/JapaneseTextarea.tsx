@@ -2,8 +2,8 @@ import { Textarea } from "@headlessui/react";
 import { debounce } from "es-toolkit";
 import { useRef, useState } from "react";
 import { useTranslation } from "react-i18next";
-import type { FuriganaType } from "@/commons/constants";
-import { type KanjiMark, sendMessage } from "@/commons/message";
+import type { FuriganaType } from "@/constants";
+import { type KanjiMark, sendMessage } from "@/messaging/message";
 
 type JapaneseTextareaProps = {
   onSegmentsChange: (segments: FuriganaSegment[]) => void;

@@ -2,9 +2,9 @@ import { union } from "es-toolkit";
 import { create } from "zustand";
 import { persist } from "zustand/middleware";
 import defaultKanjiFilterRules from "@/assets/rules/filter.json";
-import type { FilterRule } from "@/commons/constants";
-import { sendMessage } from "@/commons/message";
-import { DB, getKanjiFilterDB } from "@/commons/utils";
+import type { FilterRule } from "@/constants";
+import { sendMessage } from "@/messaging/message";
+import { DB, getKanjiFilterDB } from "@/storage/kanjiFilterDB";
 
 interface SelectorsStore {
   kanjiFilters: FilterRule[];

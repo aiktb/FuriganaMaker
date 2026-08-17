@@ -5,10 +5,11 @@
 import picomatch from "picomatch/posix";
 import { StrictMode, useEffect, useRef } from "react";
 import { createRoot } from "react-dom/client";
-import { addFurigana } from "@/commons/addFurigana";
-import { ExtStorage } from "@/commons/constants";
-import { sendMessage } from "@/commons/message";
-import { cn, getGeneralSettings, getMoreSettings, setMoreSettings } from "@/commons/utils";
+import { cn } from "@/cn";
+import { ExtStorage } from "@/constants";
+import { addFurigana } from "@/dom/addFurigana";
+import { sendMessage } from "@/messaging/message";
+import { getGeneralSettings, getMoreSettings, setMoreSettings } from "@/storage/settings";
 
 import "@/tailwind.css";
 import { uniq } from "es-toolkit";

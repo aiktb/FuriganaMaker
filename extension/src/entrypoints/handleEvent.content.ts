@@ -9,10 +9,10 @@ import {
   type GeneralSettings,
   type MoreSettings,
   SelectMode,
-} from "@/commons/constants";
-import { onMessage } from "@/commons/message";
-import { Selector } from "@/commons/selectElement";
-import { generalSettings, moreSettings } from "@/commons/utils";
+} from "@/constants";
+import { Selector } from "@/dom/selectElement";
+import { onMessage } from "@/messaging/message";
+import { generalSettings, moreSettings } from "@/storage/settings";
 
 const watchedGeneralStorageKeys = [
   ExtStorage.DisplayMode,

@@ -1,4 +1,4 @@
-import { onMessage } from "@/commons/message";
+import { onMessage } from "@/messaging/message";
 
 export const registerOnOpenOptionsMessage = () => {
   onMessage("openOptionsPage", () => {

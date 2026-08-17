@@ -5,7 +5,7 @@ import {
   ListboxOptions,
   Transition,
 } from "@headlessui/react";
-import { cn } from "@/commons/utils";
+import { cn } from "@/cn";
 import { ToolTip } from "./ToolTip";
 
 interface SelectProps {

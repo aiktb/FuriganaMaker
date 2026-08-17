@@ -1,10 +1,10 @@
 import { match } from "ts-pattern";
 import { toHiragana, toRomaji } from "wanakana";
-import { FuriganaType } from "@/commons/constants";
-import { onMessage } from "@/commons/message";
-import { toKanjiToken } from "@/commons/toKanjiToken";
-import { initAsync, type Tokenizer, TokenizerBuilder } from "@/commons/tokenize";
-import { DB, getKanjiFilterDB } from "@/commons/utils";
+import { FuriganaType } from "@/constants";
+import { toKanjiToken } from "@/core/toKanjiToken";
+import { initAsync, type Tokenizer, TokenizerBuilder } from "@/core/tokenize";
+import { onMessage } from "@/messaging/message";
+import { DB, getKanjiFilterDB } from "@/storage/kanjiFilterDB";
 
 class Deferred {
   promise: Promise<Tokenizer>;

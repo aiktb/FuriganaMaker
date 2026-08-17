@@ -1,4 +1,4 @@
-import { cn } from "@/commons/utils";
+import { cn } from "@/cn";
 import { NotFoundRule } from "../../components/NotFoundRule";
 import { KanjiFilterDashboard } from "./components/KanjiFilterDashboard";
 import { KanjiFilterItem } from "./components/KanjiFilterItem";

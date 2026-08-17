@@ -2,13 +2,13 @@ import { defineExtensionMessaging } from "@webext-core/messaging";
 
 export type { ExtensionMessage } from "@webext-core/messaging";
 
-import type { FuriganaType } from "@/commons/constants";
-import type { KanjiToken } from "@/commons/toKanjiToken";
+import type { FuriganaType } from "@/constants";
+import type { KanjiToken } from "@/core/toKanjiToken";
 
 /**
  * A {@link KanjiToken} as it crosses the wire, tagged with whether the user's kanji
  * filter rules match it. Lives here rather than in the background listener so that
- * `commons` never has to depend on `entrypoints`.
+ * `messaging` never has to depend on `entrypoints`.
  */
 export interface KanjiMark extends KanjiToken {
   isFiltered: boolean;

@@ -5,9 +5,8 @@ import en from "@/assets/_locales/en/translation.json";
 import ja from "@/assets/_locales/ja/translation.json";
 import zhCN from "@/assets/_locales/zh-CN/translation.json";
 import zhTW from "@/assets/_locales/zh-TW/translation.json";
-
+import { getMoreSettings } from "@/storage/settings";
 import { ExtStorage } from "./constants";
-import { getMoreSettings } from "./utils";
 
 i18n.use(initReactI18next).init({
   resources: {

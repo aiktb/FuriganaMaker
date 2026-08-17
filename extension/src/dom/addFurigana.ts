@@ -1,6 +1,6 @@
-import { type KanjiMark, sendMessage } from "@/commons/message";
-import { ExtStorage, FURIGANA_CLASS, type FuriganaType } from "./constants";
-import { getGeneralSettings } from "./utils";
+import { ExtStorage, FURIGANA_CLASS, type FuriganaType } from "@/constants";
+import { type KanjiMark, sendMessage } from "@/messaging/message";
+import { getGeneralSettings } from "@/storage/settings";
 
 /**
  * Append ruby tag to all text nodes of a batch of elements.

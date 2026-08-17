@@ -1,7 +1,7 @@
 import { Dialog, DialogPanel, DialogTitle } from "@headlessui/react";
 import { useState } from "react";
 import { useTranslation } from "react-i18next";
-import type { FilterRule } from "@/commons/constants";
+import type { FilterRule } from "@/constants";
 import { PopupTransition } from "@/entrypoints/options/components/PopupTransition";
 import { useKanjiFiltersStore } from "../store";
 import { KanjiFilterEditorDialog } from "./KanjiFilterEditorDialog";

@@ -1,6 +1,6 @@
 import { describe, expect, test } from "vitest";
-import { type KanjiToken, toKanjiToken } from "@/commons/toKanjiToken";
-import type { FormattedToken } from "@/commons/tokenize";
+import { type KanjiToken, toKanjiToken } from "@/core/toKanjiToken";
+import type { FormattedToken } from "@/core/tokenize";
 
 const encoder = new TextEncoder();
 
