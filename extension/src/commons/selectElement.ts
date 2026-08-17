@@ -1,5 +1,4 @@
 import { addFurigana } from "./addFurigana";
-import { FURIGANA_CLASS } from "./constants";
 
 class Renderer {
   readonly #BORDER = 5;
@@ -8,6 +7,9 @@ class Renderer {
     position: "fixed",
     display: "none",
     background: "DodgerBlue",
+    // The overlay is purely a visual indicator, it must never become an event target,
+    // otherwise hovering or clicking the border would highlight the overlay itself.
+    pointerEvents: "none",
     // Max z-index
     zIndex: 2 ** 31 - 1,
   };
@@ -49,6 +51,8 @@ class Renderer {
   };
 
   readonly destroy = () => {
+    // Hide before detaching so that a reused instance starts hidden on the next `initialize`.
+    this.hide();
     this.#left.remove();
     this.#right.remove();
     this.#top.remove();
@@ -114,10 +118,16 @@ export class Selector {
   readonly #pointeroverHandler = (event: Event) => {
     event.preventDefault();
     event.stopImmediatePropagation();
-    if (event.target === document.body) {
+    const target = event.target;
+    // `<body>` and `<html>` cover the whole viewport, highlighting them is never useful.
+    if (
+      !(target instanceof HTMLElement) ||
+      target === document.body ||
+      target === document.documentElement
+    ) {
       return;
     }
-    this.#renderer.add(event.target! as HTMLElement);
+    this.#renderer.add(target);
   };
 
   readonly #clickHandler = (event: Event) => {
@@ -128,47 +138,51 @@ export class Selector {
     if (!event.isTrusted) {
       return;
     }
-    const target = event.target! as HTMLElement;
+    const target = event.target;
+    if (!(target instanceof HTMLElement)) {
+      return;
+    }
     this.#onElementSelected(target);
+  };
+
+  readonly #keydownHandler = (event: KeyboardEvent) => {
+    if (event.key === "Escape") {
+      this.close();
+    }
   };
 
   static readonly create = () => {
     return this.#selector;
   };
 
+  /**
+   * A single delegated listener on `document` replaces one listener per element.
+   * @remarks
+   * The capture phase runs from the outermost node inwards, so a `document` listener always
+   * runs first, and `event.target` is the deepest element under the pointer either way.
+   * Delegation is therefore behaviourally identical to binding every element, but it costs
+   * two listeners instead of two per element, and it keeps working for elements that the
+   * page adds after the selector was opened.
+   */
   readonly open = () => {
-    this.#renderer.initialize();
     if (this.#isOpen) {
       return;
     }
     this.#isOpen = true;
-    this.#renderer.show();
-    const elements = document.querySelectorAll(`body *:not(.${FURIGANA_CLASS})`);
-    for (const element of elements) {
-      element.addEventListener("click", this.#clickHandler, {
-        capture: true,
-      });
-      element.addEventListener("pointerover", this.#pointeroverHandler, {
-        capture: true,
-      });
-    }
+    this.#renderer.initialize();
+    document.addEventListener("click", this.#clickHandler, { capture: true });
+    document.addEventListener("pointerover", this.#pointeroverHandler, { capture: true });
+    document.addEventListener("keydown", this.#keydownHandler);
   };
 
   readonly close = () => {
-    this.#renderer.destroy();
     if (!this.#isOpen) {
       return;
     }
     this.#isOpen = false;
-    this.#renderer.hide();
-    const elements = document.querySelectorAll("body *");
-    for (const element of elements) {
-      element.removeEventListener("click", this.#clickHandler, {
-        capture: true,
-      });
-      element.removeEventListener("pointerover", this.#pointeroverHandler, {
-        capture: true,
-      });
-    }
+    document.removeEventListener("click", this.#clickHandler, { capture: true });
+    document.removeEventListener("pointerover", this.#pointeroverHandler, { capture: true });
+    document.removeEventListener("keydown", this.#keydownHandler);
+    this.#renderer.destroy();
   };
 }

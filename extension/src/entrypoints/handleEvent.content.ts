@@ -213,13 +213,7 @@ function switchFuriganaHandler(value: FuriganaType) {
 }
 
 function addFuriganaHandler() {
-  const selector = Selector.create();
-  const selectHandler = (event: KeyboardEvent) => {
-    if (event.key === "Escape") {
-      selector.close();
-      document.removeEventListener("keydown", selectHandler);
-    }
-  };
-  selector.open();
-  document.addEventListener("keydown", selectHandler);
+  // `Selector` owns its own listeners, including the Escape key that closes it,
+  // so calling this repeatedly cannot accumulate listeners.
+  Selector.create().open();
 }
