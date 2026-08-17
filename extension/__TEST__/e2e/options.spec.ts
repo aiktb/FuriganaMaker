@@ -9,11 +9,11 @@ describe("Extension options page", () => {
 
   test("Hash routes are able to navigate correctly", async ({ page, extensionId }) => {
     const rulesEditorLink = page.getByRole("link", { name: "Settings" });
-    expect(rulesEditorLink).toBeVisible();
-    expect(rulesEditorLink).toHaveAttribute("href", "#/");
-    expect(rulesEditorLink).toHaveAttribute("aria-current", "page");
+    await expect(rulesEditorLink).toBeVisible();
+    await expect(rulesEditorLink).toHaveAttribute("href", "#/");
+    await expect(rulesEditorLink).toHaveAttribute("aria-current", "page");
     const changelogLink = page.getByRole("link", { name: "Changelog" });
-    expect(changelogLink).toHaveAttribute("href", "#/changelog");
+    await expect(changelogLink).toHaveAttribute("href", "#/changelog");
     await changelogLink.click();
     expect(page.url()).toBe(`chrome-extension://${extensionId}/options.html#/changelog`);
   });
@@ -70,7 +70,7 @@ describe("Kanji filter page", () => {
     const confirmBtn = page.getByRole("button", { name: "Confirm" });
     expect(confirmBtn).toBeTruthy();
     await confirmBtn.click();
-    expect(confirmBtn).toBeHidden();
+    await expect(confirmBtn).toBeHidden();
     expect(await firstKanjiElement.isVisible()).toBeFalsy();
 
     await page.reload();
@@ -89,7 +89,7 @@ describe("Kanji filter page", () => {
     const confirmBtn = page.getByRole("button", { name: "Confirm" });
     expect(confirmBtn).toBeTruthy();
     await confirmBtn.click();
-    expect(confirmBtn).toBeHidden();
+    await expect(confirmBtn).toBeHidden();
     await page.waitForSelector(".playwright-not-found-mark");
     expect(await page.$(FILTER_ITEM_SELECTOR)).toBeNull();
     expect(await clearBtn!.isDisabled()).toBeTruthy();
@@ -148,9 +148,9 @@ describe("Playground works fine", () => {
   });
   test("Emoji in the textarea works fine", async ({ page }) => {
     const textarea = page.getByTestId("playground-japanese-textarea");
-    expect(textarea).toBeVisible();
+    await expect(textarea).toBeVisible();
     const previewArea = page.getByTestId("playground-furigana-preview-area");
-    expect(previewArea).toBeVisible();
+    await expect(previewArea).toBeVisible();
     await textarea.fill("😊漢字テスト");
     await textarea.blur();
     await page.waitForSelector("ruby");
@@ -159,19 +159,19 @@ describe("Playground works fine", () => {
   });
   test("Radio buttons to toggle furigana type works", async ({ page }) => {
     const textarea = page.getByTestId("playground-japanese-textarea");
-    expect(textarea).toBeVisible();
+    await expect(textarea).toBeVisible();
 
     const furiganaTypeHiragana = page.getByRole("radio", { name: "ひらがな" });
     const furiganaTypeKatakana = page.getByRole("radio", { name: "カタカナ" });
     const furiganaTypeRomaji = page.getByRole("radio", { name: "Romaji" });
 
     // Default is hiragana
-    expect(furiganaTypeHiragana).toBeChecked();
-    expect(furiganaTypeKatakana).not.toBeChecked();
-    expect(furiganaTypeRomaji).not.toBeChecked();
+    await expect(furiganaTypeHiragana).toBeChecked();
+    await expect(furiganaTypeKatakana).not.toBeChecked();
+    await expect(furiganaTypeRomaji).not.toBeChecked();
 
     const previewArea = page.getByTestId("playground-furigana-preview-area");
-    expect(previewArea).toBeVisible();
+    await expect(previewArea).toBeVisible();
     await textarea.fill("漢字テスト");
     await textarea.blur();
     await page.waitForSelector("ruby");
@@ -179,14 +179,14 @@ describe("Playground works fine", () => {
     expect(cleanRubyHtml(await previewArea.innerHTML())).toBe(expectedHTML);
 
     await furiganaTypeKatakana.click();
-    expect(furiganaTypeHiragana).not.toBeChecked();
-    expect(furiganaTypeKatakana).toBeChecked();
+    await expect(furiganaTypeHiragana).not.toBeChecked();
+    await expect(furiganaTypeKatakana).toBeChecked();
     const expectedHTMLKatakana = `<div><ruby>漢字<rt>カンジ</rt></ruby>テスト</div>`;
     expect(cleanRubyHtml(await previewArea.innerHTML())).toBe(expectedHTMLKatakana);
 
     await furiganaTypeRomaji.click();
-    expect(furiganaTypeHiragana).not.toBeChecked();
-    expect(furiganaTypeRomaji).toBeChecked();
+    await expect(furiganaTypeHiragana).not.toBeChecked();
+    await expect(furiganaTypeRomaji).toBeChecked();
     const expectedHTMLRomaji = `<div><ruby>漢字<rt>kanji</rt></ruby>テスト</div>`;
     expect(cleanRubyHtml(await previewArea.innerHTML())).toBe(expectedHTMLRomaji);
   });

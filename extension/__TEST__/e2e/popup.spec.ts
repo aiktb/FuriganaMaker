@@ -29,15 +29,15 @@ describe("Extension popup page", () => {
     const kanjiFilterToggle = page.getByRole("switch", { name: "On-Off Kanji Filter" });
     expect(await kanjiFilterToggle.isChecked()).toBe(false);
     const displayModeSelect = page.getByRole("button", { name: "Always Show" });
-    expect(displayModeSelect).toBeVisible();
+    await expect(displayModeSelect).toBeVisible();
     const furiganaTypeSelect = page.getByRole("button", { name: "Hiragana" });
-    expect(furiganaTypeSelect).toBeVisible();
+    await expect(furiganaTypeSelect).toBeVisible();
     const selectModeSelect = page.getByRole("button", { name: "Default" });
-    expect(selectModeSelect).toBeVisible();
+    await expect(selectModeSelect).toBeVisible();
     const slider = page.getByRole("slider");
     expect(await slider.getAttribute("aria-valuenow")).toBe("75");
     const fontColorIndicator = page.locator("div[style='background-color: currentcolor;']");
-    expect(fontColorIndicator).toBeHidden();
+    await expect(fontColorIndicator).toBeHidden();
   });
 
   test("Setting switches, and correctly saves the settings to storage", async ({ page }) => {
@@ -53,9 +53,9 @@ describe("Extension popup page", () => {
   test("Setting listboxes, and correctly saves the settings to storage", async ({ page }) => {
     await page.getByRole("button", { name: "Always Show" }).click();
     const listBox = page.getByRole("listbox");
-    expect(listBox).toBeVisible();
+    await expect(listBox).toBeVisible();
     await listBox.getByText("Hover Gap").click();
-    expect(page.getByRole("button", { name: "Hover Gap" })).toBeVisible();
+    await expect(page.getByRole("button", { name: "Hover Gap" })).toBeVisible();
     await expectGeneralSetting(page, ExtStorage.DisplayMode, "hover gap");
   });
 
