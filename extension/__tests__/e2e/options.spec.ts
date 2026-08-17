@@ -1,4 +1,5 @@
 import fs from "node:fs";
+import { DB } from "@/constants";
 import { describe, expect, test } from "../fixtures";
 import { cleanRubyHtml } from "../utils";
 
@@ -43,6 +44,9 @@ describe("Kanji filter page", () => {
   test.beforeEach(async ({ page, extensionId }) => {
     await page.goto(`chrome-extension://${extensionId}/options.html#/kanji-filter`);
     await page.waitForSelector(PAGE_SELECTOR);
+    // The container renders as soon as the route mounts, but the rules are read from
+    // IndexedDB after that, so waiting for the container alone finds an empty list.
+    await page.waitForSelector(FILTER_ITEM_SELECTOR);
   });
 
   test("Default kanji filters are loaded", async ({ page }) => {
@@ -75,6 +79,7 @@ describe("Kanji filter page", () => {
 
     await page.reload();
     await page.waitForSelector(PAGE_SELECTOR);
+    await page.waitForSelector(FILTER_ITEM_SELECTOR);
     const reloadKanjiElements = await page.$$(FILTER_ITEM_SELECTOR);
     expect(reloadKanjiElements.length).toBe(kanjiElementCount - 1);
     const firstReloadKanjiText = await reloadKanjiElements.at(0)!.innerText();
@@ -96,7 +101,26 @@ describe("Kanji filter page", () => {
 
     await page.reload();
     await page.waitForSelector(PAGE_SELECTOR);
-    expect(await page.$(".playwright-not-found-mark")).toBeTruthy();
+    // An empty list looks identical before and after the rules are read from
+    // IndexedDB, so the DOM cannot show that the clear was persisted. Read the
+    // database instead, which is what this half of the test is really about.
+    const persistedCount = await page.evaluate(
+      ({ name, onlyTable }) =>
+        new Promise<number>((resolve, reject) => {
+          const openRequest = indexedDB.open(name);
+          openRequest.onerror = () => reject(openRequest.error);
+          openRequest.onsuccess = () => {
+            const countRequest = openRequest.result
+              .transaction(onlyTable, "readonly")
+              .objectStore(onlyTable)
+              .count();
+            countRequest.onerror = () => reject(countRequest.error);
+            countRequest.onsuccess = () => resolve(countRequest.result);
+          };
+        }),
+      { name: DB.name, onlyTable: DB.onlyTable },
+    );
+    expect(persistedCount).toBe(0);
     expect(await page.$(FILTER_ITEM_SELECTOR)).toBeNull();
   });
 

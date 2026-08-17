@@ -1,13 +1,8 @@
 import { type DBSchema, openDB } from "idb";
 
 import defaultKanjiFilterRules from "@/assets/rules/filter.json";
-import type { FilterRule } from "@/constants";
+import { DB, type FilterRule } from "@/constants";
 
-export const DB = {
-  name: "kanjiFilterDB",
-  version: 1,
-  onlyTable: "kanjiFilterTable",
-} as const;
 interface KanjiFilterDB extends DBSchema {
   [DB.onlyTable]: {
     key: string;
