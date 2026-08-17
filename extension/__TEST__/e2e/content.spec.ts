@@ -159,6 +159,38 @@ describe("Content scripts", () => {
     expect(cleanRubyHtml(htmlWithRuby)).toBe("<ruby>日本語<rt>にほんご</rt></ruby>タイトル");
   });
 
+  test("furigana styles are injected carrying the current settings", async ({ page }) => {
+    const url = "https://example.org/test-styles";
+    // Note this document declares no <head> of its own, so the parser supplies it.
+    const html = `<!doctype html>
+      <html lang="ja">
+      <body>
+        <p>漢字テスト</p>
+      </body>
+      </html>`;
+
+    await page.route(url, async (route) => {
+      await route.fulfill({
+        status: 200,
+        contentType: "text/html; charset=utf-8",
+        body: html,
+      });
+    });
+
+    await page.goto(url);
+    await page.waitForSelector("body ruby");
+
+    // `toContainText` reads rendered text, and a <style> renders nothing, so the
+    // stylesheet has to be read straight off the element.
+    const css = await page.evaluate(
+      () => document.getElementById("--furigana--styles")?.textContent,
+    );
+    expect(css).toBeTruthy();
+    // The default font size, proving the settings actually reached the stylesheet.
+    expect(css).toContain("font-size: 75%");
+    expect(css).toContain("ruby.--furigana-- > rt");
+  });
+
   test("shouldProcess follows include/exclude settings configured from options page", async ({
     page,
     extensionId,

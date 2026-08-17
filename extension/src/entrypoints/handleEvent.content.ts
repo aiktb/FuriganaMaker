@@ -108,7 +108,12 @@ function styleHandler(settings: StyleSettings) {
     style.setAttribute("type", "text/css");
     style.setAttribute("id", styleElementId);
     style.textContent = css;
-    document.head.appendChild(style);
+    // This content script runs at `document_start`, where the parser has produced the
+    // document element but not necessarily `<head>`. Reaching it usually still works
+    // because the storage read above yields first, but that is a race, and losing it
+    // would throw and take the whole content script down. A `<style>` applies wherever
+    // it sits in the document, so the document element is a safe anchor.
+    (document.head ?? document.documentElement).appendChild(style);
   }
 }
 
