@@ -6,7 +6,7 @@ import picomatch from "picomatch/posix";
 import { StrictMode, useEffect, useRef } from "react";
 import { createRoot } from "react-dom/client";
 import { cn } from "@/cn";
-import { ExtStorage } from "@/constants";
+import { ExtStorage, LARGE_PAGE_TEXT_LENGTH } from "@/constants";
 import { addFurigana } from "@/dom/addFurigana";
 import { sendMessage } from "@/messaging/message";
 import { getGeneralSettings, getMoreSettings, setMoreSettings } from "@/storage/settings";
@@ -59,8 +59,7 @@ export default defineContentScript({
     const formatter = new Intl.NumberFormat(browser.i18n.getUILanguage());
     const formattedTextLength = formatter.format(textLength);
 
-    const MY_THINKING_BIG_PAGE_SIZE = 30000;
-    const isPageTooLarge = textLength > MY_THINKING_BIG_PAGE_SIZE;
+    const isPageTooLarge = textLength > LARGE_PAGE_TEXT_LENGTH;
     const alwaysRunSites = await getMoreSettings(ExtStorage.AlwaysRunSites);
     const isAlwaysRunSite = alwaysRunSites.includes(location.hostname);
     if (!isPageTooLarge || isAlwaysRunSite) {

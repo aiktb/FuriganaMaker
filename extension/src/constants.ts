@@ -1,5 +1,13 @@
 export const FURIGANA_CLASS = "--furigana--";
 
+/**
+ * Number of text characters above which a page counts as large enough that annotating
+ * it automatically is a bad default: the reflow it causes freezes the page and can make
+ * the whole browser unresponsive (issue#16). Such a page asks the user first, unless
+ * they have opted the site into always running.
+ */
+export const LARGE_PAGE_TEXT_LENGTH = 30_000;
+
 export const ExtStorage = {
   AutoMode: "autoMode",
   KanjiFilter: "kanjiFilter",
