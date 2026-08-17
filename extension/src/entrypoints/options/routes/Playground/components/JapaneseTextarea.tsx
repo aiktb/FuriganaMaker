@@ -14,8 +14,8 @@ export const JapaneseTextarea = ({ onSegmentsChange, furiganaType }: JapaneseTex
   const textareaRef = useRef<HTMLTextAreaElement>(null);
   const [userInput, setUserInput] = useState("");
   const getKanjiMarksAndResponse = debounce(async (text: string) => {
-    const { tokens } = await sendMessage("getKanjiMarks", { text, furiganaType });
-    const segments = getFuriganaSegments(tokens, text);
+    const { tokens } = await sendMessage("getKanjiMarks", { texts: [text], furiganaType });
+    const segments = getFuriganaSegments(tokens[0] ?? [], text);
     onSegmentsChange(segments);
   }, 100);
   const handleTextareaChange = (e: React.InputEvent<HTMLTextAreaElement>) => {

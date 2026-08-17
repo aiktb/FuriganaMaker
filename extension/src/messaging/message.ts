@@ -17,7 +17,8 @@ export interface KanjiMark extends KanjiToken {
 interface ProtocolMap {
   addFurigana(): void;
   canAddFurigana(): boolean;
-  getKanjiMarks(data: { text: string; furiganaType: FuriganaType }): { tokens: KanjiMark[] };
+  /** Marks come back in the order the texts were sent, one entry per text. */
+  getKanjiMarks(data: { texts: string[]; furiganaType: FuriganaType }): { tokens: KanjiMark[][] };
   getSelector(data: { domain: string }): { selector: string };
   markActiveTab(): void;
   markDisabledTab(): void;
