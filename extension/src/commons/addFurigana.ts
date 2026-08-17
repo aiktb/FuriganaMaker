@@ -1,5 +1,4 @@
-import { sendMessage } from "@/commons/message";
-import type { KanjiMark } from "@/entrypoints/background/listeners/onGetKanjiMarksMessage";
+import { type KanjiMark, sendMessage } from "@/commons/message";
 import { ExtStorage, FURIGANA_CLASS, type FuriganaType } from "./constants";
 import { getGeneralSettings } from "./utils";
 

@@ -2,7 +2,7 @@ import { match } from "ts-pattern";
 import { toHiragana, toRomaji } from "wanakana";
 import { FuriganaType } from "@/commons/constants";
 import { onMessage } from "@/commons/message";
-import { type KanjiToken, toKanjiToken } from "@/commons/toKanjiToken";
+import { toKanjiToken } from "@/commons/toKanjiToken";
 import { initAsync, type Tokenizer, TokenizerBuilder } from "@/commons/tokenize";
 import { DB, getKanjiFilterDB } from "@/commons/utils";
 
@@ -37,10 +37,6 @@ const getTokenizer = async () => {
   }
   return await deferredTokenizer.promise;
 };
-
-export interface KanjiMark extends KanjiToken {
-  isFiltered: boolean;
-}
 
 let kanjiFilterMap: Map<string, string[] | "*"> | null = null;
 const getKanjiFilterMap = async () => {
