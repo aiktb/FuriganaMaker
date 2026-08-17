@@ -11,8 +11,12 @@ export default defineConfig({
   // Retry on CI only.
   retries: process.env.CI ? 2 : 0,
 
-  // Opt out of parallel tests on CI.
-  workers: process.env.CI ? 1 : "50%",
+  // Every test launches its own browser with the extension loaded, and each of those
+  // reads the 17MB tokenizer dictionary. Running five at once starves them badly enough
+  // that the content script tests exceed the 30s timeout, and buys about a second of
+  // wall clock over the whole suite in return (47.1s against 48.5s on a 10-core
+  // machine). One worker keeps a local run deterministic and identical to CI.
+  workers: 1,
 
   // Reporter to use
   reporter: [["html", { open: "never" }]],
