@@ -23,7 +23,7 @@
     "ts-pattern": "catalog:"
   },
   "devDependencies": {
-    "@cloudflare/workers-types": "^4.20260517.1",
+    "@cloudflare/workers-types": "^5.0.0",
     "@egoist/tailwindcss-icons": "catalog:",
     "@fontsource/dm-sans": "^5.2.8",
     "@fontsource/lobster": "^5.2.8",
