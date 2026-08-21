@@ -16,7 +16,7 @@ on:
     branches:
       - main
 jobs:
-  unit:
+  e2e:
     runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@v6
@@ -30,18 +30,6 @@ jobs:
 
       - name: Run Vitest tests
         run: pnpm run test:unit
-
-  e2e:
-    runs-on: ubuntu-latest
-    steps:
-      - uses: actions/checkout@v6
-      - uses: pnpm/action-setup@v6
-      - uses: actions/setup-node@v6
-        with:
-          node-version-file: "package.json"
-          cache: "pnpm"
-          cache-dependency-path: "pnpm-lock.yaml"
-      - run: pnpm install --frozen-lockfile
 
       - name: Build the extension
         run: pnpm --filter extension run build
