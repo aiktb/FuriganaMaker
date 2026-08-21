@@ -11,7 +11,7 @@ import {
   SelectMode,
 } from "@/constants";
 import { Selector } from "@/dom/selectElement";
-import { onMessage } from "@/messaging/message";
+import { onMessage } from "@/message";
 import { generalSettings, moreSettings } from "@/storage/settings";
 
 const watchedGeneralStorageKeys = [

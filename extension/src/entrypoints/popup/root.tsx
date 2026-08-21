@@ -13,7 +13,7 @@ import SettingIcon from "@/assets/icons/Setting.svg?react";
 import ShareIcon from "@/assets/icons/Share.svg?react";
 import { cn } from "@/cn";
 import { DisplayMode, ExtStorage, FuriganaType, SelectMode } from "@/constants";
-import { sendMessage } from "@/messaging/message";
+import { sendMessage } from "@/message";
 import { Button } from "./components/Button";
 import { CheckBox } from "./components/CheckBox";
 import { ColorPicker } from "./components/ColorPicker";

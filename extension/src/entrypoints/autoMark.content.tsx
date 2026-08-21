@@ -8,7 +8,7 @@ import { createRoot } from "react-dom/client";
 import { cn } from "@/cn";
 import { ExtStorage, LARGE_PAGE_TEXT_LENGTH } from "@/constants";
 import { addFurigana } from "@/dom/addFurigana";
-import { sendMessage } from "@/messaging/message";
+import { sendMessage } from "@/message";
 import { getGeneralSettings, getMoreSettings, setMoreSettings } from "@/storage/settings";
 
 import "@/tailwind.css";

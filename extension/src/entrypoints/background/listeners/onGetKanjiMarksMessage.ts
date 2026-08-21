@@ -3,7 +3,7 @@ import { toHiragana, toRomaji } from "wanakana";
 import { DB, FuriganaType } from "@/constants";
 import { toKanjiToken } from "@/core/toKanjiToken";
 import { initAsync, type Tokenizer, TokenizerBuilder } from "@/core/tokenize";
-import { type KanjiMark, onMessage } from "@/messaging/message";
+import { type KanjiMark, onMessage } from "@/message";
 import { getKanjiFilterDB } from "@/storage/kanjiFilterDB";
 
 class Deferred {

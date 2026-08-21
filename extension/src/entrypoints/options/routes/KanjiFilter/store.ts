@@ -3,7 +3,7 @@ import { create } from "zustand";
 import { persist } from "zustand/middleware";
 import defaultKanjiFilterRules from "@/assets/rules/filter.json";
 import { DB, type FilterRule } from "@/constants";
-import { sendMessage } from "@/messaging/message";
+import { sendMessage } from "@/message";
 import { getKanjiFilterDB } from "@/storage/kanjiFilterDB";
 
 interface SelectorsStore {

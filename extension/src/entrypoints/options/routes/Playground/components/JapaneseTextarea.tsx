@@ -3,7 +3,7 @@ import { debounce } from "es-toolkit";
 import { useRef, useState } from "react";
 import { useTranslation } from "react-i18next";
 import type { FuriganaType } from "@/constants";
-import { type KanjiMark, sendMessage } from "@/messaging/message";
+import { type KanjiMark, sendMessage } from "@/message";
 
 type JapaneseTextareaProps = {
   onSegmentsChange: (segments: FuriganaSegment[]) => void;

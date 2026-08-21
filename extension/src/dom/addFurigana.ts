@@ -1,5 +1,5 @@
 import { ExtStorage, FURIGANA_CLASS, type FuriganaType } from "@/constants";
-import { type KanjiMark, sendMessage } from "@/messaging/message";
+import { type KanjiMark, sendMessage } from "@/message";
 import { getGeneralSettings } from "@/storage/settings";
 
 /**

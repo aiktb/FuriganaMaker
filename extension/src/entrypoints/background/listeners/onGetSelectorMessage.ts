@@ -1,5 +1,5 @@
 import picomatch from "picomatch/posix";
-import { onMessage } from "@/messaging/message";
+import { onMessage } from "@/message";
 import { customSelectors } from "@/storage/settings";
 
 export const registerOnGetSelector = () => {

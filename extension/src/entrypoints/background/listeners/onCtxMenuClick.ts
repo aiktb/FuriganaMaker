@@ -1,4 +1,4 @@
-import { sendMessage } from "@/messaging/message";
+import { sendMessage } from "@/message";
 
 export const CONTEXT_MENU_ID = "addFurigana";
 
