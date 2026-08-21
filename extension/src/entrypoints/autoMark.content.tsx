@@ -6,7 +6,7 @@ import picomatch from "picomatch/posix";
 import { StrictMode, useEffect, useRef } from "react";
 import { createRoot } from "react-dom/client";
 import { cn } from "@/cn";
-import { ExtStorage, LARGE_PAGE_TEXT_LENGTH } from "@/constants";
+import { ExtStorage } from "@/constants";
 import { addFurigana } from "@/dom/addFurigana";
 import { sendMessage } from "@/message";
 import { getGeneralSettings, getMoreSettings, setMoreSettings } from "@/storage/settings";
@@ -58,6 +58,14 @@ export default defineContentScript({
     const textLength = getTextLength();
     const formatter = new Intl.NumberFormat(browser.i18n.getUILanguage());
     const formattedTextLength = formatter.format(textLength);
+
+    /**
+     * Number of text characters above which a page counts as large enough that annotating
+     * it automatically is a bad default: the reflow it causes freezes the page and can make
+     * the whole browser unresponsive (issue#16). Such a page asks the user first, unless
+     * they have opted the site into always running.
+     */
+    const LARGE_PAGE_TEXT_LENGTH = 30_000;
 
     const isPageTooLarge = textLength > LARGE_PAGE_TEXT_LENGTH;
     const alwaysRunSites = await getMoreSettings(ExtStorage.AlwaysRunSites);
