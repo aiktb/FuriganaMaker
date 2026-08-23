@@ -2,7 +2,7 @@ import { Transition } from "@headlessui/react";
 import { useEffect, useState } from "react";
 import { useTranslation } from "react-i18next";
 import { Link, type LinkProps, NavLink } from "react-router";
-import { cn } from "@/commons/utils";
+import { cn } from "@/cn";
 
 type CustomLink = LinkProps & { label: string; icon: string; fillIcon?: string };
 

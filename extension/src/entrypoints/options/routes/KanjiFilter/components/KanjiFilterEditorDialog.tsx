@@ -13,7 +13,7 @@ import {
 import { useState } from "react";
 import { useTranslation } from "react-i18next";
 import { isKanji, isKatakana } from "wanakana";
-import type { FilterRule } from "@/commons/constants";
+import type { FilterRule } from "@/constants";
 
 import { PopupTransition } from "../../../components/PopupTransition";
 import { useKanjiFiltersStore } from "../store";

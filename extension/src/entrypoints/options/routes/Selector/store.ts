@@ -1,8 +1,8 @@
 import { union } from "es-toolkit";
 import { create } from "zustand";
 import { persist } from "zustand/middleware";
-import type { SelectorRule } from "@/commons/constants";
-import { customSelectors } from "@/commons/utils";
+import type { SelectorRule } from "@/constants";
+import { customSelectors } from "@/storage/settings";
 
 interface SelectorsStore {
   selectors: SelectorRule[];

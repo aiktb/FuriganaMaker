@@ -1,6 +1,6 @@
 import picomatch from "picomatch/posix";
-import { onMessage } from "@/commons/message";
-import { customSelectors } from "@/commons/utils";
+import { onMessage } from "@/message";
+import { customSelectors } from "@/storage/settings";
 
 export const registerOnGetSelector = () => {
   onMessage("getSelector", async ({ data }) => {

@@ -1,8 +1,8 @@
 import { debounce } from "es-toolkit";
 import { create } from "zustand";
 import { persist } from "zustand/middleware";
-import { ExtStorage, type GeneralSettings } from "@/commons/constants";
-import { generalSettings, generalSettingsFallback } from "@/commons/utils";
+import { ExtStorage, type GeneralSettings } from "@/constants";
+import { generalSettings, generalSettingsFallback } from "@/storage/settings";
 
 const STORAGE_WRITE_DEBOUNCE_WAIT = 100;
 /**

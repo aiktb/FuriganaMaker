@@ -2,7 +2,7 @@ import { Dialog, DialogPanel, DialogTitle, Switch } from "@headlessui/react";
 import { uniq } from "es-toolkit";
 import { useState } from "react";
 import { useTranslation } from "react-i18next";
-import { ExtStorage } from "@/commons/constants";
+import { ExtStorage } from "@/constants";
 import { PopupTransition } from "@/entrypoints/options/components/PopupTransition";
 import { DomainListHandler } from "./components/DomainListHandler";
 import { LanguageSwitcher } from "./components/LanguageSwitcher";

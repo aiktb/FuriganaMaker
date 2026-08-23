@@ -9,7 +9,7 @@ import { createRoot } from "react-dom/client";
 import { createHashRouter, RouterProvider } from "react-router";
 
 import "@/tailwind.css";
-import "@/commons/i18n";
+import "@/i18n";
 
 import { ErrorPage } from "./components/ErrorPage";
 import { Root } from "./root";

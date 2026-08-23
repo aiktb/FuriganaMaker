@@ -159,6 +159,38 @@ describe("Content scripts", () => {
     expect(cleanRubyHtml(htmlWithRuby)).toBe("<ruby>日本語<rt>にほんご</rt></ruby>タイトル");
   });
 
+  test("furigana styles are injected carrying the current settings", async ({ page }) => {
+    const url = "https://example.org/test-styles";
+    // Note this document declares no <head> of its own, so the parser supplies it.
+    const html = `<!doctype html>
+      <html lang="ja">
+      <body>
+        <p>漢字テスト</p>
+      </body>
+      </html>`;
+
+    await page.route(url, async (route) => {
+      await route.fulfill({
+        status: 200,
+        contentType: "text/html; charset=utf-8",
+        body: html,
+      });
+    });
+
+    await page.goto(url);
+    await page.waitForSelector("body ruby");
+
+    // `toContainText` reads rendered text, and a <style> renders nothing, so the
+    // stylesheet has to be read straight off the element.
+    const css = await page.evaluate(
+      () => document.getElementById("--furigana--styles")?.textContent,
+    );
+    expect(css).toBeTruthy();
+    // The default font size, proving the settings actually reached the stylesheet.
+    expect(css).toContain("font-size: 75%");
+    expect(css).toContain("ruby.--furigana-- > rt");
+  });
+
   test("shouldProcess follows include/exclude settings configured from options page", async ({
     page,
     extensionId,
@@ -199,7 +231,26 @@ describe("Content scripts", () => {
     await page.getByTestId("settings-includeSites-clear-confirm-btn").click();
     await excludeClear.click();
     await page.getByTestId("settings-excludedSites-clear-confirm-btn").click();
-    await page.waitForTimeout(50);
+    await expect
+      .poll(async () => {
+        return await page.evaluate(async () => {
+          const { moreSettings } = await browser.storage.local.get<{
+            moreSettings: { includeSites: string[] };
+          }>("moreSettings");
+          return moreSettings?.includeSites;
+        });
+      })
+      .toEqual([]);
+    await expect
+      .poll(async () => {
+        return await page.evaluate(async () => {
+          const { moreSettings } = await browser.storage.local.get<{
+            moreSettings: { excludeSites: string[] };
+          }>("moreSettings");
+          return moreSettings?.excludeSites;
+        });
+      })
+      .toEqual([]);
 
     await page.goto(url);
     await expect(page.locator("body ruby")).toHaveCount(0);
@@ -209,7 +260,16 @@ describe("Content scripts", () => {
     await includeInput.fill("example.org");
     await includeSubmit.click();
     await expect(includeList).toContainText("example.org");
-    await page.waitForTimeout(50);
+    await expect
+      .poll(async () => {
+        return await page.evaluate(async () => {
+          const { moreSettings } = await browser.storage.local.get<{
+            moreSettings: { includeSites: string[] };
+          }>("moreSettings");
+          return moreSettings?.includeSites;
+        });
+      })
+      .toEqual(["example.org"]);
 
     await page.goto(url);
     await page.waitForSelector("body ruby");
@@ -220,7 +280,16 @@ describe("Content scripts", () => {
     await excludeAddButton.click();
     await excludeInput.fill("example.org");
     await excludeSubmit.click();
-    await page.waitForTimeout(50);
+    await expect
+      .poll(async () => {
+        return await page.evaluate(async () => {
+          const { moreSettings } = await browser.storage.local.get<{
+            moreSettings: { excludeSites: string[] };
+          }>("moreSettings");
+          return moreSettings?.excludeSites;
+        });
+      })
+      .toEqual(["example.org"]);
 
     await page.goto(url);
     await expect(page.locator("body ruby")).toHaveCount(0);

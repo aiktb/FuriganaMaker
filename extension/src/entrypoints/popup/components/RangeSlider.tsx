@@ -1,6 +1,6 @@
 import { clamp } from "es-toolkit";
 import { useRef } from "react";
-import { cn } from "@/commons/utils";
+import { cn } from "@/cn";
 
 interface RangeSliderProps {
   value: number;

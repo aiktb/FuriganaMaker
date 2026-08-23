@@ -12,6 +12,8 @@
     "zip:firefox": "wxt zip -b firefox --mv3",
     "postinstall": "wxt prepare",
     "typecheck": "tsc --noEmit",
+    "test:unit": "vitest run",
+    "test:unit:watch": "vitest",
     "test:e2e:prod": "playwright test",
     "test:e2e:dev": "NODE_ENV=development pnpm exec playwright test --ui"
   },
@@ -62,6 +64,7 @@
     "react-scan": "catalog:",
     "tailwindcss": "catalog:",
     "vite-plugin-svgr": "^5.2.0",
+    "vitest": "^4.1.10",
     "wxt": "^0.20.26"
   }
 }

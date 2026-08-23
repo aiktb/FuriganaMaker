@@ -1,5 +1,5 @@
 import { Radio, RadioGroup } from "@headlessui/react";
-import type { FuriganaType } from "@/commons/constants";
+import type { FuriganaType } from "@/constants";
 
 interface FuriganaTypeOption {
   name: FuriganaType;

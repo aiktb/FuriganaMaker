@@ -9,10 +9,10 @@ import {
   type GeneralSettings,
   type MoreSettings,
   SelectMode,
-} from "@/commons/constants";
-import { onMessage } from "@/commons/message";
-import { Selector } from "@/commons/selectElement";
-import { generalSettings, moreSettings } from "@/commons/utils";
+} from "@/constants";
+import { Selector } from "@/dom/selectElement";
+import { onMessage } from "@/message";
+import { generalSettings, moreSettings } from "@/storage/settings";
 
 const watchedGeneralStorageKeys = [
   ExtStorage.DisplayMode,
@@ -108,7 +108,7 @@ function styleHandler(settings: StyleSettings) {
     style.setAttribute("type", "text/css");
     style.setAttribute("id", styleElementId);
     style.textContent = css;
-    document.head.appendChild(style);
+    document.documentElement.appendChild(style);
   }
 }
 
@@ -213,13 +213,7 @@ function switchFuriganaHandler(value: FuriganaType) {
 }
 
 function addFuriganaHandler() {
-  const selector = Selector.create();
-  const selectHandler = (event: KeyboardEvent) => {
-    if (event.key === "Escape") {
-      selector.close();
-      document.removeEventListener("keydown", selectHandler);
-    }
-  };
-  selector.open();
-  document.addEventListener("keydown", selectHandler);
+  // `Selector` owns its own listeners, including the Escape key that closes it,
+  // so calling this repeatedly cannot accumulate listeners.
+  Selector.create().open();
 }

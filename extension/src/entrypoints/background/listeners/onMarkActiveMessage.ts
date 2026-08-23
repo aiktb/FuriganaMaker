@@ -1,4 +1,4 @@
-import { type ExtensionMessage, onMessage } from "@/commons/message";
+import { type ExtensionMessage, onMessage } from "@/message";
 
 type MarkStyle = {
   fillStyle: string;

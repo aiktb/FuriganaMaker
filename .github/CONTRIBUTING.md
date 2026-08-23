@@ -82,6 +82,28 @@ pnpm run zip:firefox
 
 The generated `furigana-maker-${VERSION}-sources.zip` file is only used for submission to Add-ons for Firefox review.
 
+### Internationalization
+
+The extension carries two separate translation systems. Which one a string belongs to depends on where it is displayed.
+
+|                | `extension/public/_locales/`                                | `extension/src/assets/_locales/`      |
+| -------------- | ----------------------------------------------------------- | ------------------------------------- |
+| API            | `browser.i18n.getMessage()`                                  | `useTranslation()` (i18next)          |
+| Loaded         | synchronously, by the browser                                | asynchronously, by `src/i18n.ts`      |
+| Follows        | the browser UI language                                      | the in-extension **Language** setting |
+| Locale folders | `en`, `ja`, `zh_CN`, `zh_TW`                                 | `en`, `ja`, `zh-CN`, `zh-TW`          |
+| Used by        | the manifest (`__MSG_*`), background listeners, content scripts | the popup and options pages           |
+
+Put a new string in `src/assets/_locales/`, unless it is displayed from the manifest, the background or a content script, in which case it has to go in `public/_locales/`.
+
+#### Known limitations
+
+The two files currently share no keys, so a string needed on both sides has to be written twice, under two different folder-naming conventions.
+
+`browser.i18n` resolves against the browser UI language and offers no way to switch locale at runtime. Anything rendered from a content script — in practice the large-page warning dialog — therefore ignores the extension's own **Language** setting. `autoMark.content.tsx` notes this at the top of the file.
+
+Unifying the two would mean generating `public/_locales/` from the i18next resources at build time. `browser.i18n` cannot be dropped outright, because the manifest and the context menu need their translations before any of our own code runs.
+
 ### E2E Test
 
 In order to test browser extensions, playwright needs to use the `headless=new` mode, which can cause the behavior of `playwright test` and `playwright test --ui` to be inconsistent at times, be sure to use `playwright test` to ensure that the test passes.

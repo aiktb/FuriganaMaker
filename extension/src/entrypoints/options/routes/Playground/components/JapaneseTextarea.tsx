@@ -2,9 +2,8 @@ import { Textarea } from "@headlessui/react";
 import { debounce } from "es-toolkit";
 import { useRef, useState } from "react";
 import { useTranslation } from "react-i18next";
-import type { FuriganaType } from "@/commons/constants";
-import { sendMessage } from "@/commons/message";
-import type { KanjiMark } from "@/entrypoints/background/listeners/onGetKanjiMarksMessage";
+import type { FuriganaType } from "@/constants";
+import { type KanjiMark, sendMessage } from "@/message";
 
 type JapaneseTextareaProps = {
   onSegmentsChange: (segments: FuriganaSegment[]) => void;
@@ -15,8 +14,8 @@ export const JapaneseTextarea = ({ onSegmentsChange, furiganaType }: JapaneseTex
   const textareaRef = useRef<HTMLTextAreaElement>(null);
   const [userInput, setUserInput] = useState("");
   const getKanjiMarksAndResponse = debounce(async (text: string) => {
-    const { tokens } = await sendMessage("getKanjiMarks", { text, furiganaType });
-    const segments = getFuriganaSegments(tokens, text);
+    const { tokens } = await sendMessage("getKanjiMarks", { texts: [text], furiganaType });
+    const segments = getFuriganaSegments(tokens[0] ?? [], text);
     onSegmentsChange(segments);
   }, 100);
   const handleTextareaChange = (e: React.InputEvent<HTMLTextAreaElement>) => {

@@ -23,9 +23,10 @@ export interface KanjiToken {
  * ```
  */
 export const toKanjiToken = (linderaTokens: FormattedToken[], text: string): KanjiToken[] => {
+  const toUtf16Index = buildUtf16IndexLookup(text);
   const filteredTokens = linderaTokens
     .filter(isPhonetic)
-    .map((token) => toSimplifiedToken(token, text))
+    .map((token) => toSimplifiedToken(token, toUtf16Index))
     .flatMap(toRubyText);
   return filteredTokens;
 };
@@ -38,34 +39,58 @@ const isPhonetic = (linderaToken: FormattedToken) => {
 
 interface SimplifiedToken {
   original: string;
-  reading: string; // Convert Katakana to Hiragana
+  reading: string; // Katakana, as lindera reports it. Converted downstream, not here.
   start: number; // Indexes start from 0
   end: number;
 }
 
-const toSimplifiedToken = (linderaToken: FormattedToken, text: string): SimplifiedToken => {
+const toSimplifiedToken = (
+  linderaToken: FormattedToken,
+  toUtf16Index: (byteIndex: number) => number,
+): SimplifiedToken => {
   return {
-    start: byteIndexToUtf16Index(linderaToken.byteStart, text),
-    end: byteIndexToUtf16Index(linderaToken.byteEnd, text),
+    start: toUtf16Index(linderaToken.byteStart),
+    end: toUtf16Index(linderaToken.byteEnd),
     original: linderaToken.surface,
     reading: linderaToken.reading,
   };
 };
 
-function byteIndexToUtf16Index(byteIndex: number, text: string): number {
-  const encoder = new TextEncoder();
-  let bytes = 0;
+/** UTF-8 byte length of a code point, without allocating a buffer per character. */
+const utf8Length = (codePoint: number) => {
+  if (codePoint < 0x80) {
+    return 1;
+  }
+  if (codePoint < 0x800) {
+    return 2;
+  }
+  if (codePoint < 0x10000) {
+    return 3;
+  }
+  return 4;
+};
+
+/**
+ * lindera reports byte offsets, but `Range` addresses a text node by UTF-16 offset.
+ * Resolving one offset means walking the text from the start, and every token needs
+ * two, so doing it per token is quadratic in the length of the text. Walk the text
+ * once up front instead and answer every lookup from the table.
+ */
+const buildUtf16IndexLookup = (text: string) => {
+  const utf16IndexByByte: number[] = [];
   let utf16Index = 0;
   for (const ch of text) {
-    const len = encoder.encode(ch).length; // UTF-8 byte length
-    bytes += len;
-    if (bytes > byteIndex) {
-      return utf16Index;
+    // Every byte of a character resolves to the index of the character it belongs to.
+    for (let byte = utf8Length(ch.codePointAt(0)!); byte > 0; byte--) {
+      utf16IndexByByte.push(utf16Index);
     }
     utf16Index += ch.length; // Note: emoji length is 2 in UTF-16
   }
-  return utf16Index;
-}
+  // A byte index at or past the end of the text resolves to the end of the text,
+  // which is also what lindera reports as the `byteEnd` of a trailing token.
+  const endIndex = utf16Index;
+  return (byteIndex: number) => utf16IndexByByte[byteIndex] ?? endIndex;
+};
 
 const toRubyText = (token: SimplifiedToken): KanjiToken | KanjiToken[] => {
   // The pure Kanji words do not need to be disassembled.

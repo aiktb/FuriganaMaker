@@ -1,5 +1,5 @@
 import { Switch } from "@headlessui/react";
-import { cn } from "@/commons/utils";
+import { cn } from "@/cn";
 import { ToolTip } from "./ToolTip";
 
 interface CheckBoxProps {

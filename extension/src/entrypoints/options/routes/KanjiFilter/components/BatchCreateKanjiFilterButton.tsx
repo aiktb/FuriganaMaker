@@ -3,7 +3,7 @@ import { uniq } from "es-toolkit";
 import { useState } from "react";
 import { useTranslation } from "react-i18next";
 import { isKanji } from "wanakana";
-import { cn } from "@/commons/utils";
+import { cn } from "@/cn";
 import { PopupTransition } from "@/entrypoints/options/components/PopupTransition";
 import { useKanjiFiltersStore } from "../store";
 

@@ -1,7 +1,9 @@
 import { defineConfig, devices } from "@playwright/test";
 
 export default defineConfig({
-  testDir: "__TEST__",
+  // Scoped to `e2e` so that Playwright's default `testMatch` does not also pick up
+  // the Vitest unit tests in `__tests__/unit`.
+  testDir: "__tests__/e2e",
 
   // Fail the build on CI if you accidentally left test.only in the source code.
   forbidOnly: !!process.env.CI,
@@ -9,8 +11,7 @@ export default defineConfig({
   // Retry on CI only.
   retries: process.env.CI ? 2 : 0,
 
-  // Opt out of parallel tests on CI.
-  workers: process.env.CI ? 1 : "50%",
+  workers: 1,
 
   // Reporter to use
   reporter: [["html", { open: "never" }]],

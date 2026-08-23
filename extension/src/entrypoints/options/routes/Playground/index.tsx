@@ -1,7 +1,7 @@
 import { useState } from "react";
 import { match } from "ts-pattern";
 import { toHiragana, toKatakana, toRomaji } from "wanakana";
-import type { FuriganaType } from "@/commons/constants";
+import type { FuriganaType } from "@/constants";
 import { FuriganaTypeRadioGroup } from "./components/FuriganaTypeRadioGroup";
 import { type FuriganaSegment, JapaneseTextarea } from "./components/JapaneseTextarea";
 import { TextWithFurigana } from "./components/TextWithFurigana";

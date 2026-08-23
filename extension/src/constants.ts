@@ -91,3 +91,13 @@ export type FilterRule = {
   kanji: string;
   yomikatas?: string[] | undefined; // If undefined, it matches all yomikatas.
 };
+
+/**
+ * Identifies the IndexedDB that holds {@link FilterRule}s. Kept here with the rest of
+ * the storage schema so that naming it does not mean pulling in the default rules.
+ */
+export const DB = {
+  name: "kanjiFilterDB",
+  version: 1,
+  onlyTable: "kanjiFilterTable",
+} as const;

@@ -3,7 +3,7 @@ import { t } from "i18next";
 import { useState } from "react";
 import { useTranslation } from "react-i18next";
 import { z } from "zod";
-import type { SelectorRule } from "@/commons/constants";
+import type { SelectorRule } from "@/constants";
 import { PopupTransition } from "@/entrypoints/options/components/PopupTransition";
 import { useSelectorsStore } from "../store";
 

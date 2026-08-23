@@ -1,7 +1,6 @@
-import { sendMessage } from "@/commons/message";
-import type { KanjiMark } from "@/entrypoints/background/listeners/onGetKanjiMarksMessage";
-import { ExtStorage, FURIGANA_CLASS, type FuriganaType } from "./constants";
-import { getGeneralSettings } from "./utils";
+import { ExtStorage, FURIGANA_CLASS, type FuriganaType } from "@/constants";
+import { type KanjiMark, sendMessage } from "@/message";
+import { getGeneralSettings } from "@/storage/settings";
 
 /**
  * Append ruby tag to all text nodes of a batch of elements.
@@ -12,9 +11,19 @@ import { getGeneralSettings } from "./utils";
  **/
 export async function addFurigana(...elements: Element[]) {
   const japaneseTexts = elements.flatMap(collectTexts);
+  // Read the DOM before the first await. The offsets that come back address the exact
+  // text that was sent, and the page is free to rewrite a node while the request is
+  // in flight, so the content each node had at request time has to be remembered.
+  const snapshots = japaneseTexts.map((text) => text.textContent);
   const furiganaType = await getGeneralSettings(ExtStorage.FuriganaType);
-  for (const text of japaneseTexts) {
-    const tokens = await tokenize(text.textContent!, furiganaType);
+  const tokensPerText = await tokenize(snapshots, furiganaType);
+
+  for (const [index, text] of japaneseTexts.entries()) {
+    const tokens = tokensPerText[index];
+    // A node the page rewrote in the meantime would be annotated at the wrong offsets.
+    if (!tokens || text.textContent !== snapshots[index]) {
+      continue;
+    }
     // reverse() prevents the range from being invalidated
     for (const token of tokens.reverse()) {
       const ruby = createRuby(token);
@@ -44,14 +53,27 @@ const collectTexts = (element: Element): Text[] => {
   return texts;
 };
 
-const tokenize = async (text: string, furiganaType: FuriganaType) => {
+/** Tokenize a batch of texts, returning one array of marks per input text. */
+const tokenize = async (texts: string[], furiganaType: FuriganaType): Promise<KanjiMark[][]> => {
+  const tokensPerText: KanjiMark[][] = texts.map(() => []);
   // Performance Optimization: This will reduce the number of Service Worker requests by more than 50%.
-  const hasKanji = /\p{sc=Han}/v.test(text);
-  if (!hasKanji) {
-    return [];
+  const indicesWithKanji = texts.flatMap((text, index) =>
+    /\p{sc=Han}/v.test(text) ? [index] : [],
+  );
+  if (!indicesWithKanji.length) {
+    return tokensPerText;
   }
-  const { tokens } = await sendMessage("getKanjiMarks", { text, furiganaType });
-  return tokens;
+  // One request for the whole batch. A page holds hundreds of text nodes, and asking
+  // about them one at a time meant hundreds of serial round trips to the Service
+  // Worker, each costing far more than tokenizing the text it carried.
+  const { tokens } = await sendMessage("getKanjiMarks", {
+    texts: indicesWithKanji.map((index) => texts[index]!),
+    furiganaType,
+  });
+  for (const [position, index] of indicesWithKanji.entries()) {
+    tokensPerText[index] = tokens[position] ?? [];
+  }
+  return tokensPerText;
 };
 
 const createRuby = (token: KanjiMark): HTMLElement => {

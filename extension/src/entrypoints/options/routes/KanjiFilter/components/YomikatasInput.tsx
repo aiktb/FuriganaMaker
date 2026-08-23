@@ -2,7 +2,7 @@ import { Input } from "@headlessui/react";
 import { t } from "i18next";
 import { useRef, useState } from "react";
 import { toast } from "sonner";
-import { cn } from "@/commons/utils";
+import { cn } from "@/cn";
 
 interface YomikatasInputProps {
   yomikatas: string[];

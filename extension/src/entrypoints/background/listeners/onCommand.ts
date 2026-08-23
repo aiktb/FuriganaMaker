@@ -1,8 +1,8 @@
 import type { Command } from "@@/wxt.config";
 import { match } from "ts-pattern";
-import { DisplayMode, ExtStorage } from "@/commons/constants";
-import { sendMessage } from "@/commons/message";
-import { getGeneralSettings, setGeneralSettings } from "@/commons/utils";
+import { DisplayMode, ExtStorage } from "@/constants";
+import { sendMessage } from "@/message";
+import { getGeneralSettings, setGeneralSettings } from "@/storage/settings";
 
 export const registerOnCommand = () => {
   // Please see `wxt.config.ts` for a list of shortcut keys.
