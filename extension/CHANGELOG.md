@@ -1,5 +1,12 @@
 # Changelog
 
+## [3.8.2](https://github.com/aiktb/furiganamaker/compare/v3.8.1...v3.8.2) (2026-08-23)
+
+
+### Performance Improvements
+
+* speed ​​up and improve the accuracy of adding Furigana to pages ([#478](https://github.com/aiktb/furiganamaker/issues/478)) ([310140c](https://github.com/aiktb/furiganamaker/commit/310140cdfe779a3505b0f170753ab66da812db37))
+
 ## [3.8.1](https://github.com/aiktb/furiganamaker/compare/v3.8.0...v3.8.1) (2026-05-25)
 
 
