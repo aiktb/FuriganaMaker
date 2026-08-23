@@ -231,7 +231,26 @@ describe("Content scripts", () => {
     await page.getByTestId("settings-includeSites-clear-confirm-btn").click();
     await excludeClear.click();
     await page.getByTestId("settings-excludedSites-clear-confirm-btn").click();
-    await page.waitForTimeout(50);
+    await expect
+      .poll(async () => {
+        return await page.evaluate(async () => {
+          const { moreSettings } = await browser.storage.local.get<{
+            moreSettings: { includeSites: string[] };
+          }>("moreSettings");
+          return moreSettings?.includeSites;
+        });
+      })
+      .toEqual([]);
+    await expect
+      .poll(async () => {
+        return await page.evaluate(async () => {
+          const { moreSettings } = await browser.storage.local.get<{
+            moreSettings: { excludeSites: string[] };
+          }>("moreSettings");
+          return moreSettings?.excludeSites;
+        });
+      })
+      .toEqual([]);
 
     await page.goto(url);
     await expect(page.locator("body ruby")).toHaveCount(0);
@@ -241,7 +260,16 @@ describe("Content scripts", () => {
     await includeInput.fill("example.org");
     await includeSubmit.click();
     await expect(includeList).toContainText("example.org");
-    await page.waitForTimeout(50);
+    await expect
+      .poll(async () => {
+        return await page.evaluate(async () => {
+          const { moreSettings } = await browser.storage.local.get<{
+            moreSettings: { includeSites: string[] };
+          }>("moreSettings");
+          return moreSettings?.includeSites;
+        });
+      })
+      .toEqual(["example.org"]);
 
     await page.goto(url);
     await page.waitForSelector("body ruby");
@@ -252,7 +280,16 @@ describe("Content scripts", () => {
     await excludeAddButton.click();
     await excludeInput.fill("example.org");
     await excludeSubmit.click();
-    await page.waitForTimeout(50);
+    await expect
+      .poll(async () => {
+        return await page.evaluate(async () => {
+          const { moreSettings } = await browser.storage.local.get<{
+            moreSettings: { excludeSites: string[] };
+          }>("moreSettings");
+          return moreSettings?.excludeSites;
+        });
+      })
+      .toEqual(["example.org"]);
 
     await page.goto(url);
     await expect(page.locator("body ruby")).toHaveCount(0);

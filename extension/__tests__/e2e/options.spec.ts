@@ -77,6 +77,27 @@ describe("Kanji filter page", () => {
     await expect(confirmBtn).toBeHidden();
     expect(await firstKanjiElement.isVisible()).toBeFalsy();
 
+    await expect
+      .poll(async () => {
+        return await page.evaluate(
+          ({ name, onlyTable }) =>
+            new Promise<number>((resolve, reject) => {
+              const openRequest = indexedDB.open(name);
+              openRequest.onerror = () => reject(openRequest.error);
+              openRequest.onsuccess = () => {
+                const countRequest = openRequest.result
+                  .transaction(onlyTable, "readonly")
+                  .objectStore(onlyTable)
+                  .count();
+                countRequest.onerror = () => reject(countRequest.error);
+                countRequest.onsuccess = () => resolve(countRequest.result);
+              };
+            }),
+          { name: DB.name, onlyTable: DB.onlyTable },
+        );
+      })
+      .toBe(kanjiElementCount - 1);
+
     await page.reload();
     await page.waitForSelector(PAGE_SELECTOR);
     await page.waitForSelector(FILTER_ITEM_SELECTOR);
