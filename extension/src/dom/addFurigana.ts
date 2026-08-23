@@ -14,7 +14,7 @@ export async function addFurigana(...elements: Element[]) {
   // Read the DOM before the first await. The offsets that come back address the exact
   // text that was sent, and the page is free to rewrite a node while the request is
   // in flight, so the content each node had at request time has to be remembered.
-  const snapshots = japaneseTexts.map((text) => text.textContent ?? "");
+  const snapshots = japaneseTexts.map((text) => text.textContent);
   const furiganaType = await getGeneralSettings(ExtStorage.FuriganaType);
   const tokensPerText = await tokenize(snapshots, furiganaType);
 
