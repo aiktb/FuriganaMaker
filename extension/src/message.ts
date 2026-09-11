@@ -26,6 +26,4 @@ interface ProtocolMap {
   openOptionsPage(): void;
 }
 
-export const { sendMessage, onMessage } = defineExtensionMessaging<ProtocolMap>({
-  breakError: true,
-});
+export const { sendMessage, onMessage } = defineExtensionMessaging<ProtocolMap>();
