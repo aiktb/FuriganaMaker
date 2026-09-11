@@ -1,5 +1,12 @@
 # Changelog
 
+## [3.9.0](https://github.com/aiktb/furiganamaker/compare/v3.8.2...v3.9.0) (2026-09-11)
+
+
+### Features
+
+* add kanji filter search and pagination ([#482](https://github.com/aiktb/furiganamaker/issues/482)) ([5d121d7](https://github.com/aiktb/furiganamaker/commit/5d121d7b9cdb59068e1532ba3b94c4a7a701dd30))
+
 ## [3.8.2](https://github.com/aiktb/furiganamaker/compare/v3.8.1...v3.8.2) (2026-08-23)
 
 
