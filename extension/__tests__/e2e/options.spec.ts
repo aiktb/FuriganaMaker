@@ -112,7 +112,7 @@ describe("Kanji filter page", () => {
     await expect(next).toBeDisabled();
     await search.fill("");
     await expect(items).toHaveCount(100);
-    await page.getByRole("checkbox", { name: "Only Match ALL rules" }).check();
+    await page.getByRole("switch", { name: "Only Match ALL rules" }).check();
     await expect(items).toHaveCount(1);
     await expect(items.first()).toContainText("Match ALL");
     await search.fill(lastKanji);

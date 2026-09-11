@@ -1,3 +1,4 @@
+import { Button, Field, Input, Label, Switch } from "@headlessui/react";
 import { useMemo, useState } from "react";
 import { useTranslation } from "react-i18next";
 import { cn } from "@/cn";
@@ -41,37 +42,46 @@ export function KanjiFilter() {
     >
       <KanjiFilterDashboard className="mb-5" disableExportAndClear={kanjiFilters.length === 0} />
       <div className="mb-5 flex w-full flex-wrap items-center gap-3">
-        <input
-          type="search"
-          aria-label={t("kanjiFilterSearch")}
-          placeholder={t("kanjiFilterSearch")}
-          value={query}
-          onChange={(event) => {
-            setQuery(event.target.value);
-            setPage(1);
-          }}
-          className="min-w-0 flex-1 rounded-md border-slate-300 bg-transparent dark:border-slate-600"
-        />
-        <label className="flex items-center gap-2">
-          <input
-            type="checkbox"
-            checked={matchAllOnly}
+        <Field className="min-w-0 flex-1">
+          <Label className="sr-only">{t("kanjiFilterSearch")}</Label>
+          <Input
+            type="search"
+            placeholder={t("kanjiFilterSearch")}
+            value={query}
             onChange={(event) => {
-              setMatchAllOnly(event.target.checked);
+              setQuery(event.target.value);
               setPage(1);
             }}
+            className="block w-full rounded-md border-0 py-1.5 text-slate-900 shadow-xs ring-1 ring-gray-300 ring-inset placeholder:text-slate-400 focus:ring-2 focus:ring-sky-600 focus:ring-inset disabled:cursor-not-allowed sm:text-sm sm:leading-6 dark:bg-slate-900 dark:text-white dark:ring-gray-700 dark:focus:ring-sky-600"
           />
-          {t("kanjiFilterMatchAllOnly")}
-        </label>
+        </Field>
+        <Field className="flex items-center gap-2">
+          <Label className="font-semibold text-slate-950 text-sm/6 dark:text-white">
+            {t("kanjiFilterMatchAllOnly")}
+          </Label>
+          <Switch
+            checked={matchAllOnly}
+            onChange={(checked) => {
+              setMatchAllOnly(checked);
+              setPage(1);
+            }}
+            className="group relative flex h-5 w-10 shrink-0 cursor-pointer rounded-full bg-slate-900/10 p-1 transition duration-200 ease-in-out hover:backdrop-brightness-75 focus:outline-hidden data-checked:bg-sky-500 data-focus:outline-1 data-focus:outline-white dark:bg-white/10 dark:hover:backdrop-brightness-175"
+          >
+            <span
+              aria-hidden="true"
+              className="pointer-events-none inline-block size-3 translate-x-0 rounded-full bg-white shadow-lg ring-0 transition duration-200 ease-in-out group-data-checked:translate-x-5"
+            />
+          </Switch>
+        </Field>
       </div>
       <nav aria-label={t("kanjiFilterPagination")} className="mb-5 flex items-center gap-3">
-        <button
+        <Button
           disabled={currentPage === 1}
           onClick={() => setPage(currentPage - 1)}
-          className="rounded-md px-3 py-2 hover:bg-slate-500/10 disabled:opacity-40"
+          className="inline-flex cursor-pointer items-center justify-center rounded-md bg-sky-600 px-3 py-1.5 font-semibold text-sm text-white leading-6 shadow-xs focus-visible:outline-2 focus-visible:outline-sky-600 focus-visible:outline-offset-2 enabled:hover:bg-sky-500 disabled:cursor-not-allowed disabled:opacity-50"
         >
           {t("kanjiFilterPrevious")}
-        </button>
+        </Button>
         <output>
           {t("kanjiFilterPage", {
             page: currentPage,
@@ -79,13 +89,13 @@ export function KanjiFilter() {
             total: filteredRules.length,
           })}
         </output>
-        <button
+        <Button
           disabled={currentPage === pageCount}
           onClick={() => setPage(currentPage + 1)}
-          className="rounded-md px-3 py-2 hover:bg-slate-500/10 disabled:opacity-40"
+          className="inline-flex cursor-pointer items-center justify-center rounded-md bg-sky-600 px-3 py-1.5 font-semibold text-sm text-white leading-6 shadow-xs focus-visible:outline-2 focus-visible:outline-sky-600 focus-visible:outline-offset-2 enabled:hover:bg-sky-500 disabled:cursor-not-allowed disabled:opacity-50"
         >
           {t("kanjiFilterNext")}
-        </button>
+        </Button>
       </nav>
       {filteredRules.length > 0 ? (
         <div className="grid grid-cols-2 flex-wrap gap-3 sm:grid-cols-3 2xl:grid-cols-4">
