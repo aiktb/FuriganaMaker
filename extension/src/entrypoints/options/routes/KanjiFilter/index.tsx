@@ -78,7 +78,7 @@ export function KanjiFilter() {
         <Button
           disabled={currentPage === 1}
           onClick={() => setPage(currentPage - 1)}
-          className="inline-flex cursor-pointer items-center justify-center rounded-md bg-sky-600 px-3 py-1.5 font-semibold text-sm text-white leading-6 shadow-xs focus-visible:outline-2 focus-visible:outline-sky-600 focus-visible:outline-offset-2 enabled:hover:bg-sky-500 disabled:cursor-not-allowed disabled:opacity-50"
+          className="inline-flex cursor-pointer items-center justify-center rounded-md bg-slate-950/5 px-3 py-2 text-slate-800 transition focus-visible:outline-2 focus-visible:outline-sky-600 focus-visible:outline-offset-2 enabled:hover:text-sky-500 disabled:cursor-not-allowed disabled:opacity-50 dark:bg-white/5 dark:text-white"
         >
           {t("kanjiFilterPrevious")}
         </Button>
@@ -92,7 +92,7 @@ export function KanjiFilter() {
         <Button
           disabled={currentPage === pageCount}
           onClick={() => setPage(currentPage + 1)}
-          className="inline-flex cursor-pointer items-center justify-center rounded-md bg-sky-600 px-3 py-1.5 font-semibold text-sm text-white leading-6 shadow-xs focus-visible:outline-2 focus-visible:outline-sky-600 focus-visible:outline-offset-2 enabled:hover:bg-sky-500 disabled:cursor-not-allowed disabled:opacity-50"
+          className="inline-flex cursor-pointer items-center justify-center rounded-md bg-slate-950/5 px-3 py-2 text-slate-800 transition focus-visible:outline-2 focus-visible:outline-sky-600 focus-visible:outline-offset-2 enabled:hover:text-sky-500 disabled:cursor-not-allowed disabled:opacity-50 dark:bg-white/5 dark:text-white"
         >
           {t("kanjiFilterNext")}
         </Button>
