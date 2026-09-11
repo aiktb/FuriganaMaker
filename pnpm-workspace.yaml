@@ -2,6 +2,9 @@ packages:
   - extension
   - website
 
+overrides:
+  vite: 'catalog:'
+
 allowBuilds:
   esbuild: false
   lefthook: false
@@ -14,24 +17,24 @@ catalog:
   '@headlessui/react': ^2.2.10
   '@headlessui/tailwindcss': ^0.2.2
   '@iconify-json/fa6-brands': ^1.2.6
-  '@react-router/cloudflare': ^7.15.1
-  '@react-router/dev': ^7.15.1
-  '@react-router/fs-routes': ^7.15.1
+  '@react-router/cloudflare': ^8.3.1
+  '@react-router/dev': ^8.3.1
+  '@react-router/fs-routes': ^8.3.1
   '@tailwindcss/forms': ^0.5.11
-  '@tailwindcss/typography': ^0.5.19
-  '@tailwindcss/vite': ^4.3.0
+  '@tailwindcss/typography': ^0.5.20
+  '@tailwindcss/vite': ^4.3.3
   '@total-typescript/ts-reset': ^0.6.1
-  '@types/react': ^19.2.14
-  '@types/react-dom': ^19.2.3
-  baseline-browser-mapping: ^2.10.30
+  '@types/react': ^19.3.0
+  '@types/react-dom': ^19.3.0
+  baseline-browser-mapping: ^2.11.21
   clsx: ^2.1.1
-  es-toolkit: ^1.46.1
-  react: ^19.1.7
-  react-dom: ^19.1.7
-  react-router: ^7.15.1
-  react-scan: ^0.5.6
+  es-toolkit: ^1.52.0
+  react: ^19.3.0
+  react-dom: ^19.3.0
+  react-router: ^8.3.1
+  react-scan: ^0.5.7
   tailwind-merge: ^3.6.0
-  tailwindcss: ^4.3.0
+  tailwindcss: ^4.3.3
   ts-pattern: ^5.9.0
-  vite: ^8.0.13
-  zustand: ^5.0.13
+  vite: ^8.3.0
+  zustand: ^5.0.15
