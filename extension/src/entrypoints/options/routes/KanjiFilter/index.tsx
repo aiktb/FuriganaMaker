@@ -41,8 +41,8 @@ export function KanjiFilter() {
       )}
     >
       <KanjiFilterDashboard className="mb-5" disableExportAndClear={kanjiFilters.length === 0} />
-      <div className="mb-5 flex w-full flex-wrap items-center gap-3">
-        <Field className="min-w-0 flex-1">
+      <div className="mb-5 flex w-full flex-wrap items-center justify-center gap-3">
+        <Field className="w-64 max-w-full">
           <Label className="sr-only">{t("kanjiFilterSearch")}</Label>
           <Input
             type="search"
@@ -74,7 +74,18 @@ export function KanjiFilter() {
           </Switch>
         </Field>
       </div>
-      <nav aria-label={t("kanjiFilterPagination")} className="mb-5 flex items-center gap-3">
+      {filteredRules.length > 0 ? (
+        <div className="grid grid-cols-2 flex-wrap gap-3 sm:grid-cols-3 2xl:grid-cols-4">
+          {filteredRules.slice(offset, offset + PAGE_SIZE).map((rule, index) => (
+            <KanjiFilterItem key={rule.kanji} rule={rule} index={offset + index} />
+          ))}
+        </div>
+      ) : kanjiFilters.length > 0 ? (
+        <output>{t("kanjiFilterNoResults")}</output>
+      ) : (
+        <NotFoundRule />
+      )}
+      <nav aria-label={t("kanjiFilterPagination")} className="mt-5 flex items-center gap-3">
         <Button
           disabled={currentPage === 1}
           onClick={() => setPage(currentPage - 1)}
@@ -97,17 +108,6 @@ export function KanjiFilter() {
           {t("kanjiFilterNext")}
         </Button>
       </nav>
-      {filteredRules.length > 0 ? (
-        <div className="grid grid-cols-2 flex-wrap gap-3 sm:grid-cols-3 2xl:grid-cols-4">
-          {filteredRules.slice(offset, offset + PAGE_SIZE).map((rule, index) => (
-            <KanjiFilterItem key={rule.kanji} rule={rule} index={offset + index} />
-          ))}
-        </div>
-      ) : kanjiFilters.length > 0 ? (
-        <output>{t("kanjiFilterNoResults")}</output>
-      ) : (
-        <NotFoundRule />
-      )}
     </div>
   );
 }
