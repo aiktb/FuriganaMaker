@@ -95,7 +95,7 @@
   "btnConfirm": "确认",
   "btnQuickCreate": "快速创建",
   "clearConfigDialogTitle": "您确定要清除规则列表吗？",
-  "createKanjiFilterDialogDesc1": "请在浏览器中使用Web搜索工具搜索特定的汉字或Yomikata，然后单击按钮开始编辑。\n另外，Yomikata必须采用片假名格式，不接受罗马音和平假名。",
+  "createKanjiFilterDialogDesc1": "使用搜索框跨页查找汉字或读音，然后点击规则进行编辑。读音必须使用片假名，不接受罗马音和平假名。",
   "createKanjiFilterDialogDesc2": "“匹配全部”模式不能与Yomokata字段共存。\n如果切换到此模式，将清除原始的Yomokata字段，无法恢复。",
   "createKanjiFilterDialogTitle": "如何使用汉字过滤器？",
   "fieldMatchAll": "匹配全部",
@@ -139,5 +139,12 @@
   "tipClearText": "清除文本",
   "tipPleaseEnter": "请先输入。",
   "placeholderTypeFurigana": "输入文字生成假名",
-  "msgCopyFailed": "复制失败。"
+  "msgCopyFailed": "复制失败。",
+  "kanjiFilterSearch": "搜索汉字或读音",
+  "kanjiFilterMatchAllOnly": "仅显示“匹配全部”规则",
+  "kanjiFilterPagination": "汉字过滤器分页",
+  "kanjiFilterPrevious": "上一页",
+  "kanjiFilterNext": "下一页",
+  "kanjiFilterPage": "第 {{page}} / {{pages}} 页 · 共 {{total}} 条规则",
+  "kanjiFilterNoResults": "没有匹配的规则。"
 }

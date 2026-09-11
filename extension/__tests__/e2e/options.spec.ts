@@ -1,4 +1,5 @@
 import fs from "node:fs";
+import defaultRules from "@/assets/rules/filter.json" with { type: "json" };
 import { DB } from "@/constants";
 import { describe, expect, test } from "../fixtures";
 import { cleanRubyHtml } from "../utils";
@@ -51,7 +52,7 @@ describe("Kanji filter page", () => {
 
   test("Default kanji filters are loaded", async ({ page }) => {
     const kanjiElements = await page.$$(FILTER_ITEM_SELECTOR);
-    expect(kanjiElements.length).toBeGreaterThanOrEqual(995);
+    expect(kanjiElements.length).toBe(100);
     const firstKanji = await kanjiElements.at(0)!.innerText();
     expect(firstKanji).toContain("#1");
     expect(firstKanji).toContain("一");
@@ -62,9 +63,67 @@ describe("Kanji filter page", () => {
     expect(secondKanji).toContain("ヒトリ");
   });
 
+  test("Pagination and search cover all rules", async ({ page }) => {
+    await page.evaluate(
+      ({ name, onlyTable, kanji }) =>
+        new Promise<void>((resolve, reject) => {
+          const request = indexedDB.open(name);
+          request.onerror = () => reject(request.error);
+          request.onsuccess = () => {
+            const db = request.result;
+            const tx = db.transaction(onlyTable, "readwrite");
+            tx.objectStore(onlyTable).put({ kanji });
+            tx.oncomplete = () => {
+              db.close();
+              resolve();
+            };
+            tx.onerror = () => reject(tx.error);
+          };
+        }),
+      { name: DB.name, onlyTable: DB.onlyTable, kanji: defaultRules.at(-1)!.kanji },
+    );
+    await page.reload();
+    const items = page.locator(FILTER_ITEM_SELECTOR);
+    await expect(items).toHaveCount(100);
+    const next = page.getByRole("button", { name: "Next", exact: true });
+    const previous = page.getByRole("button", { name: "Previous", exact: true });
+    await expect(previous).toBeDisabled();
+    await next.click();
+    await expect(items).toHaveCount(100);
+    await expect(items.first()).toContainText("#101");
+    await previous.click();
+    await expect(items.first()).toContainText("#1");
+    for (let i = 1; i < Math.ceil(defaultRules.length / 100); i++) {
+      await next.click();
+    }
+    await expect(next).toBeDisabled();
+    await expect(items).toHaveCount(defaultRules.length % 100 || 100);
+
+    const search = page.getByRole("searchbox");
+    const lastKanji = defaultRules.at(-1)!.kanji;
+    await search.fill(lastKanji);
+    await expect(previous).toBeDisabled();
+    await expect(items.filter({ hasText: lastKanji }).first()).toBeVisible();
+    await search.fill("ヒトリ");
+    await expect(items.filter({ hasText: "一人" }).first()).toBeVisible();
+    await search.fill("no-such-kanji");
+    await expect(items).toHaveCount(0);
+    await expect(page.getByText("No matching rules.")).toBeVisible();
+    await expect(next).toBeDisabled();
+    await search.fill("");
+    await expect(items).toHaveCount(100);
+    await page.getByRole("switch", { name: "Only Match ALL rules" }).check();
+    await expect(items).toHaveCount(1);
+    await expect(items.first()).toContainText("Match ALL");
+    await search.fill(lastKanji);
+    await expect(items).toHaveCount(1);
+    await search.fill("一人");
+    await expect(items).toHaveCount(0);
+  });
+
   test("Delete first kanji filter", async ({ page }) => {
     const kanjiElements = await page.$$(FILTER_ITEM_SELECTOR);
-    const kanjiElementCount = kanjiElements.length;
+    const kanjiElementCount = defaultRules.length;
     const firstKanjiElement = kanjiElements.at(0)!;
     const firstKanjiText = await firstKanjiElement.innerText();
 
@@ -102,7 +161,7 @@ describe("Kanji filter page", () => {
     await page.waitForSelector(PAGE_SELECTOR);
     await page.waitForSelector(FILTER_ITEM_SELECTOR);
     const reloadKanjiElements = await page.$$(FILTER_ITEM_SELECTOR);
-    expect(reloadKanjiElements.length).toBe(kanjiElementCount - 1);
+    expect(reloadKanjiElements.length).toBe(100);
     const firstReloadKanjiText = await reloadKanjiElements.at(0)!.innerText();
     expect(firstReloadKanjiText).not.toContain(firstKanjiText);
   });

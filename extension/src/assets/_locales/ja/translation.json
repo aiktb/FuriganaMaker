@@ -95,7 +95,7 @@
   "btnConfirm": "確認する",
   "btnQuickCreate": "クイック作成",
   "clearConfigDialogTitle": "ルールリストをクリアしたいですか？",
-  "createKanjiFilterDialogDesc1": "ブラウザのWeb検索ツールを使用して、特定の漢字または読み方を検索し、ボタンをクリックして編集を開始します。\nまた、読み方は片仮名形式である必要があります。ロマジーまたはヒラガナは受け入れられません。",
+  "createKanjiFilterDialogDesc1": "検索欄で全ページの漢字や読み方を検索し、ルールをクリックして編集してください。読み方はカタカナで入力してください。ローマ字やひらがなは使用できません。",
   "createKanjiFilterDialogDesc2": "「すべて」モードは、読み方フィールドと共存できません。\nこのモードに切り替えると、元の読み方フィールドがクリアされ、取得できません。",
   "createKanjiFilterDialogTitle": "漢字フィルターの使用方法は？",
   "fieldMatchAll": "すべて",
@@ -139,5 +139,12 @@
   "tipClearText": "テキストをクリア",
   "tipPleaseEnter": "最初に入力してください。",
   "placeholderTypeFurigana": "文字を入力してふりがな化",
-  "msgCopyFailed": "コピーに失敗しました。"
+  "msgCopyFailed": "コピーに失敗しました。",
+  "kanjiFilterSearch": "漢字または読み方を検索",
+  "kanjiFilterMatchAllOnly": "「すべて」のルールのみ",
+  "kanjiFilterPagination": "漢字フィルターのページ切り替え",
+  "kanjiFilterPrevious": "前へ",
+  "kanjiFilterNext": "次へ",
+  "kanjiFilterPage": "{{page}} / {{pages}} ページ · {{total}} 件",
+  "kanjiFilterNoResults": "一致するルールはありません。"
 }
