@@ -102,7 +102,7 @@
   "clearConfigDialogTitle": "Are you sure you want to clear the rule list?",
   "btnClearConfig": "Clear Config",
   "createKanjiFilterDialogTitle": "How to use kanji filter?",
-  "createKanjiFilterDialogDesc1": "Please use the web search tool in your browser to search for a specific kanji or yomikata, then click the button to start editing. Also, the yomikata must be in katakana format, romaji or hiragana are not accepted.",
+  "createKanjiFilterDialogDesc1": "Use the search field to find a kanji or reading across all pages, then click a rule to edit it. Readings must be in katakana; romaji and hiragana are not accepted.",
   "createKanjiFilterDialogDesc2": "The \"Match ALL\" toggle cannot coexist with the yomokatas field. If you switch to this mode, the original yomokatas field will be cleared and cannot be retrieved.",
   "titleKanjiFilterEditor": "{{verbs}} your kanji filter",
   "validationRequired": "Required.",
@@ -138,5 +138,12 @@
   "tipClearText": "Clear text",
   "tipPleaseEnter": "Please enter first.",
   "placeholderTypeFurigana": "Type to furiganaify.",
-  "msgCopyFailed": "Copy failed."
+  "msgCopyFailed": "Copy failed.",
+  "kanjiFilterSearch": "Search kanji or reading",
+  "kanjiFilterMatchAllOnly": "Only Match ALL rules",
+  "kanjiFilterPagination": "Kanji filter pagination",
+  "kanjiFilterPrevious": "Previous",
+  "kanjiFilterNext": "Next",
+  "kanjiFilterPage": "Page {{page}} of {{pages}} · {{total}} rules",
+  "kanjiFilterNoResults": "No matching rules."
 }
