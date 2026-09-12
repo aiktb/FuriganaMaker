@@ -61,6 +61,7 @@
     "@vitejs/plugin-react": "^6.1.1",
     "@wxt-dev/auto-icons": "^1.1.2",
     "baseline-browser-mapping": "catalog:",
+    "react-grab": "catalog:",
     "react-scan": "catalog:",
     "tailwindcss": "catalog:",
     "vite-plugin-svgr": "^5.2.0",
