@@ -32,6 +32,7 @@ catalog:
   react: ^19.3.0
   react-dom: ^19.3.0
   react-router: ^8.3.1
+  react-grab: ^0.2.0
   react-scan: ^0.5.7
   tailwind-merge: ^3.6.0
   tailwindcss: ^4.3.3

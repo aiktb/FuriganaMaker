@@ -1,4 +1,5 @@
 if (import.meta.env.DEV) {
+  await import("react-grab");
   const { scan } = await import("react-scan");
   scan({ enabled: true });
 }

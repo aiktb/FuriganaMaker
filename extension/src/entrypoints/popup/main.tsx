@@ -1,3 +1,7 @@
+if (import.meta.env.DEV) {
+  await import("react-grab");
+}
+
 import { QueryClient, QueryClientProvider } from "@tanstack/react-query";
 import { ThemeProvider } from "next-themes";
 import { StrictMode } from "react";
