@@ -54,6 +54,7 @@
     "@tailwindcss/typography": "catalog:",
     "@tailwindcss/vite": "catalog:",
     "@total-typescript/ts-reset": "catalog:",
+    "@types/dom-chromium-ai": "^0.0.17",
     "@types/file-saver": "^2.0.7",
     "@types/picomatch": "^4.0.3",
     "@types/react": "catalog:",

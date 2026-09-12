@@ -5,9 +5,10 @@ import type { FuriganaSegment } from "./JapaneseTextarea";
 
 interface TextWithFuriganaProps {
   furiganaSegments: FuriganaSegment[];
+  emptyMessage?: string | undefined;
 }
 
-export const TextWithFurigana = ({ furiganaSegments }: TextWithFuriganaProps) => {
+export const TextWithFurigana = ({ furiganaSegments, emptyMessage }: TextWithFuriganaProps) => {
   const { t } = useTranslation();
 
   return (
@@ -33,7 +34,7 @@ export const TextWithFurigana = ({ furiganaSegments }: TextWithFuriganaProps) =>
             data-testid="playground-furigana-preview-empty"
             className="text-slate-700 dark:text-slate-300"
           >
-            {t("tipPleaseEnter")}
+            {emptyMessage ?? t("tipPleaseEnter")}
           </span>
         )}
       </div>

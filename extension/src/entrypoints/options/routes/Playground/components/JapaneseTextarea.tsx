@@ -1,30 +1,20 @@
 import { Textarea } from "@headlessui/react";
-import { debounce } from "es-toolkit";
-import { useRef, useState } from "react";
+import { useRef } from "react";
 import { useTranslation } from "react-i18next";
-import type { FuriganaType } from "@/constants";
-import { type KanjiMark, sendMessage } from "@/message";
+import type { KanjiToken } from "@/core/toKanjiToken";
 
 type JapaneseTextareaProps = {
-  onSegmentsChange: (segments: FuriganaSegment[]) => void;
-  furiganaType: FuriganaType;
+  value: string;
+  onChange: (value: string) => void;
 };
 
-export const JapaneseTextarea = ({ onSegmentsChange, furiganaType }: JapaneseTextareaProps) => {
+export const JapaneseTextarea = ({ value: userInput, onChange }: JapaneseTextareaProps) => {
   const textareaRef = useRef<HTMLTextAreaElement>(null);
-  const [userInput, setUserInput] = useState("");
-  const getKanjiMarksAndResponse = debounce(async (text: string) => {
-    const { tokens } = await sendMessage("getKanjiMarks", { texts: [text], furiganaType });
-    const segments = getFuriganaSegments(tokens[0] ?? [], text);
-    onSegmentsChange(segments);
-  }, 100);
   const handleTextareaChange = (e: React.InputEvent<HTMLTextAreaElement>) => {
     const el = e.currentTarget;
-    setUserInput(el.value);
-    // If auto is not set, the container will not be able to shrink
+    onChange(el.value);
     el.style.height = "auto";
     el.style.height = `${el.scrollHeight}px`;
-    getKanjiMarksAndResponse(el.value);
   };
   const MAX_LENGTH = 5000;
   const { i18n } = useTranslation();
@@ -51,8 +41,7 @@ export const JapaneseTextarea = ({ onSegmentsChange, furiganaType }: JapaneseTex
         <button
           disabled={userInput.length === 0}
           onClick={() => {
-            setUserInput("");
-            onSegmentsChange([]);
+            onChange("");
           }}
           className="flex items-center justify-center rounded-full p-2 transition enabled:cursor-pointer enabled:hover:bg-slate-500/10 disabled:cursor-not-allowed disabled:opacity-50 enabled:hover:dark:bg-white/10"
         >
@@ -77,11 +66,11 @@ export type FuriganaSegment =
       id: string;
     };
 
-const getFuriganaSegments = (tokens: KanjiMark[], text: string) => {
+export const getFuriganaSegments = (tokens: KanjiToken[], text: string) => {
   const result: FuriganaSegment[] = [];
 
   let lastIndex = 0;
-  const getFurigana = (token: KanjiMark) => {
+  const getFurigana = (token: KanjiToken) => {
     return {
       type: "furigana",
       original: text.slice(token.start, token.end),
